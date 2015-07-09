@@ -117,6 +117,8 @@
 		9F50E5001B4E577600AB6BD8 /* bluebao */ = {
 			isa = PBXGroup;
 			children = (
+				9F50E50B1B4E577600AB6BD8 /* Main.storyboard */,
+				9F50E5101B4E577600AB6BD8 /* LaunchScreen.xib */,
 				9F91E7E41B4E5AE80013F4F1 /* Vendor */,
 				9F91E7E11B4E5ABE0013F4F1 /* Common */,
 				9F50E5281B4E57F100AB6BD8 /* Modules */,
@@ -128,8 +130,6 @@
 		9F50E5011B4E577600AB6BD8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9F50E50B1B4E577600AB6BD8 /* Main.storyboard */,
-				9F50E5101B4E577600AB6BD8 /* LaunchScreen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
