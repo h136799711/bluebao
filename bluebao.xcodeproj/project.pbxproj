@@ -37,6 +37,16 @@
 		5BF05F9A1B4E610500CBC510 /* RegistVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF05F961B4E610500CBC510 /* RegistVC.xib */; };
 		5BF05F9B1B4E610500CBC510 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F981B4E610500CBC510 /* UserInfo.m */; };
 		5BF05FA11B4E623C00CBC510 /* EngineHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FA01B4E623C00CBC510 /* EngineHttpRequest.m */; };
+		5BF05FBE1B4E63C900CBC510 /* ShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FA41B4E63C900CBC510 /* ShareVC.m */; };
+		5BF05FBF1B4E63C900CBC510 /* PersonCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FA71B4E63C900CBC510 /* PersonCenterVC.m */; };
+		5BF05FC01B4E63C900CBC510 /* PersonMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FAA1B4E63C900CBC510 /* PersonMessageVC.m */; };
+		5BF05FC11B4E63C900CBC510 /* MyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FAD1B4E63C900CBC510 /* MyTool.m */; };
+		5BF05FC21B4E63C900CBC510 /* GoalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FB01B4E63C900CBC510 /* GoalVC.m */; };
+		5BF05FC31B4E63C900CBC510 /* HeadPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FB31B4E63C900CBC510 /* HeadPageVC.m */; };
+		5BF05FC41B4E63C900CBC510 /* LeftMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FB61B4E63C900CBC510 /* LeftMenu.m */; };
+		5BF05FC51B4E63C900CBC510 /* LeftMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FB81B4E63C900CBC510 /* LeftMenuCell.m */; };
+		5BF05FC61B4E63C900CBC510 /* LetfView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FBA1B4E63C900CBC510 /* LetfView.m */; };
+		5BF05FC71B4E63C900CBC510 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FBD1B4E63C900CBC510 /* MainViewController.m */; };
 		9F50E50D1B4E577600AB6BD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F50E50B1B4E577600AB6BD8 /* Main.storyboard */; };
 		9F50E5121B4E577600AB6BD8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F50E5101B4E577600AB6BD8 /* LaunchScreen.xib */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
@@ -130,6 +140,26 @@
 		5BF05F9E1B4E623C00CBC510 /* CommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
 		5BF05F9F1B4E623C00CBC510 /* EngineHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineHttpRequest.h; sourceTree = "<group>"; };
 		5BF05FA01B4E623C00CBC510 /* EngineHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineHttpRequest.m; sourceTree = "<group>"; };
+		5BF05FA31B4E63C900CBC510 /* ShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareVC.h; sourceTree = "<group>"; };
+		5BF05FA41B4E63C900CBC510 /* ShareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareVC.m; sourceTree = "<group>"; };
+		5BF05FA61B4E63C900CBC510 /* PersonCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterVC.h; sourceTree = "<group>"; };
+		5BF05FA71B4E63C900CBC510 /* PersonCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCenterVC.m; sourceTree = "<group>"; };
+		5BF05FA91B4E63C900CBC510 /* PersonMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMessageVC.h; sourceTree = "<group>"; };
+		5BF05FAA1B4E63C900CBC510 /* PersonMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMessageVC.m; sourceTree = "<group>"; };
+		5BF05FAC1B4E63C900CBC510 /* MyTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTool.h; sourceTree = "<group>"; };
+		5BF05FAD1B4E63C900CBC510 /* MyTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTool.m; sourceTree = "<group>"; };
+		5BF05FAF1B4E63C900CBC510 /* GoalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalVC.h; sourceTree = "<group>"; };
+		5BF05FB01B4E63C900CBC510 /* GoalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalVC.m; sourceTree = "<group>"; };
+		5BF05FB21B4E63C900CBC510 /* HeadPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadPageVC.h; sourceTree = "<group>"; };
+		5BF05FB31B4E63C900CBC510 /* HeadPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadPageVC.m; sourceTree = "<group>"; };
+		5BF05FB51B4E63C900CBC510 /* LeftMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenu.h; sourceTree = "<group>"; };
+		5BF05FB61B4E63C900CBC510 /* LeftMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenu.m; sourceTree = "<group>"; };
+		5BF05FB71B4E63C900CBC510 /* LeftMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuCell.h; sourceTree = "<group>"; };
+		5BF05FB81B4E63C900CBC510 /* LeftMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuCell.m; sourceTree = "<group>"; };
+		5BF05FB91B4E63C900CBC510 /* LetfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetfView.h; sourceTree = "<group>"; };
+		5BF05FBA1B4E63C900CBC510 /* LetfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetfView.m; sourceTree = "<group>"; };
+		5BF05FBC1B4E63C900CBC510 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		5BF05FBD1B4E63C900CBC510 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		9F50E4FE1B4E577600AB6BD8 /* bluebao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluebao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E50C1B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F50E5111B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -285,6 +315,90 @@
 			path = "Modules/宏定义";
 			sourceTree = "<group>";
 		};
+		5BF05FA21B4E63C900CBC510 /* 分享 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05FA31B4E63C900CBC510 /* ShareVC.h */,
+				5BF05FA41B4E63C900CBC510 /* ShareVC.m */,
+			);
+			name = "分享";
+			path = "Modules/分享";
+			sourceTree = "<group>";
+		};
+		5BF05FA51B4E63C900CBC510 /* 个人中心 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05FA61B4E63C900CBC510 /* PersonCenterVC.h */,
+				5BF05FA71B4E63C900CBC510 /* PersonCenterVC.m */,
+			);
+			name = "个人中心";
+			path = "Modules/个人中心";
+			sourceTree = "<group>";
+		};
+		5BF05FA81B4E63C900CBC510 /* 个人资料 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05FA91B4E63C900CBC510 /* PersonMessageVC.h */,
+				5BF05FAA1B4E63C900CBC510 /* PersonMessageVC.m */,
+			);
+			name = "个人资料";
+			path = "Modules/个人资料";
+			sourceTree = "<group>";
+		};
+		5BF05FAB1B4E63C900CBC510 /* 工具箱 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05FAC1B4E63C900CBC510 /* MyTool.h */,
+				5BF05FAD1B4E63C900CBC510 /* MyTool.m */,
+			);
+			name = "工具箱";
+			path = "Modules/工具箱";
+			sourceTree = "<group>";
+		};
+		5BF05FAE1B4E63C900CBC510 /* 目标 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05FAF1B4E63C900CBC510 /* GoalVC.h */,
+				5BF05FB01B4E63C900CBC510 /* GoalVC.m */,
+			);
+			name = "目标";
+			path = "Modules/目标";
+			sourceTree = "<group>";
+		};
+		5BF05FB11B4E63C900CBC510 /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05FB21B4E63C900CBC510 /* HeadPageVC.h */,
+				5BF05FB31B4E63C900CBC510 /* HeadPageVC.m */,
+			);
+			name = "首页";
+			path = "Modules/首页";
+			sourceTree = "<group>";
+		};
+		5BF05FB41B4E63C900CBC510 /* 左视图 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05FB51B4E63C900CBC510 /* LeftMenu.h */,
+				5BF05FB61B4E63C900CBC510 /* LeftMenu.m */,
+				5BF05FB71B4E63C900CBC510 /* LeftMenuCell.h */,
+				5BF05FB81B4E63C900CBC510 /* LeftMenuCell.m */,
+				5BF05FB91B4E63C900CBC510 /* LetfView.h */,
+				5BF05FBA1B4E63C900CBC510 /* LetfView.m */,
+			);
+			name = "左视图";
+			path = "Modules/左视图";
+			sourceTree = "<group>";
+		};
+		5BF05FBB1B4E63C900CBC510 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05FBC1B4E63C900CBC510 /* MainViewController.h */,
+				5BF05FBD1B4E63C900CBC510 /* MainViewController.m */,
+			);
+			name = Main;
+			path = Modules/Main;
+			sourceTree = "<group>";
+		};
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +458,14 @@
 		9F50E5281B4E57F100AB6BD8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5BF05FA21B4E63C900CBC510 /* 分享 */,
+				5BF05FA51B4E63C900CBC510 /* 个人中心 */,
+				5BF05FA81B4E63C900CBC510 /* 个人资料 */,
+				5BF05FAB1B4E63C900CBC510 /* 工具箱 */,
+				5BF05FAE1B4E63C900CBC510 /* 目标 */,
+				5BF05FB11B4E63C900CBC510 /* 首页 */,
+				5BF05FB41B4E63C900CBC510 /* 左视图 */,
+				5BF05FBB1B4E63C900CBC510 /* Main */,
 				5BF05F9C1B4E623C00CBC510 /* 宏定义 */,
 				5BF05F901B4E604C00CBC510 /* Model */,
 				5BF05F421B4E5E1700CBC510 /* 登录 */,
@@ -517,17 +639,22 @@
 				5BF05F591B4E5EF300CBC510 /* UIViewController+DismissKeyboard.m in Sources */,
 				5BF05F831B4E5F7100CBC510 /* SDWebImageCompat.m in Sources */,
 				5BF05F871B4E5F7100CBC510 /* SDWebImageManager+MJ.m in Sources */,
+				5BF05FC71B4E63C900CBC510 /* MainViewController.m in Sources */,
+				5BF05FC21B4E63C900CBC510 /* GoalVC.m in Sources */,
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,
 				5BF05F821B4E5F7100CBC510 /* SDImageCache.m in Sources */,
 				5BF05FA11B4E623C00CBC510 /* EngineHttpRequest.m in Sources */,
 				5BF05F461B4E5E1700CBC510 /* LoginVC.m in Sources */,
 				5BF05F991B4E610500CBC510 /* RegistVC.m in Sources */,
+				5BF05FBE1B4E63C900CBC510 /* ShareVC.m in Sources */,
 				9F91E7E01B4E5AB70013F4F1 /* ViewController.m in Sources */,
 				5BF05F801B4E5F7100CBC510 /* NSData+GIF.m in Sources */,
 				9F91E7FA1B4E5AE80013F4F1 /* AFHTTPRequestOperationManager.m in Sources */,
 				9F91E7FC1B4E5AE80013F4F1 /* AFNetworkReachabilityManager.m in Sources */,
 				5BF05F8C1B4E5F7100CBC510 /* UIImage+MultiFormat.m in Sources */,
+				5BF05FBF1B4E63C900CBC510 /* PersonCenterVC.m in Sources */,
 				5BF05F8B1B4E5F7100CBC510 /* UIImage+GIF.m in Sources */,
+				5BF05FC61B4E63C900CBC510 /* LetfView.m in Sources */,
 				5BF05F9B1B4E610500CBC510 /* UserInfo.m in Sources */,
 				5BF05F571B4E5EF300CBC510 /* UIImage+Color.m in Sources */,
 				9F91E8001B4E5AE80013F4F1 /* AFURLResponseSerialization.m in Sources */,
@@ -535,9 +662,13 @@
 				5BF05F8A1B4E5F7100CBC510 /* UIButton+WebCache.m in Sources */,
 				5BF05F581B4E5EF300CBC510 /* UIImageView+MJWebCache.m in Sources */,
 				5BF05F841B4E5F7100CBC510 /* SDWebImageDecoder.m in Sources */,
+				5BF05FC11B4E63C900CBC510 /* MyTool.m in Sources */,
+				5BF05FC51B4E63C900CBC510 /* LeftMenuCell.m in Sources */,
 				5BF05F811B4E5F7100CBC510 /* NSData+ImageContentType.m in Sources */,
 				5BF05F5A1B4E5EF300CBC510 /* UIViewExt.m in Sources */,
+				5BF05FC31B4E63C900CBC510 /* HeadPageVC.m in Sources */,
 				5BF05F861B4E5F7100CBC510 /* SDWebImageDownloaderOperation.m in Sources */,
+				5BF05FC01B4E63C900CBC510 /* PersonMessageVC.m in Sources */,
 				9F91E7FE1B4E5AE80013F4F1 /* AFURLConnectionOperation.m in Sources */,
 				9F91E7FD1B4E5AE80013F4F1 /* AFSecurityPolicy.m in Sources */,
 				9F91E7FB1B4E5AE80013F4F1 /* AFHTTPSessionManager.m in Sources */,
@@ -549,6 +680,7 @@
 				9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */,
 				5BF05F851B4E5F7100CBC510 /* SDWebImageDownloader.m in Sources */,
 				5BF05F551B4E5EF300CBC510 /* BaseTextField.m in Sources */,
+				5BF05FC41B4E63C900CBC510 /* LeftMenu.m in Sources */,
 				5BF05F931B4E604C00CBC510 /* BaseViewController.m in Sources */,
 				9F91E8011B4E5AE80013F4F1 /* AFURLSessionManager.m in Sources */,
 				9F91E7DF1B4E5AB70013F4F1 /* main.m in Sources */,
