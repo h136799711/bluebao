@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BF05F461B4E5E1700CBC510 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F441B4E5E1700CBC510 /* LoginVC.m */; };
+		5BF05F471B4E5E1700CBC510 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF05F451B4E5E1700CBC510 /* LoginVC.xib */; };
 		9F50E50D1B4E577600AB6BD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F50E50B1B4E577600AB6BD8 /* Main.storyboard */; };
 		9F50E5121B4E577600AB6BD8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F50E5101B4E577600AB6BD8 /* LaunchScreen.xib */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
@@ -39,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5BF05F431B4E5E1700CBC510 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		5BF05F441B4E5E1700CBC510 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		5BF05F451B4E5E1700CBC510 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		9F50E4FE1B4E577600AB6BD8 /* bluebao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluebao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E50C1B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F50E5111B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -95,6 +100,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5BF05F421B4E5E1700CBC510 /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05F431B4E5E1700CBC510 /* LoginVC.h */,
+				5BF05F441B4E5E1700CBC510 /* LoginVC.m */,
+				5BF05F451B4E5E1700CBC510 /* LoginVC.xib */,
+			);
+			name = "登录";
+			path = "Modules/登录";
+			sourceTree = "<group>";
+		};
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +170,7 @@
 		9F50E5281B4E57F100AB6BD8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5BF05F421B4E5E1700CBC510 /* 登录 */,
 				9F91E8021B4E5AFE0013F4F1 /* test */,
 			);
 			name = Modules;
@@ -296,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF05F471B4E5E1700CBC510 /* LoginVC.xib in Resources */,
 				9F91E8031B4E5AFE0013F4F1 /* test in Resources */,
 				9F50E50D1B4E577600AB6BD8 /* Main.storyboard in Resources */,
 				9F50E5121B4E577600AB6BD8 /* LaunchScreen.xib in Resources */,
@@ -318,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,
+				5BF05F461B4E5E1700CBC510 /* LoginVC.m in Sources */,
 				9F91E7E01B4E5AB70013F4F1 /* ViewController.m in Sources */,
 				9F91E7FA1B4E5AE80013F4F1 /* AFHTTPRequestOperationManager.m in Sources */,
 				9F91E7FC1B4E5AE80013F4F1 /* AFNetworkReachabilityManager.m in Sources */,
