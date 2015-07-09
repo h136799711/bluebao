@@ -36,6 +36,7 @@
 		5BF05F991B4E610500CBC510 /* RegistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F951B4E610500CBC510 /* RegistVC.m */; };
 		5BF05F9A1B4E610500CBC510 /* RegistVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF05F961B4E610500CBC510 /* RegistVC.xib */; };
 		5BF05F9B1B4E610500CBC510 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F981B4E610500CBC510 /* UserInfo.m */; };
+		5BF05FA11B4E623C00CBC510 /* EngineHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05FA01B4E623C00CBC510 /* EngineHttpRequest.m */; };
 		9F50E50D1B4E577600AB6BD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F50E50B1B4E577600AB6BD8 /* Main.storyboard */; };
 		9F50E5121B4E577600AB6BD8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F50E5101B4E577600AB6BD8 /* LaunchScreen.xib */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
@@ -125,6 +126,10 @@
 		5BF05F961B4E610500CBC510 /* RegistVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistVC.xib; sourceTree = "<group>"; };
 		5BF05F971B4E610500CBC510 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		5BF05F981B4E610500CBC510 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		5BF05F9D1B4E623C00CBC510 /* bluebao-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bluebao-Prefix.pch"; sourceTree = "<group>"; };
+		5BF05F9E1B4E623C00CBC510 /* CommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
+		5BF05F9F1B4E623C00CBC510 /* EngineHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineHttpRequest.h; sourceTree = "<group>"; };
+		5BF05FA01B4E623C00CBC510 /* EngineHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineHttpRequest.m; sourceTree = "<group>"; };
 		9F50E4FE1B4E577600AB6BD8 /* bluebao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluebao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E50C1B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F50E5111B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -268,6 +273,18 @@
 			path = Modules/Model;
 			sourceTree = "<group>";
 		};
+		5BF05F9C1B4E623C00CBC510 /* 宏定义 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF05F9D1B4E623C00CBC510 /* bluebao-Prefix.pch */,
+				5BF05F9E1B4E623C00CBC510 /* CommonDefine.h */,
+				5BF05F9F1B4E623C00CBC510 /* EngineHttpRequest.h */,
+				5BF05FA01B4E623C00CBC510 /* EngineHttpRequest.m */,
+			);
+			name = "宏定义";
+			path = "Modules/宏定义";
+			sourceTree = "<group>";
+		};
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +344,7 @@
 		9F50E5281B4E57F100AB6BD8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5BF05F9C1B4E623C00CBC510 /* 宏定义 */,
 				5BF05F901B4E604C00CBC510 /* Model */,
 				5BF05F421B4E5E1700CBC510 /* 登录 */,
 				9F91E8021B4E5AFE0013F4F1 /* test */,
@@ -501,6 +519,7 @@
 				5BF05F871B4E5F7100CBC510 /* SDWebImageManager+MJ.m in Sources */,
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,
 				5BF05F821B4E5F7100CBC510 /* SDImageCache.m in Sources */,
+				5BF05FA11B4E623C00CBC510 /* EngineHttpRequest.m in Sources */,
 				5BF05F461B4E5E1700CBC510 /* LoginVC.m in Sources */,
 				5BF05F991B4E610500CBC510 /* RegistVC.m in Sources */,
 				9F91E7E01B4E5AB70013F4F1 /* ViewController.m in Sources */,
