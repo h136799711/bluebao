@@ -73,6 +73,9 @@
 		9F91E8021B4E5AFE0013F4F1 /* test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test; path = Modules/test; sourceTree = "<group>"; };
 		9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9F91E80B1B4E607E0013F4F1 /* BoyeHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeHttpClient.h; sourceTree = "<group>"; };
+		9F91E80C1B4E607E0013F4F1 /* BoyeHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeHttpClient.m; sourceTree = "<group>"; };
+		9F91E80E1B4E64010013F4F1 /* BoyeHttpClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoyeHttpClientTests.m; path = Boye/BoyeHttpClientTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,11 +120,11 @@
 		9F50E5001B4E577600AB6BD8 /* bluebao */ = {
 			isa = PBXGroup;
 			children = (
+				9F50E5281B4E57F100AB6BD8 /* Modules */,
 				9F50E50B1B4E577600AB6BD8 /* Main.storyboard */,
 				9F50E5101B4E577600AB6BD8 /* LaunchScreen.xib */,
 				9F91E7E41B4E5AE80013F4F1 /* Vendor */,
 				9F91E7E11B4E5ABE0013F4F1 /* Common */,
-				9F50E5281B4E57F100AB6BD8 /* Modules */,
 				9F50E5011B4E577600AB6BD8 /* Supporting Files */,
 			);
 			path = bluebao;
@@ -139,6 +142,7 @@
 			children = (
 				9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */,
 				9F50E51B1B4E577700AB6BD8 /* Supporting Files */,
+				9F91E8101B4E640D0013F4F1 /* Boye */,
 			);
 			path = bluebaoTests;
 			sourceTree = "<group>";
@@ -154,6 +158,7 @@
 		9F50E5281B4E57F100AB6BD8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9F91E80A1B4E604A0013F4F1 /* Boye */,
 				9F91E8021B4E5AFE0013F4F1 /* test */,
 			);
 			name = Modules;
@@ -213,6 +218,23 @@
 				9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */,
 			);
 			name = Framework;
+			sourceTree = "<group>";
+		};
+		9F91E80A1B4E604A0013F4F1 /* Boye */ = {
+			isa = PBXGroup;
+			children = (
+				9F91E80B1B4E607E0013F4F1 /* BoyeHttpClient.h */,
+				9F91E80C1B4E607E0013F4F1 /* BoyeHttpClient.m */,
+			);
+			name = Boye;
+			sourceTree = "<group>";
+		};
+		9F91E8101B4E640D0013F4F1 /* Boye */ = {
+			isa = PBXGroup;
+			children = (
+				9F91E80E1B4E64010013F4F1 /* BoyeHttpClientTests.m */,
+			);
+			name = Boye;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,
+				9F91E80D1B4E607E0013F4F1 /* BoyeHttpClient.m in Sources */,
 				9F91E7E01B4E5AB70013F4F1 /* ViewController.m in Sources */,
 				9F91E7FA1B4E5AE80013F4F1 /* AFHTTPRequestOperationManager.m in Sources */,
 				9F91E7FC1B4E5AE80013F4F1 /* AFNetworkReachabilityManager.m in Sources */,
@@ -337,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */,
+				9F91E80F1B4E64010013F4F1 /* BoyeHttpClientTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
