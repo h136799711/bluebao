@@ -33,4 +33,17 @@
 #pragma mark 切割圆角
 +(void)cutViewConner:(UIView *)view radius:(CGFloat)radius;
 
+#pragma mark -- 设置边框--
++(void)setViewBoard:(UIView *) view;
+
+#pragma mark -- 返回color 对象 --
++(UIColor *) getColor:(NSString *) colorString;
+
+#pragma mark -- 输入是否为空 --
++(BOOL) inputIsNull:(NSString *) text;
+
+#pragma mark -- 字符串相等 ---
++(BOOL)isEqualToString:(NSString *)stringOne string:(NSString *)stringTow;
+
+
 @end

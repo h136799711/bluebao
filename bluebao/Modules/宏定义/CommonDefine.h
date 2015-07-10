@@ -13,5 +13,9 @@
 #define ALERTVIEW(_message_)  UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:_message_ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];\
 [alertView show];
 
+#define ACCOUNTNum @"accountNum" //账号名
+#define ACCOUNTPSW @"accountPsw"//账号密码
+
+
 
 #endif

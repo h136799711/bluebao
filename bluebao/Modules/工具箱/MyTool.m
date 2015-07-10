@@ -72,7 +72,6 @@
             [view removeFromSuperview];
         }
     }
-    
 }
 
 
@@ -83,5 +82,39 @@
     view.layer.masksToBounds = YES;
     
 }
+
+#pragma mark -- 设置边框--
++(void)setViewBoard:(UIView *) view{
+    
+    view.layer.borderColor = [UIColor colorWithHexString:@"#c7c7c7"].CGColor;
+    view.layer.borderWidth = 2;
+}
+
+
+#pragma mark -- 返回color 对象 --
++(UIColor *) getColor:(NSString *) colorString{
+    return [UIColor colorWithHexString:colorString];
+}
+
+#pragma mark -- 输入是否为空 --
++(BOOL) inputIsNull:(NSString *) text{
+    if (text.length<=0) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+#pragma mark -- 字符串相等 ---
++(BOOL)isEqualToString:(NSString *)stringOne string:(NSString *)stringTow{
+    
+    if ([stringOne isEqualToString:stringOne]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+
 
 @end

@@ -10,9 +10,9 @@
 
 @interface UserInfo : NSObject
 
-@property (nonatomic,copy) NSString * name;
-@property (nonatomic,copy) NSString * psw;
-@property (nonatomic,copy) NSString * conpsw;
+@property (nonatomic,copy) NSString * userName;
+@property (nonatomic,copy) NSString * userPsw;
+@property (nonatomic,copy) NSString * userConpsw;
 
 
 @end

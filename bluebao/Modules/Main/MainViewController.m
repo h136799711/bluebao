@@ -17,6 +17,8 @@
 
 @interface MainViewController (){
     
+    CGFloat    _slidepy;
+    
     UIView   *_contentView;
     UIView  * _bottomView;  // 底部视图
     UIButton  * select_button;//记录选中按钮；
@@ -44,6 +46,8 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
+    _slidepy = 160;
+    
     
     //创建视图
     [self _initViews];
@@ -133,6 +137,9 @@
         [_bottomView addSubview:button];
         
         [button setTitle:sortName[i] forState:UIControlStateNormal];
+        if (i==3) {
+            [self buttonPress:button];
+        }
     }
 
 }
@@ -200,7 +207,7 @@
 -(void)moveRight{
     
     CGFloat timer = 0.2;
-    CGRect rect = CGRectMake(110, 0, _contentView.width, _contentView.height);
+    CGRect rect = CGRectMake(_slidepy, 0, _contentView.width, _contentView.height);
     [MyTool setAnimationView:_contentView duration:timer rect:rect];
     [MyTool setAnimationCGpointView:_bottomView duration:timer pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
     [_bottomView setUserInteractionEnabled:NO];

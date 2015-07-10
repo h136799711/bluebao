@@ -46,17 +46,25 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
+        [self.view addSubview:_tableView];
     }
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return _goalNumber;
+    return 10;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    static  NSString * identifier = @"goalCell";
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
     
-    return nil;
+    return cell;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

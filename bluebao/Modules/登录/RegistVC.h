@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegistVC : UIViewController
+@interface RegistVC : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backItem;
+@property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
+@property (weak, nonatomic) IBOutlet UILabel *agreeLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *textfield_LeterBox;
+@property (weak, nonatomic) IBOutlet UITextField *textfield_newpsw;
+@property (weak, nonatomic) IBOutlet UITextField *textfield_confirmpsw;
+
+
+//方法
+- (IBAction)agree:(UIButton *)sender;
+
+
 
 @end

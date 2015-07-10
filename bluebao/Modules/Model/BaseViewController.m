@@ -22,13 +22,17 @@
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
-    
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#f8f8f8"];
 }
 
 
 
 -(void)keyBoardHidden
 {
+    [self.view endEditing:YES];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
 

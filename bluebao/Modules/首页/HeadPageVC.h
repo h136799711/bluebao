@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface HeadPageVC : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+@interface HeadPageVC : BaseViewController<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end

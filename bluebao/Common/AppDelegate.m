@@ -7,17 +7,55 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ViewController.h"
+#import "MainViewController.h"
+#import "LoginVC.h"
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
-
++(AppDelegate*)sharedInstance
+{
+    return (AppDelegate*)[[UIApplication sharedApplication] delegate];
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    
+    [self _initBarAppearance];
+    [self _initLogin];
+    
+
+    
     return YES;
+}
+
+-(void)_initLogin{
+    
+    LoginVC * loginvc = [LoginVC sharedSliderController];
+    
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:loginvc];
+    self.window.rootViewController = nav;
+    
+}
+
+
+-(void)_initBarAppearance
+{
+    
+    UIImage *navBgImg = [UIImage imageWithColor:[UIColor colorWithHexString:@"#f8f8f8"]];
+    [[UINavigationBar appearance] setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#14caff"],NSFontAttributeName:FONT(18)}];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
