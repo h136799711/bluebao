@@ -10,6 +10,17 @@
 
 @implementation MyTool
 
+
+#pragma mark --test--
+
++(void) testViews:(UIView * )view{
+
+    view.layer.borderWidth = 2;
+    view.layer.borderColor = [UIColor redColor].CGColor;
+}
+
+
+
 #pragma mark  获得字符串的大小（size）
 
 +(CGSize)getSizeString:(NSString *)info font:(float) font{
@@ -116,5 +127,21 @@
 }
 
 
+#pragma mark -- 创建一条线
++(UIView *)createLineInView:(UIView *)view fram:(CGRect )rect{
+    
+    UILabel * label =  [[UILabel alloc] init];
+    label.frame = rect;
+    label.backgroundColor = [UIColor lightGrayColor];
+    [view addSubview:label];
+    return label;
+}
+
+#pragma mark --数量与字符串拼接--
++(NSString *) stringWithNumFormat:(NSString *)string number:(CGFloat)number{
+    
+    NSString * str = [NSString stringWithFormat:@"%0.1f%@",number,string];
+    return str;
+}
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B38C7471B5362640063912C /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7461B5362640063912C /* MessageCell.m */; };
 		5BF05F461B4E5E1700CBC510 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F441B4E5E1700CBC510 /* LoginVC.m */; };
 		5BF05F471B4E5E1700CBC510 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF05F451B4E5E1700CBC510 /* LoginVC.xib */; };
 		5BF05F551B4E5EF300CBC510 /* BaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F4A1B4E5EF300CBC510 /* BaseTextField.m */; };
@@ -66,6 +67,10 @@
 		5BF2E0601B4FC5EE004FDDF7 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2E05B1B4FC5EE004FDDF7 /* back.png */; };
 		5BF2E0621B4FC7B3004FDDF7 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2E0611B4FC7B3004FDDF7 /* user.png */; };
 		5BF2E0641B4FC7BA004FDDF7 /* pw.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2E0631B4FC7BA004FDDF7 /* pw.png */; };
+		5BF4D53C1B533C910063DD91 /* GoalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4D53B1B533C910063DD91 /* GoalCell.m */; };
+		5BF4D53F1B53468A0063DD91 /* BBManageCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4D53E1B53468A0063DD91 /* BBManageCode.m */; };
+		5BF4D5411B534B9C0063DD91 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF4D5401B534B9C0063DD91 /* edit.png */; };
+		5BF4D5431B534BB50063DD91 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF4D5421B534BB50063DD91 /* delete.png */; };
 		9F50E50D1B4E577600AB6BD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F50E50B1B4E577600AB6BD8 /* Main.storyboard */; };
 		9F50E5121B4E577600AB6BD8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F50E5101B4E577600AB6BD8 /* LaunchScreen.xib */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
@@ -98,6 +103,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B38C7451B5362640063912C /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		5B38C7461B5362640063912C /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		5BF05F431B4E5E1700CBC510 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		5BF05F441B4E5E1700CBC510 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		5BF05F451B4E5E1700CBC510 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
@@ -207,6 +214,12 @@
 		5BF2E05B1B4FC5EE004FDDF7 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		5BF2E0611B4FC7B3004FDDF7 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		5BF2E0631B4FC7BA004FDDF7 /* pw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pw.png; sourceTree = "<group>"; };
+		5BF4D53A1B533C910063DD91 /* GoalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalCell.h; sourceTree = "<group>"; };
+		5BF4D53B1B533C910063DD91 /* GoalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalCell.m; sourceTree = "<group>"; };
+		5BF4D53D1B53468A0063DD91 /* BBManageCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBManageCode.h; sourceTree = "<group>"; };
+		5BF4D53E1B53468A0063DD91 /* BBManageCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBManageCode.m; sourceTree = "<group>"; };
+		5BF4D5401B534B9C0063DD91 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
+		5BF4D5421B534BB50063DD91 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		9F50E4FE1B4E577600AB6BD8 /* bluebao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluebao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E50C1B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F50E5111B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -379,6 +392,8 @@
 			children = (
 				5BF05FA61B4E63C900CBC510 /* PersonCenterVC.h */,
 				5BF05FA71B4E63C900CBC510 /* PersonCenterVC.m */,
+				5B38C7451B5362640063912C /* MessageCell.h */,
+				5B38C7461B5362640063912C /* MessageCell.m */,
 			);
 			name = "个人中心";
 			path = "Modules/个人中心";
@@ -399,6 +414,8 @@
 			children = (
 				5BF05FAC1B4E63C900CBC510 /* MyTool.h */,
 				5BF05FAD1B4E63C900CBC510 /* MyTool.m */,
+				5BF4D53D1B53468A0063DD91 /* BBManageCode.h */,
+				5BF4D53E1B53468A0063DD91 /* BBManageCode.m */,
 			);
 			name = "工具箱";
 			path = "Modules/工具箱";
@@ -409,6 +426,8 @@
 			children = (
 				5BF05FAF1B4E63C900CBC510 /* GoalVC.h */,
 				5BF05FB01B4E63C900CBC510 /* GoalVC.m */,
+				5BF4D53A1B533C910063DD91 /* GoalCell.h */,
+				5BF4D53B1B533C910063DD91 /* GoalCell.m */,
 			);
 			name = "目标";
 			path = "Modules/目标";
@@ -490,6 +509,8 @@
 				5BF2E05A1B4FC5EE004FDDF7 /* add.png */,
 				5BF2E05B1B4FC5EE004FDDF7 /* back.png */,
 				5BF2E0551B4FC5D0004FDDF7 /* xinlv.png */,
+				5BF4D5401B534B9C0063DD91 /* edit.png */,
+				5BF4D5421B534BB50063DD91 /* delete.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -726,8 +747,10 @@
 				5BF2E05E1B4FC5EE004FDDF7 /* sport.png in Resources */,
 				5BF2E0621B4FC7B3004FDDF7 /* user.png in Resources */,
 				5BF2E0641B4FC7BA004FDDF7 /* pw.png in Resources */,
+				5BF4D5431B534BB50063DD91 /* delete.png in Resources */,
 				5BF05F9A1B4E610500CBC510 /* RegistVC.xib in Resources */,
 				9F91E7DE1B4E5AB70013F4F1 /* Info.plist in Resources */,
+				5BF4D5411B534B9C0063DD91 /* edit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +803,7 @@
 				5BF05F841B4E5F7100CBC510 /* SDWebImageDecoder.m in Sources */,
 				5BF05FC11B4E63C900CBC510 /* MyTool.m in Sources */,
 				5BF05FC51B4E63C900CBC510 /* LeftMenuCell.m in Sources */,
+				5BF4D53F1B53468A0063DD91 /* BBManageCode.m in Sources */,
 				5BF05F811B4E5F7100CBC510 /* NSData+ImageContentType.m in Sources */,
 				5BF05F5A1B4E5EF300CBC510 /* UIViewExt.m in Sources */,
 				5BF2E04B1B4F8F6A004FDDF7 /* HeadCollectionViewCell.m in Sources */,
@@ -787,12 +811,14 @@
 				5BF05F861B4E5F7100CBC510 /* SDWebImageDownloaderOperation.m in Sources */,
 				5BF05FC01B4E63C900CBC510 /* PersonMessageVC.m in Sources */,
 				9F91E7FE1B4E5AE80013F4F1 /* AFURLConnectionOperation.m in Sources */,
+				5B38C7471B5362640063912C /* MessageCell.m in Sources */,
 				9F91E7FD1B4E5AE80013F4F1 /* AFSecurityPolicy.m in Sources */,
 				9F91E7FB1B4E5AE80013F4F1 /* AFHTTPSessionManager.m in Sources */,
 				5BF05F8E1B4E5F7100CBC510 /* UIImageView+MJWebCache.m in Sources */,
 				5BF05F7F1B4E5F7100CBC510 /* MKAnnotationView+WebCache.m in Sources */,
 				5BF05F891B4E5F7100CBC510 /* SDWebImagePrefetcher.m in Sources */,
 				5BF05F8D1B4E5F7100CBC510 /* UIImage+WebP.m in Sources */,
+				5BF4D53C1B533C910063DD91 /* GoalCell.m in Sources */,
 				5BF05F881B4E5F7100CBC510 /* SDWebImageManager.m in Sources */,
 				9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */,
 				5BF05F851B4E5F7100CBC510 /* SDWebImageDownloader.m in Sources */,
