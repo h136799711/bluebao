@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface GoalVC : BaseViewController<UITableViewDelegate,UITableViewDataSource>
-
+@property (nonatomic,strong) NSMutableArray     *dataArray;
 @end

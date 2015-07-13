@@ -9,10 +9,10 @@
 #import "BaseViewController.h"
 
 @interface PersonCenterVC : BaseViewController<UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic,strong) UILabel  *heightLabel;
-@property (nonatomic,strong) UILabel  *weightLabel;
-@property (nonatomic,strong) UILabel  *BMiLabel;
-@property (nonatomic,strong) UIImageView  * headImageView;
-@property (nonatomic,strong) UILabel      * userIDLabel;
-@property (nonatomic,strong) UILabel       *userNameLabel;
+@property (nonatomic,strong) UILabel                *heightLabel;
+@property (nonatomic,strong) UILabel                *weightLabel;
+@property (nonatomic,strong) UILabel                *BMiLabel;
+@property (nonatomic,strong) UIImageView            *head_ImageView;
+@property (nonatomic,strong) UILabel                * userID_Label;
+@property (nonatomic,strong) UILabel                *userName_Label;
 @end

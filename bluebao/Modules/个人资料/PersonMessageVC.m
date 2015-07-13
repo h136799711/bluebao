@@ -13,7 +13,8 @@
     
     NSArray   * sorArray;
     UIView    * _custemKeyView;  //自定义键盘
-    UIButton * _headImageBtn;
+    
+    UIView * _headView ;//个人头像个性签名视图
 }
 
 @property (nonatomic,strong) UITableView  * tableView_person;
@@ -26,7 +27,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"个人资料";
-    
+    self.navigationController.navigationBarHidden = NO;
+
     //创建视图
     [self _initViews];
     
@@ -37,15 +39,29 @@
  **/
 
 -(void)_initViews{
-    
+    sorArray = @[@"性别",@"出生日期",@"身高",@"当前体重",@"目标体重",@"BMI"];
+
+    [self _initNavs];
     [self creatTableview];
     
-    sorArray = @[@"性别",@"出生日期",@"身高",@"当前体重",@"目标体重",@"BMI"];
     
     [self creatKeyBoard];
-    self.navigationController.navigationBarHidden = NO;
 }
 
+#pragma mark -- 返回 --
+
+-(void)_initNavs{
+    
+    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    leftBtn.tag = 1;
+    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    self.navigationItem.leftBarButtonItem = letfItem;
+
+    
+}
 //创建表
 -(void)creatTableview{
     
@@ -135,36 +151,52 @@
 
 -(UIView *)creatTableViewHeadView{
     
-    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
-    headView.backgroundColor = [UIColor lightGrayColor];
+    if (_headView == nil) {
     
-    //头像
-    UIButton * headBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
-    headBtn.bounds = CGRectMake(0, 0, 40, 40);
-    headBtn.center = CGPointMake(20+headBtn.width/2.0, headView.height/2.0);
-    [headView addSubview:headBtn];
-    [headBtn setTitle:@"头像" forState:UIControlStateNormal];
-    headBtn.backgroundColor = [UIColor redColor];
-    [headBtn addTarget:self action:@selector(uploadHeadImage) forControlEvents:UIControlEventTouchUpInside];
-    _headImageBtn = headBtn;
-    [MyTool cutViewConner:headBtn radius:headBtn.width/2.0];
-    //签名
-    UILabel * label = [[UILabel alloc] init];
-    label.bounds = CGRectMake(0, 0, 100, 12);
-    label.center = CGPointMake(headBtn.right+ 10+ label.width/2.0, headBtn.center.y);
-    label.text = @"请编辑签名";
-    [headView addSubview:label];
-    label.font = [UIFont boldSystemFontOfSize:10];
-  
+        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
+        _headView.backgroundColor = [UIColor clearColor];
+        
+        CGFloat  headWidth = 80;
+        //头像
+        UIButton * headBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
+        headBtn.bounds = CGRectMake(0, 0, headWidth, headWidth);
+        headBtn.center = CGPointMake(_headView.width/2.0, 40 + headWidth/2.0);
+        [_headView addSubview:headBtn];
+        [headBtn setTitle:@"头像" forState:UIControlStateNormal];
+        headBtn.backgroundColor = [UIColor redColor];
+        self.headImageBtn = headBtn;
+        [headBtn addTarget:self action:@selector(uploadHeadImage) forControlEvents:UIControlEventTouchUpInside];
+        [MyTool cutViewConner:headBtn radius:headBtn.width/2.0];
+        
+        
+        
+        //编辑签名
+        
+        UITextField  * signTextfield = [[UITextField alloc] init];
+        signTextfield.bounds = CGRectMake(0, 0, 80, 30);
+        signTextfield.center = CGPointMake(headBtn.center.x, headBtn.bottom + signTextfield.height/2.0+3);
+        signTextfield.textAlignment = NSTextAlignmentCenter;
+        signTextfield. borderStyle  = UITextBorderStyleNone;
+        signTextfield.font = FONT(16);
+        signTextfield.text = @"张三";
+        [_headView addSubview:signTextfield];
+        self.personSignTextfield = signTextfield;
+        
+        //    签名
+        UILabel * label = [[UILabel alloc] init];
+        label.bounds = CGRectMake(0, 0, 160, 12);
+        label.center = CGPointMake(signTextfield.center.x, signTextfield.bottom + label.height/2.0);
+        label.text = @"请输入您的个性签名";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont boldSystemFontOfSize:13];
+        label.textColor = [UIColor lightGrayColor];
+        [_headView addSubview:label];
+        
+    }
     
-    //编辑签名
     
-    UITextField  * signTextfield = [[UITextField alloc] init];
-    signTextfield.frame = CGRectMake(label.left, headBtn.center.y - headBtn.height/2.0 - 16, headView.width - headBtn.right - 15 , 30);
-    signTextfield.text = @"张三";
-    [headView addSubview:signTextfield];
-    signTextfield.font = [UIFont boldSystemFontOfSize:14];;
-    return headView;
+    
+    return _headView;
 }
 
 
@@ -206,7 +238,7 @@
         UIView * keyview = [[UIView alloc] init];
         keyview.backgroundColor = [UIColor lightGrayColor];
         keyview.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 180);
-        keyview.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT-keyview.height/2.0 - 90);
+        keyview.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + keyview.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT);
         [self.view addSubview:keyview];
 
         //顶部黑条
@@ -314,7 +346,7 @@
     {
         //先把图片转成NSData
         UIImage* image = [info objectForKey: @"UIImagePickerControllerEditedImage"];
-        [_headImageBtn setImage:image forState:UIControlStateNormal];
+        [self.headImageBtn setImage:image forState:UIControlStateNormal];
         ;
     }
     
@@ -358,6 +390,12 @@
     NSLog(@"xxx");
 }
 
+
+#pragma mark --返回 --
+-(void)backClick{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

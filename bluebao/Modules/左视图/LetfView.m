@@ -13,6 +13,7 @@
 #import "LoginVC.h"
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "EquimentMessageVC.h"
 
 @interface LetfView(){
     
@@ -54,7 +55,7 @@
     bgImgView.image = [UIImage imageNamed:@"left_menu_bg"];
     self.tableView.backgroundView = bgImgView;
     self.tableView.backgroundColor = [UIColor clearColor];
-    sortArray = @[@"我的个人资料",@"我的个人资料",@"我的个人资料",@"我的个人资料",@"我的个人资料",@"我的个人资料",@"注销"];
+    sortArray = @[@"我的个人资料",@"设备管理",@"我的个人资料",@"我的个人资料",@"我的个人资料",@"我的个人资料",@"注销"];
 }
 
 
@@ -86,18 +87,30 @@
 #pragma mark -- 选中之后--
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //注销
+    
+  
     if (indexPath.row == sortArray.count-1) {
+      
         LoginVC * login = [LoginVC sharedSliderController];
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
         UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
         window.rootViewController = nav;
+      
         
-    }else{
+    } else if (indexPath.row == 1){
+        EquimentMessageVC * equiment = [[EquimentMessageVC alloc] init];
+        [[MainViewController sharedSliderController].navigationController pushViewController:equiment animated:YES];
+    }
+    
+    else{
         
         PersonMessageVC * person = [[PersonMessageVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:person animated:YES];
         
     }
+    
+    
+    
     [[MainViewController sharedSliderController] moveLeft];
     
  }

@@ -20,7 +20,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.backItem.tintColor = [UIColor blackColor];
-    
+//    [self _initNavs];
+
     [self _initViews];
     
 }
@@ -33,7 +34,6 @@
     
     //同意按钮
     [MyTool setViewBoard:self.agreeBtn];
-    
     [self.agreeBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     
     
@@ -97,4 +97,22 @@
         self.agreeLabel.textColor = [UIColor lightGrayColor];
     }
 }
+
+//#pragma mark  --返回 --
+//-(void)_initNavs{
+//    
+//     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
+//    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+//    leftBtn.tag = 1;
+//    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+//    self.navigationItem.leftBarButtonItem = letfItem;
+//    
+//}
+////返回
+//-(void)backClick{
+//    
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 @end

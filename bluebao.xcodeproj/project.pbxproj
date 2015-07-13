@@ -30,7 +30,6 @@
 		5B38C7A31B5390CF0063912C /* LetfView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7871B5390CF0063912C /* LetfView.m */; };
 		5B38C7A41B5390CF0063912C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C78A1B5390CF0063912C /* MainViewController.m */; };
 		5B38C7A51B5390CF0063912C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C78D1B5390CF0063912C /* BaseViewController.m */; };
-		5B38C7A91B53977B0063912C /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7A81B53977B0063912C /* add.png */; };
 		5B38C7AA1B53993B0063912C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F50E50B1B4E577600AB6BD8 /* Main.storyboard */; };
 		5B38C7AD1B5399640063912C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7AC1B5399640063912C /* ViewController.m */; };
 		5B38C7D21B5399B80063912C /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7B01B5399B80063912C /* MKAnnotationView+WebCache.m */; };
@@ -50,9 +49,9 @@
 		5B38C7E01B5399B80063912C /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7CD1B5399B80063912C /* UIImage+WebP.m */; };
 		5B38C7E11B5399B80063912C /* UIImageView+MJWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7CF1B5399B80063912C /* UIImageView+MJWebCache.m */; };
 		5B38C7E21B5399B80063912C /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7D11B5399B80063912C /* UIImageView+WebCache.m */; };
-		5B38C7E51B539A240063912C /* pw.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7E31B539A240063912C /* pw.png */; };
-		5B38C7E61B539A240063912C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7E41B539A240063912C /* user.png */; };
 		5B38C7E81B539A490063912C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7E71B539A490063912C /* Media.xcassets */; };
+		5B38C7EC1B539F8F0063912C /* EquimentMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7EB1B539F8F0063912C /* EquimentMessageVC.m */; };
+		5B38C7EF1B53A15D0063912C /* EquiMentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7EE1B53A15D0063912C /* EquiMentCell.m */; };
 		5BF05F551B4E5EF300CBC510 /* BaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F4A1B4E5EF300CBC510 /* BaseTextField.m */; };
 		5BF05F561B4E5EF300CBC510 /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F4C1B4E5EF300CBC510 /* UIColor+Color.m */; };
 		5BF05F571B4E5EF300CBC510 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F4E1B4E5EF300CBC510 /* UIImage+Color.m */; };
@@ -138,7 +137,6 @@
 		5B38C78A1B5390CF0063912C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		5B38C78C1B5390CF0063912C /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		5B38C78D1B5390CF0063912C /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		5B38C7A81B53977B0063912C /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		5B38C7AB1B5399640063912C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Common/ViewController.h; sourceTree = "<group>"; };
 		5B38C7AC1B5399640063912C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Common/ViewController.m; sourceTree = "<group>"; };
 		5B38C7AF1B5399B80063912C /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -176,9 +174,11 @@
 		5B38C7CF1B5399B80063912C /* UIImageView+MJWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MJWebCache.m"; sourceTree = "<group>"; };
 		5B38C7D01B5399B80063912C /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		5B38C7D11B5399B80063912C /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
-		5B38C7E31B539A240063912C /* pw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pw.png; sourceTree = "<group>"; };
-		5B38C7E41B539A240063912C /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		5B38C7E71B539A490063912C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		5B38C7EA1B539F8F0063912C /* EquimentMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquimentMessageVC.h; sourceTree = "<group>"; };
+		5B38C7EB1B539F8F0063912C /* EquimentMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquimentMessageVC.m; sourceTree = "<group>"; };
+		5B38C7ED1B53A15D0063912C /* EquiMentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquiMentCell.h; sourceTree = "<group>"; };
+		5B38C7EE1B53A15D0063912C /* EquiMentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquiMentCell.m; sourceTree = "<group>"; };
 		5BF05F491B4E5EF300CBC510 /* BaseTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTextField.h; sourceTree = "<group>"; };
 		5BF05F4A1B4E5EF300CBC510 /* BaseTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTextField.m; sourceTree = "<group>"; };
 		5BF05F4B1B4E5EF300CBC510 /* UIColor+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Color.h"; sourceTree = "<group>"; };
@@ -291,10 +291,10 @@
 		5B38C7621B5390CF0063912C /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
-				5B38C7631B5390CF0063912C /* MessageCell.h */,
-				5B38C7641B5390CF0063912C /* MessageCell.m */,
 				5B38C7651B5390CF0063912C /* PersonCenterVC.h */,
 				5B38C7661B5390CF0063912C /* PersonCenterVC.m */,
+				5B38C7631B5390CF0063912C /* MessageCell.h */,
+				5B38C7641B5390CF0063912C /* MessageCell.m */,
 			);
 			name = "个人中心";
 			path = "Modules/个人中心";
@@ -398,9 +398,6 @@
 		5B38C7A71B53977B0063912C /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				5B38C7E31B539A240063912C /* pw.png */,
-				5B38C7E41B539A240063912C /* user.png */,
-				5B38C7A81B53977B0063912C /* add.png */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -445,6 +442,18 @@
 				5B38C7D11B5399B80063912C /* UIImageView+WebCache.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		5B38C7E91B539F470063912C /* 设备管理 */ = {
+			isa = PBXGroup;
+			children = (
+				5B38C7EA1B539F8F0063912C /* EquimentMessageVC.h */,
+				5B38C7EB1B539F8F0063912C /* EquimentMessageVC.m */,
+				5B38C7ED1B53A15D0063912C /* EquiMentCell.h */,
+				5B38C7EE1B53A15D0063912C /* EquiMentCell.m */,
+			);
+			name = "设备管理";
+			path = "Modules/设备管理";
 			sourceTree = "<group>";
 		};
 		5BF05F481B4E5EF300CBC510 /* Category */ = {
@@ -561,6 +570,7 @@
 				5B38C7621B5390CF0063912C /* 个人中心 */,
 				5B38C7671B5390CF0063912C /* 个人资料 */,
 				5B38C76A1B5390CF0063912C /* 工具箱 */,
+				5B38C7E91B539F470063912C /* 设备管理 */,
 				5B38C76F1B5390CF0063912C /* 宏定义 */,
 				5B38C7731B5390CF0063912C /* 目标 */,
 				5B38C7781B5390CF0063912C /* 首页 */,
@@ -724,13 +734,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B38C7E81B539A490063912C /* Media.xcassets in Resources */,
-				5B38C7E51B539A240063912C /* pw.png in Resources */,
 				5B38C7AA1B53993B0063912C /* Main.storyboard in Resources */,
-				5B38C7E61B539A240063912C /* user.png in Resources */,
 				5B38C7921B5390CF0063912C /* RegistVC.xib in Resources */,
 				5BF2E0411B4F6B7E004FDDF7 /* SVProgressHUD.bundle in Resources */,
 				5BF2E03F1B4F6B7E004FDDF7 /* MBProgressHUD.bundle in Resources */,
-				5B38C7A91B53977B0063912C /* add.png in Resources */,
 				5B38C7901B5390CF0063912C /* LoginVC.xib in Resources */,
 				9F91E7DE1B4E5AB70013F4F1 /* Info.plist in Resources */,
 			);
@@ -763,6 +770,7 @@
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,
 				5B38C7DC1B5399B80063912C /* SDWebImagePrefetcher.m in Sources */,
 				5B38C7961B5390CF0063912C /* PersonCenterVC.m in Sources */,
+				5B38C7EC1B539F8F0063912C /* EquimentMessageVC.m in Sources */,
 				5B38C7DA1B5399B80063912C /* SDWebImageManager+MJ.m in Sources */,
 				9F91E7FA1B4E5AE80013F4F1 /* AFHTTPRequestOperationManager.m in Sources */,
 				5B38C79A1B5390CF0063912C /* EngineHttpRequest.m in Sources */,
@@ -778,6 +786,7 @@
 				5B38C7DF1B5399B80063912C /* UIImage+MultiFormat.m in Sources */,
 				9F91E8001B4E5AE80013F4F1 /* AFURLResponseSerialization.m in Sources */,
 				5BF2E0401B4F6B7E004FDDF7 /* MBProgressHUD.m in Sources */,
+				5B38C7EF1B53A15D0063912C /* EquiMentCell.m in Sources */,
 				5B38C7981B5390CF0063912C /* BBManageCode.m in Sources */,
 				5BF05F581B4E5EF300CBC510 /* UIImageView+MJWebCache.m in Sources */,
 				5B38C7DE1B5399B80063912C /* UIImage+GIF.m in Sources */,

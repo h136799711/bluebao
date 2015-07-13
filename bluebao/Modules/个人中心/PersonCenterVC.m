@@ -16,7 +16,7 @@
     
     NSArray   * _sortArray; //分类
     NSArray   * _unitArray;// 单位
-    UIView * _headView;
+    UIView    * _headView;
     
 }
 
@@ -50,7 +50,7 @@
         _tableView.dataSource = self;
         _tableView.tableHeaderView = [self getHeaderView];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [MyTool testViews:_tableView];
+//        [MyTool testViews:_tableView];
         [self.view addSubview:_tableView];
     }
     
@@ -159,17 +159,19 @@
 #pragma mark -- 表头 --
 -(UIView *)getHeaderView{
     
-    if (_headImageView == nil) {
+    if (_headView == nil) {
+    
         _headView = [[UIView alloc] init];
-        _headImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 120);
+        _headView.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 120);
+        
         //头像
         UIImageView * imageView = [[UIImageView alloc] init];
         imageView.bounds = CGRectMake(0, 0, 80, 80);
-        imageView.center = CGPointMake(40+imageView.width/2.0, _headImageView.height/2.0);
+        imageView.center = CGPointMake(40+imageView.width/2.0, _headView.height/2.0);
         [MyTool cutViewConner:imageView radius:imageView.width/2.0];
         imageView.backgroundColor = [UIColor redColor];
         
-        [_headImageView addSubview:imageView];
+        [_headView addSubview:imageView];
         
         //姓名
         UILabel  * label_name = [[UILabel alloc] init];
@@ -177,7 +179,7 @@
         label_name.center = CGPointMake(imageView.right + 30+ label_name.width /2.0, imageView.center.y-label_name.height/2.0);
         label_name.text = @"用户名字";
         label_name.font = FONT(15);
-        [_headImageView addSubview:label_name];
+        [_headView addSubview:label_name];
         
         //ID
         
@@ -187,13 +189,13 @@
         label_ID.text = @"ID:123456";
         label_ID.font = FONT(15);
         label_ID.textColor = [UIColor lightGrayColor];
-        [_headImageView addSubview:label_ID];
+        [_headView addSubview:label_ID];
         
      
 
     }
     
-    return _headImageView;
+    return _headView;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

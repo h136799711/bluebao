@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface ShareVC : BaseViewController
+@interface ShareVC : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end

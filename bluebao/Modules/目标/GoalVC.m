@@ -12,6 +12,9 @@
     
     UITableView         * _tableView;
     int                  _goalCount;
+    BOOL                  _isHasData;
+    UIView                  *_headerView;
+    UIView                  *_footerView;
 }
 
 @end
@@ -31,9 +34,10 @@
  **/
 -(void)_initViews{
    
-    _goalCount = 1;
-
-    
+    _goalCount = 0;
+    _isHasData = NO;
+    self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
+    [self isHasDataAdjust];
     [self _initGoalTableView];
     
 }
@@ -62,22 +66,48 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return  _goalCount;
+    if (_isHasData == NO) {
+        return 1;
+    }else{
+     
+        return _goalCount;
+    }
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static  NSString * identifier = @"goalCell";
-    GoalCell * cell = (GoalCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
+    if (_isHasData == YES) {
+        static  NSString * identifier = @"goalCell";
+        GoalCell * cell = (GoalCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil) {
+            
+            cell = [[GoalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            [cell.alterBtn addTarget:self action:@selector(alterBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        cell.alterBtn.tag = indexPath.row;
+        cell.deleteBtn.tag = indexPath.row ;
         
-        cell = [[GoalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        [cell.alterBtn addTarget:self action:@selector(alterBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    cell.alterBtn.tag = indexPath.row;
-    cell.deleteBtn.tag = indexPath.row ;
+        return cell;
+        
+    }else{
     
-    return cell;
+        
+        static NSString *  nodataString = @"noDataCell";
+        
+        UITableViewCell *datacell = [tableView dequeueReusableCellWithIdentifier:nodataString];
+        if (datacell == nil) {
+            
+            datacell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nodataString];
+        }
+        datacell.textLabel.textAlignment = NSTextAlignmentCenter;
+        datacell.textLabel.text = @"没有数据，请添加数据";
+        return datacell;
+        
+    }
+    
+    
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -100,44 +130,59 @@
     NSLog(@"删除");
     _goalCount --;
     //然后刷新tableView(动态删除某些行)
+    
     [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:deleteBtn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self isHasDataAdjust];
+
     [_tableView reloadData];
 }
 
 #pragma mark -- 创建日期标签 ---
 -(UIView *)creatHeaderView{
-    UIView * view = [[UIView alloc] init];
-    view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);;
-    UILabel * headerLabel = [[UILabel alloc] init];
-    headerLabel.frame = view.frame;
-    headerLabel.textAlignment = NSTextAlignmentCenter;
-    headerLabel.font = FONT(17);
-    headerLabel.text = @"15-7-8";
-    [view addSubview:headerLabel];
-    return view;
+    
+    if (_headerView == nil) {
+       _headerView = [[UIView alloc] init];
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);;
+        UILabel * headerLabel = [[UILabel alloc] init];
+        headerLabel.frame = _headerView.frame;
+        headerLabel.tag = 10;
+        headerLabel.textAlignment = NSTextAlignmentCenter;
+        headerLabel.font = FONT(17);
+        headerLabel.text = @"15-7-8";
+        [_headerView addSubview:headerLabel];
+    }
+    
+    UILabel * headl = (UILabel *)[_headerView viewWithTag:10];
+    headl.text = @"15-7-9";
+    
+    return _headerView;
 }
 
 #pragma mark --- 创建底部按钮 --
 -(UIView * )creatFooterView{
     
-    UIView * footerView = [[UIView alloc] init];
-    footerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 50);
-    //加号
-    UIButton * addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    addBtn.bounds = CGRectMake(0, 0, 30, 30);
-    addBtn.center = CGPointMake(footerView.width/2.0, footerView.height/2.0);
-    [addBtn setBackgroundImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
-    [addBtn addTarget:self action:@selector (addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [footerView addSubview:addBtn];
+    if (_footerView == nil) {
     
+        _footerView= [[UIView alloc] init];
+        _footerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 50);
+        //加号
+        UIButton * addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        addBtn.bounds = CGRectMake(0, 0, 30, 30);
+        addBtn.center = CGPointMake(_footerView.width/2.0, _footerView.height/2.0);
+        [addBtn setBackgroundImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
+        [addBtn addTarget:self action:@selector (addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_footerView addSubview:addBtn];
+        
+    }
     
-    return footerView;
+    return _footerView;
 }
 
 #pragma mark -- add增加 --
 -(void)addBtnClick:(UIButton *)button{
     
     _goalCount ++;
+    [self isHasDataAdjust];
     [_tableView reloadData];
 }
 
@@ -148,6 +193,15 @@
    
 }
 
+#pragma mark - 是否含有数据
+-(void)isHasDataAdjust{
+    
+    if (_goalCount == 0) {
+        _isHasData = NO ;
+    }else{
+        _isHasData = YES;
+    }
+}
 
 
 - (void)didReceiveMemoryWarning {

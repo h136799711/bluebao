@@ -10,4 +10,7 @@
 
 @interface PersonMessageVC : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate >
 
+@property (nonatomic,strong) UIButton           * headImageBtn;
+
+@property (nonatomic,strong) UITextField           * personSignTextfield;
 @end
