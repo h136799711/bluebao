@@ -31,7 +31,6 @@
 		5B38C7A31B5390CF0063912C /* LetfView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7871B5390CF0063912C /* LetfView.m */; };
 		5B38C7A41B5390CF0063912C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C78A1B5390CF0063912C /* MainViewController.m */; };
 		5B38C7A51B5390CF0063912C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C78D1B5390CF0063912C /* BaseViewController.m */; };
-		5B38C7A61B5390CF0063912C /* test in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C78E1B5390CF0063912C /* test */; };
 		5BF05F471B4E5E1700CBC510 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF05F451B4E5E1700CBC510 /* LoginVC.xib */; };
 		5BF05F551B4E5EF300CBC510 /* BaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F4A1B4E5EF300CBC510 /* BaseTextField.m */; };
 		5BF05F561B4E5EF300CBC510 /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F4C1B4E5EF300CBC510 /* UIColor+Color.m */; };
@@ -103,7 +102,6 @@
 		9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F41B4E5AE80013F4F1 /* AFURLRequestSerialization.m */; };
 		9F91E8001B4E5AE80013F4F1 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F61B4E5AE80013F4F1 /* AFURLResponseSerialization.m */; };
 		9F91E8011B4E5AE80013F4F1 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */; };
-		9F91E8031B4E5AFE0013F4F1 /* test in Resources */ = {isa = PBXBuildFile; fileRef = 9F91E8021B4E5AFE0013F4F1 /* test */; };
 		9F91E8051B4E5B440013F4F1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */; };
 		9F91E8071B4E5B570013F4F1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
@@ -165,7 +163,6 @@
 		5B38C78A1B5390CF0063912C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		5B38C78C1B5390CF0063912C /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		5B38C78D1B5390CF0063912C /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		5B38C78E1B5390CF0063912C /* test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test; path = Modules/test; sourceTree = "<group>"; };
 		5BF05F451B4E5E1700CBC510 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		5BF05F491B4E5EF300CBC510 /* BaseTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTextField.h; sourceTree = "<group>"; };
 		5BF05F4A1B4E5EF300CBC510 /* BaseTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTextField.m; sourceTree = "<group>"; };
@@ -287,7 +284,6 @@
 		9F91E7F61B4E5AE80013F4F1 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		9F91E7F71B4E5AE80013F4F1 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		9F91E8021B4E5AFE0013F4F1 /* test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test; path = Modules/test; sourceTree = "<group>"; };
 		9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		9F91E80B1B4E607E0013F4F1 /* BoyeHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeHttpClient.h; sourceTree = "<group>"; };
@@ -609,9 +605,7 @@
 				5B38C7811B5390CF0063912C /* 左视图 */,
 				5B38C7881B5390CF0063912C /* Main */,
 				5B38C78B1B5390CF0063912C /* Model */,
-				5B38C78E1B5390CF0063912C /* test */,
 				9F91E80A1B4E604A0013F4F1 /* Boye */,
-				9F91E8021B4E5AFE0013F4F1 /* test */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -782,8 +776,6 @@
 				5BF2E0601B4FC5EE004FDDF7 /* back.png in Resources */,
 				5BF2E0411B4F6B7E004FDDF7 /* SVProgressHUD.bundle in Resources */,
 				5BF2E03F1B4F6B7E004FDDF7 /* MBProgressHUD.bundle in Resources */,
-				9F91E8031B4E5AFE0013F4F1 /* test in Resources */,
-				5B38C7A61B5390CF0063912C /* test in Resources */,
 				5BF2E05D1B4FC5EE004FDDF7 /* time.png in Resources */,
 				9F50E50D1B4E577600AB6BD8 /* Main.storyboard in Resources */,
 				9F50E5121B4E577600AB6BD8 /* LaunchScreen.xib in Resources */,
