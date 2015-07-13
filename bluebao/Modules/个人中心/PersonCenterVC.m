@@ -168,7 +168,7 @@
         imageView.center = CGPointMake(40+imageView.width/2.0, _headImageView.height/2.0);
         [MyTool cutViewConner:imageView radius:imageView.width/2.0];
         imageView.backgroundColor = [UIColor redColor];
-        self.headImageView = imageView;
+        
         [_headImageView addSubview:imageView];
         
         //姓名
@@ -178,7 +178,7 @@
         label_name.text = @"用户名字";
         label_name.font = FONT(15);
         [_headImageView addSubview:label_name];
-        self.userNameLabel = label_name;
+        
         //ID
         
         UILabel  * label_ID = [[UILabel alloc] init];
@@ -187,12 +187,11 @@
         label_ID.text = @"ID:123456";
         label_ID.font = FONT(15);
         label_ID.textColor = [UIColor lightGrayColor];
-        self.userIDLabel = label_ID;
         [_headImageView addSubview:label_ID];
         
- 
+     
+
     }
-    
     
     return _headImageView;
 }
