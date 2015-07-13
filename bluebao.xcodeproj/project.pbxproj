@@ -52,6 +52,16 @@
 		5B38C7E81B539A490063912C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7E71B539A490063912C /* Media.xcassets */; };
 		5B38C7EC1B539F8F0063912C /* EquimentMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7EB1B539F8F0063912C /* EquimentMessageVC.m */; };
 		5B38C7EF1B53A15D0063912C /* EquiMentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7EE1B53A15D0063912C /* EquiMentCell.m */; };
+		5B38C7FA1B53C6DB0063912C /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F01B53C6DB0063912C /* add.png */; };
+		5B38C7FB1B53C6DB0063912C /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F11B53C6DB0063912C /* back.png */; };
+		5B38C7FC1B53C6DB0063912C /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F21B53C6DB0063912C /* delete.png */; };
+		5B38C7FD1B53C6DB0063912C /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F31B53C6DB0063912C /* edit.png */; };
+		5B38C7FE1B53C6DB0063912C /* pw.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F41B53C6DB0063912C /* pw.png */; };
+		5B38C7FF1B53C6DB0063912C /* sd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F51B53C6DB0063912C /* sd.png */; };
+		5B38C8001B53C6DB0063912C /* sport.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F61B53C6DB0063912C /* sport.png */; };
+		5B38C8011B53C6DB0063912C /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F71B53C6DB0063912C /* time.png */; };
+		5B38C8021B53C6DB0063912C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F81B53C6DB0063912C /* user.png */; };
+		5B38C8031B53C6DB0063912C /* xinlv.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F91B53C6DB0063912C /* xinlv.png */; };
 		5BF05F551B4E5EF300CBC510 /* BaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F4A1B4E5EF300CBC510 /* BaseTextField.m */; };
 		5BF05F561B4E5EF300CBC510 /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F4C1B4E5EF300CBC510 /* UIColor+Color.m */; };
 		5BF05F571B4E5EF300CBC510 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF05F4E1B4E5EF300CBC510 /* UIImage+Color.m */; };
@@ -179,6 +189,16 @@
 		5B38C7EB1B539F8F0063912C /* EquimentMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquimentMessageVC.m; sourceTree = "<group>"; };
 		5B38C7ED1B53A15D0063912C /* EquiMentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquiMentCell.h; sourceTree = "<group>"; };
 		5B38C7EE1B53A15D0063912C /* EquiMentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquiMentCell.m; sourceTree = "<group>"; };
+		5B38C7F01B53C6DB0063912C /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		5B38C7F11B53C6DB0063912C /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		5B38C7F21B53C6DB0063912C /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		5B38C7F31B53C6DB0063912C /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
+		5B38C7F41B53C6DB0063912C /* pw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pw.png; sourceTree = "<group>"; };
+		5B38C7F51B53C6DB0063912C /* sd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sd.png; sourceTree = "<group>"; };
+		5B38C7F61B53C6DB0063912C /* sport.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sport.png; sourceTree = "<group>"; };
+		5B38C7F71B53C6DB0063912C /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time.png; sourceTree = "<group>"; };
+		5B38C7F81B53C6DB0063912C /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		5B38C7F91B53C6DB0063912C /* xinlv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xinlv.png; sourceTree = "<group>"; };
 		5BF05F491B4E5EF300CBC510 /* BaseTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTextField.h; sourceTree = "<group>"; };
 		5BF05F4A1B4E5EF300CBC510 /* BaseTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTextField.m; sourceTree = "<group>"; };
 		5BF05F4B1B4E5EF300CBC510 /* UIColor+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Color.h"; sourceTree = "<group>"; };
@@ -398,6 +418,16 @@
 		5B38C7A71B53977B0063912C /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				5B38C7F01B53C6DB0063912C /* add.png */,
+				5B38C7F11B53C6DB0063912C /* back.png */,
+				5B38C7F21B53C6DB0063912C /* delete.png */,
+				5B38C7F31B53C6DB0063912C /* edit.png */,
+				5B38C7F41B53C6DB0063912C /* pw.png */,
+				5B38C7F51B53C6DB0063912C /* sd.png */,
+				5B38C7F61B53C6DB0063912C /* sport.png */,
+				5B38C7F71B53C6DB0063912C /* time.png */,
+				5B38C7F81B53C6DB0063912C /* user.png */,
+				5B38C7F91B53C6DB0063912C /* xinlv.png */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -733,12 +763,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B38C8031B53C6DB0063912C /* xinlv.png in Resources */,
+				5B38C7FF1B53C6DB0063912C /* sd.png in Resources */,
+				5B38C7FE1B53C6DB0063912C /* pw.png in Resources */,
 				5B38C7E81B539A490063912C /* Media.xcassets in Resources */,
 				5B38C7AA1B53993B0063912C /* Main.storyboard in Resources */,
+				5B38C8001B53C6DB0063912C /* sport.png in Resources */,
+				5B38C7FB1B53C6DB0063912C /* back.png in Resources */,
 				5B38C7921B5390CF0063912C /* RegistVC.xib in Resources */,
+				5B38C7FD1B53C6DB0063912C /* edit.png in Resources */,
+				5B38C7FA1B53C6DB0063912C /* add.png in Resources */,
 				5BF2E0411B4F6B7E004FDDF7 /* SVProgressHUD.bundle in Resources */,
+				5B38C8021B53C6DB0063912C /* user.png in Resources */,
 				5BF2E03F1B4F6B7E004FDDF7 /* MBProgressHUD.bundle in Resources */,
+				5B38C8011B53C6DB0063912C /* time.png in Resources */,
 				5B38C7901B5390CF0063912C /* LoginVC.xib in Resources */,
+				5B38C7FC1B53C6DB0063912C /* delete.png in Resources */,
 				9F91E7DE1B4E5AB70013F4F1 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
