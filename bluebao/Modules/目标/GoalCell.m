@@ -1,0 +1,84 @@
+//
+//  GoalCell.m
+//  bluebao
+//
+//  Created by boye_mac1 on 15/7/13.
+//  Copyright (c) 2015年 Boye. All rights reserved.
+//
+
+#import "GoalCell.h"
+
+@implementation GoalCell
+
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        
+        [self _init];
+    }
+    return self;
+}
+
+
+-(void)_init{
+    
+    //修改
+    
+    CGFloat quarter =  SCREEN_WIDTH/4.0;
+    CGFloat left = 15;
+    CGFloat width_btn = (quarter - left*2 - 12)/2.0;
+    
+    self.alterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.alterBtn.bounds = CGRectMake(0, 0, width_btn, width_btn);
+    CGFloat  alt_x = quarter *3 + left + self.alterBtn.width/2.0;
+    self.alterBtn.center = CGPointMake(alt_x, self.contentView.center.y);
+    [self.alterBtn setBackgroundImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
+    [self.contentView addSubview:self.alterBtn];
+    
+    //删除
+    self.deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.deleteBtn.bounds = CGRectMake(0, 0, self.alterBtn.width, self.alterBtn.height);
+    CGFloat  delete_x = self.alterBtn.right + 6+ self.deleteBtn.width/2.0;
+    self.deleteBtn.center = CGPointMake(delete_x, self.alterBtn.center.y);
+    [self.deleteBtn setBackgroundImage:[UIImage imageNamed:@"delete.png"] forState:UIControlStateNormal];
+    [self.contentView addSubview:self.deleteBtn];
+    
+    //竖线
+    for (int i = 0; i < 3 ; i ++) {
+
+        [MyTool createLineInView:self.contentView fram:CGRectMake(quarter* (i+1), 0, 2, self.contentView.height)];
+    }
+    
+    [self creatLabel:self.timeLabel labeltext:@"16:30" num:0];
+    [self creatLabel:self.goalLael labeltext:@"1000卡" num:1];
+    [self creatLabel:self.operateLael labeltext:@"0%" num:2];
+    
+    //横线
+    [MyTool createLineInView:self.contentView fram:CGRectMake(0, self.contentView.bottom -2,SCREEN_WIDTH, 2)];
+}
+
+-(void ) creatLabel:(UILabel *)label labeltext:(NSString *)string num:(int) place{
+    
+    if (label == nil) {
+        label = [[UILabel alloc] init];
+        label.frame = CGRectMake(SCREEN_WIDTH/4.0 * place, -1, SCREEN_WIDTH/4.0, self.contentView.height);
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = string;
+        label.font = FONT(15);
+        [self.contentView addSubview:label];
+    }
+    
+}
+
+@end
