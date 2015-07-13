@@ -2,7 +2,7 @@
 //  ViewController.h
 //  bluebao
 //
-//  Created by hebidu on 15/7/9.
+//  Created by boye_mac1 on 15/7/13.
 //  Copyright (c) 2015年 Boye. All rights reserved.
 //
 
@@ -10,6 +10,4 @@
 
 @interface ViewController : UIViewController
 
-
 @end
-

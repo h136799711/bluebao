@@ -7,9 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
-#import "MainViewController.h"
-#import "LoginVC.h"
+
 @interface AppDelegate ()
 
 @end
