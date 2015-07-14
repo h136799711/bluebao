@@ -25,7 +25,7 @@
 +(void) setAnimationView:(UIView * )view duration:(CGFloat)duration rect:(CGRect) rect;
 
 #pragma mark  移动 pointCenten
-+(void) setAnimationCGpointView:(UIView * )view duration:(CGFloat)duration pointCent:(CGPoint) pointCent;
++(void) setAnimationCentView:(UIView * )view duration:(CGFloat)duration pointCent:(CGPoint) pointCent;
     
 #pragma mark 返回图片对象
 +(UIImage *) getImageOfString:(NSString *)imagString;

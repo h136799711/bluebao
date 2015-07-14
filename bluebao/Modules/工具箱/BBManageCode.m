@@ -72,6 +72,128 @@
     return value_label;
 }
 
+//TabbarView
++(UIView *)creatTabbarShow:(UIView * ) showView button:(UIButton *)btn ImagName:(NSString *)name titleLabel:(NSString *)title{
+    
+    CGFloat  width_ = showView.width/4.0;
+    UIView * view_ = [[UIView alloc] init];
+    view_.frame = CGRectMake(width_*btn.tag, 0, width_, showView.height);
+    
+    //图片
+    UIImageView * image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:name]];
+    image.bounds = CGRectMake(0, 0, 25, 25);
+    [view_ addSubview:image];
+    
+    //按钮
+    CGSize size = [MyTool getSizeString:title font:15];
+    btn.bounds = CGRectMake(0, 0, size.width+2, size.height);
+//    btn.backgroundColor = [UIColor yellowColor];
+    btn.titleLabel.font = FONT(15);
+
+    [btn setTitle:title forState:UIControlStateNormal];
+    [view_ addSubview:btn];
+    
+     //图与按钮间的距离
+    CGFloat space = 5;
+    CGFloat  between = (width_- image.width - btn.width)/2.0;
+    
+    image.center = CGPointMake(between + image.width/2.0 , view_.height/2.0);
+    btn.center = CGPointMake(image.right + space+ btn.width/2.0, image.center.y);
+    [showView addSubview:view_];
+    
+    return view_;
+}
+
+//个人资料
+
++(UIView *) createdPersonInfoShowInView:(UIView *)_headView headBtn:(UIButton *)headImageBtn signTestField:(UITextField *)personSignTextfield label:(UILabel *)label{
+    
+    
+    _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
+    
+    CGFloat  headWidth = 80;
+    //头像
+    headImageBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
+    headImageBtn.bounds = CGRectMake(0, 0, headWidth, headWidth);
+    headImageBtn.center = CGPointMake(_headView.width/2.0-10, 40 + headWidth/2.0);
+    [_headView addSubview:headImageBtn];
+    [headImageBtn setTitle:@"头像" forState:UIControlStateNormal];
+    headImageBtn.backgroundColor = [UIColor redColor];
+//    [headBtn addTarget:self action:@selector(uploadHeadImage) forControlEvents:UIControlEventTouchUpInside];
+    [MyTool cutViewConner:headImageBtn radius:headImageBtn.width/2.0];
+    
+    
+    //编辑签名
+    
+    personSignTextfield= [[UITextField alloc] init];
+    personSignTextfield.bounds = CGRectMake(0, 0, 80, 30);
+    personSignTextfield.center = CGPointMake(headImageBtn.center.x, headImageBtn.bottom + personSignTextfield.height/2.0+3);
+    personSignTextfield.textAlignment = NSTextAlignmentCenter;
+    personSignTextfield. borderStyle  = UITextBorderStyleNone;
+    personSignTextfield.font = FONT(16);
+    personSignTextfield.text = @"张三";
+    [_headView addSubview:personSignTextfield];
+    
+    //    签名
+    label = [[UILabel alloc] init];
+    label.bounds = CGRectMake(0, 0, 160, 12);
+    label.center = CGPointMake(personSignTextfield.center.x, personSignTextfield.bottom + label.height/2.0);
+    label.text = @"请输入您的个性签名";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont boldSystemFontOfSize:13];
+    label.textColor = [UIColor lightGrayColor];
+    [_headView addSubview:label];
+
+    return _headView;
+    
+}
+
+
+
+//创建圆角 背景
++(void)createdBackGroundView:(UIView *)bottomView indexRow:(NSInteger)row maxCount:(NSInteger) maxCount{
+        
+    CGFloat  radiu = 15;
+    
+    //切割圆内角
+    UIView  * view_cut = [[UIView alloc] init];
+    view_cut.tag = 1008;
+    view_cut.frame = CGRectMake(0, 0, bottomView.width, bottomView.height);
+    view_cut.backgroundColor = [UIColor colorWithHexString:@"#fefefe"];
+    [MyTool cutViewConner:view_cut radius:radiu];
+    
+    [bottomView addSubview:view_cut];
+    
+    //覆盖上层
+    if (row != 0) {
+        //覆盖圆角
+        UIView * fg_One = [[UIView alloc] init];
+        fg_One.tag = 1008;
+        fg_One.frame = CGRectMake(view_cut.left, 0, view_cut.width, radiu);
+        fg_One.backgroundColor = [UIColor colorWithHexString:@"#fefefe"];
+        [bottomView addSubview:fg_One];
+        
+        [bottomView sendSubviewToBack:fg_One];
+        
+    }
+    
+    //覆盖下层
+    if (row != maxCount) {
+        
+        //覆盖圆角
+        UIView * fg_Tow = [[UIView alloc] init];
+        fg_Tow.tag = 1008;
+        fg_Tow.frame = CGRectMake(view_cut.left, bottomView.bottom -radiu, view_cut.width, radiu);
+        fg_Tow.backgroundColor = [UIColor colorWithHexString:@"#fefefe"];
+        [bottomView addSubview:fg_Tow];
+        
+        [bottomView sendSubviewToBack:fg_Tow];
+    }
+    
+    [bottomView sendSubviewToBack:view_cut];
+
+
+}
 
 
 @end

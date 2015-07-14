@@ -7,6 +7,8 @@
 //
 
 #import "PersonMessageVC.h"
+#import "MessageCell.h"
+#import "PickerKeyBoard.h"
 
 @interface PersonMessageVC (){
     
@@ -15,10 +17,10 @@
     UIView    * _custemKeyView;  //自定义键盘
     
     UIView * _headView ;//个人头像个性签名视图
+    
+    UIView  *_sexheightView; //身高性别
 }
 
-@property (nonatomic,strong) UITableView  * tableView_person;
-@property (nonatomic,strong) UIPickerView * pickerview;
 @end
 
 @implementation PersonMessageVC
@@ -27,6 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"个人资料";
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
     self.navigationController.navigationBarHidden = NO;
 
     //创建视图
@@ -39,16 +42,18 @@
  **/
 
 -(void)_initViews{
-    sorArray = @[@"性别",@"出生日期",@"身高",@"当前体重",@"目标体重",@"BMI"];
-
+    
+    sorArray = @[@"当前体重",@"目标体重",@"BMI"];
+    //导航条
     [self _initNavs];
-    [self creatTableview];
+    //tableView
+    [self _initTableview];
+    //自定义键盘
+    [self _initPickerKeyBoard];
     
-    
-    [self creatKeyBoard];
 }
 
-#pragma mark -- 返回 --
+#pragma mark -- 导航条 返回 --
 
 -(void)_initNavs{
     
@@ -59,19 +64,20 @@
     leftBtn.tag = 1;
     UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem = letfItem;
-
-    
 }
-//创建表
--(void)creatTableview{
+
+#pragma mark ----创建表 ---
+-(void)_initTableview{
     
     if (self.tableView_person == nil) {
-//        CGFloat   y = NAV_HEIGHT + STATUS_HEIGHT;
-        CGFloat y = 0;
-        self.tableView_person = [[UITableView alloc] initWithFrame:CGRectMake(0,y, SCREEN_WIDTH, SCREEN_HEIGHT-y ) style:UITableViewStyleGrouped];
+        CGFloat   left = 20;
+        CGFloat h = SCREEN_HEIGHT-STATUS_HEIGHT-NAV_HEIGHT;
+        self.tableView_person = [[UITableView alloc] initWithFrame:CGRectMake(left,0, SCREEN_WIDTH -left *2, h) style:UITableViewStyleGrouped];
         self.tableView_person.rowHeight = 44;
         self.tableView_person.delegate = self;
         self.tableView_person.dataSource = self;
+        self.tableView_person.backgroundColor = [UIColor clearColor];
+        self.tableView_person.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:self.tableView_person];
         //表头
         self.tableView_person.tableHeaderView = [self creatTableViewHeadView];
@@ -81,68 +87,78 @@
     
 }
 
-#pragma mark   TableViewDelegate  
+#pragma mark ----  TableViewDelegate  ---
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    if (section == 0) {
-        
-        return 2;
-    }else{
-        
-        return 4;
-    }
-    return sorArray.count;
+
+        return  sorArray.count;
 }
 
-//个人信息
+#pragma mark -- tableViewDelegate ---
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-   static    NSString * indentifier = @"cell";
 
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
-    if (cell == nil) {
-        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:indentifier];;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    static  NSString * ident = @"personCell";
+    MessageCell * personCell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:ident];
+    
+    if (personCell == nil) {
+        personCell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
+        personCell.contentView.width = tableView.width;
+
+        }
+    //清除子视图
+    [MyTool clearCellSonView:personCell.contentView viewTag: 1008];
+    
+    if (indexPath.row  < sorArray.count -1) {
+        //横线
+        [MyTool createLineInView:personCell.contentView
+                            fram:CGRectMake(4, personCell.contentView.height, tableView.width - 4*2, 1)];
     }
-    
-    if (indexPath.section == 0) {
-        
-        cell.textLabel.text = sorArray[indexPath.row];
+    // 创建背景视图
+    [BBManageCode createdBackGroundView:personCell.contentView
+                               indexRow:indexPath.row
+                               maxCount:sorArray.count -1];
 
-    }else{
-        cell.textLabel.text = sorArray[indexPath.row+2];
+    //赋值
+    personCell.tag = indexPath.row;
+    personCell.label_sort.text = sorArray[indexPath.row];
+    personCell.label_value.text = @"KG";
+    personCell.label_value.frame = CGRectMake(tableView.width/2.0, 0, tableView.width/2.0-30, tableView.rowHeight );
+    return personCell;
 
-    }
-    cell.detailTextLabel.text = @"1";
-    
-    return cell;
-    
 }
 
-//分区个数
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 2;
-}
 
+#pragma mark --- 选中 cell--
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+//    MessageCell * cell = (MessageCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.section inSection:indexPath.row]];
+    
+    //动态刷新cell
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+    [tableView reloadData];
+    
+    [self.pickerKeyBoard open];
+    
+}
 //分区高
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 0;
-    }else{
-        return 10;
-    }
+    return 80;
+}
+
+#pragma mark ---- 创建区头
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    return [self createdHeaderInSection];
+}
+
+#pragma mark --- 性别 ---
+-(void)sexBtnClick:(UIButton *)sexBtn{
+    sexBtn.selected = !sexBtn.selected;
     
 }
-#pragma mark  修改信息  
 
--(void)changeResultClick:(UIButton *)resultbtn{
-    
-    
-    
-    
+#pragma mark -- 身高 --
+-(void)heightBtnClick:(UIButton *)heightBtn{
     
 }
 
@@ -152,49 +168,16 @@
 -(UIView *)creatTableViewHeadView{
     
     if (_headView == nil) {
-    
-        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
-        _headView.backgroundColor = [UIColor clearColor];
-        
-        CGFloat  headWidth = 80;
-        //头像
-        UIButton * headBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
-        headBtn.bounds = CGRectMake(0, 0, headWidth, headWidth);
-        headBtn.center = CGPointMake(_headView.width/2.0, 40 + headWidth/2.0);
-        [_headView addSubview:headBtn];
-        [headBtn setTitle:@"头像" forState:UIControlStateNormal];
-        headBtn.backgroundColor = [UIColor redColor];
-        self.headImageBtn = headBtn;
-        [headBtn addTarget:self action:@selector(uploadHeadImage) forControlEvents:UIControlEventTouchUpInside];
-        [MyTool cutViewConner:headBtn radius:headBtn.width/2.0];
-        
-        
-        
-        //编辑签名
-        
-        UITextField  * signTextfield = [[UITextField alloc] init];
-        signTextfield.bounds = CGRectMake(0, 0, 80, 30);
-        signTextfield.center = CGPointMake(headBtn.center.x, headBtn.bottom + signTextfield.height/2.0+3);
-        signTextfield.textAlignment = NSTextAlignmentCenter;
-        signTextfield. borderStyle  = UITextBorderStyleNone;
-        signTextfield.font = FONT(16);
-        signTextfield.text = @"张三";
-        [_headView addSubview:signTextfield];
-        self.personSignTextfield = signTextfield;
-        
-        //    签名
-        UILabel * label = [[UILabel alloc] init];
-        label.bounds = CGRectMake(0, 0, 160, 12);
-        label.center = CGPointMake(signTextfield.center.x, signTextfield.bottom + label.height/2.0);
-        label.text = @"请输入您的个性签名";
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont boldSystemFontOfSize:13];
-        label.textColor = [UIColor lightGrayColor];
-        [_headView addSubview:label];
-        
+        //创建个人资料信息（头像签名等）
+        _headView = [BBManageCode  createdPersonInfoShowInView:_headView
+                                                       headBtn:self.headImageBtn
+                                                 signTestField:self.personSignTextfield
+                                                         label:self.signLabel];
+        //头像绑定事件
+        [self.headImageBtn addTarget:self action:@selector(uploadHeadImage) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    
+    self.personSignTextfield.text = @"王五";
     
     return _headView;
 }
@@ -204,13 +187,13 @@
 
 -(UIView *)creatTableViewFootView{
 
-    UIView * footView =   [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    UIView * footView =   [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView_person.width, 40)];
 
     //保存按钮
     UIButton * saveBtn =[UIButton buttonWithType:UIButtonTypeCustom];
     
     CGFloat  between = 40;
-    saveBtn.frame = CGRectMake(between, 30, SCREEN_WIDTH - between *2, 30);
+    saveBtn.frame = CGRectMake(between, 30, footView.width - between *2, 30);
     [saveBtn setBackgroundColor:[UIColor blueColor]];
     [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [saveBtn setTitle:@"保存" forState:UIControlStateNormal];
@@ -229,46 +212,27 @@
 
 }
 
-#pragma mark -- 自定义键盘 --
--(void)creatKeyBoard{
+#pragma mark -- 自定义键盘 picker  --
+-(void)_initPickerKeyBoard{
     
-    if (_custemKeyView == nil) {
-    
-        //视图
-        UIView * keyview = [[UIView alloc] init];
-        keyview.backgroundColor = [UIColor lightGrayColor];
-        keyview.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 180);
-        keyview.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + keyview.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT);
-        [self.view addSubview:keyview];
-
-        //顶部黑条
-        UIView * topView = [[UIView alloc] init];
-        topView.frame = CGRectMake(0, 0, keyview.width, 30);
-        topView.backgroundColor = [UIColor blackColor];
-        [keyview addSubview:topView];
+    //picker
+    if (self.pickerKeyBoard == nil) {
+        self.pickerKeyBoard = [[PickerKeyBoard alloc] initWithPicker];
+        self.pickerKeyBoard.delegate = self;
+        [self.view addSubview:self.pickerKeyBoard];
         
-        //完成按钮
-        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-  
-        button.bounds = CGRectMake(0, 0, 40, 30);
-        CGFloat  x  =  topView.width - 10 - button.bounds.size.width/2.0;
-        button.center = CGPointMake(x, topView.height /2.0);
-        [button setTitle:@"完成" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [topView addSubview:button];
-//        [button addTarget:self action:@selector(overClick) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        #pragma mark -- PickView
-        UIPickerView * pickerView = [[UIPickerView alloc] init];
-        pickerView.delegate = self;
-        pickerView.dataSource = self;
-        self.pickerview = pickerView;
-        [keyview addSubview: pickerView];
-        
-        _custemKeyView = keyview;
     }
+    
 }
+
+
+#pragma mark -- PickerKeyBoardDelegate --
+-(void)pickerKeyBoard:(PickerKeyBoard *)picker selectedText:(NSString *)string{
+    
+    NSLog(@" 111111111111  %@",string);
+}
+
+
 
 #pragma mark --- 从相册区图片--
 
@@ -356,40 +320,87 @@
 }
 
 
-
-#pragma mark --- pickView --
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+//创建性别身高视图
+-(UIView *)createdHeaderInSection{
     
-    return 2;
-}
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    
-    if (component == 0) {
+    if (_sexheightView == nil) {
+        _sexheightView = [[UIView alloc ] init];
+        _sexheightView.bounds = CGRectMake(0, 0, self.tableView_person.width, 80);
+        //        _sexheightView.backgroundColor = [UIColor blackColor];
+        CGFloat  betwen = 30;
+        CGFloat  width = (_sexheightView.width - betwen )/2.0;
         
-        return 1;
+        //        //性别
+        UIView * sexView = [[UIView alloc] init];
+        sexView.bounds = CGRectMake(0, 0, width, 50);
+        sexView.center = CGPointMake(sexView.width/2.0, _sexheightView.height/2.0);
+        sexView.backgroundColor = [UIColor colorWithHexString:@"#fcfcfc"];
+        sexView.layer.shadowRadius = 2;
+        sexView.layer.shadowColor = [UIColor colorWithHexString:@"#c8c8c8"].CGColor;
+        [_sexheightView addSubview:sexView];
+        [MyTool cutViewConner:sexView radius:5];
+        
+        //label 性别
+        UILabel * sex_label = [[UILabel alloc] init];
+        sex_label.bounds = CGRectMake(0, 0, 35, 25);
+        //        sex_label.backgroundColor = [UIColor redColor];
+        sex_label.center = CGPointMake(10+ sex_label.width/2.0, sexView.height/2.0);
+        sex_label.text = @"性别";
+        sex_label.font = FONT(16);
+        [sexView addSubview:sex_label];
+        
+        //性别按钮
+        UIButton * sexBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        sexBtn.bounds = CGRectMake(0, 0, 60, 30);
+        sexBtn.center = CGPointMake(sex_label.right + 20 + sexBtn.width/2.0, sex_label.center.y);
+        //        sexBtn.backgroundColor = [UIColor redColor];
+        [sexBtn setTitle:@"女" forState:UIControlStateNormal];
+        [sexBtn setTitle:@"男" forState:UIControlStateSelected];
+        [sexBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [sexBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        
+        [sexBtn addTarget:self action:@selector(sexBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        sexBtn.titleLabel.font = FONT(16);
+        [sexView addSubview:sexBtn];
+        self.sexButton = sexBtn;
+        
+        
+        //身高
+        UIView * heightView = [[UIView alloc] init];
+        heightView.bounds = CGRectMake(0, 0, sexView.width, sexView.height);
+        heightView.center = CGPointMake(sexView.right + betwen + heightView.width/2.0, sexView.center.y);
+        heightView.backgroundColor = [UIColor colorWithHexString:@"#fcfcfc"];
+        heightView.layer.shadowColor = [UIColor colorWithHexString:@"#c8c8c8"].CGColor;
+        heightView.layer.shadowRadius = 2;
+        [_sexheightView addSubview:heightView];
+        [MyTool cutViewConner:heightView radius:5];
+        
+        //label 身高
+        UILabel * height_label = [[UILabel alloc] init];
+        height_label.bounds = CGRectMake(0, 0, 35, 25);
+        //        height_label.backgroundColor = [UIColor redColor];
+        height_label.center = CGPointMake(10+ height_label.width/2.0, heightView.height/2.0);
+        height_label.text = @"身高";
+        height_label.font = FONT(16);
+        [heightView addSubview:height_label];
+        
+        //身高按钮
+        UIButton * heightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        heightBtn.bounds = CGRectMake(0, 0, 60, 30);
+        heightBtn.center = CGPointMake(height_label.right + 20 + heightBtn.width/2.0, height_label.center.y);
+        //        heightBtn.backgroundColor = [UIColor redColor];
+        [heightBtn setTitle:@"165" forState:UIControlStateNormal];
+        [heightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [heightBtn addTarget:self action:@selector(heightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        heightBtn.titleLabel.font = FONT(16);
+        [heightView addSubview:heightBtn];
+        
+        
+        
     }
-    return 100;
+    
+    return _sexheightView;
 }
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    
-    if (component == 0) {
-        
-        return @"pic";
-    }else{
-        
-        return [NSString stringWithFormat:@"%ld",(long)row];
-    }
-    
-    
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    
-    NSLog(@"xxx");
-}
-
 
 #pragma mark --返回 --
 -(void)backClick{

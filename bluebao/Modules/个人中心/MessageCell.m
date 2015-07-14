@@ -19,6 +19,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
+        
+        
         //label1
         self.label_sort = [[UILabel alloc] init];
         self.label_sort.frame = CGRectMake(30, 0, SCREEN_WIDTH/2.0 -30, self.contentView.height);

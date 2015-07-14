@@ -25,8 +25,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    
+    //导航
     [self _initBarAppearance];
+    //登陆
     [self _initLogin];
     
 
@@ -34,6 +35,7 @@
     return YES;
 }
 
+#pragma mark --登陆 注册--
 -(void)_initLogin{
     
     LoginVC * loginvc = [LoginVC sharedSliderController];
@@ -43,10 +45,9 @@
     
 }
 
-
+#pragma mark -- 导航条统一样式 --
 -(void)_initBarAppearance
 {
-    
     UIImage *navBgImg = [UIImage imageWithColor:[UIColor colorWithHexString:@"#f8f8f8"]];
     [[UINavigationBar appearance] setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];

@@ -54,7 +54,7 @@
 }
 
 #pragma mark  PointCent
-+(void) setAnimationCGpointView:(UIView * )view duration:(CGFloat)duration pointCent:(CGPoint) pointCent{
++(void) setAnimationCentView:(UIView * )view duration:(CGFloat)duration pointCent:(CGPoint) pointCent{
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
@@ -131,6 +131,7 @@
 +(UIView *)createLineInView:(UIView *)view fram:(CGRect )rect{
     
     UILabel * label =  [[UILabel alloc] init];
+    label.tag = 1008;
     label.frame = rect;
     label.backgroundColor = [UIColor lightGrayColor];
     [view addSubview:label];

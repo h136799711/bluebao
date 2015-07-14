@@ -59,16 +59,14 @@
     
     self.title = @"main";
     
-    sortName = @[@"分享",@"目标",@"个人中心",@"首页"];
+    sortName = @[@"首页",@"目标",@"个人中心",@"分享"];
     //创建自定义tabba
     
     [self creatTabbar];
+    //左视图
     [self creatLeftView];
     //添加侧滑手势
     [self _initGesture];
-    
-    //创建主视图
-    [self _initHeadPage];
     
 }
 
@@ -122,22 +120,25 @@
     head.title = @"head";
     UINavigationController * navh = [[UINavigationController alloc] initWithRootViewController:head];
     
-    self.viewcontrollers = @[navs,navg,navp,navh];
+    self.viewcontrollers = @[navh,navg,navp,navs];
 
 
-    CGFloat  width =  SCREEN_WIDTH /4.0;
+//    CGFloat  width =  SCREEN_WIDTH /4.0;
 
     //底部按钮
     for (int i = 0;  i < 4;  i ++) {
+
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        button.frame = CGRectMake(i*width, -15, width, 49+15);
-        [button addTarget:self action:@selector(buttonPress:) forControlEvents:UIControlEventTouchUpInside];
         button.tag=i;
-        [_bottomView addSubview:button];
+        [BBManageCode creatTabbarShow:_bottomView
+                               button:button
+                             ImagName:@"sd.png"
+                           titleLabel:sortName[i]];
         
-        [button setTitle:sortName[i] forState:UIControlStateNormal];
-        if (i==3) {
+        [button addTarget:self
+                   action:@selector(buttonPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if (i==0) {
             [self buttonPress:button];
         }
     }
@@ -200,7 +201,9 @@
     CGFloat timer = 0.2;
     CGRect rect = CGRectMake(0, 0, _contentView.width, _contentView.height);
     [MyTool setAnimationView:_contentView duration:timer rect:rect];
-    [MyTool setAnimationCGpointView:_bottomView duration:timer pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
+    [MyTool setAnimationCentView:_bottomView
+                        duration:timer
+                       pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
     [_bottomView setUserInteractionEnabled:YES];
 }
 //向右移动
@@ -209,29 +212,23 @@
     CGFloat timer = 0.2;
     CGRect rect = CGRectMake(_slidepy, 0, _contentView.width, _contentView.height);
     [MyTool setAnimationView:_contentView duration:timer rect:rect];
-    [MyTool setAnimationCGpointView:_bottomView duration:timer pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
+    [MyTool setAnimationCentView:_bottomView
+                        duration:timer
+                       pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
     [_bottomView setUserInteractionEnabled:NO];
-}
-
-#pragma makr -- 首页  -- 
-
--(void)_initHeadPage{
-    
-    
-    
 }
 
 #pragma mark -- 创建单例 --
 
 + (MainViewController*)sharedSliderController
 {
-    static MainViewController *sharedSVC;
+    static MainViewController *VC;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedSVC = [[self alloc] init];
+        VC = [[self alloc] init];
     });
     
-    return sharedSVC;
+    return VC;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
