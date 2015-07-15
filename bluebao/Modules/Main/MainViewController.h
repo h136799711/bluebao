@@ -13,8 +13,9 @@
 
 + (MainViewController*)sharedSliderController;
 
-//向左移动
+//close
 -(void)moveLeft;
+//open
 -(void)moveRight;
 
 @end

@@ -32,6 +32,9 @@
 
 -(void)_initViews{
     
+    
+    [ButtonFactory decorateButton:self.registBtn forType:BOYE_BTN_SUCCESS];
+    
     //同意按钮
     [MyTool setViewBoard:self.agreeBtn];
     [self.agreeBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];

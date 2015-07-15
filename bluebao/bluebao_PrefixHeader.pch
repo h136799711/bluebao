@@ -32,7 +32,9 @@
 #import "MBProgressHUD+Add.h"
 #import "MBProgressHUD.h"
 #import "BBManageCode.h" //保存代码
-
+#import "BoyeDefaultManager.h"
+#import "BoyeHttpClient.h" //网络请求
+#import "ButtonFactory.h"
 
 
 //-------------------打印日志-------------------------

@@ -96,15 +96,29 @@
         return;
     }
 
-    //保存用户名何密码,保存Token
-    [USER_DEFAULT setObject:user.userName forKey:ACCOUNTNum];
-    [USER_DEFAULT setObject:user.userPsw forKey:ACCOUNTPSW];
+//    //保存用户名何密码,保存Token
+//    [USER_DEFAULT setObject:user.userName forKey:ACCOUNTNum];
+//    [USER_DEFAULT setObject:user.userPsw forKey:ACCOUNTPSW];
     
-#pragma mark - 跳转 --
-      [self jumpMainPage];
+    
+        #pragma mark - 跳转 --
+    
+    [BoyeDefaultManager requestLoginUser:user complete:^(BOOL succed) {
+        
+        if (succed) {
+            [self jumpMainPage];
+            
+        }else{
+            ALERTVIEW(@"登陆失败");
+        }
+    }];
+   
     
     
 }
+
+
+
 
 #pragma mark -- 调到主界面 -
 

@@ -9,6 +9,7 @@
                 <outlet property="agreeBtn" destination="H9K-Ma-IhJ" id="lyL-w4-5Vt"/>
                 <outlet property="agreeLabel" destination="fCe-GM-rcM" id="ZkI-5l-oiM"/>
                 <outlet property="backItem" destination="dd1-6d-ogA" id="SPX-Ow-Uop"/>
+                <outlet property="registBtn" destination="PUT-Ke-iMp" id="BhO-eU-pmo"/>
                 <outlet property="textfield_LeterBox" destination="DkH-UZ-ah3" id="O5n-bV-QeT"/>
                 <outlet property="textfield_confirmpsw" destination="tFh-ga-ZDK" id="ga9-Ph-5rv"/>
                 <outlet property="textfield_newpsw" destination="hka-SR-dAA" id="eAs-lo-5dF"/>

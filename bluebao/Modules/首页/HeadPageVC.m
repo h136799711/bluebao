@@ -118,11 +118,35 @@
 #pragma mark -- 目标 ---
 -(UIView *)headerView{
     
+    //日期
     CGRect rect = CGRectMake(0, 0, _tableView.width, 200);
-    UIView * headView = [[UIView alloc] initWithFrame:rect];
-    headView.backgroundColor = [UIColor yellowColor];
+    self.headView = [[UIView alloc] initWithFrame:rect];
+    self.headView.backgroundColor = [UIColor yellowColor];
+    UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, self.headView.width, 25)];
+    label.text = @"<2015-7-10>";
+    label.textAlignment =  NSTextAlignmentCenter;
+    //连接设备
+    [self.headView addSubview:label];
+    UILabel * equipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, label.bottom, label.width, 20)];
+    equipLabel.textAlignment = NSTextAlignmentCenter;
+    equipLabel.text = @"没有连接设备";
+    equipLabel.font = FONT(13);
+    [self.headView addSubview:equipLabel];
     
-    return headView;
+    
+    //备是踏步机
+    UILabel * tisLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.headView.height- 20, self.headView.width, 20)];
+    tisLabel.text = @"当前的设备是踏步机";
+    tisLabel.textAlignment = NSTextAlignmentCenter;
+     
+    [self.headView addSubview:tisLabel];
+    
+    
+    
+//    UIView * date_view = [[UIView alloc] initWithCoder:<#(NSCoder *)#>];
+    
+    
+    return self.headView ;
 }
 
 #pragma mark --- 身体指标 ---

@@ -46,7 +46,7 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    _slidepy = 160;
+    _slidepy = SCREEN_WIDTH/2.0;
     
     
     //创建视图
@@ -130,6 +130,9 @@
 
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag=i;
+//        [button setBackgroundImage:[UIImage imageNamed:@"sd.png"] forState:UIControlStateNormal];
+//        [button setBackgroundImage:[UIImage imageNamed:@"sd.png"] forState:UIControlStateSelected];
+//        //底部按钮
         [BBManageCode creatTabbarShow:_bottomView
                                button:button
                              ImagName:@"sd.png"
@@ -195,7 +198,7 @@
 -(void)swipLeftGesture:(UISwipeGestureRecognizer *)gesture{
     [self moveLeft];
 }
-//向左移动
+//close
 -(void)moveLeft{
 
     CGFloat timer = 0.2;
@@ -206,7 +209,7 @@
                        pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
     [_bottomView setUserInteractionEnabled:YES];
 }
-//向右移动
+//open
 -(void)moveRight{
     
     CGFloat timer = 0.2;

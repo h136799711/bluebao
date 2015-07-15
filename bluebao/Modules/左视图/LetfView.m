@@ -8,12 +8,19 @@
 
 #import "LetfView.h"
 #import "LeftMenuCell.h"
-#import "PersonMessageVC.h"
+
 #import "AppDelegate.h"
 #import "LoginVC.h"
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "EquimentMessageVC.h"
+
+#import "EquimentMessageVC.h"//设备刮泥
+#import "PersonMessageVC.h"//个人资料
+#import "BlueBaoAboutVC.h" // 关于蓝堡
+#import "MoreExereqBuyVC.h" 
+#import "SettingVC.h"
+
+
 
 @interface LetfView(){
     
@@ -55,7 +62,7 @@
     bgImgView.image = [UIImage imageNamed:@"left_menu_bg"];
     self.tableView.backgroundView = bgImgView;
     self.tableView.backgroundColor = [UIColor clearColor];
-    sortArray = @[@"我的个人资料",@"设备管理",@"我的个人资料",@"我的个人资料",@"我的个人资料",@"我的个人资料",@"注销"];
+    sortArray = @[@"我的个人资料",@"设备管理",@"我的运动数据",@"我的目标管理",@"健身房",@"饮食管理",@"关于蓝堡",@"购买更多健身器材",@"关闭闹铃提醒",@"设置",@"注销"];
 }
 
 
@@ -86,9 +93,9 @@
 
 #pragma mark -- 选中之后--
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //注销
+   
     
-  
+   //注销
     if (indexPath.row == sortArray.count-1) {
       
         LoginVC * login = [LoginVC sharedSliderController];
@@ -96,12 +103,30 @@
         UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
         window.rootViewController = nav;
       
-        
+       //设备管理
     } else if (indexPath.row == 1){
         EquimentMessageVC * equiment = [[EquimentMessageVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:equiment animated:YES];
+    
+    } else if (indexPath.row == 6){
+        BlueBaoAboutVC * aboutVC = [[BlueBaoAboutVC alloc] init];
+        [[MainViewController sharedSliderController].navigationController pushViewController:aboutVC animated:YES];
+
+    } else if (indexPath.row == 7){
+        
+        MoreExereqBuyVC * moreVC = [[MoreExereqBuyVC alloc] init];
+        [[MainViewController sharedSliderController].navigationController pushViewController:moreVC animated:YES];
+
+        
+    } else if (indexPath.row == 9){
+        
+        SettingVC  * setVC = [[SettingVC alloc] init];
+        [[MainViewController sharedSliderController].navigationController pushViewController:setVC animated:YES];
+
     }
     
+    
+    //个人资料
     else{
         
         PersonMessageVC * person = [[PersonMessageVC alloc] init];
@@ -118,31 +143,32 @@
 #pragma mark -- 创建去区头 --
 -(UIView *)creatTableViewHeadView{
     
-    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
+    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 120)];
     headView.backgroundColor = [UIColor lightGrayColor];
     
     //头像
     UIButton * headBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
-    headBtn.bounds = CGRectMake(0, 0, 40, 40);
-    headBtn.center = CGPointMake(20+headBtn.width/2.0, headView.height/2.0);
+    headBtn.bounds = CGRectMake(0, 0, 50, 50);
+    headBtn.center = CGPointMake(20+headBtn.width/2.0, headBtn.height/2.0 + 40);
     [headView addSubview:headBtn];
     [headBtn setTitle:@"头像" forState:UIControlStateNormal];
     headBtn.backgroundColor = [UIColor redColor];
-    
+    [MyTool cutViewConner:headBtn radius:headBtn.width/2.0];
     
     //签名
     UILabel * label = [[UILabel alloc] init];
     label.bounds = CGRectMake(0, 0, 100, 12);
-    label.center = CGPointMake(headBtn.right+ 10+ label.width/2.0, headBtn.center.y);
+    label.center = CGPointMake(headBtn.right+ 10+ label.width/2.0, headBtn.center.y + label.height/2.0);
     label.text = @"请编辑签名";
     [headView addSubview:label];
     label.font = [UIFont boldSystemFontOfSize:10];
     
     
     //编辑签名
-    
     UITextField  * signTextfield = [[UITextField alloc] init];
-    signTextfield.frame = CGRectMake(label.left, headBtn.center.y - headBtn.height/2.0 - 16, headView.width - headBtn.right - 15 , 30);
+//    signTextfield.frame = CGRectMake(label.left, headBtn.center.y - headBtn.height/2.0 - 16, headView.width - headBtn.right - 15 , 30);
+    signTextfield.bounds = CGRectMake(0, 0,headView.width - headBtn.right - 15 , 30);
+    signTextfield.center = CGPointMake(label.center.x, headBtn.center.y - signTextfield.height/2.0);
     signTextfield.text = @"张三";
     [headView addSubview:signTextfield];
     signTextfield.font = [UIFont boldSystemFontOfSize:14];;

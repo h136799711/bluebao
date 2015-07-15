@@ -16,6 +16,12 @@
 #define ACCOUNTNum @"accountNum" //账号名
 #define ACCOUNTPSW @"accountPsw"//账号密码
 
+//请求口令
+#define BOYE_CLIENT_ID "by559a8de1c325c1"
+#define BOYE_CLIENT_SECRET "aedd16f80c192661016eebe3ac35a6e7"
 
+#define BOYE_ACCESS_TOKEN  @"access_token"  //token
+//#define BOYE_CODEKEY @""
+#define BOYE_ENDTIME @"endTime"             //到期时间
 
 #endif

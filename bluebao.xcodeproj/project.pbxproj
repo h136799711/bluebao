@@ -18,7 +18,6 @@
 		5B38C7971B5390CF0063912C /* PersonMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7691B5390CF0063912C /* PersonMessageVC.m */; };
 		5B38C7981B5390CF0063912C /* BBManageCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C76C1B5390CF0063912C /* BBManageCode.m */; };
 		5B38C7991B5390CF0063912C /* MyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C76E1B5390CF0063912C /* MyTool.m */; };
-		5B38C79A1B5390CF0063912C /* EngineHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7721B5390CF0063912C /* EngineHttpRequest.m */; };
 		5B38C79B1B5390CF0063912C /* GoalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7751B5390CF0063912C /* GoalCell.m */; };
 		5B38C79C1B5390CF0063912C /* GoalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7771B5390CF0063912C /* GoalVC.m */; };
 		5B38C79D1B5390CF0063912C /* BMICell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C77A1B5390CF0063912C /* BMICell.m */; };
@@ -74,6 +73,12 @@
 		5BF2E0421B4F6B7E004FDDF7 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E03C1B4F6B7E004FDDF7 /* SVProgressHUD.m */; };
 		5BF2E0471B4F6C99004FDDF7 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E0441B4F6C99004FDDF7 /* NSDate+Category.m */; };
 		5BF2E0481B4F6C99004FDDF7 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E0461B4F6C99004FDDF7 /* NSDateFormatter+Category.m */; };
+		5BF4F00E1B55F0F7000AB7BD /* BoyeDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */; };
+		5BF4F00F1B55F0F7000AB7BD /* BoyeHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */; };
+		5BF4F0121B560CFA000AB7BD /* ButtonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */; };
+		5BF4F01B1B565FD7000AB7BD /* BlueBaoAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F01A1B565FD7000AB7BD /* BlueBaoAboutVC.m */; };
+		5BF4F01E1B566088000AB7BD /* MoreExereqBuyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */; };
+		5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0201B56609D000AB7BD /* SettingVC.m */; };
 		5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
 		9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */; };
@@ -124,8 +129,6 @@
 		5B38C76D1B5390CF0063912C /* MyTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTool.h; sourceTree = "<group>"; };
 		5B38C76E1B5390CF0063912C /* MyTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTool.m; sourceTree = "<group>"; };
 		5B38C7701B5390CF0063912C /* CommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
-		5B38C7711B5390CF0063912C /* EngineHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineHttpRequest.h; sourceTree = "<group>"; };
-		5B38C7721B5390CF0063912C /* EngineHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineHttpRequest.m; sourceTree = "<group>"; };
 		5B38C7741B5390CF0063912C /* GoalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalCell.h; sourceTree = "<group>"; };
 		5B38C7751B5390CF0063912C /* GoalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalCell.m; sourceTree = "<group>"; };
 		5B38C7761B5390CF0063912C /* GoalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalVC.h; sourceTree = "<group>"; };
@@ -228,6 +231,18 @@
 		5BF2E0441B4F6C99004FDDF7 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		5BF2E0451B4F6C99004FDDF7 /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
 		5BF2E0461B4F6C99004FDDF7 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
+		5BF4F00A1B55F0F7000AB7BD /* BoyeDefaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeDefaultManager.h; sourceTree = "<group>"; };
+		5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeDefaultManager.m; sourceTree = "<group>"; };
+		5BF4F00C1B55F0F7000AB7BD /* BoyeHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeHttpClient.h; sourceTree = "<group>"; };
+		5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeHttpClient.m; sourceTree = "<group>"; };
+		5BF4F0101B560CFA000AB7BD /* ButtonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonFactory.h; sourceTree = "<group>"; };
+		5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonFactory.m; sourceTree = "<group>"; };
+		5BF4F0191B565FD7000AB7BD /* BlueBaoAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueBaoAboutVC.h; sourceTree = "<group>"; };
+		5BF4F01A1B565FD7000AB7BD /* BlueBaoAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueBaoAboutVC.m; sourceTree = "<group>"; };
+		5BF4F01C1B566088000AB7BD /* MoreExereqBuyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreExereqBuyVC.h; sourceTree = "<group>"; };
+		5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreExereqBuyVC.m; sourceTree = "<group>"; };
+		5BF4F01F1B56609D000AB7BD /* SettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingVC.h; sourceTree = "<group>"; };
+		5BF4F0201B56609D000AB7BD /* SettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingVC.m; sourceTree = "<group>"; };
 		5BFFD9611B54F3F600216795 /* PickerKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerKeyBoard.h; sourceTree = "<group>"; };
 		5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerKeyBoard.m; sourceTree = "<group>"; };
 		9F50E4FE1B4E577600AB6BD8 /* bluebao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluebao.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,8 +276,6 @@
 		9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		9F91E80B1B4E607E0013F4F1 /* BoyeHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeHttpClient.h; sourceTree = "<group>"; };
-		9F91E80C1B4E607E0013F4F1 /* BoyeHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeHttpClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,8 +364,6 @@
 			isa = PBXGroup;
 			children = (
 				5B38C7701B5390CF0063912C /* CommonDefine.h */,
-				5B38C7711B5390CF0063912C /* EngineHttpRequest.h */,
-				5B38C7721B5390CF0063912C /* EngineHttpRequest.m */,
 			);
 			name = "宏定义";
 			path = "Modules/宏定义";
@@ -373,20 +384,20 @@
 		5B38C7781B5390CF0063912C /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				5B38C77F1B5390CF0063912C /* HeadPageVC.h */,
+				5B38C7801B5390CF0063912C /* HeadPageVC.m */,
 				5B38C7791B5390CF0063912C /* BMICell.h */,
 				5B38C77A1B5390CF0063912C /* BMICell.m */,
 				5B38C77B1B5390CF0063912C /* HeadCollectionViewCell.h */,
 				5B38C77C1B5390CF0063912C /* HeadCollectionViewCell.m */,
 				5B38C77D1B5390CF0063912C /* HeadInfoCell.h */,
 				5B38C77E1B5390CF0063912C /* HeadInfoCell.m */,
-				5B38C77F1B5390CF0063912C /* HeadPageVC.h */,
-				5B38C7801B5390CF0063912C /* HeadPageVC.m */,
 			);
 			name = "首页";
 			path = "Modules/首页";
 			sourceTree = "<group>";
 		};
-		5B38C7811B5390CF0063912C /* 左视图 */ = {
+		5B38C7811B5390CF0063912C /* LeftVC */ = {
 			isa = PBXGroup;
 			children = (
 				5B38C7821B5390CF0063912C /* LeftMenu.h */,
@@ -396,7 +407,7 @@
 				5B38C7861B5390CF0063912C /* LetfView.h */,
 				5B38C7871B5390CF0063912C /* LetfView.m */,
 			);
-			name = "左视图";
+			name = LeftVC;
 			path = "Modules/左视图";
 			sourceTree = "<group>";
 		};
@@ -539,6 +550,49 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		5BF4F0091B55F0F7000AB7BD /* Boye */ = {
+			isa = PBXGroup;
+			children = (
+				5BF4F0101B560CFA000AB7BD /* ButtonFactory.h */,
+				5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */,
+				5BF4F00A1B55F0F7000AB7BD /* BoyeDefaultManager.h */,
+				5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */,
+				5BF4F00C1B55F0F7000AB7BD /* BoyeHttpClient.h */,
+				5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */,
+			);
+			path = Boye;
+			sourceTree = "<group>";
+		};
+		5BF4F0141B565EAC000AB7BD /* 关于绿堡 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF4F0191B565FD7000AB7BD /* BlueBaoAboutVC.h */,
+				5BF4F01A1B565FD7000AB7BD /* BlueBaoAboutVC.m */,
+			);
+			name = "关于绿堡";
+			path = "Modules/关于绿堡";
+			sourceTree = "<group>";
+		};
+		5BF4F0161B565EF7000AB7BD /* 购买更多健身器材 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF4F01C1B566088000AB7BD /* MoreExereqBuyVC.h */,
+				5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */,
+			);
+			name = "购买更多健身器材";
+			path = "Modules/购买更多健身器材";
+			sourceTree = "<group>";
+		};
+		5BF4F0181B565F21000AB7BD /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF4F01F1B56609D000AB7BD /* SettingVC.h */,
+				5BF4F0201B56609D000AB7BD /* SettingVC.m */,
+			);
+			name = "设置";
+			path = "Modules/设置";
+			sourceTree = "<group>";
+		};
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
@@ -600,19 +654,22 @@
 		9F50E5281B4E57F100AB6BD8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				5B38C7561B5390CF0063912C /* 登录 */,
-				5B38C75F1B5390CF0063912C /* 分享 */,
-				5B38C7621B5390CF0063912C /* 个人中心 */,
-				5B38C7671B5390CF0063912C /* 个人资料 */,
+				5BF4F0091B55F0F7000AB7BD /* Boye */,
 				5B38C76A1B5390CF0063912C /* 工具箱 */,
-				5B38C7E91B539F470063912C /* 设备管理 */,
+				5B38C7561B5390CF0063912C /* 登录 */,
 				5B38C76F1B5390CF0063912C /* 宏定义 */,
-				5B38C7731B5390CF0063912C /* 目标 */,
 				5B38C7781B5390CF0063912C /* 首页 */,
-				5B38C7811B5390CF0063912C /* 左视图 */,
+				5B38C7731B5390CF0063912C /* 目标 */,
+				5B38C7621B5390CF0063912C /* 个人中心 */,
+				5B38C75F1B5390CF0063912C /* 分享 */,
+				5B38C7811B5390CF0063912C /* LeftVC */,
+				5B38C7671B5390CF0063912C /* 个人资料 */,
+				5B38C7E91B539F470063912C /* 设备管理 */,
+				5BF4F0141B565EAC000AB7BD /* 关于绿堡 */,
+				5BF4F0161B565EF7000AB7BD /* 购买更多健身器材 */,
+				5BF4F0181B565F21000AB7BD /* 设置 */,
 				5B38C7881B5390CF0063912C /* Main */,
 				5B38C78B1B5390CF0063912C /* Model */,
-				9F91E80A1B4E604A0013F4F1 /* Boye */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -676,15 +733,6 @@
 				9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */,
 			);
 			name = Framework;
-			sourceTree = "<group>";
-		};
-		9F91E80A1B4E604A0013F4F1 /* Boye */ = {
-			isa = PBXGroup;
-			children = (
-				9F91E80B1B4E607E0013F4F1 /* BoyeHttpClient.h */,
-				9F91E80C1B4E607E0013F4F1 /* BoyeHttpClient.m */,
-			);
-			name = Boye;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -816,13 +864,15 @@
 				5B38C7DC1B5399B80063912C /* SDWebImagePrefetcher.m in Sources */,
 				5B38C7961B5390CF0063912C /* PersonCenterVC.m in Sources */,
 				5B38C7EC1B539F8F0063912C /* EquimentMessageVC.m in Sources */,
+				5BF4F0121B560CFA000AB7BD /* ButtonFactory.m in Sources */,
+				5BF4F01B1B565FD7000AB7BD /* BlueBaoAboutVC.m in Sources */,
 				5B38C7DA1B5399B80063912C /* SDWebImageManager+MJ.m in Sources */,
 				9F91E7FA1B4E5AE80013F4F1 /* AFHTTPRequestOperationManager.m in Sources */,
 				5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */,
-				5B38C79A1B5390CF0063912C /* EngineHttpRequest.m in Sources */,
 				5BF2E0481B4F6C99004FDDF7 /* NSDateFormatter+Category.m in Sources */,
 				5B38C7911B5390CF0063912C /* RegistVC.m in Sources */,
 				5B38C7D81B5399B80063912C /* SDWebImageDownloader.m in Sources */,
+				5BF4F01E1B566088000AB7BD /* MoreExereqBuyVC.m in Sources */,
 				9F91E7FC1B4E5AE80013F4F1 /* AFNetworkReachabilityManager.m in Sources */,
 				5B38C7971B5390CF0063912C /* PersonMessageVC.m in Sources */,
 				5B38C7E11B5399B80063912C /* UIImageView+MJWebCache.m in Sources */,
@@ -842,6 +892,7 @@
 				5B38C7DB1B5399B80063912C /* SDWebImageManager.m in Sources */,
 				5B38C7D61B5399B80063912C /* SDWebImageCompat.m in Sources */,
 				5B38C79E1B5390CF0063912C /* HeadCollectionViewCell.m in Sources */,
+				5BF4F00F1B55F0F7000AB7BD /* BoyeHttpClient.m in Sources */,
 				5B38C7941B5390CF0063912C /* ShareVC.m in Sources */,
 				9F91E7FE1B4E5AE80013F4F1 /* AFURLConnectionOperation.m in Sources */,
 				5B38C79D1B5390CF0063912C /* BMICell.m in Sources */,
@@ -864,6 +915,8 @@
 				5B38C7AD1B5399640063912C /* ViewController.m in Sources */,
 				5BF05F561B4E5EF300CBC510 /* UIColor+Color.m in Sources */,
 				5B38C7D51B5399B80063912C /* SDImageCache.m in Sources */,
+				5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */,
+				5BF4F00E1B55F0F7000AB7BD /* BoyeDefaultManager.m in Sources */,
 				9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

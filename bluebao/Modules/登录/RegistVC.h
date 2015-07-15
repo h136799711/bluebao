@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textfield_newpsw;
 @property (weak, nonatomic) IBOutlet UITextField *textfield_confirmpsw;
 
+@property (weak, nonatomic) IBOutlet UIButton *registBtn;
 
 //方法
 - (IBAction)agree:(UIButton *)sender;

@@ -84,10 +84,12 @@
     image.bounds = CGRectMake(0, 0, 25, 25);
     [view_ addSubview:image];
     
+    
+    
     //按钮
     CGSize size = [MyTool getSizeString:title font:15];
     btn.bounds = CGRectMake(0, 0, size.width+2, size.height);
-//    btn.backgroundColor = [UIColor yellowColor];
+
     btn.titleLabel.font = FONT(15);
 
     [btn setTitle:title forState:UIControlStateNormal];

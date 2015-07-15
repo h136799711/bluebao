@@ -10,4 +10,5 @@
 
 @interface HeadPageVC : BaseViewController<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
+@property (nonatomic,strong)UIView     *headView;
 @end
