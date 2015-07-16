@@ -145,4 +145,18 @@
     return str;
 }
 
+
+#pragma mark -- 获得当前日期  -
++(NSString *) getCurrentDataFormat:(NSString *)formatterStr{
+   
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:formatterStr];
+    //用[NSDate date]可以获取系统当前时间
+    NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
+    return currentDateStr;
+}
+
+
 @end

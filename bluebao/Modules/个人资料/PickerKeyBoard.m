@@ -75,30 +75,52 @@
         
         return 1;
     }
-    return 100;
+    return self.maximumZoom -self.minimumZoom+1;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
     if (component == 0) {
-        
-        return @"pic";
+        if (self.dataName == nil) {
+            self.dataName = @"";
+        }
+        return self.dataName;
     }else{
         
-        return [NSString stringWithFormat:@"%ld",(long)row];
+        int count = (int )(self.maximumZoom - self.minimumZoom +1);
+        
+         NSString * unitstring = @"";
+        for (int i = 0; i < count; i ++) {
+            
+            int num = (int )self.minimumZoom + count;
+            
+           unitstring  = [NSString stringWithFormat:@"%d %@",num,self.dataUnit];
+            if (i ==row) {
+                break;
+            }
+        }
+        
+        return unitstring;
+
     }
-    
-    
 }
 
 #pragma mark -- 选中之后  --
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
-    
+  
     if ([_delegate respondsToSelector:@selector(pickerKeyBoard:selectedText:)]) {
-        [_delegate pickerKeyBoard:self selectedText:@"111"];
+        
+        NSString * string = @"";
+        if (component == 0) {
+            string = self.dataName;
+        }else{
+            string = self.dataUnit;
+        }
+        [_delegate pickerKeyBoard:self selectedText:string];
     }
 
+    NSLog(@"%@, %@",self.dataName,self.dataUnit);
 }
 
 #pragma mark -重载delegate --
@@ -136,6 +158,7 @@
 }
 
 
+
 #pragma mark --  showInView  --
 -(void)showInView:(UIView *)view{
     
@@ -146,6 +169,41 @@
 -(void)buttonClick{
     
     [self close];
+}
+
+
+
+#pragma mark -- 重载 min 属性 --
+-(void)setMinimumZoom:(NSInteger)minimumZoom{
+    
+    _minimumZoom = minimumZoom;
+//    [self.pickerView reloadAllComponents];
+}
+#pragma mark -- 重载 max 属性 --
+-(void)setMaximumZoom:(NSInteger)maximumZoom{
+    _maximumZoom = maximumZoom;
+//    [self.pickerView reloadAllComponents];
+    
+}
+#pragma mark -- 重载 curren数值 属性 --
+-(void)setCurrentmumZoom:(NSInteger)currentmumZoom{
+    _currentmumZoom = currentmumZoom;
+//    [self.pickerView reloadAllComponents];
+    
+}
+#pragma mark -- 重载 数据单位 属性 --
+
+-(void)setDataUnit:(NSString *)dataUnit{
+
+    _dataUnit = dataUnit;
+//    [self.pickerView reloadAllComponents];
+}
+
+#pragma mark -- 重载 数据分类 属性 --
+-(void)setDataName:(NSString *)dataName{
+    _dataUnit = dataName;
+//    [self.pickerView reloadAllComponents];
+
 }
 
 /*

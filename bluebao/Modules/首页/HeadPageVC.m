@@ -28,6 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.title =@"跑步机";
+
     _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗"];
     _imageName = @[@"xinlv",@"sd",@"time",@"sport"];
     _sortArray = @[@"体脂肪率",@"体水分率",@"体年龄",@"基础代谢",@"肌肉含量",@"内脏含量",@"骨骼含量",@"皮下脂肪"];
@@ -41,15 +44,10 @@
 
     itemWidth = (SCREEN_WIDTH - 60-30*3)/4.0;
 
-    [self _initNav];
     [self _initHeadInfoTableView];
 }
 
-//
--(void)_initNav{
-    
-    self.title =@"跑步机";
-}
+
 #pragma mark -- 首页表 --
 
 -(void)_initHeadInfoTableView{
@@ -152,6 +150,7 @@
 #pragma mark --- 身体指标 ---
 -(UIView *)footerView{
     
+  
     UIView * view  = [[UIView alloc] init];
     view.backgroundColor = [UIColor clearColor];
     view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 200);
@@ -188,9 +187,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HeadCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HeadCollectionViewCell" forIndexPath:indexPath];
-    if (cell== nil) {
-        cell = [[HeadCollectionViewCell alloc] init];
-    }
+//    if (cell== nil) {
+//        cell = [[HeadCollectionViewCell alloc] init];
+//    }
     cell.labelUnit.text = @"%";
     cell.infoValue = 10;
     cell.labelSort.text = _sortArray[indexPath.row];

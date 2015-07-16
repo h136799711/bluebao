@@ -27,15 +27,17 @@
     
     [self _initViews];;
     [self _initShareView];
+    self.navigationItem.titleView =  [self createdNav];
 }
 
 //
 -(void)_initViews{
     //分享
-    share_tableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT-TABBAR_HEIGHT) style:UITableViewStylePlain];
+    share_tableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT-TABBAR_HEIGHT -60) style:UITableViewStylePlain];
     share_tableView.delegate = self;
     share_tableView.dataSource = self;
     share_tableView.tableHeaderView = [self headerView];
+    share_tableView.rowHeight = 30;
     share_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:share_tableView];
     
@@ -56,6 +58,8 @@
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     
+    cell.textLabel.textColor = [UIColor lightGrayColor];
+    cell.textLabel.font = FONT(13);
     if (indexPath.row == 0) {
         cell.textLabel.text = @"今天已经是第7天运动了，加油！坚持";
         
@@ -82,8 +86,9 @@
         //图片
         CGFloat width =  100;
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame =CGRectMake(_headerView.width/2.0 - width - 5 , 40, width, 160);
+        imageView.frame =CGRectMake(_headerView.width/2.0 - width - 10 , 40, width, 160);
         imageView.backgroundColor = [UIColor orangeColor];
+        imageView.image = [UIImage imageNamed:@"testhead.png"];
         [_headerView addSubview:imageView];
         
         //
@@ -92,18 +97,6 @@
     
     [self showInfoString:100 type:0];
     [self showInfoString:100 type:1];
-    
-//    UILabel * step_label = (UILabel *)[_headerView viewWithTag:_headerView.tag +1];
-//    step_label.text = @"100";
-//    
-//    UILabel * step_km = (UILabel *)[_headerView viewWithTag:_headerView.tag +2];
-//    step_km.text = @"慢跑了100公里";
-//    
-//    UILabel * consum_label = (UILabel *)[_headerView viewWithTag:_headerView.tag +3];
-//    consum_label.text = @"100";
-//    
-//    
-//    NSLog(@"2222");
     
     return _headerView;
 }
@@ -160,7 +153,7 @@
         [showView addSubview:mpLabel];
         
         //线
-        [MyTool createLineInView:showView fram:CGRectMake(mpLabel.left, mpLabel.bottom +2, mpLabel.width +2, 1)];
+        [MyTool createLineInView:showView fram:CGRectMake(mpLabel.left, mpLabel.bottom +2, stepLabel.center.x - mpLabel.left, 1)];
         
         //等价于
         UILabel  * equalLabel = [[UILabel alloc] init];
@@ -171,10 +164,6 @@
         [showView addSubview:equalLabel];
 
     }
-    
-    
-    
-    
 }
 
 
@@ -217,6 +206,44 @@
         [button addTarget:self action:@selector(shareBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     
+}
+
+//创建头像扥
+-(UIView *)createdNav{
+   
+    UIView  * navView = [[UIView alloc] init];
+    navView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAV_HEIGHT);
+//    navView.backgroundColor = [UIColor redColor];
+    //日期
+    UILabel * datalabel = [[UILabel alloc] init];
+    datalabel.frame = CGRectMake(0, 0, navView.width , 20);
+    datalabel.textAlignment = NSTextAlignmentCenter;
+    datalabel.font = FONT(16);
+    datalabel.textColor = [UIColor whiteColor];
+    //当前日期
+    NSString * dataStr = @"M月-dd日";
+    datalabel.text = [MyTool getCurrentDataFormat:dataStr];
+    [navView addSubview:datalabel];
+    
+    //头像
+    UIImageView * headImag = [[UIImageView alloc] init];
+    headImag.bounds = CGRectMake(0, 0, 40, 40);
+    headImag.center = CGPointMake(20 + headImag.width/2.0,navView.bottom);
+    headImag.image = [UIImage imageNamed:@"testhead.png"];
+    [navView addSubview:headImag];
+    [MyTool cutViewConner:headImag radius:headImag.width/2.0];
+    
+    //美女
+    UILabel *  namelabel= [[UILabel alloc] init];
+    namelabel.bounds = CGRectMake(0, 0, 60, 30);
+    namelabel.text = @"美女";
+    [navView addSubview:namelabel];
+    namelabel.font = FONT(15);
+    namelabel.center = CGPointMake(headImag.right + 5+ namelabel.width/2.0 , headImag.center.y - 5);
+    
+    
+    return navView;
+
 }
 
 #pragma mark -- 分享  --

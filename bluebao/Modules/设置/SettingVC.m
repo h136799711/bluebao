@@ -8,7 +8,13 @@
 
 #import "SettingVC.h"
 
-@interface SettingVC ()
+@interface SettingVC (){
+    
+    NSArray                 *_setArray;
+    
+    NSInteger               _currSelectedRow; //选中的行 默认 0 ；
+    NSInteger               _lastSelectedRow;// 上一次选中
+}
 
 @end
 
@@ -28,13 +34,17 @@
 //初始化
 -(void)_initViews{
     
+    _currSelectedRow = 0;
+    _lastSelectedRow = _currSelectedRow;
+    
+    _setArray = @[@"震动",@"声音",@"检查新版本"];
     [self _initNavs];
     [self _initTableView];
 }
 
 -(void)_initTableView{
     
-    self.tableView_set = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT -STATUS_HEIGHT)];
+    self.tableView_set = [[UITableView alloc] initWithFrame:CGRectMake(0,20, SCREEN_WIDTH,44 *_setArray.count)];
     self.tableView_set.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView_set.delegate = self;
     self.tableView_set.dataSource = self;
@@ -54,15 +64,59 @@
     static  NSString * identifier = @"cell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
+        cell.selectionStyle = NO;
+        
+        //线
+        UILabel * lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, cell.contentView.height -1,tableView.width, 1)];
+        lineLabel.tag = 1008;
+        lineLabel.backgroundColor = [UIColor lightGrayColor];
+        [cell.contentView addSubview:lineLabel];
+    }
+    
+    //隐藏横线
+    UILabel * line = (UILabel *) [cell.contentView viewWithTag:1008];
+    line.alpha = indexPath.row == _setArray.count-1?0:0.5;
+    
+
+    cell.textLabel.text = _setArray[indexPath.row];
+    
+    
+    //选中后样式
+    if (indexPath.row == _setArray.count -1) {
+        
+        cell.detailTextLabel.text =  @"v1.1";
+        cell.accessoryType = UITableViewCellAccessoryNone;
+
+    }else{
+        
+        NSInteger   row = 0;
+        if (_currSelectedRow != _setArray.count -1) {
+            row = _currSelectedRow;
+        }else{
+            row = _lastSelectedRow;
+        }
+        //震动or声音
+        cell.accessoryType =  row == indexPath.row
+        ? UITableViewCellAccessoryCheckmark
+        :UITableViewCellAccessoryNone;
+        cell.detailTextLabel.text = @"";
         
     }
-    cell.textLabel.text = @"11";
     return cell;
 }
 
+//切换设置
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (_currSelectedRow != _setArray.count -1) {
+        _lastSelectedRow = _currSelectedRow;
+    }
+    //不是最后一个
+    _currSelectedRow = indexPath.row;
+    [tableView reloadData];
 
+}
 
 #pragma mark -- 导航条 返回 --
 

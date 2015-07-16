@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
-#import "EquimentMessageVC.h"//设备刮泥
+#import "EquimentMessageVC.h"//设备管理
 #import "PersonMessageVC.h"//个人资料
 #import "BlueBaoAboutVC.h" // 关于蓝堡
 #import "MoreExereqBuyVC.h" 
@@ -104,34 +104,36 @@
         window.rootViewController = nav;
       
        //设备管理
+    } else if (indexPath.row == 0){
+            //个人资料
+        PersonMessageVC * person = [[PersonMessageVC alloc] init];
+        [[MainViewController sharedSliderController].navigationController pushViewController:person animated:YES];
+        
     } else if (indexPath.row == 1){
+            //设备管理
         EquimentMessageVC * equiment = [[EquimentMessageVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:equiment animated:YES];
     
     } else if (indexPath.row == 6){
+          //关于蓝堡
         BlueBaoAboutVC * aboutVC = [[BlueBaoAboutVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:aboutVC animated:YES];
 
     } else if (indexPath.row == 7){
-        
+          //购买更多器材
         MoreExereqBuyVC * moreVC = [[MoreExereqBuyVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:moreVC animated:YES];
 
-        
     } else if (indexPath.row == 9){
-        
+        //设置
         SettingVC  * setVC = [[SettingVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:setVC animated:YES];
 
     }
     
-    
-    //个人资料
     else{
         
-        PersonMessageVC * person = [[PersonMessageVC alloc] init];
-        [[MainViewController sharedSliderController].navigationController pushViewController:person animated:YES];
-        
+        return;
     }
     
     
@@ -152,6 +154,9 @@
     headBtn.center = CGPointMake(20+headBtn.width/2.0, headBtn.height/2.0 + 40);
     [headView addSubview:headBtn];
     [headBtn setTitle:@"头像" forState:UIControlStateNormal];
+    [headBtn setBackgroundImage:[UIImage imageNamed:@"testhead.png"] forState:UIControlStateNormal];
+    [headBtn setBackgroundImage:[UIImage imageNamed:@"testhead.png"] forState:UIControlStateHighlighted];
+
     headBtn.backgroundColor = [UIColor redColor];
     [MyTool cutViewConner:headBtn radius:headBtn.width/2.0];
     

@@ -54,4 +54,8 @@
 
 #pragma mark --数量与字符串拼接--
 +(NSString *) stringWithNumFormat:(NSString *)string number:(CGFloat)number;
+
+#pragma mark -- 获得当前日期  -
++(NSString *) getCurrentDataFormat:(NSString *)formatterStr;
+
 @end

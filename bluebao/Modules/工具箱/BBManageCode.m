@@ -18,9 +18,9 @@
     UIView * title_view = [[UIView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, 40)];
     
     //上横线
-    [MyTool createLineInView:title_view fram:CGRectMake(0, 0, title_view.width, 2)];
+    [MyTool createLineInView:title_view fram:CGRectMake(0, 0, title_view.width, 1)];
     //下横线
-    [MyTool createLineInView:title_view fram: CGRectMake(0, 42, title_view.width, 2)];
+    [MyTool createLineInView:title_view fram: CGRectMake(0, 43, title_view.width, 1)];
     
     
     CGFloat   l_width = title_view.width/4.0;
@@ -38,11 +38,7 @@
     }
     //竖线
     for (int i = 0; i < 3 ; i ++) {
-        UILabel * label_v = [[UILabel alloc] init];
-        label_v.frame = CGRectMake(l_width* (i+1), -1, 2, title_view.height+3);
-        label_v.backgroundColor = [UIColor lightGrayColor];
-        
-        [title_view addSubview:label_v];
+        [MyTool createLineInView:title_view fram:CGRectMake(l_width* (i+1), 0, 1, title_view.height+3)];
     }
     
     return title_view;
@@ -79,28 +75,28 @@
     UIView * view_ = [[UIView alloc] init];
     view_.frame = CGRectMake(width_*btn.tag, 0, width_, showView.height);
     
-    //图片
-    UIImageView * image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:name]];
-    image.bounds = CGRectMake(0, 0, 25, 25);
-    [view_ addSubview:image];
-    
-    
-    
-    //按钮
-    CGSize size = [MyTool getSizeString:title font:15];
-    btn.bounds = CGRectMake(0, 0, size.width+2, size.height);
-
-    btn.titleLabel.font = FONT(15);
-
-    [btn setTitle:title forState:UIControlStateNormal];
+     //按钮
+    btn.bounds = CGRectMake(0, 0, 30, 30);
     [view_ addSubview:btn];
+    
+     //文字
+    UILabel * label = [[UILabel alloc] init];
+    [view_ addSubview:label];
+  
+    CGSize size = [MyTool getSizeString:title font:15];
+    label.bounds = CGRectMake(0, 0, size.width, size.height);
+    label.text = title;
+    label.textColor = [UIColor whiteColor];
+    label.tag = btn.tag +1;
+    label.font = FONT(15);
+    
     
      //图与按钮间的距离
     CGFloat space = 5;
-    CGFloat  between = (width_- image.width - btn.width)/2.0;
+    CGFloat  between = (width_- label.width - btn.width)/2.0;
     
-    image.center = CGPointMake(between + image.width/2.0 , view_.height/2.0);
-    btn.center = CGPointMake(image.right + space+ btn.width/2.0, image.center.y);
+    btn.center = CGPointMake(between + btn.width/2.0 , view_.height/2.0);
+    label.center = CGPointMake(btn.right + space+ label.width/2.0, btn.center.y);
     [showView addSubview:view_];
     
     return view_;
@@ -115,7 +111,6 @@
     
     CGFloat  headWidth = 80;
     //头像
-    headImageBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
     headImageBtn.bounds = CGRectMake(0, 0, headWidth, headWidth);
     headImageBtn.center = CGPointMake(_headView.width/2.0-10, 40 + headWidth/2.0);
     [_headView addSubview:headImageBtn];

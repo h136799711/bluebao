@@ -49,7 +49,7 @@
     if (_tableView == nil) {
         
         CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TABBAR_HEIGHT);
-        _tableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableHeaderView = [self creatHeaderView];
@@ -92,22 +92,22 @@
         
     }else{
     
-        
         static NSString *  nodataString = @"noDataCell";
         
         UITableViewCell *datacell = [tableView dequeueReusableCellWithIdentifier:nodataString];
         if (datacell == nil) {
             
             datacell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nodataString];
+            datacell.selectionStyle = UITableViewCellSelectionStyleNone;
+            datacell.textLabel.textAlignment = NSTextAlignmentCenter;
+            datacell.textLabel.text = @"没有数据，请添加数据";
+            datacell.backgroundColor = [UIColor clearColor];
+            //线
+            [MyTool createLineInView:datacell.contentView
+                                fram:CGRectMake(0, datacell.contentView.height, tableView.width, 1)];
         }
-        datacell.textLabel.textAlignment = NSTextAlignmentCenter;
-        datacell.textLabel.text = @"没有数据，请添加数据";
         return datacell;
-        
     }
-    
-    
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -142,18 +142,20 @@
     
     if (_headerView == nil) {
        _headerView = [[UIView alloc] init];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);;
+        _headerView.backgroundColor = [UIColor clearColor];
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
+        
         UILabel * headerLabel = [[UILabel alloc] init];
         headerLabel.frame = _headerView.frame;
         headerLabel.tag = 10;
         headerLabel.textAlignment = NSTextAlignmentCenter;
         headerLabel.font = FONT(17);
-        headerLabel.text = @"15-7-8";
+//        headerLabel.text = @"15-7-8";
         [_headerView addSubview:headerLabel];
     }
     
     UILabel * headl = (UILabel *)[_headerView viewWithTag:10];
-    headl.text = @"15-7-9";
+    headl.text = [MyTool getCurrentDataFormat:@"yy-M-dd"];
     
     return _headerView;
 }

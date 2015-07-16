@@ -1,62 +1,54 @@
 //
-//  BlueBaoAboutVC.m
+//  ContactOurVC.m
 //  bluebao
 //
-//  Created by boye_mac1 on 15/7/15.
+//  Created by boye_mac1 on 15/7/16.
 //  Copyright (c) 2015年 Boye. All rights reserved.
 //
 
-#import "BlueBaoAboutVC.h"
-#import "WebViewController.h"
 #import "ContactOurVC.h"
-#import "OpinionVC.h"
 
-@interface BlueBaoAboutVC (){
+@interface ContactOurVC (){
     
-    NSArray         * _dataArray;
+    NSArray   *_dataArray;
 }
 
 @end
 
-@implementation BlueBaoAboutVC
+@implementation ContactOurVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"关于绿堡";
-    self.navigationController.navigationBarHidden = NO;
-    [self _initViews];
-}
+ 
+    _dataArray = @[@[@"企业电话",@"企业官网",@"微信公众账号"],@[@"464443",@"64267+7",@"55579671"]];
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self _initViews];
 }
 
 //初始化
 -(void)_initViews{
     
-    _dataArray = @[@"关于蓝堡",@"联系我们",@"意见反馈"];
     [self _initNavs];
     [self _initTableView];
 }
 
 -(void)_initTableView{
     
-    self.tableView_lb = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 44*3)];
-    self.tableView_lb.separatorStyle = UITableViewCellSelectionStyleNone;
-    self.tableView_lb.delegate = self;
-    self.tableView_lb.dataSource = self;
+    self.tableView_our = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 44*3)];
+    self.tableView_our.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.tableView_our.delegate = self;
+    self.tableView_our.dataSource = self;
     //    self.tableView.rowHeight = LEFT_MENU_HEIGHT;
-    [self.view addSubview:self.tableView_lb];
-
+    [self.view addSubview:self.tableView_our];
+    
 }
 
 
 #pragma mark -- UITableViewDelegate ---
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return _dataArray.count;
+    return [_dataArray[0] count];
 }
 
 
@@ -65,8 +57,8 @@
     static  NSString * identifier = @"cell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = [UIColor whiteColor];
         
@@ -79,36 +71,17 @@
     
     //隐藏横线
     UILabel * line = (UILabel *) [cell.contentView viewWithTag:1008];
-    line.alpha = indexPath.row == _dataArray.count-1?0:0.5;
+    line.alpha = indexPath.row == [_dataArray[0] count ]-1?0:0.4;
     
-
+    
     cell.textLabel.font = FONT(15);
-    cell.textLabel.text = _dataArray[indexPath.row];
+    cell.textLabel.textColor = [UIColor lightGrayColor];
+    cell.textLabel.text = _dataArray[0][indexPath.row];
+    cell.detailTextLabel.font = FONT(15);
+    cell.detailTextLabel.text =  _dataArray[1][indexPath.row];
     return cell;
 }
 
-#pragma mark --- 选中后 --
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.row == 0) {
-        
-        WebViewController  * web = [[WebViewController alloc] init];
-        web.title = @"联系我们";
-        [self.navigationController pushViewController:web animated:YES];
-    }else if (indexPath.row == 1){
-      
-        ContactOurVC * conOur = [[ContactOurVC alloc] init];
-        conOur.title = @"联系我们";
-        [self.navigationController pushViewController:conOur animated:YES];
-    }else{
-        
-        OpinionVC * opn = [[OpinionVC alloc] init];
-        opn.title = @"意见反馈";
-        [self.navigationController pushViewController:opn animated:YES];
-        
-    }
-    
-}
 #pragma mark -- 导航条 返回 --
 
 -(void)_initNavs{
@@ -122,11 +95,20 @@
     self.navigationItem.leftBarButtonItem = letfItem;
 }
 
+
+
 #pragma mark --返回 --
 -(void)backClick{
     
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 /*
 #pragma mark - Navigation
 

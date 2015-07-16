@@ -12,16 +12,18 @@
 @interface BoyeHttpClient()
 
 //API基地址，末尾不带/
-@property (nonatomic,weak) NSString* BASE_API_URL;
+//@property (nonatomic,weak) NSString* BASE_API_URL;
 
 @end
 
+static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanbao/index.php/";
+
 
 @implementation BoyeHttpClient
-
-- (void)initWithBaseURL:(NSString*) baseURL{
-    self.BASE_API_URL = baseURL;
-}
+//
+//- (void)initWithBaseURL:(NSString*) baseURL{
+//    self.BASE_API_URL = baseURL;
+//}
 
 
 + (void)stopMonitorNetwork{
@@ -62,34 +64,21 @@
     return [[AFNetworkReachabilityManager sharedManager] isReachable];
 }
 
-- (void)post:(NSString *)url :(NSDictionary *)withParams :(void (^)(id responseObject))success :(void(^)(NSError *error))failure{
-    
-    if([self getNetworkStatus] == FALSE){
-        return ;
-    }
+- (void)post:(NSString *)url :(NSDictionary *)withParams :(void (^)(AFHTTPRequestOperation *operation ,id responseObject))success :(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     
     AFHTTPSessionManager *mg = [AFHTTPSessionManager manager];
-    mg = [mg initWithBaseURL:[NSURL URLWithString:self.BASE_API_URL]];
+    mg = [mg initWithBaseURL:[NSURL URLWithString:BASE_API_URL]];
     
     NSURL * api_url = [NSURL URLWithString:url relativeToURL:[mg baseURL]];
     
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSString *base_url = [[NSString alloc] initWithString:self.BASE_API_URL];
+    NSString *base_url = [[NSString alloc] initWithString:BASE_API_URL];
     
     url = [base_url stringByAppendingString:url];
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    [manager POST:[api_url absoluteString] parameters:withParams  success:^(AFHTTPRequestOperation *operation,id responseObject){
-        if(success){
-            [success responseObject];
-        }
-    }failure:^(AFHTTPRequestOperation *operation ,NSError *error){
-        if(failure){
-            [failure error];
-        }
-    }];
-    
+    [manager POST:[api_url absoluteString] parameters:withParams  success:success failure:failure];
     
 }
 

@@ -17,8 +17,14 @@
 
 @interface PickerKeyBoard : UIView<UIPickerViewDataSource,UIPickerViewDelegate>
 
-@property (nonatomic,strong) UIPickerView   * pickerView;
-@property (nonatomic,strong) NSArray         * dataArray;
+@property (nonatomic,strong) UIPickerView       * pickerView;
+@property (nonatomic,strong) NSArray            * dataArray;
+@property (nonatomic,copy) NSString             * dataUnit; //数据单位
+@property (nonatomic,copy) NSString             * dataName; // 数据名称
+@property (nonatomic,assign) NSInteger          minimumZoom;//最小数量
+@property (nonatomic,assign) NSInteger          maximumZoom;//最大数量
+@property (nonatomic,assign) NSInteger          currentmumZoom; //当前数量
+
 @property (nonatomic,assign)id <PickerKeyBoardDelegate>delegate;
 -(instancetype)initWithPicker;
 

@@ -19,10 +19,13 @@
 #import "UIColor+Color.h"
 #import "BaseViewController.h"
 #import "MainViewController.h"
+
 #import "MyTool.h"
 #import "AFNetworking.h"
 #import "CommonDefine.h"
 #import "UserInfo.h"
+#import "User.h"
+
 //#import "UIButton+WebCache.h"
 //#import "SDImageCache.h"
 #import "UIImage+Color.h"

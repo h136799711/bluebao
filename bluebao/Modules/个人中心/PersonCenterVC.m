@@ -148,7 +148,7 @@
     personBest.font = FONT(17);
     [view addSubview:personBest];
     //线
-    [MyTool createLineInView:view fram:CGRectMake(26, 0, view.width-26*2, 1)];
+    [MyTool createLineInView:view fram:CGRectMake(26, 0, view.width-26*2, 0.5)];
     
     return view;
 }
@@ -168,6 +168,7 @@
         UIImageView * imageView = [[UIImageView alloc] init];
         imageView.bounds = CGRectMake(0, 0, 80, 80);
         imageView.center = CGPointMake(40+imageView.width/2.0, _headView.height/2.0);
+        imageView.image =[UIImage imageNamed:@"testhead.png"];
         [MyTool cutViewConner:imageView radius:imageView.width/2.0];
         imageView.backgroundColor = [UIColor redColor];
         

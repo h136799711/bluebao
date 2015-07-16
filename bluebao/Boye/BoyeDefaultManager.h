@@ -12,11 +12,14 @@
 
 + (NSDateFormatter *)getDateFormatter:(NSString *)format;
 
-//是否需要登录
-+(BOOL)isNeedLogin;
+//是否过期
++(BOOL)isDateOut;
+
+//token是否存在
++(BOOL) isTokenExist;
 
 //用户登录接口
-+(void)requestLoginUser:(UserInfo *)user complete:(void (^)(BOOL succed))complete;
++(void)requestLoginUser:(User *)user complete:(void (^)(BOOL succed))complete;
 
 
 

@@ -7,9 +7,12 @@
 //
 
 #import "MoreExereqBuyVC.h"
+#import "MoreExerCollectionCell.h"
+#import "WebViewController.h"
 
 @interface MoreExereqBuyVC (){
     
+    NSArray              *_nameArray;
     NSInteger           itemWidth;
 }
 
@@ -23,6 +26,9 @@
     self.title = @"购买更多健身器材";
     self.navigationController.navigationBarHidden = NO;
 
+    _nameArray = @[@"天猫",@"京东",@"一号店"];
+    
+    
     [self _initViews];
 }
 
@@ -35,17 +41,21 @@
 
 -(void)_initCollectionView{
     
-    itemWidth = (SCREEN_WIDTH - 60-30*2)/3.0;
+    CGFloat  left = 30;
+    CGFloat  between = 40;
+    CGFloat top = 25;
+    
+    itemWidth = (SCREEN_WIDTH - (left + between) *2)/3.0;
 
     
     UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
-    flowLayout.minimumLineSpacing = 30;      //水平间距
-    flowLayout.minimumInteritemSpacing = 30; //垂直间距
-//    flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth+10);
+    flowLayout.minimumLineSpacing = 20;      //水平间距
+    flowLayout.minimumInteritemSpacing = 20; //垂直间距
+    flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth+25);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     flowLayout.sectionInset = UIEdgeInsetsMake(1, 0, 0, 0);//整体相对页面的位置，上左下右
     //collectionView
-    CGRect frame = CGRectMake(30,0,SCREEN_WIDTH-30*2,180);
+    CGRect frame = CGRectMake(left,top,SCREEN_WIDTH- left * 2,180);
     self.collectionView_more = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
     self.collectionView_more.scrollEnabled = YES;
     self.collectionView_more.delegate = self;
@@ -54,10 +64,39 @@
     self.collectionView_more.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:self.collectionView_more];
-//    [self.collectionView_more registerClass:[HeadCollectionViewCell class] forCellWithReuseIdentifier:@"HeadCollectionViewCell"];
     
+    [self.collectionView_more registerClass:[MoreExerCollectionCell class] forCellWithReuseIdentifier:@"Cell"];
 
+ 
 }
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 3;
+    //    return dataSource.count;
+}
+
+#pragma mark ---collectionViewCell --
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    MoreExerCollectionCell *cell = (MoreExerCollectionCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+
+    cell.webImageView.image = [UIImage imageNamed:@""];
+    cell.webLabel.text = _nameArray [indexPath.row];
+    
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"%@",_nameArray[indexPath.row]);
+    
+    WebViewController * web = [[WebViewController alloc] init];
+    web.title =  _nameArray [indexPath.row];
+    [self.navigationController pushViewController:web animated:YES];
+    
+}
+
 
 #pragma mark -- 导航条 返回 --
 
@@ -71,29 +110,6 @@
     UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem = letfItem;
 }
-
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 0;
-    //    return dataSource.count;
-}
-
-#pragma mark ---collectionViewCell --
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    if (cell== nil) {
-        cell = [[UICollectionViewCell alloc] init];
-        cell.backgroundColor = [UIColor redColor];
-    }
-//    cell.labelUnit.text = @"%";
-//    cell.infoValue = 10;
-//    cell.labelSort.text = _sortArray[indexPath.row];
-    return cell;
-}
-
 
 
 

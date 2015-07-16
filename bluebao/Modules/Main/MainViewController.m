@@ -130,8 +130,8 @@
 
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag=i;
-//        [button setBackgroundImage:[UIImage imageNamed:@"sd.png"] forState:UIControlStateNormal];
-//        [button setBackgroundImage:[UIImage imageNamed:@"sd.png"] forState:UIControlStateSelected];
+        [button setBackgroundImage:[UIImage imageNamed:@"sd.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"sd.png"] forState:UIControlStateSelected];
 //        //底部按钮
         [BBManageCode creatTabbarShow:_bottomView
                                button:button

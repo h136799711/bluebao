@@ -19,7 +19,7 @@
 
 
 // Post请求
-- (void)post:(NSString *)url :(NSDictionary *)withParams :(void(^)(id responseObject))success :(void(^)(NSError* error))failure;
+- (void)post:(NSString *)url :(NSDictionary *)withParams :(void(^)(AFHTTPRequestOperation *operation ,id responseObject))success :(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 // GET请求
 - (void)get:(NSString *)urlWithParams :(void (^)(AFHTTPRequestOperation *operation ,id responseObject))success :(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure;

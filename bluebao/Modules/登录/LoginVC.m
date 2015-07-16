@@ -81,7 +81,7 @@
 - (IBAction)login:(UIButton *)sender {
     
     
-    UserInfo * user = [[UserInfo alloc] init];
+    User * user = [[User alloc] init];
     user.userName = self.accontNumTextfield.text;
     user.userPsw = self.pswTextfield.text;
     user.userName = @"1";

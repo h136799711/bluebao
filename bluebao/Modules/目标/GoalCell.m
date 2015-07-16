@@ -24,7 +24,9 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
         [self _init];
     }
     return self;
@@ -57,7 +59,7 @@
     //竖线
     for (int i = 0; i < 3 ; i ++) {
 
-        [MyTool createLineInView:self.contentView fram:CGRectMake(quarter* (i+1), 0, 2, self.contentView.height)];
+        [MyTool createLineInView:self.contentView fram:CGRectMake(quarter* (i+1), 0, 1, self.contentView.height)];
     }
     
     [self creatLabel:self.timeLabel labeltext:@"16:30" num:0];
@@ -65,7 +67,7 @@
     [self creatLabel:self.operateLael labeltext:@"0%" num:2];
     
     //横线
-    [MyTool createLineInView:self.contentView fram:CGRectMake(0, self.contentView.bottom -2,SCREEN_WIDTH, 2)];
+    [MyTool createLineInView:self.contentView fram:CGRectMake(0, self.contentView.bottom -1,SCREEN_WIDTH,1)];
 }
 
 -(void ) creatLabel:(UILabel *)label labeltext:(NSString *)string num:(int) place{

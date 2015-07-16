@@ -13,12 +13,13 @@
 @interface PersonMessageVC (){
     
     
-    NSArray   * sorArray;
-    UIView    * _custemKeyView;  //自定义键盘
+    NSArray         * sorArray;
+    UIView          * _custemKeyView;  //自定义键盘
     
-    UIView * _headView ;//个人头像个性签名视图
+    UIView          * _headView ;//个人头像个性签名视图
     
-    UIView  *_sexheightView; //身高性别
+    UIView          * _sexheightView; //身高性别
+    
 }
 
 @end
@@ -53,18 +54,6 @@
     
 }
 
-#pragma mark -- 导航条 返回 --
-
--(void)_initNavs{
-    
-    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.tag = 1;
-    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem = letfItem;
-}
 
 #pragma mark ----创建表 ---
 -(void)_initTableview{
@@ -137,6 +126,12 @@
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
     [tableView reloadData];
     
+    self.pickerKeyBoard.minimumZoom = 50;
+    self.pickerKeyBoard.maximumZoom = 60;
+    self.pickerKeyBoard.dataName = @"体重";
+    self.pickerKeyBoard.dataUnit = @"KG";
+    
+    [self.pickerKeyBoard.pickerView reloadAllComponents];
     [self.pickerKeyBoard open];
     
 }
@@ -169,6 +164,9 @@
     
     if (_headView == nil) {
         //创建个人资料信息（头像签名等）
+      
+        self.headImageBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
+
         _headView = [BBManageCode  createdPersonInfoShowInView:_headView
                                                        headBtn:self.headImageBtn
                                                  signTestField:self.personSignTextfield
@@ -203,7 +201,9 @@
     return footView;
 }
 
-#pragma mark --- saveClick:
+
+#pragma mark --- saveClick: --
+
 -(void)saveBtnClick{
     
     
@@ -212,27 +212,31 @@
 
 }
 
+
+
+///  *************      自定义键盘 picker     ************************  //
+
+
 #pragma mark -- 自定义键盘 picker  --
 -(void)_initPickerKeyBoard{
-    
     //picker
     if (self.pickerKeyBoard == nil) {
+        
+        
         self.pickerKeyBoard = [[PickerKeyBoard alloc] initWithPicker];
         self.pickerKeyBoard.delegate = self;
         [self.view addSubview:self.pickerKeyBoard];
-        
     }
-    
 }
 
 
 #pragma mark -- PickerKeyBoardDelegate --
 -(void)pickerKeyBoard:(PickerKeyBoard *)picker selectedText:(NSString *)string{
     
-    NSLog(@" 111111111111  %@",string);
+    NSLog(@" 11111  %@ 11 ",string);
 }
 
-
+///  *************         从相册区图片-      ************************  //
 
 #pragma mark --- 从相册区图片--
 
@@ -400,6 +404,20 @@
     }
     
     return _sexheightView;
+}
+
+
+#pragma mark -- 导航条 返回 --
+
+-(void)_initNavs{
+    
+    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    leftBtn.tag = 1;
+    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    self.navigationItem.leftBarButtonItem = letfItem;
 }
 
 #pragma mark --返回 --

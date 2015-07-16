@@ -73,6 +73,13 @@
 		5BF2E0421B4F6B7E004FDDF7 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E03C1B4F6B7E004FDDF7 /* SVProgressHUD.m */; };
 		5BF2E0471B4F6C99004FDDF7 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E0441B4F6C99004FDDF7 /* NSDate+Category.m */; };
 		5BF2E0481B4F6C99004FDDF7 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E0461B4F6C99004FDDF7 /* NSDateFormatter+Category.m */; };
+		5BF430F91B573802003C7941 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF430F81B573802003C7941 /* User.m */; };
+		5BF430FC1B575979003C7941 /* MoreExerCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF430FB1B575979003C7941 /* MoreExerCollectionCell.m */; };
+		5BF430FF1B575CE6003C7941 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF430FE1B575CE6003C7941 /* WebViewController.m */; };
+		5BF431021B575FAC003C7941 /* ContactOurVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF431011B575FAC003C7941 /* ContactOurVC.m */; };
+		5BF431051B5780B1003C7941 /* OpinionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF431041B5780B1003C7941 /* OpinionVC.m */; };
+		5BF431081B57864A003C7941 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF431071B57864A003C7941 /* PlaceholderTextView.m */; };
+		5BF4310A1B578DA1003C7941 /* testhead.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF431091B578DA1003C7941 /* testhead.png */; };
 		5BF4F00E1B55F0F7000AB7BD /* BoyeDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */; };
 		5BF4F00F1B55F0F7000AB7BD /* BoyeHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */; };
 		5BF4F0121B560CFA000AB7BD /* ButtonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */; };
@@ -231,6 +238,19 @@
 		5BF2E0441B4F6C99004FDDF7 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		5BF2E0451B4F6C99004FDDF7 /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
 		5BF2E0461B4F6C99004FDDF7 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
+		5BF430F71B573802003C7941 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5BF430F81B573802003C7941 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		5BF430FA1B575979003C7941 /* MoreExerCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreExerCollectionCell.h; sourceTree = "<group>"; };
+		5BF430FB1B575979003C7941 /* MoreExerCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreExerCollectionCell.m; sourceTree = "<group>"; };
+		5BF430FD1B575CE6003C7941 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		5BF430FE1B575CE6003C7941 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		5BF431001B575FAC003C7941 /* ContactOurVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactOurVC.h; sourceTree = "<group>"; };
+		5BF431011B575FAC003C7941 /* ContactOurVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactOurVC.m; sourceTree = "<group>"; };
+		5BF431031B5780B1003C7941 /* OpinionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpinionVC.h; sourceTree = "<group>"; };
+		5BF431041B5780B1003C7941 /* OpinionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpinionVC.m; sourceTree = "<group>"; };
+		5BF431061B57864A003C7941 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
+		5BF431071B57864A003C7941 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
+		5BF431091B578DA1003C7941 /* testhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testhead.png; sourceTree = "<group>"; };
 		5BF4F00A1B55F0F7000AB7BD /* BoyeDefaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeDefaultManager.h; sourceTree = "<group>"; };
 		5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeDefaultManager.m; sourceTree = "<group>"; };
 		5BF4F00C1B55F0F7000AB7BD /* BoyeHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeHttpClient.h; sourceTree = "<group>"; };
@@ -307,8 +327,7 @@
 				5B38C75A1B5390CF0063912C /* RegistVC.h */,
 				5B38C75B1B5390CF0063912C /* RegistVC.m */,
 				5B38C75C1B5390CF0063912C /* RegistVC.xib */,
-				5B38C75D1B5390CF0063912C /* UserInfo.h */,
-				5B38C75E1B5390CF0063912C /* UserInfo.m */,
+				5BF430F51B5737A7003C7941 /* Model */,
 			);
 			name = "登录";
 			path = "Modules/登录";
@@ -424,6 +443,8 @@
 		5B38C78B1B5390CF0063912C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5BF431061B57864A003C7941 /* PlaceholderTextView.h */,
+				5BF431071B57864A003C7941 /* PlaceholderTextView.m */,
 				5B38C78C1B5390CF0063912C /* BaseViewController.h */,
 				5B38C78D1B5390CF0063912C /* BaseViewController.m */,
 			);
@@ -434,6 +455,7 @@
 		5B38C7A71B53977B0063912C /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				5BF431091B578DA1003C7941 /* testhead.png */,
 				5B38C7F01B53C6DB0063912C /* add.png */,
 				5B38C7F11B53C6DB0063912C /* back.png */,
 				5B38C7F21B53C6DB0063912C /* delete.png */,
@@ -550,6 +572,17 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		5BF430F51B5737A7003C7941 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B38C75D1B5390CF0063912C /* UserInfo.h */,
+				5B38C75E1B5390CF0063912C /* UserInfo.m */,
+				5BF430F71B573802003C7941 /* User.h */,
+				5BF430F81B573802003C7941 /* User.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		5BF4F0091B55F0F7000AB7BD /* Boye */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +601,10 @@
 			children = (
 				5BF4F0191B565FD7000AB7BD /* BlueBaoAboutVC.h */,
 				5BF4F01A1B565FD7000AB7BD /* BlueBaoAboutVC.m */,
+				5BF431001B575FAC003C7941 /* ContactOurVC.h */,
+				5BF431011B575FAC003C7941 /* ContactOurVC.m */,
+				5BF431031B5780B1003C7941 /* OpinionVC.h */,
+				5BF431041B5780B1003C7941 /* OpinionVC.m */,
 			);
 			name = "关于绿堡";
 			path = "Modules/关于绿堡";
@@ -578,6 +615,10 @@
 			children = (
 				5BF4F01C1B566088000AB7BD /* MoreExereqBuyVC.h */,
 				5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */,
+				5BF430FA1B575979003C7941 /* MoreExerCollectionCell.h */,
+				5BF430FB1B575979003C7941 /* MoreExerCollectionCell.m */,
+				5BF430FD1B575CE6003C7941 /* WebViewController.h */,
+				5BF430FE1B575CE6003C7941 /* WebViewController.m */,
 			);
 			name = "购买更多健身器材";
 			path = "Modules/购买更多健身器材";
@@ -829,6 +870,7 @@
 				5BF2E0411B4F6B7E004FDDF7 /* SVProgressHUD.bundle in Resources */,
 				5B38C8021B53C6DB0063912C /* user.png in Resources */,
 				5BF2E03F1B4F6B7E004FDDF7 /* MBProgressHUD.bundle in Resources */,
+				5BF4310A1B578DA1003C7941 /* testhead.png in Resources */,
 				5B38C8011B53C6DB0063912C /* time.png in Resources */,
 				5B38C7901B5390CF0063912C /* LoginVC.xib in Resources */,
 				5B38C7FC1B53C6DB0063912C /* delete.png in Resources */,
@@ -865,6 +907,7 @@
 				5B38C7961B5390CF0063912C /* PersonCenterVC.m in Sources */,
 				5B38C7EC1B539F8F0063912C /* EquimentMessageVC.m in Sources */,
 				5BF4F0121B560CFA000AB7BD /* ButtonFactory.m in Sources */,
+				5BF431081B57864A003C7941 /* PlaceholderTextView.m in Sources */,
 				5BF4F01B1B565FD7000AB7BD /* BlueBaoAboutVC.m in Sources */,
 				5B38C7DA1B5399B80063912C /* SDWebImageManager+MJ.m in Sources */,
 				9F91E7FA1B4E5AE80013F4F1 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -874,6 +917,7 @@
 				5B38C7D81B5399B80063912C /* SDWebImageDownloader.m in Sources */,
 				5BF4F01E1B566088000AB7BD /* MoreExereqBuyVC.m in Sources */,
 				9F91E7FC1B4E5AE80013F4F1 /* AFNetworkReachabilityManager.m in Sources */,
+				5BF431051B5780B1003C7941 /* OpinionVC.m in Sources */,
 				5B38C7971B5390CF0063912C /* PersonMessageVC.m in Sources */,
 				5B38C7E11B5399B80063912C /* UIImageView+MJWebCache.m in Sources */,
 				5B38C78F1B5390CF0063912C /* LoginVC.m in Sources */,
@@ -885,6 +929,8 @@
 				5B38C7EF1B53A15D0063912C /* EquiMentCell.m in Sources */,
 				5B38C7981B5390CF0063912C /* BBManageCode.m in Sources */,
 				5BF05F581B4E5EF300CBC510 /* UIImageView+MJWebCache.m in Sources */,
+				5BF430F91B573802003C7941 /* User.m in Sources */,
+				5BF431021B575FAC003C7941 /* ContactOurVC.m in Sources */,
 				5B38C7DE1B5399B80063912C /* UIImage+GIF.m in Sources */,
 				5B38C79B1B5390CF0063912C /* GoalCell.m in Sources */,
 				5B38C7991B5390CF0063912C /* MyTool.m in Sources */,
@@ -899,6 +945,7 @@
 				9F91E7FD1B4E5AE80013F4F1 /* AFSecurityPolicy.m in Sources */,
 				5B38C79F1B5390CF0063912C /* HeadInfoCell.m in Sources */,
 				9F91E7FB1B4E5AE80013F4F1 /* AFHTTPSessionManager.m in Sources */,
+				5BF430FC1B575979003C7941 /* MoreExerCollectionCell.m in Sources */,
 				5B38C7A31B5390CF0063912C /* LetfView.m in Sources */,
 				5B38C7931B5390CF0063912C /* UserInfo.m in Sources */,
 				5B38C7A51B5390CF0063912C /* BaseViewController.m in Sources */,
@@ -917,6 +964,7 @@
 				5B38C7D51B5399B80063912C /* SDImageCache.m in Sources */,
 				5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */,
 				5BF4F00E1B55F0F7000AB7BD /* BoyeDefaultManager.m in Sources */,
+				5BF430FF1B575CE6003C7941 /* WebViewController.m in Sources */,
 				9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
