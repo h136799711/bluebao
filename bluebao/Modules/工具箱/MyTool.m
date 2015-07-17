@@ -98,7 +98,7 @@
 +(void)setViewBoard:(UIView *) view{
     
     view.layer.borderColor = [UIColor colorWithHexString:@"#c7c7c7"].CGColor;
-    view.layer.borderWidth = 2;
+    view.layer.borderWidth = 1;
 }
 
 
@@ -157,6 +157,31 @@
     NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
     return currentDateStr;
 }
+
+
+#pragma mark -- 获得BMI --
++(NSString *) getBMIStringWeight:(CGFloat)weight height:(CGFloat)height{
+    
+    CGFloat bmi = [self getBMINumWeight:weight height:height];
+    NSLog(@" bmi  %lf ",bmi);
+    NSString  * string = @"";
+    
+    if (bmi < 18.5) {
+       string = @"偏瘦";
+    }else if (bmi >= 28){
+       string = @"偏胖";
+    }else{
+        string = @"正常";
+    }
+    return string;
+}
+
+#pragma markk -- 获得BMI值 --
++(CGFloat) getBMINumWeight:(CGFloat)weight height:(CGFloat)height{
+    
+    return ( weight/((height/100.0) * (height/100.0)));
+}
+
 
 
 @end

@@ -42,13 +42,13 @@
         [self.contentView addSubview:_infoLabel];
         
         //单位
-        CGFloat  h_unit = 10;
+        CGFloat  h_unit = 15;
         self.labelUnit = [[UILabel alloc] init];
-        self.labelUnit.frame = CGRectMake(_infoLabel.right+1 , _infoLabel.center.y , 7, h_unit);
-        self.labelUnit.textColor =[UIColor colorWithHexString:@"#d9d3ae"];
-        self.labelUnit.textAlignment = NSTextAlignmentCenter;
+        self.labelUnit.frame = CGRectMake(_infoLabel.right , _infoLabel.center.y , 15, h_unit);
+        self.labelUnit.textColor =[UIColor blackColor];
+        self.labelUnit.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:self.labelUnit];
-
+         self.labelUnit.font = FONT(13);
     }
     return self;
 }

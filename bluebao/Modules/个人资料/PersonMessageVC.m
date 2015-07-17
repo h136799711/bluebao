@@ -20,6 +20,10 @@
     
     UIView          * _sexheightView; //身高性别
     
+    NSInteger         _currentRow;//当前行；
+    
+    
+    
 }
 
 @end
@@ -33,6 +37,10 @@
     self.view.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
     self.navigationController.navigationBarHidden = NO;
 
+    _currentRow = 0;
+    sorArray = @[@"当前体重",@"目标体重",@"BMI"];
+    self.valueArray = [[NSMutableArray alloc] initWithObjects:@"55KG",@"55KG",@"", nil];
+    
     //创建视图
     [self _initViews];
     
@@ -44,7 +52,6 @@
 
 -(void)_initViews{
     
-    sorArray = @[@"当前体重",@"目标体重",@"BMI"];
     //导航条
     [self _initNavs];
     //tableView
@@ -72,6 +79,9 @@
         self.tableView_person.tableHeaderView = [self creatTableViewHeadView];
         //表尾
         self.tableView_person.tableFooterView = [self creatTableViewFootView];
+
+        [self refreshBMI];//刷新BMI
+        
     }
     
 }
@@ -110,7 +120,7 @@
     //赋值
     personCell.tag = indexPath.row;
     personCell.label_sort.text = sorArray[indexPath.row];
-    personCell.label_value.text = @"KG";
+    personCell.label_value.text = [self.valueArray objectAtIndex:indexPath.row];
     personCell.label_value.frame = CGRectMake(tableView.width/2.0, 0, tableView.width/2.0-30, tableView.rowHeight );
     return personCell;
 
@@ -120,17 +130,25 @@
 #pragma mark --- 选中 cell--
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    MessageCell * cell = (MessageCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.section inSection:indexPath.row]];
+
+    //BMI一行不能点击
+    if (indexPath.row == sorArray.count -1) {
+        
+        return;
+    }
     
-    //动态刷新cell
-    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+    
+    _currentRow = indexPath.row;
     [tableView reloadData];
+  
+    //当前体重，
+    self.pickerKeyBoard.minimumZoom = 25;
+    self.pickerKeyBoard.maximumZoom = 150;
+    self.pickerKeyBoard.currentmumZoom = [self getCurrentNum:self.valueArray[indexPath.row]];
     
-    self.pickerKeyBoard.minimumZoom = 50;
-    self.pickerKeyBoard.maximumZoom = 60;
-    self.pickerKeyBoard.dataName = @"体重";
+    self.pickerKeyBoard.dataName = sorArray[indexPath.row];
     self.pickerKeyBoard.dataUnit = @"KG";
-    
+    self.pickerKeyBoard.tag = 0;
     [self.pickerKeyBoard.pickerView reloadAllComponents];
     [self.pickerKeyBoard open];
     
@@ -154,7 +172,17 @@
 
 #pragma mark -- 身高 --
 -(void)heightBtnClick:(UIButton *)heightBtn{
-    
+    //当前体重，
+    self.pickerKeyBoard.minimumZoom = 50;
+    self.pickerKeyBoard.maximumZoom = 250;
+    self.pickerKeyBoard.currentmumZoom = [self getCurrentNum:self.heightButton.currentTitle ];
+    self.pickerKeyBoard.dataName = @"身高";
+    self.pickerKeyBoard.dataUnit = @"CM";
+   
+    self.pickerKeyBoard.tag = 10;
+
+    [self.pickerKeyBoard.pickerView reloadAllComponents];
+    [self.pickerKeyBoard open];
 }
 
 
@@ -206,9 +234,8 @@
 
 -(void)saveBtnClick{
     
-    
     NSLog(@"保存");
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 
 }
 
@@ -219,10 +246,8 @@
 
 #pragma mark -- 自定义键盘 picker  --
 -(void)_initPickerKeyBoard{
-    //picker
+    //pickervKeyBoard
     if (self.pickerKeyBoard == nil) {
-        
-        
         self.pickerKeyBoard = [[PickerKeyBoard alloc] initWithPicker];
         self.pickerKeyBoard.delegate = self;
         [self.view addSubview:self.pickerKeyBoard];
@@ -233,7 +258,39 @@
 #pragma mark -- PickerKeyBoardDelegate --
 -(void)pickerKeyBoard:(PickerKeyBoard *)picker selectedText:(NSString *)string{
     
-    NSLog(@" 11111  %@ 11 ",string);
+    //身高
+    if (picker.tag == 10) {
+        
+        [self.heightButton setTitle:string forState:UIControlStateNormal];
+
+    }else{
+    
+        [self.valueArray replaceObjectAtIndex:_currentRow withObject:string];
+        //动态刷新cell
+      //  [self.tableView_person reloadData];
+
+    }
+  //  BMI刷新
+    [self   refreshBMI];
+    
+    [self.tableView_person reloadData];
+    
+    
+//    NSLog(@"-- %ld -- %ld  --%@",weight,height,self.valueArray[2]);
+    
+    
+}
+
+#pragma mark  -- BMI刷新   -
+-(void)refreshBMI{
+    
+    NSInteger  height = [self getCurrentNum:self.heightButton.currentTitle];
+    NSInteger  weight = [self getCurrentNum:self.valueArray[0]];
+    
+    NSString * bmistr =  [MyTool getBMIStringWeight:weight height:height];
+    [self.valueArray replaceObjectAtIndex:sorArray.count -1 withObject:bmistr];
+    
+
 }
 
 ///  *************         从相册区图片-      ************************  //
@@ -393,14 +450,15 @@
         heightBtn.bounds = CGRectMake(0, 0, 60, 30);
         heightBtn.center = CGPointMake(height_label.right + 20 + heightBtn.width/2.0, height_label.center.y);
         //        heightBtn.backgroundColor = [UIColor redColor];
-        [heightBtn setTitle:@"165" forState:UIControlStateNormal];
+//        [heightBtn setTitle:@"165CM" forState:UIControlStateNormal];
         [heightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [heightBtn addTarget:self action:@selector(heightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         heightBtn.titleLabel.font = FONT(16);
         [heightView addSubview:heightBtn];
         
-        
-        
+        self.heightButton = heightBtn;
+        [self.heightButton setTitle:@"165CM" forState:UIControlStateNormal];
+
     }
     
     return _sexheightView;
@@ -424,6 +482,15 @@
 -(void)backClick{
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//获得字符串
+-(NSInteger) getCurrentNum:(NSString *)numString{
+    
+   NSString  * string = [numString substringToIndex:numString.length -2];
+    NSInteger num = [string integerValue];
+//    NSLog(@"  %@  -- %ld",numString,num);
+    return num;
 }
 
 - (void)didReceiveMemoryWarning {

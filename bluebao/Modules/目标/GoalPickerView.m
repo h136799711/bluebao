@@ -1,21 +1,23 @@
 //
-//  PickerKeyBoard.m
+//  GoalPickerView.m
 //  bluebao
 //
-//  Created by boye_mac1 on 15/7/14.
+//  Created by boye_mac1 on 15/7/17.
 //  Copyright (c) 2015年 Boye. All rights reserved.
 //
 
-#import "PickerKeyBoard.h"
+#import "GoalPickerView.h"
 
-@implementation PickerKeyBoard
+@implementation GoalPickerView
+
+
 
 -(instancetype)initWithPicker{
     
     self = [super init];
     if (self) {
         
-    
+        
         [self _initViews];
     }
     return self;
@@ -25,38 +27,56 @@
 -(void)_initViews{
     
     if (self.pickerView == nil) {
-    //视图
-       self.backgroundColor = [UIColor lightGrayColor];
-    self.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 240);
-    self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT );
-    
-    //顶部黑条
-    UIView * topView = [[UIView alloc] init];
-    topView.frame = CGRectMake(0, 0, self.width, 30);
-    topView.backgroundColor = [UIColor blackColor];
-    [self addSubview:topView];
-    
-    //完成按钮
-    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    button.bounds = CGRectMake(0, 0, 40, 30);
-    CGFloat  x  =  topView.width - 10 - button.bounds.size.width/2.0;
-    button.center = CGPointMake(x, topView.height /2.0);
-    [button setTitle:@"完成" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [topView addSubview:button];
-    [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    //底部
-    UIView * downView = [[UIView alloc] init];
-    downView.frame = CGRectMake(0, topView.bottom, topView.width, self.height-topView.height);
-    [self addSubview:downView];
-    
-    #pragma mark -- PickView
-    self.pickerView = [[UIPickerView alloc] init];
-    self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
-    [downView addSubview: self.pickerView];
+        //视图
+        self.backgroundColor = [UIColor lightGrayColor];
+        self.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 240);
+        self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT );
+        
+        //顶部黑条
+        UIView * topView = [[UIView alloc] init];
+        topView.frame = CGRectMake(0, 0, self.width, 30);
+        topView.backgroundColor = [UIColor blackColor];
+        [self addSubview:topView];
+        
+        //完成按钮
+        UIButton * finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        finishBtn.tag = 1;
+        finishBtn.bounds = CGRectMake(0, 0, 40, 30);
+        CGFloat  x  =  topView.bounds.size.width - 10 - finishBtn.bounds.size.width/2.0;
+        finishBtn.center = CGPointMake(x, topView.height /2.0);
+        [finishBtn setTitle:@"完成" forState:UIControlStateNormal];
+        [finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [topView addSubview:finishBtn];
+        [finishBtn addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        //取消按钮
+        UIButton * cancalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancalBtn.tag = 0;
+        cancalBtn.bounds = CGRectMake(0, 0, 40, 30);
+      
+        cancalBtn.center = CGPointMake(cancalBtn.bounds.size.width/2.0 + 10, topView.bounds.size.height /2.0);
+        [cancalBtn setTitle:@"完成" forState:UIControlStateNormal];
+        [cancalBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [topView addSubview:cancalBtn];
+        [cancalBtn addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+
+        
+        
+        
+        
+        
+        
+        //底部
+        UIView * downView = [[UIView alloc] init];
+        downView.frame = CGRectMake(0, topView.bottom, topView.width, self.height-topView.height);
+        [self addSubview:downView];
+        
+#pragma mark -- PickView
+        self.pickerView = [[UIPickerView alloc] init];
+        self.pickerView.delegate = self;
+        self.pickerView.dataSource = self;
+        [downView addSubview: self.pickerView];
     }
     
 }
@@ -86,27 +106,27 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
     if (component == 0) {
-       
+        
         return self.dataName;
     }else{
         
         int count = (int )(self.maximumZoom - self.minimumZoom +1);
         
-         NSString * unitstring = @"";
+        NSString * unitstring = @"";
         for (int i = 0; i < count; i ++) {
             
             int num = (int )self.minimumZoom + i;
             
-           unitstring  = [NSString stringWithFormat:@"%d%@",num,self.dataUnit];
+            unitstring  = [NSString stringWithFormat:@"%d%@",num,self.dataUnit];
             
             if (i ==row) {
                 break;
             }
-
+            
         }
         
         return unitstring;
-
+        
     }
 }
 
@@ -114,7 +134,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
     
-    if ([_delegate respondsToSelector:@selector(pickerKeyBoard:selectedText:)]) {
+    if ([_delegate respondsToSelector:@selector(goalPickerView:selectedText:)]) {
         
         NSString * string = @"";
         if (component == 0) {
@@ -122,23 +142,23 @@
             string = self.dataName;
             
             return;
-
+            
         }else{
             self.currentmumZoom = self.minimumZoom + row;
-
+            
             //当前值含单位
             string = [NSString stringWithFormat:@"%d%@",(int)self.currentmumZoom,self.dataUnit];
         }
-        [_delegate pickerKeyBoard:self selectedText:string];
+        [_delegate goalPickerView:self selectedText:string];
     }
-
-   // NSLog(@"%@, %@",self.dataName,self.dataUnit);
+    
+    // NSLog(@"%@, %@",self.dataName,self.dataUnit);
 }
 
 #pragma mark -重载delegate --
--(void)setDelegate:(id<PickerKeyBoardDelegate>)delegate{
+-(void)setDelegate:(id<GoalPickerViewDelegate>)delegate{
     
-   _delegate = delegate;
+    _delegate = delegate;
 }
 #pragma mark -- 重载NSArray
 
@@ -178,22 +198,16 @@
 }
 
 #pragma mark -- 完成  --
--(void)buttonClick:(UIButton *)button{
-
-    if (button.tag == 0) {
-        [self close];
-    }else{
-        
-        
-    }
-
+-(void)buttonClick{
+    
+    [self close];
 }
 
 
 
 #pragma mark -- 重载 min 属性 --
 -(void)setMinimumZoom:(NSInteger)minimumZoom{
-   
+    
     _minimumZoom = minimumZoom;
 }
 #pragma mark -- 重载 max 属性 --
@@ -212,7 +226,7 @@
 #pragma mark -- 重载 数据单位 属性 --
 
 -(void)setDataUnit:(NSString *)dataUnit{
-
+    
     _dataUnit = dataUnit;
 }
 
@@ -220,7 +234,7 @@
 
 -(void)setDataName:(NSString *)dataName{
     _dataName = dataName;
-//    NSLog(@"dataName %@",dataName);
+    //    NSLog(@"dataName %@",dataName);
 }
 
 /*

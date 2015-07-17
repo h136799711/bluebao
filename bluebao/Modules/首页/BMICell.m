@@ -30,7 +30,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        self.contentView.height = 100;
+        self.contentView.height = 80;
         NSArray  * array = @[@"体重",@"BMI",@"正常"];
         //顶部线条
         UILabel * topLabel = [self line:0];

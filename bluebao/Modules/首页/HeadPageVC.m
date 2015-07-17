@@ -29,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title =@"跑步机";
+    self.title =@"蓝堡踏步机";
 
     _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗"];
     _imageName = @[@"xinlv",@"sd",@"time",@"sport"];
@@ -84,7 +84,7 @@
             headCell.signImageView.image = [UIImage imageNamed:_imageName[indexPath.row]];
             headCell.signLabelSort.text = _labelarray[indexPath.row];
         }
-        headCell.signLabelValue.text = @"a";
+        headCell.signLabelValue.text = @"100";
         
         return headCell;
 
@@ -96,7 +96,7 @@
         if (cell == nil) {
             cell = [[BMICell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             }
-        cell.weight = 80;
+        cell.weight = 60;
         cell.bmiValue = 8.9;
         return cell;
         
@@ -108,10 +108,14 @@
     
     if (indexPath.row == _labelarray.count) {
         
-        return 100;
+        return 80;
     }else{
         return 44;
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0;
 }
 #pragma mark -- 目标 ---
 -(UIView *)headerView{
@@ -120,24 +124,30 @@
     CGRect rect = CGRectMake(0, 0, _tableView.width, 200);
     self.headView = [[UIView alloc] initWithFrame:rect];
     self.headView.backgroundColor = [UIColor yellowColor];
-    UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, self.headView.width, 25)];
-    label.text = @"<2015-7-10>";
-    label.textAlignment =  NSTextAlignmentCenter;
+ 
+    //日期改变
+    DateChooseView * dataView = [[DateChooseView alloc] init];
+    dataView.center = CGPointMake(self.headView.center.x, 20);
+    dataView.delegate = self;
+    [self.headView addSubview:dataView];
+    
+    
     //连接设备
-    [self.headView addSubview:label];
-    UILabel * equipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, label.bottom, label.width, 20)];
+    UILabel * equipLabel = [[UILabel alloc] init];
+    equipLabel.bounds = CGRectMake(0, dataView.bottom, dataView.width, 20);
+    equipLabel.center = CGPointMake(self.headView.center.x, dataView.bottom + equipLabel.height/2.0);
     equipLabel.textAlignment = NSTextAlignmentCenter;
     equipLabel.text = @"没有连接设备";
     equipLabel.font = FONT(13);
     [self.headView addSubview:equipLabel];
     
     
-    //备是踏步机
-    UILabel * tisLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.headView.height- 20, self.headView.width, 20)];
-    tisLabel.text = @"当前的设备是踏步机";
-    tisLabel.textAlignment = NSTextAlignmentCenter;
-     
-    [self.headView addSubview:tisLabel];
+//    //备是踏步机
+//    UILabel * tisLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.headView.height- 20, self.headView.width, 20)];
+//    tisLabel.text = @"当前的设备是踏步机";
+//    tisLabel.textAlignment = NSTextAlignmentCenter;
+//     
+//    [self.headView addSubview:tisLabel];
     
     
     
@@ -145,6 +155,15 @@
     
     
     return self.headView ;
+}
+
+
+#pragma mark -- 日期 改变  --
+
+-(void)dateChooseView:(DateChooseView *)dateChooseView datestr:(NSString *)datestr{
+    
+    NSLog(@"date  %@",datestr);
+    
 }
 
 #pragma mark --- 身体指标 ---
@@ -187,10 +206,10 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HeadCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HeadCollectionViewCell" forIndexPath:indexPath];
-//    if (cell== nil) {
-//        cell = [[HeadCollectionViewCell alloc] init];
-//    }
-    cell.labelUnit.text = @"%";
+
+    
+    cell.labelUnit.text = indexPath.row == 2?@"岁":@"%";
+   
     cell.infoValue = 10;
     cell.labelSort.text = _sortArray[indexPath.row];
     return cell;

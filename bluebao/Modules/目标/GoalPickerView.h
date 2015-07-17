@@ -1,23 +1,25 @@
 //
-//  PickerKeyBoard.h
+//  GoalPickerView.h
 //  bluebao
 //
-//  Created by boye_mac1 on 15/7/14.
+//  Created by boye_mac1 on 15/7/17.
 //  Copyright (c) 2015年 Boye. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-@class PickerKeyBoard;
 
-@protocol PickerKeyBoardDelegate <NSObject>
 
--(void)pickerKeyBoard:(PickerKeyBoard *)picker selectedText:(NSString *)string;
+@class GoalPickerView;
+
+@protocol GoalPickerViewDelegate <NSObject>
+
+-(void)goalPickerView:(GoalPickerView *)picker selectedText:(NSString *)string;
 
 @end
 
 
 
-@interface PickerKeyBoard : UIView<UIPickerViewDataSource,UIPickerViewDelegate>
+@interface GoalPickerView : UIView<UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property (nonatomic,strong) UIPickerView       * pickerView;
 @property (nonatomic,strong) NSArray            * dataArray;
@@ -27,13 +29,15 @@
 @property (nonatomic,assign) NSInteger          maximumZoom;//最大数量
 @property (nonatomic,assign) NSInteger          currentmumZoom; //当前数量
 
-@property (nonatomic,assign)id <PickerKeyBoardDelegate>delegate;
+@property (nonatomic,assign)id <GoalPickerViewDelegate>delegate;
 -(instancetype)initWithPicker;
 
 //父视图
--(void)showInView:(UIView *)view;
 
 -(void)close;
 -(void)open;
+
+
+
 
 @end

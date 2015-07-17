@@ -58,4 +58,9 @@
 #pragma mark -- 获得当前日期  -
 +(NSString *) getCurrentDataFormat:(NSString *)formatterStr;
 
+#pragma mark -- 获得BMI --
++(NSString *) getBMIStringWeight:(CGFloat)weight height:(CGFloat)height;
+
+#pragma markk -- 获得BMI值 --
++(CGFloat) getBMINumWeight:(CGFloat)weight height:(CGFloat)height;
 @end

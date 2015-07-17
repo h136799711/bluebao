@@ -60,8 +60,9 @@
     self.registerBtn.backgroundColor = [MyTool getColor:@"#ff8957"];
     [MyTool cutViewConner:self.loginBtn radius:5];
     [MyTool cutViewConner:self.registerBtn radius:5];
-    
-    
+    //记住密码
+    self.remberCodeBtn.backgroundColor = [UIColor clearColor];
+    self.remberCodeBtn.imageView.backgroundColor = [UIColor clearColor];
     
 }
 - (void)didReceiveMemoryWarning {
