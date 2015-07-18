@@ -13,6 +13,7 @@
 
 -(void)pickerKeyBoard:(PickerKeyBoard *)picker selectedText:(NSString *)string;
 
+
 @end
 
 
@@ -26,6 +27,9 @@
 @property (nonatomic,assign) NSInteger          minimumZoom;//最小数量
 @property (nonatomic,assign) NSInteger          maximumZoom;//最大数量
 @property (nonatomic,assign) NSInteger          currentmumZoom; //当前数量
+@property (nonatomic,assign) BOOL               isOpen;
+
+
 
 @property (nonatomic,assign)id <PickerKeyBoardDelegate>delegate;
 -(instancetype)initWithPicker;

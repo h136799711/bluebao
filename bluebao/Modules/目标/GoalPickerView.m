@@ -7,7 +7,7 @@
 //
 
 #import "GoalPickerView.h"
-
+#import "GoalVC.h"
 @implementation GoalPickerView
 
 
@@ -38,6 +38,19 @@
         topView.backgroundColor = [UIColor blackColor];
         [self addSubview:topView];
         
+
+        //取消按钮
+        UIButton * cancalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancalBtn.tag = 0;
+        cancalBtn.bounds = CGRectMake(0, 0, 40, 30);
+        
+        cancalBtn.center = CGPointMake(cancalBtn.bounds.size.width/2.0 + 10, topView.bounds.size.height /2.0);
+        [cancalBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [cancalBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [topView addSubview:cancalBtn];
+        [cancalBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+
         //完成按钮
         UIButton * finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         finishBtn.tag = 1;
@@ -47,24 +60,7 @@
         [finishBtn setTitle:@"完成" forState:UIControlStateNormal];
         [finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [topView addSubview:finishBtn];
-        [finishBtn addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
-        
-        //取消按钮
-        UIButton * cancalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        cancalBtn.tag = 0;
-        cancalBtn.bounds = CGRectMake(0, 0, 40, 30);
-      
-        cancalBtn.center = CGPointMake(cancalBtn.bounds.size.width/2.0 + 10, topView.bounds.size.height /2.0);
-        [cancalBtn setTitle:@"完成" forState:UIControlStateNormal];
-        [cancalBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [topView addSubview:cancalBtn];
-        [cancalBtn addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
-        
-
-        
-        
-        
-        
+        [finishBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         
         
         //底部
@@ -198,11 +194,23 @@
 }
 
 #pragma mark -- 完成  --
--(void)buttonClick{
-    
-    [self close];
-}
 
+#pragma mark -- 完成  取消 --
+-(void)buttonClick:(UIButton *)button{
+    
+    //取消
+    if (button.tag == 0) {
+        [self close];
+
+        //完成
+    }else{
+    
+        
+        
+    [self close];
+    }
+    
+}
 
 
 #pragma mark -- 重载 min 属性 --

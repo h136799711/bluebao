@@ -101,7 +101,7 @@
         }break;
     }
     
-    NSLog(@"bgcolor %@",bgColor);
+//    NSLog(@"bgcolor %@",bgColor);
     
     [btn setTitleColor:titleColor forState:UIControlStateNormal];
     [btn setBackgroundColor:bgColor];

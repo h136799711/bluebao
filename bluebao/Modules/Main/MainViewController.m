@@ -25,6 +25,8 @@
     
     NSMutableArray *  array; //保存导航
     NSArray     * sortName;
+    NSArray     *_btnNormalImagName;
+    NSArray     *_btnSelectImagName;
 }
 
 
@@ -60,6 +62,10 @@
     self.title = @"main";
     
     sortName = @[@"首页",@"目标",@"个人中心",@"分享"];
+    _btnNormalImagName = @[@"home.png",@"target.png",@"person.png",@"share.png"];
+    
+    
+    
     //创建自定义tabba
     
     [self creatTabbar];
@@ -122,16 +128,13 @@
     
     self.viewcontrollers = @[navh,navg,navp,navs];
 
-
-//    CGFloat  width =  SCREEN_WIDTH /4.0;
-
     //底部按钮
     for (int i = 0;  i < 4;  i ++) {
 
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag=i;
-        [button setBackgroundImage:[UIImage imageNamed:@"sd.png"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"sd.png"] forState:UIControlStateSelected];
+        [button setBackgroundImage:[UIImage imageNamed:_btnNormalImagName[i]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:_btnNormalImagName[i]] forState:UIControlStateSelected];
 //        //底部按钮
         [BBManageCode creatTabbarShow:_bottomView
                                button:button

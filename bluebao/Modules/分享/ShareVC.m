@@ -12,7 +12,7 @@
     
     UITableView     *share_tableView;
     UIView          *_headerView;
-    
+    NSArray         *_shareName;
 }
 
 @end
@@ -23,7 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"分享";
-    
+    _shareName = @[@"weixin.png",@"quan.png",@"qq.png"];
     
     [self _initViews];;
     [self _initShareView];
@@ -199,7 +199,8 @@
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.bounds = CGRectMake(0, 0, width, width);
         button.center = CGPointMake(left +button.width/2.0 +(button.width + between)*i, promLabel.bottom+3+ button.width/2.0);
-        button.backgroundColor = [UIColor yellowColor];
+//        button.backgroundColor = [UIColor yellowColor];
+        [button setBackgroundImage:[UIImage imageNamed:_shareName[i]] forState:UIControlStateNormal];
         button.tag = i;
         [shareView addSubview:button];
         

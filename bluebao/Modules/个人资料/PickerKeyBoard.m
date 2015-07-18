@@ -45,8 +45,9 @@
     [button setTitle:@"完成" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [topView addSubview:button];
-    [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(buttonCloseClick) forControlEvents:UIControlEventTouchUpInside];
     
+        
     //底部
     UIView * downView = [[UIView alloc] init];
     downView.frame = CGRectMake(0, topView.bottom, topView.width, self.height-topView.height);
@@ -91,22 +92,17 @@
     }else{
         
         int count = (int )(self.maximumZoom - self.minimumZoom +1);
-        
          NSString * unitstring = @"";
         for (int i = 0; i < count; i ++) {
-            
+        
             int num = (int )self.minimumZoom + i;
-            
            unitstring  = [NSString stringWithFormat:@"%d%@",num,self.dataUnit];
             
             if (i ==row) {
                 break;
             }
-
         }
-        
         return unitstring;
-
     }
 }
 
@@ -120,19 +116,15 @@
         if (component == 0) {
             //名称
             string = self.dataName;
-            
             return;
 
         }else{
             self.currentmumZoom = self.minimumZoom + row;
-
             //当前值含单位
             string = [NSString stringWithFormat:@"%d%@",(int)self.currentmumZoom,self.dataUnit];
         }
         [_delegate pickerKeyBoard:self selectedText:string];
     }
-
-   // NSLog(@"%@, %@",self.dataName,self.dataUnit);
 }
 
 #pragma mark -重载delegate --
@@ -157,6 +149,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT - self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT);
     [UIView commitAnimations];
+    self.isOpen = YES;
 }
 
 
@@ -166,7 +159,7 @@
     [MyTool setAnimationCentView:self
                         duration:0.15
                        pointCent:CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT)];
-    
+    self.isOpen = NO;
 }
 
 
@@ -177,15 +170,11 @@
     [view addSubview:self];
 }
 
-#pragma mark -- 完成  --
--(void)buttonClick:(UIButton *)button{
 
-    if (button.tag == 0) {
-        [self close];
-    }else{
-        
-        
-    }
+#pragma mark -- 完成  --
+
+-(void)buttonCloseClick{
+    [self close];
 
 }
 

@@ -26,20 +26,23 @@
     // Do any additional setup after loading the view.
     self.title = @"目标设定";
     
+    _goalCount = 0;
+    _isHasData = NO;
+    self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
     [self _initViews];
+    
+    [self _initGest];
 }
 
 /*
  *初始化
  **/
 -(void)_initViews{
-   
-    _goalCount = 0;
-    _isHasData = NO;
-    self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
-    [self isHasDataAdjust];
-    [self _initGoalTableView];
-    
+
+    [self isHasDataAdjust];  //判断是否包含数据
+    [self _initGoalTableView]; //创建表
+    [self _initPickerView];  //修改 数据
 }
 
 #pragma mark -- 目标设定 --
@@ -118,13 +121,18 @@
     return 44;
 }
 
-#pragma mark -- 点金修改 --
+#pragma mark -- 点击修改 --
 
 -(void) alterBtnClick:(UIButton *)alterBtn{
     
     NSLog(@"修改");
-    [_tableView reloadData];
+//    [_tableView reloadData];
+
+    [self.goalPickerView open];
+    
+    
 }
+#pragma mark  --delete  --
 -(void) deleteBtnClick:(UIButton *)deleteBtn{
     
     NSLog(@"删除");
@@ -135,6 +143,7 @@
     [self isHasDataAdjust];
 
     [_tableView reloadData];
+    [self.goalPickerView close];
 }
 
 #pragma mark -- 创建日期标签 ---
@@ -166,7 +175,7 @@
     if (_footerView == nil) {
     
         _footerView= [[UIView alloc] init];
-        _footerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 50);
+        _footerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
         //加号
         UIButton * addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         addBtn.bounds = CGRectMake(0, 0, 30, 30);
@@ -203,6 +212,40 @@
     }else{
         _isHasData = YES;
     }
+}
+
+
+
+
+#pragma mark -- 创建PIcker --
+
+-(void)_initPickerView{
+    
+    if (self.goalPickerView == nil) {
+        self.goalPickerView = [[GoalPickerView alloc] initWithPicker];
+        self.goalPickerView.delegate = self;
+        self.goalPickerView.dataUnit = @"卡";
+        [self.view addSubview:self.goalPickerView];
+    }
+}
+
+#pragma mark---PickerDelegate  --
+
+-(void)goalPickerView:(GoalPickerView *)picker selectedText:(NSString *)string{
+    
+    
+}
+
+#pragma mark -- 目标界面点击手势 关闭picker--
+-(void)_initGest{
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
+    [self.view addGestureRecognizer:tap];
+
+}
+-(void)tapGesture:(UITapGestureRecognizer *)tap{
+    //
+    [self.goalPickerView close];
 }
 
 

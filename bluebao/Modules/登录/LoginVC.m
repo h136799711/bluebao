@@ -52,24 +52,27 @@
     //设置密码
     [MyTool setViewBoard:self.pswView];
     [MyTool cutViewConner:self.pswView radius:5];
+   
     //记住密码
     [MyTool setViewBoard:self.remberCodeBtn];
-    [self.remberCodeBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+    [MyTool cutViewConner:self.remberCodeBtn radius:0];
+    [self.remberCodeBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateSelected];
+
     //登录注册
-    self.loginBtn.backgroundColor = [MyTool getColor:@"#1fcdff"];
-    self.registerBtn.backgroundColor = [MyTool getColor:@"#ff8957"];
+    [ButtonFactory decorateButton:self.loginBtn forType:BOYE_BTN_SECONDARY];
+    //注册
+    [ButtonFactory decorateButton:self.registerBtn forType:BOYE_BTN_WARNING];
+
+    
     [MyTool cutViewConner:self.loginBtn radius:5];
     [MyTool cutViewConner:self.registerBtn radius:5];
-    //记住密码
-    self.remberCodeBtn.backgroundColor = [UIColor clearColor];
-    self.remberCodeBtn.imageView.backgroundColor = [UIColor clearColor];
-    
+ 
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - 注册  --
 - (IBAction)registerButton:(UIButton *)sender {
     
     RegistVC * regist = [[RegistVC alloc] init];
@@ -85,18 +88,28 @@
     User * user = [[User alloc] init];
     user.userName = self.accontNumTextfield.text;
     user.userPsw = self.pswTextfield.text;
-    user.userName = @"1";
+    
+    user.userName = @"1234576789@qq.com";
     user.userPsw = @"1";
     
     if ([MyTool inputIsNull: user.userName]) {
         ALERTVIEW(@"账号不能为空")
         return;
     }
+    
+    if (![MyTool validateEmail:user.userName]) {
+       
+        ALERTVIEW(@"请输入正确的邮箱")
+        return;
+    }
+    
     if ([MyTool inputIsNull:user.userPsw]) {
         ALERTVIEW(@"密码不能为空")
         return;
     }
 
+   
+    
 //    //保存用户名何密码,保存Token
 //    [USER_DEFAULT setObject:user.userName forKey:ACCOUNTNum];
 //    [USER_DEFAULT setObject:user.userPsw forKey:ACCOUNTPSW];
@@ -134,6 +147,7 @@
 
 #pragma mark --记住密码 --
 - (IBAction)rememberCodeClick:(UIButton *)sender {
+
     sender.selected = !sender.selected;
     if (sender.selected == YES) {
         self.label_remberCode.textColor = [MyTool getColor:@"#2bd8f6"];
@@ -144,13 +158,16 @@
 
 #pragma mark -- 忘记密码
 - (IBAction)forgetCodeBtnClick:(UIButton *)sender {
+    
+    
+    
 }
 
 //初始化
 -(void)_inits{
     self.accontNumTextfield.text = @"";
     self.pswTextfield.text = @"";
-    self.remberCodeBtn.selected = NO;
+    self.remberCodeBtn.selected = YES;
     [self rememberCodeClick:self.remberCodeBtn];
     
 }

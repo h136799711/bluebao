@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="agreeBtn" destination="H9K-Ma-IhJ" id="lyL-w4-5Vt"/>
                 <outlet property="agreeLabel" destination="fCe-GM-rcM" id="ZkI-5l-oiM"/>
-                <outlet property="backItem" destination="dd1-6d-ogA" id="SPX-Ow-Uop"/>
+                <outlet property="navItem" destination="07o-pw-dry" id="ghZ-16-Y5g"/>
                 <outlet property="registBtn" destination="PUT-Ke-iMp" id="BhO-eU-pmo"/>
                 <outlet property="textfield_LeterBox" destination="DkH-UZ-ah3" id="O5n-bV-QeT"/>
                 <outlet property="textfield_confirmpsw" destination="tFh-ga-ZDK" id="ga9-Ph-5rv"/>
@@ -33,13 +33,7 @@
                         <constraint firstAttribute="height" constant="64" id="Kx6-oh-S8Q"/>
                     </constraints>
                     <items>
-                        <navigationItem title="注册" id="07o-pw-dry">
-                            <barButtonItem key="leftBarButtonItem" image="back.png" id="dd1-6d-ogA">
-                                <connections>
-                                    <action selector="backItem:" destination="-1" id="Mti-WW-5IY"/>
-                                </connections>
-                            </barButtonItem>
-                        </navigationItem>
+                        <navigationItem title="注册" id="07o-pw-dry"/>
                     </items>
                 </navigationBar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邮       箱" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0k-qW-RQv">
@@ -167,10 +161,7 @@
                 <constraint firstItem="L0k-qW-RQv" firstAttribute="width" secondItem="bK9-kZ-hXC" secondAttribute="width" id="wVA-7k-MFq"/>
                 <constraint firstItem="DkH-UZ-ah3" firstAttribute="centerX" secondItem="hka-SR-dAA" secondAttribute="centerX" id="yCy-NJ-zun"/>
             </constraints>
-            <point key="canvasLocation" x="257" y="392"/>
+            <point key="canvasLocation" x="308" y="390"/>
         </view>
     </objects>
-    <resources>
-        <image name="back.png" width="20" height="35"/>
-    </resources>
 </document>

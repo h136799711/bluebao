@@ -10,7 +10,9 @@
 
 @interface RegistVC : BaseViewController
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backItem;
+
+@property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
+
 @property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
 @property (weak, nonatomic) IBOutlet UILabel *agreeLabel;
 

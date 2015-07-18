@@ -58,7 +58,7 @@
         weightValueLabel = [[UILabel alloc] init];
         weightValueLabel.bounds = CGRectMake(0, 0, SCREEN_WIDTH /2.0 - weightLabel.right , self.contentView.height);
         weightValueLabel.center = CGPointMake(middleLabel.left - weightValueLabel.width/2.0, weightLabel.center.y);
-        weightValueLabel.font = FONT(30);
+        weightValueLabel.font = FONT(20);
         weightValueLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:weightValueLabel];
         
@@ -83,7 +83,7 @@
         bMIValueLabel.bounds = CGRectMake(0, 0, bMITargetLabel.left - bMILabel.right, self.contentView.height);
         bMIValueLabel.center = CGPointMake(SCREEN_WIDTH/4.0 *3, bMITargetLabel.center.y);
         [self.contentView addSubview:bMIValueLabel];
-        bMIValueLabel.font = FONT(30);
+        bMIValueLabel.font = FONT(20);
         bMIValueLabel.textAlignment = NSTextAlignmentCenter;
 
         
@@ -95,7 +95,7 @@
 //设置体重
 -(void)setWeight:(CGFloat)weight{
 
-    weightValueLabel.text = [NSString stringWithFormat:@"%.2f",weight];
+    weightValueLabel.text = [NSString stringWithFormat:@"%.1f",weight];
     
     
 }

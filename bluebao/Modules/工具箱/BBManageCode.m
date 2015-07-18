@@ -71,35 +71,66 @@
 //TabbarView
 +(UIView *)creatTabbarShow:(UIView * ) showView button:(UIButton *)btn ImagName:(NSString *)name titleLabel:(NSString *)title{
     
-    CGFloat  width_ = showView.width/4.0;
-    UIView * view_ = [[UIView alloc] init];
-    view_.frame = CGRectMake(width_*btn.tag, 0, width_, showView.height);
+//    
+//    CGFloat  width_ = showView.width/4.0;
+//    UIView * view_ = [[UIView alloc] init];
+//    view_.frame = CGRectMake(width_*btn.tag, 0, width_, showView.height);
+//    
+//     //按钮
+//    btn.bounds = CGRectMake(0, 0, 30, 30);
+//    [view_ addSubview:btn];
+//    
+//     //文字
+//    UILabel * label = [[UILabel alloc] init];
+//    [view_ addSubview:label];
+//  
+//    CGSize size = [MyTool getSizeString:title font:15];
+//    label.bounds = CGRectMake(0, 0, size.width, size.height);
+//    label.text = title;
+//    label.textColor = [UIColor whiteColor];
+//    label.tag = btn.tag +1;
+//    label.font = FONT(15);
+//    
+//    
+//     //图与按钮间的距离
+//    CGFloat space = 5;
+//    CGFloat  between = (width_- label.width - btn.width)/2.0;
+//    
+//    btn.center = CGPointMake(between + btn.width/2.0 , view_.height/2.0);
+//    label.center = CGPointMake(btn.right + space+ label.width/2.0, btn.center.y);
+//    
+//    
+//    [showView addSubview:view_];
+//    
     
-     //按钮
-    btn.bounds = CGRectMake(0, 0, 30, 30);
-    [view_ addSubview:btn];
     
-     //文字
+    CGFloat  left = 40;
+    CGFloat  width = 25;
+    CGFloat  between = (showView.width -left*2 -width *4)/3.0;
+
+    
+    //按钮
+    btn.bounds = CGRectMake(0, 0, width, width);
+    btn.center = CGPointMake(left + btn.width/2.0 +(btn.width + between) *btn.tag, btn.height/2.0 + 5);
+    
+    [showView addSubview:btn];
+    
+    //文字
     UILabel * label = [[UILabel alloc] init];
-    [view_ addSubview:label];
-  
-    CGSize size = [MyTool getSizeString:title font:15];
+    [showView addSubview:label];
+
+    CGSize size = [MyTool getSizeString:title font:13];
     label.bounds = CGRectMake(0, 0, size.width, size.height);
+    label.center = CGPointMake(btn.center.x, btn.bottom + label.height/2.0+1);
     label.text = title;
     label.textColor = [UIColor whiteColor];
     label.tag = btn.tag +1;
-    label.font = FONT(15);
+    label.font = FONT(13);
+    [showView addSubview:label];
     
     
-     //图与按钮间的距离
-    CGFloat space = 5;
-    CGFloat  between = (width_- label.width - btn.width)/2.0;
     
-    btn.center = CGPointMake(between + btn.width/2.0 , view_.height/2.0);
-    label.center = CGPointMake(btn.right + space+ label.width/2.0, btn.center.y);
-    [showView addSubview:view_];
-    
-    return view_;
+    return showView;
 }
 
 //个人资料

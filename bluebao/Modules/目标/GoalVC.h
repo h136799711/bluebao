@@ -7,7 +7,11 @@
 //
 
 #import "BaseViewController.h"
+#import "GoalPickerView.h"
 
-@interface GoalVC : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface GoalVC : BaseViewController<UITableViewDelegate,UITableViewDataSource,GoalPickerViewDelegate>
+
 @property (nonatomic,strong) NSMutableArray     *dataArray;
+@property (nonatomic,strong) GoalPickerView     * goalPickerView;
+
 @end

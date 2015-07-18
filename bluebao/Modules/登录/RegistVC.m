@@ -19,8 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.backItem.tintColor = [UIColor blackColor];
-//    [self _initNavs];
+//    self.backItem.tintColor = [UIColor blackColor];
+    [self _initNavs];
 
     [self _initViews];
     
@@ -34,7 +34,7 @@
     
     
     [ButtonFactory decorateButton:self.registBtn forType:BOYE_BTN_SUCCESS];
-    
+    [MyTool cutViewConner:self.agreeBtn radius:0];
     //同意按钮
     [MyTool setViewBoard:self.agreeBtn];
     [self.agreeBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -47,31 +47,37 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark -- 返回上一层 --
-- (IBAction)backItem:(UIBarButtonItem *)sender {
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 //快速注册
 - (IBAction)registQuestBtn:(UIButton *)sender {
 
+    User * user = [[User alloc] init];
+    user.userName = self.textfield_LeterBox.text;
+    user.userPsw = self.textfield_newpsw.text;
+    user.userConpsw = self.textfield_confirmpsw.text;
+    
     //邮箱非空
-    if ([MyTool inputIsNull:self.textfield_LeterBox.text]) {
+    if ([MyTool inputIsNull:user.userName]) {
         ALERTVIEW(@"邮箱不能为空")
         return;
     }
-    if ([MyTool inputIsNull:self.textfield_newpsw.text]) {
+    
+    if (![MyTool validateEmail:user.userName]) {
+        
+        ALERTVIEW(@"请输入正确的邮箱")
+        return;
+    }
+
+    if ([MyTool inputIsNull:user.userPsw]) {
         ALERTVIEW(@"密码不能为空")
         return;
     }
-    if ([MyTool inputIsNull:self.textfield_confirmpsw.text]) {
+    if ([MyTool inputIsNull:user.userConpsw]) {
         ALERTVIEW(@"确认密码不能为空")
         return;
     }
     //两个密码是否相等
-    if (![MyTool isEqualToString:self.textfield_newpsw.text string:self.textfield_confirmpsw.text]) {
+    if (![MyTool isEqualToString:user.userPsw string:user.userConpsw]) {
         ALERTVIEW(@"两次密码输入不正确")
         return;
     }
@@ -102,20 +108,22 @@
 }
 
 //#pragma mark  --返回 --
-//-(void)_initNavs{
-//    
-//     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
-//    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-//    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-//    leftBtn.tag = 1;
-//    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-//    self.navigationItem.leftBarButtonItem = letfItem;
-//    
-//}
-////返回
-//-(void)backClick{
-//    
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+-(void)_initNavs{
+    
+    //返回按钮
+     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    leftBtn.tag = 1;
+    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    self.navItem.leftBarButtonItem = letfItem;
+
+
+}
+//返回
+-(void)backClick{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
