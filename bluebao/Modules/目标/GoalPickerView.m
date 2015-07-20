@@ -8,6 +8,17 @@
 
 #import "GoalPickerView.h"
 #import "GoalVC.h"
+
+@interface GoalPickerView (){
+    
+    NSInteger              _currentRow;
+    NSInteger              _currentComponent;
+}
+
+
+
+@end
+
 @implementation GoalPickerView
 
 
@@ -83,72 +94,73 @@
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     
-    return 2;
+    return 6;
 }
+//行数
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    
     
     if (component == 0) {
         
+        return 24;
+    } else if (component == 1){
+        
         return 1;
+    }else if (component == 2){
+        return 60;
+    }else{
+        return 10;
     }
     
-    if (self.maximumZoom < self.minimumZoom ) {
-        
-        return 0;
-    }
-    return self.maximumZoom -self.minimumZoom+1;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
-    if (component == 0) {
+    
+    if (component == 1) {
+       
+        return @":";
+    }else if (component == 0||component == 2){
         
-        return self.dataName;
-    }else{
-        
-        int count = (int )(self.maximumZoom - self.minimumZoom +1);
-        
-        NSString * unitstring = @"";
-        for (int i = 0; i < count; i ++) {
-            
-            int num = (int )self.minimumZoom + i;
-            
-            unitstring  = [NSString stringWithFormat:@"%d%@",num,self.dataUnit];
-            
-            if (i ==row) {
-                break;
-            }
-            
+        NSString  *numstr = [[NSString alloc] init];
+        if (row < 10) {
+            numstr = [NSString stringWithFormat:@"0%ld",row];
+        }else{
+            numstr = [NSString stringWithFormat:@"%ld",row];
         }
         
-        return unitstring;
+        return  numstr;
+    }else if (component == 5){
         
+        return [NSString stringWithFormat:@"%ld卡",row];
+    }else{
+        
+        return [NSString stringWithFormat:@"%ld",row];
     }
+
 }
 
 #pragma mark -- 选中之后  --
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+
     
-    
-    if ([_delegate respondsToSelector:@selector(goalPickerView:selectedText:)]) {
+    if (row <3) {
+        self.tabrow = 0;
+        self.datastr = [NSString stringWithFormat:@"%@:%@",self.goalData.hour,self.goalData.minute];
         
-        NSString * string = @"";
-        if (component == 0) {
-            //名称
-            string = self.dataName;
-            
-            return;
-            
-        }else{
-            self.currentmumZoom = self.minimumZoom + row;
-            
-            //当前值含单位
-            string = [NSString stringWithFormat:@"%d%@",(int)self.currentmumZoom,self.dataUnit];
-        }
-        [_delegate goalPickerView:self selectedText:string];
+        
+    }else{
+        self.tabrow = 1;
+        self.datastr = [NSString stringWithFormat:@"%ld%ld%ld",self.goalData.hundredPlace,self.goalData.tendPlace,self.goalData.digitPlace];
+
     }
     
-    // NSLog(@"%@, %@",self.dataName,self.dataUnit);
+    
+    
+    
+    _currentComponent = row;
+    _currentRow = component;
+    
 }
 
 #pragma mark -重载delegate --
@@ -173,6 +185,9 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT - self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT);
     [UIView commitAnimations];
+    self.isOpen = YES;
+    
+    [self sendSelfFrameNotification];
 }
 
 
@@ -182,7 +197,8 @@
     [MyTool setAnimationCentView:self
                         duration:0.15
                        pointCent:CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT)];
-    
+    self.isOpen = NO;
+    [self sendSelfFrameNotification];
 }
 
 
@@ -205,9 +221,17 @@
         //完成
     }else{
     
+        if (self.datastr == nil) {
+            self.datastr = @"";
+        }
         
-        
-    [self close];
+        #pragma mark ---- 代理 ----
+        if ([_delegate respondsToSelector:@selector(goalPickerView:finishRow:textInRow:)]) {
+            [_delegate goalPickerView:self finishRow:self.tabrow textInRow:self.datastr];
+            
+        }
+
+        [self close];
     }
     
 }
@@ -238,12 +262,29 @@
     _dataUnit = dataUnit;
 }
 
+-(void)setGoalData:(GoalData *)goalData{
+    
+    _goalData = goalData;
+ 
+    //小时
+
+}
 #pragma mark -- 重载 数据分类 属性 --
 
 -(void)setDataName:(NSString *)dataName{
     _dataName = dataName;
     //    NSLog(@"dataName %@",dataName);
 }
+
+
+-(void)sendSelfFrameNotification{
+    NSString  * heightString = [NSString stringWithFormat:@"%f",self.top];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    //postNotificationName发送一个通知，第一个参数是通知的名字，第二个参数是通知的发送者，一般写self，第三个参数是通知的传参。
+    [center postNotificationName:@"Goalpicker" object:self userInfo:@{@"viewHeightInfo":heightString}];
+}
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

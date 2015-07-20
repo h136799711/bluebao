@@ -90,7 +90,7 @@
         
         [_delegate dateChooseView:self datestr:dateString];
     }
-    
+    NSLog(@" -- date%@",[NSDate date]);
     return dateString;
 }
 

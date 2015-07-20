@@ -20,4 +20,7 @@
 @property (nonatomic,strong) UIButton           * sexButton;//体重
 @property (nonatomic,strong) NSMutableArray     * valueArray; //值
 @property (nonatomic,strong) PickerKeyBoard     * pickerKeyBoard; //pickerView
+@property (nonatomic,assign) CGFloat            outHeight;
+
+
 @end

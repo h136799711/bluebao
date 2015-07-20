@@ -154,12 +154,12 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ok9-5V-joV">
-                    <rect key="frame" x="35" y="363" width="235" height="40"/>
+                    <rect key="frame" x="35" y="363" width="255" height="40"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ekg-uB-VZ2"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="立即登录">
                         <color key="titleShadowColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -168,11 +168,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14g-n9-yv8">
-                    <rect key="frame" x="330" y="363" width="235" height="40"/>
+                    <rect key="frame" x="310" y="363" width="255" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="UO2-3e-Ook"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="快速注册">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -183,7 +183,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="14g-n9-yv8" firstAttribute="leading" secondItem="Ok9-5V-joV" secondAttribute="trailing" constant="60" id="1r5-wY-q50"/>
+                <constraint firstItem="14g-n9-yv8" firstAttribute="leading" secondItem="Ok9-5V-joV" secondAttribute="trailing" constant="20" id="1r5-wY-q50"/>
                 <constraint firstItem="Ejz-dG-1ee" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="4cj-rm-tmJ"/>
                 <constraint firstAttribute="trailing" secondItem="ZOG-jN-qHe" secondAttribute="trailing" id="7ZL-XB-4Vj"/>
                 <constraint firstItem="Ok9-5V-joV" firstAttribute="centerY" secondItem="14g-n9-yv8" secondAttribute="centerY" id="7wp-dJ-gFh"/>

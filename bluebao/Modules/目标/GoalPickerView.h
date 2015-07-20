@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GoalData.h"
 
 @class GoalPickerView;
 
@@ -15,7 +15,9 @@
 
 -(void)goalPickerView:(GoalPickerView *)picker selectedText:(NSString *)string;
 
-
+// 0  时间，小时，分钟  ，1 目标
+-(void)goalPickerView:(GoalPickerView *)picker rowIntab:(NSInteger )row  selectedTextInRow:(NSString *)datastr;
+-(void)goalPickerView:(GoalPickerView *)picker finishRow:(NSInteger)tabrow textInRow:(NSString *)string;
 
 @end
 
@@ -30,6 +32,11 @@
 @property (nonatomic,assign) NSInteger          minimumZoom;//最小数量
 @property (nonatomic,assign) NSInteger          maximumZoom;//最大数量
 @property (nonatomic,assign) NSInteger          currentmumZoom; //当前数量
+@property (nonatomic,strong) GoalData           * goalData;
+
+@property (nonatomic,assign) BOOL               isOpen;
+@property (nonatomic,assign)NSInteger           tabrow;   //对应目标
+@property (nonatomic,copy)  NSString            *datastr; //返回数据
 
 @property (nonatomic,assign)id <GoalPickerViewDelegate>delegate;
 -(instancetype)initWithPicker;

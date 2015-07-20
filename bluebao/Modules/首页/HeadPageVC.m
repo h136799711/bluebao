@@ -10,6 +10,8 @@
 #import "HeadInfoCell.h"
 #import "HeadCollectionViewCell.h"
 #import "BMICell.h"
+#import "DrawProgreView.h"
+
 
 @interface HeadPageVC (){
     
@@ -42,7 +44,7 @@
 
 -(void)_initViews{
 
-    itemWidth = (SCREEN_WIDTH - 60-30*3)/4.0;
+    itemWidth = (SCREEN_WIDTH - 50-15*3)/4.0;
 
     [self _initHeadInfoTableView];
 }
@@ -123,7 +125,6 @@
     //日期
     CGRect rect = CGRectMake(0, 0, _tableView.width, 200);
     self.headView = [[UIView alloc] initWithFrame:rect];
-    self.headView.backgroundColor = [UIColor yellowColor];
  
     //日期改变
     DateChooseView * dataView = [[DateChooseView alloc] init];
@@ -142,16 +143,12 @@
     [self.headView addSubview:equipLabel];
     
     
-//    //备是踏步机
-//    UILabel * tisLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.headView.height- 20, self.headView.width, 20)];
-//    tisLabel.text = @"当前的设备是踏步机";
-//    tisLabel.textAlignment = NSTextAlignmentCenter;
-//     
-//    [self.headView addSubview:tisLabel];
+    DrawProgreView * draw = [[DrawProgreView alloc] init];
+    CGFloat   width =  rect.size.height - equipLabel.bottom-20;
+    draw.bounds = CGRectMake(0, 0, width,width);
+    draw.center = CGPointMake(self.headView.width/2.0, equipLabel.bottom + draw.height/2.0 +10);
+    [self.headView addSubview:draw];
     
-    
-    
-//    UIView * date_view = [[UIView alloc] initWithCoder:<#(NSCoder *)#>];
     
     
     return self.headView ;
@@ -175,13 +172,13 @@
     view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 200);
     //初始化collection view
     UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
-    flowLayout.minimumLineSpacing = 30;      //水平间距
-    flowLayout.minimumInteritemSpacing = 30; //垂直间距
-    flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth+10);
+    flowLayout.minimumLineSpacing = 10;      //水平间距
+    flowLayout.minimumInteritemSpacing = 10; //垂直间距
+    flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     flowLayout.sectionInset = UIEdgeInsetsMake(1, 0, 0, 0);//整体相对页面的位置，上左下右
     //collectionView
-    CGRect frame = CGRectMake(30,20,SCREEN_WIDTH-30*2,180);
+    CGRect frame = CGRectMake(20,20,SCREEN_WIDTH-20*2,180);
     headCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
     headCollectionView.scrollEnabled = YES;
     headCollectionView.delegate = self;

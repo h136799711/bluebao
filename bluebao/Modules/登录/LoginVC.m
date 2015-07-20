@@ -56,8 +56,9 @@
     //记住密码
     [MyTool setViewBoard:self.remberCodeBtn];
     [MyTool cutViewConner:self.remberCodeBtn radius:0];
-    [self.remberCodeBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateSelected];
-
+//    [self.remberCodeBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateSelected];
+    [self.remberCodeBtn setTitle:@"√" forState:UIControlStateSelected];
+    [self.remberCodeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
     //登录注册
     [ButtonFactory decorateButton:self.loginBtn forType:BOYE_BTN_SECONDARY];
     //注册

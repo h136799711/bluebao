@@ -16,7 +16,7 @@
     UILabel * bMIValueLabel;
     UILabel * bMITargetLabel;
     UILabel * middleLabel;//中间线
-    
+    NSArray  * array ;
     
     
 }
@@ -31,13 +31,16 @@
     if (self) {
         
         self.contentView.height = 80;
-        NSArray  * array = @[@"体重",@"BMI",@"正常"];
+        array = @[@"体重",@"BMI",@"正常"];
+       
         //顶部线条
         UILabel * topLabel = [self line:0];
         [self.contentView addSubview:topLabel];
+        
         //底部线条
         UILabel * botLabel = [self line: self.contentView.height - 1];
         [self.contentView addSubview:botLabel];
+        
         //中间线
         middleLabel = [[UILabel alloc] init];
         middleLabel.frame = CGRectMake(SCREEN_WIDTH/2.0, 0, 1, self.contentView.height);
@@ -51,41 +54,42 @@
         weightLabel.center = CGPointMake(30+weightLabel.width/2.0, self.contentView.center.y);
         weightLabel.text = array[0];
         weightLabel.font = FONT(15);
+
         [self.contentView addSubview:weightLabel];
         
         
         //体重值
         weightValueLabel = [[UILabel alloc] init];
-        weightValueLabel.bounds = CGRectMake(0, 0, SCREEN_WIDTH /2.0 - weightLabel.right , self.contentView.height);
-        weightValueLabel.center = CGPointMake(middleLabel.left - weightValueLabel.width/2.0, weightLabel.center.y);
+        weightValueLabel.bounds = CGRectMake(0, 0, middleLabel.left - weightLabel.right - 20 , self.contentView.height);
+        weightValueLabel.center = CGPointMake(weightLabel.right + weightValueLabel.width/2.0, weightLabel.center.y);
         weightValueLabel.font = FONT(20);
         weightValueLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:weightValueLabel];
         
-        
+       // NSLog(@"√");
         
         //BMI
         bMILabel = [[UILabel alloc] init];
         bMILabel.text = array[1];
         bMILabel.bounds = CGRectMake(0, 0, 40, 60);
-        bMILabel.center = CGPointMake(middleLabel.right + 20 + bMILabel.width/2.0, weightLabel.center.y);
+        bMILabel.center = CGPointMake(middleLabel.right + 15 + bMILabel.width/2.0, weightLabel.center.y);
         [self.contentView addSubview:bMILabel];
 
         //BMI指标
         bMITargetLabel = [[UILabel alloc] init];
         bMITargetLabel.text = array[2];
-        bMITargetLabel.bounds = CGRectMake(0, 0, 40, 60);
-        bMITargetLabel.center = CGPointMake(SCREEN_WIDTH - 20 - bMILabel.width/2.0, weightLabel.center.y);
+        bMITargetLabel.bounds = CGRectMake(0, 0, 35, 60);
+        bMITargetLabel.center = CGPointMake(SCREEN_WIDTH - 15 - bMILabel.width/2.0, weightLabel.center.y);
         [self.contentView addSubview:bMITargetLabel];
 
         //BMI值
         bMIValueLabel = [[UILabel alloc] init];
         bMIValueLabel.bounds = CGRectMake(0, 0, bMITargetLabel.left - bMILabel.right, self.contentView.height);
-        bMIValueLabel.center = CGPointMake(SCREEN_WIDTH/4.0 *3, bMITargetLabel.center.y);
+        bMIValueLabel.center = CGPointMake(bMILabel.right + bMIValueLabel.width/2.0, bMITargetLabel.center.y);
         [self.contentView addSubview:bMIValueLabel];
         bMIValueLabel.font = FONT(20);
         bMIValueLabel.textAlignment = NSTextAlignmentCenter;
-
+       // [MyTool testViews:bMILabel];[MyTool testViews:bMIValueLabel];[MyTool testViews:bMITargetLabel];
         
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     }

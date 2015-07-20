@@ -38,6 +38,9 @@
 #import "BoyeDefaultManager.h"
 #import "BoyeHttpClient.h" //网络请求
 #import "ButtonFactory.h"
+#import "NSDate+Helper.h"  //日期
+#import "CacheFacade.h"     //缓存
+
 
 
 //-------------------打印日志-------------------------

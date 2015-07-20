@@ -35,9 +35,12 @@
     
     [ButtonFactory decorateButton:self.registBtn forType:BOYE_BTN_SUCCESS];
     [MyTool cutViewConner:self.agreeBtn radius:0];
+    
     //同意按钮
     [MyTool setViewBoard:self.agreeBtn];
-    [self.agreeBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+//    [self.agreeBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [self.agreeBtn setTitle:@"√" forState:UIControlStateSelected];
+    [self.agreeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
     
     
 }

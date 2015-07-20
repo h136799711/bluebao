@@ -23,11 +23,12 @@
         CGFloat  s_nit = 20;
 
         self.labelSort = [[UILabel alloc] init];
-        self.labelSort.bounds = CGRectMake(0, 0, self.contentView.width, s_nit);
+        self.labelSort.bounds = CGRectMake(0, 0, self.contentView.width+10, s_nit);
         self.labelSort.center = CGPointMake(self.contentView.width/2.0, self.contentView.height-self.labelSort.height/2.0);
         self.labelSort.textColor =[UIColor colorWithHexString:@"#888888"];
+//        self.labelSort.backgroundColor = [UIColor yellowColor];
         self.labelSort.textAlignment = NSTextAlignmentCenter;
-        self.labelSort.font = FONT(12);
+        self.labelSort.font = FONT(13);
         [self.contentView addSubview:self.labelSort];
         
         
@@ -45,7 +46,8 @@
         CGFloat  h_unit = 15;
         self.labelUnit = [[UILabel alloc] init];
         self.labelUnit.frame = CGRectMake(_infoLabel.right , _infoLabel.center.y , 15, h_unit);
-        self.labelUnit.textColor =[UIColor blackColor];
+//        self.labelUnit.textColor =[UIColor blackColor];
+        
         self.labelUnit.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:self.labelUnit];
          self.labelUnit.font = FONT(13);

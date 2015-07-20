@@ -31,7 +31,7 @@
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     
     [self _initViews];
-    
+    [self _initNotificationCenter];
     [self _initGest];
 }
 
@@ -90,6 +90,7 @@
         }
         cell.alterBtn.tag = indexPath.row;
         cell.deleteBtn.tag = indexPath.row ;
+        
         
         return cell;
         
@@ -230,11 +231,55 @@
 }
 
 #pragma mark---PickerDelegate  --
-
--(void)goalPickerView:(GoalPickerView *)picker selectedText:(NSString *)string{
+-(void)goalPickerView:(GoalPickerView *)picker finishRow:(NSInteger)tabrow textInRow:(NSString *)string{
     
+    if (tabrow == 0) {
+        NSLog(@"时间");
+    }else{
+        NSLog(@"目标");
+        
+    }
+    NSLog(@"%@",string);
+}
+
+#pragma mark -- 监听picker -- 动画
+-(void)_initNotificationCenter{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveChangeColorNotification:) name:@"Goalpicker" object:nil];
     
 }
+
+#pragma mark -- 接受通知  ---
+
+-(void)receiveChangeColorNotification:(NSNotification *)notification{
+    
+    
+//    CGFloat  height = _headView.height + _sexheightView.height + self.tableView_person.rowHeight * 3  - self.outHeight;
+//    
+//    CGFloat origin_x =  [[notification.userInfo objectForKey:@"viewHeightInfo"] floatValue];
+//    
+//    
+//    CGFloat  outheight = height -  origin_x;
+//    
+//    if (outheight > 0) {
+//        self.tableView_person.contentOffset = CGPointMake(0, outheight);
+//        self.outHeight  = outheight;
+//    }else{
+//        
+//        if (self.pickerKeyBoard.isOpen == YES) {
+//            return;
+//        }else{
+//            self.tableView_person.contentOffset = CGPointMake(0, 0);
+//            
+//            self.outHeight = 0;
+//        }
+//    }
+    
+    
+    NSLog(@" --- %f",[[notification.userInfo objectForKey:@"viewHeightInfo"] floatValue]);
+}
+
+
 
 #pragma mark -- 目标界面点击手势 关闭picker--
 -(void)_initGest{

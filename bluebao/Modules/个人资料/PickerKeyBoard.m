@@ -17,6 +17,7 @@
         
     
         [self _initViews];
+        
     }
     return self;
 }
@@ -150,6 +151,8 @@
     self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT - self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT);
     [UIView commitAnimations];
     self.isOpen = YES;
+    [self sendSelfFrameNotification];
+
 }
 
 
@@ -160,6 +163,8 @@
                         duration:0.15
                        pointCent:CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT)];
     self.isOpen = NO;
+    [self sendSelfFrameNotification];
+
 }
 
 
@@ -211,6 +216,18 @@
     _dataName = dataName;
 //    NSLog(@"dataName %@",dataName);
 }
+
+
+
+-(void)sendSelfFrameNotification{
+    NSString  * heightString = [NSString stringWithFormat:@"%f",self.top];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    //postNotificationName发送一个通知，第一个参数是通知的名字，第二个参数是通知的发送者，一般写self，第三个参数是通知的传参。
+    [center postNotificationName:@"pickerKey" object:self userInfo:@{@"viewHeightInfo":heightString}];
+}
+
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

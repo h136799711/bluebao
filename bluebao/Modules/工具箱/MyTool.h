@@ -31,7 +31,6 @@
 +(UIImage *) getImageOfString:(NSString *)imagString;
 
 #pragma mark   清理特殊标签的子视图 ---
-
 +(void)clearCellSonView:(UIView*)contentView viewTag:(NSInteger) tag;
 
 #pragma mark 切割圆角

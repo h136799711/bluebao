@@ -60,7 +60,8 @@
     [self _initTableview];
     //自定义键盘
     [self _initPickerKeyBoard];
-    
+    //监听Picker位置
+    [self _initNotificationCenter ];
 }
 
 
@@ -77,7 +78,7 @@
         self.tableView_person.backgroundColor = [UIColor clearColor];
         self.tableView_person.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:self.tableView_person];
-        [MyTool testViews:self.tableView_person];
+//        [MyTool testViews:self.tableView_person];
         //表头
         self.tableView_person.tableHeaderView = [self creatTableViewHeadView];
         //表尾
@@ -266,6 +267,7 @@
         self.pickerKeyBoard = [[PickerKeyBoard alloc] initWithPicker];
         self.pickerKeyBoard.delegate = self;
         [self.view addSubview:self.pickerKeyBoard];
+        
     }
 }
 
@@ -420,7 +422,7 @@
         //下拉按钮图片
         UIButton  * sexImagButton = [UIButton buttonWithType:UIButtonTypeCustom];
         sexImagButton.bounds = CGRectMake(0, 0, 15, 12);
-        sexImagButton.center = CGPointMake(sexView.width - 15 - sexImagButton.width/2.0, sex_label.center.y);
+        sexImagButton.center = CGPointMake(sexView.width - 5 - sexImagButton.width/2.0, sex_label.center.y);
         [sexImagButton setImage:[UIImage imageNamed:_upDownImagName[0]] forState:UIControlStateNormal];
         [sexImagButton setImage:[UIImage imageNamed:_upDownImagName[1]] forState:UIControlStateSelected];
 //        sexImagButton.backgroundColor = [UIColor blueColor];
@@ -537,10 +539,40 @@
     
 }
 
+#pragma mark -- 监听picker -- 动画
+-(void)_initNotificationCenter{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveChangeColorNotification:) name:@"pickerKey" object:nil];
 
+}
 
+#pragma mark -- 接受通知  ---
 
+-(void)receiveChangeColorNotification:(NSNotification *)notification{
+    
+    
+    CGFloat  height = _headView.height + _sexheightView.height + self.tableView_person.rowHeight * 3  - self.outHeight;
 
+     CGFloat origin_x =  [[notification.userInfo objectForKey:@"viewHeightInfo"] floatValue];
+    
+    
+    CGFloat  outheight = height -  origin_x;
+
+    if (outheight > 0) {
+        self.tableView_person.contentOffset = CGPointMake(0, outheight);
+        self.outHeight  = outheight;
+    }else{
+        
+        if (self.pickerKeyBoard.isOpen == YES) {
+            return;
+        }else{
+            self.tableView_person.contentOffset = CGPointMake(0, 0);
+
+                  self.outHeight = 0;
+        }
+    }
+    
+}
 
 
 
