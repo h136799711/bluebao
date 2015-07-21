@@ -30,6 +30,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        self.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
         self.contentView.height = 80;
         array = @[@"体重",@"BMI",@"正常"];
        
@@ -100,14 +102,20 @@
 -(void)setWeight:(CGFloat)weight{
 
     weightValueLabel.text = [NSString stringWithFormat:@"%.1f",weight];
-    
-    
-}
-//设置BMI
--(void)setBmiValue:(CGFloat)bmiValue{
 
-        bMIValueLabel.text = [NSString stringWithFormat:@"%.2f",bmiValue];
+    
+    CGFloat bmi = [MyTool getBMINumWeight:weight height:[[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] floatValue]];
+
+    bMITargetLabel.text = [MyTool getBMIStringWeight:weight height:[[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] floatValue]];
+    
+    bMIValueLabel.text = [NSString stringWithFormat:@"%0.1f",bmi];
 }
+//////设置BMI
+//-(void)setBmiValue:(CGFloat)bmiValue{
+//    
+//    weightValueLabel.text = [NSString stringWithFormat:@"%.1f",bmiValue];
+//
+//}
 
 #pragma mark -- label --
 

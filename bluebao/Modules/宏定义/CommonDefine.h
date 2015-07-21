@@ -23,5 +23,11 @@
 #define BOYE_ACCESS_TOKEN  @"access_token"  //token
 //#define BOYE_CODEKEY @""
 #define BOYE_ENDTIME @"endTime"             //到期时间
+#define BOYE_USER_HEIGHT @"user_height"     //用户身高
+#define BOYE_USER_WEIGHT @"user_weight"     //用户体重
+#define BOYE_USER_AGE @"user_age"           //用年龄
+
+
+
 
 #endif

@@ -21,6 +21,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
+        
+        self.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
+        
         self.contentView.frame = CGRectMake(self.contentView.left, self.contentView.top, SCREEN_WIDTH, self.contentView.height);
         
         //图标

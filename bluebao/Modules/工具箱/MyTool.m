@@ -164,16 +164,7 @@
     
     CGFloat bmi = [self getBMINumWeight:weight height:height];
     NSLog(@" bmi  %lf ",bmi);
-    NSString  * string = @"";
-    
-    if (bmi < 18.5) {
-       string = @"偏瘦";
-    }else if (bmi >= 28){
-       string = @"偏胖";
-    }else{
-        string = @"正常";
-    }
-    return string;
+    return [MyTool getBMITarget:bmi];
 }
 
 #pragma markk -- 获得BMI值 --
@@ -181,6 +172,24 @@
     
     return ( weight/((height/100.0) * (height/100.0)));
 }
+
+#pragma markk -- 获得BMI值指标 --
++(NSString *) getBMITarget:(CGFloat)bmi {
+    
+    NSString  * string = @"";
+
+    if (bmi < 18.5) {
+        string = @"偏瘦";
+    }else if (bmi >= 28){
+        string = @"偏胖";
+    }else{
+        string = @"正常";
+    }
+    return string;
+
+}
+
+
 
 #pragma mark -- 邮箱验证  ---
 + (BOOL) validateEmail:(NSString *)email{

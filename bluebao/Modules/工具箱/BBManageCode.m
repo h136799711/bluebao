@@ -48,7 +48,7 @@
 +(UILabel *)creatMessageCenterInViews:(UIView *)view  num:(int) num{
     
     CGFloat  left = 35; //左间距
-    CGFloat  hwb_width = 45;
+    CGFloat  hwb_width = 35;
     CGFloat infoLabel_width = ( view.width - left *2 -hwb_width *3)/3.0;
     NSArray  * a = @[@"身高",@"体重",@"BMI"];
 
@@ -57,55 +57,28 @@
     label_.frame = CGRectMake(left+(hwb_width +infoLabel_width)*num, 0, hwb_width,  view.height);
     label_.text = a[num];
     label_.font = FONT(15);
+//    label_.backgroundColor = [UIColor redColor];
     [ view addSubview:label_];
 
     //值
     UILabel * value_label = [[UILabel alloc]initWithFrame:CGRectMake(label_.right, 0, infoLabel_width, view.height)];
     value_label.textColor =  [UIColor colorWithHexString:@"#74e7f7"];
-    value_label.font = FONT(30);
+    value_label.font = FONT(20);
+    label_.textAlignment = NSTextAlignmentCenter;
+    
     [view addSubview:value_label];
-    value_label.text = @"xxxx";
+//    value_label.backgroundColor = [UIColor redColor];
+//    value_label.text = @"xxxx";
+    
+    
     return value_label;
 }
 
 //TabbarView
 +(UIView *)creatTabbarShow:(UIView * ) showView button:(UIButton *)btn ImagName:(NSString *)name titleLabel:(NSString *)title{
     
-//    
-//    CGFloat  width_ = showView.width/4.0;
-//    UIView * view_ = [[UIView alloc] init];
-//    view_.frame = CGRectMake(width_*btn.tag, 0, width_, showView.height);
-//    
-//     //按钮
-//    btn.bounds = CGRectMake(0, 0, 30, 30);
-//    [view_ addSubview:btn];
-//    
-//     //文字
-//    UILabel * label = [[UILabel alloc] init];
-//    [view_ addSubview:label];
-//  
-//    CGSize size = [MyTool getSizeString:title font:15];
-//    label.bounds = CGRectMake(0, 0, size.width, size.height);
-//    label.text = title;
-//    label.textColor = [UIColor whiteColor];
-//    label.tag = btn.tag +1;
-//    label.font = FONT(15);
-//    
-//    
-//     //图与按钮间的距离
-//    CGFloat space = 5;
-//    CGFloat  between = (width_- label.width - btn.width)/2.0;
-//    
-//    btn.center = CGPointMake(between + btn.width/2.0 , view_.height/2.0);
-//    label.center = CGPointMake(btn.right + space+ label.width/2.0, btn.center.y);
-//    
-//    
-//    [showView addSubview:view_];
-//    
-    
-    
     CGFloat  left = 40;
-    CGFloat  width = 25;
+    CGFloat  width = 28;
     CGFloat  between = (showView.width -left*2 -width *4)/3.0;
 
     
@@ -119,13 +92,13 @@
     UILabel * label = [[UILabel alloc] init];
     [showView addSubview:label];
 
-    CGSize size = [MyTool getSizeString:title font:13];
+    CGSize size = [MyTool getSizeString:title font:12];
     label.bounds = CGRectMake(0, 0, size.width, size.height);
     label.center = CGPointMake(btn.center.x, btn.bottom + label.height/2.0+1);
     label.text = title;
     label.textColor = [UIColor whiteColor];
     label.tag = btn.tag +1;
-    label.font = FONT(13);
+    label.font = FONT(12);
     [showView addSubview:label];
     
     

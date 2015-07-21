@@ -163,6 +163,17 @@
         [_contentView addSubview:vc.view];
     }
     select_button = button;
+    
+    for (int i = 0; i < self.viewcontrollers.count; i ++) {
+        
+        UILabel * label = (UILabel *)[_bottomView viewWithTag:i+1];
+        if (button.tag == i) {
+            label.textColor = [UIColor redColor];
+        }else{
+            label.textColor = [UIColor whiteColor];
+        }
+    }
+    
     self.navigationController.navigationBarHidden = YES;
 
 }

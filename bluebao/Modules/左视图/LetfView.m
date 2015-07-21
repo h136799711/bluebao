@@ -14,7 +14,6 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
-#import "EquimentMessageVC.h"//设备管理
 #import "PersonMessageVC.h"//个人资料
 #import "BlueBaoAboutVC.h" // 关于蓝堡
 #import "MoreExereqBuyVC.h" 
@@ -111,9 +110,19 @@
         
     } else if (indexPath.row == 1){
             //设备管理
-        EquimentMessageVC * equiment = [[EquimentMessageVC alloc] init];
-        [[MainViewController sharedSliderController].navigationController pushViewController:equiment animated:YES];
-    
+
+        UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"new" bundle:nil];
+        
+        if (secondStroyBoard == nil) {
+            return;
+        }
+        UIViewController *test2obj=[secondStroyBoard instantiateViewControllerWithIdentifier:@"device"];
+        
+        
+        [ [MainViewController sharedSliderController].navigationController pushViewController:test2obj animated:NO];
+        
+
+        
     } else if (indexPath.row == 6){
           //关于蓝堡
         BlueBaoAboutVC * aboutVC = [[BlueBaoAboutVC alloc] init];
@@ -146,7 +155,7 @@
 -(UIView *)creatTableViewHeadView{
     
     UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 120)];
-    headView.backgroundColor = [UIColor lightGrayColor];
+//    headView.backgroundColor = [UIColor lightGrayColor];
     
     //头像
     UIButton * headBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -177,6 +186,11 @@
     signTextfield.text = @"张三";
     [headView addSubview:signTextfield];
     signTextfield.font = [UIFont boldSystemFontOfSize:14];;
+    
+    //线
+    UIView * line =     [MyTool createLineInView:headView fram:CGRectMake(0, headView.height, headView.width, 0.5)];
+    line.backgroundColor = [UIColor blackColor];
+    
     return headView;
 }
 

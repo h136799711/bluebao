@@ -63,6 +63,9 @@
 #pragma markk -- 获得BMI值 --
 +(CGFloat) getBMINumWeight:(CGFloat)weight height:(CGFloat)height;
 
+#pragma markk -- 获得BMI值指标 --
++(NSString *) getBMITarget:(CGFloat)bmi ;
+
 #pragma mark -- 邮箱验证  ---
 + (BOOL) validateEmail:(NSString *)email;
 

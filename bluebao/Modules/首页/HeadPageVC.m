@@ -45,7 +45,9 @@
 -(void)_initViews{
 
     itemWidth = (SCREEN_WIDTH - 50-15*3)/4.0;
-
+    [USER_DEFAULT setInteger:60 forKey:BOYE_USER_WEIGHT];
+    [USER_DEFAULT setInteger:160 forKey:BOYE_USER_HEIGHT];
+    
     [self _initHeadInfoTableView];
 }
 
@@ -98,8 +100,8 @@
         if (cell == nil) {
             cell = [[BMICell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             }
-        cell.weight = 60;
-        cell.bmiValue = 8.9;
+        cell.weight =  [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] floatValue];
+//        cell.bmiValue = 8.9;
         return cell;
         
     }

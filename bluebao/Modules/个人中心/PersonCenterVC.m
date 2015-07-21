@@ -128,10 +128,16 @@
         [MyTool createLineInView:_views fram:CGRectMake(26, _views.height -1, SCREEN_WIDTH-26*2, 1)];
 
     }
-   self.heightLabel.text = @"165";
-    self.weightLabel.text = @"60";
-    self.BMiLabel.text = @"30";
-   
+    
+    int weight = [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] intValue];
+    int height = [[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] intValue];
+    CGFloat bmi = [MyTool getBMINumWeight:weight height:height];
+    
+    
+   self.heightLabel.text = [NSString stringWithFormat:@"%d",height];
+    self.weightLabel.text = [NSString stringWithFormat:@"%d",weight];
+    self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
+    
     return  _views;
 }
 

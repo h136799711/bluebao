@@ -41,7 +41,7 @@
 #import "NSDate+Helper.h"  //日期
 #import "CacheFacade.h"     //缓存
 
-
+#import "BoyeBluetoothBaseVC.h"
 
 //-------------------打印日志-------------------------
 //DEBUG  模式下打印日志,当前行
