@@ -21,13 +21,13 @@
         self.webImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, self.contentView.width)];
 
         self.webImageView.backgroundColor = [UIColor yellowColor];
+        [MyTool cutViewConner:self.webImageView radius:5];
         [self.contentView addSubview:self.webImageView];
         
         //label
         self.webLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.webImageView.bottom, self.webImageView.width, self.contentView.height - self.webImageView.height)];
         self.webLabel.font = FONT(15);
         self.webLabel.textAlignment = NSTextAlignmentCenter;
-        self.webLabel.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:self.webLabel];
         
         

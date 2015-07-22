@@ -69,6 +69,7 @@
 
 -(void)submitBtn{
     NSLog(@"提交");
+    NSLog(@"  %@",_placeTextView.text);
 }
 
 #pragma mark --返回 --

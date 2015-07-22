@@ -201,7 +201,9 @@
     if (_currentmumZoom < self.minimumZoom) {
         _currentmumZoom = self.minimumZoom;
     }
-    [self.pickerView selectRow:_currentmumZoom-self.minimumZoom inComponent:1 animated:NO];
+    [self.pickerView selectRow:self.currentmumZoom-self.minimumZoom inComponent:1 animated:NO];
+    
+//    NSLog(@" - -%ld--   %ld -  row - %ld" ,self.minimumZoom,self.currentmumZoom, self.currentmumZoom-self.minimumZoom );
 }
 #pragma mark -- 重载 数据单位 属性 --
 

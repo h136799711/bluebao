@@ -93,6 +93,7 @@
     if (indexPath.row == 0) {
         
         WebViewController  * web = [[WebViewController alloc] init];
+        web.urlString = @"http://lanbaozg.tmall.com/?spm=a1z10.1-b.1997427721.d4918089.sQVqQy";
         web.title = @"联系我们";
         [self.navigationController pushViewController:web animated:YES];
     }else if (indexPath.row == 1){

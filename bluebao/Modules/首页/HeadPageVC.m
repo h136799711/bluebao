@@ -33,21 +33,29 @@
     
     self.title =@"蓝堡踏步机";
 
-    _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗"];
-    _imageName = @[@"xinlv",@"sd",@"time",@"sport"];
+    _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗",@"路程"];
+    _imageName = @[@"xinlv.png",@"sd.png",@"time.png",@"sport.png",@"road.png"];
     _sortArray = @[@"体脂肪率",@"体水分率",@"体年龄",@"基础代谢",@"肌肉含量",@"内脏含量",@"骨骼含量",@"皮下脂肪"];
     [self _initViews];
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:YES];
+    [_tableView reloadData];
+    [headCollectionView reloadData];
+}
 #pragma mark -- 初始化 --
 
 -(void)_initViews{
 
     itemWidth = (SCREEN_WIDTH - 50-15*3)/4.0;
     [USER_DEFAULT setInteger:60 forKey:BOYE_USER_WEIGHT];
-    [USER_DEFAULT setInteger:160 forKey:BOYE_USER_HEIGHT];
-    
+    [USER_DEFAULT setInteger:165 forKey:BOYE_USER_HEIGHT];
+    [USER_DEFAULT setInteger:16 forKey:BOYE_USER_AGE];
+
+//
     [self _initHeadInfoTableView];
 }
 
@@ -208,8 +216,14 @@
 
     
     cell.labelUnit.text = indexPath.row == 2?@"岁":@"%";
-   
-    cell.infoValue = 10;
+    if (indexPath.row == 2) {
+
+            cell.infoValue = [[USER_DEFAULT objectForKey:BOYE_USER_AGE] floatValue];
+        
+    }else{
+            cell.infoValue = 10;
+    }
+
     cell.labelSort.text = _sortArray[indexPath.row];
     return cell;
 }

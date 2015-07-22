@@ -13,6 +13,12 @@
     
     NSInteger              _currentRow;
     NSInteger              _currentComponent;
+    
+    NSInteger              _hour;
+    NSInteger              _minute;
+    NSInteger              _hundre;
+    NSInteger              _ten;
+    NSInteger              _digit;
 }
 
 
@@ -27,6 +33,12 @@
     
     self = [super init];
     if (self) {
+        
+        _hour = 0;
+        _minute = 0;
+        _hundre = 0;
+        _ten = 0;
+        _digit = 0;
         
         
         [self _initViews];
@@ -122,20 +134,14 @@
         return @":";
     }else if (component == 0||component == 2){
         
-        NSString  *numstr = [[NSString alloc] init];
-        if (row < 10) {
-            numstr = [NSString stringWithFormat:@"0%ld",row];
-        }else{
-            numstr = [NSString stringWithFormat:@"%ld",row];
-        }
-        
+        NSString  *numstr = [self getDateString:row];
         return  numstr;
     }else if (component == 5){
         
         return [NSString stringWithFormat:@"%ld卡",row];
     }else{
         
-        return [NSString stringWithFormat:@"%ld",row];
+        return [self getNumberString:row];
     }
 
 }
@@ -144,22 +150,30 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
 
     
-    if (row <3) {
-        self.tabrow = 0;
-        self.datastr = [NSString stringWithFormat:@"%@:%@",self.goalData.hour,self.goalData.minute];
-        
-        
-    }else{
-        self.tabrow = 1;
-        self.datastr = [NSString stringWithFormat:@"%ld%ld%ld",self.goalData.hundredPlace,self.goalData.tendPlace,self.goalData.digitPlace];
-
+    switch (component) {
+        case 0:
+            _hour = row;
+            break;
+            
+        case 2:
+            _minute = row;
+            break;
+            
+        case 3:
+            _hundre = row;
+            break;
+            
+        case 4:
+            _ten= row;
+            break;
+            
+        case 5:
+            _digit = row;
+            break;
+            
+        default:
+            break;
     }
-    
-    
-    
-    
-    _currentComponent = row;
-    _currentRow = component;
     
 }
 
@@ -221,14 +235,14 @@
         //完成
     }else{
     
-        if (self.datastr == nil) {
-            self.datastr = @"";
-        }
-        
+
         #pragma mark ---- 代理 ----
-        if ([_delegate respondsToSelector:@selector(goalPickerView:finishRow:textInRow:)]) {
-            [_delegate goalPickerView:self finishRow:self.tabrow textInRow:self.datastr];
-            
+        NSString * timestr = [NSString stringWithFormat:@"%@:%@",[self getDateString:_hour],[self getDateString:_minute]];
+        NSInteger  goalnum = [[NSString stringWithFormat:@"%ld%ld%ld",_hundre,_ten,_digit] integerValue];
+        
+        
+        if ([_delegate respondsToSelector:@selector(goalPickerView:dateString:goalNumber:)]) {
+            [_delegate goalPickerView:self dateString:timestr goalNumber:goalnum];
         }
 
         [self close];
@@ -284,7 +298,26 @@
     [center postNotificationName:@"Goalpicker" object:self userInfo:@{@"viewHeightInfo":heightString}];
 }
 
+#pragma mark -- 转化为字符串  01- 09 - 24 - 60
+-(NSString *) getDateString:(NSInteger)num{
+    
+    NSString  *numstr = [[NSString alloc] init];
+    if (num < 10) {
+        numstr = [NSString stringWithFormat:@"0%ld",num];
+    }else{
+        
+        numstr = [NSString stringWithFormat:@"%ld",num];
+    }
+    
+    return numstr;
+}
 
+//数值转化为字符串
+-(NSString *) getNumberString:(NSInteger)num{
+    
+    NSString * numstr = [NSString stringWithFormat:@"%ld",num];
+    return numstr;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

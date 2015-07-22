@@ -23,7 +23,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"分享";
-    _shareName = @[@"weixin.png",@"quan.png",@"qq.png"];
+    _shareName = @[@"weixin.png",@"web.png",@"qq.png"];
+    
     
     [self _initViews];;
     [self _initShareView];
@@ -65,7 +66,7 @@
         
     }else if (indexPath.row == 1) {
         
-        cell.textLabel.text = @"绿堡";
+        cell.textLabel.text = @"蓝堡";
     }else{
         cell.textLabel.text = @"轻运动，让健康更简单";
     }
@@ -128,7 +129,7 @@
     for (int i = 0;  i < 2; i ++) {
         
         //步
-        CGFloat  right = 20;
+        CGFloat  right = 25;
         CGFloat  halfwidth = showView.width/2.0;
         CGFloat  top = 60 + 60*i;
         
@@ -144,7 +145,7 @@
         //跑了多少步/消耗多少卡
         UILabel  * mpLabel = [[UILabel alloc] init];
         mpLabel.bounds = CGRectMake(0, 0, stepLabel.left - halfwidth , stepLabel.height + 4);
-        mpLabel.center = CGPointMake(halfwidth + mpLabel.width/2.0 + 20, stepLabel.center.y - 4);
+        mpLabel.center = CGPointMake(halfwidth + mpLabel.width/2.0 + 5, stepLabel.center.y - 4);
         mpLabel.text = @"0";
         mpLabel.tag = showView.tag + 1 + i*2;
         mpLabel.textColor = [UIColor colorWithHexString:@"#14caff"];
@@ -158,7 +159,7 @@
         //等价于
         UILabel  * equalLabel = [[UILabel alloc] init];
         equalLabel.frame = CGRectMake(mpLabel.left, mpLabel.bottom + 3, halfwidth, 30);
-        equalLabel.text = @[@"慢跑了000公里",@"==000份炸鸡"][i];
+        equalLabel.text = @[@"慢跑了000公里",@"==0份炸鸡"][i];
         equalLabel.tag = showView.tag + 2 +i*2;
         equalLabel.font = FONT(15);
         [showView addSubview:equalLabel];
@@ -217,12 +218,12 @@
 //    navView.backgroundColor = [UIColor redColor];
     //日期
     UILabel * datalabel = [[UILabel alloc] init];
-    datalabel.frame = CGRectMake(0, 0, navView.width , 20);
+    datalabel.frame = CGRectMake(0, 0, navView.width , 22);
     datalabel.textAlignment = NSTextAlignmentCenter;
     datalabel.font = FONT(16);
-    datalabel.textColor = [UIColor whiteColor];
+    datalabel.textColor = [UIColor blackColor];
     //当前日期
-    NSString * dataStr = @"M月-dd日";
+    NSString * dataStr = @"yy-M-dd";
     datalabel.text = [MyTool getCurrentDataFormat:dataStr];
     [navView addSubview:datalabel];
     
@@ -250,7 +251,7 @@
 #pragma mark -- 分享  --
 -(void)shareBtn:(UIButton *)shareBtn{
     
-    NSLog(@"分享到%@",@[@"微信",@"朋友圈",@"qq空间"][shareBtn.tag]);
+    NSLog(@"分享到%@",@[@"微信",@"微博",@"qq空间"][shareBtn.tag]);
     [share_tableView reloadData];
     
 }

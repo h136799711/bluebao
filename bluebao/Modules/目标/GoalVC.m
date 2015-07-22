@@ -8,10 +8,13 @@
 
 #import "GoalVC.h"
 #import "GoalCell.h"
+#import "GoalData.h"
+
+
 @interface GoalVC (){
     
-    UITableView         * _tableView;
-    int                  _goalCount;
+    UITableView         * _goalTableView;
+//    int                  _goalCount;
     BOOL                  _isHasData;
     UIView                  *_headerView;
     UIView                  *_footerView;
@@ -26,7 +29,7 @@
     // Do any additional setup after loading the view.
     self.title = @"目标设定";
     
-    _goalCount = 0;
+//    _goalCount = 0;
     _isHasData = NO;
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -49,16 +52,18 @@
 
 -(void)_initGoalTableView{
     
-    if (_tableView == nil) {
+    if (_goalTableView == nil) {
         
-        CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TABBAR_HEIGHT);
-        _tableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStyleGrouped];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableHeaderView = [self creatHeaderView];
-        _tableView.tableFooterView = [self creatFooterView];
-        _tableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
-        [self.view addSubview:_tableView];
+        CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT);
+        _goalTableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStyleGrouped];
+        _goalTableView.rowHeight = 44;
+        
+        _goalTableView.delegate = self;
+        _goalTableView.dataSource = self;
+        _goalTableView.tableHeaderView = [self creatHeaderView];
+        _goalTableView.tableFooterView = [self creatFooterView];
+        _goalTableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
+        [self.view addSubview:_goalTableView];
     }
 }
 
@@ -73,7 +78,7 @@
         return 1;
     }else{
      
-        return _goalCount;
+        return self.dataArray.count;
     }
     
 }
@@ -88,6 +93,13 @@
             [cell.alterBtn addTarget:self action:@selector(alterBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         }
+        
+        GoalData * goaldate = [self.dataArray objectAtIndex:indexPath.row];
+        
+        cell.timeLabel.text = goaldate.timestr;
+        cell.goalLael.text  = [NSString stringWithFormat:@"%ld卡",goaldate.goalNumber];
+        cell.operateLael.text = @"50%";
+        
         cell.alterBtn.tag = indexPath.row;
         cell.deleteBtn.tag = indexPath.row ;
         
@@ -127,8 +139,8 @@
 -(void) alterBtnClick:(UIButton *)alterBtn{
     
     NSLog(@"修改");
-//    [_tableView reloadData];
 
+    self.goalPickerView.tag = alterBtn.tag;
     [self.goalPickerView open];
     
     
@@ -137,13 +149,16 @@
 -(void) deleteBtnClick:(UIButton *)deleteBtn{
     
     NSLog(@"删除");
-    _goalCount --;
+    
+    self.goalPickerView.tag = deleteBtn.tag;
+    [self.dataArray removeObjectAtIndex:deleteBtn.tag];
+    
     //然后刷新tableView(动态删除某些行)
     
-    [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:deleteBtn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [_goalTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:deleteBtn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self isHasDataAdjust];
 
-    [_tableView reloadData];
+    [_goalTableView reloadData];
     [self.goalPickerView close];
 }
 
@@ -160,7 +175,6 @@
         headerLabel.tag = 10;
         headerLabel.textAlignment = NSTextAlignmentCenter;
         headerLabel.font = FONT(17);
-//        headerLabel.text = @"15-7-8";
         [_headerView addSubview:headerLabel];
     }
     
@@ -193,9 +207,9 @@
 #pragma mark -- add增加 --
 -(void)addBtnClick:(UIButton *)button{
     
-    _goalCount ++;
-    [self isHasDataAdjust];
-    [_tableView reloadData];
+    self.goalPickerView.tag = -1;
+    [self.goalPickerView open];
+
 }
 
 //区头
@@ -208,14 +222,12 @@
 #pragma mark - 是否含有数据
 -(void)isHasDataAdjust{
     
-    if (_goalCount == 0) {
+    if (self.dataArray.count == 0) {
         _isHasData = NO ;
     }else{
         _isHasData = YES;
     }
 }
-
-
 
 
 #pragma mark -- 创建PIcker --
@@ -230,17 +242,26 @@
     }
 }
 
+
 #pragma mark---PickerDelegate  --
--(void)goalPickerView:(GoalPickerView *)picker finishRow:(NSInteger)tabrow textInRow:(NSString *)string{
+
+-(void)goalPickerView:(GoalPickerView *)picker dateString:(NSString *)time goalNumber:(NSInteger)goalNumber{
     
-    if (tabrow == 0) {
-        NSLog(@"时间");
+    GoalData * goal = [[GoalData alloc] init];
+    goal.timestr = time;
+    goal.goalNumber = goalNumber;
+    
+    if (self.goalPickerView.tag == -1) {
+        [self.dataArray addObject:goal];
     }else{
-        NSLog(@"目标");
-        
+        [self.dataArray replaceObjectAtIndex:self.goalPickerView.tag withObject:goal];
     }
-    NSLog(@"%@",string);
+    
+    [self isHasDataAdjust];
+    [_goalTableView reloadData];
+//    NSLog(@"  ----- %f ---",_goalTableView.rowHeight);
 }
+
 
 #pragma mark -- 监听picker -- 动画
 -(void)_initNotificationCenter{
@@ -254,29 +275,41 @@
 -(void)receiveChangeColorNotification:(NSNotification *)notification{
     
     
-//    CGFloat  height = _headView.height + _sexheightView.height + self.tableView_person.rowHeight * 3  - self.outHeight;
-//    
-//    CGFloat origin_x =  [[notification.userInfo objectForKey:@"viewHeightInfo"] floatValue];
-//    
-//    
-//    CGFloat  outheight = height -  origin_x;
-//    
-//    if (outheight > 0) {
-//        self.tableView_person.contentOffset = CGPointMake(0, outheight);
-//        self.outHeight  = outheight;
-//    }else{
-//        
-//        if (self.pickerKeyBoard.isOpen == YES) {
-//            return;
-//        }else{
-//            self.tableView_person.contentOffset = CGPointMake(0, 0);
-//            
-//            self.outHeight = 0;
-//        }
-//    }
+    CGFloat  height = _headerView.height +44+20+ _footerView.height + _goalTableView.rowHeight * self.dataArray.count  - self.outHeight;
+    
+    CGFloat origin_x =  [[notification.userInfo objectForKey:@"viewHeightInfo"] floatValue];
     
     
-    NSLog(@" --- %f",[[notification.userInfo objectForKey:@"viewHeightInfo"] floatValue]);
+    CGFloat  outheight = height -  origin_x;
+    
+    if (outheight > 0) {
+        _goalTableView.contentOffset = CGPointMake(0, outheight);
+        self.outHeight  = outheight;
+   
+    }else{
+        //如果是打开状态，
+        if (self.goalPickerView.isOpen == YES) {
+            return;
+            //如果是关闭状态
+        }else{
+           
+            if (height<_goalTableView.height) {
+            
+                _goalTableView.contentOffset = CGPointMake(0, 0);
+                self.outHeight = 0;
+
+            }else{
+                
+                self.outHeight = height - _goalTableView.height+_goalTableView.rowHeight;
+                _goalTableView.contentOffset = CGPointMake(0,self.outHeight);
+                
+            }
+          
+        }
+    }
+    
+    
+//    NSLog(@" --- %f",[[notification.userInfo objectForKey:@"viewHeightInfo"] floatValue]);
 }
 
 

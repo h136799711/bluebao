@@ -163,7 +163,7 @@
 +(NSString *) getBMIStringWeight:(CGFloat)weight height:(CGFloat)height{
     
     CGFloat bmi = [self getBMINumWeight:weight height:height];
-    NSLog(@" bmi  %lf ",bmi);
+//    NSLog(@" bmi  %lf ",bmi);
     return [MyTool getBMITarget:bmi];
 }
 

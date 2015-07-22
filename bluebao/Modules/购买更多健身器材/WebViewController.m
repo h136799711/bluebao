@@ -20,20 +20,15 @@
     
     [self _initNavs];
     
-    UIWebView  * web = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - STATUS_HEIGHT - NAV_HEIGHT)];
-//    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://mianyifan.jd.com/"]];
-//    NSURLConnection * control = [NSURLConnection connectionWithRequest:request delegate:self];
-// 
+//    UIWebView  * web = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - STATUS_HEIGHT - NAV_HEIGHT)];
+//
+//    [self.view addSubview:web];
+//    
+//    NSURL *url = [[NSURL alloc]initWithString:self.urlString];
+//    
+//    [web loadRequest:[NSURLRequest requestWithURL:url]];
     
-    
-    
-    [self.view addSubview:web];
-    
-    NSURL *url = [[NSURL alloc]initWithString:@"http://mianyifan.jd.com/"];
-    
-    [web loadRequest:[NSURLRequest requestWithURL:url]];
-    
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://mianyifan.jd.com/"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
 }
 
 

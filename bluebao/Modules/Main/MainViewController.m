@@ -63,7 +63,7 @@
     
     sortName = @[@"首页",@"目标",@"个人中心",@"分享"];
     _btnNormalImagName = @[@"home.png",@"target.png",@"person.png",@"share.png"];
-    
+    _btnSelectImagName = @[@"homeon.png",@"targeton.png",@"personon.png",@"shareon.png"];
     
     
     //创建自定义tabba
@@ -134,7 +134,7 @@
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag=i;
         [button setBackgroundImage:[UIImage imageNamed:_btnNormalImagName[i]] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:_btnNormalImagName[i]] forState:UIControlStateSelected];
+        [button setBackgroundImage:[UIImage imageNamed:_btnSelectImagName[i]] forState:UIControlStateSelected];
 //        //底部按钮
         [BBManageCode creatTabbarShow:_bottomView
                                button:button
@@ -162,17 +162,19 @@
         
         [_contentView addSubview:vc.view];
     }
-    select_button = button;
     
-    for (int i = 0; i < self.viewcontrollers.count; i ++) {
-        
-        UILabel * label = (UILabel *)[_bottomView viewWithTag:i+1];
-        if (button.tag == i) {
-            label.textColor = [UIColor redColor];
-        }else{
-            label.textColor = [UIColor whiteColor];
-        }
-    }
+    select_button.selected = NO;
+    select_button = button;
+    button.selected = YES;
+    
+//    for (int i = 0; i < self.viewcontrollers.count; i ++) {
+//        UILabel * label = (UILabel *)[_bottomView viewWithTag:i+1];
+//        if (button.tag == i) {
+//            label.textColor = [UIColor redColor];
+//        }else{
+//            label.textColor = [UIColor whiteColor];
+//        }
+//    }
     
     self.navigationController.navigationBarHidden = YES;
 

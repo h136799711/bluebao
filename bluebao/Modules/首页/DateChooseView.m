@@ -68,7 +68,7 @@
     self.newbDate = [[NSDate date] dateByAddingTimeInterval:3600 *8];
 
     dateLabel.text =  [self getDateString: self.newbDate ];
-    NSLog(@"  --  %@ date - ",self.newbDate);
+//    NSLog(@"  --  %@ date - ",self.newbDate);
     
 }
 

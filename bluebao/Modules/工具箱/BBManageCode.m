@@ -118,7 +118,7 @@
     headImageBtn.bounds = CGRectMake(0, 0, headWidth, headWidth);
     headImageBtn.center = CGPointMake(_headView.width/2.0-10, 40 + headWidth/2.0);
     [_headView addSubview:headImageBtn];
-    [headImageBtn setTitle:@"头像" forState:UIControlStateNormal];
+//    [headImageBtn setTitle:@"头像" forState:UIControlStateNormal];
     headImageBtn.backgroundColor = [UIColor redColor];
 //    [headBtn addTarget:self action:@selector(uploadHeadImage) forControlEvents:UIControlEventTouchUpInside];
     [MyTool cutViewConner:headImageBtn radius:headImageBtn.width/2.0];

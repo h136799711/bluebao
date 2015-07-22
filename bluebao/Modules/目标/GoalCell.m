@@ -79,8 +79,20 @@
         label.text = string;
         label.font = FONT(15);
         [self.contentView addSubview:label];
+        
+        if (place == 0) {
+            self.timeLabel = label;
+        }else if (place == 1){
+            self.goalLael = label;
+        }else{
+            self.operateLael = label;
+        }
+        
     }
     
 }
+
+
+
 
 @end

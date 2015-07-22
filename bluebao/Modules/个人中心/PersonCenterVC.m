@@ -24,6 +24,22 @@
 
 @implementation PersonCenterVC
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:YES];
+    
+    NSInteger weight = [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] integerValue];
+    NSInteger height = [[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] integerValue];
+    CGFloat bmi = [MyTool getBMINumWeight:weight height:height];
+    
+    
+    self.heightLabel.text = [NSString stringWithFormat:@"%ld",height];
+    self.weightLabel.text = [NSString stringWithFormat:@"%ld",weight];
+    self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
+//
+//    NSLog(@" ----  %ld   %ld  %f  ",weight,height,bmi );
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -129,14 +145,14 @@
 
     }
     
-    int weight = [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] intValue];
-    int height = [[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] intValue];
-    CGFloat bmi = [MyTool getBMINumWeight:weight height:height];
-    
-    
-   self.heightLabel.text = [NSString stringWithFormat:@"%d",height];
-    self.weightLabel.text = [NSString stringWithFormat:@"%d",weight];
-    self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
+//    int weight = [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] intValue];
+//    int height = [[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] intValue];
+//    CGFloat bmi = [MyTool getBMINumWeight:weight height:height];
+//    
+//    
+//   self.heightLabel.text = [NSString stringWithFormat:@"%d",height];
+//    self.weightLabel.text = [NSString stringWithFormat:@"%d",weight];
+//    self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
     
     return  _views;
 }

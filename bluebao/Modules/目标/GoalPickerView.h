@@ -13,11 +13,12 @@
 
 @protocol GoalPickerViewDelegate <NSObject>
 
--(void)goalPickerView:(GoalPickerView *)picker selectedText:(NSString *)string;
+//-(void)goalPickerView:(GoalPickerView *)picker selectedText:(NSString *)string;
 
 // 0  时间，小时，分钟  ，1 目标
--(void)goalPickerView:(GoalPickerView *)picker rowIntab:(NSInteger )row  selectedTextInRow:(NSString *)datastr;
--(void)goalPickerView:(GoalPickerView *)picker finishRow:(NSInteger)tabrow textInRow:(NSString *)string;
+-(void)goalPickerView:(GoalPickerView *)picker dateString:(NSString * )time  goalNumber:(NSInteger) goalNumber;
+
+
 
 @end
 

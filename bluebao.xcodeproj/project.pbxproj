@@ -428,14 +428,14 @@
 		5B38C7731B5390CF0063912C /* 目标 */ = {
 			isa = PBXGroup;
 			children = (
-				5B38C7741B5390CF0063912C /* GoalCell.h */,
-				5B38C7751B5390CF0063912C /* GoalCell.m */,
 				5B38C7761B5390CF0063912C /* GoalVC.h */,
 				5B38C7771B5390CF0063912C /* GoalVC.m */,
 				5B74F4A61B58FF75002493E8 /* GoalPickerView.h */,
 				5B74F4A71B58FF75002493E8 /* GoalPickerView.m */,
 				5B1D24031B5CD5A000BE460C /* GoalData.h */,
 				5B1D24041B5CD5A000BE460C /* GoalData.m */,
+				5B38C7741B5390CF0063912C /* GoalCell.h */,
+				5B38C7751B5390CF0063912C /* GoalCell.m */,
 			);
 			name = "目标";
 			path = "Modules/目标";

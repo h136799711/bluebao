@@ -10,6 +10,11 @@
 
 @interface GoalData : NSObject
 
+
+
+@property (nonatomic,copy) NSString             * timestr;//时间
+@property (nonatomic,assign) NSInteger          goalNumber; //目标卡
+
 @property (nonatomic,copy) NSString             * hour;//小时
 @property (nonatomic,copy) NSString             * minute;//分钟
 

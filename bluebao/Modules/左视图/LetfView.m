@@ -162,7 +162,7 @@
     headBtn.bounds = CGRectMake(0, 0, 50, 50);
     headBtn.center = CGPointMake(20+headBtn.width/2.0, headBtn.height/2.0 + 40);
     [headView addSubview:headBtn];
-    [headBtn setTitle:@"头像" forState:UIControlStateNormal];
+//    [headBtn setTitle:@"头像" forState:UIControlStateNormal];
     [headBtn setBackgroundImage:[UIImage imageNamed:@"testhead.png"] forState:UIControlStateNormal];
     [headBtn setBackgroundImage:[UIImage imageNamed:@"testhead.png"] forState:UIControlStateHighlighted];
 

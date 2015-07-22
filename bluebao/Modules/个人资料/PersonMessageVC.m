@@ -23,12 +23,20 @@
     NSInteger         _currentRow;//当前行；
     
     NSArray         *_upDownImagName;
-    
+    BOOL            _isAge;  //当前选择的是年龄吗
 }
 
 @end
 
 @implementation PersonMessageVC
+
+//
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:YES];
+//    [self.tableView_person reloadData];
+//    
+//   
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,8 +49,10 @@
     sorArray = @[@"身高",@"当前体重",@"目标体重",@"BMI"];
     _upDownImagName = @[@"down.png",@"up.png"];
     
-    self.valueArray = [[NSMutableArray alloc] initWithObjects:@"165CM",@"55KG",@"55KG",@"", nil];
     
+    
+    self.valueArray = [[NSMutableArray alloc] initWithObjects:@"165CM",@"65KG",@"55KG",@"", nil];
+    _isAge = NO;
     //创建视图
     [self _initViews];
     
@@ -62,6 +72,8 @@
     [self _initPickerKeyBoard];
     //监听Picker位置
     [self _initNotificationCenter ];
+    
+    
 }
 
 
@@ -143,25 +155,28 @@
 
     _currentRow = indexPath.row;
   
+    self.pickerKeyBoard.tag = 0;
     if (indexPath.row == 0) {
-        self.pickerKeyBoard.minimumZoom = 25;
+        self.pickerKeyBoard.minimumZoom = 50;
         self.pickerKeyBoard.maximumZoom = 250;
         self.pickerKeyBoard.dataUnit = @"CM";
 
     }else{
        
-        self.pickerKeyBoard.minimumZoom = 50;
+        self.pickerKeyBoard.minimumZoom = 20;
         self.pickerKeyBoard.maximumZoom = 150;
         self.pickerKeyBoard.dataUnit = @"KG";
         
     }
     //当前体重，
     self.pickerKeyBoard.currentmumZoom = [self getCurrentNum:self.valueArray[indexPath.row]];
-    self.pickerKeyBoard.dataName = sorArray[indexPath.row];
-    self.pickerKeyBoard.tag = 0;
-    [self.pickerKeyBoard.pickerView reloadAllComponents];
-    [self.pickerKeyBoard open];
+   // NSLog(@"  --- self.valueArray  - %@ --%ld-",self.valueArray,self.pickerKeyBoard.currentmumZoom);
     
+    self.pickerKeyBoard.dataName = sorArray[indexPath.row];
+    [self.pickerKeyBoard.pickerView reloadAllComponents];
+    
+    [self.pickerKeyBoard open];
+    self.ageImageBtn.selected = NO;
 }
 //分区高
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -190,9 +205,10 @@
     if (ageBtn.selected == YES) {
     
         //当前年龄，
-        self.pickerKeyBoard.minimumZoom = 10;
+        self.pickerKeyBoard.minimumZoom = 8;
         self.pickerKeyBoard.maximumZoom = 100;
-        self.pickerKeyBoard.currentmumZoom = 18;
+
+        self.pickerKeyBoard.currentmumZoom =  [self.ageBtn.currentTitle integerValue] ;
         self.pickerKeyBoard.dataName = @"年龄";
         self.pickerKeyBoard.dataUnit = @"";
         
@@ -200,10 +216,13 @@
         
         [self.pickerKeyBoard.pickerView reloadAllComponents];
         [self.pickerKeyBoard open];
+        _isAge = YES;
+        
     }else{
         [self.pickerKeyBoard close];
+        _isAge = NO;
     }
-    
+    NSLog(@"   --- age ----");
 }
 
 
@@ -259,14 +278,15 @@
 
     
     NSInteger  age = [[self.ageBtn currentTitle] integerValue];
-    NSInteger height = [self getCurrentNum:sorArray[0]];
-    NSInteger weight = [self getCurrentNum:sorArray[1]];
+    NSInteger height = [self getCurrentNum:self.valueArray[0]];
+    NSInteger weight = [self getCurrentNum:self.valueArray[1]];
     
+//    NSLog(@"   --- age %ld -- height %ld ---weight %ld- ",age,height,weight);
     [USER_DEFAULT setInteger:age forKey:BOYE_USER_AGE];
     [USER_DEFAULT setInteger:height forKey:BOYE_USER_HEIGHT];
     [USER_DEFAULT setInteger:weight forKey:BOYE_USER_WEIGHT];
     
-        [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -481,29 +501,29 @@
         [heightView addSubview:height_label];
         
         //下拉按钮图片
-        UIButton  * ageImagButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        ageImagButton.bounds = CGRectMake(0, 0, sexImagButton.width, sexImagButton.height);
-        ageImagButton.center = CGPointMake(sexView.width - 15 - ageImagButton.width/2.0, height_label.center.y);
+        self.ageImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.ageImageBtn.bounds = CGRectMake(0, 0, sexImagButton.width, sexImagButton.height);
+        self.ageImageBtn.center = CGPointMake(sexView.width - 15 - self.ageImageBtn.width/2.0, height_label.center.y);
         
-        [ageImagButton setImage:[UIImage imageNamed:_upDownImagName[0]] forState:UIControlStateNormal];
-        [ageImagButton setImage:[UIImage imageNamed:_upDownImagName[1]] forState:UIControlStateSelected];
+        [self.ageImageBtn setImage:[UIImage imageNamed:_upDownImagName[0]] forState:UIControlStateNormal];
+        [self.ageImageBtn setImage:[UIImage imageNamed:_upDownImagName[1]] forState:UIControlStateSelected];
 //        heightImagButton.backgroundColor = [UIColor blueColor];
-        [heightView addSubview:ageImagButton];
-        [ageImagButton addTarget:self action:@selector(ageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        self.ageImageBtn = ageImagButton;
+        [heightView addSubview:self.ageImageBtn];
+        [self.ageImageBtn addTarget:self action:@selector(ageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 
         //年龄按钮
         UIButton * ageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        ageBtn.bounds = CGRectMake(0, 0, ageImagButton.left - height_label.right, 30);
+        ageBtn.bounds = CGRectMake(0, 0, self.ageImageBtn.left - height_label.right, 30);
         ageBtn.center = CGPointMake(height_label.right + ageBtn.width/2.0, height_label.center.y);
-//                heightBtn.backgroundColor = [UIColor redColor];
-//        [heightBtn setTitle:@"165CM" forState:UIControlStateNormal];
+//
         [ageBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         ageBtn.titleLabel.font = FONT(16);
         [heightView addSubview:ageBtn];
         
+        
+        NSInteger age = [[USER_DEFAULT objectForKey:BOYE_USER_AGE] integerValue];
         self.ageBtn = ageBtn;
-        [self.ageBtn setTitle:@"10" forState:UIControlStateNormal];
+        [self.ageBtn setTitle:[NSString stringWithFormat:@"%ld",age] forState:UIControlStateNormal];
 
     }
     
@@ -573,8 +593,14 @@
                   self.outHeight = 0;
         }
     }
+
+//    //年龄图标箭头下向下变化
     
-    
+    if (self.pickerKeyBoard.isOpen == NO|| self.pickerKeyBoard.tag != 10) {
+        self.ageImageBtn.selected = NO;
+//        NSLog(@" ---");
+    }
+//
 }
 
 

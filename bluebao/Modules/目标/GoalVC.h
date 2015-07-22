@@ -13,5 +13,5 @@
 
 @property (nonatomic,strong) NSMutableArray     *dataArray;
 @property (nonatomic,strong) GoalPickerView     * goalPickerView;
-
+@property (nonatomic,assign) CGFloat             outHeight;
 @end
