@@ -57,7 +57,6 @@
         CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT);
         _goalTableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStyleGrouped];
         _goalTableView.rowHeight = 44;
-        
         _goalTableView.delegate = self;
         _goalTableView.dataSource = self;
         _goalTableView.tableHeaderView = [self creatHeaderView];
@@ -90,7 +89,7 @@
         if (cell == nil) {
             
             cell = [[GoalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-            [cell.alterBtn addTarget:self action:@selector(alterBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.alterBtn addTarget:self action:@selector(alteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         
@@ -136,7 +135,7 @@
 
 #pragma mark -- 点击修改 --
 
--(void) alterBtnClick:(UIButton *)alterBtn{
+-(void) alteBtnClick:(UIButton *)alterBtn{
     
     NSLog(@"修改");
 
@@ -251,6 +250,7 @@
     goal.timestr = time;
     goal.goalNumber = goalNumber;
     
+    //add按钮
     if (self.goalPickerView.tag == -1) {
         [self.dataArray addObject:goal];
     }else{
@@ -259,6 +259,7 @@
     
     [self isHasDataAdjust];
     [_goalTableView reloadData];
+    
 //    NSLog(@"  ----- %f ---",_goalTableView.rowHeight);
 }
 
@@ -274,42 +275,40 @@
 
 -(void)receiveChangeColorNotification:(NSNotification *)notification{
     
+    CGFloat  height = _headerView.height +44 + 15 + _footerView.height + _goalTableView.rowHeight * self.dataArray.count;
     
-    CGFloat  height = _headerView.height +44+20+ _footerView.height + _goalTableView.rowHeight * self.dataArray.count  - self.outHeight;
+    CGFloat pickerTop =  [[notification.userInfo objectForKey:@"goalViewHeightInfo"] floatValue];
+    CGFloat  outheight = -pickerTop + height;
     
-    CGFloat origin_x =  [[notification.userInfo objectForKey:@"viewHeightInfo"] floatValue];
-    
-    
-    CGFloat  outheight = height -  origin_x;
-    
-    if (outheight > 0) {
-        _goalTableView.contentOffset = CGPointMake(0, outheight);
-        self.outHeight  = outheight;
+    //picker 未过界
+    if (outheight <= 0) {
+        [_goalTableView setContentOffset:CGPointMake(0,0 ) animated:YES];
    
     }else{
-        //如果是打开状态，
-        if (self.goalPickerView.isOpen == YES) {
-            return;
-            //如果是关闭状态
+        
+        //picker过界了 outheight 为负值（） ,,self.outHeight 初始值为0 （始终》=0）；
+               //打开状态下
+        if (self.goalPickerView.isOpen) {
+
+            [_goalTableView setContentOffset:CGPointMake(0,outheight ) animated:YES];
+          
         }else{
-           
-            if (height<_goalTableView.height) {
+            //关闭状态
             
-                _goalTableView.contentOffset = CGPointMake(0, 0);
-                self.outHeight = 0;
+            if (height < _goalTableView.height) {
+
+                    [_goalTableView setContentOffset:CGPointMake(0,0) animated:YES];
+
 
             }else{
                 
-                self.outHeight = height - _goalTableView.height+_goalTableView.rowHeight;
-                _goalTableView.contentOffset = CGPointMake(0,self.outHeight);
-                
+                [_goalTableView setContentOffset:CGPointMake(0,height - _goalTableView.height) animated:YES];
             }
-          
+            
         }
+  
     }
-    
-    
-//    NSLog(@" --- %f",[[notification.userInfo objectForKey:@"viewHeightInfo"] floatValue]);
+ 
 }
 
 

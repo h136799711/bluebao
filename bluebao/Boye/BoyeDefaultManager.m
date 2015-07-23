@@ -62,8 +62,145 @@
     return formatter;
 }
 
+//获取令牌
++(void)requtstAccessTokenComplete:(void(^)(BOOL  succed))complete{
+    
+    BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
+    
+    NSDictionary *params = @{@"grant_type":@"client_credentials",@"client_id":@BOYE_CLIENT_ID,@"client_secret":@BOYE_CLIENT_SECRET};
+    
+    [client post:@"Api/Token/index"
+                :params
+                :^(AFHTTPRequestOperation *operation ,id responseObject){
+                    NSString *html = operation.responseString;
+                    NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
+                    id dict=[NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                    
+                    NSDictionary *json = (NSDictionary *)dict;
+                    
+                    NSNumber *code = [json valueForKey:@"code"];
+                    
+                    NSDictionary *info = [json valueForKey:@"info"];
+                    
+                    NSLog(@"请求成功!%fl",[code floatValue]);
+                    NSLog(@"请求结果  info  ：%@",info);
+
+                    
+                    if ([code intValue] == 0){
+                        NSString * access_token = [info objectForKey:@"access_token"];
+                        NSLog(@" access_token   %@",access_token);
+                        
+                        [self saveDataWithDic:info];
+
+                        complete (YES);
+//                        
+                    }else{
+                        
+                        NSLog(@"请求失败!%ld",(long)code);
+                        complete (NO);
+
+                    }
+                    
+                }
+                :^(AFHTTPRequestOperation *operation ,NSError *error){
+                    NSLog(@"Error: %@", error);
+                    complete (NO);
+
+                }];
+    
+
+    
+}
+
+
+//保存token 以及计算出过期的时间并保存
+
++(void)saveDataWithDic:(NSDictionary *)dic{
+    
+    NSString *access_token=[dic objectForKey:@"access_token"];
+    double time=[[dic objectForKey:@"expires_in"] doubleValue];
+    
+    //计算出距离当前日期 长度为time的日期
+    NSDate *date=[NSDate dateWithTimeIntervalSinceNow:time];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:access_token forKey:BOYE_ACCESS_TOKEN];
+    [[NSUserDefaults standardUserDefaults] setObject:date forKey:BOYE_ENDTIME];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+//    NSLog(@" token   - =%@",[USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN]);
+    
+}
+
+
+//用户注册接口
++(void)requestRegisterUser:(User *)user complete:(void(^)(BOOL succed))complete{
+    
+    NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+
+    BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
+    
+    NSDictionary *params = @{@"username":user.userName,@"password":user.userPsw};
+    
+    NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.userName,user.userPsw,token);
+    
+    NSString * urlstr = [NSString stringWithFormat:@"User/register?access_token=%@",token];
+    
+    
+//    urlstr = @"Api/User/regisiter";
+    
+    [client post:urlstr
+                :params
+                :^(AFHTTPRequestOperation *operation ,id responseObject){
+                    NSString *html = operation.responseString;
+                    NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
+                    id dict=[NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                    
+                    NSDictionary *json = (NSDictionary *)dict;
+                    
+                    NSLog(@"结果: %@", json);
+                    
+                    if(json == nil){
+                        NSLog(@"json parse failed \r\n");
+                        return;
+                    }
+                    
+                    NSNumber *code = [json valueForKey:@"code"];
+                    
+                 //   NSString * datastr = [json valueForKey:@"data"];
+                    
+                    
+                    NSLog(@"请求成功!%fl",[code floatValue]);
+                    
+                    
+                    if ([code intValue] == 0){
+                        
+                        complete (YES);
+                        
+                    }else{
+                        
+                        NSLog(@"请求失败!%ld",(long)code);
+                        complete (NO);
+                        
+                       // ALERTVIEW(datastr)
+
+                    }
+                    
+                }
+                :^(AFHTTPRequestOperation *operation ,NSError *error){
+                    NSLog(@"Error: %@", error);
+                    complete (NO);
+                    
+                }];
+    
+}
+
+
+
+
+
 //用户登录接口
 +(void)requestLoginUser:(User *)user complete:(void (^)(BOOL succed))complete{
+    
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     
     NSDictionary *params = @{@"grant_type":@"client_credentials",@"client_id":@BOYE_CLIENT_ID,@"client_secret":@BOYE_CLIENT_SECRET};
@@ -150,25 +287,6 @@
     
 }
 
-
-
-//保存token 以及计算出过期的时间并保存
-
-+(void)saveDataWithDic:(NSDictionary *)dic{
-    
-    NSString *access_token=[dic objectForKey:@"access_token"];
-    double time=[[dic objectForKey:@"expires_in"] doubleValue];
-    
-    //计算出距离当前日期 长度为time的日期
-    NSDate *date=[NSDate dateWithTimeIntervalSinceNow:time];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:access_token forKey:BOYE_ACCESS_TOKEN];
-    [[NSUserDefaults standardUserDefaults] setObject:date forKey:BOYE_ENDTIME];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-//    NSLog(@" date =%@",date);
-    
-}
 
 
 

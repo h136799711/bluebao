@@ -18,9 +18,17 @@
 //token是否存在
 +(BOOL) isTokenExist;
 
+
+//获取令牌
++(void)requtstAccessTokenComplete:(void(^)(BOOL  succed))complete;
+
+
 //用户登录接口
 +(void)requestLoginUser:(User *)user complete:(void (^)(BOOL succed))complete;
 
+
+//用户注册接口
++(void)requestRegisterUser:(User *)user complete:(void(^)(BOOL succed))complete;
 
 
 @end

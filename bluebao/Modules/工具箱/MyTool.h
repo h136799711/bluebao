@@ -13,6 +13,8 @@
 #pragma mark --test--
 
 +(void) testViews:(UIView * )view;
++(void) testViewsBackGroundView:(UIView*)view colorNum:(int)num;
+
 
 #pragma mark  获得字符串的大小（size）
 +(CGSize)getSizeString:(NSString *)info font:(float) font;

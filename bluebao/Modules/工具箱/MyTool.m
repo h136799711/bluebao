@@ -19,6 +19,18 @@
     view.layer.borderColor = [UIColor redColor].CGColor;
 }
 
++(void) testViewsBackGroundView:(UIView*)view colorNum:(int)num{
+
+    if (num == 0) {
+        view.backgroundColor = [UIColor redColor];
+    }else if (num == 1){
+        view.backgroundColor = [UIColor blackColor];
+    }else{
+        view.backgroundColor = [UIColor blueColor];
+    }
+}
+
+
 
 
 #pragma mark  获得字符串的大小（size）

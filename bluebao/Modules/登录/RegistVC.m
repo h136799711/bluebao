@@ -59,6 +59,10 @@
     user.userPsw = self.textfield_newpsw.text;
     user.userConpsw = self.textfield_confirmpsw.text;
     
+    user.userName = @"2540927373@qq.com";
+    user.userPsw = @"123456";
+    user.userConpsw =user.userPsw;
+    
     //邮箱非空
     if ([MyTool inputIsNull:user.userName]) {
         ALERTVIEW(@"邮箱不能为空")
@@ -87,6 +91,7 @@
     
     //没有阅读
     if (self.agreeBtn.selected ==NO ) {
+        ALERTVIEW(@"请阅读用户须知")
         return;
     }
     
@@ -95,9 +100,39 @@
      *注册成功会返回一个token
      **/
     
-//    [USER_DEFAULT setObject:nil forKey:TOKENKEY];
+    //获得口令
+    NSString * access_token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+    if (!access_token) {
+        
+        NSLog(@" token不可用，需要再次请求! ");
+        [BoyeDefaultManager requtstAccessTokenComplete:^(BOOL succed) {
+            
+            //获得口令
+            if (!succed) {
+                
+                ALERTVIEW(@"口令获取失败");
+                return ;
+            }
+        }];
+        
+    }
     
-    [self.navigationController popViewControllerAnimated:YES];
+    //注册请求
+    [BoyeDefaultManager requestRegisterUser:user complete:^(BOOL succed) {
+        
+        if (succed) {
+            
+            [USER_DEFAULT setObject:user.userName forKey:BOYE_USER_NAME];
+            
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }
+    }];
+    
+
+    
+    
 }
 
 #pragma mark -- 同意签订 --

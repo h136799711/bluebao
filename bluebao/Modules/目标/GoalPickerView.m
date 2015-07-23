@@ -239,7 +239,8 @@
         #pragma mark ---- 代理 ----
         NSString * timestr = [NSString stringWithFormat:@"%@:%@",[self getDateString:_hour],[self getDateString:_minute]];
         NSInteger  goalnum = [[NSString stringWithFormat:@"%ld%ld%ld",_hundre,_ten,_digit] integerValue];
-        
+
+        //先响应代理，再close
         
         if ([_delegate respondsToSelector:@selector(goalPickerView:dateString:goalNumber:)]) {
             [_delegate goalPickerView:self dateString:timestr goalNumber:goalnum];
@@ -295,7 +296,9 @@
     NSString  * heightString = [NSString stringWithFormat:@"%f",self.top];
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     //postNotificationName发送一个通知，第一个参数是通知的名字，第二个参数是通知的发送者，一般写self，第三个参数是通知的传参。
-    [center postNotificationName:@"Goalpicker" object:self userInfo:@{@"viewHeightInfo":heightString}];
+    
+//    NSLog(@"  ---picker top - %@--",heightString);
+    [center postNotificationName:@"Goalpicker" object:self userInfo:@{@"goalViewHeightInfo":heightString}];
 }
 
 #pragma mark -- 转化为字符串  01- 09 - 24 - 60

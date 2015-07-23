@@ -166,7 +166,11 @@
 
 //初始化
 -(void)_inits{
-    self.accontNumTextfield.text = @"";
+    
+    NSString * userName = [USER_DEFAULT objectForKey:BOYE_USER_NAME];
+    if (userName != nil) {
+        self.accontNumTextfield.text = userName;
+    }
     self.pswTextfield.text = @"";
     self.remberCodeBtn.selected = YES;
     [self rememberCodeClick:self.remberCodeBtn];
