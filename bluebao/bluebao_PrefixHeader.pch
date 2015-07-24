@@ -25,6 +25,9 @@
 #import "CommonDefine.h"
 #import "UserInfo.h"
 #import "User.h"
+#import "BoyePictureUploadManager.h"
+
+
 
 //#import "UIButton+WebCache.h"
 //#import "SDImageCache.h"

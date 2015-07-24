@@ -32,7 +32,7 @@
 
 -(void)_initViews{
     
-    
+    self.agreeBtn.selected = YES;
     [ButtonFactory decorateButton:self.registBtn forType:BOYE_BTN_SUCCESS];
     [MyTool cutViewConner:self.agreeBtn radius:0];
     
@@ -41,8 +41,11 @@
 //    [self.agreeBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [self.agreeBtn setTitle:@"√" forState:UIControlStateSelected];
     [self.agreeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+
     
-    
+    self.textfield_LeterBox.text = @"2540927273@qq.com";
+    self.textfield_newpsw.text   = @"123456";
+    self.textfield_confirmpsw.text =  self.textfield_newpsw.text;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,57 +57,23 @@
 //快速注册
 - (IBAction)registQuestBtn:(UIButton *)sender {
 
+    
+    
     User * user = [[User alloc] init];
-    user.userName = self.textfield_LeterBox.text;
-    user.userPsw = self.textfield_newpsw.text;
+    user.username = self.textfield_LeterBox.text;
+    user.password = self.textfield_newpsw.text;
     user.userConpsw = self.textfield_confirmpsw.text;
-    
-    user.userName = @"2540927373@qq.com";
-    user.userPsw = @"123456";
-    user.userConpsw =user.userPsw;
-    
-    //邮箱非空
-    if ([MyTool inputIsNull:user.userName]) {
-        ALERTVIEW(@"邮箱不能为空")
-        return;
-    }
-    
-    if (![MyTool validateEmail:user.userName]) {
-        
-        ALERTVIEW(@"请输入正确的邮箱")
-        return;
-    }
+ 
+    //检查输入是否正确
+    if (![self isRightInput:user]) {
 
-    if ([MyTool inputIsNull:user.userPsw]) {
-        ALERTVIEW(@"密码不能为空")
-        return;
-    }
-    if ([MyTool inputIsNull:user.userConpsw]) {
-        ALERTVIEW(@"确认密码不能为空")
-        return;
-    }
-    //两个密码是否相等
-    if (![MyTool isEqualToString:user.userPsw string:user.userConpsw]) {
-        ALERTVIEW(@"两次密码输入不正确")
         return;
     }
     
-    //没有阅读
-    if (self.agreeBtn.selected ==NO ) {
-        ALERTVIEW(@"请阅读用户须知")
-        return;
-    }
-    
-    
-    /*
-     *注册成功会返回一个token
-     **/
     
     //获得口令
-    NSString * access_token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
-    if (!access_token) {
+    if (![BoyeDefaultManager isTokenEffective]) {
         
-        NSLog(@" token不可用，需要再次请求! ");
         [BoyeDefaultManager requtstAccessTokenComplete:^(BOOL succed) {
             
             //获得口令
@@ -112,17 +81,33 @@
                 
                 ALERTVIEW(@"口令获取失败");
                 return ;
+            }else{
+                        NSLog(@"已再次请求token");
+
+
+                [self requestRegister:user];
+                return  ;
             }
         }];
+
+    }else{
         
+        NSLog(@"token有效");
+        [self requestRegister:user];
+
     }
+  
+}
+
+-(void)requestRegister:(User *)user{
+    
     
     //注册请求
     [BoyeDefaultManager requestRegisterUser:user complete:^(BOOL succed) {
         
         if (succed) {
             
-            [USER_DEFAULT setObject:user.userName forKey:BOYE_USER_NAME];
+            [USER_DEFAULT setObject:user.username forKey:BOYE_USER_NAME];
             
             
             [self.navigationController popViewControllerAnimated:YES];
@@ -132,8 +117,10 @@
     
 
     
-    
 }
+
+
+
 
 #pragma mark -- 同意签订 --
 - (IBAction)agree:(UIButton *)sender {
@@ -159,6 +146,44 @@
 
 
 }
+
+-(BOOL)isRightInput:(User *)user{
+    
+    //邮箱非空
+    if ([MyTool inputIsNull:user.username]) {
+        ALERTVIEW(@"邮箱不能为空")
+        return NO;
+    }
+    
+    if (![MyTool validateEmail:user.username]) {
+        
+        ALERTVIEW(@"请输入正确的邮箱")
+        return NO;
+    }
+    
+    if ([MyTool inputIsNull:user.password]) {
+        ALERTVIEW(@"密码不能为空")
+        return NO;
+    }
+    if ([MyTool inputIsNull:user.userConpsw]) {
+        ALERTVIEW(@"确认密码不能为空")
+        return NO;
+    }
+    //两个密码是否相等
+    if (![MyTool isEqualToString:user.password string:user.userConpsw]) {
+        ALERTVIEW(@"两次密码输入不正确")
+        return NO;
+    }
+    
+    //没有阅读
+    if (self.agreeBtn.selected ==NO ) {
+        ALERTVIEW(@"请阅读用户须知")
+        return NO;
+    }
+
+    return YES;
+}
+
 //返回
 -(void)backClick{
     

@@ -35,12 +35,25 @@
     [self _inits];
 }
 
+//初始化
+-(void)_inits{
+    
+    NSString * userName = [USER_DEFAULT objectForKey:BOYE_USER_NAME];
+    if (userName != nil) {
+        self.accontNumTextfield.text = userName;
+    }
+    self.pswTextfield.text = @"";
+    self.remberCodeBtn.selected = YES;
+    [self rememberCodeClick:self.remberCodeBtn];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     [self _initViews];
 }
+
+
 
 #pragma mark -- 初始化 ---
 
@@ -82,57 +95,60 @@
     
     }
 
-//登陆
+#pragma mark   ---登陆 -----
 - (IBAction)login:(UIButton *)sender {
     
     
     User * user = [[User alloc] init];
-    user.userName = self.accontNumTextfield.text;
-    user.userPsw = self.pswTextfield.text;
+    user.username = self.accontNumTextfield.text;
+    user.password = self.pswTextfield.text;
     
-    user.userName = @"1234576789@qq.com";
-    user.userPsw = @"1";
+    user.username = @"2540927273@qq.com";
+    user.password = @"123456";
     
-    if ([MyTool inputIsNull: user.userName]) {
-        ALERTVIEW(@"账号不能为空")
-        return;
-    }
     
-    if (![MyTool validateEmail:user.userName]) {
-       
-        ALERTVIEW(@"请输入正确的邮箱")
-        return;
-    }
-    
-    if ([MyTool inputIsNull:user.userPsw]) {
-        ALERTVIEW(@"密码不能为空")
+    if (![self isRightInput:user]) {
+        
         return;
     }
 
-   
     
-//    //保存用户名何密码,保存Token
-//    [USER_DEFAULT setObject:user.userName forKey:ACCOUNTNum];
-//    [USER_DEFAULT setObject:user.userPsw forKey:ACCOUNTPSW];
+    //token是否有效
+    BOOL  isEffective = [BoyeDefaultManager isTokenEffective];
+    if (!isEffective) {
+       
+        [BoyeDefaultManager requtstAccessTokenComplete:^(BOOL succed) {
+            if (!succed) {
+                
+                return ;
+            }else{
+                
+                [self requestLogin:user];
+            }
+            NSLog(@"token请求成功");
+        }];
+    }else{
+        
+        NSLog(@" token 有效");
+        [self requestLogin:user];
+    }
     
+}
+
+//登陆请求
+-(void)requestLogin:(User *)user{
     
-        #pragma mark - 跳转 --
     
     [BoyeDefaultManager requestLoginUser:user complete:^(BOOL succed) {
         
         if (succed) {
-            [self jumpMainPage];
             
-        }else{
-            ALERTVIEW(@"登陆失败");
+            [self jumpMainPage];
         }
     }];
-   
     
-    
+
 }
-
-
 
 
 #pragma mark -- 调到主界面 -
@@ -160,21 +176,30 @@
 #pragma mark -- 忘记密码
 - (IBAction)forgetCodeBtnClick:(UIButton *)sender {
     
-    
-    
 }
 
-//初始化
--(void)_inits{
+
+#pragma mark --检查输入是否正确 --
+-(BOOL)isRightInput:(User *)user{
     
-    NSString * userName = [USER_DEFAULT objectForKey:BOYE_USER_NAME];
-    if (userName != nil) {
-        self.accontNumTextfield.text = userName;
+    
+    if ([MyTool inputIsNull: user.username]) {
+        ALERTVIEW(@"账号不能为空")
+        return NO;
     }
-    self.pswTextfield.text = @"";
-    self.remberCodeBtn.selected = YES;
-    [self rememberCodeClick:self.remberCodeBtn];
     
+    if (![MyTool validateEmail:user.username]) {
+        
+        ALERTVIEW(@"请输入正确的邮箱")
+        return NO;
+    }
+    
+    if ([MyTool inputIsNull:user.password]) {
+        ALERTVIEW(@"密码不能为空")
+        return NO;
+    }
+    
+    return YES;
 }
 
 /*

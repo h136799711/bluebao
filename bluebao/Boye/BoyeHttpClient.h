@@ -24,6 +24,9 @@
 // GET请求
 - (void)get:(NSString *)urlWithParams :(void (^)(AFHTTPRequestOperation *operation ,id responseObject))success :(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+//图片上传
+-(void)upload:(NSString*)url withParams:(NSDictionary *)withParams :(NSString *)filePath :(void (^)(AFHTTPRequestOperation *operation ,id responseObject))success :(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 - (void)downloadTask:(NSString *)url;
 
 @end

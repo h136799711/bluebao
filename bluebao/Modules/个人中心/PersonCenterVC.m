@@ -36,9 +36,32 @@
     self.heightLabel.text = [NSString stringWithFormat:@"%ld",height];
     self.weightLabel.text = [NSString stringWithFormat:@"%ld",weight];
     self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
+    
+    UserInfo * userInfo = [[UserInfo alloc] init];
+    userInfo.uid = 1;
+   
+//    [self requestHead:userInfo];
+    
+    
+    
 //
 //    NSLog(@" ----  %ld   %ld  %f  ",weight,height,bmi );
 }
+
+-(void) requestHead:(UserInfo *)userInfo{
+    
+    
+    
+    [ BoyePictureUploadManager requestUserHeadDown:userInfo complete:^(UIImage *headImage) {
+        
+        if (headImage != nil) {
+            self.head_ImageView.image = headImage;
+        }
+    }];
+    NSLog(@"   22 ");
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

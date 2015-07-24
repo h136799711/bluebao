@@ -61,7 +61,7 @@
     bgImgView.image = [UIImage imageNamed:@"left_menu_bg"];
     self.tableView.backgroundView = bgImgView;
     self.tableView.backgroundColor = [UIColor clearColor];
-    sortArray = @[@"我的个人资料",@"设备管理",@"我的运动数据",@"我的目标管理",@"健身房",@"饮食管理",@"关于蓝堡",@"购买更多健身器材",@"关闭闹铃提醒",@"设置",@"注销"];
+    sortArray = @[@"我的个人资料",@"设备管理",@"我的运动数据",@"我的目标管理",@"关于蓝堡",@"购买更多健身器材",@"关闭闹铃提醒",@"设置",@"注销"];
 }
 
 

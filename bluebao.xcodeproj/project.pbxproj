@@ -24,7 +24,6 @@
 		5B38C7901B5390CF0063912C /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7591B5390CF0063912C /* LoginVC.xib */; };
 		5B38C7911B5390CF0063912C /* RegistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C75B1B5390CF0063912C /* RegistVC.m */; };
 		5B38C7921B5390CF0063912C /* RegistVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C75C1B5390CF0063912C /* RegistVC.xib */; };
-		5B38C7931B5390CF0063912C /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C75E1B5390CF0063912C /* UserInfo.m */; };
 		5B38C7941B5390CF0063912C /* ShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7611B5390CF0063912C /* ShareVC.m */; };
 		5B38C7951B5390CF0063912C /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7641B5390CF0063912C /* MessageCell.m */; };
 		5B38C7961B5390CF0063912C /* PersonCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C7661B5390CF0063912C /* PersonCenterVC.m */; };
@@ -99,6 +98,8 @@
 		5BF4F0121B560CFA000AB7BD /* ButtonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */; };
 		5BF4F01E1B566088000AB7BD /* MoreExereqBuyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */; };
 		5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0201B56609D000AB7BD /* SettingVC.m */; };
+		5BFCFAFC1B621FF50076F18B /* BoyePictureUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCFAFB1B621FF50076F18B /* BoyePictureUploadManager.m */; };
+		5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCFB001B6224F00076F18B /* UserInfo.m */; };
 		5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
 		9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */; };
@@ -158,8 +159,6 @@
 		5B38C75A1B5390CF0063912C /* RegistVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistVC.h; sourceTree = "<group>"; };
 		5B38C75B1B5390CF0063912C /* RegistVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistVC.m; sourceTree = "<group>"; };
 		5B38C75C1B5390CF0063912C /* RegistVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistVC.xib; sourceTree = "<group>"; };
-		5B38C75D1B5390CF0063912C /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
-		5B38C75E1B5390CF0063912C /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		5B38C7601B5390CF0063912C /* ShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareVC.h; sourceTree = "<group>"; };
 		5B38C7611B5390CF0063912C /* ShareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareVC.m; sourceTree = "<group>"; };
 		5B38C7631B5390CF0063912C /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
@@ -300,6 +299,10 @@
 		5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreExereqBuyVC.m; sourceTree = "<group>"; };
 		5BF4F01F1B56609D000AB7BD /* SettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingVC.h; sourceTree = "<group>"; };
 		5BF4F0201B56609D000AB7BD /* SettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingVC.m; sourceTree = "<group>"; };
+		5BFCFAFA1B621FF50076F18B /* BoyePictureUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyePictureUploadManager.h; sourceTree = "<group>"; };
+		5BFCFAFB1B621FF50076F18B /* BoyePictureUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyePictureUploadManager.m; sourceTree = "<group>"; };
+		5BFCFAFF1B6224F00076F18B /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		5BFCFB001B6224F00076F18B /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		5BFFD9611B54F3F600216795 /* PickerKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerKeyBoard.h; sourceTree = "<group>"; };
 		5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerKeyBoard.m; sourceTree = "<group>"; };
 		9F50E4FE1B4E577600AB6BD8 /* bluebao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluebao.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -399,6 +402,7 @@
 				5B38C7691B5390CF0063912C /* PersonMessageVC.m */,
 				5BFFD9611B54F3F600216795 /* PickerKeyBoard.h */,
 				5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */,
+				5BFCFAFE1B6224810076F18B /* Model */,
 			);
 			name = "个人资料";
 			path = "Modules/个人资料";
@@ -646,8 +650,6 @@
 		5BF430F51B5737A7003C7941 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5B38C75D1B5390CF0063912C /* UserInfo.h */,
-				5B38C75E1B5390CF0063912C /* UserInfo.m */,
 				5BF430F71B573802003C7941 /* User.h */,
 				5BF430F81B573802003C7941 /* User.m */,
 			);
@@ -663,10 +665,12 @@
 				5B1D24071B5CF6AD00BE460C /* NSDate+Helper.m */,
 				5BF4F0101B560CFA000AB7BD /* ButtonFactory.h */,
 				5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */,
-				5BF4F00A1B55F0F7000AB7BD /* BoyeDefaultManager.h */,
-				5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */,
 				5BF4F00C1B55F0F7000AB7BD /* BoyeHttpClient.h */,
 				5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */,
+				5BF4F00A1B55F0F7000AB7BD /* BoyeDefaultManager.h */,
+				5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */,
+				5BFCFAFA1B621FF50076F18B /* BoyePictureUploadManager.h */,
+				5BFCFAFB1B621FF50076F18B /* BoyePictureUploadManager.m */,
 			);
 			path = Boye;
 			sourceTree = "<group>";
@@ -693,6 +697,15 @@
 			);
 			name = "设置";
 			path = "Modules/设置";
+			sourceTree = "<group>";
+		};
+		5BFCFAFE1B6224810076F18B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5BFCFAFF1B6224F00076F18B /* UserInfo.h */,
+				5BFCFB001B6224F00076F18B /* UserInfo.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9F50E4F51B4E577600AB6BD8 = {
@@ -956,6 +969,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF05F591B4E5EF300CBC510 /* UIViewController+DismissKeyboard.m in Sources */,
+				5BFCFAFC1B621FF50076F18B /* BoyePictureUploadManager.m in Sources */,
 				5B38C7D21B5399B80063912C /* MKAnnotationView+WebCache.m in Sources */,
 				5B38C7E21B5399B80063912C /* UIImageView+WebCache.m in Sources */,
 				5B38C7A41B5390CF0063912C /* MainViewController.m in Sources */,
@@ -1017,8 +1031,8 @@
 				5B1D24081B5CF6AD00BE460C /* NSDate+Helper.m in Sources */,
 				9F91E7FB1B4E5AE80013F4F1 /* AFHTTPSessionManager.m in Sources */,
 				5BF430FC1B575979003C7941 /* MoreExerCollectionCell.m in Sources */,
+				5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */,
 				5B38C7A31B5390CF0063912C /* LetfView.m in Sources */,
-				5B38C7931B5390CF0063912C /* UserInfo.m in Sources */,
 				5B38C7A51B5390CF0063912C /* BaseViewController.m in Sources */,
 				5B0155D91B5DDD1900056CFC /* DeviceBindController.m in Sources */,
 				9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */,

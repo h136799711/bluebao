@@ -286,7 +286,14 @@
     [USER_DEFAULT setInteger:height forKey:BOYE_USER_HEIGHT];
     [USER_DEFAULT setInteger:weight forKey:BOYE_USER_WEIGHT];
     
-    [self.navigationController popViewControllerAnimated:YES];
+   // [self.navigationController popViewControllerAnimated:YES];
+    
+    UserInfo * userInfo = [[UserInfo alloc] init];
+    
+    [BoyePictureUploadManager requestPictureUpload:userInfo complete:^(BOOL successed) {
+        
+        
+    }];
     
 }
 

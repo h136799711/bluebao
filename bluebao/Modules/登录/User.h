@@ -10,8 +10,8 @@
 
 @interface User : NSObject
 
-@property (nonatomic,copy) NSString * userName;
-@property (nonatomic,copy) NSString * userPsw;
+@property (nonatomic,copy) NSString * username;
+@property (nonatomic,copy) NSString * password;
 @property (nonatomic,copy) NSString * userConpsw;
 
 

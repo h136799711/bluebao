@@ -68,12 +68,20 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
     
     AFHTTPSessionManager *mg = [AFHTTPSessionManager manager];
     mg = [mg initWithBaseURL:[NSURL URLWithString:BASE_API_URL]];
-    
     NSURL * api_url = [NSURL URLWithString:url relativeToURL:[mg baseURL]];
-    
+
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *base_url = [[NSString alloc] initWithString:BASE_API_URL];
+
+//    
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//
+    
+//    self.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
+
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
     
     url = [base_url stringByAppendingString:url];
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -110,6 +118,20 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
 //    }];
 //    
 //    [downloadTask resume];
+}
+-(void)upload:(NSString*)url withParams:(NSDictionary *)withParams :(NSString *)filePath :(void (^)(AFHTTPRequestOperation *operation ,id responseObject))success :(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    //@"file://path/to/image.png"
+    NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+    [manager
+     POST:url
+     parameters:withParams
+     constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+         [formData appendPartWithFileURL:fileUrl name:@"image" error:nil];
+     } success:success failure:failure];
+    
 }
 
 @end

@@ -12,6 +12,9 @@
 
 + (NSDateFormatter *)getDateFormatter:(NSString *)format;
 
+//是否存在有效token
++(BOOL)isTokenEffective;
+
 //是否过期
 +(BOOL)isDateOut;
 
@@ -30,5 +33,8 @@
 //用户注册接口
 +(void)requestRegisterUser:(User *)user complete:(void(^)(BOOL succed))complete;
 
+
+//用户信息接口
++(void)requestUserInfoUpdata:(UserInfo *)userInfo complete:(void(^)(BOOL succed))complete;
 
 @end
