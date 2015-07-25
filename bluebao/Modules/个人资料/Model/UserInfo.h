@@ -31,21 +31,29 @@
 
 
 
-@property (nonatomic,copy) NSString         *username;
-@property (nonatomic,copy) NSString         *nickname;
-@property (nonatomic,assign) NSInteger         sex;
-@property (nonatomic,copy) NSString         * birthday;
-@property (nonatomic,copy) NSString         * email;
-@property (nonatomic,copy) NSString         * mobile;
+@property (nonatomic,copy)  NSString         *username;
+@property (nonatomic,copy)  NSString         *nickname;
+@property (nonatomic,assign)NSInteger        sex;
+@property (nonatomic,copy)  NSString         * birthday;
+@property (nonatomic,copy)  NSString         * email;
+@property (nonatomic,copy)  NSString         * mobile;
 
 
-@property (nonatomic,assign)NSInteger       uid;
-@property (nonatomic,assign) NSInteger      weight;
-@property (nonatomic,assign) NSInteger      height;
+@property (nonatomic,assign) NSInteger       uid;
+@property (nonatomic,assign) NSInteger       weight;
+@property (nonatomic,assign) NSInteger       height;
+@property (nonatomic,assign) NSInteger       target_weight;
+@property (nonatomic,assign) NSInteger       age;
+
+@property (nonatomic,copy)  NSString         *realname;
+@property (nonatomic,copy)  NSString         *signature;
+@property (nonatomic,copy)  NSString         *idnumber;
+@property (nonatomic,copy)  NSString         *last_login_time;
+@property (nonatomic,copy)  NSString         *update_time;
 
 
+//
+-(id)initWithUserInfoDictionary:(NSDictionary * )diction;
+//+(id)initUserInfoDictionary:(NSDictionary *)diction;
 
-@property (nonatomic,copy) NSString         *realname;
-@property (nonatomic,copy) NSString         *signature;
-@property (nonatomic,copy) NSString         *idnumber;
 @end

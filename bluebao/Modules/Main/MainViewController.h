@@ -7,8 +7,11 @@
 //
 
 #import "BaseViewController.h"
+#import "UserInfo.h"
 
 @interface MainViewController : BaseViewController
+
+@property (nonatomic,strong) UserInfo * userInfo;
 
 
 + (MainViewController*)sharedSliderController;

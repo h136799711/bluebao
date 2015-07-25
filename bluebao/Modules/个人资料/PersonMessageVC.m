@@ -9,6 +9,10 @@
 #import "PersonMessageVC.h"
 #import "MessageCell.h"
 #import "PickerKeyBoard.h"
+#import "UserUpdataReqModel.h"  //用户信息更新请求模型
+
+
+
 
 @interface PersonMessageVC (){
     
@@ -49,13 +53,19 @@
     sorArray = @[@"身高",@"当前体重",@"目标体重",@"BMI"];
     _upDownImagName = @[@"down.png",@"up.png"];
     
+    self.userInfo = [MainViewController sharedSliderController].userInfo;
+    
+    NSString * heightStr = [self getStrNum:self.userInfo.height unit:@"CM"];
+    NSString * weightStr = [self getStrNum:self.userInfo.weight unit:@"KG"];
+    NSString * targ_weight = [self getStrNum:self.userInfo.target_weight unit:@"KG"];
+    self.valueArray = [[NSMutableArray alloc] initWithObjects:heightStr,weightStr,targ_weight,@"", nil];
     
     
-    self.valueArray = [[NSMutableArray alloc] initWithObjects:@"165CM",@"65KG",@"55KG",@"", nil];
     _isAge = NO;
     //创建视图
+//    info.age = 17;
     [self _initViews];
-    
+//    [self.ageBtn setTitle:[NSString stringWithFormat:@"%ld",info.age] forState:UIControlStateNormal];
 }
 
 /*
@@ -198,11 +208,11 @@
 }
 
 #pragma mark -- 年龄 --
--(void)ageBtnClick:(UIButton *)ageBtn{
+-(void)ageBtnClick:(UIButton *)ageImagBtn{
    
-    ageBtn.selected = !ageBtn.selected;
+    ageImagBtn.selected = !ageImagBtn.selected;
     
-    if (ageBtn.selected == YES) {
+    if (ageImagBtn.selected == YES) {
     
         //当前年龄，
         self.pickerKeyBoard.minimumZoom = 8;
@@ -270,7 +280,7 @@
 }
 
 
-#pragma mark --- saveClick: --
+#pragma mark --- saveClick: 保存  --
 
 -(void)saveBtnClick{
     
@@ -280,20 +290,27 @@
     NSInteger  age = [[self.ageBtn currentTitle] integerValue];
     NSInteger height = [self getCurrentNum:self.valueArray[0]];
     NSInteger weight = [self getCurrentNum:self.valueArray[1]];
+    NSInteger target_weight = [self getCurrentNum:self.valueArray[2]];
+    
+    self.userInfo.age = age;
+    self.userInfo.height = height;
+    self.userInfo.weight = weight;
+    self.userInfo.target_weight = target_weight;
+    
+    [MainViewController sharedSliderController].userInfo = self.userInfo;
+
     
 //    NSLog(@"   --- age %ld -- height %ld ---weight %ld- ",age,height,weight);
-    [USER_DEFAULT setInteger:age forKey:BOYE_USER_AGE];
-    [USER_DEFAULT setInteger:height forKey:BOYE_USER_HEIGHT];
-    [USER_DEFAULT setInteger:weight forKey:BOYE_USER_WEIGHT];
     
+//    
+//    [USER_DEFAULT setInteger:age forKey:BOYE_USER_AGE];
+//    [USER_DEFAULT setInteger:height forKey:BOYE_USER_HEIGHT];
+//    [USER_DEFAULT setInteger:weight forKey:BOYE_USER_WEIGHT];
+//    
    // [self.navigationController popViewControllerAnimated:YES];
     
-    UserInfo * userInfo = [[UserInfo alloc] init];
-    
-    [BoyePictureUploadManager requestPictureUpload:userInfo complete:^(BOOL successed) {
-        
-        
-    }];
+//    [self requestPersonInfo];
+    [self requestPersonHeadImag];
     
 }
 
@@ -528,7 +545,8 @@
         [heightView addSubview:ageBtn];
         
         
-        NSInteger age = [[USER_DEFAULT objectForKey:BOYE_USER_AGE] integerValue];
+//        NSInteger age = [[USER_DEFAULT objectForKey:BOYE_USER_AGE] integerValue];
+        NSInteger age = [MainViewController sharedSliderController].userInfo.age;
         self.ageBtn = ageBtn;
         [self.ageBtn setTitle:[NSString stringWithFormat:@"%ld",age] forState:UIControlStateNormal];
 
@@ -618,6 +636,54 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -- 数字与字符串拼接  ---
+-(NSString * ) getStrNum:(NSInteger) num unit:(NSString *)unit{
+    
+    NSString * string = [NSString stringWithFormat:@"%ld%@",num,unit];
+    return string;
+}
+
+#pragma mark -- userInfoUpload --
+
+-(void) requestPersonInfo{
+    
+//用户信息更新请求模型
+    UserUpdataReqModel * updataModel = [[UserUpdataReqModel alloc] init];
+
+    updataModel.sex = self.userInfo.sex == 1 ?@"1":@"0" ;
+    updataModel.nickname = self.userInfo.nickname;
+    updataModel.signature = self.userInfo.signature;
+    updataModel.height =  [self getString:self.userInfo.height];
+    
+    updataModel.weight = [self getString:self.userInfo.weight];
+    updataModel.target_weight = [self getString:self.userInfo.target_weight];
+    updataModel.birthday = self.userInfo.birthday;
+    
+    
+    [BoyeDefaultManager requestUserInfoUpdata:updataModel complete:^(NSString *  string) {
+        
+        if (string != nil ) {
+            
+//            [MainViewController sharedSliderController].userInfo = self.userInfo;
+            ALERTVIEW(string);
+        }
+    }];
+    
+}
+
+-(void)requestPersonHeadImag{
+    
+    
+    
+    
+}
+
+
+-(NSString *) getString:(NSInteger)num{
+    
+    return [NSString stringWithFormat:@"%ld",num];
+    
+}
 /*
 #pragma mark - Navigation
 

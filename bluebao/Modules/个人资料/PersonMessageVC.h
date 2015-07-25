@@ -23,4 +23,6 @@
 @property (nonatomic,assign) CGFloat             outHeight;
 @property (nonatomic,strong) UIButton           * ageBtn; //用户年龄
 @property (nonatomic,strong) UIButton           * ageImageBtn; //用户年龄
+
+@property (nonatomic,strong) UserInfo * userInfo;
 @end

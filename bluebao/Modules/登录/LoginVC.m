@@ -81,6 +81,9 @@
     [MyTool cutViewConner:self.loginBtn radius:5];
     [MyTool cutViewConner:self.registerBtn radius:5];
  
+    self.accontNumTextfield.clearButtonMode =  UITextFieldViewModeAlways;
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -139,11 +142,14 @@
 -(void)requestLogin:(User *)user{
     
     
-    [BoyeDefaultManager requestLoginUser:user complete:^(BOOL succed) {
+    [BoyeDefaultManager requestLoginUser:user complete:^(UserInfo * userInfo) {
         
-        if (succed) {
+        if (userInfo != nil ) {
             
+//            NSLog(@" \r-- %@",userInfo);
             [self jumpMainPage];
+            
+            [MainViewController sharedSliderController].userInfo = userInfo;
         }
     }];
     
@@ -194,13 +200,29 @@
         return NO;
     }
     
+    if (user.username.length >=18) {
+        ALERTVIEW(@"用户名长度太长");
+        return NO;
+    }
+    
+    
     if ([MyTool inputIsNull:user.password]) {
         ALERTVIEW(@"密码不能为空")
         return NO;
     }
     
+    if (user.password.length <6) {
+        
+        ALERTVIEW(@"密码长度不合法");
+        return NO;
+    }
+    
+    
+    
     return YES;
 }
+
+
 
 /*
 #pragma mark - Navigation

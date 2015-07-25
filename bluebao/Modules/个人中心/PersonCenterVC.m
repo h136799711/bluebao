@@ -8,6 +8,11 @@
 
 #import "PersonCenterVC.h"
 #import "MessageCell.h"
+#import "PictureReqModel.h"
+
+
+
+
 @interface PersonCenterVC (){
     
     UITableView             *_tableView;
@@ -28,37 +33,31 @@
     
     [super viewWillAppear:YES];
     
-    NSInteger weight = [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] integerValue];
-    NSInteger height = [[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] integerValue];
-    CGFloat bmi = [MyTool getBMINumWeight:weight height:height];
-    
-    
-    self.heightLabel.text = [NSString stringWithFormat:@"%ld",height];
-    self.weightLabel.text = [NSString stringWithFormat:@"%ld",weight];
-    self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
-    
-    UserInfo * userInfo = [[UserInfo alloc] init];
+       UserInfo * userInfo = [[UserInfo alloc] init];
     userInfo.uid = 1;
-   
-//    [self requestHead:userInfo];
     
-    
+    [self _initPersonMessage];
     
 //
 //    NSLog(@" ----  %ld   %ld  %f  ",weight,height,bmi );
 }
+//个人资料
+-(void)_initPersonMessage{
+  
+    self.userInfo =  [MainViewController sharedSliderController].userInfo;
+//    
+//    NSInteger weight = [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] integerValue];
+//    NSInteger height = [[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] integerValue];
+    
+    
+    CGFloat bmi = [MyTool getBMINumWeight:self.userInfo.weight height:self.userInfo.height];
+    
+    
+    self.heightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.height];
+    self.weightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.weight];
+    self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
+    
 
--(void) requestHead:(UserInfo *)userInfo{
-    
-    
-    
-    [ BoyePictureUploadManager requestUserHeadDown:userInfo complete:^(UIImage *headImage) {
-        
-        if (headImage != nil) {
-            self.head_ImageView.image = headImage;
-        }
-    }];
-    NSLog(@"   22 ");
 }
 
 
@@ -216,8 +215,13 @@
         imageView.image =[UIImage imageNamed:@"testhead.png"];
         [MyTool cutViewConner:imageView radius:imageView.width/2.0];
         imageView.backgroundColor = [UIColor redColor];
-        
         [_headView addSubview:imageView];
+        
+        UIButton * headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        headBtn.frame= imageView.frame;
+        [_headView addSubview:headBtn];
+        [headBtn addTarget:self action:@selector(headbutton:) forControlEvents:UIControlEventTouchUpInside];
+        
         
         //姓名
         UILabel  * label_name = [[UILabel alloc] init];
@@ -246,6 +250,35 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)headbutton:(UIButton *)button{
+    
+    
+    PictureReqModel * picModel = [[PictureReqModel alloc] init];
+    picModel.uid  = @"1";
+    picModel.type = @"avatar";
+   
+
+    [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
+        
+        if (successed ) {
+            
+            ALERTVIEW(@"成功");
+        }
+    }];
+    
+ /***
+   
+    //头像请求成功，为空，
+    [BoyePictureUploadManager requestUserHeadDown:picModel complete:^(UIImage *headImage) {
+        
+        
+    }];
+       ****/
+    
+    NSLog(@"图片下载");
+    NSLog(@" 图片上传");
 }
 
 /*

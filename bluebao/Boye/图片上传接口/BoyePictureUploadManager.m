@@ -10,14 +10,14 @@
 
 @implementation BoyePictureUploadManager
 
-//图片接口
-+(void)requestUserHeadDown:(UserInfo *) userInfo complete:(void(^)(UIImage * headImage))complete{
+//头像请求
++(void)requestUserHeadDown:(PictureReqModel *) picModel complete:(void(^)(UIImage * headImage))complete{
     
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
-    userInfo.uid = 2;
+    picModel.uid = @"2";
 //    NSDictionary *params = @{@"username":user.username,@"password":user.password};
     
-    NSString * urlstr = [NSString stringWithFormat:@"Avatar/index?uid=%ld",userInfo.uid];
+    NSString * urlstr = [NSString stringWithFormat:@"Avatar/index?uid=%@",picModel.uid];
     [client post:urlstr
                 :nil
                 :^(AFHTTPRequestOperation *operation ,id responseObject){
@@ -64,29 +64,38 @@
 
 
 //图片上传
-+(void)requestPictureUpload:(UserInfo *)userInfo complete:(void (^)(BOOL successed))complete{
++(void)requestPictureUpload:(PictureReqModel *) picModel complete:(void (^)(BOOL successed))complete{
     
-    userInfo.uid = 1;
+//    picModel.uid = @"1";
     
     NSString *token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
     BoyeHttpClient * client = [[BoyeHttpClient alloc] init];
     
-    NSString * uidstr = [NSString stringWithFormat:@"%ld",userInfo.uid];
-    NSDictionary * params =  @{@"uid":uidstr,@"type":@"avatar"};
+    NSDictionary * params =  @{@"uid":picModel.uid,@"type":@"avatar"};
     NSString * urlString = [NSString stringWithFormat:@"File/upload?access_token=%@",token];
-    NSString * fileStrng = [[NSBundle  mainBundle] pathForResource:@"testhead" ofType:@"png"];
-
+    
+//    NSString * fileStrng = [[NSBundle  mainBundle] pathForResource:@"testhead" ofType:@"png"];
+NSString * fileStrng = @"/Uploads\/UserPicture\/2015-07-24\/55b19c3855c66.jpg";
     [client   upload:urlString
           withParams:params
                     :fileStrng :^(AFHTTPRequestOperation *operation, id responseObject) {
                         NSData * data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
                         NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
                         
-                        if (dict != nil) {
-                            
-                            NSLog(@"dict %@ ",dict);
+                        if (dict == nil) {
+                         
+                            NSLog(@"dic parse failed \r\n");
+                            return ;
+                        }
+                        NSNumber * code = [dict objectForKey:@"data"];
+                        if ([code intValue] == 0) {
+
+                            complete(YES);
                         }
                         
+                        
+                        NSLog(@"dict %@ ",dict);
+
               
           } :^(AFHTTPRequestOperation *operation, NSError *error) {
               

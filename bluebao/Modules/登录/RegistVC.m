@@ -161,10 +161,26 @@
         return NO;
     }
     
+    if (user.username.length >=18) {
+        ALERTVIEW(@"用户名长度太长");
+        return NO;
+    }
+    
+   
+    
     if ([MyTool inputIsNull:user.password]) {
         ALERTVIEW(@"密码不能为空")
         return NO;
     }
+    
+    if (user.password.length <6) {
+        
+        ALERTVIEW(@"密码长度不能小于6位");
+        return NO;
+    }
+    
+
+    
     if ([MyTool inputIsNull:user.userConpsw]) {
         ALERTVIEW(@"确认密码不能为空")
         return NO;

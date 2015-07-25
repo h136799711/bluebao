@@ -18,6 +18,7 @@
 @interface MainViewController (){
     
     CGFloat    _slidepy;
+    LetfView          *_leftView;
     
     UIView   *_contentView;
     UIView  * _bottomView;  // 底部视图
@@ -30,7 +31,8 @@
 }
 
 
-@property (nonatomic,strong) NSArray   * viewcontrollers;
+@property (nonatomic,strong) NSArray                        * viewcontrollers;
+@property (nonatomic,strong) NSMutableArray                 * buttonArray;
 @end
 
 @implementation MainViewController
@@ -41,7 +43,14 @@
 
     [super viewWillAppear:YES];
     self.navigationController.navigationBarHidden = YES;
+    
+    if (self.buttonArray) {
 
+        [self buttonPress:self.buttonArray[0]];//
+    }
+
+    [self creatLeftView];
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +58,13 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     _slidepy = SCREEN_WIDTH/2.0;
+    
+    self.title = @"main";
+    self.buttonArray = [[NSMutableArray alloc] initWithCapacity:0];
+    sortName = @[@"首页",@"目标",@"个人中心",@"分享"];
+    _btnNormalImagName = @[@"home.png",@"target.png",@"person.png",@"share.png"];
+    _btnSelectImagName = @[@"homeon.png",@"targeton.png",@"personon.png",@"shareon.png"];
+    
     
     
     //创建视图
@@ -58,14 +74,7 @@
 
 //初始化视图
 -(void)_initViews{
-    
-    self.title = @"main";
-    
-    sortName = @[@"首页",@"目标",@"个人中心",@"分享"];
-    _btnNormalImagName = @[@"home.png",@"target.png",@"person.png",@"share.png"];
-    _btnSelectImagName = @[@"homeon.png",@"targeton.png",@"personon.png",@"shareon.png"];
-    
-    
+
     //创建自定义tabba
     
     [self creatTabbar];
@@ -80,10 +89,13 @@
 
 -(void)creatLeftView{
     
-    LetfView * left = [[LetfView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2.0, SCREEN_HEIGHT)];
-    [self.view addSubview:left];
-    [self.view sendSubviewToBack:left];
-    
+    if (_leftView == nil) {
+        _leftView = [[LetfView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2.0, SCREEN_HEIGHT)];
+        [self.view addSubview:_leftView];
+        [self.view sendSubviewToBack:_leftView];
+        
+    }
+    _leftView.leftInfo = [MainViewController sharedSliderController].userInfo;
 }
 
 
@@ -138,11 +150,13 @@
 //        //底部按钮
         [BBManageCode creatTabbarShow:_bottomView
                                button:button
-                             ImagName:@"sd.png"
+                             ImagName:nil
                            titleLabel:sortName[i]];
         
         [button addTarget:self
                    action:@selector(buttonPress:) forControlEvents:UIControlEventTouchUpInside];
+
+        [self.buttonArray addObject:button];
         
         if (i==0) {
             [self buttonPress:button];

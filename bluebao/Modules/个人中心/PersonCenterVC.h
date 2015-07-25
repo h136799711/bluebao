@@ -15,4 +15,6 @@
 @property (nonatomic,strong) UIImageView            *head_ImageView;
 @property (nonatomic,strong) UILabel                * userID_Label;
 @property (nonatomic,strong) UILabel                *userName_Label;
+
+@property (nonatomic,strong) UserInfo * userInfo;
 @end

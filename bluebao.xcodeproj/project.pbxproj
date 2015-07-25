@@ -93,12 +93,15 @@
 		5BF430FF1B575CE6003C7941 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF430FE1B575CE6003C7941 /* WebViewController.m */; };
 		5BF431081B57864A003C7941 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF431071B57864A003C7941 /* PlaceholderTextView.m */; };
 		5BF4310A1B578DA1003C7941 /* testhead.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF431091B578DA1003C7941 /* testhead.png */; };
-		5BF4F00E1B55F0F7000AB7BD /* BoyeDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */; };
 		5BF4F00F1B55F0F7000AB7BD /* BoyeHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */; };
 		5BF4F0121B560CFA000AB7BD /* ButtonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */; };
 		5BF4F01E1B566088000AB7BD /* MoreExereqBuyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */; };
 		5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0201B56609D000AB7BD /* SettingVC.m */; };
-		5BFCFAFC1B621FF50076F18B /* BoyePictureUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCFAFB1B621FF50076F18B /* BoyePictureUploadManager.m */; };
+		5BFBBB981B635BB100BFB44B /* UserUpdataReqModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB971B635BB100BFB44B /* UserUpdataReqModel.m */; };
+		5BFBBBA01B637B8100BFB44B /* BoyePictureUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB9C1B637B8100BFB44B /* BoyePictureUploadManager.m */; };
+		5BFBBBA11B637B8100BFB44B /* BoyeDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB9F1B637B8100BFB44B /* BoyeDefaultManager.m */; };
+		5BFBBBA41B637CC700BFB44B /* PictureReqModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBBA31B637CC700BFB44B /* PictureReqModel.m */; };
+		5BFBBBA71B637CE400BFB44B /* PictureRespModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBBA61B637CE400BFB44B /* PictureRespModel.m */; };
 		5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCFB001B6224F00076F18B /* UserInfo.m */; };
 		5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
@@ -289,8 +292,6 @@
 		5BF431061B57864A003C7941 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
 		5BF431071B57864A003C7941 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
 		5BF431091B578DA1003C7941 /* testhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testhead.png; sourceTree = "<group>"; };
-		5BF4F00A1B55F0F7000AB7BD /* BoyeDefaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeDefaultManager.h; sourceTree = "<group>"; };
-		5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeDefaultManager.m; sourceTree = "<group>"; };
 		5BF4F00C1B55F0F7000AB7BD /* BoyeHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeHttpClient.h; sourceTree = "<group>"; };
 		5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeHttpClient.m; sourceTree = "<group>"; };
 		5BF4F0101B560CFA000AB7BD /* ButtonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonFactory.h; sourceTree = "<group>"; };
@@ -299,8 +300,16 @@
 		5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreExereqBuyVC.m; sourceTree = "<group>"; };
 		5BF4F01F1B56609D000AB7BD /* SettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingVC.h; sourceTree = "<group>"; };
 		5BF4F0201B56609D000AB7BD /* SettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingVC.m; sourceTree = "<group>"; };
-		5BFCFAFA1B621FF50076F18B /* BoyePictureUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyePictureUploadManager.h; sourceTree = "<group>"; };
-		5BFCFAFB1B621FF50076F18B /* BoyePictureUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyePictureUploadManager.m; sourceTree = "<group>"; };
+		5BFBBB961B635BB100BFB44B /* UserUpdataReqModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserUpdataReqModel.h; sourceTree = "<group>"; };
+		5BFBBB971B635BB100BFB44B /* UserUpdataReqModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserUpdataReqModel.m; sourceTree = "<group>"; };
+		5BFBBB9B1B637B8100BFB44B /* BoyePictureUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyePictureUploadManager.h; sourceTree = "<group>"; };
+		5BFBBB9C1B637B8100BFB44B /* BoyePictureUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyePictureUploadManager.m; sourceTree = "<group>"; };
+		5BFBBB9E1B637B8100BFB44B /* BoyeDefaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeDefaultManager.h; sourceTree = "<group>"; };
+		5BFBBB9F1B637B8100BFB44B /* BoyeDefaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeDefaultManager.m; sourceTree = "<group>"; };
+		5BFBBBA21B637CC700BFB44B /* PictureReqModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureReqModel.h; sourceTree = "<group>"; };
+		5BFBBBA31B637CC700BFB44B /* PictureReqModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureReqModel.m; sourceTree = "<group>"; };
+		5BFBBBA51B637CE400BFB44B /* PictureRespModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureRespModel.h; sourceTree = "<group>"; };
+		5BFBBBA61B637CE400BFB44B /* PictureRespModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureRespModel.m; sourceTree = "<group>"; };
 		5BFCFAFF1B6224F00076F18B /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		5BFCFB001B6224F00076F18B /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		5BFFD9611B54F3F600216795 /* PickerKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerKeyBoard.h; sourceTree = "<group>"; };
@@ -667,10 +676,8 @@
 				5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */,
 				5BF4F00C1B55F0F7000AB7BD /* BoyeHttpClient.h */,
 				5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */,
-				5BF4F00A1B55F0F7000AB7BD /* BoyeDefaultManager.h */,
-				5BF4F00B1B55F0F7000AB7BD /* BoyeDefaultManager.m */,
-				5BFCFAFA1B621FF50076F18B /* BoyePictureUploadManager.h */,
-				5BFCFAFB1B621FF50076F18B /* BoyePictureUploadManager.m */,
+				5BFBBB9A1B637B8100BFB44B /* 图片上传接口 */,
+				5BFBBB9D1B637B8100BFB44B /* 用户信息请求 */,
 			);
 			path = Boye;
 			sourceTree = "<group>";
@@ -699,11 +706,35 @@
 			path = "Modules/设置";
 			sourceTree = "<group>";
 		};
+		5BFBBB9A1B637B8100BFB44B /* 图片上传接口 */ = {
+			isa = PBXGroup;
+			children = (
+				5BFBBB9B1B637B8100BFB44B /* BoyePictureUploadManager.h */,
+				5BFBBB9C1B637B8100BFB44B /* BoyePictureUploadManager.m */,
+				5BFBBBA21B637CC700BFB44B /* PictureReqModel.h */,
+				5BFBBBA31B637CC700BFB44B /* PictureReqModel.m */,
+				5BFBBBA51B637CE400BFB44B /* PictureRespModel.h */,
+				5BFBBBA61B637CE400BFB44B /* PictureRespModel.m */,
+			);
+			path = "图片上传接口";
+			sourceTree = "<group>";
+		};
+		5BFBBB9D1B637B8100BFB44B /* 用户信息请求 */ = {
+			isa = PBXGroup;
+			children = (
+				5BFBBB9E1B637B8100BFB44B /* BoyeDefaultManager.h */,
+				5BFBBB9F1B637B8100BFB44B /* BoyeDefaultManager.m */,
+			);
+			path = "用户信息请求";
+			sourceTree = "<group>";
+		};
 		5BFCFAFE1B6224810076F18B /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				5BFCFAFF1B6224F00076F18B /* UserInfo.h */,
 				5BFCFB001B6224F00076F18B /* UserInfo.m */,
+				5BFBBB961B635BB100BFB44B /* UserUpdataReqModel.h */,
+				5BFBBB971B635BB100BFB44B /* UserUpdataReqModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -969,7 +1000,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF05F591B4E5EF300CBC510 /* UIViewController+DismissKeyboard.m in Sources */,
-				5BFCFAFC1B621FF50076F18B /* BoyePictureUploadManager.m in Sources */,
 				5B38C7D21B5399B80063912C /* MKAnnotationView+WebCache.m in Sources */,
 				5B38C7E21B5399B80063912C /* UIImageView+WebCache.m in Sources */,
 				5B38C7A41B5390CF0063912C /* MainViewController.m in Sources */,
@@ -985,11 +1015,14 @@
 				5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */,
 				5B38C7D71B5399B80063912C /* SDWebImageDecoder.m in Sources */,
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,
+				5BFBBBA71B637CE400BFB44B /* PictureRespModel.m in Sources */,
 				5B38C7DC1B5399B80063912C /* SDWebImagePrefetcher.m in Sources */,
+				5BFBBBA41B637CC700BFB44B /* PictureReqModel.m in Sources */,
 				5B38C7961B5390CF0063912C /* PersonCenterVC.m in Sources */,
 				5B1D240B1B5CF6E500BE460C /* CacheFacade.m in Sources */,
 				5BF4F0121B560CFA000AB7BD /* ButtonFactory.m in Sources */,
 				5BF431081B57864A003C7941 /* PlaceholderTextView.m in Sources */,
+				5BFBBBA11B637B8100BFB44B /* BoyeDefaultManager.m in Sources */,
 				5B38C7DA1B5399B80063912C /* SDWebImageManager+MJ.m in Sources */,
 				9F91E7FA1B4E5AE80013F4F1 /* AFHTTPRequestOperationManager.m in Sources */,
 				5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */,
@@ -999,6 +1032,7 @@
 				5B38C7D81B5399B80063912C /* SDWebImageDownloader.m in Sources */,
 				5B0155DE1B5DDD1900056CFC /* PulsingRadarView.m in Sources */,
 				5BF4F01E1B566088000AB7BD /* MoreExereqBuyVC.m in Sources */,
+				5BFBBBA01B637B8100BFB44B /* BoyePictureUploadManager.m in Sources */,
 				9F91E7FC1B4E5AE80013F4F1 /* AFNetworkReachabilityManager.m in Sources */,
 				5B38C7971B5390CF0063912C /* PersonMessageVC.m in Sources */,
 				5B38C7E11B5399B80063912C /* UIImageView+MJWebCache.m in Sources */,
@@ -1040,6 +1074,7 @@
 				5B0155DC1B5DDD1900056CFC /* DeviceInfoViewController.m in Sources */,
 				5BF05F551B4E5EF300CBC510 /* BaseTextField.m in Sources */,
 				9F91E8011B4E5AE80013F4F1 /* AFURLSessionManager.m in Sources */,
+				5BFBBB981B635BB100BFB44B /* UserUpdataReqModel.m in Sources */,
 				5B38C7D91B5399B80063912C /* SDWebImageDownloaderOperation.m in Sources */,
 				9F91E7DF1B4E5AB70013F4F1 /* main.m in Sources */,
 				5B74F46D1B58921A002493E8 /* DateChooseView.m in Sources */,
@@ -1050,7 +1085,6 @@
 				5BF05F561B4E5EF300CBC510 /* UIColor+Color.m in Sources */,
 				5B38C7D51B5399B80063912C /* SDImageCache.m in Sources */,
 				5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */,
-				5BF4F00E1B55F0F7000AB7BD /* BoyeDefaultManager.m in Sources */,
 				5BF430FF1B575CE6003C7941 /* WebViewController.m in Sources */,
 				5B0155ED1B5DEE8000056CFC /* BoyeBluetoothBaseVC.m in Sources */,
 				9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */,

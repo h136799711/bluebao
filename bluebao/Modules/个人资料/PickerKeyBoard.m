@@ -40,12 +40,15 @@
     //完成按钮
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    button.bounds = CGRectMake(0, 0, 40, 30);
+    button.bounds = CGRectMake(0, 0, 60, 30);
     CGFloat  x  =  topView.width - 10 - button.bounds.size.width/2.0;
     button.center = CGPointMake(x, topView.height /2.0);
     [button setTitle:@"完成" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [topView addSubview:button];
+    [ButtonFactory   decorateButton:button forType:BOYE_BTN_SUCCESS];
+        
+        
     [button addTarget:self action:@selector(buttonCloseClick) forControlEvents:UIControlEventTouchUpInside];
     
         

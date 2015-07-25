@@ -12,5 +12,5 @@
 
 @property (nonatomic,strong)UIView     *headView;
 @property (nonatomic,strong)NSData      *newbbData; //新的日期
-
+@property (nonatomic,strong) UserInfo * userInfo;
 @end

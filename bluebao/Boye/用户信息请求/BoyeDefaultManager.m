@@ -156,7 +156,7 @@
 
     NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
     //e1622ce558609222b6aa91da4beebe91510d93f1
-    NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
+//    NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
 
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     NSDictionary *params = @{@"username":user.username,@"password":user.password};
@@ -211,14 +211,17 @@
 
 
 //用户登录接口
-+(void)requestLoginUser:(User *)user complete:(void (^)(BOOL succed))complete{
++(void)requestLoginUser:(User *)user complete:(void (^)(UserInfo * userInfo))complete{
     
     NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
     NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
 
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     
-    NSDictionary *params = @{@"username":user.username,@"password":user.password};
+    NSDictionary *params = @{
+                             @"username":user.username,
+                             @"password":user.password
+                             };
     
     NSString * urlstr = [NSString stringWithFormat:@"User/login?access_token=%@",[USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN]];
     [client post:urlstr
@@ -245,8 +248,12 @@
                         NSDictionary *info = [json valueForKey:@"data"];
 
 //                        NSLog(@"info = %@\r\n",info);
+                          NSLog(@"info =======================================");
+                        UserInfo * responInfo = [[UserInfo alloc ]initWithUserInfoDictionary:info];
+//                          NSLog(@"info ==%@=====%@===%ld===%ld=",responInfo.username,responInfo.nickname,responInfo.height,responInfo.target_weight);
                         
-                        complete (YES);
+                        
+                        complete (responInfo);
                         
                     }else{
                         
@@ -277,11 +284,59 @@
 
 
 //用户信息接口
-+(void)requestUserInfoUpdata:(UserInfo *)userInfo complete:(void(^)(BOOL succed))complete{
++(void)requestUserInfoUpdata:(UserUpdataReqModel *)userUpdata complete:(void(^)(NSString * string))complete{
     
+//    User/update?access_token=ACCESS_TOKEN
     
+    NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
     
+    BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     
+
+    
+    NSDictionary *params = @{
+                             @"sex"             :userUpdata.sex,
+                             @"nickname"        :userUpdata.nickname,
+                             @"signature"       :userUpdata.signature,
+                             @"height"          :userUpdata.height,
+                             @"weight"          :userUpdata.weight,
+                             @"target_weight"   :userUpdata.target_weight,
+                             @"birthday"        :userUpdata.birthday
+                             };
+
+    NSString * urlstr = [NSString stringWithFormat:@"User/update?access_token=%@",token];
+    
+    [client post:urlstr
+                :params
+                :^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                    NSData * data = [operation.responseString  dataUsingEncoding:NSUTF8StringEncoding];
+                    NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+
+                    if (dic == nil) {
+                        NSLog(@"json parse failed \r\n");
+                        return;
+                    }
+                    
+                    NSLog(@"dic %@",dic);
+
+                    NSNumber * code = [dic valueForKey:@"code"];
+                    NSLog(@"请求成功！%fl",[code floatValue]);
+                    
+                    if ([code intValue] == 0) {
+                        NSString * datastr = [dic valueForKey:@"data"];
+                        NSLog(@"datastr: %@ ",datastr);
+                        complete (datastr);
+                    }else{
+                        
+                    
+                    }
+                    
+                } :^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+                    NSLog(@" error:%@ ",error);
+                    
+                }];
 }
 
 

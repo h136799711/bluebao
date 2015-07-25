@@ -10,4 +10,32 @@
 
 @implementation UserInfo
 
+
+-(id)initWithUserInfoDictionary:(NSDictionary * )diction{
+    
+    self = [super init];
+    if (self) {
+        _birthday = [diction valueForKey:@"birthday"];
+        _height = [[diction valueForKey:@"height"] integerValue];
+        _nickname = [diction valueForKey:@"nickname"];
+        _sex = [[diction valueForKey:@"sex"] integerValue];
+        _weight = [[diction valueForKey:@"weight"] integerValue];
+        _uid = [[diction valueForKey:@"uid"] integerValue];
+        _username = [diction valueForKey:@"username"];
+        _target_weight = [[diction valueForKey:@"target_weight"] integerValue];
+        _signature = [diction valueForKey:@"signature"];
+        NSInteger  year = [[MyTool getCurrentDataFormat:@"yyyy"] integerValue];
+        
+        NSLog(@" --_bring%ld--year %ld---",[_birthday integerValue],year);
+//        _age =  year+10 - [_birthday integerValue];
+        _age = 17;
+    }
+    
+    return self;
+}
+//+(id)initUserInfoDictionary:(NSDictionary *)diction{
+//
+//  return  [super initUserInfoDictionary:diction];
+//}
+
 @end

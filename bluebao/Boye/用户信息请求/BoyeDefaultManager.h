@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserUpdataReqModel.h"
 
 @interface BoyeDefaultManager : NSObject
 
@@ -27,14 +28,15 @@
 
 
 //用户登录接口
-+(void)requestLoginUser:(User *)user complete:(void (^)(BOOL succed))complete;
+//+(void)requestLoginUser:(User *)user complete:(void (^)(BOOL succed))complete;
 
++(void)requestLoginUser:(User *)user complete:(void (^)(UserInfo * userInfo))complete;
 
 //用户注册接口
 +(void)requestRegisterUser:(User *)user complete:(void(^)(BOOL succed))complete;
 
 
 //用户信息接口
-+(void)requestUserInfoUpdata:(UserInfo *)userInfo complete:(void(^)(BOOL succed))complete;
++(void)requestUserInfoUpdata:(UserUpdataReqModel *)userUpdata complete:(void(^)(NSString * string))complete;
 
 @end
