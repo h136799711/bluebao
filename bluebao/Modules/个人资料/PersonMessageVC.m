@@ -135,8 +135,9 @@
     
     if (indexPath.row  < sorArray.count -1) {
         //横线
-        [MyTool createLineInView:personCell.contentView
+      UILabel * line =  (UILabel *)[MyTool createLineInView:personCell.contentView
                             fram:CGRectMake(4, personCell.contentView.height, tableView.width - 4*2, 1)];
+        line.backgroundColor = [UIColor colorWithHexString:@"#f8f8f8"];
     }
     // 创建背景视图
     [BBManageCode createdBackGroundView:personCell.contentView
@@ -452,7 +453,7 @@
         
         //图片保存的路径
         //这里将图片放在沙盒的documents文件夹中
-        NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
         
         //文件管理器
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -462,6 +463,9 @@
         [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:data attributes:nil];
         
         //得到选择后沙盒中图片的完整路径
+        NSString * dataString = [MyTool getCurrentDataFormat:@"yyyyMMddhhmmss"];
+        NSLog(@"  datastrng%@",dataString);
+        
        NSString * filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
        // NSLog(@"filePath %@",filePath);
         

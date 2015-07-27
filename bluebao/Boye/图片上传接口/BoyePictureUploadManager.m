@@ -7,114 +7,85 @@
 //
 
 #import "BoyePictureUploadManager.h"
-
 @implementation BoyePictureUploadManager
 
 //头像请求
 +(void)requestUserHeadDown:(PictureReqModel *) picModel complete:(void(^)(UIImage * headImage))complete{
     
-    BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
-//    picModel.uid = @"1";
+//    BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
+//    picModel.uid = @"8";
 //    NSDictionary *params = @{@"username":user.username,@"password":user.password};
     
-    NSString * urlstr = [NSString stringWithFormat:@"Avatar/index?uid=%@",picModel.uid];
-    [client post:urlstr
-                :nil
-                :^(AFHTTPRequestOperation *operation ,id responseObject){
-                    NSString *html = operation.responseString;
-                    NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
-                    
-                    id json = [NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];;
-                    NSDictionary *dict = (NSDictionary *)json;
-                    
-                    NSLog(@"dict  %@",dict);
-                    if(dict == nil){
-                        NSLog(@"json parse failed \r\n");
-                        return;
-                    }
-                    
-                    NSNumber *code = [dict valueForKey:@"code"];
-                    
-                    NSLog(@"请求成功!%fl",[code floatValue]);
-                    
-                    if ([code intValue] == 0){
-                        
-                        NSDictionary *info = [dict valueForKey:@"info"];
-                        
-                        NSLog(@"info = %@\r\n",info);
-                        
-                        
-                    }else{
-                        
-                        
-                        NSLog(@"请求失败!%ld",(long)code);
-                    }
-                    
-                }
-                :^(AFHTTPRequestOperation *operation ,NSError *error){
-                    
-                    NSLog(@"Error: %@", error);
-                    NSString * errorstr = [NSString stringWithFormat:@"%@",error];
-                    ALERTVIEW(errorstr);
-                    
-                }];
+//    NSString * urlstr = [NSString stringWithFormat:@"Avatar/index?uid=%@",picModel.uid];
+   
+    NSString * urlstring = [NSString stringWithFormat:@"http://192.168.0.100/github/201507lanbao/api.php/Avatar/index?uid=%@",picModel.uid];
 
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlstring]];
+    UIImage * resultImag = [UIImage imageWithData:data];
+    complete( resultImag);
     
+   
 }
 
 
 //图片上传
 +(void)requestPictureUpload:(PictureReqModel *) picModel complete:(void (^)(BOOL successed))complete{
     
-//    picModel.uid = @"1";
+//    picModel.uid = @"8";
+    
+    NSLog(@"\r --uid : %@,  ",picModel.uid);
     
     NSString *token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
     BoyeHttpClient * client = [[BoyeHttpClient alloc] init];
     
     NSDictionary * params =  @{@"uid":picModel.uid,@"type":picModel.type};
-    NSString * urlString = [NSString stringWithFormat:@"File/upload?access_token=%@&uid=%@",token,picModel.uid];
+    NSString * urlString = [NSString stringWithFormat:@"File/upload?access_token=%@",token];
     
-    
-    
-    /**
-     
-     -- testHeadfileString  :file:///Users/boye-mac/Library/Developer/CoreSimulator/Devices/F5C31269-9F48-4DDF-B145-15476F4E5C9A/data/Containers/Bundle/Application/14285784-FFC5-437C-B40F-30AC22DA7AD8/bluebao.app/testhead.png
-     
-     --- filePath  :file:///Users/boye-mac/Library/Developer/CoreSimulator/Devices/F5C31269-9F48-4DDF-B145-15476F4E5C9A/data/Containers/Data/Application/32F5197B-CF39-49D6-928A-55079A2C92F6/Documents/image.png
-     file:///Users/boye-mac/Library/Developer/CoreSimulator/Devices/F5C31269-9F48-4DDF-B145-15476F4E5C9A/data/Containers/Data/Application/4A6859CC-87AB-4517-BCF3-5CCEE64C3F42/Documents/image.png
-     */
-
-    
-    //@"file://path/to/image.png"
-//    NSString * testHeadfileString = [[NSBundle  mainBundle] pathForResource:@"testhead" ofType:@"png"];
-//    
-//    NSLog(@" \r-- testHeadfileString  :%@",testHeadfileString);
-
     NSString * filePath = [NSString stringWithFormat:@"file://%@",picModel.filePath];
+
     
-    NSLog(@" \r--- filePath  %@",filePath);
+    
+    
+//    NSLog(@" \r--- filePath  %@",filePath);
     
     [client   upload:urlString
           withParams:params
                     :filePath
                     :^(AFHTTPRequestOperation *operation, id responseObject) {
-                        NSData * data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
-                        NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                        NSLog(@" !responseObject %@",responseObject);
+                        
+//                        NSData * data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+//                        NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                        NSDictionary * dict = nil;
+                        
+                        if(![responseObject isKindOfClass:[NSDictionary class]]){
+                            
+                            NSLog(@" !NSDictionary ");
+
+                            return;
+                        }
+                        
+                        dict = (NSDictionary *)responseObject;
                         
                         if (dict == nil) {
                          
                             NSLog(@"dic parse failed \r\n");
                             return ;
                         }
-                        NSNumber * code = [dict objectForKey:@"data"];
-                        if ([code intValue] == 0) {
-
-                            complete(YES);
-                        }
-                        
                         
                         NSLog(@"dict %@ ",dict);
 
+                        NSNumber * code = [dict objectForKey:@"code"];
+                        
+                        if ([code intValue] == 0) {
+
+                            
+                        }else{
+                            
+                            NSString * error = [dict valueForKey:@"data"];
+                            NSLog(@"%@",error);
+                        }
+                        
               
           } :^(AFHTTPRequestOperation *operation, NSError *error) {
               

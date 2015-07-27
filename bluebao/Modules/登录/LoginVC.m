@@ -105,7 +105,9 @@
 #pragma mark   ---登陆 -----
 - (IBAction)login:(UIButton *)sender {
     
-    
+    self.accontNumTextfield.text = @"2540927273@qq.com";
+    self.pswTextfield.text = @"123456";
+
     User * user = [[User alloc] init];
     user.username = self.accontNumTextfield.text;
     user.password = self.pswTextfield.text;

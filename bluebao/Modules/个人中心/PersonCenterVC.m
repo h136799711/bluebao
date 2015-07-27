@@ -216,6 +216,7 @@
         [MyTool cutViewConner:imageView radius:imageView.width/2.0];
         imageView.backgroundColor = [UIColor redColor];
         [_headView addSubview:imageView];
+        self.head_ImageView = imageView;
         
         UIButton * headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         headBtn.frame= imageView.frame;
@@ -269,9 +270,9 @@
 //    }];
 //
     //上传
-    [self requestPictrueUpload:picModel];
+//    [self requestPictrueUpload:picModel];
     //下载
-    //[self requestUserHeadImagDown:picModel];
+    [self requestUserHeadImagDown:picModel];
    
       NSLog(@"图片下载");
     NSLog(@" 图片上传");
@@ -296,7 +297,10 @@
  
     //头像请求成功，为空，
     [BoyePictureUploadManager requestUserHeadDown:picModel complete:^(UIImage *headImage) {
-        
+        if (headImage ) {
+            self.head_ImageView.image = headImage;
+        }
+        NSLog(@"");
         
     }];
     //   ****/

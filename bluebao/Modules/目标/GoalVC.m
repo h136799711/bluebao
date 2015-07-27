@@ -89,7 +89,9 @@
         if (cell == nil) {
             
             cell = [[GoalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+          
             [cell.alterBtn addTarget:self action:@selector(alteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+          
             [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         
@@ -98,7 +100,7 @@
         cell.timeLabel.text = goaldate.timestr;
         cell.goalLael.text  = [NSString stringWithFormat:@"%ld卡",goaldate.goalNumber];
         cell.operateLael.text = @"50%";
-        
+     
         cell.alterBtn.tag = indexPath.row;
         cell.deleteBtn.tag = indexPath.row ;
         
@@ -150,14 +152,22 @@
     NSLog(@"删除");
     
     self.goalPickerView.tag = deleteBtn.tag;
+    
+    
+    //删除数据源
     [self.dataArray removeObjectAtIndex:deleteBtn.tag];
     
     //然后刷新tableView(动态删除某些行)
     
     [_goalTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:deleteBtn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    //是否含有数据
     [self isHasDataAdjust];
-
+    //刷新表
     [_goalTableView reloadData];
+    
+    
+    
     [self.goalPickerView close];
 }
 

@@ -124,15 +124,40 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    //@"file://path/to/image.png"
+    manager.responseSerializer.acceptableContentTypes = [  manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+   
+    
+    NSString *base_url = [[NSString alloc] initWithString:BASE_API_URL];
+
+    url = [base_url stringByAppendingString:url];
+    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+//    url = [self getFullURLString:url];
+    
+    UIImage * image = [UIImage  imageNamed:@"add"];
+    NSData * data = UIImageJPEGRepresentation(image, 0.5);    //@"file://path/to/image.png"    //@"file://path/to/image.png"
+    
     NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+    
     [manager
      POST:url
      parameters:withParams
      constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-         [formData appendPartWithFileURL:fileUrl name:@"image" error:nil];
+//         [formData appendPartWithFileURL:fileUrl name:@"image" error:nil];
+         [formData appendPartWithFileData:data name:@"image" fileName:@"xxx.jpg" mimeType:@""];
+         
      } success:success failure:failure];
     
+}
+
+#pragma  mark- 获得完整的ULR --
+-(NSString *)getFullURLString:(NSString *)urlstr{
+    
+    NSString *base_url = [[NSString alloc] initWithString:BASE_API_URL];
+    NSString *  url = [base_url stringByAppendingString:urlstr];
+    url = [urlstr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    return url;
 }
 
 @end

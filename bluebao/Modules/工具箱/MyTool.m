@@ -145,7 +145,7 @@
     UILabel * label =  [[UILabel alloc] init];
     label.tag = 1008;
     label.frame = rect;
-    label.backgroundColor = [UIColor lightGrayColor];
+    label.backgroundColor = [UIColor colorWithHexString:@"#c8c8c8"];
     [view addSubview:label];
     return label;
 }

@@ -24,14 +24,14 @@
         
         if ([BoyeDefaultManager isDateOut]) {
             
-            ALERTVIEW(@"token过期");
+//            ALERTVIEW(@"token过期");
             
             return NO;
         }
         return YES;
     }else{
         
-        ALERTVIEW(@"token不存在");
+//        ALERTVIEW(@"token不存在");
         
         return NO;
     }

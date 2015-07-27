@@ -112,7 +112,8 @@
     
     //底部视图
     _bottomView = [[UIView alloc] initWithFrame:CGRectMake(_contentView.left, SCREEN_HEIGHT - 49, SCREEN_WIDTH, 49)];
-    _bottomView.backgroundColor = [UIColor blackColor];
+    _bottomView.backgroundColor = [UIColor whiteColor];
+//    _bottomView.backgroundColor = [UIColor colorWithRed:(14/255.0) green:(144/255.0) blue:(210/255.0) alpha:1];
     [self.view addSubview:_bottomView];
     
 
