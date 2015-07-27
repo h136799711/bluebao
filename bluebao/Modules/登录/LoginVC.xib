@@ -57,7 +57,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入邮箱/手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oiH-yw-r5a">
-                            <rect key="frame" x="85" y="0.0" width="415" height="43"/>
+                            <rect key="frame" x="85" y="0.0" width="430" height="43"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -71,7 +71,7 @@
                         <constraint firstAttribute="centerY" secondItem="Yxx-9X-xJO" secondAttribute="centerY" id="aeD-wp-t2a"/>
                         <constraint firstAttribute="bottom" secondItem="oiH-yw-r5a" secondAttribute="bottom" id="crO-oF-r2F"/>
                         <constraint firstItem="VUO-A9-DhN" firstAttribute="top" secondItem="fMl-Ox-hIF" secondAttribute="top" id="esw-Ks-L7F"/>
-                        <constraint firstAttribute="trailing" secondItem="oiH-yw-r5a" secondAttribute="trailing" constant="20" id="nvg-ri-77s"/>
+                        <constraint firstAttribute="trailing" secondItem="oiH-yw-r5a" secondAttribute="trailing" constant="5" id="nvg-ri-77s"/>
                         <constraint firstItem="oiH-yw-r5a" firstAttribute="top" secondItem="fMl-Ox-hIF" secondAttribute="top" id="pTH-bz-m2a"/>
                         <constraint firstAttribute="height" constant="43" id="z1x-A9-H0z"/>
                     </constraints>
@@ -98,7 +98,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入你的密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T16-b4-0NH">
-                            <rect key="frame" x="85" y="0.0" width="415" height="43"/>
+                            <rect key="frame" x="85" y="0.0" width="430" height="43"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -108,7 +108,7 @@
                         <constraint firstAttribute="centerY" secondItem="5X5-Ji-Ecf" secondAttribute="centerY" id="TY6-Qm-I99"/>
                         <constraint firstAttribute="centerY" secondItem="O0f-45-Tv5" secondAttribute="centerY" id="gNy-dU-IcX"/>
                         <constraint firstItem="T16-b4-0NH" firstAttribute="top" secondItem="FOO-it-jL2" secondAttribute="top" id="ij5-tG-jlE"/>
-                        <constraint firstAttribute="trailing" secondItem="T16-b4-0NH" secondAttribute="trailing" constant="20" id="pGw-xa-0kd"/>
+                        <constraint firstAttribute="trailing" secondItem="T16-b4-0NH" secondAttribute="trailing" constant="5" id="pGw-xa-0kd"/>
                         <constraint firstItem="T16-b4-0NH" firstAttribute="leading" secondItem="5X5-Ji-Ecf" secondAttribute="trailing" constant="10" id="piD-8d-tSw"/>
                         <constraint firstAttribute="bottom" secondItem="T16-b4-0NH" secondAttribute="bottom" id="s2b-7A-e8B"/>
                     </constraints>

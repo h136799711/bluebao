@@ -259,7 +259,27 @@
     picModel.uid  = @"1";
     picModel.type = @"avatar";
    
+//   
+//    [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
+//        
+//        if (successed ) {
+//            
+//            ALERTVIEW(@"成功");
+//        }
+//    }];
+//
+    //上传
+    [self requestPictrueUpload:picModel];
+    //下载
+    //[self requestUserHeadImagDown:picModel];
+   
+      NSLog(@"图片下载");
+    NSLog(@" 图片上传");
+}
 
+-(void) requestPictrueUpload:(PictureReqModel *)picModel{
+
+    
     [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
         
         if (successed ) {
@@ -268,18 +288,23 @@
         }
     }];
     
- /***
-   
+
+}
+
+
+-(void) requestUserHeadImagDown:(PictureReqModel *)picModel{
+ 
     //头像请求成功，为空，
     [BoyePictureUploadManager requestUserHeadDown:picModel complete:^(UIImage *headImage) {
         
         
     }];
-       ****/
+    //   ****/
     
-    NSLog(@"图片下载");
-    NSLog(@" 图片上传");
+
 }
+
+
 
 /*
 #pragma mark - Navigation

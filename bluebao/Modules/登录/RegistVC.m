@@ -41,7 +41,7 @@
 //    [self.agreeBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [self.agreeBtn setTitle:@"√" forState:UIControlStateSelected];
     [self.agreeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-
+    self.textfield_LeterBox.clearButtonMode = UITextFieldViewModeAlways;
     
     self.textfield_LeterBox.text = @"2540927273@qq.com";
     self.textfield_newpsw.text   = @"123456";

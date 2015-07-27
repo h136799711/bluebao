@@ -84,6 +84,10 @@
     self.accontNumTextfield.clearButtonMode =  UITextFieldViewModeAlways;
     
     
+    self.accontNumTextfield.text = @"2540927273@qq.com";
+    self.pswTextfield.text = @"123456";
+
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -106,19 +110,23 @@
     user.username = self.accontNumTextfield.text;
     user.password = self.pswTextfield.text;
     
-    user.username = @"2540927273@qq.com";
-    user.password = @"123456";
     
     
     if (![self isRightInput:user]) {
         
         return;
+    }else{
+//        
+//    [self jumpMainPage];
+//        return;
+        
+
     }
 
-    
     //token是否有效
     BOOL  isEffective = [BoyeDefaultManager isTokenEffective];
-    if (!isEffective) {
+    
+      if (!isEffective) {
        
         [BoyeDefaultManager requtstAccessTokenComplete:^(BOOL succed) {
             if (!succed) {

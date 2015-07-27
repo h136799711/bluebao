@@ -423,14 +423,16 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
     
-    if (picker.tabBarItem.tag == 0)
-    {
-        //        //如果是 来自照相机的image，那么先保存
-        //        UIImage* original_image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        //        UIImageWriteToSavedPhotosAlbum(original_image, self,
-        //                                       @selector(image:didFinishSavingWithError:contextInfo:),
-        //                                      nil);
-    }
+    
+    
+//    if (picker.tabBarItem.tag == 0)
+//    {
+//        //        //如果是 来自照相机的image，那么先保存
+//                UIImage* original_image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+//                UIImageWriteToSavedPhotosAlbum(original_image, self,
+//                                               @selector(image:didFinishSavingWithError:contextInfo:),
+//                                              nil);
+//    }
     
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     
@@ -440,7 +442,38 @@
         //先把图片转成NSData
         UIImage* image = [info objectForKey: @"UIImagePickerControllerEditedImage"];
         [self.headImageBtn setImage:image forState:UIControlStateNormal];
-        ;
+        NSData * data;
+        if (UIImagePNGRepresentation(image) == nil) {
+            data = UIImageJPEGRepresentation(image, 1.0);
+            
+        }else{
+            data = UIImagePNGRepresentation(image);
+        }
+        
+        //图片保存的路径
+        //这里将图片放在沙盒的documents文件夹中
+        NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        
+        //文件管理器
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
+        [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+        [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:data attributes:nil];
+        
+        //得到选择后沙盒中图片的完整路径
+       NSString * filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
+       // NSLog(@"filePath %@",filePath);
+        
+        PictureReqModel * picModel = [[PictureReqModel alloc] init];
+        picModel.uid = @"1";
+        picModel.type = @"avatar";
+        picModel.filePath = filePath;
+        
+        [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
+            
+        }];
+        
     }
     
     

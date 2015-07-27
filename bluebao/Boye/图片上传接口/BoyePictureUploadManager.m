@@ -14,7 +14,7 @@
 +(void)requestUserHeadDown:(PictureReqModel *) picModel complete:(void(^)(UIImage * headImage))complete{
     
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
-    picModel.uid = @"2";
+//    picModel.uid = @"1";
 //    NSDictionary *params = @{@"username":user.username,@"password":user.password};
     
     NSString * urlstr = [NSString stringWithFormat:@"Avatar/index?uid=%@",picModel.uid];
@@ -71,14 +71,33 @@
     NSString *token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
     BoyeHttpClient * client = [[BoyeHttpClient alloc] init];
     
-    NSDictionary * params =  @{@"uid":picModel.uid,@"type":@"avatar"};
-    NSString * urlString = [NSString stringWithFormat:@"File/upload?access_token=%@",token];
+    NSDictionary * params =  @{@"uid":picModel.uid,@"type":picModel.type};
+    NSString * urlString = [NSString stringWithFormat:@"File/upload?access_token=%@&uid=%@",token,picModel.uid];
     
-//    NSString * fileStrng = [[NSBundle  mainBundle] pathForResource:@"testhead" ofType:@"png"];
-NSString * fileStrng = @"/Uploads\/UserPicture\/2015-07-24\/55b19c3855c66.jpg";
+    
+    
+    /**
+     
+     -- testHeadfileString  :file:///Users/boye-mac/Library/Developer/CoreSimulator/Devices/F5C31269-9F48-4DDF-B145-15476F4E5C9A/data/Containers/Bundle/Application/14285784-FFC5-437C-B40F-30AC22DA7AD8/bluebao.app/testhead.png
+     
+     --- filePath  :file:///Users/boye-mac/Library/Developer/CoreSimulator/Devices/F5C31269-9F48-4DDF-B145-15476F4E5C9A/data/Containers/Data/Application/32F5197B-CF39-49D6-928A-55079A2C92F6/Documents/image.png
+     file:///Users/boye-mac/Library/Developer/CoreSimulator/Devices/F5C31269-9F48-4DDF-B145-15476F4E5C9A/data/Containers/Data/Application/4A6859CC-87AB-4517-BCF3-5CCEE64C3F42/Documents/image.png
+     */
+
+    
+    //@"file://path/to/image.png"
+//    NSString * testHeadfileString = [[NSBundle  mainBundle] pathForResource:@"testhead" ofType:@"png"];
+//    
+//    NSLog(@" \r-- testHeadfileString  :%@",testHeadfileString);
+
+    NSString * filePath = [NSString stringWithFormat:@"file://%@",picModel.filePath];
+    
+    NSLog(@" \r--- filePath  %@",filePath);
+    
     [client   upload:urlString
           withParams:params
-                    :fileStrng :^(AFHTTPRequestOperation *operation, id responseObject) {
+                    :filePath
+                    :^(AFHTTPRequestOperation *operation, id responseObject) {
                         NSData * data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
                         NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
                         
@@ -101,8 +120,6 @@ NSString * fileStrng = @"/Uploads\/UserPicture\/2015-07-24\/55b19c3855c66.jpg";
               
               NSLog(@" error %@",error);
           }];
-    
-    
     
 }
 

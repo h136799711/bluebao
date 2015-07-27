@@ -12,5 +12,5 @@
 
 @property (nonatomic,copy)NSString      *uid;
 @property (nonatomic,copy)NSString      * type;
-
+@property (nonatomic,copy)NSString      * filePath;
 @end

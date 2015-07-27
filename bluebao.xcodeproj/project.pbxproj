@@ -97,6 +97,11 @@
 		5BF4F0121B560CFA000AB7BD /* ButtonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */; };
 		5BF4F01E1B566088000AB7BD /* MoreExereqBuyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */; };
 		5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0201B56609D000AB7BD /* SettingVC.m */; };
+		5BF5A8621B65BCE200996283 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF5A8611B65BCE200996283 /* image.png */; };
+		5BF5A8661B65C02400996283 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */; };
+		5BF5A8671B65C02E00996283 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */; };
+		5BF5A8681B65C04100996283 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF5A8631B65BF5400996283 /* SystemConfiguration.framework */; };
+		5BF5A86A1B65C08000996283 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF5A8691B65C08000996283 /* MobileCoreServices.framework */; };
 		5BFBBB981B635BB100BFB44B /* UserUpdataReqModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB971B635BB100BFB44B /* UserUpdataReqModel.m */; };
 		5BFBBBA01B637B8100BFB44B /* BoyePictureUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB9C1B637B8100BFB44B /* BoyePictureUploadManager.m */; };
 		5BFBBBA11B637B8100BFB44B /* BoyeDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB9F1B637B8100BFB44B /* BoyeDefaultManager.m */; };
@@ -117,8 +122,6 @@
 		9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F41B4E5AE80013F4F1 /* AFURLRequestSerialization.m */; };
 		9F91E8001B4E5AE80013F4F1 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F61B4E5AE80013F4F1 /* AFURLResponseSerialization.m */; };
 		9F91E8011B4E5AE80013F4F1 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */; };
-		9F91E8051B4E5B440013F4F1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */; };
-		9F91E8071B4E5B570013F4F1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,6 +303,9 @@
 		5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreExereqBuyVC.m; sourceTree = "<group>"; };
 		5BF4F01F1B56609D000AB7BD /* SettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingVC.h; sourceTree = "<group>"; };
 		5BF4F0201B56609D000AB7BD /* SettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingVC.m; sourceTree = "<group>"; };
+		5BF5A8611B65BCE200996283 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		5BF5A8631B65BF5400996283 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5BF5A8691B65C08000996283 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5BFBBB961B635BB100BFB44B /* UserUpdataReqModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserUpdataReqModel.h; sourceTree = "<group>"; };
 		5BFBBB971B635BB100BFB44B /* UserUpdataReqModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserUpdataReqModel.m; sourceTree = "<group>"; };
 		5BFBBB9B1B637B8100BFB44B /* BoyePictureUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyePictureUploadManager.h; sourceTree = "<group>"; };
@@ -348,12 +354,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9F50E4FB1B4E577600AB6BD8 /* Frameworks */ = {
+		5BF5A8651B65BFF500996283 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F91E8071B4E5B570013F4F1 /* CFNetwork.framework in Frameworks */,
-				9F91E8051B4E5B440013F4F1 /* CoreBluetooth.framework in Frameworks */,
+				5BF5A86A1B65C08000996283 /* MobileCoreServices.framework in Frameworks */,
+				5BF5A8681B65C04100996283 /* SystemConfiguration.framework in Frameworks */,
+				5BF5A8671B65C02E00996283 /* CoreBluetooth.framework in Frameworks */,
+				5BF5A8661B65C02400996283 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +534,7 @@
 				5B38C7F71B53C6DB0063912C /* time.png */,
 				5B38C7F81B53C6DB0063912C /* user.png */,
 				5B38C7F91B53C6DB0063912C /* xinlv.png */,
+				5BF5A8611B65BCE200996283 /* image.png */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -742,6 +751,7 @@
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
+				5BF5A8691B65C08000996283 /* MobileCoreServices.framework */,
 				9F91E8081B4E5B5D0013F4F1 /* Framework */,
 				9F50E5001B4E577600AB6BD8 /* bluebao */,
 				9F50E51A1B4E577700AB6BD8 /* bluebaoTests */,
@@ -875,6 +885,7 @@
 		9F91E8081B4E5B5D0013F4F1 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				5BF5A8631B65BF5400996283 /* SystemConfiguration.framework */,
 				9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */,
 				9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */,
 			);
@@ -889,8 +900,8 @@
 			buildConfigurationList = 9F50E5211B4E577700AB6BD8 /* Build configuration list for PBXNativeTarget "bluebao" */;
 			buildPhases = (
 				9F50E4FA1B4E577600AB6BD8 /* Sources */,
-				9F50E4FB1B4E577600AB6BD8 /* Frameworks */,
 				9F50E4FC1B4E577600AB6BD8 /* Resources */,
+				5BF5A8651B65BFF500996283 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -973,6 +984,7 @@
 				5B38C7921B5390CF0063912C /* RegistVC.xib in Resources */,
 				5B38C7FD1B53C6DB0063912C /* edit.png in Resources */,
 				5B38C7FA1B53C6DB0063912C /* add.png in Resources */,
+				5BF5A8621B65BCE200996283 /* image.png in Resources */,
 				5BF2E0411B4F6B7E004FDDF7 /* SVProgressHUD.bundle in Resources */,
 				5B38C8021B53C6DB0063912C /* user.png in Resources */,
 				5BF2E03F1B4F6B7E004FDDF7 /* MBProgressHUD.bundle in Resources */,
