@@ -10,7 +10,6 @@
 
 @interface LetfView : UIView<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic,strong) UserInfo * leftInfo;
 @property (nonatomic,strong) UIButton * headBtn;
 @property (nonatomic,strong) UITextField * signTextfield;

@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 #import "GoalPickerView.h"
 
-@interface GoalVC : BaseViewController<UITableViewDelegate,UITableViewDataSource,GoalPickerViewDelegate>
+@interface GoalVC : BoyeBaseVC<UITableViewDelegate,UITableViewDataSource,GoalPickerViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray     *dataArray;
 @property (nonatomic,strong) GoalPickerView     * goalPickerView;

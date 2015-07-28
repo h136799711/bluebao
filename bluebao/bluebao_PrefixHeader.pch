@@ -26,12 +26,16 @@
 #import "UserInfo.h"
 #import "User.h"
 #import "BoyePictureUploadManager.h"
+#import "BoyeToken.h"
+#import "BoyeBaseVC.h"
 
-
-
-//#import "UIButton+WebCache.h"
+#import "UIButton+WebCache.h"
 #import "SDImageCache.h"
 #import "UIImage+Color.h"
+#import "SDWebImageManager.h"
+#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
+
 #import "UIImageView+MJWebCache.h"
 #import "UIViewController+DismissKeyboard.h"
 #import "BaseTextField.h"
@@ -43,7 +47,7 @@
 #import "ButtonFactory.h"
 #import "NSDate+Helper.h"  //日期
 #import "CacheFacade.h"     //缓存
-
+#import "SVProgressHUD.h"
 #import "BoyeBluetoothBaseVC.h"
 
 //-------------------打印日志-------------------------

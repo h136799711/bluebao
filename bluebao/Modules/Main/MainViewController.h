@@ -10,11 +10,11 @@
 #import "UserInfo.h"
 
 @interface MainViewController : BaseViewController
-
 @property (nonatomic,strong) UserInfo * userInfo;
-
+@property (nonatomic,assign) BOOL       isOpen;
 
 + (MainViewController*)sharedSliderController;
+
 
 //close
 -(void)moveLeft;

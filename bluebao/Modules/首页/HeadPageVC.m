@@ -53,11 +53,7 @@
 -(void)_initViews{
 
     itemWidth = (SCREEN_WIDTH - 50-15*3)/4.0;
-//    [USER_DEFAULT setInteger:60 forKey:BOYE_USER_WEIGHT];
-//    [USER_DEFAULT setInteger:165 forKey:BOYE_USER_HEIGHT];
-//    [USER_DEFAULT setInteger:16 forKey:BOYE_USER_AGE];
 
-//
     [self _initHeadInfoTableView];
 }
 
@@ -111,13 +107,11 @@
             cell = [[BMICell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             }
         
-            NSLog(@" userInfo\r weight  %ld  \r height :%ld \r age: %ld ",self.userInfo.weight,self.userInfo.height,self.userInfo.age);
 
         cell.weight = self.userInfo.weight;
         cell.bmiValue = [MyTool getBMINumWeight:self.userInfo.weight height:self.userInfo.height];
 
-//        cell.weight =  [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] floatValue];
-//        cell.bmiValue = 8.9;
+
         return cell;
         
     }
@@ -222,7 +216,6 @@
 {
     HeadCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HeadCollectionViewCell" forIndexPath:indexPath];
 
-    
     cell.labelUnit.text = indexPath.row == 2?@"岁":@"%";
     if (indexPath.row == 2) {
 

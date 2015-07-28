@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "DateChooseView.h"
-@interface HeadPageVC : BaseViewController<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,DateChooseViewDelegate>
+@interface HeadPageVC : BoyeBaseVC<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,DateChooseViewDelegate>
 
 @property (nonatomic,strong)UIView     *headView;
 @property (nonatomic,strong)NSData      *newbbData; //新的日期

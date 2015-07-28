@@ -298,23 +298,39 @@
     self.userInfo.weight = weight;
     self.userInfo.target_weight = target_weight;
     
-    [MainViewController sharedSliderController].userInfo = self.userInfo;
-
+//    [MainViewController sharedSliderController].userInfo = self.userInfo;
     
-//    NSLog(@"   --- age %ld -- height %ld ---weight %ld- ",age,height,weight);
-    
-//    
-//    [USER_DEFAULT setInteger:age forKey:BOYE_USER_AGE];
-//    [USER_DEFAULT setInteger:height forKey:BOYE_USER_HEIGHT];
-//    [USER_DEFAULT setInteger:weight forKey:BOYE_USER_WEIGHT];
-//    
-   // [self.navigationController popViewControllerAnimated:YES];
-    
-//    [self requestPersonInfo];
-    [self requestPersonHeadImag];
+    [self requestPersonInfo];
     
 }
 
+
+#pragma mark -- userInfoUpload --
+
+-(void) requestPersonInfo{
+    
+    //用户信息更新请求模型
+    UserUpdataReqModel * updataModel = [[UserUpdataReqModel alloc] init];
+    
+    updataModel.sex = self.userInfo.sex == 1 ?@"1":@"0" ;
+    updataModel.nickname = self.userInfo.nickname;
+    updataModel.signature = self.userInfo.signature;
+    updataModel.height =  [self getString:self.userInfo.height];
+    
+    updataModel.weight = [self getString:self.userInfo.weight];
+    updataModel.target_weight = [self getString:self.userInfo.target_weight];
+    updataModel.birthday = self.userInfo.birthday;
+    
+    [BoyeDefaultManager requestUserInfoUpdata:updataModel complete:^(BOOL succed) {
+        
+        if (succed) {
+            
+            [MainViewController sharedSliderController].userInfo = self.userInfo;
+            
+        }
+    }];
+    
+}
 
 
 ///  *************      自定义键盘 picker     ************************  //
@@ -422,9 +438,7 @@
 #pragma mark  ---   图片选择器    ---
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    
-    
-    
+
     
 //    if (picker.tabBarItem.tag == 0)
 //    {
@@ -451,33 +465,10 @@
             data = UIImagePNGRepresentation(image);
         }
         
-        //图片保存的路径
-        //这里将图片放在沙盒的documents文件夹中
-        NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
-        
-        //文件管理器
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
-        //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
-        [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
-        [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:data attributes:nil];
-        
-        //得到选择后沙盒中图片的完整路径
-        NSString * dataString = [MyTool getCurrentDataFormat:@"yyyyMMddhhmmss"];
-        NSLog(@"  datastrng%@",dataString);
-        
-       NSString * filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
-       // NSLog(@"filePath %@",filePath);
-        
-        PictureReqModel * picModel = [[PictureReqModel alloc] init];
-        picModel.uid = @"1";
-        picModel.type = @"avatar";
-        picModel.filePath = filePath;
-        
-        [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
-            
-        }];
-        
+        //上传头像
+        [self requestPersonHeadImag:data];
+
+            NSLog(@"为什么 -----1");
     }
     
     
@@ -680,39 +671,38 @@
     return string;
 }
 
-#pragma mark -- userInfoUpload --
+#pragma makr -- 头像上传 --
+-(void)requestPersonHeadImag:(NSData*)data{
 
--(void) requestPersonInfo{
+    //图片保存的路径
+    //这里将图片放在沙盒的documents文件夹中   Documents
+    NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
     
-//用户信息更新请求模型
-    UserUpdataReqModel * updataModel = [[UserUpdataReqModel alloc] init];
-
-    updataModel.sex = self.userInfo.sex == 1 ?@"1":@"0" ;
-    updataModel.nickname = self.userInfo.nickname;
-    updataModel.signature = self.userInfo.signature;
-    updataModel.height =  [self getString:self.userInfo.height];
+    //文件管理器
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    updataModel.weight = [self getString:self.userInfo.weight];
-    updataModel.target_weight = [self getString:self.userInfo.target_weight];
-    updataModel.birthday = self.userInfo.birthday;
+    //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
+    [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString * datastr = [MyTool getCurrentDataFormat:@"yyyyMMddhhmmss"];
+    NSString * imageName = [NSString stringWithFormat:@"/%@_%ld_%@",datastr,self.userInfo.uid,@"image.png"];
     
     
-    [BoyeDefaultManager requestUserInfoUpdata:updataModel complete:^(NSString *  string) {
+    [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:imageName] contents:data attributes:nil];
+    
+    //得到选择后沙盒中图片的完整路径
+    
+    NSString * filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,imageName];
+    NSLog(@"\r ---filePath: %@",filePath);
+    
+    PictureReqModel * picModel = [[PictureReqModel alloc] init];
+    picModel.uid = [NSString stringWithFormat:@"%ld",self.userInfo.uid];
+    picModel.type = @"avatar";
+    picModel.filePath = filePath;
+    
+    [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
         
-        if (string != nil ) {
-            
-//            [MainViewController sharedSliderController].userInfo = self.userInfo;
-            ALERTVIEW(string);
-        }
     }];
-    
-}
 
--(void)requestPersonHeadImag{
-    
-    
-    
-    
 }
 
 

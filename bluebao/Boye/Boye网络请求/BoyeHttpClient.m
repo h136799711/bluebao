@@ -72,19 +72,14 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
 
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSString *base_url = [[NSString alloc] initWithString:BASE_API_URL];
-
-//    
-//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//
-    
-//    self.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
-
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
-    
-    url = [base_url stringByAppendingString:url];
-    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+//    NSString *base_url = [[NSString alloc] initWithString:BASE_API_URL];
+//    url = [base_url stringByAppendingString:url];
+//    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    //获得完整URL
+    url = [self getFullURLString:url];
     
     [manager POST:[api_url absoluteString] parameters:withParams  success:success failure:failure];
     
@@ -126,18 +121,16 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
     
     manager.responseSerializer.acceptableContentTypes = [  manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
    
+    url = [self getFullURLString:url];
     
-    NSString *base_url = [[NSString alloc] initWithString:BASE_API_URL];
+//    UIImage  *image = [UIImage imageWithContentsOfFile:filePath];
 
-    url = [base_url stringByAppendingString:url];
-    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
-//    url = [self getFullURLString:url];
+        UIImage * image = [UIImage  imageNamed:@"sd"];
     
-    UIImage * image = [UIImage  imageNamed:@"add"];
     NSData * data = UIImageJPEGRepresentation(image, 0.5);    //@"file://path/to/image.png"    //@"file://path/to/image.png"
     
-    NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+//    NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+    
     
     [manager
      POST:url
@@ -145,6 +138,7 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
      constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 //         [formData appendPartWithFileURL:fileUrl name:@"image" error:nil];
          [formData appendPartWithFileData:data name:@"image" fileName:@"xxx.jpg" mimeType:@""];
+//         [formData appendpartwithf];
          
      } success:success failure:failure];
     
@@ -152,10 +146,11 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
 
 #pragma  mark- 获得完整的ULR --
 -(NSString *)getFullURLString:(NSString *)urlstr{
+
     
     NSString *base_url = [[NSString alloc] initWithString:BASE_API_URL];
     NSString *  url = [base_url stringByAppendingString:urlstr];
-    url = [urlstr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     return url;
 }

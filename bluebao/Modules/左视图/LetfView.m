@@ -24,7 +24,7 @@
 @interface LetfView(){
     
     NSArray   * sortArray;
-    
+    MainViewController  * mainVC;
     
 }
 
@@ -38,7 +38,7 @@
     if (self) {
         
         [self _initViews];
-        
+        mainVC = [MainViewController sharedSliderController];
     }
     return self;
 }
@@ -57,6 +57,7 @@
         self.tableView.tableHeaderView = [self creatTableViewHeadView];
     [self addSubview:self.tableView];
     
+
     UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.tableView.bounds];
     bgImgView.image = [UIImage imageNamed:@"left_menu_bg"];
     self.tableView.backgroundView = bgImgView;
@@ -176,7 +177,8 @@
      self.headBtn.bounds = CGRectMake(0, 0, 50, 50);
      self.headBtn.center = CGPointMake(20+ self.headBtn.width/2.0,  self.headBtn.height/2.0 + 40);
     [headView addSubview: self.headBtn];
-//    [headBtn setTitle:@"头像" forState:UIControlStateNormal];
+
+    [self.headBtn addTarget:self action:@selector(changeHeadImagClick:) forControlEvents:UIControlEventTouchUpInside];
     [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"testhead.png"] forState:UIControlStateNormal];
     [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"testhead.png"] forState:UIControlStateHighlighted];
 
@@ -222,6 +224,12 @@
 -(void)switchClick:(UISwitch *)stch{
     
     NSLog(@"闹铃");
+    
+}
+
+#pragma mark --- 头像 ---
+-(void)changeHeadImagClick:(UIButton *)headBtn{
+  
     
 }
 

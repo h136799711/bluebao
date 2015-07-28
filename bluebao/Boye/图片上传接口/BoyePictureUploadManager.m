@@ -17,6 +17,15 @@
 //    NSDictionary *params = @{@"username":user.username,@"password":user.password};
     
 //    NSString * urlstr = [NSString stringWithFormat:@"Avatar/index?uid=%@",picModel.uid];
+    
+    [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSucced) {
+        
+        if (tokenSucced) {
+            
+            
+            
+        }
+    }];
    
     NSString * urlstring = [NSString stringWithFormat:@"http://192.168.0.100/github/201507lanbao/api.php/Avatar/index?uid=%@",picModel.uid];
 
@@ -24,8 +33,16 @@
     UIImage * resultImag = [UIImage imageWithData:data];
     complete( resultImag);
     
-   
+    
 }
+
+//头像上传
++(void)requestUploadUserHead:(PictureReqModel *)picModel complete:(void(^)(BOOL successed)) complete{
+    
+    
+    
+  }
+
 
 
 //图片上传
@@ -42,11 +59,8 @@
     NSString * urlString = [NSString stringWithFormat:@"File/upload?access_token=%@",token];
     
     NSString * filePath = [NSString stringWithFormat:@"file://%@",picModel.filePath];
-
     
-    
-    
-//    NSLog(@" \r--- filePath  %@",filePath);
+    NSLog(@" \r--- filePath  %@",filePath);
     
     [client   upload:urlString
           withParams:params

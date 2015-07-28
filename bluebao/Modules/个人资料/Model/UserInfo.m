@@ -26,7 +26,7 @@
         _signature = [diction valueForKey:@"signature"];
         NSInteger  year = [[MyTool getCurrentDataFormat:@"yyyy"] integerValue];
         
-        NSLog(@" --_bring%ld--year %ld---",[_birthday integerValue],year);
+//        NSLog(@" --_bring%ld--year %ld---",[_birthday integerValue],year);
 //        _age =  year+10 - [_birthday integerValue];
         _age = 17;
     }

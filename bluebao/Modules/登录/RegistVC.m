@@ -44,7 +44,7 @@
     self.textfield_LeterBox.clearButtonMode = UITextFieldViewModeAlways;
     
     self.textfield_LeterBox.text = @"2540927273@qq.com";
-    self.textfield_newpsw.text   = @"123456";
+//    self.textfield_newpsw.text   = @"123456";
     self.textfield_confirmpsw.text =  self.textfield_newpsw.text;
 }
 
@@ -71,37 +71,6 @@
     }
     
     
-    //获得口令
-    if (![BoyeDefaultManager isTokenEffective]) {
-        
-        [BoyeDefaultManager requtstAccessTokenComplete:^(BOOL succed) {
-            
-            //获得口令
-            if (!succed) {
-                
-                ALERTVIEW(@"口令获取失败");
-                return ;
-            }else{
-                        NSLog(@"已再次请求token");
-
-
-                [self requestRegister:user];
-                return  ;
-            }
-        }];
-
-    }else{
-        
-        NSLog(@"token有效");
-        [self requestRegister:user];
-
-    }
-  
-}
-
--(void)requestRegister:(User *)user{
-    
-    
     //注册请求
     [BoyeDefaultManager requestRegisterUser:user complete:^(BOOL succed) {
         
@@ -118,8 +87,6 @@
 
     
 }
-
-
 
 
 #pragma mark -- 同意签订 --
@@ -148,52 +115,57 @@
 }
 
 -(BOOL)isRightInput:(User *)user{
+
+    CGFloat duration = 0.5;
     
+
     //邮箱非空
     if ([MyTool inputIsNull:user.username]) {
-        ALERTVIEW(@"邮箱不能为空")
+        [SVProgressHUD showOnlyStatus:@"邮箱不能为空" withDuration:duration];
+
         return NO;
     }
     
     if (![MyTool validateEmail:user.username]) {
-        
-        ALERTVIEW(@"请输入正确的邮箱")
+        [SVProgressHUD showOnlyStatus:@"请输入正确的邮箱" withDuration:duration];
         return NO;
     }
     
     if (user.username.length >=18) {
-        ALERTVIEW(@"用户名长度太长");
+        [SVProgressHUD showOnlyStatus:@"用户名长度太长" withDuration:duration];
+
         return NO;
     }
     
-   
     
     if ([MyTool inputIsNull:user.password]) {
-        ALERTVIEW(@"密码不能为空")
+        [SVProgressHUD showOnlyStatus:@"密码不能为空" withDuration:duration];
         return NO;
     }
     
     if (user.password.length <6) {
-        
-        ALERTVIEW(@"密码长度不能小于6位");
+        [SVProgressHUD showOnlyStatus:@"密码长度不能小于6位" withDuration:duration];
         return NO;
     }
     
-
     
     if ([MyTool inputIsNull:user.userConpsw]) {
-        ALERTVIEW(@"确认密码不能为空")
+        [SVProgressHUD showOnlyStatus:@"确认密码不能为空" withDuration:duration];
         return NO;
     }
+    
+    
+    
     //两个密码是否相等
     if (![MyTool isEqualToString:user.password string:user.userConpsw]) {
-        ALERTVIEW(@"两次密码输入不正确")
+        [SVProgressHUD showOnlyStatus:@"两次密码不一致" withDuration:duration];
         return NO;
     }
     
     //没有阅读
     if (self.agreeBtn.selected ==NO ) {
-        ALERTVIEW(@"请阅读用户须知")
+        [SVProgressHUD showOnlyStatus:@"请阅读用户须知" withDuration:duration];
+
         return NO;
     }
 

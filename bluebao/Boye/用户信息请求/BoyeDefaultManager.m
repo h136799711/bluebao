@@ -17,55 +17,6 @@
 
 @implementation BoyeDefaultManager
 
-//是否存在有效token
-+(BOOL)isTokenEffective{
-    
-    if ([BoyeDefaultManager isTokenExist]) {
-        
-        if ([BoyeDefaultManager isDateOut]) {
-            
-//            ALERTVIEW(@"token过期");
-            
-            return NO;
-        }
-        return YES;
-    }else{
-        
-//        ALERTVIEW(@"token不存在");
-        
-        return NO;
-    }
-}
-
-//是否过期
-+(BOOL)isDateOut{
-    
-    NSDate *end_date=[[NSUserDefaults standardUserDefaults]  objectForKey:BOYE_ENDTIME];
-    NSDate *now_date=[NSDate date];
-    
-//    NSLog(@" \r *** nowDate: %@   \r  ***  endDate:%@",now_date,end_date);
-    BOOL isOut = [now_date compare:end_date]==NSOrderedAscending;
-    
-//    NSLog(@" \r *** is out  %d  ",isOut);
-    return !isOut;
-    
-    //return YES;
-}
-
-//token是否存在
-+(BOOL) isTokenExist{
-    
-    NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
-    
-    if (token == nil) {
-        return NO;
-    }
-    //874d69325dfd98c1eb40f9b7f20de36d75bd5413
-
-//    NSLog(@" \r *** 当前 token : %@",token);
-    return YES;
-}
-
 //日期
 +(NSDateFormatter *)getDateFormatter:(NSString *)format{
     
@@ -87,88 +38,47 @@
 }
 
 
-
-//保存token 以及计算出过期的时间并保存
-
-+(void)saveDataWithDic:(NSDictionary *)dic{
-    
-    NSString *access_token=[dic objectForKey:@"access_token"];
-    double time=[[dic objectForKey:@"expires_in"] doubleValue];
-    
-    //计算出距离当前日期 长度为time的日期
-    NSDate *date=[NSDate dateWithTimeIntervalSinceNow:time];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:access_token forKey:BOYE_ACCESS_TOKEN];
-    [[NSUserDefaults standardUserDefaults] setObject:date forKey:BOYE_ENDTIME];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    //    NSLog(@" token   - =%@",[USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN]);
-    
-}
-
-
-//获取令牌
-+(void)requtstAccessTokenComplete:(void(^)(BOOL  succed))complete{
-    
-    BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
-    NSDictionary *params = @{@"grant_type":@"client_credentials",@"client_id":@BOYE_CLIENT_ID,@"client_secret":@BOYE_CLIENT_SECRET};
-    
-    [client post:@"Token/index"
-                :params
-                :^(AFHTTPRequestOperation *operation ,id responseObject){
-                    NSString *html = operation.responseString;
-                    NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
-                    id dict=[NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                    
-                    NSDictionary *json = (NSDictionary *)dict;
-                    
-                    NSNumber *code = [json valueForKey:@"code"];
-                    
-                    NSDictionary *info = [json valueForKey:@"info"];
-                    
-                    NSLog(@"请求成功!%fl",[code floatValue]);
-                    NSLog(@"请求结果  info  ：%@",info);
-
-                    
-                    if ([code intValue] == 0){
-//                        NSString * access_token = [info objectForKey:@"access_token"];
-//                        NSLog(@" \r access_token:   %@",access_token);
-                        [self saveDataWithDic:info];
-                        complete (YES);
-  
-                    }else{
-                        
-                        NSLog(@"请求失败!%ld",(long)code);
-                        complete (NO);
-                    }
-                }
-                :^(AFHTTPRequestOperation *operation ,NSError *error){
-                    NSLog(@"Error: %@", error);
-                    complete (NO);
-                }];
-    
-}
-
-
-//用户注册接口
+#pragma mark --- 用户注册接口
 +(void)requestRegisterUser:(User *)user complete:(void(^)(BOOL succed))complete{
  
+    //请求Token
+    [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSucced) {
+        
+        if (tokenSucced) {
+           //注册请求
+            [self reqRegister:user complete:^(BOOL registSucced) {
+                
+                if (registSucced) {
+                    complete(YES);
+                }
+            }];
+        
+        }
+    }];
 
+
+    
+    
+  }
+
+//用户注册接口
++(void)reqRegister:(User *)user complete:(void(^)(BOOL registSucced))complete{
+    
     NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
     //e1622ce558609222b6aa91da4beebe91510d93f1
-//    NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
-
+    //    NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
+    
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     NSDictionary *params = @{@"username":user.username,@"password":user.password};
     NSString * urlstr = [NSString stringWithFormat:@"User/register?access_token=%@",token];
-
+    [SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
     [client post:urlstr
                 :params
                 :^(AFHTTPRequestOperation *operation ,id responseObject){
                     
                     NSString *html = operation.responseString;
                     
-                  //  NSLog(@"结果: %@", html);
+                    //  NSLog(@"结果: %@", html);
                     
                     NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
                     id dict=[NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
@@ -176,7 +86,7 @@
                     NSDictionary *json = (NSDictionary *)dict;
                     
                     NSLog(@"结果: %@", json);
-
+                    
                     
                     if(json == nil){
                         NSLog(@"json parse failed \r\n");
@@ -187,9 +97,10 @@
                     NSLog(@"请求成功!%fl",[code floatValue]);
                     
                     if ([code intValue] == 0){
-
+                        
                         complete (YES);
                         
+                        [SVProgressHUD showSuccessWithStatus:@"注册成功"];
                     }else{
                         
                         NSLog(@"请求失败!%ld",(long)code);
@@ -203,20 +114,38 @@
                     NSLog(@"Error: %@", error.description);
                     complete (NO);
                     
+                    [SVProgressHUD showErrorWithStatus:@"注册失败"];
                 }];
 }
 
 
 
-
-
-//用户登录接口
+#pragma mark ---用户登录接口
 +(void)requestLoginUser:(User *)user complete:(void (^)(UserInfo * userInfo))complete{
     
+    //Token请求
+    [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSuccesed) {
+        
+        if (tokenSuccesed) {
+            //用户登陆
+            [self reqLogin:user complete:^(UserInfo *_userInfo) {
+                if (_userInfo) {
+                    
+                    complete(_userInfo);
+                }
+            }];
+        }
+    }];
+    
+  }
+//用户登录接口
++(void)reqLogin:(User *)user complete:(void (^)(UserInfo * _userInfo))complete{
     NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
     NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
-
+    
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
+    
+    [SVProgressHUD showWithStatus:@"正在登陆..." maskType:SVProgressHUDMaskTypeClear];
     
     NSDictionary *params = @{
                              @"username":user.username,
@@ -242,19 +171,17 @@
                     NSNumber *code = [json valueForKey:@"code"];
                     
                     NSLog(@"请求成功!%fl",[code floatValue]);
-            
+                    
                     if ([code intValue] == 0){
-                       
+                        
                         NSDictionary *info = [json valueForKey:@"data"];
-
-//                        NSLog(@"info = %@\r\n",info);
-                          NSLog(@"info =======================================");
+                        
                         UserInfo * responInfo = [[UserInfo alloc ]initWithUserInfoDictionary:info];
-//                          NSLog(@"info ==%@=====%@===%ld===%ld=",responInfo.username,responInfo.nickname,responInfo.height,responInfo.target_weight);
+                        //                          NSLog(@"info ==%@=====%@===%ld===%ld=",responInfo.username,responInfo.nickname,responInfo.height,responInfo.target_weight);
                         
                         
                         complete (responInfo);
-                        
+                        [SVProgressHUD showSuccessWithStatus:@"登陆成功"];
                     }else{
                         
                         [BoyeDefaultManager getCodeWrongData:json];
@@ -264,36 +191,48 @@
                     
                 }
                 :^(AFHTTPRequestOperation *operation ,NSError *error){
-
-                    NSLog(@"Error: %@", error);
-                    NSString * errorstr = [NSString stringWithFormat:@"%@",error];
-                    ALERTVIEW(errorstr);
-                    
+                    [SVProgressHUD showErrorWithStatus:@"登陆失败"];
                 }];
-    
-//    complete (YES);
-    
+
 }
 
 //返回响应成功后请求失败原因 code 非 0 原因
 +(void)getCodeWrongData:(NSDictionary *)dic{
     NSString * errorData = [dic valueForKey:@"data"];
-    ALERTVIEW(errorData);
+    [SVProgressHUD showErrorWithStatus:errorData];
     
 }
 
 
-//用户信息接口
-+(void)requestUserInfoUpdata:(UserUpdataReqModel *)userUpdata complete:(void(^)(NSString * string))complete{
+#pragma mark ---用户信息接口
++(void)requestUserInfoUpdata:(UserUpdataReqModel *)userUpdata complete:(void(^)(BOOL succed))complete{
+
+    
+    [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSucced) {
+        
+        if (tokenSucced) {
+            
+            [self reqInfoUpdata:userUpdata complete:^(BOOL userInfoUpdatasucced) {
+                
+                complete(userInfoUpdatasucced);
+            }];
+            
+            }
+    }];
+
+
+
+}
+
+//pragma mark ---用户信息接口
++(void)reqInfoUpdata:(UserUpdataReqModel *)userUpdata complete:(void(^)(BOOL userInfoUpdatasucced ))complete{
     
 //    User/update?access_token=ACCESS_TOKEN
     
     NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
-    
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     
-
-    
+    [SVProgressHUD showWithStatus:@"信息更新..." maskType:SVProgressHUDMaskTypeClear];
     NSDictionary *params = @{
                              @"sex"             :userUpdata.sex,
                              @"nickname"        :userUpdata.nickname,
@@ -324,16 +263,21 @@
                     NSLog(@"请求成功！%fl",[code floatValue]);
                     
                     if ([code intValue] == 0) {
-                        NSString * datastr = [dic valueForKey:@"data"];
-                        NSLog(@"datastr: %@ ",datastr);
-                        complete (datastr);
+                       
+                        NSString * successedData = [dic valueForKey:@"data"];
+                        [SVProgressHUD showSuccessWithStatus:successedData];
+                      
                     }else{
-                        
+                        //更新失败
+                        [BoyeDefaultManager getCodeWrongData:dic];
                     
                     }
                     
                 } :^(AFHTTPRequestOperation *operation, NSError *error) {
         
+                    [SVProgressHUD showErrorWithStatus:@"更新失败"];
+                    
+                    
                     NSLog(@" error:%@ ",error);
                     
                 }];

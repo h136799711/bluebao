@@ -88,12 +88,14 @@
 		5BF2E0421B4F6B7E004FDDF7 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E03C1B4F6B7E004FDDF7 /* SVProgressHUD.m */; };
 		5BF2E0481B4F6C99004FDDF7 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E0461B4F6C99004FDDF7 /* NSDateFormatter+Category.m */; };
 		5BF3165E1B5C835200B0114F /* DrawProgreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3165D1B5C835200B0114F /* DrawProgreView.m */; };
+		5BF31F511B6707C900F6F366 /* BoyeHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31F501B6707C900F6F366 /* BoyeHttpClient.m */; };
+		5BF31F551B67085F00F6F366 /* BoyeToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31F541B67085F00F6F366 /* BoyeToken.m */; };
+		5BF31F5B1B671C9F00F6F366 /* BoyeBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31F5A1B671C9F00F6F366 /* BoyeBaseVC.m */; };
 		5BF430F91B573802003C7941 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF430F81B573802003C7941 /* User.m */; };
 		5BF430FC1B575979003C7941 /* MoreExerCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF430FB1B575979003C7941 /* MoreExerCollectionCell.m */; };
 		5BF430FF1B575CE6003C7941 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF430FE1B575CE6003C7941 /* WebViewController.m */; };
 		5BF431081B57864A003C7941 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF431071B57864A003C7941 /* PlaceholderTextView.m */; };
 		5BF4310A1B578DA1003C7941 /* testhead.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF431091B578DA1003C7941 /* testhead.png */; };
-		5BF4F00F1B55F0F7000AB7BD /* BoyeHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */; };
 		5BF4F0121B560CFA000AB7BD /* ButtonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */; };
 		5BF4F01E1B566088000AB7BD /* MoreExereqBuyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F01D1B566088000AB7BD /* MoreExereqBuyVC.m */; };
 		5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4F0201B56609D000AB7BD /* SettingVC.m */; };
@@ -286,6 +288,12 @@
 		5BF2E0461B4F6C99004FDDF7 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
 		5BF3165C1B5C835200B0114F /* DrawProgreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawProgreView.h; sourceTree = "<group>"; };
 		5BF3165D1B5C835200B0114F /* DrawProgreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawProgreView.m; sourceTree = "<group>"; };
+		5BF31F4F1B6707C900F6F366 /* BoyeHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeHttpClient.h; sourceTree = "<group>"; };
+		5BF31F501B6707C900F6F366 /* BoyeHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeHttpClient.m; sourceTree = "<group>"; };
+		5BF31F531B67085F00F6F366 /* BoyeToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeToken.h; sourceTree = "<group>"; };
+		5BF31F541B67085F00F6F366 /* BoyeToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeToken.m; sourceTree = "<group>"; };
+		5BF31F591B671C9F00F6F366 /* BoyeBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeBaseVC.h; sourceTree = "<group>"; };
+		5BF31F5A1B671C9F00F6F366 /* BoyeBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeBaseVC.m; sourceTree = "<group>"; };
 		5BF430F71B573802003C7941 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		5BF430F81B573802003C7941 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		5BF430FA1B575979003C7941 /* MoreExerCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreExerCollectionCell.h; sourceTree = "<group>"; };
@@ -295,8 +303,6 @@
 		5BF431061B57864A003C7941 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
 		5BF431071B57864A003C7941 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
 		5BF431091B578DA1003C7941 /* testhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testhead.png; sourceTree = "<group>"; };
-		5BF4F00C1B55F0F7000AB7BD /* BoyeHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeHttpClient.h; sourceTree = "<group>"; };
-		5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeHttpClient.m; sourceTree = "<group>"; };
 		5BF4F0101B560CFA000AB7BD /* ButtonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonFactory.h; sourceTree = "<group>"; };
 		5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonFactory.m; sourceTree = "<group>"; };
 		5BF4F01C1B566088000AB7BD /* MoreExereqBuyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreExereqBuyVC.h; sourceTree = "<group>"; };
@@ -515,6 +521,8 @@
 				5B38C78D1B5390CF0063912C /* BaseViewController.m */,
 				5B0155EB1B5DEE8000056CFC /* BoyeBluetoothBaseVC.h */,
 				5B0155EC1B5DEE8000056CFC /* BoyeBluetoothBaseVC.m */,
+				5BF31F591B671C9F00F6F366 /* BoyeBaseVC.h */,
+				5BF31F5A1B671C9F00F6F366 /* BoyeBaseVC.m */,
 			);
 			name = Model;
 			path = Modules/Model;
@@ -665,6 +673,24 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		5BF31F4E1B6707C900F6F366 /* Boye网络请求 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF31F4F1B6707C900F6F366 /* BoyeHttpClient.h */,
+				5BF31F501B6707C900F6F366 /* BoyeHttpClient.m */,
+			);
+			path = "Boye网络请求";
+			sourceTree = "<group>";
+		};
+		5BF31F521B6707D600F6F366 /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				5BF31F531B67085F00F6F366 /* BoyeToken.h */,
+				5BF31F541B67085F00F6F366 /* BoyeToken.m */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
 		5BF430F51B5737A7003C7941 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -677,14 +703,14 @@
 		5BF4F0091B55F0F7000AB7BD /* Boye */ = {
 			isa = PBXGroup;
 			children = (
+				5BF31F521B6707D600F6F366 /* Token */,
+				5BF31F4E1B6707C900F6F366 /* Boye网络请求 */,
 				5B1D24091B5CF6E500BE460C /* CacheFacade.h */,
 				5B1D240A1B5CF6E500BE460C /* CacheFacade.m */,
 				5B1D24061B5CF6AD00BE460C /* NSDate+Helper.h */,
 				5B1D24071B5CF6AD00BE460C /* NSDate+Helper.m */,
 				5BF4F0101B560CFA000AB7BD /* ButtonFactory.h */,
 				5BF4F0111B560CFA000AB7BD /* ButtonFactory.m */,
-				5BF4F00C1B55F0F7000AB7BD /* BoyeHttpClient.h */,
-				5BF4F00D1B55F0F7000AB7BD /* BoyeHttpClient.m */,
 				5BFBBB9A1B637B8100BFB44B /* 图片上传接口 */,
 				5BFBBB9D1B637B8100BFB44B /* 用户信息请求 */,
 			);
@@ -1018,12 +1044,15 @@
 				5B38C7A21B5390CF0063912C /* LeftMenuCell.m in Sources */,
 				5B0155E71B5DDDB300056CFC /* LNowBicyleData.m in Sources */,
 				5B38C7A01B5390CF0063912C /* HeadPageVC.m in Sources */,
+				5BF31F511B6707C900F6F366 /* BoyeHttpClient.m in Sources */,
 				5B38C7E01B5399B80063912C /* UIImage+WebP.m in Sources */,
 				5B74F4BC1B590AC9002493E8 /* OpinionVC.m in Sources */,
 				5B0155E41B5DDD9B00056CFC /* LNowDevice.m in Sources */,
 				5B38C7951B5390CF0063912C /* MessageCell.m in Sources */,
 				5BF2E0421B4F6B7E004FDDF7 /* SVProgressHUD.m in Sources */,
 				5BF3165E1B5C835200B0114F /* DrawProgreView.m in Sources */,
+				5BF31F5B1B671C9F00F6F366 /* BoyeBaseVC.m in Sources */,
+				5BF31F551B67085F00F6F366 /* BoyeToken.m in Sources */,
 				5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */,
 				5B38C7D71B5399B80063912C /* SDWebImageDecoder.m in Sources */,
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,
@@ -1066,7 +1095,6 @@
 				5B38C7DB1B5399B80063912C /* SDWebImageManager.m in Sources */,
 				5B38C7D61B5399B80063912C /* SDWebImageCompat.m in Sources */,
 				5B38C79E1B5390CF0063912C /* HeadCollectionViewCell.m in Sources */,
-				5BF4F00F1B55F0F7000AB7BD /* BoyeHttpClient.m in Sources */,
 				5B38C7941B5390CF0063912C /* ShareVC.m in Sources */,
 				9F91E7FE1B4E5AE80013F4F1 /* AFURLConnectionOperation.m in Sources */,
 				5B38C79D1B5390CF0063912C /* BMICell.m in Sources */,

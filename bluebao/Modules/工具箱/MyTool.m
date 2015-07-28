@@ -131,7 +131,7 @@
 #pragma mark -- 字符串相等 ---
 +(BOOL)isEqualToString:(NSString *)stringOne string:(NSString *)stringTow{
     
-    if ([stringOne isEqualToString:stringOne]) {
+    if ([stringOne isEqualToString:stringTow]) {
         return YES;
     }else{
         return NO;

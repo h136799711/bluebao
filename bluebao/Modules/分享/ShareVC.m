@@ -34,7 +34,7 @@
 //
 -(void)_initViews{
     //分享
-    share_tableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT-TABBAR_HEIGHT -60) style:UITableViewStylePlain];
+    share_tableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT-TABBAR_HEIGHT ) style:UITableViewStylePlain];
     share_tableView.delegate = self;
     share_tableView.dataSource = self;
     share_tableView.tableHeaderView = [self headerView];
@@ -175,7 +175,7 @@
     //分享视图View
     UIView  * shareView = [[UIView alloc] init];
     CGFloat  height = 60;
-    shareView.frame = CGRectMake(0, SCREEN_HEIGHT-height- STATUS_HEIGHT - NAV_HEIGHT - TABBAR_HEIGHT, SCREEN_WIDTH, height);
+    shareView.frame = CGRectMake(0, SCREEN_HEIGHT-height- STATUS_HEIGHT - NAV_HEIGHT , SCREEN_WIDTH, height);
     shareView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:shareView];
     
@@ -243,6 +243,12 @@
     namelabel.font = FONT(15);
     namelabel.center = CGPointMake(headImag.right + 5+ namelabel.width/2.0 , headImag.center.y - 5);
     
+    UIButton * cancleBtn = [[UIButton alloc] init];
+    cancleBtn.bounds = CGRectMake(0, 0, 40, 44);
+    cancleBtn.center = CGPointMake(navView.width - 10-cancleBtn.width/2.0, navView.height/2.0);
+    [ButtonFactory decorateButton:cancleBtn forType:BOYE_BTN_SECONDARY];
+    [navView addSubview:cancleBtn];
+    [cancleBtn addTarget:self action:@selector(cancleBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     return navView;
 
@@ -253,13 +259,18 @@
     
     NSLog(@"分享到%@",@[@"微信",@"微博",@"qq空间"][shareBtn.tag]);
     [share_tableView reloadData];
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark --- 
+-(void)cancleBtnClick{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 

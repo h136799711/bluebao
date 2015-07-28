@@ -120,26 +120,22 @@
     
     //个人中心
     PersonCenterVC *  person = [[PersonCenterVC alloc] init];
-    person.title = @"person";
     UINavigationController * navp = [[UINavigationController alloc] initWithRootViewController:person];
-    
-    //分享
-    ShareVC * share = [[ShareVC alloc] init];
-    share.title = @"share";
-    UINavigationController * navs = [[UINavigationController alloc] initWithRootViewController:share];
-    
+//    
+//    //分享
+//    ShareVC * share = [[ShareVC alloc] init];
+//    UINavigationController * navs = [[UINavigationController alloc] initWithRootViewController:share];
+//    
     //目标
     GoalVC * goal  = [[GoalVC alloc] init];
-    goal.title = @"goal";
     UINavigationController * navg = [[UINavigationController alloc] initWithRootViewController:goal];
     
     //首页
     
     HeadPageVC *head = [[HeadPageVC alloc] init];
-    head.title = @"head";
     UINavigationController * navh = [[UINavigationController alloc] initWithRootViewController:head];
     
-    self.viewcontrollers = @[navh,navg,navp,navs];
+    self.viewcontrollers = @[navh,navg,navp];
 
     //底部按钮
     for (int i = 0;  i < 4;  i ++) {
@@ -169,18 +165,31 @@
 #pragma mark -- 点击事件 --
 -(void)buttonPress:(UIButton *)button{
     
-    UIViewController * vc = self.viewcontrollers[button.tag];
     
-    if ([_contentView.subviews containsObject:vc.view]) {
-        [_contentView bringSubviewToFront:vc.view];
+    
+    if (button.tag == 3) {
+        ShareVC * share = [[ShareVC alloc] init];
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:share];
+
+        [self  presentViewController:nav animated:YES completion:nil];
+        
     }else{
         
-        [_contentView addSubview:vc.view];
+        UIViewController * vc = self.viewcontrollers[button.tag];
+        
+        if ([_contentView.subviews containsObject:vc.view]) {
+            [_contentView bringSubviewToFront:vc.view];
+        }else{
+            
+            [_contentView addSubview:vc.view];
+        }
+        
+        select_button.selected = NO;
+        select_button = button;
+        button.selected = YES;
+        
     }
-    
-    select_button.selected = NO;
-    select_button = button;
-    button.selected = YES;
+
     
 //    for (int i = 0; i < self.viewcontrollers.count; i ++) {
 //        UILabel * label = (UILabel *)[_bottomView viewWithTag:i+1];
@@ -239,6 +248,7 @@
                         duration:timer
                        pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
     [_bottomView setUserInteractionEnabled:YES];
+    self.isOpen = NO;
 }
 //open
 -(void)moveRight{
@@ -250,6 +260,7 @@
                         duration:timer
                        pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
     [_bottomView setUserInteractionEnabled:NO];
+   self.isOpen = YES;
 }
 
 #pragma mark -- 创建单例 --
