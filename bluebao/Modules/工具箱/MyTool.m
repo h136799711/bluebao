@@ -7,6 +7,7 @@
 //
 
 #import "MyTool.h"
+#import "GoalData.h"
 
 @implementation MyTool
 
@@ -161,15 +162,63 @@
 #pragma mark -- 获得当前日期  -
 +(NSString *) getCurrentDataFormat:(NSString *)formatterStr{
    
+    if(formatterStr == nil){
+        formatterStr = @"yyyy-MM-dd HH:mm:ss";
+    }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+
     //设定时间格式,这里可以设置成自己需要的格式
 //    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [dateFormatter setDateFormat:formatterStr];
+    
     //用[NSDate date]可以获取系统当前时间
+//    [dateFormatter setDateStyle: NSDateFormatterMediumStyle];
+//    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    NSTimeZone * timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    [dateFormatter setTimeZone:timeZone];
+    
     NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
+//    NSLog(@"\r currentdatestr :%@",currentDateStr);
     return currentDateStr;
 }
 
+//日期
++(NSDateFormatter *)getDateFormatter:(NSString *)format{
+    
+    
+    if(format == nil){
+        format = @"yyyy-MM-dd HH:mm:ss";
+    }
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateStyle:NSDateFormatterMediumStyle];
+//    [formatter setTimeStyle:NSDateFormatterShortStyle];
+//    [formatter setDateFormat:format];
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    
+    [formatter setTimeZone:timeZone];
+    
+    return formatter;
+}
+
+
+
+#pragma mark -- 转化为data ---
++(NSDate *) changeStringToDate:(NSString *)datestr formatter:(NSString *)format{
+    
+    NSLog(@"datestr:%@",datestr);
+    if (format == nil) {
+        format = @"yyyy-MM-dd-HH:mm:ss";
+    }
+    NSDateFormatter * dateformat = [[NSDateFormatter alloc] init];
+  
+    [dateformat setDateFormat:format];
+    NSDate * date = [dateformat dateFromString:datestr];
+    return date;
+}
 
 #pragma mark -- 获得BMI --
 +(NSString *) getBMIStringWeight:(CGFloat)weight height:(CGFloat)height{
@@ -210,5 +259,83 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:email];
 }
+
+
+
+#pragma mark --- 将文件保存在沙河下 ---
++(NSString *) getDocumentsImageFile:(NSData *)dataImag userID:(NSInteger)uid{
+    
+    //图片保存的路径
+    //这里将图片放在沙盒的documents文件夹中   Documents
+    NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
+    
+    //文件管理器
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
+    [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString * datastr = [MyTool getCurrentDataFormat:@"yyyyMMddhhmmss"];
+    NSString * imageName = [NSString stringWithFormat:@"/%@_%ld_%@",datastr,uid,@"image.png"];
+    
+    [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:imageName] contents:dataImag attributes:nil];
+    
+    //得到选择后沙盒中图片的完整路径
+    
+    NSString * filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,imageName];
+    return filePath;
+}
+
+#pragma mark --是否存在相同的日期--
++(BOOL) isSameDate:(NSDate *) dateOne array:(NSArray *)dateArray{
+    
+    for (GoalData * dateTow in dateArray) {
+        
+        BOOL isSame = [dateTow.dateTime compare:dateOne]==NSOrderedSame;
+    
+        if (isSame) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+#pragma mark --是否存在相同的日期--
++(NSInteger) insertPlaceInArray:(NSDate *) dateOne array:(NSArray *)dateArray{
+    
+    GoalData  * first_goal = [dateArray firstObject];
+    GoalData * last_goal = [dateArray lastObject];
+    
+    if ([dateOne  compare:first_goal.dateTime] ==NSOrderedAscending) {
+        return 0;
+    }else if ([dateOne  compare:last_goal.dateTime] ==NSOrderedDescending) {
+        
+        return dateArray.count-1;
+    }else{
+
+        NSInteger  num = 0;
+        
+        for (NSInteger i = 1; i < dateArray.count-1; i ++) {
+            
+            GoalData  * onegoal = [dateArray objectAtIndex:i];
+            GoalData * towgoal = [dateArray objectAtIndex:i+1];
+            
+            BOOL isone = [dateOne compare:onegoal.dateTime]==NSOrderedDescending;
+            
+            BOOL istow = [dateOne compare:towgoal.dateTime]==NSOrderedAscending;
+            
+            if (isone &&istow) {
+                
+                num = i;
+                break;
+            }
+            
+        }
+        
+        return num;
+    }
+    
+    
+}
+
 
 @end

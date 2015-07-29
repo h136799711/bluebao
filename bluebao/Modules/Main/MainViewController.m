@@ -84,22 +84,6 @@
     [self _initGesture];
     
 }
-
-#pragma mark -- 创建左视图 --
-
--(void)creatLeftView{
-    
-    if (_leftView == nil) {
-        _leftView = [[LetfView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2.0, SCREEN_HEIGHT)];
-        [self.view addSubview:_leftView];
-        [self.view sendSubviewToBack:_leftView];
-        
-    }
-    _leftView.leftInfo = [MainViewController sharedSliderController].userInfo;
-}
-
-
-
 #pragma mark --- 创建自定义tabbar--
 
 -(void)creatTabbar{
@@ -143,6 +127,7 @@
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag=i;
         [button setBackgroundImage:[UIImage imageNamed:_btnNormalImagName[i]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:_btnNormalImagName[i]] forState:UIControlStateHighlighted];
         [button setBackgroundImage:[UIImage imageNamed:_btnSelectImagName[i]] forState:UIControlStateSelected];
 //        //底部按钮
         [BBManageCode creatTabbarShow:_bottomView
@@ -279,6 +264,132 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark -- 创建左视图 --
+
+-(void)creatLeftView{
+    
+    if (_leftView == nil) {
+        _leftView = [[LetfView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2.0, SCREEN_HEIGHT)];
+        [self.view addSubview:_leftView];
+        [self.view sendSubviewToBack:_leftView];
+        _leftView.delegate = self;
+    }
+    _leftView.leftInfo = [MainViewController sharedSliderController].userInfo;
+}
+
+///  *************         从相册区图片-      ************************  //
+
+//letfViewDelegate
+-(void)letfView:(LetfView *)letfView{
+    
+    UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:(id)self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍一张照",@"从相册中选", nil];
+    [actionSheet showInView:self.view];
+    
+
+}
+
+
+#pragma mark --- 从相册区图片--
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 0) {
+        
+        //如果相册功能不可用使用相册
+        UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];//初始化
+        picker.tabBarItem.tag = 0;
+        
+        picker.delegate = self;
+        picker.allowsEditing = YES;//设置可编辑
+        picker.sourceType = sourceType;
+        
+        //进入照相界面
+        [self presentViewController:picker animated:YES completion:nil];
+        
+    }else if(buttonIndex == 1) {
+        
+        UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary]) {
+            
+            DLog(@"照相不可用");
+        }
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];//初始化
+        picker.tabBarItem.tag = 1;
+        
+        picker.delegate = self;
+        picker.allowsEditing = YES;//设置可编辑
+        picker.sourceType = sourceType;
+        ;//进入照相界面
+        
+        [self presentViewController:picker animated:YES completion:nil];
+        
+        
+    }
+    
+}
+
+
+#pragma mark  ---   图片选择器    ---
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    
+    //    if (picker.tabBarItem.tag == 0)
+    //    {
+    //        //        //如果是 来自照相机的image，那么先保存
+    //                UIImage* original_image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    //                UIImageWriteToSavedPhotosAlbum(original_image, self,
+    //                                               @selector(image:didFinishSavingWithError:contextInfo:),
+    //                                              nil);
+    //    }
+    
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    //当选择的类型是图片
+    if ([type isEqualToString:@"public.image"])
+    {
+        
+        //先把图片转成NSData
+        UIImage* image = [info objectForKey: @"UIImagePickerControllerEditedImage"];
+        [_leftView.headBtn setBackgroundImage:image forState:UIControlStateNormal];
+        NSData * data;
+        if (UIImagePNGRepresentation(image) == nil) {
+            data = UIImageJPEGRepresentation(image, 1.0);
+            
+        }else{
+            data = UIImagePNGRepresentation(image);
+        }
+        
+        
+        NSString * fileImage =  [MyTool getDocumentsImageFile:data userID:self.userInfo.uid];
+        
+        //图片上传请求
+        PictureReqModel * picModel = [[PictureReqModel alloc] init];
+        picModel.uid = [NSString stringWithFormat:@"%ld",self.userInfo.uid];
+        picModel.type = @"avatar";
+        picModel.filePath = fileImage;
+        
+        [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
+            
+        }];
+        
+        
+    }
+    
+    
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 /*
 #pragma mark - Navigation

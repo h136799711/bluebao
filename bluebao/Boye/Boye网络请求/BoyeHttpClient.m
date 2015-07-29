@@ -123,14 +123,11 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
    
     url = [self getFullURLString:url];
     
-//    UIImage  *image = [UIImage imageWithContentsOfFile:filePath];
-
-        UIImage * image = [UIImage  imageNamed:@"sd"];
+    UIImage  *image = [UIImage imageWithContentsOfFile:filePath];
     
     NSData * data = UIImageJPEGRepresentation(image, 0.5);    //@"file://path/to/image.png"    //@"file://path/to/image.png"
     
 //    NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
-    
     
     [manager
      POST:url

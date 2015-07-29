@@ -85,7 +85,7 @@
     
     
     self.accontNumTextfield.text = @"2540927273@qq.com";
-//    self.pswTextfield.text = @"123456";
+    self.pswTextfield.text = @"123456";
 
     
 }
@@ -106,13 +106,11 @@
 - (IBAction)login:(UIButton *)sender {
     
 //    self.accontNumTextfield.text = @"2540927273@qq.com";
-//    self.pswTextfield.text = @"123456";
+    self.pswTextfield.text = @"123456";
 
     User * user = [[User alloc] init];
     user.username = self.accontNumTextfield.text;
     user.password = self.pswTextfield.text;
-    
-    
     
     if (![self isRightInput:user]) {
         
@@ -123,8 +121,7 @@
     [BoyeDefaultManager requestLoginUser:user complete:^(UserInfo * userInfo) {
         
         if (userInfo != nil ) {
-            
-            //            NSLog(@" \r-- %@",userInfo);
+            //  NSLog(@" \r-- %@",userInfo);
             [self jumpMainPage];
             
             [MainViewController sharedSliderController].userInfo = userInfo;

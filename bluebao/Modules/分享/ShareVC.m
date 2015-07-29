@@ -243,10 +243,13 @@
     namelabel.font = FONT(15);
     namelabel.center = CGPointMake(headImag.right + 5+ namelabel.width/2.0 , headImag.center.y - 5);
     
+    //取消
     UIButton * cancleBtn = [[UIButton alloc] init];
-    cancleBtn.bounds = CGRectMake(0, 0, 40, 44);
+    cancleBtn.bounds = CGRectMake(0, 0, 50, 44);
     cancleBtn.center = CGPointMake(navView.width - 10-cancleBtn.width/2.0, navView.height/2.0);
-    [ButtonFactory decorateButton:cancleBtn forType:BOYE_BTN_SECONDARY];
+    [cancleBtn setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
+    [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+    
     [navView addSubview:cancleBtn];
     [cancleBtn addTarget:self action:@selector(cancleBtnClick) forControlEvents:UIControlEventTouchUpInside];
     

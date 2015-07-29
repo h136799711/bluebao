@@ -8,8 +8,9 @@
 
 #import "BaseViewController.h"
 #import "UserInfo.h"
+#import "LetfView.h"
 
-@interface MainViewController : BaseViewController
+@interface MainViewController : BaseViewController<LetfViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic,strong) UserInfo * userInfo;
 @property (nonatomic,assign) BOOL       isOpen;
 

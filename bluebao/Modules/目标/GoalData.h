@@ -17,6 +17,11 @@
 
 @property (nonatomic,copy) NSString             * hour;//小时
 @property (nonatomic,copy) NSString             * minute;//分钟
+@property (nonatomic,strong) NSDate             * dateTime;
+
+
+
+
 
 @property (nonatomic,assign) NSInteger          hundredPlace; //百位
 @property (nonatomic,assign) NSInteger          tendPlace;//十位

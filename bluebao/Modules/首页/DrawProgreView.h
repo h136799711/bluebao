@@ -7,6 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class DrawProgreView;
+
+@protocol DrawProgreViewDelegate <NSObject>
+
+-(void)drawProgreView:(DrawProgreView *)drawProgreView;
+
+@end
+
+
 @interface DrawProgreView : UIView
+@property (nonatomic,assign)CGFloat     goalNum;  //目标
+@property (nonatomic,assign)CGFloat     finishNum;//完成数量
+
+
 
 @end

@@ -65,10 +65,9 @@
     dateLabel.font = FONT(16);
     [self addSubview:dateLabel];
     
-    self.newbDate = [[NSDate date] dateByAddingTimeInterval:3600 *8];
+    self.newbDate = [NSDate date] ;
 
     dateLabel.text =  [self getDateString: self.newbDate ];
-//    NSLog(@"  --  %@ date - ",self.newbDate);
     
 }
 
@@ -85,11 +84,16 @@
 -(NSString * )getDateString:(NSDate *)date{
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    [dateFormatter setTimeZone:timeZone];
+    
     //设置星期的文本描述
     [dateFormatter setWeekdaySymbols:@[@"星期日",@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六"]];
      [dateFormatter setDateFormat:@"yyyy-M-dd eeee"];
-    
     NSString *dateString = [dateFormatter stringFromDate:date];
+    
+    
 //    NSLog(@" -- date--%@ ---%@",self.newbDate,dateString);
 
     //代理传值

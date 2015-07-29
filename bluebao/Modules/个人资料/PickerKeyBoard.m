@@ -34,10 +34,10 @@
     //顶部黑条
     UIView * topView = [[UIView alloc] init];
     topView.frame = CGRectMake(0, 0, self.width, 35);
-        topView.backgroundColor = [UIColor  whiteColor];
+    topView.backgroundColor = [UIColor  whiteColor];
     [self addSubview:topView];
-        [MyTool createLineInView:topView fram:CGRectMake(0, 0, topView.width, 1)];
-        [MyTool createLineInView:topView fram:CGRectMake(0, topView.height-1,topView.width ,1)];
+    [MyTool createLineInView:topView fram:CGRectMake(0, 0, topView.width, 1)];
+    [MyTool createLineInView:topView fram:CGRectMake(0, topView.height-1,topView.width ,1)];
         
         
     //完成按钮

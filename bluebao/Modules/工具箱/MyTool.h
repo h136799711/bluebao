@@ -59,6 +59,12 @@
 #pragma mark -- 获得当前日期  -
 +(NSString *) getCurrentDataFormat:(NSString *)formatterStr;
 
+#pragma mark -- 获得当前日期-
++(NSDateFormatter *)getDateFormatter:(NSString *)format;
+
+#pragma mark -- 转化为data ---
++(NSDate *) changeStringToDate:(NSString *)datestr formatter:(NSString *)format;
+
 #pragma mark -- 获得BMI --
 +(NSString *) getBMIStringWeight:(CGFloat)weight height:(CGFloat)height;
 
@@ -71,4 +77,12 @@
 #pragma mark -- 邮箱验证  ---
 + (BOOL) validateEmail:(NSString *)email;
 
+#pragma mark --- 将文件保存在沙河下 ---
++(NSString *) getDocumentsImageFile:(NSData *)dataImag userID:(NSInteger)uid;
+
+#pragma mark --是否存在相同的日期--
++(BOOL) isSameDate:(NSDate *) dateOne array:(NSArray *)dateArray;
+
+#pragma mark --是否存在相同的日期--
++(NSInteger) insertPlaceInArray:(NSDate *) dateOne array:(NSArray *)dateArray;
 @end

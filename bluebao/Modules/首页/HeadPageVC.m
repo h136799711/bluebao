@@ -139,27 +139,28 @@
     self.headView = [[UIView alloc] initWithFrame:rect];
  
     //日期改变
-    DateChooseView * dataView = [[DateChooseView alloc] init];
-    dataView.center = CGPointMake(self.headView.center.x, 20);
-    dataView.delegate = self;
-    [self.headView addSubview:dataView];
+    self.dateChooseView = [[DateChooseView alloc] init];
+    self.dateChooseView .center = CGPointMake(self.headView.center.x, 20);
+    self.dateChooseView .delegate = self;
+    [self.headView addSubview:self.dateChooseView ];
     
     
     //连接设备
     UILabel * equipLabel = [[UILabel alloc] init];
-    equipLabel.bounds = CGRectMake(0, dataView.bottom, dataView.width, 20);
-    equipLabel.center = CGPointMake(self.headView.center.x, dataView.bottom + equipLabel.height/2.0);
+    equipLabel.bounds = CGRectMake(0, self.dateChooseView .bottom, self.dateChooseView .width, 20);
+    equipLabel.center = CGPointMake(self.headView.center.x, self.dateChooseView .bottom + equipLabel.height/2.0);
     equipLabel.textAlignment = NSTextAlignmentCenter;
     equipLabel.text = @"没有连接设备";
     equipLabel.font = FONT(13);
     [self.headView addSubview:equipLabel];
     
+#pragma mark -- drawProgreView ---
     
-    DrawProgreView * draw = [[DrawProgreView alloc] init];
+   self.drawProgreView = [[DrawProgreView alloc] init];
     CGFloat   width =  rect.size.height - equipLabel.bottom-20;
-    draw.bounds = CGRectMake(0, 0, width,width);
-    draw.center = CGPointMake(self.headView.width/2.0, equipLabel.bottom + draw.height/2.0 +10);
-    [self.headView addSubview:draw];
+    self.drawProgreView.bounds = CGRectMake(0, 0, width,width);
+    self.drawProgreView.center = CGPointMake(self.headView.width/2.0, equipLabel.bottom + self.drawProgreView.height/2.0 +10);
+    [self.headView addSubview:self.drawProgreView];
     
     
     
@@ -173,6 +174,10 @@
     
     NSLog(@"date  %@",datestr);
     
+//    self.drawProgreView
+    
+    _drawProgreView.goalNum = 500;
+    _drawProgreView.finishNum = 400;
 }
 
 #pragma mark --- 身体指标 ---

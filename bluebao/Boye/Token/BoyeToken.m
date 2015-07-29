@@ -78,6 +78,7 @@
     [formatter setDateFormat:format];
     
     NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    
     [formatter setTimeZone:timeZone];
     
     return formatter;
@@ -91,6 +92,7 @@
     
     NSString *access_token=[dic objectForKey:@"access_token"];
     double time=[[dic objectForKey:@"expires_in"] doubleValue];
+    
     
     //计算出距离当前日期 长度为time的日期
     NSDate *date=[NSDate dateWithTimeIntervalSinceNow:time];

@@ -230,10 +230,15 @@
 #pragma mark --- 头像 ---
 -(void)changeHeadImagClick:(UIButton *)headBtn{
   
-    
+    //头像代理
+    if ([_delegate respondsToSelector:@selector(letfView:)]) {
+        [_delegate letfView:self];
+    }
 }
 
-
+-(void)setDelegate:(id<LetfViewDelegate>)delegate{
+    _delegate = delegate;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -320,6 +320,7 @@
     updataModel.weight = [self getString:self.userInfo.weight];
     updataModel.target_weight = [self getString:self.userInfo.target_weight];
     updataModel.birthday = self.userInfo.birthday;
+    updataModel.uid = self.userInfo.uid;
     
     [BoyeDefaultManager requestUserInfoUpdata:updataModel complete:^(BOOL succed) {
         
@@ -454,9 +455,11 @@
     //当选择的类型是图片
     if ([type isEqualToString:@"public.image"])
     {
+        
         //先把图片转成NSData
         UIImage* image = [info objectForKey: @"UIImagePickerControllerEditedImage"];
         [self.headImageBtn setImage:image forState:UIControlStateNormal];
+       
         NSData * data;
         if (UIImagePNGRepresentation(image) == nil) {
             data = UIImageJPEGRepresentation(image, 1.0);
@@ -465,10 +468,20 @@
             data = UIImagePNGRepresentation(image);
         }
         
-        //上传头像
-        [self requestPersonHeadImag:data];
+        
+        NSString * fileImage =  [MyTool getDocumentsImageFile:data userID:self.userInfo.uid];
+        
+        //图片上传请求
+        PictureReqModel * picModel = [[PictureReqModel alloc] init];
+        picModel.uid = [NSString stringWithFormat:@"%ld",self.userInfo.uid];
+        picModel.type = @"avatar";
+        picModel.filePath = fileImage;
+        
+        [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
+            
+        }];
 
-            NSLog(@"为什么 -----1");
+  
     }
     
     
@@ -477,17 +490,17 @@
 }
 
 
+
 //创建性别身高视图
 -(UIView *)_gettHeaderInSection{
     
     if (_sexheightView == nil) {
         _sexheightView = [[UIView alloc ] init];
         _sexheightView.bounds = CGRectMake(0, 0, self.tableView_person.width, 80);
-        //        _sexheightView.backgroundColor = [UIColor blackColor];
         CGFloat  betwen = 20;
         CGFloat  width = (_sexheightView.width - betwen )/2.0;
         
-        //        //性别
+        //性别
         UIView * sexView = [[UIView alloc] init];
         sexView.bounds = CGRectMake(0, 0, width, 50);
         sexView.center = CGPointMake(sexView.width/2.0, _sexheightView.height/2.0);
@@ -501,7 +514,6 @@
         //label 性别
         UILabel * sex_label = [[UILabel alloc] init];
         sex_label.bounds = CGRectMake(0, 0, 35, 25);
-//                sex_label.backgroundColor = [UIColor redColor];
         sex_label.center = CGPointMake(10+ sex_label.width/2.0, sexView.height/2.0);
         sex_label.text = @"性别";
         sex_label.font = FONT(16);
@@ -513,7 +525,6 @@
         sexImagButton.center = CGPointMake(sexView.width - 15 - sexImagButton.width/2.0, sex_label.center.y);
         [sexImagButton setImage:[UIImage imageNamed:_upDownImagName[0]] forState:UIControlStateNormal];
         [sexImagButton setImage:[UIImage imageNamed:_upDownImagName[1]] forState:UIControlStateSelected];
-//        sexImagButton.backgroundColor = [UIColor blueColor];
         [sexView addSubview:sexImagButton];
         [sexImagButton addTarget:self action:@selector(sexBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -521,7 +532,6 @@
         UIButton * sexBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         sexBtn.bounds = CGRectMake(0, 0, sexImagButton.left - sex_label.right, 30);
         sexBtn.center = CGPointMake(sex_label.right + sexBtn.width/2.0, sex_label.center.y);
-//                sexBtn.backgroundColor = [UIColor redColor];
         [sexBtn setTitle:@"女" forState:UIControlStateNormal];
         [sexBtn setTitle:@"男" forState:UIControlStateSelected];
         [sexBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -559,7 +569,6 @@
         
         [self.ageImageBtn setImage:[UIImage imageNamed:_upDownImagName[0]] forState:UIControlStateNormal];
         [self.ageImageBtn setImage:[UIImage imageNamed:_upDownImagName[1]] forState:UIControlStateSelected];
-//        heightImagButton.backgroundColor = [UIColor blueColor];
         [heightView addSubview:self.ageImageBtn];
         [self.ageImageBtn addTarget:self action:@selector(ageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -573,7 +582,6 @@
         [heightView addSubview:ageBtn];
         
         
-//        NSInteger age = [[USER_DEFAULT objectForKey:BOYE_USER_AGE] integerValue];
         NSInteger age = [MainViewController sharedSliderController].userInfo.age;
         self.ageBtn = ageBtn;
         [self.ageBtn setTitle:[NSString stringWithFormat:@"%ld",age] forState:UIControlStateNormal];
@@ -657,8 +665,6 @@
 }
 
 
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -671,39 +677,7 @@
     return string;
 }
 
-#pragma makr -- 头像上传 --
--(void)requestPersonHeadImag:(NSData*)data{
 
-    //图片保存的路径
-    //这里将图片放在沙盒的documents文件夹中   Documents
-    NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
-    
-    //文件管理器
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
-    [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
-    NSString * datastr = [MyTool getCurrentDataFormat:@"yyyyMMddhhmmss"];
-    NSString * imageName = [NSString stringWithFormat:@"/%@_%ld_%@",datastr,self.userInfo.uid,@"image.png"];
-    
-    
-    [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:imageName] contents:data attributes:nil];
-    
-    //得到选择后沙盒中图片的完整路径
-    
-    NSString * filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,imageName];
-    NSLog(@"\r ---filePath: %@",filePath);
-    
-    PictureReqModel * picModel = [[PictureReqModel alloc] init];
-    picModel.uid = [NSString stringWithFormat:@"%ld",self.userInfo.uid];
-    picModel.type = @"avatar";
-    picModel.filePath = filePath;
-    
-    [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
-        
-    }];
-
-}
 
 
 -(NSString *) getString:(NSInteger)num{

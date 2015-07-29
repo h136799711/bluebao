@@ -8,9 +8,14 @@
 
 #import "BaseViewController.h"
 #import "DateChooseView.h"
+#import "DrawProgreView.h"
+
 @interface HeadPageVC : BoyeBaseVC<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,DateChooseViewDelegate>
 
-@property (nonatomic,strong)UIView     *headView;
-@property (nonatomic,strong)NSData      *newbbData; //新的日期
-@property (nonatomic,strong) UserInfo * userInfo;
+@property (nonatomic,strong)UIView                      *headView;
+@property (nonatomic,strong)NSData                      *newbbData; //新的日期
+@property (nonatomic,strong) UserInfo                   * userInfo;
+@property (nonatomic,strong) DateChooseView             *dateChooseView;
+@property (nonatomic,strong) DrawProgreView             * drawProgreView;
+
 @end

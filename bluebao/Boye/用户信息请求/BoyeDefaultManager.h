@@ -14,11 +14,6 @@
 + (NSDateFormatter *)getDateFormatter:(NSString *)format;
 
 
-
-//获取令牌
-+(void)requtstAccessTokenComplete:(void(^)(BOOL  succed))complete;
-
-
 //用户登录接口
 //+(void)requestLoginUser:(User *)user complete:(void (^)(BOOL succed))complete;
 

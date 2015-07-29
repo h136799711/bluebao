@@ -54,13 +54,16 @@
         self.backgroundColor = [UIColor lightGrayColor];
         self.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 240);
         self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT );
-        
+       
         //顶部黑条
         UIView * topView = [[UIView alloc] init];
-        topView.frame = CGRectMake(0, 0, self.width, 30);
-        topView.backgroundColor = [UIColor blackColor];
+        topView.frame = CGRectMake(0, 0, self.width, 35);
+        topView.backgroundColor = [UIColor  whiteColor];
         [self addSubview:topView];
-        
+        [MyTool createLineInView:topView fram:CGRectMake(0, 0, topView.width, 1)];
+        [MyTool createLineInView:topView fram:CGRectMake(0, topView.height-1,topView.width ,1)];
+        [self addSubview:topView];
+
 
         //取消按钮
         UIButton * cancalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -69,7 +72,9 @@
         
         cancalBtn.center = CGPointMake(cancalBtn.bounds.size.width/2.0 + 10, topView.bounds.size.height /2.0);
         [cancalBtn setTitle:@"取消" forState:UIControlStateNormal];
-        [cancalBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [cancalBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [cancalBtn setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
+
         [topView addSubview:cancalBtn];
         [cancalBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -81,7 +86,9 @@
         CGFloat  x  =  topView.bounds.size.width - 10 - finishBtn.bounds.size.width/2.0;
         finishBtn.center = CGPointMake(x, topView.height /2.0);
         [finishBtn setTitle:@"完成" forState:UIControlStateNormal];
-        [finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [finishBtn setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
+
         [topView addSubview:finishBtn];
         [finishBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -95,6 +102,7 @@
         self.pickerView = [[UIPickerView alloc] init];
         self.pickerView.delegate = self;
         self.pickerView.dataSource = self;
+        self.pickerView.backgroundColor = [UIColor whiteColor];
         [downView addSubview: self.pickerView];
     }
     

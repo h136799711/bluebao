@@ -18,7 +18,7 @@
 @property (nonatomic,copy)  NSString         *signature;
 
 
-@property (nonatomic,copy)  NSString       * uid;
+@property (nonatomic,assign) NSInteger      uid;
 @property (nonatomic,copy)  NSString       * weight;
 @property (nonatomic,copy)  NSString       * height;
 @property (nonatomic,copy)  NSString       * target_weight;

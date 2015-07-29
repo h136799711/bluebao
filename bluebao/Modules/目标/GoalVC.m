@@ -18,6 +18,7 @@
     BOOL                  _isHasData;
     UIView                  *_headerView;
     UIView                  *_footerView;
+    NSString                *_goalDateLabeltext;
 }
 
 @end
@@ -33,10 +34,10 @@
     _isHasData = NO;
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     
+    _goalDateLabeltext = [[NSString alloc] init];
+    
     [self _initViews];
-    [self _initNotificationCenter];
-    [self _initGest];
-}
+   }
 
 /*
  *初始化
@@ -46,6 +47,9 @@
     [self isHasDataAdjust];  //判断是否包含数据
     [self _initGoalTableView]; //创建表
     [self _initPickerView];  //修改 数据
+    [self _initNotificationCenter];
+    [self _initGest];
+
 }
 
 #pragma mark -- 目标设定 --
@@ -153,7 +157,6 @@
     
     self.goalPickerView.tag = deleteBtn.tag;
     
-    
     //删除数据源
     [self.dataArray removeObjectAtIndex:deleteBtn.tag];
     
@@ -165,8 +168,6 @@
     [self isHasDataAdjust];
     //刷新表
     [_goalTableView reloadData];
-    
-    
     
     [self.goalPickerView close];
 }
@@ -189,7 +190,7 @@
     
     UILabel * headl = (UILabel *)[_headerView viewWithTag:10];
     headl.text = [MyTool getCurrentDataFormat:@"yy-M-dd"];
-    
+    _goalDateLabeltext = headl.text;
     return _headerView;
 }
 
@@ -259,9 +260,39 @@
     GoalData * goal = [[GoalData alloc] init];
     goal.timestr = time;
     goal.goalNumber = goalNumber;
+    NSString * datestr = [self getFullDateString:goal.timestr];
+    goal.dateTime = [MyTool changeStringToDate:datestr formatter:@"yy-M-dd-HH:mm"];
+    
+    
+    //排序
+    if (!self.dataArray) {
+       //是否存在相同日期
+        BOOL isSame = [MyTool isSameDate:goal.dateTime array:self.dataArray];
+        if (isSame) {
+            return;
+        }
+    }
+    
+    
+
+    
+    NSLog(@"////////////****///dataTime: %@",goal.dateTime);
     
     //add按钮
     if (self.goalPickerView.tag == -1) {
+        
+        
+        //排序
+        for (int i = 0; i < self.dataArray.count; i++) {
+            
+            
+        }
+        
+        
+
+        
+        
+        
         [self.dataArray addObject:goal];
     }else{
         [self.dataArray replaceObjectAtIndex:self.goalPickerView.tag withObject:goal];
@@ -273,6 +304,13 @@
 //    NSLog(@"  ----- %f ---",_goalTableView.rowHeight);
 }
 
+
+-(void)goalTimeNot{
+    
+
+    
+    
+}
 
 #pragma mark -- 监听picker -- 动画
 -(void)_initNotificationCenter{
@@ -301,15 +339,12 @@
         if (self.goalPickerView.isOpen) {
 
             [_goalTableView setContentOffset:CGPointMake(0,outheight ) animated:YES];
-          
         }else{
             //关闭状态
             
             if (height < _goalTableView.height) {
 
                     [_goalTableView setContentOffset:CGPointMake(0,0) animated:YES];
-
-
             }else{
                 
                 [_goalTableView setContentOffset:CGPointMake(0,height - _goalTableView.height) animated:YES];
@@ -341,6 +376,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+//获得完整日期字符串
+-(NSString *)getFullDateString:(NSString *)dmstr{
+    
+    NSString * datestr = [NSString stringWithFormat:@"%@-%@",_goalDateLabeltext,dmstr];
+    NSLog(@"\r ****** datestr:  %@",datestr);
+    return datestr;
+}
 /*
 #pragma mark - Navigation
 
