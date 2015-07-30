@@ -28,13 +28,14 @@
     
     [self _initViews];;
     [self _initShareView];
-    self.navigationItem.titleView =  [self createdNav];
+    
+    [self createdNav];
 }
 
 //
 -(void)_initViews{
     //分享
-    share_tableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT-TABBAR_HEIGHT ) style:UITableViewStylePlain];
+    share_tableView= [[UITableView alloc] initWithFrame:CGRectMake(0, NAV_HEIGHT+STATUS_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-TABBAR_HEIGHT ) style:UITableViewStylePlain];
     share_tableView.delegate = self;
     share_tableView.dataSource = self;
     share_tableView.tableHeaderView = [self headerView];
@@ -175,7 +176,7 @@
     //分享视图View
     UIView  * shareView = [[UIView alloc] init];
     CGFloat  height = 60;
-    shareView.frame = CGRectMake(0, SCREEN_HEIGHT-height- STATUS_HEIGHT - NAV_HEIGHT , SCREEN_WIDTH, height);
+    shareView.frame = CGRectMake(0, SCREEN_HEIGHT-height, SCREEN_WIDTH, height);
     shareView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:shareView];
     
@@ -214,7 +215,7 @@
 -(UIView *)createdNav{
    
     UIView  * navView = [[UIView alloc] init];
-    navView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAV_HEIGHT);
+    navView.frame = CGRectMake(0, 20, SCREEN_WIDTH, NAV_HEIGHT);
 //    navView.backgroundColor = [UIColor redColor];
     //日期
     UILabel * datalabel = [[UILabel alloc] init];
@@ -253,6 +254,7 @@
     [navView addSubview:cancleBtn];
     [cancleBtn addTarget:self action:@selector(cancleBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
+    [self.view addSubview:navView];
     return navView;
 
 }

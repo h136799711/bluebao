@@ -18,7 +18,7 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
         
         if (tokenSucced) {
          
-            NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%@&size=%ld",BASE_API_URL,picModel.uid,picModel.size];
+            NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%ld&size=%ld",BASE_API_URL,picModel.uid,picModel.size];
             NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlstring]];
             UIImage * resultImag = [UIImage imageWithData:data];
             complete( resultImag);
@@ -46,8 +46,9 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
           
             NSString *token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
             BoyeHttpClient * client = [[BoyeHttpClient alloc] init];
+            NSString * uid = [NSString stringWithFormat:@"%ld",picModel.uid];
             
-            NSDictionary * params =  @{@"uid":picModel.uid,@"type":picModel.type};
+            NSDictionary * params =  @{@"uid":uid,@"type":picModel.type};
             NSString * urlString = [NSString stringWithFormat:@"File/upload?access_token=%@",token];
             
             [SVProgressHUD showWithStatus:@"上传头像..." maskType:SVProgressHUDMaskTypeClear];
@@ -73,7 +74,7 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
                                     return ;
                                 }
                                 
-                                NSLog(@"dict %@ ",dict);
+                              //  NSLog(@"dict %@ ",dict);
                                 
                                 NSNumber * code = [dict objectForKey:@"code"];
                                 

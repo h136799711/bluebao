@@ -469,11 +469,11 @@
         }
         
         
-        NSString * fileImage =  [MyTool getDocumentsImageFile:data userID:self.userInfo.uid];
+        NSString * fileImage =  [BoyeFileMagager getDocumentsImageFile:data userID:self.userInfo.uid];
         
         //图片上传请求
         PictureReqModel * picModel = [[PictureReqModel alloc] init];
-        picModel.uid = [NSString stringWithFormat:@"%ld",self.userInfo.uid];
+        picModel.uid =self.userInfo.uid;
         picModel.type = @"avatar";
         picModel.filePath = fileImage;
         

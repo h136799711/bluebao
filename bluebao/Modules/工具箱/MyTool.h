@@ -56,14 +56,57 @@
 #pragma mark --数量与字符串拼接--
 +(NSString *) stringWithNumFormat:(NSString *)string number:(CGFloat)number;
 
+/// 日期相关  ********
+
 #pragma mark -- 获得当前日期  -
 +(NSString *) getCurrentDataFormat:(NSString *)formatterStr;
 
 #pragma mark -- 获得当前日期-
 +(NSDateFormatter *)getDateFormatter:(NSString *)format;
 
-#pragma mark -- 转化为data ---
+#pragma mark -- 时间字符串 转化为date ---
 +(NSDate *) changeStringToDate:(NSString *)datestr formatter:(NSString *)format;
+
+#pragma mark --是否存在相同的日期--
++(void) isSameGoalData:(GoalData *) dateOne array:(NSArray *)dateArray complete:(void(^)(BOOL sameGoal))complete;
+
+//#pragma mark --获得插入位置--
+//+(NSInteger) getInsertPlaceInArray:(NSDate *) dateOne array:(NSArray *)dateArray;
+//
+////
+//#pragma mark --获得插入位置相同的日期--
+//+(NSInteger) getInsertPlaceInArray:(NSDate *) dateOne array:(NSArray *)dateArray{
+//    
+//    GoalData  * first_goal = [dateArray firstObject];
+//    GoalData * last_goal = [dateArray lastObject];
+//    
+//    if ([dateOne  compare:first_goal.dateTime] ==NSOrderedAscending) {
+//        return 0;
+//    }else if ([dateOne  compare:last_goal.dateTime] ==NSOrderedDescending) {
+//        
+//        return dateArray.count-1;
+//    }else{
+//        
+//        NSInteger  num = 0;
+//        
+//        for (NSInteger i = 1; i < dateArray.count-1; i ++) {
+//            
+//            GoalData  * onegoal = [dateArray objectAtIndex:i];
+//            GoalData * towgoal = [dateArray objectAtIndex:i+1];
+//            BOOL isone = [dateOne compare:onegoal.dateTime]==NSOrderedDescending;
+//            BOOL istow = [dateOne compare:towgoal.dateTime]==NSOrderedAscending;
+//            
+//            if (isone &&istow) {
+//                
+//                num = i;
+//                break;
+//            }
+//        }
+//        return num;
+//    }
+//}
+
+//////计算BMI********
 
 #pragma mark -- 获得BMI --
 +(NSString *) getBMIStringWeight:(CGFloat)weight height:(CGFloat)height;
@@ -77,12 +120,5 @@
 #pragma mark -- 邮箱验证  ---
 + (BOOL) validateEmail:(NSString *)email;
 
-#pragma mark --- 将文件保存在沙河下 ---
-+(NSString *) getDocumentsImageFile:(NSData *)dataImag userID:(NSInteger)uid;
 
-#pragma mark --是否存在相同的日期--
-+(BOOL) isSameDate:(NSDate *) dateOne array:(NSArray *)dateArray;
-
-#pragma mark --是否存在相同的日期--
-+(NSInteger) insertPlaceInArray:(NSDate *) dateOne array:(NSArray *)dateArray;
 @end

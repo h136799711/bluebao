@@ -27,9 +27,8 @@
     
     UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.bounds = CGRectMake(0, 0, 40, 30);
-    //    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    
-    [leftBtn setTitle:@"侧滑" forState:UIControlStateNormal];
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateHighlighted];
     [leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     leftBtn.tag = 1;

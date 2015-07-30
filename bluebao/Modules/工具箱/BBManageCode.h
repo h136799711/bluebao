@@ -25,6 +25,8 @@
 //创建圆角 背景
 +(void)createdBackGroundView:(UIView *)bottomView indexRow:(NSInteger)row maxCount:(NSInteger) maxCount;
 
+#pragma mark --获得插入位置--
++(NSInteger) getInsertPlaceInArray:(NSDate *) dateOne array:(NSArray *)dateArray;
 
 
 @end

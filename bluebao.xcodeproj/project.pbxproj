@@ -71,7 +71,10 @@
 		5B38C8011B53C6DB0063912C /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F71B53C6DB0063912C /* time.png */; };
 		5B38C8021B53C6DB0063912C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F81B53C6DB0063912C /* user.png */; };
 		5B38C8031B53C6DB0063912C /* xinlv.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B38C7F91B53C6DB0063912C /* xinlv.png */; };
-		5B74F46D1B58921A002493E8 /* DateChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F46C1B58921A002493E8 /* DateChooseView.m */; };
+		5B6FE9AC1B6A0786002D32B0 /* DateChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FE9A91B6A0786002D32B0 /* DateChooseView.m */; };
+		5B6FE9AD1B6A0786002D32B0 /* DrawProgreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FE9AB1B6A0786002D32B0 /* DrawProgreView.m */; };
+		5B6FE9B01B6A07D5002D32B0 /* BoyeConnectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FE9AF1B6A07D5002D32B0 /* BoyeConnectView.m */; };
+		5B6FE9B31B6A0DBE002D32B0 /* BoyeFileMagager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FE9B21B6A0DBE002D32B0 /* BoyeFileMagager.m */; };
 		5B74F4A81B58FF75002493E8 /* GoalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4A71B58FF75002493E8 /* GoalPickerView.m */; };
 		5B74F4BA1B590AC9002493E8 /* BlueBaoAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B51B590AC9002493E8 /* BlueBaoAboutVC.m */; };
 		5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B71B590AC9002493E8 /* ContactOurVC.m */; };
@@ -87,7 +90,6 @@
 		5BF2E0411B4F6B7E004FDDF7 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2E03A1B4F6B7E004FDDF7 /* SVProgressHUD.bundle */; };
 		5BF2E0421B4F6B7E004FDDF7 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E03C1B4F6B7E004FDDF7 /* SVProgressHUD.m */; };
 		5BF2E0481B4F6C99004FDDF7 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2E0461B4F6C99004FDDF7 /* NSDateFormatter+Category.m */; };
-		5BF3165E1B5C835200B0114F /* DrawProgreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3165D1B5C835200B0114F /* DrawProgreView.m */; };
 		5BF31F511B6707C900F6F366 /* BoyeHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31F501B6707C900F6F366 /* BoyeHttpClient.m */; };
 		5BF31F551B67085F00F6F366 /* BoyeToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31F541B67085F00F6F366 /* BoyeToken.m */; };
 		5BF31F5B1B671C9F00F6F366 /* BoyeBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF31F5A1B671C9F00F6F366 /* BoyeBaseVC.m */; };
@@ -104,6 +106,10 @@
 		5BF5A8671B65C02E00996283 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */; };
 		5BF5A8681B65C04100996283 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF5A8631B65BF5400996283 /* SystemConfiguration.framework */; };
 		5BF5A86A1B65C08000996283 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF5A8691B65C08000996283 /* MobileCoreServices.framework */; };
+		5BF88BD71B69C0ED003785D0 /* BoyeBicyleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF88BD61B69C0ED003785D0 /* BoyeBicyleManager.m */; };
+		5BF88BDA1B69C14A003785D0 /* BicyleReqModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF88BD91B69C14A003785D0 /* BicyleReqModel.m */; };
+		5BF88BDD1B69C16D003785D0 /* BicyleRespModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF88BDC1B69C16D003785D0 /* BicyleRespModel.m */; };
+		5BF88BE11B69C27F003785D0 /* Bicyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF88BE01B69C27F003785D0 /* Bicyle.m */; };
 		5BFBBB981B635BB100BFB44B /* UserUpdataReqModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB971B635BB100BFB44B /* UserUpdataReqModel.m */; };
 		5BFBBBA01B637B8100BFB44B /* BoyePictureUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB9C1B637B8100BFB44B /* BoyePictureUploadManager.m */; };
 		5BFBBBA11B637B8100BFB44B /* BoyeDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB9F1B637B8100BFB44B /* BoyeDefaultManager.m */; };
@@ -250,8 +256,14 @@
 		5B38C7F71B53C6DB0063912C /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time.png; sourceTree = "<group>"; };
 		5B38C7F81B53C6DB0063912C /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		5B38C7F91B53C6DB0063912C /* xinlv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xinlv.png; sourceTree = "<group>"; };
-		5B74F46B1B58921A002493E8 /* DateChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateChooseView.h; sourceTree = "<group>"; };
-		5B74F46C1B58921A002493E8 /* DateChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateChooseView.m; sourceTree = "<group>"; };
+		5B6FE9A81B6A0786002D32B0 /* DateChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateChooseView.h; sourceTree = "<group>"; };
+		5B6FE9A91B6A0786002D32B0 /* DateChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateChooseView.m; sourceTree = "<group>"; };
+		5B6FE9AA1B6A0786002D32B0 /* DrawProgreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawProgreView.h; sourceTree = "<group>"; };
+		5B6FE9AB1B6A0786002D32B0 /* DrawProgreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawProgreView.m; sourceTree = "<group>"; };
+		5B6FE9AE1B6A07D5002D32B0 /* BoyeConnectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeConnectView.h; sourceTree = "<group>"; };
+		5B6FE9AF1B6A07D5002D32B0 /* BoyeConnectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeConnectView.m; sourceTree = "<group>"; };
+		5B6FE9B11B6A0DBE002D32B0 /* BoyeFileMagager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeFileMagager.h; sourceTree = "<group>"; };
+		5B6FE9B21B6A0DBE002D32B0 /* BoyeFileMagager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeFileMagager.m; sourceTree = "<group>"; };
 		5B74F4A61B58FF75002493E8 /* GoalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalPickerView.h; sourceTree = "<group>"; };
 		5B74F4A71B58FF75002493E8 /* GoalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalPickerView.m; sourceTree = "<group>"; };
 		5B74F4B41B590AC9002493E8 /* BlueBaoAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueBaoAboutVC.h; sourceTree = "<group>"; };
@@ -286,8 +298,6 @@
 		5BF2E03C1B4F6B7E004FDDF7 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		5BF2E0451B4F6C99004FDDF7 /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
 		5BF2E0461B4F6C99004FDDF7 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
-		5BF3165C1B5C835200B0114F /* DrawProgreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawProgreView.h; sourceTree = "<group>"; };
-		5BF3165D1B5C835200B0114F /* DrawProgreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawProgreView.m; sourceTree = "<group>"; };
 		5BF31F4F1B6707C900F6F366 /* BoyeHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeHttpClient.h; sourceTree = "<group>"; };
 		5BF31F501B6707C900F6F366 /* BoyeHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeHttpClient.m; sourceTree = "<group>"; };
 		5BF31F531B67085F00F6F366 /* BoyeToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeToken.h; sourceTree = "<group>"; };
@@ -312,6 +322,14 @@
 		5BF5A8611B65BCE200996283 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		5BF5A8631B65BF5400996283 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5BF5A8691B65C08000996283 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		5BF88BD51B69C0ED003785D0 /* BoyeBicyleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeBicyleManager.h; sourceTree = "<group>"; };
+		5BF88BD61B69C0ED003785D0 /* BoyeBicyleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeBicyleManager.m; sourceTree = "<group>"; };
+		5BF88BD81B69C14A003785D0 /* BicyleReqModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicyleReqModel.h; sourceTree = "<group>"; };
+		5BF88BD91B69C14A003785D0 /* BicyleReqModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicyleReqModel.m; sourceTree = "<group>"; };
+		5BF88BDB1B69C16D003785D0 /* BicyleRespModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicyleRespModel.h; sourceTree = "<group>"; };
+		5BF88BDC1B69C16D003785D0 /* BicyleRespModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicyleRespModel.m; sourceTree = "<group>"; };
+		5BF88BDF1B69C27F003785D0 /* Bicyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bicyle.h; sourceTree = "<group>"; };
+		5BF88BE01B69C27F003785D0 /* Bicyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bicyle.m; sourceTree = "<group>"; };
 		5BFBBB961B635BB100BFB44B /* UserUpdataReqModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserUpdataReqModel.h; sourceTree = "<group>"; };
 		5BFBBB971B635BB100BFB44B /* UserUpdataReqModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserUpdataReqModel.m; sourceTree = "<group>"; };
 		5BFBBB9B1B637B8100BFB44B /* BoyePictureUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyePictureUploadManager.h; sourceTree = "<group>"; };
@@ -438,6 +456,8 @@
 				5B38C76C1B5390CF0063912C /* BBManageCode.m */,
 				5B38C76D1B5390CF0063912C /* MyTool.h */,
 				5B38C76E1B5390CF0063912C /* MyTool.m */,
+				5B6FE9B11B6A0DBE002D32B0 /* BoyeFileMagager.h */,
+				5B6FE9B21B6A0DBE002D32B0 /* BoyeFileMagager.m */,
 			);
 			name = "工具箱";
 			path = "Modules/工具箱";
@@ -473,16 +493,13 @@
 			children = (
 				5B38C77F1B5390CF0063912C /* HeadPageVC.h */,
 				5B38C7801B5390CF0063912C /* HeadPageVC.m */,
-				5B74F46B1B58921A002493E8 /* DateChooseView.h */,
-				5B74F46C1B58921A002493E8 /* DateChooseView.m */,
 				5B38C7791B5390CF0063912C /* BMICell.h */,
 				5B38C77A1B5390CF0063912C /* BMICell.m */,
 				5B38C77B1B5390CF0063912C /* HeadCollectionViewCell.h */,
 				5B38C77C1B5390CF0063912C /* HeadCollectionViewCell.m */,
 				5B38C77D1B5390CF0063912C /* HeadInfoCell.h */,
 				5B38C77E1B5390CF0063912C /* HeadInfoCell.m */,
-				5BF3165C1B5C835200B0114F /* DrawProgreView.h */,
-				5BF3165D1B5C835200B0114F /* DrawProgreView.m */,
+				5B6FE9A71B6A0786002D32B0 /* View */,
 			);
 			name = "首页";
 			path = "Modules/首页";
@@ -613,6 +630,19 @@
 			path = "Modules/设备管理";
 			sourceTree = "<group>";
 		};
+		5B6FE9A71B6A0786002D32B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B6FE9A81B6A0786002D32B0 /* DateChooseView.h */,
+				5B6FE9A91B6A0786002D32B0 /* DateChooseView.m */,
+				5B6FE9AA1B6A0786002D32B0 /* DrawProgreView.h */,
+				5B6FE9AB1B6A0786002D32B0 /* DrawProgreView.m */,
+				5B6FE9AE1B6A07D5002D32B0 /* BoyeConnectView.h */,
+				5B6FE9AF1B6A07D5002D32B0 /* BoyeConnectView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5B74F4B31B590AC9002493E8 /* 关于蓝堡 */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,6 +733,7 @@
 		5BF4F0091B55F0F7000AB7BD /* Boye */ = {
 			isa = PBXGroup;
 			children = (
+				5BF88BD41B69C0A5003785D0 /* 设备数据接口 */,
 				5BF31F521B6707D600F6F366 /* Token */,
 				5BF31F4E1B6707C900F6F366 /* Boye网络请求 */,
 				5B1D24091B5CF6E500BE460C /* CacheFacade.h */,
@@ -741,6 +772,29 @@
 			path = "Modules/设置";
 			sourceTree = "<group>";
 		};
+		5BF88BD41B69C0A5003785D0 /* 设备数据接口 */ = {
+			isa = PBXGroup;
+			children = (
+				5BF88BD51B69C0ED003785D0 /* BoyeBicyleManager.h */,
+				5BF88BD61B69C0ED003785D0 /* BoyeBicyleManager.m */,
+				5BF88BD81B69C14A003785D0 /* BicyleReqModel.h */,
+				5BF88BD91B69C14A003785D0 /* BicyleReqModel.m */,
+				5BF88BDB1B69C16D003785D0 /* BicyleRespModel.h */,
+				5BF88BDC1B69C16D003785D0 /* BicyleRespModel.m */,
+				5BF88BDE1B69C1C7003785D0 /* Bicyle */,
+			);
+			path = "设备数据接口";
+			sourceTree = "<group>";
+		};
+		5BF88BDE1B69C1C7003785D0 /* Bicyle */ = {
+			isa = PBXGroup;
+			children = (
+				5BF88BDF1B69C27F003785D0 /* Bicyle.h */,
+				5BF88BE01B69C27F003785D0 /* Bicyle.m */,
+			);
+			path = Bicyle;
+			sourceTree = "<group>";
+		};
 		5BFBBB9A1B637B8100BFB44B /* 图片上传接口 */ = {
 			isa = PBXGroup;
 			children = (
@@ -777,7 +831,6 @@
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
-				5BF5A8691B65C08000996283 /* MobileCoreServices.framework */,
 				9F91E8081B4E5B5D0013F4F1 /* Framework */,
 				9F50E5001B4E577600AB6BD8 /* bluebao */,
 				9F50E51A1B4E577700AB6BD8 /* bluebaoTests */,
@@ -911,6 +964,7 @@
 		9F91E8081B4E5B5D0013F4F1 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				5BF5A8691B65C08000996283 /* MobileCoreServices.framework */,
 				5BF5A8631B65BF5400996283 /* SystemConfiguration.framework */,
 				9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */,
 				9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */,
@@ -1042,6 +1096,7 @@
 				5B38C7E21B5399B80063912C /* UIImageView+WebCache.m in Sources */,
 				5B38C7A41B5390CF0063912C /* MainViewController.m in Sources */,
 				5B38C7A21B5390CF0063912C /* LeftMenuCell.m in Sources */,
+				5BF88BDD1B69C16D003785D0 /* BicyleRespModel.m in Sources */,
 				5B0155E71B5DDDB300056CFC /* LNowBicyleData.m in Sources */,
 				5B38C7A01B5390CF0063912C /* HeadPageVC.m in Sources */,
 				5BF31F511B6707C900F6F366 /* BoyeHttpClient.m in Sources */,
@@ -1050,7 +1105,6 @@
 				5B0155E41B5DDD9B00056CFC /* LNowDevice.m in Sources */,
 				5B38C7951B5390CF0063912C /* MessageCell.m in Sources */,
 				5BF2E0421B4F6B7E004FDDF7 /* SVProgressHUD.m in Sources */,
-				5BF3165E1B5C835200B0114F /* DrawProgreView.m in Sources */,
 				5BF31F5B1B671C9F00F6F366 /* BoyeBaseVC.m in Sources */,
 				5BF31F551B67085F00F6F366 /* BoyeToken.m in Sources */,
 				5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */,
@@ -1069,6 +1123,7 @@
 				5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */,
 				5B0155DA1B5DDD1900056CFC /* DeviceInfoCell.m in Sources */,
 				5BF2E0481B4F6C99004FDDF7 /* NSDateFormatter+Category.m in Sources */,
+				5B6FE9B01B6A07D5002D32B0 /* BoyeConnectView.m in Sources */,
 				5B38C7911B5390CF0063912C /* RegistVC.m in Sources */,
 				5B38C7D81B5399B80063912C /* SDWebImageDownloader.m in Sources */,
 				5B0155DE1B5DDD1900056CFC /* PulsingRadarView.m in Sources */,
@@ -1083,13 +1138,16 @@
 				5B38C7DF1B5399B80063912C /* UIImage+MultiFormat.m in Sources */,
 				9F91E8001B4E5AE80013F4F1 /* AFURLResponseSerialization.m in Sources */,
 				5BF2E0401B4F6B7E004FDDF7 /* MBProgressHUD.m in Sources */,
+				5BF88BE11B69C27F003785D0 /* Bicyle.m in Sources */,
 				5B38C7981B5390CF0063912C /* BBManageCode.m in Sources */,
 				5BF05F581B4E5EF300CBC510 /* UIImageView+MJWebCache.m in Sources */,
 				5B74F4BA1B590AC9002493E8 /* BlueBaoAboutVC.m in Sources */,
 				5BF430F91B573802003C7941 /* User.m in Sources */,
 				5B38C7DE1B5399B80063912C /* UIImage+GIF.m in Sources */,
 				5B38C79B1B5390CF0063912C /* GoalCell.m in Sources */,
+				5BF88BD71B69C0ED003785D0 /* BoyeBicyleManager.m in Sources */,
 				5B1D24051B5CD5A000BE460C /* GoalData.m in Sources */,
+				5B6FE9B31B6A0DBE002D32B0 /* BoyeFileMagager.m in Sources */,
 				5B38C7991B5390CF0063912C /* MyTool.m in Sources */,
 				5BF05F5A1B4E5EF300CBC510 /* UIViewExt.m in Sources */,
 				5B38C7DB1B5399B80063912C /* SDWebImageManager.m in Sources */,
@@ -1104,6 +1162,7 @@
 				5B38C79F1B5390CF0063912C /* HeadInfoCell.m in Sources */,
 				5B1D24081B5CF6AD00BE460C /* NSDate+Helper.m in Sources */,
 				9F91E7FB1B4E5AE80013F4F1 /* AFHTTPSessionManager.m in Sources */,
+				5B6FE9AC1B6A0786002D32B0 /* DateChooseView.m in Sources */,
 				5BF430FC1B575979003C7941 /* MoreExerCollectionCell.m in Sources */,
 				5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */,
 				5B38C7A31B5390CF0063912C /* LetfView.m in Sources */,
@@ -1117,14 +1176,15 @@
 				5BFBBB981B635BB100BFB44B /* UserUpdataReqModel.m in Sources */,
 				5B38C7D91B5399B80063912C /* SDWebImageDownloaderOperation.m in Sources */,
 				9F91E7DF1B4E5AB70013F4F1 /* main.m in Sources */,
-				5B74F46D1B58921A002493E8 /* DateChooseView.m in Sources */,
 				5B38C7DD1B5399B80063912C /* UIButton+WebCache.m in Sources */,
 				5B38C79C1B5390CF0063912C /* GoalVC.m in Sources */,
 				5B38C7D31B5399B80063912C /* NSData+GIF.m in Sources */,
 				5B38C7AD1B5399640063912C /* ViewController.m in Sources */,
 				5BF05F561B4E5EF300CBC510 /* UIColor+Color.m in Sources */,
+				5B6FE9AD1B6A0786002D32B0 /* DrawProgreView.m in Sources */,
 				5B38C7D51B5399B80063912C /* SDImageCache.m in Sources */,
 				5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */,
+				5BF88BDA1B69C14A003785D0 /* BicyleReqModel.m in Sources */,
 				5BF430FF1B575CE6003C7941 /* WebViewController.m in Sources */,
 				5B0155ED1B5DEE8000056CFC /* BoyeBluetoothBaseVC.m in Sources */,
 				9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */,

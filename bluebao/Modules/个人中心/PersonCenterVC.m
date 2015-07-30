@@ -33,8 +33,7 @@
     
     [super viewWillAppear:YES];
     
-       UserInfo * userInfo = [[UserInfo alloc] init];
-    userInfo.uid = 1;
+    self.userInfo = [MainViewController sharedSliderController].userInfo;
     
     [self _initPersonMessage];
     
@@ -75,7 +74,7 @@
 -(void)_initViews{
     
     _sortArray = @[@[@"总里程",@"总时间",@"总消耗热量"],@[@"最长距离",@"最长时间",@"最多消耗热量"]];
-    _unitArray = @[@"公里",@"小时",@"千卡"];
+    _unitArray = @[@"公里",@"小时",@"卡"];
     [self _initTableView];
     
 }
@@ -257,7 +256,7 @@
     
     
     PictureReqModel * picModel = [[PictureReqModel alloc] init];
-    picModel.uid  = @"1";
+    picModel.uid  = self.userInfo.uid;
     picModel.type = @"avatar";
    
 //   

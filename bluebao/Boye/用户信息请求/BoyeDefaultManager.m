@@ -160,8 +160,8 @@
                     NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
                     id dict=[NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
                     NSDictionary *json = (NSDictionary *)dict;
-                    
-                    NSLog(@"结果: %@", dict);
+                   
+                   // NSLog(@"结果: %@", dict);
                     
                     if(json == nil){
                         NSLog(@"json parse failed \r\n");
@@ -257,7 +257,7 @@
                         return;
                     }
                     
-                    NSLog(@"dic %@",dic);
+                   // NSLog(@"dic %@",dic);
 
                     NSNumber * code = [dic valueForKey:@"code"];
                     NSLog(@"请求成功！%fl",[code floatValue]);

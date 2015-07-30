@@ -48,6 +48,7 @@
         self.signLabelValue.center = CGPointMake(vx, self.contentView.center.y);
         self.signLabelValue.textAlignment = NSTextAlignmentRight;
         [self.contentView addSubview:self.signLabelValue];
+        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     

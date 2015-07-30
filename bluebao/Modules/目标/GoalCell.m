@@ -8,6 +8,14 @@
 
 #import "GoalCell.h"
 
+@interface GoalCell (){
+    
+    NSInteger   _count ;
+}
+
+
+@end
+
 @implementation GoalCell
 
 - (void)awakeFromNib {
@@ -37,7 +45,9 @@
     
     //修改
     
-    CGFloat quarter =  SCREEN_WIDTH/4.0;
+   _count = 4;
+    
+    CGFloat quarter =  SCREEN_WIDTH/_count;
     CGFloat left = 15;
     CGFloat width_btn = (quarter - left*2 - 12)/2.0;
     
@@ -57,14 +67,14 @@
     [self.contentView addSubview:self.deleteBtn];
     
     //竖线
-    for (int i = 0; i < 3 ; i ++) {
+    for (int i = 0; i < _count -1 ; i ++) {
 
         [MyTool createLineInView:self.contentView fram:CGRectMake(quarter* (i+1), 0, 1, self.contentView.height)];
     }
     
     [self creatLabel:self.timeLabel labeltext:@"16:30" num:0];
     [self creatLabel:self.goalLael labeltext:@"1000卡" num:1];
-    [self creatLabel:self.operateLael labeltext:@"0%" num:2];
+//    [self creatLabel:self.operateLael labeltext:@"0%" num:2];
     
     //横线
     [MyTool createLineInView:self.contentView fram:CGRectMake(0, self.contentView.bottom -1,SCREEN_WIDTH,1)];
@@ -74,7 +84,7 @@
     
     if (label == nil) {
         label = [[UILabel alloc] init];
-        label.frame = CGRectMake(SCREEN_WIDTH/4.0 * place, -1, SCREEN_WIDTH/4.0, self.contentView.height);
+        label.frame = CGRectMake(SCREEN_WIDTH/_count * place, -1, SCREEN_WIDTH/_count, self.contentView.height);
         label.textAlignment = NSTextAlignmentCenter;
         label.text = string;
         label.font = FONT(15);

@@ -10,6 +10,7 @@
 #import "GoalCell.h"
 #import "GoalData.h"
 
+static  NSString * const goalArrNameString = @"boyeGoalArray";
 
 @interface GoalVC (){
     
@@ -264,36 +265,28 @@
     goal.dateTime = [MyTool changeStringToDate:datestr formatter:@"yy-M-dd-HH:mm"];
     
     
-    //排序
-    if (!self.dataArray) {
-       //是否存在相同日期
-        BOOL isSame = [MyTool isSameDate:goal.dateTime array:self.dataArray];
-        if (isSame) {
-            return;
-        }
-    }
     
     
-
+//    NSLog(@"////////////****///dataTime: %@",goal.dateTime);
     
-    NSLog(@"////////////****///dataTime: %@",goal.dateTime);
-    
-    //add按钮
+    #pragma mark -- 点击添加按钮，相同日期不可添加，不同日期要排序
     if (self.goalPickerView.tag == -1) {
         
-        
-        //排序
-        for (int i = 0; i < self.dataArray.count; i++) {
-            
-            
+        //判断是否存在相同日期
+        if (self.dataArray.count != 0) {
+            //是否存在相同日期
+            [MyTool isSameGoalData:goal array:self.dataArray complete:^(BOOL sameGoal) {
+                if (sameGoal) {
+                    [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
+                    return;
+                }
+            }];
         }
+        //添加元素 然后排序
+         [self.dataArray addObject:goal];
         
         
-
-        
-        
-        
-        [self.dataArray addObject:goal];
+    #pragma mark -- 点击修改按钮，替换对应目标数据
     }else{
         [self.dataArray replaceObjectAtIndex:self.goalPickerView.tag withObject:goal];
     }
@@ -302,6 +295,17 @@
     [_goalTableView reloadData];
     
 //    NSLog(@"  ----- %f ---",_goalTableView.rowHeight);
+//    
+//    if (self.dataArray) {
+//        [BoyeFileMagager saveGoalData:self.dataArray plistName: goalArrNameString];
+//       
+//        [BoyeFileMagager readGoalDataName:goalArrNameString complete:^(NSArray *goalArr) {
+//            
+//        }];
+//    }
+    
+    
+    
 }
 
 
@@ -380,7 +384,7 @@
 -(NSString *)getFullDateString:(NSString *)dmstr{
     
     NSString * datestr = [NSString stringWithFormat:@"%@-%@",_goalDateLabeltext,dmstr];
-    NSLog(@"\r ****** datestr:  %@",datestr);
+//    NSLog(@"\r ****** datestr:  %@",datestr);
     return datestr;
 }
 /*

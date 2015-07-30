@@ -14,7 +14,7 @@
 //创建目标区头
 +(UIView *)creatGoalHeaderView{
     
-    NSArray * array = @[@"时间",@"目标",@"完成度",@"操作"];
+    NSArray * array = @[@"时间",@"目标",@"操作"];
     UIView * title_view = [[UIView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, 40)];
     
     //上横线
@@ -23,10 +23,10 @@
     [MyTool createLineInView:title_view fram: CGRectMake(0, 43, title_view.width, 1)];
     
     
-    CGFloat   l_width = title_view.width/4.0;
+    CGFloat   l_width = title_view.width/array.count;
     
     // 时间，目标， 完成度 操作
-    for (int i = 0;  i < 4 ; i ++) {
+    for (int i = 0;  i < array.count ; i ++) {
         
         UILabel * labelsort = [[UILabel alloc] init];
         labelsort.frame = CGRectMake(l_width *i, 0, l_width, title_view.height);
@@ -37,7 +37,7 @@
         //        labelsort.backgroundColor = [UIColor clearColor];
     }
     //竖线
-    for (int i = 0; i < 3 ; i ++) {
+    for (int i = 0; i < array.count -1 ; i ++) {
         [MyTool createLineInView:title_view fram:CGRectMake(l_width* (i+1), 0, 1, title_view.height+3)];
     }
     
@@ -96,7 +96,7 @@
     label.bounds = CGRectMake(0, 0, size.width, size.height);
     label.center = CGPointMake(btn.center.x, btn.bottom + label.height/2.0+1);
     label.text = title;
-    label.textColor = [UIColor whiteColor];
+    label.textColor = [UIColor lightGrayColor];
     label.tag = btn.tag +1;
     label.font = FONT(12);
     [showView addSubview:label];
@@ -194,6 +194,38 @@
     [bottomView sendSubviewToBack:view_cut];
 
 
+}
+
+#pragma mark --获得插入位置相同的日期--
++(NSInteger) getInsertPlaceInArray:(NSDate *) dateOne array:(NSArray *)dateArray{
+    
+    GoalData  * first_goal = [dateArray firstObject];
+    GoalData * last_goal = [dateArray lastObject];
+    
+    if ([dateOne  compare:first_goal.dateTime] ==NSOrderedAscending) {
+        return 0;
+    }else if ([dateOne  compare:last_goal.dateTime] ==NSOrderedDescending) {
+        
+        return dateArray.count-1;
+    }else{
+        
+        NSInteger  num = 0;
+        
+        for (NSInteger i = 0; i < dateArray.count-1; i ++) {
+            
+            GoalData  * onegoal = [dateArray objectAtIndex:i];
+            GoalData * towgoal = [dateArray objectAtIndex:i+1];
+            BOOL isone = [dateOne compare:onegoal.dateTime]==NSOrderedDescending;
+            BOOL istow = [dateOne compare:towgoal.dateTime]==NSOrderedAscending;
+            
+            if (isone &&istow) {
+                
+                num = i;
+                break;
+            }
+        }
+        return num;
+    }
 }
 
 

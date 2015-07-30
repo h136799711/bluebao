@@ -8,24 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GoalData : NSObject
+@interface GoalData : NSObject<NSCoding>
 
-
+@property (nonatomic,assign) NSInteger          goalID;
 
 @property (nonatomic,copy) NSString             * timestr;//时间
-@property (nonatomic,assign) NSInteger          goalNumber; //目标卡
+@property (nonatomic,assign) NSInteger          goalNumber; //目标(卡)
 
-@property (nonatomic,copy) NSString             * hour;//小时
-@property (nonatomic,copy) NSString             * minute;//分钟
 @property (nonatomic,strong) NSDate             * dateTime;
 
 
-
-
-
-@property (nonatomic,assign) NSInteger          hundredPlace; //百位
-@property (nonatomic,assign) NSInteger          tendPlace;//十位
-@property (nonatomic,assign) NSInteger          digitPlace;//个位
-
 @property (nonatomic,assign) NSInteger          consumeK; //消耗多少卡
+@property (nonatomic,assign) NSInteger          maxIndex;
+
 @end

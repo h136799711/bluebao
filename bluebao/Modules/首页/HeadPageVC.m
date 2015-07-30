@@ -11,7 +11,7 @@
 #import "HeadCollectionViewCell.h"
 #import "BMICell.h"
 #import "DrawProgreView.h"
-
+#import "BicyleReqModel.h"
 
 @interface HeadPageVC (){
     
@@ -46,6 +46,7 @@
     [_tableView reloadData];
     [headCollectionView reloadData];
     self.userInfo = [MainViewController sharedSliderController].userInfo;
+    
 //    NSLog(@" userInfo\r weight  %ld  \r height :%ld \r age: %ld ",self.userInfo.weight,self.userInfo.height,self.userInfo.age);
 }
 #pragma mark -- 初始化 --
@@ -128,9 +129,14 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@" cell");
+
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0;
 }
+
 #pragma mark -- 目标 ---
 -(UIView *)headerView{
     
@@ -154,6 +160,10 @@
     equipLabel.font = FONT(13);
     [self.headView addSubview:equipLabel];
     
+    
+    
+    
+    
 #pragma mark -- drawProgreView ---
     
    self.drawProgreView = [[DrawProgreView alloc] init];
@@ -173,8 +183,6 @@
 -(void)dateChooseView:(DateChooseView *)dateChooseView datestr:(NSString *)datestr{
     
     NSLog(@"date  %@",datestr);
-    
-//    self.drawProgreView
     
     _drawProgreView.goalNum = 500;
     _drawProgreView.finishNum = 400;
@@ -215,7 +223,9 @@
     return _sortArray.count;
     //    return dataSource.count;
 }
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
+}
 #pragma mark ---collectionViewCell --
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -234,7 +244,38 @@
     return cell;
 }
 
+#pragma mark  -- 获得单车数据请求 --
 
+-(void)getBicyleData{
+    
+    BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
+    reqModel.uid = self.userInfo.uid;
+    reqModel.uuid = @"OTO458-1082"; //LR-866
+    reqModel.time = 1563146460;
+ 
+    
+    NSLog(@"-- 获得单车数据请求 --");
+
+    [BoyeBicyleManager requestBicyleData:reqModel complete:^(BOOL bicyleSuccessed) {
+
+        if (bicyleSuccessed) {
+            NSLog(@"-- 获得成功 ---");
+        }
+    }];
+    
+//    return;
+//    
+//    [BoyeBicyleManager requestBicyleDataUpload:reqModel complete:^(BOOL bicyleSuccessed) {
+//        
+//        if (bicyleSuccessed) {
+//            NSLog(@"ccccc");
+//            
+//            
+//        }
+//    }];
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

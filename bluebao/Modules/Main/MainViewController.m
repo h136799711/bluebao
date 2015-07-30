@@ -154,9 +154,9 @@
     
     if (button.tag == 3) {
         ShareVC * share = [[ShareVC alloc] init];
-        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:share];
+//        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:share];
 
-        [self  presentViewController:nav animated:YES completion:nil];
+        [self  presentViewController:share animated:YES completion:nil];
         
     }else{
         
@@ -176,14 +176,15 @@
     }
 
     
-//    for (int i = 0; i < self.viewcontrollers.count; i ++) {
-//        UILabel * label = (UILabel *)[_bottomView viewWithTag:i+1];
-//        if (button.tag == i) {
-//            label.textColor = [UIColor redColor];
-//        }else{
-//            label.textColor = [UIColor whiteColor];
-//        }
-//    }
+    //字体颜色改变
+    for (int i = 0; i < sortName.count; i ++) {
+        UILabel * label = (UILabel *)[_bottomView viewWithTag:i+1];
+        if (button.tag == i) {
+            label.textColor = [UIColor colorWithHexString:@"#28cafb"];
+        }else{
+            label.textColor = [UIColor lightGrayColor];
+        }
+    }
     
     self.navigationController.navigationBarHidden = YES;
 
@@ -369,11 +370,11 @@
         }
         
         
-        NSString * fileImage =  [MyTool getDocumentsImageFile:data userID:self.userInfo.uid];
+        NSString * fileImage =  [BoyeFileMagager getDocumentsImageFile:data userID:self.userInfo.uid];
         
         //图片上传请求
         PictureReqModel * picModel = [[PictureReqModel alloc] init];
-        picModel.uid = [NSString stringWithFormat:@"%ld",self.userInfo.uid];
+        picModel.uid = self.userInfo.uid;
         picModel.type = @"avatar";
         picModel.filePath = fileImage;
         

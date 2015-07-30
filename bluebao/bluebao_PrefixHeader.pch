@@ -15,20 +15,36 @@
 
 
 
-#import "UIViewExt.h"
-#import "UIColor+Color.h"
+
+#import "AFNetworking.h"
+#import "CommonDefine.h"
+
+
+#import "UserInfo.h"
+#import "User.h"
+#import "Bicyle.h"
+#import "GoalData.h"
+
+
+#import "BoyeBaseVC.h"
+#import "BoyeBluetoothBaseVC.h"
 #import "BaseViewController.h"
 #import "MainViewController.h"
 
 #import "MyTool.h"
-#import "AFNetworking.h"
-#import "CommonDefine.h"
-#import "UserInfo.h"
-#import "User.h"
-#import "BoyePictureUploadManager.h"
-#import "BoyeToken.h"
-#import "BoyeBaseVC.h"
+#import "BBManageCode.h" //保存代码
+#import "BoyeFileMagager.h"
 
+
+#import "BoyeToken.h"//Token请求
+
+#import "BoyeDefaultManager.h"
+#import "BoyeHttpClient.h" //网络请求
+#import "BoyePictureUploadManager.h"
+#import "BoyeBicyleManager.h" //单车数据请求
+
+#import "UIViewExt.h"
+#import "UIColor+Color.h"
 #import "UIButton+WebCache.h"
 #import "SDImageCache.h"
 #import "UIImage+Color.h"
@@ -41,14 +57,11 @@
 #import "BaseTextField.h"
 #import "MBProgressHUD+Add.h"
 #import "MBProgressHUD.h"
-#import "BBManageCode.h" //保存代码
-#import "BoyeDefaultManager.h"
-#import "BoyeHttpClient.h" //网络请求
+
 #import "ButtonFactory.h"
 #import "NSDate+Helper.h"  //日期
 #import "CacheFacade.h"     //缓存
 #import "SVProgressHUD.h"
-#import "BoyeBluetoothBaseVC.h"
 
 //-------------------打印日志-------------------------
 //DEBUG  模式下打印日志,当前行

@@ -10,7 +10,7 @@
 
 @interface PictureReqModel : NSObject
 
-@property (nonatomic,copy)NSString      *uid;
+@property (nonatomic,assign)NSInteger      uid;
 @property (nonatomic,copy)NSString      * type;
 @property (nonatomic,copy)NSString      * filePath;
 
