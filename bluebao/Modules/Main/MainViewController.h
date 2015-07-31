@@ -13,6 +13,9 @@
 @interface MainViewController : BaseViewController<LetfViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic,strong) UserInfo * userInfo;
 @property (nonatomic,assign) BOOL       isOpen;
+@property (nonatomic,strong)   LetfView          *leftView;
+
+
 
 + (MainViewController*)sharedSliderController;
 

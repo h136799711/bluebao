@@ -37,7 +37,7 @@
 -(void)_initViews{
     
     _dataArray = @[@"关于蓝堡",@"联系我们",@"意见反馈"];
-    [self _initNavs];
+
     [self _initTableView];
 }
 
@@ -109,24 +109,6 @@
         
     }
     
-}
-#pragma mark -- 导航条 返回 --
-
--(void)_initNavs{
-    
-    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.tag = 1;
-    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem = letfItem;
-}
-
-#pragma mark --返回 --
--(void)backClick{
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 /*
 #pragma mark - Navigation

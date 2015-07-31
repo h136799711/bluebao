@@ -288,6 +288,9 @@
         case STATE_CONNECTED_DEVICE:
             NSLog(@"连接上一台设备!");
             [self didConnectDevice];
+            //跳回主页
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
             break;
         case STATE_DISCONNECT_DEVICE:
             NSLog(@"断开上一台设备!");

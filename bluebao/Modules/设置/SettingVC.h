@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface SettingVC : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+@interface SettingVC : BoyeLeftBaseVC<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITableView * tableView_set;
 @end

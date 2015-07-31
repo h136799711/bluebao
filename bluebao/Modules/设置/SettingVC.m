@@ -25,6 +25,10 @@
     // Do any additional setup after loading the view.
     self.title = @"设置";
     self.navigationController.navigationBarHidden = NO;
+    
+    _currSelectedRow = 0;
+    _lastSelectedRow = _currSelectedRow;
+    _setArray = @[@"震动",@"声音",@"检查新版本"];
 
     [self _initViews];
 }
@@ -34,11 +38,6 @@
 //初始化
 -(void)_initViews{
     
-    _currSelectedRow = 0;
-    _lastSelectedRow = _currSelectedRow;
-    
-    _setArray = @[@"震动",@"声音",@"检查新版本"];
-    [self _initNavs];
     [self _initTableView];
 }
 
@@ -116,25 +115,6 @@
     _currSelectedRow = indexPath.row;
     [tableView reloadData];
 
-}
-
-#pragma mark -- 导航条 返回 --
-
--(void)_initNavs{
-    
-    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.tag = 1;
-    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem = letfItem;
-}
-
-#pragma mark --返回 --
--(void)backClick{
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

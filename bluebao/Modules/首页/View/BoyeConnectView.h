@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class BoyeConnectView;
+@protocol BoyeConnectViewDelegate <NSObject>
+
+-(void)BoyeConnectViewconnected:(BoyeConnectView *)BoyeConnectView;
+
+@end
+ 
+
 @interface BoyeConnectView : UIView
+
+
+@property (nonatomic,assign) id <BoyeConnectViewDelegate>delegate;
+
 
 @end

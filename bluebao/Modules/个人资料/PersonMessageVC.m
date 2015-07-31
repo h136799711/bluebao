@@ -75,7 +75,6 @@
 -(void)_initViews{
     
     //导航条
-    [self _initNavs];
     //tableView
     [self _initTableview];
     //自定义键盘
@@ -93,7 +92,8 @@
     if (self.tableView_person == nil) {
         CGFloat   left = 20;
         CGFloat h = SCREEN_HEIGHT-STATUS_HEIGHT-NAV_HEIGHT;
-        self.tableView_person = [[UITableView alloc] initWithFrame:CGRectMake(left,0, SCREEN_WIDTH -left *2, h) style:UITableViewStyleGrouped];
+        self.tableView_person = [[UITableView alloc]
+                                 initWithFrame:CGRectMake(left,0, SCREEN_WIDTH -left *2, h) style:UITableViewStyleGrouped];
         self.tableView_person.rowHeight = 44;
         self.tableView_person.delegate = self;
         self.tableView_person.dataSource = self;
@@ -384,7 +384,11 @@
 #pragma mark --- 从相册区图片--
 
 -(void)uploadHeadImage{
-    UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:(id)self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍一张照",@"从相册中选", nil];
+    UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                              delegate:(id)self
+                                                     cancelButtonTitle:@"取消"
+                                                destructiveButtonTitle:nil
+                                                     otherButtonTitles:@"拍一张照",@"从相册中选", nil];
     [actionSheet showInView:self.view];
 
    
@@ -592,24 +596,6 @@
 }
 
 
-#pragma mark -- 导航条 返回 --
-
--(void)_initNavs{
-    
-    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.tag = 1;
-    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem = letfItem;
-}
-
-#pragma mark --返回 --
--(void)backClick{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 //获得字符串
 -(NSInteger) getCurrentNum:(NSString *)numString{

@@ -32,6 +32,8 @@
         self.frame = frame;
         self.backgroundColor = [UIColor clearColor];
         _per = 0;
+        
+        
     }
     return self;
 }
@@ -129,8 +131,7 @@
 -(void)setGoalNum:(CGFloat)goalNum{
     _goalNum = goalNum;
     
-    UILabel * goalValueLabel = (UILabel *)[self viewWithTag:3];
-    goalValueLabel.text  = [NSString stringWithFormat:@"%d",(int)goalNum];
+    _goalValue.text  = [NSString stringWithFormat:@"%d",(int)goalNum];
 }
 
 -(void)setFinishNum:(CGFloat)finishNum{

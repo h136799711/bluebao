@@ -9,9 +9,10 @@
 #import "BaseViewController.h"
 #import "GoalPickerView.h"
 
-@interface GoalVC : BoyeBaseVC<UITableViewDelegate,UITableViewDataSource,GoalPickerViewDelegate>
+@interface GoalVC : BoyeSlideBaseVC<UITableViewDelegate,UITableViewDataSource,GoalPickerViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray     *dataArray;
 @property (nonatomic,strong) GoalPickerView     * goalPickerView;
 @property (nonatomic,assign) CGFloat             outHeight;
+@property (nonatomic,strong) UITableView         *goalTableView;
 @end

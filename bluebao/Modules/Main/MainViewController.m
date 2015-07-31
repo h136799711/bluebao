@@ -15,10 +15,9 @@
 #import "LetfView.h"
 #import "HeadPageVC.h"
 
-@interface MainViewController (){
+@interface MainViewController ()<BOYEBluetoothStateChangeDelegate>{
     
     CGFloat    _slidepy;
-    LetfView          *_leftView;
     
     UIView   *_contentView;
     UIView  * _bottomView;  // 底部视图
@@ -33,6 +32,8 @@
 
 @property (nonatomic,strong) NSArray                        * viewcontrollers;
 @property (nonatomic,strong) NSMutableArray                 * buttonArray;
+@property (nonatomic,strong) BoyeBluetooth                  * boyeBluetooth;
+
 @end
 
 @implementation MainViewController
@@ -41,6 +42,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 
+    self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
+    self.boyeBluetooth.delegate = self;
+    
     [super viewWillAppear:YES];
     self.navigationController.navigationBarHidden = YES;
     
@@ -389,6 +393,64 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+-(void)bluetoothStateChange:(id)sender :(enum BOYE_BLUETOOTH_STATE_EVENT)stateEvent :(id)parms{
+    NSDictionary * info = (NSDictionary *)parms;
+    
+    NSLog(@"委托蓝牙状态变更！%u",stateEvent);
+    
+    switch (stateEvent) {
+        case STATE_CHANGE:
+            
+//            [];
+//            [self bluetoothUpdateState];
+            break;
+        case STATE_CONNECTED_DEVICE:
+            NSLog(@"连接上一台设备!");
+//            [self didConnectDevice];
+            break;
+        case STATE_DISCONNECT_DEVICE:
+            NSLog(@"断开上一台设备!");
+//            [self disConnectDevice];
+            break;
+        case STATE_DISCOVERED_SERVICE:
+//            [self didDiscoverServices:[info objectForKey:@"error"]];
+            break;
+        case STATE_DISCOVERED_CHARACTERISTICS:
+//            [self didDiscoverCharacteristicsForService:[info objectForKey:@"data"] error:[info objectForKey:@"error"]];
+            break;
+        case STATE_UPDATE_VALUE:
+        {
+            CBCharacteristic * characteristic = (CBCharacteristic *)[info objectForKey:@"data"];
+            
+            NSString * dataValue = [self dataToString:characteristic.value];
+            [self updateValue:dataValue];
+            
+        }
+        default:
+            break;
+    }
+    
+}
+
+-(void)updateValue:(NSString *)dataString{
+    NSLog(@" datastring: %@",dataString);
+}
+
+- (NSString * )dataToString:(NSData *)value{
+    
+    NSMutableString* hexString = [NSMutableString string];
+    const unsigned char *p = [value bytes];
+    
+    for (int i=0; i < [value length]; i++) {
+        [hexString appendFormat:@"%02x", *p++];
+    }
+    
+    return [hexString lowercaseString];
+    
+}
+
 
 
 

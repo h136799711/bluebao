@@ -45,15 +45,17 @@
     
     //修改
     
-   _count = 4;
+   _count = 3;
     
     CGFloat quarter =  SCREEN_WIDTH/_count;
-    CGFloat left = 15;
-    CGFloat width_btn = (quarter - left*2 - 12)/2.0;
+
+    CGFloat between = 15;
+    CGFloat width_btn = self.contentView.height - 18;
+    CGFloat left = (quarter -between - width_btn * 2)/2.0;
     
     self.alterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.alterBtn.bounds = CGRectMake(0, 0, width_btn, width_btn);
-    CGFloat  alt_x = quarter *3 + left + self.alterBtn.width/2.0;
+    CGFloat  alt_x = quarter * (_count-1) + left + self.alterBtn.width/2.0;
     self.alterBtn.center = CGPointMake(alt_x, self.contentView.center.y);
     [self.alterBtn setBackgroundImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
     [self.contentView addSubview:self.alterBtn];
@@ -61,7 +63,7 @@
     //删除
     self.deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.deleteBtn.bounds = CGRectMake(0, 0, self.alterBtn.width, self.alterBtn.height);
-    CGFloat  delete_x = self.alterBtn.right + 6+ self.deleteBtn.width/2.0;
+    CGFloat  delete_x = self.alterBtn.right + between/2.0+ self.deleteBtn.width/2.0;
     self.deleteBtn.center = CGPointMake(delete_x, self.alterBtn.center.y);
     [self.deleteBtn setBackgroundImage:[UIImage imageNamed:@"delete.png"] forState:UIControlStateNormal];
     [self.contentView addSubview:self.deleteBtn];

@@ -14,7 +14,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
 
 @interface GoalVC (){
     
-    UITableView         * _goalTableView;
+//    UITableView         * _goalTableView;
 //    int                  _goalCount;
     BOOL                  _isHasData;
     UIView                  *_headerView;
@@ -272,19 +272,27 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
     #pragma mark -- 点击添加按钮，相同日期不可添加，不同日期要排序
     if (self.goalPickerView.tag == -1) {
         
+        __block  BOOL  isSameGoal = NO;
         //判断是否存在相同日期
         if (self.dataArray.count != 0) {
             //是否存在相同日期
             [MyTool isSameGoalData:goal array:self.dataArray complete:^(BOOL sameGoal) {
                 if (sameGoal) {
                     [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
-                    return;
+                    isSameGoal = YES;
+                    return ;
                 }
             }];
         }
-        //添加元素 然后排序
-         [self.dataArray addObject:goal];
+        //有相同的不添加
+        if (isSameGoal ) {
+            return;
+        }
         
+        //添加元素 然后排序
+        
+        [self.dataArray addObject:goal];
+        self.dataArray = (NSMutableArray *)[BBManageCode  sequenceGoalDataArray:self.dataArray];
         
     #pragma mark -- 点击修改按钮，替换对应目标数据
     }else{

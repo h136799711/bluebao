@@ -12,8 +12,9 @@
 #import "BMICell.h"
 #import "DrawProgreView.h"
 #import "BicyleReqModel.h"
+#import "BoyeConnectView.h"
 
-@interface HeadPageVC (){
+@interface HeadPageVC ()<BoyeConnectViewDelegate>{
     
     UITableView             * _tableView;
     NSArray                 * _labelarray;
@@ -21,6 +22,7 @@
     NSInteger               itemWidth;
     NSArray                 *_imageName;
     NSArray                 *_sortArray;
+    BoyeConnectView         * _connectView;
 }
 
 @end
@@ -158,10 +160,12 @@
     equipLabel.textAlignment = NSTextAlignmentCenter;
     equipLabel.text = @"没有连接设备";
     equipLabel.font = FONT(13);
-    [self.headView addSubview:equipLabel];
+//    [self.headView addSubview:equipLabel];
     
-    
-    
+    CGRect  conrect = CGRectMake(0, self.dateChooseView .bottom, self.dateChooseView .width, 30);
+    _connectView = [[BoyeConnectView alloc] initWithFrame:conrect];
+    _connectView.center = CGPointMake(self.headView.center.x, conrect.origin.y + _connectView.height/2.0);
+    [self.headView addSubview:_connectView];
     
     
 #pragma mark -- drawProgreView ---
@@ -176,7 +180,11 @@
     
     return self.headView ;
 }
+-(void)connected{
+    
 
+    
+}
 
 #pragma mark -- 日期 改变  --
 

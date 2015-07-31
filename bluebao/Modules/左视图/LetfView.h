@@ -24,4 +24,6 @@
 @property (nonatomic,strong) UITextField * signTextfield;
 
 @property (nonatomic,assign)id<LetfViewDelegate>delegate;
+
+-(void)jumpToequipmentManager;
 @end

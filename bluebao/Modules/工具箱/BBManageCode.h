@@ -28,5 +28,6 @@
 #pragma mark --获得插入位置--
 +(NSInteger) getInsertPlaceInArray:(NSDate *) dateOne array:(NSArray *)dateArray;
 
-
+// 数值排序 goal
++(NSArray *)sequenceGoalDataArray:(NSArray *)dataArray;
 @end

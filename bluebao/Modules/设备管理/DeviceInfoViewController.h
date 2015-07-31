@@ -14,7 +14,7 @@
 
 @import CoreBluetooth;
 
-@interface DeviceInfoViewController : BaseViewController<BOYEBluetoothStateChangeDelegate>
+@interface DeviceInfoViewController : BoyeLeftBaseVC<BOYEBluetoothStateChangeDelegate>
 
 /**
  *  设置当前准备操作的设备

@@ -375,7 +375,7 @@ static const int MAX_SCAN_SECONDS = 6;
 - (void)viewDidLoad {
     NSLog(@"viewDidLoad");
     self.navigationController.navigationBarHidden = NO;
-
+    self.segCtrl.alpha = 0;
     [super viewDidLoad];
     
     [self setUp];

@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface PersonCenterVC : BoyeBaseVC<UITableViewDataSource,UITableViewDelegate>
+@interface PersonCenterVC : BoyeSlideBaseVC<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UILabel                *heightLabel;
 @property (nonatomic,strong) UILabel                *weightLabel;
 @property (nonatomic,strong) UILabel                *BMiLabel;

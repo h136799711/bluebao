@@ -1,26 +1,25 @@
 //
-//  BoyeBaseVC.m
+//  BoyeSlideBaseVC.m
 //  bluebao
 //
-//  Created by boye_mac1 on 15/7/28.
+//  Created by boye_mac1 on 15/7/31.
 //  Copyright (c) 2015年 Boye. All rights reserved.
 //
 
-#import "BoyeBaseVC.h"
+#import "BoyeSlideBaseVC.h"
 
-@interface BoyeBaseVC ()
+@interface BoyeSlideBaseVC ()
 
 @end
 
-@implementation BoyeBaseVC
+@implementation BoyeSlideBaseVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
     [self _initNavs];
-
 }
+
 
 //侧滑按钮
 -(void)_initNavs{
@@ -50,6 +49,7 @@
     
     
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

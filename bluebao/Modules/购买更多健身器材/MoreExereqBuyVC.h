@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface MoreExereqBuyVC : BaseViewController<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface MoreExereqBuyVC : BoyeLeftBaseVC<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic,strong) UICollectionView   * collectionView_more;
 @end

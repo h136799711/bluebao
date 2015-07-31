@@ -26,9 +26,10 @@
 #import "GoalData.h"
 
 
-#import "BoyeBaseVC.h"
-#import "BoyeBluetoothBaseVC.h"
-#import "BaseViewController.h"
+#import "BoyeSlideBaseVC.h" //侧滑基类，首页，目标个人中心基类
+#import "BoyeBluetoothBaseVC.h" //蓝牙基类
+#import "BaseViewController.h"  // vc 基类
+#import "BoyeLeftBaseVC.h"  //左视图基类
 #import "MainViewController.h"
 
 #import "MyTool.h"

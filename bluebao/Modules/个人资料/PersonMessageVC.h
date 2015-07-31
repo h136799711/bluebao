@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "PickerKeyBoard.h"
-@interface PersonMessageVC : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PickerKeyBoardDelegate >
+@interface PersonMessageVC : BoyeLeftBaseVC<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PickerKeyBoardDelegate >
 
 
 @property (nonatomic,strong) UITableView  * tableView_person;

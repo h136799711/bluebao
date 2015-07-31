@@ -228,5 +228,34 @@
     }
 }
 
+// 数值排序 goal
++(NSArray *)sequenceGoalDataArray:(NSArray *)dataArray {
+    
+    GoalData * tempGoal= [[GoalData alloc] init];
+    GoalData * aGoal ;
+    GoalData * bGoal ;
+    
+    if (dataArray.count>=2){
+       
+        for (NSInteger i = dataArray.count -1; i >= 1 ; i--) {
+            aGoal = [dataArray objectAtIndex:i];
+            bGoal = [dataArray objectAtIndex:i-1];
+            if (aGoal.maxIndex <  bGoal.maxIndex) {
+//                NSLog(@"'\r  ***********   goal.maxIndex : ");
+ 
+                tempGoal = aGoal;
+                aGoal = bGoal;
+                bGoal = tempGoal;
+            }
+        }
+    }
+    
+//    for (GoalData * g  in dataArray) {
+////        NSLog(@"'\r goal.maxIndex : %ld",g.maxIndex);
+//    }
+//    
+    
+    return dataArray;
+}
 
 @end

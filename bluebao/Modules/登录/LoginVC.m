@@ -117,16 +117,18 @@
         return;
     }
     
-    //登陆请求
-    [BoyeDefaultManager requestLoginUser:user complete:^(UserInfo * userInfo) {
-        
-        if (userInfo != nil ) {
-            //  NSLog(@" \r-- %@",userInfo);
-            [self jumpMainPage];
-            
-            [MainViewController sharedSliderController].userInfo = userInfo;
-        }
-    }];
+    [self jumpMainPage];
+
+//    //登陆请求
+//    [BoyeDefaultManager requestLoginUser:user complete:^(UserInfo * userInfo) {
+//        
+//        if (userInfo != nil ) {
+//            //  NSLog(@" \r-- %@",userInfo);
+//            [self jumpMainPage];
+//            
+//            [MainViewController sharedSliderController].userInfo = userInfo;
+//        }
+//    }];
     
 }
 

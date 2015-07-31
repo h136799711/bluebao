@@ -245,14 +245,23 @@
     namelabel.center = CGPointMake(headImag.right + 5+ namelabel.width/2.0 , headImag.center.y - 5);
     
     //取消
+    CGFloat rightspace = 10 ;
     UIButton * cancleBtn = [[UIButton alloc] init];
-    cancleBtn.bounds = CGRectMake(0, 0, 50, 44);
-    cancleBtn.center = CGPointMake(navView.width - 10-cancleBtn.width/2.0, navView.height/2.0);
+    cancleBtn.bounds =  CGRectMake(0, 0, 50, 44);
+    cancleBtn.center =  CGPointMake(rightspace + cancleBtn.width/2.0, navView.height/2.0);
     [cancleBtn setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
     [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
-    
     [navView addSubview:cancleBtn];
     [cancleBtn addTarget:self action:@selector(cancleBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    //提交
+    UIButton * submitBtn = [[UIButton alloc] init];
+    submitBtn.bounds = CGRectMake(0, 0, cancleBtn.width, cancleBtn.height);
+    submitBtn.center = CGPointMake(navView.width - rightspace-submitBtn.width/2.0, navView.height/2.0);
+    [submitBtn setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
+    [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
+    [navView addSubview:submitBtn];
+    [submitBtn addTarget:self action:@selector(submitBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:navView];
     return navView;
@@ -264,6 +273,12 @@
     
     NSLog(@"分享到%@",@[@"微信",@"微博",@"qq空间"][shareBtn.tag]);
     [share_tableView reloadData];
+}
+
+#pragma mark -- 提交 --
+-(void)submitBtnClick{
+    
+    NSLog(@"提交");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

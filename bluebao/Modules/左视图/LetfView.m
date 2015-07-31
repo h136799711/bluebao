@@ -18,8 +18,9 @@
 #import "BlueBaoAboutVC.h" // 关于蓝堡
 #import "MoreExereqBuyVC.h" 
 #import "SettingVC.h"
-
-
+#import "PeopleSportDataVC.h"
+#import "PeopleGoalManagerVC.h"
+#import "HistoryViewController.h"
 
 @interface LetfView(){
     
@@ -120,36 +121,44 @@
             //个人资料
         PersonMessageVC * person = [[PersonMessageVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:person animated:YES];
-        
+
+        //设备管理
     } else if (indexPath.row == 1){
-            //设备管理
-
-        UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"new" bundle:nil];
+//        UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"new" bundle:nil];
+//        if (secondStroyBoard == nil) {
+//            return;
+//        }
+//        UIViewController *test2obj=[secondStroyBoard instantiateViewControllerWithIdentifier:@"device"];
+//        [[MainViewController sharedSliderController].navigationController pushViewController:test2obj animated:YES];
+//        
+        [self jumpToequipmentManager];
+        //我的运动数据
+    } else if (indexPath.row == 2){
         
-        if (secondStroyBoard == nil) {
-            return;
-        }
-        UIViewController *test2obj=[secondStroyBoard instantiateViewControllerWithIdentifier:@"device"];
+        HistoryViewController * peoSport = [[HistoryViewController alloc] init];
+        [[MainViewController sharedSliderController].navigationController pushViewController:peoSport animated:YES];
         
+        //我的目标管理
+    }else if (indexPath.row == 3){
         
-        [ [MainViewController sharedSliderController].navigationController pushViewController:test2obj animated:NO];
+        PeopleGoalManagerVC * goal = [[PeopleGoalManagerVC alloc] init];
+       [[MainViewController sharedSliderController].navigationController pushViewController:goal animated:YES];
         
-
-        
+        //关于蓝堡
     } else if (indexPath.row == 4){
-          //关于蓝堡
+      
         BlueBaoAboutVC * aboutVC = [[BlueBaoAboutVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:aboutVC animated:YES];
 
+        //购买更多器材
     } else if (indexPath.row == 5){
-          //购买更多器材
+
         MoreExereqBuyVC * moreVC = [[MoreExereqBuyVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:moreVC animated:YES];
-        
-    }
-    
-    else if (indexPath.row == 7){
-        //设置
+      
+          //设置
+    }  else if (indexPath.row == 7){
+      
         SettingVC  * setVC = [[SettingVC alloc] init];
         [[MainViewController sharedSliderController].navigationController pushViewController:setVC animated:YES];
 
@@ -159,8 +168,6 @@
         
         return;
     }
-    
-    
     
     [[MainViewController sharedSliderController] moveLeft];
     
@@ -224,7 +231,28 @@
 -(void)switchClick:(UISwitch *)stch{
     
     NSLog(@"闹铃");
+   // [self localNotification];
+}
+
+-(void)localNotification{
     
+    UILocalNotification *notification=[[UILocalNotification alloc] init];
+    if (notification!=nil) {
+        NSDate *now=[NSDate date];
+        notification.fireDate=[now dateByAddingTimeInterval:10];//10秒后通知
+        notification.repeatInterval=kCFCalendarUnitMinute;//循环次数
+        notification.timeZone=[NSTimeZone defaultTimeZone];
+        notification.applicationIconBadgeNumber=1; //应用的红色数字
+        notification.soundName= UILocalNotificationDefaultSoundName;//声音，可以换成alarm.soundName = @"myMusic.caf"
+        //去掉下面2行就不会弹出提示框
+        notification.alertBody=@"通知内容";//提示信息 弹出提示框
+        notification.alertAction = @"打开";  //提示框按钮
+        //notification.hasAction = NO; //是否显示额外的按钮，为no时alertAction消失
+        //NSDictionary*infoDict = [NSDictionary dictionaryWithObject:@"someValue" forKey:@"someKey"];
+        //notification.userInfo = infoDict; //添加额外的信息
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
 }
 
 #pragma mark --- 头像 ---
@@ -240,6 +268,16 @@
     _delegate = delegate;
 }
 
+-(void)jumpToequipmentManager{
+    
+    UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"new" bundle:nil];
+    if (secondStroyBoard == nil) {
+        return;
+    }
+    UIViewController *test2obj=[secondStroyBoard instantiateViewControllerWithIdentifier:@"device"];
+    [[MainViewController sharedSliderController].navigationController pushViewController:test2obj animated:YES];
+
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
