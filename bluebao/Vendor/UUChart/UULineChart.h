@@ -42,6 +42,8 @@
 
 -(void)strokeChart;
 
+-(void)removeAll;
+
 - (NSArray *)chartLabelsForX;
 
 @end

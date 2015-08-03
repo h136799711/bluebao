@@ -167,8 +167,8 @@
         //获取最大最小位置
         CGFloat max = [childAry[0] floatValue];
         CGFloat min = [childAry[0] floatValue];
-        NSInteger max_i;
-        NSInteger min_i;
+        NSInteger max_i = 0;
+        NSInteger min_i = 0;
         
         for (int j=0; j<childAry.count; j++){
             CGFloat num = [childAry[j] floatValue];
@@ -207,10 +207,10 @@
                 isShowMaxAndMinPoint = YES;
             }
         }
-        [self addPoint:CGPointMake(xPosition, chartCavanHeight - grade * chartCavanHeight+UULabelHeight)
-                 index:i
-                isShow:isShowMaxAndMinPoint
-                 value:firstValue];
+//        [self addPoint:CGPointMake(xPosition, chartCavanHeight - grade * chartCavanHeight+UULabelHeight)
+//                 index:i
+//                isShow:isShowMaxAndMinPoint
+//                 value:firstValue];
 
         
         [progressline moveToPoint:CGPointMake(xPosition, chartCavanHeight - grade * chartCavanHeight+UULabelHeight)];
@@ -235,10 +235,10 @@
                     }
                 }
                 [progressline moveToPoint:point];
-                [self addPoint:point
-                         index:i
-                        isShow:isShowMaxAndMinPoint
-                         value:[valueString floatValue]];
+//                [self addPoint:point
+//                         index:i
+//                        isShow:isShowMaxAndMinPoint
+//                         value:[valueString floatValue]];
                 
 //                [progressline stroke];
             }
@@ -292,4 +292,7 @@
     return [_chartLabelsForX allObjects];
 }
 
+-(void)removeAll{
+    [self removeFromSuperview];
+}
 @end

@@ -84,8 +84,8 @@
             }
         }
         
+        [_lineChart setXLabels:[self.dataSource UUChart_xLableArray:self]];
 		[_lineChart setYValues:[self.dataSource UUChart_yValueArray:self]];
-		[_lineChart setXLabels:[self.dataSource UUChart_xLableArray:self]];
         
 		[_lineChart strokeChart];
 
@@ -120,6 +120,11 @@
 	
 }
 
-
+-(void)removeAll{
+    NSLog(@"removeALl");
+//    [_lineChart removeAll];
+    [_lineChart removeFromSuperview];
+    _lineChart = nil;
+}
 
 @end

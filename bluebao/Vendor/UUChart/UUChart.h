@@ -61,4 +61,6 @@ typedef enum {
 
 -(void)strokeChart;
 
+-(void)removeAll;
+
 @end

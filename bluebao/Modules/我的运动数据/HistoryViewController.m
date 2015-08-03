@@ -18,8 +18,12 @@
     
 }
 
+
+
 //KEY为X轴 Value为Y轴数据
-@property (nonatomic,strong) NSDictionary * data;
+@property (nonatomic,strong) NSMutableDictionary * data;
+
+@property(nonatomic,strong) NSArray * keys;
 
 @end
 
@@ -32,6 +36,8 @@
     [self initView];
     
     [self showUUChart];
+    
+    [self reloadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -41,9 +47,118 @@
 
 #pragma mark 1.getter\setter
 
+-(NSMutableDictionary *)data{
+    if(self->_data == nil){
+        self->_data = [[NSMutableDictionary alloc]init];
+    }
+    return self->_data;
+}
+
 #pragma mark 2.继承方法
 
 #pragma mark 3.自定义方法
+
+
+
+-(void)reloadData{
+    
+    [self initChart];
+    [self.data removeAllObjects];
+    
+    NSDateFormatter * formatter = [NSDate defaultDateFormatter];
+    formatter.dateFormat = @"yyyy年MM月";
+    NSDate * date = [formatter dateFromString:_lblDate.text];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+
+    NSUInteger day = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date].length;
+    
+    NSLog(@"day= %ld",day);
+    //TODO:向服务器请求载入数据
+    
+    for (int i=1; i<=day; i++) {
+        NSLog(@"i=%d",i);
+        if(i%2 == 1){
+            
+            [self.data setValue:[NSNumber numberWithInt:arc4random()%120] forKey: [NSString stringWithFormat:@"%d",i] ];
+        }
+    }
+
+    
+    //=================================
+    [_chart showInView:self.view];
+//    [_chart layoutIfNeeded];
+}
+
+-(void)nextMonth:(id)sender{
+    
+//    NSLog(@"%@",sender);
+    
+    NSDateFormatter * formatter = [NSDate defaultDateFormatter];
+    formatter.dateFormat = @"yyyy年MM月";
+    NSDate * date = [formatter dateFromString:_lblDate.text];
+    
+    NSDateComponents *compt = [[NSDateComponents alloc] init];
+    [compt setYear:0];
+    [compt setMonth:1];
+    [compt setDay:0];
+    [compt setHour:0];
+    [compt setMinute:0];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    NSLog(@"%@",calendar);
+    NSDate *nextMonth = [calendar dateByAddingComponents:compt toDate:date options:0];
+    
+    
+//    NSLog(@"%@",nextMonth);
+    _lblDate.text = [formatter stringFromDate:nextMonth];
+    [self reloadData];
+}
+
+-(void)prevMonth{
+    
+    
+    NSDateFormatter * formatter = [NSDate defaultDateFormatter];
+    formatter.dateFormat = @"yyyy年MM月";
+    NSDate * date = [formatter dateFromString:_lblDate.text];
+    
+    NSDateComponents *compt = [[NSDateComponents alloc] init];
+    [compt setMonth:-1];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDate *prevMonth = [calendar dateByAddingComponents:compt toDate:date options:0];
+    
+    _lblDate.text = [formatter stringFromDate:prevMonth];
+    
+    [self reloadData];
+    
+}
+
+-(void)initChart{
+    if(_chart != nil){
+        [_chart removeAll];
+    }
+    _chart = nil;
+    _chart = [[UUChart alloc] initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20, 360)
+                                            withSource:self
+                                             withStyle:UUChartLineStyle];
+    [self.view addSubview:_chart];
+    
+    _chart.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSMutableArray * bindConstraint = [[NSMutableArray alloc]init];
+    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_chart]-0-|"
+                                                                                 options:NSLayoutFormatAlignAllCenterX
+                                                                                 metrics:nil
+                                                                                   views:NSDictionaryOfVariableBindings(_chart)]];
+    
+    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[_chart]-0-|"
+                                                                                 options:NSLayoutFormatAlignAllCenterY
+                                                                                 metrics:nil
+                                                                                   views:NSDictionaryOfVariableBindings(_chart)]];
+    [self.view addConstraints:bindConstraint];
+}
+
 
 /**
  *  初始化视图\布局
@@ -55,13 +170,15 @@
     _nextBtn = [[UIButton alloc]init];
     [_nextBtn setTitle:@">" forState:UIControlStateNormal];
     
+    [_prevBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_nextBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    [ButtonFactory decorateButton:_prevBtn forType:BOYE_BTN_SECONDARY];
-    [ButtonFactory decorateButton:_nextBtn forType:BOYE_BTN_SECONDARY];
+    [_prevBtn addTarget:self action:@selector(prevMonth) forControlEvents:UIControlEventTouchUpInside];
+    [_nextBtn addTarget:self action:@selector(nextMonth:) forControlEvents:UIControlEventTouchUpInside];
     
-    _chart = [[UUChart alloc] initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20, 360)
-                                            withSource:self
-                                             withStyle:UUChartLineStyle];
+//    [ButtonFactory decorateButton:_prevBtn forType:BOYE_BTN_DEFAULT];
+//    [ButtonFactory decorateButton:_nextBtn forType:BOYE_BTN_SECONDARY];
+    
     
     if(self.navigationItem != nil){
         
@@ -83,16 +200,16 @@
     
     _prevBtn.translatesAutoresizingMaskIntoConstraints = NO;
     _nextBtn.translatesAutoresizingMaskIntoConstraints = NO;
-    _chart.translatesAutoresizingMaskIntoConstraints = NO;
     _lblDate.translatesAutoresizingMaskIntoConstraints = NO;
     _lblDate.textAlignment = NSTextAlignmentCenter;
     
-    [_chart showInView:self.view];
     
+    [self.view addSubview:_chart];
     [self.view addSubview:_lblDate];
     [self.view addSubview:_prevBtn];
     [self.view addSubview:_nextBtn];
     
+    [self initChart];
     
     NSMutableArray * bindConstraint = [[NSMutableArray alloc]initWithArray: [NSLayoutConstraint constraintsWithVisualFormat:@"H:[_lblDate(>=120)]"
                                                                                                                     options:NSLayoutFormatAlignAllCenterX
@@ -134,16 +251,6 @@
                                                                                    views:NSDictionaryOfVariableBindings(_lblDate,_chart)]];
     
     
-    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_chart]-0-|"
-                                                                                 options:NSLayoutFormatAlignAllCenterX
-                                                                                 metrics:nil
-                                                                                   views:NSDictionaryOfVariableBindings(_chart)]];
-
-    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[_chart]-0-|"
-                                                                                 options:NSLayoutFormatAlignAllCenterY
-                                                                                 metrics:nil
-                                                                                   views:NSDictionaryOfVariableBindings(_chart)]];
-    
     [self.view addConstraints:bindConstraint];
 
     
@@ -177,30 +284,72 @@
 //显示数值范围
 - (CGRange)UUChartChooseRangeInLineChart:(UUChart *)chart
 {
+    
+    NSNumber *max = [NSNumber numberWithInteger:NSIntegerMin];
+//    NSNumber *min = [NSNumber numberWithInteger:NSIntegerMax];
+    
+    NSArray * values = [self.data allValues];
+    for (NSNumber * num in values) {
+        
+        if([num compare:max] == NSOrderedDescending){
+            max = num;
+        }
+        
+//        if([num compare:min] == NSOrderedAscending){
+//            min = num;
+//        }
+        
+    }
+    
     //设置Y轴数值
-    return CGRangeMake(100, 0);
+    return CGRangeMake( [max floatValue]+10,0);
 }
+
 
 //设置X
 -(NSArray *)UUChart_xLableArray:(UUChart *)chart{
     //TODO: 获取X轴数据
-    NSMutableArray *xTitles = [NSMutableArray array];
-    
-    for (int i=1; i<=31; i++) {
-        if(i%2==1){
-            NSString * str = [NSString stringWithFormat:@"%d",i];
-            [xTitles addObject:str];
-        }
+    NSMutableArray *xTitles = [[NSMutableArray alloc]init];
+    NSArray *tmp = [self.data allKeys];
+    for(NSNumber * number in    tmp){
+        [xTitles addObject:number];
     }
-    return xTitles;
+    
+    self.keys = nil;
+    self.keys  = [xTitles sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(id sel1,id sel2){
+        
+        NSNumber * selfNumber = (NSNumber*)sel1;
+         NSNumber * number = (NSNumber*)sel2;
+        
+        if([selfNumber floatValue] > [number floatValue]){
+            return NSOrderedDescending;
+        }else if([selfNumber floatValue] < [number floatValue]){
+            return NSOrderedAscending;
+        }else{
+            return NSOrderedSame;
+        }
+        
+    }];
+    
+    
+    return  self.keys;
 }
 
 //设置Y
 -(NSArray *)UUChart_yValueArray:(UUChart *)chart{
     //TODO: 获取Y轴数据
-    NSArray *ary4 = @[@"23",@"42",@"25",@"15",@"30",@"42",@"32",@"40",@"42",@"42"];
+//    NS *ary4 = @[@"23",@"42",@"25",@"15",@"30",@"42",@"32",@"40",@"42",@"42"];
+    NSMutableArray * values = [[NSMutableArray alloc]init];
     
-    return @[ary4];
+    for(id key in self.keys) {
+        id object = [self.data objectForKey:key];
+        NSLog(@"object=%@",object);
+        if(object != nil){
+            [values addObject:object];
+        }
+    }
+    
+    return @[values];
 }
 
 //判断显示横线条
@@ -212,7 +361,7 @@
 //判断显示最大最小值
 - (BOOL)UUChart:(UUChart *)chart ShowMaxMinAtIndex:(NSInteger)index
 {
-    return YES;
+    return NO;
 }
 
 
