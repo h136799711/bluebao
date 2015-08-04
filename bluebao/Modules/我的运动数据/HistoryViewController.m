@@ -37,6 +37,7 @@
     if(_userInfo == nil){
         _userInfo = [MainViewController sharedSliderController].userInfo;
     }
+    _userInfo.uid = 2;
     return _userInfo;
 }
 
@@ -48,8 +49,8 @@
             _uuid = @"";
         }
     }
-    
-    return _uuid;
+    return @"uuid-uuid";
+    //    return _uuid;
 }
 
 -(void)viewDidLoad{
@@ -63,7 +64,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
+    
     
 }
 
@@ -104,7 +105,19 @@
     
     [BoyeBicyleManager requestMonthlyBicyleData:reqModel :^(NSDictionary* data){
         
-        NSLog(@"请求返回的数据=%@",data);
+        id obj = [data objectForKey:@"data"];
+        
+        NSLog(@"请求返回的数据=%@,%d",obj,(int)[obj isKindOfClass:[NSArray class]]);
+        
+        if(![obj isKindOfClass:[NSArray class]]){
+            [SVProgressHUD showErrorWithStatus:@"返回数据无法解析!" withDuration:3];
+            return ;
+        }
+        
+        NSArray * dataInfo = (NSArray *)obj;
+        NSLog(@"请求dataInfo的数据=%@",dataInfo);
+        
+        
         
         NSCalendar *calendar = [NSCalendar currentCalendar];
         
@@ -117,35 +130,45 @@
             return ;
         }
         //TODO:向服务器请求载入数据
-        if([data count] < 16){
-            self.data = (NSMutableDictionary *)data;
-        }else{
-            
+//        if([data count] < 16){
+//            self.data = (NSMutableDictionary *)data;
+//        }else{
+//            
             for (int i=1; i<=day; i++) {
                 NSLog(@"i=%d",i);
                 
                 if(i%2 == 1){
-                    NSNumber * value = [data objectForKey: [NSString stringWithFormat:@"%d", i]];
-                    NSLog(@"value=%@",value);
+                    NSNumber *upload_day = [NSNumber numberWithInteger:0];
+                    NSNumber *max_calorie = [NSNumber numberWithInteger:0];
+
+                    for (int j=0; j<dataInfo.count; j++) {
+                        NSDictionary * dict = (NSDictionary*)dataInfo[j];
+                        upload_day = (NSNumber *)[dict valueForKey:@"upload_day"];
+                        if(i == [upload_day integerValue]){
+                            NSLog(@"upload_day=%@,calorie=%@",upload_day,max_calorie);
+                            max_calorie = (NSNumber *)[dict valueForKey:@"max_calorie"];
+                        }
+                    }
                     
-                    [self.data setValue:[NSNumber numberWithInt:arc4random()%120] forKey: [NSString stringWithFormat:@"%d",i] ];
+                    if(i == [upload_day integerValue]){
+                        [self.data setValue:max_calorie forKey: [NSString stringWithFormat:@"%ld",  [upload_day integerValue]] ];
+                    }else{
+                        [self.data setValue:[NSNumber numberWithInteger:0] forKey: [NSString stringWithFormat:@"%d",  i] ];
+                    }
                     
                 }
-                
-            }
             
-        }
+            }
+        NSLog(@"data=%@",self.data);
+        [_chart showInView:self.view];
     } :nil ];
     
-    
-    //=================================
-    [_chart showInView:self.view];
     
 }
 
 -(void)nextMonth:(id)sender{
     
-//    NSLog(@"%@",sender);
+    //    NSLog(@"%@",sender);
     
     NSDateFormatter * formatter = [NSDate defaultDateFormatter];
     formatter.dateFormat = @"yyyy年MM月";
@@ -159,11 +182,11 @@
     [compt setMinute:0];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
-//    NSLog(@"%@",calendar);
+    //    NSLog(@"%@",calendar);
     NSDate *nextMonth = [calendar dateByAddingComponents:compt toDate:date options:0];
     
     
-//    NSLog(@"%@",nextMonth);
+    //    NSLog(@"%@",nextMonth);
     _lblDate.text = [formatter stringFromDate:nextMonth];
     [self reloadData];
 }
@@ -218,7 +241,7 @@
  *  初始化视图\布局
  */
 -(void)initView{
-//    UIScrollView * scrollVie
+    //    UIScrollView * scrollVie
     _prevBtn = [[UIButton alloc]init];
     [_prevBtn setTitle:@"<" forState:UIControlStateNormal];
     _nextBtn = [[UIButton alloc]init];
@@ -230,25 +253,21 @@
     [_prevBtn addTarget:self action:@selector(prevMonth) forControlEvents:UIControlEventTouchUpInside];
     [_nextBtn addTarget:self action:@selector(nextMonth:) forControlEvents:UIControlEventTouchUpInside];
     
-//    [ButtonFactory decorateButton:_prevBtn forType:BOYE_BTN_DEFAULT];
-//    [ButtonFactory decorateButton:_nextBtn forType:BOYE_BTN_SECONDARY];
+    //    [ButtonFactory decorateButton:_prevBtn forType:BOYE_BTN_DEFAULT];
+    //    [ButtonFactory decorateButton:_nextBtn forType:BOYE_BTN_SECONDARY];
     
     
     if(self.navigationItem != nil){
         
-        [self _initNavs];
-
         self.view.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
         self.title = @"历史数据";
-        
         self.navigationController.navigationBarHidden = NO;
-//        self.navigationController.navigationItem.hidesBackButton = NO;
-//        self.navigationItem.hidesBackButton = NO;
-//        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-//        backItem.title = @"返回";
-//        self.navigationItem.backBarButtonItem = backItem;
-//        self.navigationItem.backBarButtonItem.tintColor = [UIColor blackColor];
+        self.navigationController.navigationItem.hidesBackButton = NO;
+        self.navigationItem.hidesBackButton = NO;
         
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"返回";
+        self.navigationItem.backBarButtonItem = backItem;
     }
     
     _lblDate = [[UILabel alloc]init];
@@ -311,23 +330,7 @@
     [self.view addConstraints:bindConstraint];
     
 }
-#pragma mark --返回 --
--(void)_initNavs{
-    
-    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.tag = 1;
-    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem = letfItem;
-}
 
-//返回
--(void)backClick{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 -(void)showUUChart{
     
@@ -391,7 +394,7 @@
     self.keys  = [xTitles sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(id sel1,id sel2){
         
         NSNumber * selfNumber = (NSNumber*)sel1;
-         NSNumber * number = (NSNumber*)sel2;
+        NSNumber * number = (NSNumber*)sel2;
         
         if([selfNumber floatValue] > [number floatValue]){
             return NSOrderedDescending;
@@ -409,7 +412,7 @@
 //设置Y
 -(NSArray *)UUChart_yValueArray:(UUChart *)chart{
     //TODO: 获取Y轴数据
-//    NS *ary4 = @[@"23",@"42",@"25",@"15",@"30",@"42",@"32",@"40",@"42",@"42"];
+    //    NS *ary4 = @[@"23",@"42",@"25",@"15",@"30",@"42",@"32",@"40",@"42",@"42"];
     NSMutableArray * values = [[NSMutableArray alloc]init];
     
     for(id key in self.keys) {
