@@ -211,7 +211,7 @@
         UIImageView * imageView = [[UIImageView alloc] init];
         imageView.bounds = CGRectMake(0, 0, 80, 80);
         imageView.center = CGPointMake(40+imageView.width/2.0, _headView.height/2.0);
-        imageView.image =[UIImage imageNamed:@"testhead.png"];
+        imageView.image =[UIImage imageNamed:@"Default_header"];
         [MyTool cutViewConner:imageView radius:imageView.width/2.0];
         imageView.backgroundColor = [UIColor redColor];
         [_headView addSubview:imageView];

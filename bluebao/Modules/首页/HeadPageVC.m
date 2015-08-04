@@ -14,6 +14,7 @@
 #import "BicyleReqModel.h"
 #import "BoyeConnectView.h"
 
+
 @interface HeadPageVC ()<BoyeConnectViewDelegate>{
     
     UITableView             * _tableView;
@@ -110,10 +111,8 @@
             cell = [[BMICell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             }
         
-
         cell.weight = self.userInfo.weight;
         cell.bmiValue = [MyTool getBMINumWeight:self.userInfo.weight height:self.userInfo.height];
-
 
         return cell;
         
@@ -152,16 +151,7 @@
     self.dateChooseView .delegate = self;
     [self.headView addSubview:self.dateChooseView ];
     
-    
-    //连接设备
-    UILabel * equipLabel = [[UILabel alloc] init];
-    equipLabel.bounds = CGRectMake(0, self.dateChooseView .bottom, self.dateChooseView .width, 20);
-    equipLabel.center = CGPointMake(self.headView.center.x, self.dateChooseView .bottom + equipLabel.height/2.0);
-    equipLabel.textAlignment = NSTextAlignmentCenter;
-    equipLabel.text = @"没有连接设备";
-    equipLabel.font = FONT(13);
-//    [self.headView addSubview:equipLabel];
-    
+    //设备连接
     CGRect  conrect = CGRectMake(0, self.dateChooseView .bottom, self.dateChooseView .width, 30);
     _connectView = [[BoyeConnectView alloc] initWithFrame:conrect];
     _connectView.center = CGPointMake(self.headView.center.x, conrect.origin.y + _connectView.height/2.0);
@@ -171,9 +161,9 @@
 #pragma mark -- drawProgreView ---
     
    self.drawProgreView = [[DrawProgreView alloc] init];
-    CGFloat   width =  rect.size.height - equipLabel.bottom-20;
+    CGFloat   width =  rect.size.height - _connectView.bottom-20;
     self.drawProgreView.bounds = CGRectMake(0, 0, width,width);
-    self.drawProgreView.center = CGPointMake(self.headView.width/2.0, equipLabel.bottom + self.drawProgreView.height/2.0 +10);
+    self.drawProgreView.center = CGPointMake(self.headView.width/2.0, _connectView.bottom + self.drawProgreView.height/2.0 +10);
     [self.headView addSubview:self.drawProgreView];
     
     
@@ -194,6 +184,8 @@
     
     _drawProgreView.goalNum = 500;
     _drawProgreView.finishNum = 400;
+   
+    [self getBicyleData];
 }
 
 #pragma mark --- 身体指标 ---

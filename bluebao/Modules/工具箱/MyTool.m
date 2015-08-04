@@ -276,5 +276,17 @@
 }
 
 
+#pragma mark --讲数值转化为字符串
++(NSString * ) getFloadToString:(CGFloat) fload {
+
+    NSString * string = [NSString stringWithFormat:@"%.1f",fload];
+    return string;
+}
+    
+    
+    
+    
+    
+    
 
 @end

@@ -79,7 +79,6 @@
 		5B74F4BA1B590AC9002493E8 /* BlueBaoAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B51B590AC9002493E8 /* BlueBaoAboutVC.m */; };
 		5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B71B590AC9002493E8 /* ContactOurVC.m */; };
 		5B74F4BC1B590AC9002493E8 /* OpinionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B91B590AC9002493E8 /* OpinionVC.m */; };
-		5BD4AA911B6B25E00041F730 /* PeopleSportDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA901B6B25E00041F730 /* PeopleSportDataVC.m */; };
 		5BD4AA941B6B27CD0041F730 /* BoyeSlideBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */; };
 		5BD4AA971B6B28980041F730 /* BoyeLeftBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA961B6B28980041F730 /* BoyeLeftBaseVC.m */; };
 		5BD4AAB71B6B49AD0041F730 /* PeopleGoalManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AAB61B6B49AD0041F730 /* PeopleGoalManagerVC.m */; };
@@ -282,8 +281,6 @@
 		5B74F4B71B590AC9002493E8 /* ContactOurVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactOurVC.m; sourceTree = "<group>"; };
 		5B74F4B81B590AC9002493E8 /* OpinionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpinionVC.h; sourceTree = "<group>"; };
 		5B74F4B91B590AC9002493E8 /* OpinionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpinionVC.m; sourceTree = "<group>"; };
-		5BD4AA8F1B6B25E00041F730 /* PeopleSportDataVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleSportDataVC.h; sourceTree = "<group>"; };
-		5BD4AA901B6B25E00041F730 /* PeopleSportDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleSportDataVC.m; sourceTree = "<group>"; };
 		5BD4AA921B6B27CD0041F730 /* BoyeSlideBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeSlideBaseVC.h; sourceTree = "<group>"; };
 		5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeSlideBaseVC.m; sourceTree = "<group>"; };
 		5BD4AA951B6B28980041F730 /* BoyeLeftBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeLeftBaseVC.h; sourceTree = "<group>"; };
@@ -694,8 +691,6 @@
 			children = (
 				5BD4AAD31B6B6F7E0041F730 /* HistoryViewController.m */,
 				5BD4AAD41B6B6F7E0041F730 /* HistoryViewController.h */,
-				5BD4AA8F1B6B25E00041F730 /* PeopleSportDataVC.h */,
-				5BD4AA901B6B25E00041F730 /* PeopleSportDataVC.m */,
 			);
 			name = "我的运动数据";
 			path = "Modules/我的运动数据";
@@ -1183,7 +1178,6 @@
 				5B38C7951B5390CF0063912C /* MessageCell.m in Sources */,
 				5BF2E0421B4F6B7E004FDDF7 /* SVProgressHUD.m in Sources */,
 				5BF31F551B67085F00F6F366 /* BoyeToken.m in Sources */,
-				5BD4AA911B6B25E00041F730 /* PeopleSportDataVC.m in Sources */,
 				5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */,
 				5B38C7D71B5399B80063912C /* SDWebImageDecoder.m in Sources */,
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,

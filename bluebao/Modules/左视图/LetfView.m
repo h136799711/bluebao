@@ -18,7 +18,6 @@
 #import "BlueBaoAboutVC.h" // 关于蓝堡
 #import "MoreExereqBuyVC.h" 
 #import "SettingVC.h"
-#import "PeopleSportDataVC.h"
 #import "PeopleGoalManagerVC.h"
 #import "HistoryViewController.h"
 
@@ -124,14 +123,9 @@
 
         //设备管理
     } else if (indexPath.row == 1){
-//        UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"new" bundle:nil];
-//        if (secondStroyBoard == nil) {
-//            return;
-//        }
-//        UIViewController *test2obj=[secondStroyBoard instantiateViewControllerWithIdentifier:@"device"];
-//        [[MainViewController sharedSliderController].navigationController pushViewController:test2obj animated:YES];
-//        
+      
         [self jumpToequipmentManager];
+        
         //我的运动数据
     } else if (indexPath.row == 2){
         
@@ -186,8 +180,8 @@
     [headView addSubview: self.headBtn];
 
     [self.headBtn addTarget:self action:@selector(changeHeadImagClick:) forControlEvents:UIControlEventTouchUpInside];
-    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"testhead.png"] forState:UIControlStateNormal];
-    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"testhead.png"] forState:UIControlStateHighlighted];
+    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateNormal];
+    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateHighlighted];
 
      self.headBtn.backgroundColor = [UIColor redColor];
     [MyTool cutViewConner: self.headBtn radius: self.headBtn.width/2.0];

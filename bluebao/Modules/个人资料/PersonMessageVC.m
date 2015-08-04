@@ -245,7 +245,7 @@
         //创建个人资料信息（头像签名等）
       
         self.headImageBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.headImageBtn setBackgroundImage:[UIImage imageNamed:@"testhead.png"] forState:UIControlStateNormal];
+        [self.headImageBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateNormal];
         _headView = [BBManageCode  createdPersonInfoShowInView:_headView
                                                        headBtn:self.headImageBtn
                                                  signTestField:self.personSignTextfield

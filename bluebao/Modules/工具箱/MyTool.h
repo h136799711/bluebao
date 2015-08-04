@@ -120,5 +120,6 @@
 #pragma mark -- 邮箱验证  ---
 + (BOOL) validateEmail:(NSString *)email;
 
-
+#pragma mark --讲数值转化为字符串
++(NSString * ) getFloadToString:(CGFloat) fload ;
 @end

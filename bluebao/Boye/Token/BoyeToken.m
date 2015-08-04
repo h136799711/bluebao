@@ -152,15 +152,17 @@
                         }else{
                             
                             NSLog(@"请求失败!%ld",(long)code);
-                            [SVProgressHUD showErrorWithStatus:@"Token请求失败"];
                             complete (NO);
+                            [SVProgressHUD showErrorWithStatus:@"Token请求失败"];
+
                         }
                     }
                     :^(AFHTTPRequestOperation *operation ,NSError *error){
                         NSLog(@"Error: %@", error);
-                        [SVProgressHUD showSuccessWithStatus:@"Token请求失败"];
 
                         complete (NO);
+                        [SVProgressHUD showSuccessWithStatus:@"Token请求失败"];
+
                     }];
         
     }

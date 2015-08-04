@@ -9,6 +9,11 @@
 #ifndef bluebao_CommonDefine_h
 #define bluebao_CommonDefine_h
 
+//#import "BicyleReqModel.h"
+//#import "BicyleRespModel.h"
+
+
+
 
 #define ALERTVIEW(_message_)  UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:_message_ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];\
 [alertView show];

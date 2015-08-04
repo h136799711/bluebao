@@ -138,6 +138,16 @@ CGFloat SVProgressHUDRingThickness = 6;
     [self showImage:[[self sharedView] hudErrorImage] status:string];
 }
 
+
+////
++ (void)showErrorWithStatus:(NSString *)string withDuration:(NSTimeInterval)duration {
+    [[self sharedView]  showImage:[[self sharedView] hudErrorImage] status:string duration:duration];
+}
+
+//+ (void)showSuccessWithStatus:(NSString *)string withDuration:(NSTimeInterval)duration {
+//    
+//    
+//}
 + (void)showImage:(UIImage *)image status:(NSString *)string {
     NSTimeInterval displayInterval = [[SVProgressHUD sharedView] displayDurationForString:string];
     [[self sharedView] showImage:image status:string duration:displayInterval];

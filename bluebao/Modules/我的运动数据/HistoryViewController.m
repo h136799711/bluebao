@@ -41,7 +41,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    
+    [super viewDidAppear:YES];
     
 }
 
@@ -182,15 +182,19 @@
     
     if(self.navigationItem != nil){
         
+        [self _initNavs];
+
         self.view.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
         self.title = @"历史数据";
-        self.navigationController.navigationBarHidden = NO;
-        self.navigationController.navigationItem.hidesBackButton = NO;
-        self.navigationItem.hidesBackButton = NO;
         
-        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-        backItem.title = @"返回";
-        self.navigationItem.backBarButtonItem = backItem;
+        self.navigationController.navigationBarHidden = NO;
+//        self.navigationController.navigationItem.hidesBackButton = NO;
+//        self.navigationItem.hidesBackButton = NO;
+//        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+//        backItem.title = @"返回";
+//        self.navigationItem.backBarButtonItem = backItem;
+//        self.navigationItem.backBarButtonItem.tintColor = [UIColor blackColor];
+        
     }
     
     _lblDate = [[UILabel alloc]init];
@@ -255,7 +259,23 @@
 
     
 }
+#pragma mark --返回 --
+-(void)_initNavs{
+    
+    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.bounds = CGRectMake(0, 0, 12, 22.5);
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    leftBtn.tag = 1;
+    UIBarButtonItem* letfItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    self.navigationItem.leftBarButtonItem = letfItem;
+}
 
+//返回
+-(void)backClick{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)showUUChart{
     
