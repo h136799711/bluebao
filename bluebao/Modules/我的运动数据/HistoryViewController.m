@@ -25,13 +25,35 @@
 
 @property(nonatomic,strong) NSArray * keys;
 
+@property (nonatomic,strong) UserInfo                   * userInfo;
+
+@property (nonatomic,strong) NSString                   * uuid;
+
 @end
 
 @implementation HistoryViewController
 
+- (UserInfo *) userInfo{
+    if(_userInfo == nil){
+        _userInfo = [MainViewController sharedSliderController].userInfo;
+    }
+    return _userInfo;
+}
+
+-(NSString *)uuid{
+    
+    if(_uuid == nil){
+        _uuid = [[CacheFacade sharedCache] get:@"UUID"];
+        if(_uuid == nil){
+            _uuid = @"";
+        }
+    }
+    
+    return _uuid;
+}
+
 -(void)viewDidLoad{
     
-    self.navigationController.navigationBarHidden = NO;
     
     [self initView];
     
@@ -60,6 +82,11 @@
 
 
 
+-(void)showEmpty{
+    //TODO: 显示无数据
+    
+}
+
 -(void)reloadData{
     
     [self initChart];
@@ -68,25 +95,52 @@
     NSDateFormatter * formatter = [NSDate defaultDateFormatter];
     formatter.dateFormat = @"yyyy年MM月";
     NSDate * date = [formatter dateFromString:_lblDate.text];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-
-    NSUInteger day = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date].length;
+    BicyleReqModel * reqModel = [[BicyleReqModel alloc]init];
     
-    NSLog(@"day= %ld",day);
-    //TODO:向服务器请求载入数据
+    [reqModel setTime:[date timeIntervalSince1970]];
     
-    for (int i=1; i<=day; i++) {
-        NSLog(@"i=%d",i);
-        if(i%2 == 1){
-            
-            [self.data setValue:[NSNumber numberWithInt:arc4random()%120] forKey: [NSString stringWithFormat:@"%d",i] ];
+    [reqModel setUid:self.userInfo.uid];
+    [reqModel setUuid:self.uuid];
+    
+    [BoyeBicyleManager requestMonthlyBicyleData:reqModel :^(NSDictionary* data){
+        
+        NSLog(@"请求返回的数据=%@",data);
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        
+        NSUInteger day = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date].length;
+        
+        NSLog(@"day= %ld",day);
+        
+        if(data.count == 0){
+            NSLog(@"无数据!");
+            return ;
         }
-    }
-
+        //TODO:向服务器请求载入数据
+        if([data count] < 16){
+            self.data = (NSMutableDictionary *)data;
+        }else{
+            
+            for (int i=1; i<=day; i++) {
+                NSLog(@"i=%d",i);
+                
+                if(i%2 == 1){
+                    NSNumber * value = [data objectForKey: [NSString stringWithFormat:@"%d", i]];
+                    NSLog(@"value=%@",value);
+                    
+                    [self.data setValue:[NSNumber numberWithInt:arc4random()%120] forKey: [NSString stringWithFormat:@"%d",i] ];
+                    
+                }
+                
+            }
+            
+        }
+    } :nil ];
+    
     
     //=================================
     [_chart showInView:self.view];
-//    [_chart layoutIfNeeded];
+    
 }
 
 -(void)nextMonth:(id)sender{
@@ -254,9 +308,7 @@
                                                                                  metrics:nil
                                                                                    views:NSDictionaryOfVariableBindings(_lblDate,_chart)]];
     
-    
     [self.view addConstraints:bindConstraint];
-
     
 }
 #pragma mark --返回 --
@@ -306,7 +358,6 @@
 {
     
     NSNumber *max = [NSNumber numberWithInteger:NSIntegerMin];
-//    NSNumber *min = [NSNumber numberWithInteger:NSIntegerMax];
     
     NSArray * values = [self.data allValues];
     for (NSNumber * num in values) {
@@ -315,10 +366,11 @@
             max = num;
         }
         
-//        if([num compare:min] == NSOrderedAscending){
-//            min = num;
-//        }
-        
+    }
+    
+    
+    if([max integerValue] == NSIntegerMin){
+        return CGRangeMake( 1000,0);
     }
     
     //设置Y轴数值
@@ -350,7 +402,6 @@
         }
         
     }];
-    
     
     return  self.keys;
 }

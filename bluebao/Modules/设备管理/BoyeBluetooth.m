@@ -117,6 +117,8 @@
             self.connectedDevice.service = nil;
             self.connectedDevice.character = nil;
             
+            [[CacheFacade sharedCache] setObject:device.uuid forKey:@"UUID" WithExpireTime:[NSNumber numberWithInteger:NSIntegerMax]];
+            
             NSLog(@"准备连接设备：%@",device.peripheral);
             if(device.peripheral == nil){
                 NSLog(@"无法连接设备！设备对象不能为nil");

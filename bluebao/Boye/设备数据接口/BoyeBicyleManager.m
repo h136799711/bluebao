@@ -141,6 +141,75 @@
     }];
 }
 
+//动感单车数据获取
++(void)requestMonthlyBicyleData:(BicyleReqModel *)bicyReqModel :(void(^)(NSDictionary * ))success :(void(^)(NSString *))failure{
+    
+    [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSucced) {
+        
+        if (tokenSucced ) {
+            
+            NSString * token  = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+            NSString * urlString = [NSString stringWithFormat:@"Bicyle/month?access_token=%@",token];
+            NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
+            NSString * time = [NSString stringWithFormat:@"%lld",bicyReqModel.time];
+            NSLog(@"--\r-- %@- %@ -  ",uid,bicyReqModel.uuid);
+            NSDictionary * params =  @{
+                                       @"uid":uid,
+                                       @"uuid":bicyReqModel.uuid,
+                                       @"time":time
+                                       };
+            
+            [SVProgressHUD showWithStatus:@"数据请求中..." maskType:SVProgressHUDMaskTypeClear];
+            
+            BoyeHttpClient * client = [BoyeHttpClient alloc];
+            [client post:urlString
+                        :params
+                        :^(AFHTTPRequestOperation *operation, id responseObject) {
+                            
+                            if(responseObject == nil){
+                                
+                                [SVProgressHUD showErrorWithStatus:@"请求返回为空,请重试!"];
+                                return ;
+                            }
+                            
+                            NSDictionary * dict = (NSDictionary *)responseObject;
+                            
+                            if (!dict) {
+                                [SVProgressHUD showErrorWithStatus:@"请求返回不为字典,请重试!"];
+                                return ;
+                                
+                            }
+                            NSLog(@"bicyle dic %@",dict);
+                            NSNumber * code = [dict valueForKey:@"code"];
+                            NSLog(@"请求成功！%fl",[code floatValue]);
+                            if ([code integerValue] == 0) {
+//                                complete(YES);
+                                success(dict);
+                                
+                            }else{
+                                
+                                NSString * errorData = [dict valueForKey:@"data"];
+                                if(failure == nil){
+                                
+                                    [SVProgressHUD showOnlyStatus:errorData withDuration:3];
+                                    
+                                }else{
+                                    failure(errorData);
+                                }
+                            }
+                        } :^(AFHTTPRequestOperation *operation, NSError *error) {
+                            NSLog(@"error %@",error);
+                            
+                            if(failure == nil){
+                                [SVProgressHUD showOnlyStatus:@"请求失败" withDuration:3];
+                            }else{
+                                failure(@"请求失败");
+                            }
 
+                        }];
+        }
+    }];
+    
+}
 
 @end
