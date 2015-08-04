@@ -185,7 +185,7 @@
                             if ([code integerValue] == 0) {
 //                                complete(YES);
                                 success(dict);
-                                
+                                [SVProgressHUD dismiss];
                             }else{
                                 
                                 NSString * errorData = [dict valueForKey:@"data"];
