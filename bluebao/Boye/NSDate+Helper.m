@@ -48,4 +48,18 @@
     return @"hh:mm:ss";
 }
 
+-(BOOL) isToday{
+    
+    NSDateFormatter * formatter = [NSDate defaultDateFormatter];
+    formatter.dateFormat = @"yyyyMMdd";
+    NSDate *newdate = [NSDate date];
+    NSString * newDateString = [formatter stringFromDate:newdate];
+    NSString * nowDateString = [formatter stringFromDate:self];
+
+    if ([newDateString isEqualToString:nowDateString]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
 @end

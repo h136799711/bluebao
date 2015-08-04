@@ -161,7 +161,7 @@
                     id dict=[NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
                     NSDictionary *json = (NSDictionary *)dict;
                    
-                   // NSLog(@"结果: %@", dict);
+                    NSLog(@"结果: %@", dict);
                     
                     if(json == nil){
                         NSLog(@"json parse failed \r\n");

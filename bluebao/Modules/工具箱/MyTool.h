@@ -121,5 +121,5 @@
 + (BOOL) validateEmail:(NSString *)email;
 
 #pragma mark --讲数值转化为字符串
-+(NSString * ) getFloadToString:(CGFloat) fload ;
++(NSString * ) getIntegerToString:(NSInteger) number ;
 @end

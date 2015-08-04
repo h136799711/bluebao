@@ -10,4 +10,12 @@
 
 @implementation BicyleReqModel
 
+-(Bicyle*)bicyleModel{
+    if (_bicyleModel == nil) {
+        
+        _bicyleModel = [[Bicyle alloc] init];
+    }
+    return _bicyleModel;
+}
+
 @end
