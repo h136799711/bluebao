@@ -25,6 +25,10 @@
 
 @property(nonatomic,strong) NSArray * keys;
 
+@property (nonatomic,strong) UserInfo                   * userInfo;
+
+@property (nonatomic,strong) NSString                   * uuid;
+
 @end
 
 @implementation HistoryViewController
@@ -59,6 +63,29 @@
 #pragma mark 3.自定义方法
 
 
+
+-(void)pullData{
+    
+    
+    NSDateFormatter * formatter = [NSDate defaultDateFormatter];
+    formatter.dateFormat = @"yyyy年MM月";
+    NSDate * date = [formatter dateFromString:_lblDate.text];
+    BicyleReqModel * reqModel = [[BicyleReqModel alloc]init];
+    
+    [MainViewController sharedSliderController].userInfo
+    
+    NSInteger uid = [MainViewController sharedSliderController].userInfo.uid;
+    
+    [reqModel setTime:[date timeIntervalSince1970]];
+    [reqModel setUid:uid];
+    
+    
+    [BoyeBicyleManager requestMonthlyBicyleData:reqModel :^(NSDictionary* data){
+        
+        NSLog(@"请求返回的数据=%@",data);
+        
+    } :nil ];
+}
 
 -(void)reloadData{
     

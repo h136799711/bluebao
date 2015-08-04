@@ -141,10 +141,8 @@
     }];
 }
 
-
 //动感单车数据获取
-+(void)requestMonthlyBicyleData:(BicyleReqModel *)bicyReqModel complete:(void(^)(BOOL bicyleSuccessed))complete;
-{
++(void)requestMonthlyBicyleData:(BicyleReqModel *)bicyReqModel :(void(^)(NSDictionary * ))success :(void(^)(NSString *))failure{
     
     [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSucced) {
         
@@ -167,33 +165,49 @@
             [client post:urlString
                         :params
                         :^(AFHTTPRequestOperation *operation, id responseObject) {
-                            NSData * data = [operation.responseString  dataUsingEncoding:NSUTF8StringEncoding];
-                            NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                            if (!dic) {
-                                NSLog(@"json parse failed \r\n");
+                            
+                            if(responseObject == nil){
+                                
+                                [SVProgressHUD showErrorWithStatus:@"请求返回为空,请重试!"];
                                 return ;
                             }
-                            NSLog(@"bicyle dic %@",dic);
-                            NSNumber * code = [dic valueForKey:@"code"];
+                            
+                            NSDictionary * dict = (NSDictionary *)responseObject;
+                            
+                            if (!dict) {
+                                [SVProgressHUD showErrorWithStatus:@"请求返回不为字典,请重试!"];
+                                return ;
+                                
+                            }
+                            NSLog(@"bicyle dic %@",dict);
+                            NSNumber * code = [dict valueForKey:@"code"];
                             NSLog(@"请求成功！%fl",[code floatValue]);
                             if ([code integerValue] == 0) {
-                                complete(YES);
-                                [SVProgressHUD showSuccessWithStatus:@"请求成功"];
+//                                complete(YES);
+                                success(dict);
                                 
                             }else{
                                 
-                                NSString * errorData = [dic valueForKey:@"data"];
-                                //                                ALERTVIEW(errorData)
-                                [SVProgressHUD showErrorWithStatus:errorData];
+                                NSString * errorData = [dict valueForKey:@"data"];
+                                if(failure == nil){
+                                     [SVProgressHUD showErrorWithStatus:errorData];
+                                }else{
+                                    failure(errorData);
+                                }
                             }
                         } :^(AFHTTPRequestOperation *operation, NSError *error) {
                             NSLog(@"error %@",error);
-                            [SVProgressHUD showErrorWithStatus:@"请求失败"];
+                            
+                            if(failure == nil){
+                                [SVProgressHUD showErrorWithStatus:@"请求失败"];
+                            }else{
+                                failure(@"请求失败");
+                            }
+
                         }];
         }
     }];
     
 }
-
 
 @end

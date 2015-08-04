@@ -18,8 +18,6 @@
 +(void)requestBicyleDataUpload:(BicyleReqModel *)bicyReqModel complete:(void(^)(BOOL bicyleSuccessed))complete;
 
 //动感单车数据按月获取
-+(void)requestMonthlyBicyleData:(BicyleReqModel *)bicyReqModel complete:(void(^)(BOOL bicyleSuccessed))complete;
-
-
++(void)requestMonthlyBicyleData:(BicyleReqModel *)bicyReqModel :(void(^)(NSDictionary * ))success :(void(^)(NSString *))failure;
 
 @end
