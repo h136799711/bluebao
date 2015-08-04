@@ -12,7 +12,8 @@
 @interface BoyeBicyleManager : NSObject
 
 //动感单车数据获取
-+(void)requestBicyleData:(BicyleReqModel *)bicyReqModel complete:(void(^)(BOOL bicyleSuccessed))complete;
+//+(void)requestBicyleData:(BicyleReqModel *)bicyReqModel complete:(void(^)(BOOL bicyleSuccessed))complete;
++(void)requestBicyleData:(BicyleReqModel *)bicyReqModel :(void(^)(NSDictionary * ))success :(void(^)(NSString *))failure;
 
 //动感单车数据上传
 +(void)requestBicyleDataUpload:(BicyleReqModel *)bicyReqModel complete:(void(^)(BOOL bicyleSuccessed))complete;

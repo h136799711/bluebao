@@ -322,6 +322,7 @@
     updataModel.birthday = self.userInfo.birthday;
     updataModel.uid = self.userInfo.uid;
     
+    
     [BoyeDefaultManager requestUserInfoUpdata:updataModel complete:^(BOOL succed) {
         
         if (succed) {

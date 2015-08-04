@@ -29,8 +29,7 @@
 
 
 //动感单车数据获取
-+(void)requestBicyleData:(BicyleReqModel *)bicyReqModel complete:(void(^)(BOOL bicyleSuccessed))complete;
-{
++(void)requestBicyleData:(BicyleReqModel *)bicyReqModel :(void(^)(NSDictionary * ))success :(void(^)(NSString *))failure{
     
     [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSucced) {
         
@@ -39,8 +38,8 @@
             NSString * token  = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/day?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
-            NSString * time = [NSString stringWithFormat:@"%lld",bicyReqModel.time];
-            NSLog(@"--\r-- %@- %@ -  ",uid,bicyReqModel.uuid);
+            NSString * time = [NSString stringWithFormat:@"%ld",bicyReqModel.time];
+            NSLog(@"--\r-- %@- %@ - --%@ ",uid,bicyReqModel.uuid,time);
             NSDictionary * params =  @{
                                        @"uid":uid,
                                        @"uuid":bicyReqModel.uuid,
@@ -53,32 +52,48 @@
             [client post:urlString
                         :params
                         :^(AFHTTPRequestOperation *operation, id responseObject) {
-                            NSData * data = [operation.responseString  dataUsingEncoding:NSUTF8StringEncoding];
-                            NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                            if (!dic) {
-                                NSLog(@"json parse failed \r\n");
+                            
+                            NSLog(@" \r responseObject %@",responseObject);
+//                            
+//                            NSData * data = [operation.responseString  dataUsingEncoding:NSUTF8StringEncoding];
+//                            NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                            
+                            if(responseObject == nil){
+                                
+                                [SVProgressHUD showErrorWithStatus:@"请求返回为空,请重试!"];
                                 return ;
                             }
-                            NSLog(@"bicyle dic %@",dic);
+                            
+                            NSDictionary * dic = (NSDictionary *)responseObject;
+                            
+                            if (!dic) {
+                                [SVProgressHUD showErrorWithStatus:@"请求返回不为字典,请重试!"];
+                                return ;
+                                
+                            }
+
+                            NSLog(@"\r bicyle dic :%@",dic);
                             NSNumber * code = [dic valueForKey:@"code"];
                             NSLog(@"请求成功！%fl",[code floatValue]);
                             if ([code integerValue] == 0) {
-                                complete(YES);
+                                success(dic);
+                                
                                 [SVProgressHUD showSuccessWithStatus:@"请求成功"];
  
                             }else{
                                 
                                 NSString * errorData = [dic valueForKey:@"data"];
-//                                ALERTVIEW(errorData)
+                                failure (errorData);
+                                NSLog(@"%@",errorData);
                                 [SVProgressHUD showErrorWithStatus:errorData];
                             }
                         } :^(AFHTTPRequestOperation *operation, NSError *error) {
                             NSLog(@"error %@",error);
+                           failure (@"请求失败");
                             [SVProgressHUD showErrorWithStatus:@"请求失败"];
                         }];
         }
     }];
-    
 }
 
 //动感单车数据上传
@@ -89,20 +104,19 @@
             NSString * token  = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/add?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
-            NSString * time = [NSString stringWithFormat:@"%lld",bicyReqModel.time];
-            
+            NSLog(@" %ld  -----   %@",bicyReqModel.bicyleModel.speed,[MyTool getIntegerToString:bicyReqModel.bicyleModel.speed]);
+            NSLog(@"--\r-- %@- %@ - --%@ ",uid,bicyReqModel.uuid,[MyTool getIntegerToString:bicyReqModel.bicyleModel.upload_time]);
+
             NSDictionary * params =  @{
                                        @"uid":uid,
                                        @"uuid":bicyReqModel.uuid,
-                                       @"time":time,
-                                        @"speed":time,
-                                        @"heart_rate":time,
-                                        @"distance":time,
-                                        @"total_distance":time,
-                                        @"cost_time":time,
-                                       @"calorie":time,
-                                       @"upload_time":time,
-                                       
+                                        @"speed":[MyTool getIntegerToString:bicyReqModel.bicyleModel.speed],
+                                        @"heart_rate":[MyTool getIntegerToString:bicyReqModel.bicyleModel.heart_rate],
+                                        @"distance":[MyTool getIntegerToString:bicyReqModel.bicyleModel.distance],
+                                        @"total_distance":[MyTool getIntegerToString:bicyReqModel.bicyleModel.total_distance],
+                                        @"cost_time":[MyTool getIntegerToString:bicyReqModel.bicyleModel.cost_time],
+                                       @"calorie":[MyTool getIntegerToString:bicyReqModel.bicyleModel.calorie],
+                                       @"upload_time":[MyTool getIntegerToString:bicyReqModel.bicyleModel.upload_time]
                                        };
             
             [SVProgressHUD showWithStatus:@"数据上传中..." maskType:SVProgressHUDMaskTypeClear];
@@ -151,7 +165,7 @@
             NSString * token  = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/month?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
-            NSString * time = [NSString stringWithFormat:@"%lld",bicyReqModel.time];
+            NSString * time = [NSString stringWithFormat:@"%ld",bicyReqModel.time];
             NSLog(@"--\r-- %@- %@ -  ",uid,bicyReqModel.uuid);
             NSDictionary * params =  @{
                                        @"uid":uid,

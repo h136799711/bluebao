@@ -37,4 +37,12 @@
  *  @return NSNumber
  */
 +(NSNumber *)currentTimeStamp;
+
+/**
+ *是否是今天
+ *
+ */
+
+-(BOOL) isToday;
+
 @end

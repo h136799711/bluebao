@@ -277,9 +277,9 @@
 
 
 #pragma mark --讲数值转化为字符串
-+(NSString * ) getFloadToString:(CGFloat) fload {
++(NSString * ) getIntegerToString:(NSInteger) number{
 
-    NSString * string = [NSString stringWithFormat:@"%.1f",fload];
+    NSString * string = [NSString stringWithFormat:@"%ld",number];
     return string;
 }
     

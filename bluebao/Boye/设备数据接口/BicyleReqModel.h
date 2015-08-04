@@ -13,7 +13,10 @@
 
 @property (nonatomic,assign) NSInteger          uid;
 @property (nonatomic,copy) NSString             *uuid;//设备id
-@property (nonatomic,assign) long long          time;
+@property (nonatomic,assign)NSInteger          time;
+
+@property (nonatomic,strong) Bicyle * bicyleModel;
+
 //@property (nonatomic,s)
 
 //@end

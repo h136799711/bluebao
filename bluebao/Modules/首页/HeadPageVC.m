@@ -15,7 +15,7 @@
 #import "BoyeConnectView.h"
 
 
-@interface HeadPageVC ()<BoyeConnectViewDelegate>{
+@interface HeadPageVC (){
     
     UITableView             * _tableView;
     NSArray                 * _labelarray;
@@ -23,7 +23,11 @@
     NSInteger               itemWidth;
     NSArray                 *_imageName;
     NSArray                 *_sortArray;
+    
+    
+    
     BoyeConnectView         * _connectView;
+    
 }
 
 @end
@@ -167,11 +171,10 @@
     [self.headView addSubview:self.drawProgreView];
     
     
-    
     return self.headView ;
 }
 -(void)connected{
-    
+    //TODO:dong......
 
     
 }
@@ -180,12 +183,27 @@
 
 -(void)dateChooseView:(DateChooseView *)dateChooseView datestr:(NSString *)datestr{
     
+    
     NSLog(@"date  %@",datestr);
     
     _drawProgreView.goalNum = 500;
     _drawProgreView.finishNum = 400;
-   
-    [self getBicyleData];
+  
+ 
+   BOOL isToday = [dateChooseView.newbDate  isToday];
+    
+  
+    if (isToday) {
+        NSLog(@"YES");
+        
+        [self upLoadBicyleData];
+    }else{
+        NSLog(@"NO");
+       
+        [self getBicyleData];
+
+    }
+    
 }
 
 #pragma mark --- 身体指标 ---
@@ -251,32 +269,58 @@
     BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
     reqModel.uid = self.userInfo.uid;
     reqModel.uuid = @"OTO458-1082"; //LR-866
-    reqModel.time = 1563146460;
- 
+    reqModel.time = 1438485055;
+//    reqModel.bicyleModel.calorie = 10;
+//    reqModel.bicyleModel.cost_time = 10;
+//    reqModel.bicyleModel.distance = 10;
+//    reqModel.bicyleModel.heart_rate = 10;
+//    reqModel.bicyleModel.speed = 10;
+//    reqModel.bicyleModel.total_distance = 10;
+//    reqModel.bicyleModel.upload_time = 151342346;
+//    
     
     NSLog(@"-- 获得单车数据请求 --");
 
-    [BoyeBicyleManager requestBicyleData:reqModel complete:^(BOOL bicyleSuccessed) {
-
-        if (bicyleSuccessed) {
-            NSLog(@"-- 获得成功 ---");
-        }
+    [BoyeBicyleManager  requestBicyleData:reqModel :^(NSDictionary *successdDic) {
+        Bicyle * bicyle = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
+        
+        
+        NSLog(@"\r calorie : %ld   \r speed : %ld",bicyle.calorie,bicyle.speed);
+    } :^(NSString *error) {
+        
     }];
     
-//    return;
-//    
-//    [BoyeBicyleManager requestBicyleDataUpload:reqModel complete:^(BOOL bicyleSuccessed) {
-//        
-//        if (bicyleSuccessed) {
-//            NSLog(@"ccccc");
-//            
-//            
-//        }
-//    }];
+
     
     
 }
 
+-(void) upLoadBicyleData{
+   
+    //
+    BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
+    NSLog(@"  \\\\\\ %@ ",reqModel.bicyleModel);
+    reqModel.uid = self.userInfo.uid;
+    reqModel.uuid = @"OTO458-1082"; //LR-866
+//    reqModel.time = 1563146460;
+    reqModel.bicyleModel.calorie = 10;
+    reqModel.bicyleModel.cost_time = 10;
+    reqModel.bicyleModel.distance = 10;
+    reqModel.bicyleModel.heart_rate = 10;
+    reqModel.bicyleModel.speed = 10;
+    reqModel.bicyleModel.total_distance = 10;
+    reqModel.bicyleModel.upload_time = 1438485055;
+    
+    NSLog(@"    --  %ld",reqModel.bicyleModel.speed);
+        [BoyeBicyleManager requestBicyleDataUpload:reqModel complete:^(BOOL bicyleSuccessed) {
+    
+            if (bicyleSuccessed) {
+                NSLog(@"ccccc");
+    
+    
+            }
+        }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
