@@ -191,7 +191,7 @@
                                 NSString * errorData = [dict valueForKey:@"data"];
                                 if(failure == nil){
                                 
-                                    [SVProgressHUD showOnlyStatus:errorData withDuration:3];
+                                    [SVProgressHUD showErrorWithStatus:errorData withDuration:3];
                                     
                                 }else{
                                     failure(errorData);
@@ -201,7 +201,8 @@
                             NSLog(@"error %@",error);
                             
                             if(failure == nil){
-                                [SVProgressHUD showOnlyStatus:@"请求失败" withDuration:3];
+                                [SVProgressHUD showErrorWithStatus:@"请求失败" withDuration:3];
+
                             }else{
                                 failure(@"请求失败");
                             }
