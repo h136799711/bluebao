@@ -57,6 +57,7 @@
 
 -(void)viewDidLoad{
     
+    [super viewDidLoad];
     
     [self initView];
     
@@ -65,6 +66,13 @@
     [self reloadData];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:YES];
+    
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
+    self.navigationController.navigationBarHidden = NO;
+}
 -(void)viewDidAppear:(BOOL)animated{
     
     
@@ -88,12 +96,9 @@
 -(void)showEmpty{
     //TODO: 显示无数据
     [_chart removeAll];
-    
-    _chart.hidden = YES;
-    _chart.opaque = NO;
     _chart = nil;
-    _lblEmptyTip.hidden = NO;
-    _lblEmptyTip.opaque = YES;
+    
+    [self.view addSubview:_lblEmptyTip];
     
 }
 
@@ -108,6 +113,7 @@
     
     [reqModel setUid:self.userInfo.uid];
     [reqModel setUuid:self.uuid];
+    [self showEmpty];
     
     [BoyeBicyleManager requestMonthlyBicyleData:reqModel :^(NSDictionary* data){
         
@@ -116,7 +122,6 @@
         NSLog(@"请求返回的数据=%@,%d",obj,(int)[obj isKindOfClass:[NSArray class]]);
         
         if(![obj isKindOfClass:[NSArray class]]){
-            [self showEmpty];
             
             return ;
         }
@@ -134,8 +139,6 @@
         NSCalendar *calendar = [NSCalendar currentCalendar];
         
         NSUInteger day = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date].length;
-        
-        NSLog(@"day= %ld",day);
         
         if(data.count == 0){
             NSLog(@"无数据!");
@@ -158,7 +161,7 @@
                         NSDictionary * dict = (NSDictionary*)dataInfo[j];
                         
                         upload_day =[ formatter numberFromString:(NSString*)[dict valueForKey:@"upload_day"] ];
-                        NSLog(@"data=%ld",[upload_day integerValue]);
+                        NSLog(@"data=%ld",(long)[upload_day integerValue]);
                         if(i == [upload_day integerValue]){
                             NSLog(@"upload_day=%@,calorie=%@",upload_day,max_calorie);
                             
@@ -169,7 +172,7 @@
                     }
                     
                     if(i == [upload_day integerValue]){
-                        [self.data setValue:max_calorie forKey: [NSString stringWithFormat:@"%ld",  [upload_day integerValue]] ];
+                        [self.data setValue:max_calorie forKey: [NSString stringWithFormat:@"%ld",  (long)[upload_day integerValue]] ];
                     }else{
                         [self.data setValue:[NSNumber numberWithInteger:0] forKey: [NSString stringWithFormat:@"%d",  i] ];
                     }
@@ -177,9 +180,8 @@
 //                }
             }
         
-        if(self.data.count == 0){
-            [self showEmpty];
-        }else{
+        if(self.data.count > 0){
+            [_lblEmptyTip removeFromSuperview];
             [_chart showInView:self.view];
         }
     } :nil ];
@@ -274,12 +276,8 @@
     [_prevBtn addTarget:self action:@selector(prevMonth) forControlEvents:UIControlEventTouchUpInside];
     [_nextBtn addTarget:self action:@selector(nextMonth:) forControlEvents:UIControlEventTouchUpInside];
     
-    if(self.navigationItem != nil){
-        
-        self.view.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
-        self.title = @"历史数据";
-        self.navigationController.navigationBarHidden = NO;
-    }
+    self.title = @"历史数据";
+    
     
     _lblDate = [[UILabel alloc]init];
     NSDateFormatter * formatter = [NSDate defaultDateFormatter];
@@ -292,7 +290,7 @@
     _lblEmptyTip.textColor = [UIColor grayColor];
     _lblEmptyTip.translatesAutoresizingMaskIntoConstraints = NO;
     _lblEmptyTip.textAlignment = NSTextAlignmentCenter;
-    _lblEmptyTip.hidden = YES;
+//    _lblEmptyTip.hidden = YES;
     _prevBtn.translatesAutoresizingMaskIntoConstraints = NO;
     _nextBtn.translatesAutoresizingMaskIntoConstraints = NO;
     _lblDate.translatesAutoresizingMaskIntoConstraints = NO;
