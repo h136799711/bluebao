@@ -13,6 +13,8 @@
     UUChart * _chart;
     UILabel * _lblDate;
     
+    UILabel * _lblEmptyTip;
+
     UIButton * _prevBtn;
     UIButton * _nextBtn;
     
@@ -85,13 +87,17 @@
 
 -(void)showEmpty{
     //TODO: 显示无数据
+    [_chart removeAll];
+    
+    _chart.hidden = YES;
+    _chart.opaque = NO;
+    _chart = nil;
+    _lblEmptyTip.hidden = NO;
+    _lblEmptyTip.opaque = YES;
     
 }
 
 -(void)reloadData{
-    
-    [self initChart];
-    [self.data removeAllObjects];
     
     NSDateFormatter * formatter = [NSDate defaultDateFormatter];
     formatter.dateFormat = @"yyyy年MM月";
@@ -110,10 +116,16 @@
         NSLog(@"请求返回的数据=%@,%d",obj,(int)[obj isKindOfClass:[NSArray class]]);
         
         if(![obj isKindOfClass:[NSArray class]]){
-            [SVProgressHUD showErrorWithStatus:@"返回数据无法解析!" withDuration:3];
+            [self showEmpty];
+            
             return ;
         }
         
+        [self initChart];
+        [self.data removeAllObjects];
+        _lblEmptyTip.hidden = YES;
+        _lblEmptyTip.opaque = NO;
+
         NSArray * dataInfo = (NSArray *)obj;
         NSLog(@"请求dataInfo的数据=%@",dataInfo);
         
@@ -129,24 +141,30 @@
             NSLog(@"无数据!");
             return ;
         }
+        
+        
+        
         //TODO:向服务器请求载入数据
-//        if([data count] < 16){
-//            self.data = (NSMutableDictionary *)data;
-//        }else{
-//            
+     
             for (int i=1; i<=day; i++) {
                 NSLog(@"i=%d",i);
                 
-                if(i%2 == 1){
+//                if(i%2 == 1){
                     NSNumber *upload_day = [NSNumber numberWithInteger:0];
                     NSNumber *max_calorie = [NSNumber numberWithInteger:0];
+                    NSNumberFormatter * formatter = [[NSNumberFormatter alloc]init];
 
                     for (int j=0; j<dataInfo.count; j++) {
                         NSDictionary * dict = (NSDictionary*)dataInfo[j];
-                        upload_day = (NSNumber *)[dict valueForKey:@"upload_day"];
+                        
+                        upload_day =[ formatter numberFromString:(NSString*)[dict valueForKey:@"upload_day"] ];
+                        NSLog(@"data=%ld",[upload_day integerValue]);
                         if(i == [upload_day integerValue]){
                             NSLog(@"upload_day=%@,calorie=%@",upload_day,max_calorie);
-                            max_calorie = (NSNumber *)[dict valueForKey:@"max_calorie"];
+                            
+                            max_calorie = [formatter numberFromString:(NSString *)[dict valueForKey:@"max_calorie"]];
+                            
+                            break;
                         }
                     }
                     
@@ -156,11 +174,14 @@
                         [self.data setValue:[NSNumber numberWithInteger:0] forKey: [NSString stringWithFormat:@"%d",  i] ];
                     }
                     
-                }
-            
+//                }
             }
-        NSLog(@"data=%@",self.data);
-        [_chart showInView:self.view];
+        
+        if(self.data.count == 0){
+            [self showEmpty];
+        }else{
+            [_chart showInView:self.view];
+        }
     } :nil ];
     
     
@@ -182,11 +203,9 @@
     [compt setMinute:0];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    //    NSLog(@"%@",calendar);
+    
     NSDate *nextMonth = [calendar dateByAddingComponents:compt toDate:date options:0];
     
-    
-    //    NSLog(@"%@",nextMonth);
     _lblDate.text = [formatter stringFromDate:nextMonth];
     [self reloadData];
 }
@@ -219,7 +238,9 @@
     _chart = [[UUChart alloc] initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20, 360)
                                             withSource:self
                                              withStyle:UUChartLineStyle];
-    [self.view addSubview:_chart];
+    _chart.hidden = NO;
+    
+    [self.view insertSubview:_chart belowSubview:_lblEmptyTip];
     
     _chart.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -253,21 +274,11 @@
     [_prevBtn addTarget:self action:@selector(prevMonth) forControlEvents:UIControlEventTouchUpInside];
     [_nextBtn addTarget:self action:@selector(nextMonth:) forControlEvents:UIControlEventTouchUpInside];
     
-    //    [ButtonFactory decorateButton:_prevBtn forType:BOYE_BTN_DEFAULT];
-    //    [ButtonFactory decorateButton:_nextBtn forType:BOYE_BTN_SECONDARY];
-    
-    
     if(self.navigationItem != nil){
         
         self.view.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
         self.title = @"历史数据";
         self.navigationController.navigationBarHidden = NO;
-        self.navigationController.navigationItem.hidesBackButton = NO;
-        self.navigationItem.hidesBackButton = NO;
-        
-        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-        backItem.title = @"返回";
-        self.navigationItem.backBarButtonItem = backItem;
     }
     
     _lblDate = [[UILabel alloc]init];
@@ -275,16 +286,22 @@
     formatter.dateFormat = @"yyyy年MM月";
     _lblDate.text = [formatter stringFromDate:[NSDate date]];
     
+    _lblEmptyTip = [[UILabel alloc] init];
+    
+    _lblEmptyTip.text = @"没有相关数据!";
+    _lblEmptyTip.textColor = [UIColor grayColor];
+    _lblEmptyTip.translatesAutoresizingMaskIntoConstraints = NO;
+    _lblEmptyTip.textAlignment = NSTextAlignmentCenter;
+    _lblEmptyTip.hidden = YES;
     _prevBtn.translatesAutoresizingMaskIntoConstraints = NO;
     _nextBtn.translatesAutoresizingMaskIntoConstraints = NO;
     _lblDate.translatesAutoresizingMaskIntoConstraints = NO;
     _lblDate.textAlignment = NSTextAlignmentCenter;
     
-    
-    [self.view addSubview:_chart];
     [self.view addSubview:_lblDate];
     [self.view addSubview:_prevBtn];
     [self.view addSubview:_nextBtn];
+    [self.view addSubview:_lblEmptyTip];
     
     [self initChart];
     
@@ -294,6 +311,10 @@
                                                                                                                       views:NSDictionaryOfVariableBindings(_lblDate,_prevBtn,_nextBtn)]];
     
     
+    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_lblEmptyTip(>=120)]|"
+                                                                                 options:NSLayoutFormatAlignAllCenterX
+                                                                                 metrics:nil
+                                                                                   views:NSDictionaryOfVariableBindings(_lblEmptyTip)]];
     
     [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_prevBtn]"
                                                                                  options:NSLayoutFormatAlignAllCenterX
@@ -326,17 +347,46 @@
                                                                                  options:0
                                                                                  metrics:nil
                                                                                    views:NSDictionaryOfVariableBindings(_lblDate,_chart)]];
+    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblDate]-15-[_lblEmptyTip]"
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:NSDictionaryOfVariableBindings(_lblEmptyTip,_lblDate)]];
     
     [self.view addConstraints:bindConstraint];
     
 }
 
+-(BOOL)isThisMonth{
+    
+    NSDateFormatter * formatter = [NSDate defaultDateFormatter];
+    
+    formatter.dateFormat = @"yyyy年MM月";
+    
+    NSDate * date =  [formatter dateFromString:_lblDate.text];
+    
+    NSLog(@"date=%@",date);
+    NSDate *now = [NSDate  date];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    
+    NSDateComponents *nowComponent = [calendar components:unitFlags fromDate:now];
+    
+    
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
+    
+    NSLog(@"now=%@,date=%@",nowComponent,dateComponent);
+    
+
+    return  nowComponent.month == dateComponent.month;
+}
 
 -(void)showUUChart{
     
     NSDateFormatter * formatter = [NSDate defaultDateFormatter];
     
-    formatter.dateFormat = @"yyyy年mm月";
+    formatter.dateFormat = @"yyyy年MM月";
     
     NSDate * date =  [formatter dateFromString:_lblDate.text];
     
@@ -406,6 +456,9 @@
         
     }];
     
+    
+    
+    
     return  self.keys;
 }
 
@@ -415,11 +468,25 @@
     //    NS *ary4 = @[@"23",@"42",@"25",@"15",@"30",@"42",@"32",@"40",@"42",@"42"];
     NSMutableArray * values = [[NSMutableArray alloc]init];
     
+    BOOL flag = [self isThisMonth];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    
+    NSDateComponents *nowComponent = [calendar components:unitFlags fromDate:[NSDate date]];
+    NSLog(@"%@",nowComponent);
     for(id key in self.keys) {
         id object = [self.data objectForKey:key];
-        NSLog(@"object=%@",object);
+//        NSLog(@"object=%@",object);
         if(object != nil){
-            [values addObject:object];
+            if(flag && nowComponent.day <= (values.count)){
+                continue;
+            }
+//            NSNumber * num = (NSNumber *)object;
+//            if([num floatValue]  > 0){
+                [values addObject:object];
+//            }
         }
     }
     
