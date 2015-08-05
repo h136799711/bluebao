@@ -10,6 +10,8 @@
 
 @implementation Bicyle
 
+//-(instancetype)
+
 -(id)initWithBicyleRespDic:(NSDictionary *)dictionary{
     
     self = [super init];
@@ -24,14 +26,16 @@
          "upload_time" = 0;
 
          */
-        
+
+        _bicyDeata_id = [[dictionary valueForKey:@"id"] integerValue];  //数据id
+        _uuid = [dictionary valueForKey:@"uuid"];
+
         _calorie = [[dictionary valueForKey:@"calorie"] integerValue];
         _cost_time =    [[dictionary valueForKey:@"cost_time"] integerValue];
         _distance =    [[dictionary valueForKey:@"distance"] integerValue];
         _heart_rate =    [[dictionary valueForKey:@"heart_rate"] integerValue];
         _speed =    [[dictionary valueForKey:@"speed"] integerValue];
         _upload_time =    [[dictionary valueForKey:@"upload_time"] integerValue];
-        
     }
     return self;
 }
