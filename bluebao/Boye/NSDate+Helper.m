@@ -110,7 +110,7 @@
 //时间转化小时，分钟，秒
 +(NSString *) getDateHour:(NSTimeInterval )time{
     
-    NSDate * date  = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDate * date  = [NSDate dateWithTimeIntervalSince1970:time ];
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSDate defaultTimeFormatString];
     NSString * datestr = [formatter stringFromDate:date];

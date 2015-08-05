@@ -295,7 +295,6 @@
         
        self.bicylelb = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
         
-        
         [_tableView reloadData];
     } :^(NSString *error) {
 //        NSLog(@"失败");
@@ -334,7 +333,6 @@
                                                   NSLog(@"bicyleSuccessed");
                                                   
                                               }
-            
         }];
 }
 

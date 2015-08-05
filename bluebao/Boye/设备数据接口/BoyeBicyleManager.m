@@ -72,8 +72,8 @@
                             NSNumber * code = [dic valueForKey:@"code"];
                             NSLog(@"请求成功！%fl",[code floatValue]);
                             if ([code integerValue] == 0) {
-                               
-                                success(dic);
+                                NSDictionary * dataDic = [dic valueForKey:@"data"];
+                                success(dataDic);
                                 
                                 [SVProgressHUD showSuccessWithStatus:@"请求成功"];
                                 NSLog(@"--------");

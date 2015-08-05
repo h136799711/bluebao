@@ -279,11 +279,13 @@
             break;
         case 3:
             string = [MyTool getStringToInteger:_bicylelb.calorie];
-            
+            string = [NSString stringWithFormat:@"%@千卡",string];
+
             break;
         case 4:
             string = [MyTool getStringToInteger:_bicylelb.total_distance];
-            string = [NSString stringWithFormat:@"%@千卡",string];
+            string = [NSString stringWithFormat:@"%@米",string];
+
             break;
             
         default:

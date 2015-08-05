@@ -29,6 +29,7 @@
         
         connArr = @[@"没有连接设备",@"已连接"];
         [self _initViews];
+        [self initNotification];
     }
     return self;
 }
@@ -62,17 +63,26 @@
 -(void)connectClick:(UIButton * )connBtn{
     
     
-    self.isConnect = !self.isConnect;
-    connBtn.selected = !connBtn.selected;
-    
-    if (self.isConnect) {
-        
+    //如果已经连接
+    if ([self.connectStateLabel.text isEqualToString:connArr[1]]) {
         [SVProgressHUD showOnlyStatus:connArr[1] withDuration:0.5];
-    }else{
-        [SVProgressHUD showOnlyStatus:connArr[0] withDuration:0.5];
+        return;
     }
     
-    self.connectStateLabel.text = connArr[connBtn.selected];
+//    self.isConnect = !self.isConnect;
+//    connBtn.selected = !connBtn.selected;
+//    
+//    //已连接
+//    if (self.isConnect) {
+//        
+//
+//
+//        self.connectStateLabel.text = connArr[connBtn.selected];
+//
+//    }else{
+//        [SVProgressHUD showOnlyStatus:connArr[0] withDuration:0.5];
+//    }
+//    
     
     NSLog(@"连接");
     
@@ -87,13 +97,17 @@
 
     }
     
-    
 }
 
 
 -(void)setDelegate:(id<BoyeConnectViewDelegate>)delegate{
     
     _delegate = delegate;
+}
+
+-(void)initNotification{
+    
+    
 }
 
 /*
