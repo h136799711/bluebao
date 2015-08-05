@@ -35,6 +35,7 @@
 
 @implementation HeadPageVC
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -111,7 +112,9 @@
             headCell.signImageView.image = [UIImage imageNamed:_imageName[indexPath.row]];
             headCell.signLabelSort.text = _labelarray[indexPath.row];
         }
-        headCell.signLabelValue.text = @"100";
+
+//        headCell.signLabelValue.text = [self getStrRow:indexPath.row];/
+        headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
         
         return headCell;
 
@@ -133,6 +136,36 @@
     
 }
 
+-(NSString *) getStrRow:(NSInteger)row{
+
+    NSString * string = @"";
+    switch (row) {
+        case 0:
+            string = [MyTool getStringToInteger:_bicylelb.heart_rate];
+            break;
+            
+        case 1:
+            string = [MyTool getStringToInteger:_bicylelb.speed];
+            string = [NSString stringWithFormat:@"%@步/分",string];
+            
+            break;
+        case 2:
+            string = [MyTool getStringToInteger:_bicylelb.cost_time];
+            break;
+        case 3:
+            string = [MyTool getStringToInteger:_bicylelb.calorie];
+            
+            break;
+        case 4:
+            string = [MyTool getStringToInteger:_bicylelb.total_distance];
+            string = [NSString stringWithFormat:@"%@千卡",string];
+            break;
+            
+        default:
+            break;
+    }
+    return string;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == _labelarray.count) {
@@ -182,11 +215,10 @@
     
     return self.headView ;
 }
--(void)connected{
+
     //TODO:dong......
 
     
-}
 
 #pragma mark -- 日期 改变  --
 
@@ -205,14 +237,15 @@
     if (isToday) {
         NSLog(@"YES");
         
+        
+        
+        
         [self upLoadBicyleData];
     }else{
         NSLog(@"NO");
        
         [self getBicyleData];
-
     }
-    
 }
 
 #pragma mark --- 身体指标 ---
@@ -278,38 +311,37 @@
     BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
     reqModel.uid = self.userInfo.uid;
     reqModel.uuid = @"OTO458-1082"; //LR-866
-    reqModel.time = 1438285055;
-//    reqModel.bicyleModel.calorie = 10;
-//    reqModel.bicyleModel.cost_time = 10;
-//    reqModel.bicyleModel.distance = 10;
-//    reqModel.bicyleModel.heart_rate = 10;
-//    reqModel.bicyleModel.speed = 10;
-//    reqModel.bicyleModel.total_distance = 10;
-//    reqModel.bicyleModel.upload_time = 151342346;
-//    
-    
-    NSLog(@"-- 获得单车数据请求 --");
+    reqModel.time = [[_dateChooseView.newbDate  dateDayTimeStamp] integerValue];
 
+    
+//   NSNumber * number =  [_dateChooseView.newbDate  dateDayTimeStamp];
+//    [NSDate  getDateFromeNumber:number];
+    
     [BoyeBicyleManager  requestBicyleData:reqModel :^(NSDictionary *successdDic) {
         Bicyle * bicyle = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
         
-        NSLog(@"%@",bicyle);
-
+//        NSLog(@"888%@",bicyle);
+        
+        [self refreshData:bicyle];
         
     } :^(NSString *error) {
-        
-    }];
-    
+        NSLog(@"失败");
 
-    
-    
+    }];
+}
+
+//刷新界面数据
+-(void)refreshData:(Bicyle *) bicyle{
+ 
+    _bicylelb = bicyle;
+    [_tableView reloadData];
 }
 
 -(void) upLoadBicyleData{
    
     //
     BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
-    NSLog(@"  \\\\\\ %@ ",reqModel.bicyleModel);
+    NSLog(@" 数据上传 ----------- ");
     reqModel.uid = self.userInfo.uid;
     
 //    reqModel.uuid = @"OTO458-1082"; //LR-866
@@ -321,12 +353,12 @@
     reqModel.bicyleModel.speed = 10;
     reqModel.bicyleModel.total_distance = 10;
     reqModel.bicyleModel.upload_time = 1438485055;
+    reqModel.bicyleModel.target_calorie = 10;
     
-    NSLog(@"    --  %ld",reqModel.bicyleModel.speed);
-        [BoyeBicyleManager requestBicyleDataUpload:reqModel
+    [BoyeBicyleManager requestBicyleDataUpload:reqModel
                                           complete:^(BOOL bicyleSuccessed) {
                                               if (bicyleSuccessed) {
-                                                  NSLog(@"ccccc");
+                                                  NSLog(@"bicyleSuccessed");
                                                   
                                                   
                                               }

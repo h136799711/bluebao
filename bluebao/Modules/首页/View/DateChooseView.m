@@ -17,6 +17,13 @@
 @end
 
 @implementation DateChooseView
+-(NSDate *)nowDayDate:(NSDate *)nowDayDate{
+    if (_nowDayDate == nil) {
+        _nowDayDate = [[NSDate alloc] init];
+    }
+    _nowDayDate = nowDayDate;
+    return _nowDayDate;
+}
 
 -(instancetype)initWithFrame:(CGRect)frame{
     
@@ -92,6 +99,9 @@
      self.newbDate= newDate;
 
     dateLabel.text = [self getDateString:self.newbDate];
+    
+//   NSDateFormatter * format = [NSDate defaultDateFormatter];
+    
 }
 
 -(NSString * )getDateString:(NSDate *)date{

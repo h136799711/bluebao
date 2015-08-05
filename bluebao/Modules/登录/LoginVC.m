@@ -119,6 +119,12 @@
     
 //    [self jumpMainPage];
 
+    [self loginRequest:user];
+    
+}
+//用户登录
+-(void)loginRequest:(User*)user{
+    
     //登陆请求
     [BoyeDefaultManager requestLoginUser:user complete:^(UserInfo * userInfo) {
         
@@ -129,9 +135,8 @@
             [MainViewController sharedSliderController].userInfo = userInfo;
         }
     }];
-    
-}
 
+}
 
 #pragma mark -- 调到主界面 -
 

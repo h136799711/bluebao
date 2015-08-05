@@ -27,6 +27,7 @@
 
 #define BOYE_ACCESS_TOKEN  @"access_token"  //token
 
+#define BOYE_EQUIPMENT_UUID @"equipment_uuid"  //设备UUID
 
 //#define BOYE_CODEKEY @""
 #define BOYE_ENDTIME @"endTime"             //到期时间

@@ -17,33 +17,41 @@
 
 @interface MainViewController ()<BOYEBluetoothStateChangeDelegate>{
     
-    CGFloat    _slidepy;
+    CGFloat         _slidepy;
+    UIView          * _contentView;
+    UIView          * _bottomView;  // 底部视图
+    UIButton        * select_button;//记录选中按钮；
     
-    UIView   *_contentView;
-    UIView  * _bottomView;  // 底部视图
-    UIButton  * select_button;//记录选中按钮；
-    
-    NSMutableArray *  array; //保存导航
-    NSArray     * sortName;
-    NSArray     *_btnNormalImagName;
-    NSArray     *_btnSelectImagName;
+    NSMutableArray  *  array; //保存导航
+    NSArray         * sortName;
+    NSArray         * _btnNormalImagName;
+    NSArray         * _btnSelectImagName;
+    NSInteger        _upTimeInterval; //上传时间间隔
 }
 
 
 @property (nonatomic,strong) NSArray                        * viewcontrollers;
 @property (nonatomic,strong) NSMutableArray                 * buttonArray;
 @property (nonatomic,strong) BoyeBluetooth                  * boyeBluetooth;
+@property (nonatomic,strong) NSDate                         * lastUpLoadDateTime; //下一个上传时间
 
 @end
 
 @implementation MainViewController
 
-
+-(NSDate *)lastUpLoadDateTime:(NSDate *)lastUpLoadDateTime{
+    if (_lastUpLoadDateTime == nil) {
+        _lastUpLoadDateTime = [NSDate date];
+    }
+    _lastUpLoadDateTime = lastUpLoadDateTime;
+    return _lastUpLoadDateTime;
+}
 
 -(void)viewWillAppear:(BOOL)animated{
 
     self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
     self.boyeBluetooth.delegate = self;
+    
     
     [super viewWillAppear:YES];
     self.navigationController.navigationBarHidden = YES;
@@ -62,6 +70,9 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     _slidepy = SCREEN_WIDTH/2.0;
+    
+    _upTimeInterval = 10  ;
+    
     
     self.title = @"main";
     self.buttonArray = [[NSMutableArray alloc] initWithCapacity:0];
@@ -386,15 +397,13 @@
         [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
             
         }];
-        
-        
     }
-    
-    
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+#pragma mark --- 蓝牙数据处理 Delegate ----
 
 -(void)bluetoothStateChange:(id)sender :(enum BOYE_BLUETOOTH_STATE_EVENT)stateEvent :(id)parms{
     NSDictionary * info = (NSDictionary *)parms;
@@ -437,6 +446,10 @@
 
 -(void)updateValue:(NSString *)dataString{
     NSLog(@" datastring: %@",dataString);
+    
+    
+//    BOOL isOK = [];
+    
 }
 
 - (NSString * )dataToString:(NSData *)value{
@@ -452,7 +465,23 @@
     
 }
 
+//下次上传的时间
+-(void) dataUpload:(NSString *)dataString{
+    
+    if ([[NSDate date] isOutSetDateTime:_lastUpLoadDateTime]) {
+        
+        //TODO ...数据上传
+        
+         //下次上传时间
+        _lastUpLoadDateTime = [[NSDate date] dateByAddingTimeInterval:_upTimeInterval];
 
+    }
+    
+}
+
+-(void) saveB{
+    
+}
 
 
 /*

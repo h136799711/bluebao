@@ -7,7 +7,7 @@
 //
 
 #import "BBManageCode.h"
-
+#import "LNowBicyleData.h"
 @implementation BBManageCode
 
 
@@ -257,5 +257,115 @@
     
     return dataArray;
 }
+
+#pragma mark -- 蓝堡首页 --
++(NSString *) getHeaderStrRow:(NSInteger)row bicyle:(Bicyle *)_bicylelb{
+    
+    NSString * string = @"";
+    switch (row) {
+        case 0:
+            string = [MyTool getStringToInteger:_bicylelb.heart_rate];
+            break;
+            
+        case 1:
+            string = [MyTool getStringToInteger:_bicylelb.speed];
+            string = [NSString stringWithFormat:@"%@步/分",string];
+            
+            break;
+        case 2:
+            string = [MyTool getStringToInteger:_bicylelb.cost_time];
+            
+            break;
+        case 3:
+            string = [MyTool getStringToInteger:_bicylelb.calorie];
+            
+            break;
+        case 4:
+            string = [MyTool getStringToInteger:_bicylelb.total_distance];
+            string = [NSString stringWithFormat:@"%@千卡",string];
+            break;
+            
+        default:
+            break;
+    }
+    return string;
+}
+
+//-(void) getTime:(NSInteger)timenum{
+//    
+//    if (timenum <60) {
+//        
+//    }
+//    
+//    
+//}
+
+
+-(void)updateValue:(NSString *)hexString{
+//    
+//    NSLog(@"当前设备： %ld",(long)self.bluetooth.connectedDevice.state);
+//    NSLog(@"当前设备： %@",self.bluetooth.connectedDevice.peripheral);
+//    
+    if([[hexString lowercaseString] isEqualToString:@"da"]){
+        NSLog(@"外围设备关闭了!");
+    }
+    
+    if (hexString.length < 20){
+        return;
+    }
+    
+    //TODO: 有新数据接收时.
+    NSLog(@"======================================");
+    
+    NSLog(@"%@,长度%lu",hexString,(unsigned long)hexString.length);
+    
+    NSRange cmdRang = NSMakeRange(0, 6);
+    NSString * cmdStr = [[hexString substringWithRange:cmdRang] lowercaseString];
+    
+    if([cmdStr isEqualToString:@"5a0ee5"] && hexString.length == 32){
+        
+        LNowBicyleData *data = [[LNowBicyleData alloc] init];
+        
+        cmdStr = [[hexString substringWithRange:NSMakeRange(6, 4)] lowercaseString];
+        //        NSLog(@"时间  %@",cmdStr );
+        data.spendTime = cmdStr.integerValue;
+        
+        cmdStr = [[hexString substringWithRange:NSMakeRange(10, 4)] lowercaseString];
+        //        NSLog(@"速度 %@",cmdStr);
+        data.speed = cmdStr.integerValue;
+        
+        cmdStr = [[hexString substringWithRange:NSMakeRange(14, 4)] lowercaseString];
+        //        NSLog(@"距离 %@",cmdStr);
+        data.distance = cmdStr.integerValue;
+        
+        cmdStr = [[hexString substringWithRange:NSMakeRange(18, 4)] lowercaseString];
+        //        NSLog(@"热量 %@",cmdStr);
+        data.quantityOfHeat = cmdStr.integerValue;
+        
+        cmdStr = [[hexString substringWithRange:NSMakeRange(22, 4)] lowercaseString];
+        //        NSLog(@"总程 %@",cmdStr);
+        data.totalDistance = cmdStr.integerValue;
+        cmdStr = [[hexString substringWithRange:NSMakeRange(26, 2)] lowercaseString];
+        //        NSLog(@"心率 %@",cmdStr);
+        data.heartRate = cmdStr.integerValue;
+        
+        cmdStr = [[hexString substringWithRange:NSMakeRange(28, 2)] lowercaseString];
+        //        NSLog(@"校验和 %@",cmdStr);
+        data.checksum = cmdStr.integerValue;
+        
+//        NSLog(@"data = %@",data);
+//        [self.descData addObject:data];
+//        NSDateFormatter * formatter = [NSDate defaultDateFormatter ];
+//        
+//        NSString * curDateString = [formatter stringFromDate:[NSDate defaultCurrentDate]];
+//        
+//        self.tvLog.text  = [self.tvLog.text stringByAppendingFormat:@"\n %@: %@",curDateString,data ];
+//        
+//        NSLog(@"======================================");
+        
+    }
+    
+}
+
 
 @end

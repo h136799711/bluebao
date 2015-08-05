@@ -30,4 +30,7 @@
 
 // 数值排序 goal
 +(NSArray *)sequenceGoalDataArray:(NSArray *)dataArray;
+
+#pragma mark -- 蓝堡首页 --
++(NSString *) getHeaderStrRow:(NSInteger)row bicyle:(Bicyle *)_bicylelb;
 @end

@@ -45,4 +45,25 @@
 
 -(BOOL) isToday;
 
+/*
+ *时间转化为时间戳 ，yyyy-MM-dd
+ */
+-(NSNumber *)dateDayTimeStamp;
+
+/*
+ *时间戳转化为时间 yyyy-MM-dd
+ */
++(NSDate *) getDateFromeNumber:(NSNumber *)number;
+
+/*
+ *是否超过设定时间 ，yes，超过，no ，没有
+ */
+-(BOOL)isOutSetDateTime:(NSDate *)newDate;
+
+/**
+ * 时间转化小时，分钟，秒
+ */
+
++(NSString *) getDateHour:(NSTimeInterval )time;
+
 @end

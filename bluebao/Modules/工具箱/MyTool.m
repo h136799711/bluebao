@@ -277,7 +277,7 @@
 
 
 #pragma mark --讲数值转化为字符串
-+(NSString * ) getIntegerToString:(NSInteger) number{
++(NSString * ) getStringToInteger:(NSInteger) number{
 
     NSString * string = [NSString stringWithFormat:@"%ld",number];
     return string;
