@@ -48,7 +48,8 @@
     [MobClick setAppVersion:version];
 
     [MobClick setEncryptEnabled:YES];
-    
+//    [MobClick checkUpdate];
+    [MobClick checkUpdate:@"发现新版本" cancelButtonTitle:@"忽略" otherButtonTitles:@"前往App Store"];
 //    [MobClick setLogEnabled:YES];
 }
 
@@ -98,7 +99,7 @@
     
 #endif
     //for log
-    [UMessage setLogEnabled:YES];
+//    [UMessage setLogEnabled:YES];
 
 }
 
