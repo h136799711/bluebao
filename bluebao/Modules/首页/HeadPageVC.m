@@ -278,7 +278,7 @@
     BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
     reqModel.uid = self.userInfo.uid;
     reqModel.uuid = @"OTO458-1082"; //LR-866
-    reqModel.time = 1438485055;
+    reqModel.time = 1438285055;
 //    reqModel.bicyleModel.calorie = 10;
 //    reqModel.bicyleModel.cost_time = 10;
 //    reqModel.bicyleModel.distance = 10;

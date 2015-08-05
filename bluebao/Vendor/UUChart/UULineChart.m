@@ -219,6 +219,11 @@
         [progressline setLineJoinStyle:kCGLineJoinRound];
         NSInteger index = 0;
         for (NSString * valueString in childAry) {
+            //0的都不画
+//            if([valueString floatValue] <= 0){
+//                index += 1;
+//                continue;
+//            }
             
             float grade =([valueString floatValue]-_yValueMin) / ((float)_yValueMax-_yValueMin);
             if (index != 0) {
