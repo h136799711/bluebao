@@ -42,7 +42,7 @@
 -(void)umengPushConfig:(NSDictionary *)launchOptions{
     
     //set AppKey and AppSecret
-    [UMessage startWithAppkey:@UMENG_PUSH_APP_KEY launchOptions:launchOptions];
+    [UMessage startWithAppkey:@UMENG_APP_KEY launchOptions:launchOptions];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     

@@ -39,7 +39,7 @@
     if(_userInfo == nil){
         _userInfo = [MainViewController sharedSliderController].userInfo;
     }
-    _userInfo.uid = 2;
+//    _userInfo.uid = 8;
     return _userInfo;
 }
 
@@ -51,8 +51,8 @@
             _uuid = @"";
         }
     }
-    return @"uuid-uuid";
-    //    return _uuid;
+//    return @"OTO458-1082";
+        return _uuid;
 }
 
 -(void)viewDidLoad{
@@ -154,11 +154,11 @@
             return ;
         }
         
-        BOOL flag = [self isThisMonth];
+//        BOOL flag = [self isThisMonth];
         
-        NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+//        NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
         
-        NSDateComponents *nowComponent = [calendar components:unitFlags fromDate:[NSDate date]];
+//        NSDateComponents *nowComponent = [calendar components:unitFlags fromDate:[NSDate date]];
         
             
         

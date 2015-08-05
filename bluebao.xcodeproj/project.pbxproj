@@ -1410,13 +1410,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bluebao/bluebao_PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/bluebao/Common/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/bluebao/Vendor/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "573c2058-5ec3-4aeb-b57f-95361a11d4b3";
 			};
 			name = Debug;
 		};
@@ -1427,13 +1428,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bluebao/bluebao_PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/bluebao/Common/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/bluebao/Vendor/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "573c2058-5ec3-4aeb-b57f-95361a11d4b3";
 			};
 			name = Release;
 		};
