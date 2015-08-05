@@ -42,6 +42,9 @@
     
     self.title =@"蓝堡踏步机";
 
+    self.bicylelb = [[Bicyle alloc] init];
+    
+    
     _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗",@"路程"];
     _imageName = @[@"xinlv.png",@"sd.png",@"time.png",@"sport.png",@"road.png"];
     _sortArray = @[@"体脂肪率",@"体水分率",@"体年龄",@"基础代谢",@"肌肉含量",@"内脏含量",@"骨骼含量",@"皮下脂肪"];
@@ -113,7 +116,6 @@
             headCell.signLabelSort.text = _labelarray[indexPath.row];
         }
 
-//        headCell.signLabelValue.text = [self getStrRow:indexPath.row];/
         headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
         
         return headCell;
@@ -136,36 +138,7 @@
     
 }
 
--(NSString *) getStrRow:(NSInteger)row{
 
-    NSString * string = @"";
-    switch (row) {
-        case 0:
-            string = [MyTool getStringToInteger:_bicylelb.heart_rate];
-            break;
-            
-        case 1:
-            string = [MyTool getStringToInteger:_bicylelb.speed];
-            string = [NSString stringWithFormat:@"%@步/分",string];
-            
-            break;
-        case 2:
-            string = [MyTool getStringToInteger:_bicylelb.cost_time];
-            break;
-        case 3:
-            string = [MyTool getStringToInteger:_bicylelb.calorie];
-            
-            break;
-        case 4:
-            string = [MyTool getStringToInteger:_bicylelb.total_distance];
-            string = [NSString stringWithFormat:@"%@千卡",string];
-            break;
-            
-        default:
-            break;
-    }
-    return string;
-}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == _labelarray.count) {
@@ -225,7 +198,7 @@
 -(void)dateChooseView:(DateChooseView *)dateChooseView datestr:(NSString *)datestr{
     
     
-    NSLog(@"date  %@",datestr);
+//    NSLog(@"date  %@",datestr);
     
     _drawProgreView.goalNum = 500;
     _drawProgreView.finishNum = 400;
@@ -294,10 +267,14 @@
     cell.labelUnit.text = indexPath.row == 2?@"岁":@"%";
     if (indexPath.row == 2) {
 
-            cell.infoValue = [MainViewController sharedSliderController].userInfo.age;
+            cell.infoValue = self.userInfo.age;
         
     }else{
-            cell.infoValue = 10;
+           cell.infoValue = 10;
+        
+        
+        
+        
     }
 
     cell.labelSort.text = _sortArray[indexPath.row];
@@ -313,19 +290,14 @@
     reqModel.uuid = @"OTO458-1082"; //LR-866
     reqModel.time = [[_dateChooseView.newbDate  dateDayTimeStamp] integerValue];
 
-    
-//   NSNumber * number =  [_dateChooseView.newbDate  dateDayTimeStamp];
-//    [NSDate  getDateFromeNumber:number];
-    
+ 
     [BoyeBicyleManager  requestBicyleData:reqModel :^(NSDictionary *successdDic) {
-        Bicyle * bicyle = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
         
-//        NSLog(@"888%@",bicyle);
+       self.bicylelb = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
         
-        [self refreshData:bicyle];
-        
+        [_tableView reloadData];
     } :^(NSString *error) {
-        NSLog(@"失败");
+//        NSLog(@"失败");
 
     }];
 }
@@ -333,7 +305,7 @@
 //刷新界面数据
 -(void)refreshData:(Bicyle *) bicyle{
  
-    _bicylelb = bicyle;
+    self.bicylelb = bicyle;
     [_tableView reloadData];
 }
 
@@ -352,7 +324,7 @@
     reqModel.bicyleModel.heart_rate = 10;
     reqModel.bicyleModel.speed = 10;
     reqModel.bicyleModel.total_distance = 10;
-    reqModel.bicyleModel.upload_time = 1438485055;
+    reqModel.bicyleModel.upload_time = 1438617600;
     reqModel.bicyleModel.target_calorie = 10;
     
     [BoyeBicyleManager requestBicyleDataUpload:reqModel
@@ -360,9 +332,7 @@
                                               if (bicyleSuccessed) {
                                                   NSLog(@"bicyleSuccessed");
                                                   
-                                                  
                                               }
-            
         }];
 }
 

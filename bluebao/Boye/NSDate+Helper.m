@@ -77,8 +77,12 @@
     NSDate * date = [formatter dateFromString:timestr];   //yyy-MM-dd 格式
 
     NSNumber * number = [NSDate date2UnixTimeStamp:date];
+    NSLog(@"******************************************");
+    NSLog(@"  number  -%@- %@ ",timestr,number);
     
-    NSLog(@"  number  -- %@ ",number);
+//    [NSDate getDateFromeNumber:number];
+        NSLog(@"******************************************");
+    
     return number;
 }
 //时间戳转化为日期
@@ -106,7 +110,7 @@
 //时间转化小时，分钟，秒
 +(NSString *) getDateHour:(NSTimeInterval )time{
     
-    NSDate * date  = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDate * date  = [NSDate dateWithTimeIntervalSince1970:time ];
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSDate defaultTimeFormatString];
     NSString * datestr = [formatter stringFromDate:date];

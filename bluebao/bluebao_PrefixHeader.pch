@@ -24,6 +24,7 @@
 #import "User.h"
 #import "Bicyle.h"
 #import "GoalData.h"
+#import "BoyePeople.h"
 
 
 #import "BoyeSlideBaseVC.h" //侧滑基类，首页，目标个人中心基类

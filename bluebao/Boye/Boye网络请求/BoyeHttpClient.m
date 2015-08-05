@@ -20,6 +20,7 @@
 static NSString * const BASE_API_URL = @"http://lanbao.itboye.com/api.php/";
 
 
+
 @implementation BoyeHttpClient
 //
 //- (void)initWithBaseURL:(NSString*) baseURL{
@@ -73,6 +74,7 @@ static NSString * const BASE_API_URL = @"http://lanbao.itboye.com/api.php/";
 
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
 
 //    NSString *base_url = [[NSString alloc] initWithString:BASE_API_URL];
