@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
 #import "LoginVC.h"
+#import "UMessage.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
