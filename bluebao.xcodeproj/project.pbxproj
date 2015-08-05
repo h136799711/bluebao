@@ -127,6 +127,7 @@
 		5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCFB001B6224F00076F18B /* UserInfo.m */; };
 		5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
+		9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */; };
 		9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */; };
 		9F91E7DE1B4E5AB70013F4F1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F91E7D91B4E5AB70013F4F1 /* Info.plist */; };
 		9F91E7DF1B4E5AB70013F4F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7DA1B4E5AB70013F4F1 /* main.m */; };
@@ -377,6 +378,8 @@
 		9F50E5171B4E577700AB6BD8 /* bluebaoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bluebaoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E51C1B4E577700AB6BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bluebaoTests.m; sourceTree = "<group>"; };
+		9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
+		9F6E3EB01B71FBA900F329B9 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		9F91E7D71B4E5AB70013F4F1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Common/AppDelegate.h; sourceTree = "<group>"; };
 		9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Common/AppDelegate.m; sourceTree = "<group>"; };
 		9F91E7D91B4E5AB70013F4F1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Common/Info.plist; sourceTree = "<group>"; };
@@ -410,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF5A86A1B65C08000996283 /* MobileCoreServices.framework in Frameworks */,
+				9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 				5BF5A8681B65C04100996283 /* SystemConfiguration.framework in Frameworks */,
 				5BF5A8671B65C02E00996283 /* CoreBluetooth.framework in Frameworks */,
 				5BF5A8661B65C02400996283 /* CFNetwork.framework in Frameworks */,
@@ -979,6 +983,15 @@
 			name = Modules;
 			sourceTree = "<group>";
 		};
+		9F6E3EAE1B71FBA900F329B9 /* UMessage_Sdk_1.1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */,
+				9F6E3EB01B71FBA900F329B9 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.1.0;
+			sourceTree = "<group>";
+		};
 		9F91E7E11B4E5ABE0013F4F1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -997,6 +1010,7 @@
 		9F91E7E41B4E5AE80013F4F1 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				9F6E3EAE1B71FBA900F329B9 /* UMessage_Sdk_1.1.0 */,
 				5BD4AAC01B6B6F580041F730 /* UUChart */,
 				5B38C7AE1B5399B80063912C /* SDWebImage */,
 				5BF2E0311B4F6B7E004FDDF7 /* MBProgressHUD */,
@@ -1398,6 +1412,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/bluebao/Common/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/bluebao/Vendor/UMessage_Sdk_1.1.0",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1411,6 +1429,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/bluebao/Common/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/bluebao/Vendor/UMessage_Sdk_1.1.0",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
