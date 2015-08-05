@@ -61,6 +61,7 @@
 #pragma  mark -- 连接 ---
 -(void)connectClick:(UIButton * )connBtn{
     
+    
     self.isConnect = !self.isConnect;
     connBtn.selected = !connBtn.selected;
     
@@ -75,9 +76,7 @@
     
     NSLog(@"连接");
     
-//    if ([_delegate respondsToSelector:@selector(bo)]) {
-//        [_delegate connected];
-//    }
+
     LNowDevice * device = [BoyeBluetooth sharedBoyeBluetooth].connectedDevice;
     if (device == nil) {
         NSLog(@"device is nil");

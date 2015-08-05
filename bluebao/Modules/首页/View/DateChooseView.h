@@ -17,6 +17,7 @@
 
 @interface DateChooseView : UIView
 @property (nonatomic,strong) NSDate   * newbDate;
+@property (nonatomic,strong) NSDate   * nowDayDate;
 @property (nonatomic,assign) id<DateChooseViewDelegate>delegate;
 
 @end

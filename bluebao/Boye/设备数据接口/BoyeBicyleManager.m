@@ -39,7 +39,7 @@
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/day?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
             NSString * time = [NSString stringWithFormat:@"%ld",bicyReqModel.time];
-            NSLog(@"--\r-- %@- %@ - --%@ ",uid,bicyReqModel.uuid,time);
+            NSLog(@"--\r-uid- %@- %@ -uuid -time-%@ ",uid,bicyReqModel.uuid,time);
             NSDictionary * params =  @{
                                        @"uid":uid,
                                        @"uuid":bicyReqModel.uuid,
@@ -59,6 +59,7 @@
                                 return ;
                             }
                             
+                                   NSLog(@" 动感单车数据获取 responseObject :%@",responseObject);
                             NSDictionary * dic = (NSDictionary *)responseObject;
                             
                             if (!dic) {
@@ -67,14 +68,15 @@
                                 
                             }
 
-                            NSLog(@"\r 动感单车数据获取 bicyle dic :%@",dic);
+//                            NSLog(@"\r 动感单车数据获取 bicyle dic :%@",dic);
                             NSNumber * code = [dic valueForKey:@"code"];
                             NSLog(@"请求成功！%fl",[code floatValue]);
                             if ([code integerValue] == 0) {
+                               
                                 success(dic);
                                 
                                 [SVProgressHUD showSuccessWithStatus:@"请求成功"];
- 
+                                NSLog(@"--------");
                             }else{
                                 
                                 NSString * errorData = [dic valueForKey:@"data"];
@@ -99,19 +101,19 @@
             NSString * token  = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/add?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
-            NSLog(@" %ld  -----   %@",bicyReqModel.bicyleModel.speed,[MyTool getIntegerToString:bicyReqModel.bicyleModel.speed]);
-            NSLog(@"--\r-- %@- %@ - --%@ ",uid,bicyReqModel.uuid,[MyTool getIntegerToString:bicyReqModel.bicyleModel.upload_time]);
+            NSLog(@" %ld  -----   %@",bicyReqModel.bicyleModel.speed,[MyTool getStringToInteger:bicyReqModel.bicyleModel.speed]);
+            NSLog(@"----uid %@-uuid %@ - -upload_time-%@ ",uid,bicyReqModel.uuid,[MyTool getStringToInteger:bicyReqModel.bicyleModel.upload_time]);
 
             NSDictionary * params =  @{
                                        @"uid":uid,
                                        @"uuid":bicyReqModel.uuid,
-                                        @"speed":[MyTool getIntegerToString:bicyReqModel.bicyleModel.speed],
-                                        @"heart_rate":[MyTool getIntegerToString:bicyReqModel.bicyleModel.heart_rate],
-                                        @"distance":[MyTool getIntegerToString:bicyReqModel.bicyleModel.distance],
-                                        @"total_distance":[MyTool getIntegerToString:bicyReqModel.bicyleModel.total_distance],
-                                        @"cost_time":[MyTool getIntegerToString:bicyReqModel.bicyleModel.cost_time],
-                                       @"calorie":[MyTool getIntegerToString:bicyReqModel.bicyleModel.calorie],
-                                       @"upload_time":[MyTool getIntegerToString:bicyReqModel.bicyleModel.upload_time]
+                                        @"speed":[MyTool getStringToInteger:bicyReqModel.bicyleModel.speed],
+                                        @"heart_rate":[MyTool getStringToInteger:bicyReqModel.bicyleModel.heart_rate],
+                                        @"distance":[MyTool getStringToInteger:bicyReqModel.bicyleModel.distance],
+                                        @"total_distance":[MyTool getStringToInteger:bicyReqModel.bicyleModel.total_distance],
+                                        @"cost_time":[MyTool getStringToInteger:bicyReqModel.bicyleModel.cost_time],
+                                       @"calorie":[MyTool getStringToInteger:bicyReqModel.bicyleModel.calorie],
+                                       @"upload_time":[MyTool getStringToInteger:bicyReqModel.bicyleModel.upload_time]
                                        };
             
             [SVProgressHUD showWithStatus:@"数据上传中..." maskType:SVProgressHUDMaskTypeClear];
