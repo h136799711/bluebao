@@ -34,10 +34,23 @@
     //
     [self umengPushConfig:launchOptions];
     
+    [self umengAnalytics];
+    
     return YES;
 }
 
-#pragma mark 友盟推送代码
+#pragma mark 友盟代码、推送＋统计
+
+-(void)umengAnalytics{
+    [MobClick startWithAppkey:@UMENG_APP_KEY reportPolicy:BATCH   channelId:@"APP_STORE"];
+    
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+
+    [MobClick setEncryptEnabled:YES];
+    
+//    [MobClick setLogEnabled:YES];
+}
 
 -(void)umengPushConfig:(NSDictionary *)launchOptions{
     
@@ -122,7 +135,7 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-    
+    NSLog(@"userInfo=%@",userInfo);
     [UMessage didReceiveRemoteNotification:userInfo];
 }
 

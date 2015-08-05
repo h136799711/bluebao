@@ -129,6 +129,7 @@
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
 		9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */; };
 		9F6E3EB61B721BB200F329B9 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */; };
+		9F6E3EB81B7229C200F329B9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB71B7229C200F329B9 /* libz.dylib */; };
 		9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */; };
 		9F91E7DE1B4E5AB70013F4F1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F91E7D91B4E5AB70013F4F1 /* Info.plist */; };
 		9F91E7DF1B4E5AB70013F4F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7DA1B4E5AB70013F4F1 /* main.m */; };
@@ -384,6 +385,7 @@
 		9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		9F6E3EB41B721BB200F329B9 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		9F6E3EB51B721BB200F329B9 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		9F6E3EB71B7229C200F329B9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9F91E7D71B4E5AB70013F4F1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Common/AppDelegate.h; sourceTree = "<group>"; };
 		9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Common/AppDelegate.m; sourceTree = "<group>"; };
 		9F91E7D91B4E5AB70013F4F1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Common/Info.plist; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F6E3EB81B7229C200F329B9 /* libz.dylib in Frameworks */,
 				5BF5A86A1B65C08000996283 /* MobileCoreServices.framework in Frameworks */,
 				9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 				5BF5A8681B65C04100996283 /* SystemConfiguration.framework in Frameworks */,
@@ -942,6 +945,7 @@
 		9F50E5011B4E577600AB6BD8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F6E3EB71B7229C200F329B9 /* libz.dylib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

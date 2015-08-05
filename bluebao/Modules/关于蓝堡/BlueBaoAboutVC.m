@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"关于绿堡";
+    self.title = @"关于蓝堡";
     self.navigationController.navigationBarHidden = NO;
     [self _initViews];
 }

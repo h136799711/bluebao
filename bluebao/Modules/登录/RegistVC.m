@@ -43,11 +43,33 @@
     [self.agreeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
     self.textfield_LeterBox.clearButtonMode = UITextFieldViewModeAlways;
     
-    self.textfield_LeterBox.text = @"2540927273@qq.com";
+//    self.textfield_LeterBox.text = @"2540927273@qq.com";
 //    self.textfield_newpsw.text   = @"123456";
     self.textfield_confirmpsw.text =  self.textfield_newpsw.text;
+    self.textfield_confirmpsw.delegate = self;
+    self.textfield_LeterBox.delegate = self;
+    self.textfield_newpsw.delegate = self;
+    
 }
 
+#pragma mark - UITextView Delegate Methods
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    NSLog(@"textFieldShouldReturn%@",textField);
+    [textField resignFirstResponder];
+    if ([textField isEqual:self.textfield_LeterBox ]) {
+        [self.textfield_newpsw becomeFirstResponder];
+    }
+    if ([textField isEqual:self.textfield_newpsw ]) {
+        [self.textfield_confirmpsw becomeFirstResponder];
+    }
+    if([textField isEqual:self.textfield_confirmpsw]){
+        [self.registBtn becomeFirstResponder];
+    }
+    return NO;
+    //    return YES;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
