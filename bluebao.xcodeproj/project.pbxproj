@@ -128,6 +128,7 @@
 		5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
 		9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */; };
+		9F6E3EB61B721BB200F329B9 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */; };
 		9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */; };
 		9F91E7DE1B4E5AB70013F4F1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F91E7D91B4E5AB70013F4F1 /* Info.plist */; };
 		9F91E7DF1B4E5AB70013F4F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7DA1B4E5AB70013F4F1 /* main.m */; };
@@ -380,6 +381,9 @@
 		9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bluebaoTests.m; sourceTree = "<group>"; };
 		9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
 		9F6E3EB01B71FBA900F329B9 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
+		9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		9F6E3EB41B721BB200F329B9 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		9F6E3EB51B721BB200F329B9 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		9F91E7D71B4E5AB70013F4F1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Common/AppDelegate.h; sourceTree = "<group>"; };
 		9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Common/AppDelegate.m; sourceTree = "<group>"; };
 		9F91E7D91B4E5AB70013F4F1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Common/Info.plist; sourceTree = "<group>"; };
@@ -415,6 +419,7 @@
 				5BF5A86A1B65C08000996283 /* MobileCoreServices.framework in Frameworks */,
 				9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 				5BF5A8681B65C04100996283 /* SystemConfiguration.framework in Frameworks */,
+				9F6E3EB61B721BB200F329B9 /* libMobClickLibrary.a in Frameworks */,
 				5BF5A8671B65C02E00996283 /* CoreBluetooth.framework in Frameworks */,
 				5BF5A8661B65C02400996283 /* CFNetwork.framework in Frameworks */,
 			);
@@ -992,6 +997,16 @@
 			path = UMessage_Sdk_1.1.0;
 			sourceTree = "<group>";
 		};
+		9F6E3EB21B721BB200F329B9 /* UMAnalytics_Sdk_3.5.11 */ = {
+			isa = PBXGroup;
+			children = (
+				9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */,
+				9F6E3EB41B721BB200F329B9 /* MobClick.h */,
+				9F6E3EB51B721BB200F329B9 /* MobClickSocialAnalytics.h */,
+			);
+			path = UMAnalytics_Sdk_3.5.11;
+			sourceTree = "<group>";
+		};
 		9F91E7E11B4E5ABE0013F4F1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1010,6 +1025,7 @@
 		9F91E7E41B4E5AE80013F4F1 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				9F6E3EB21B721BB200F329B9 /* UMAnalytics_Sdk_3.5.11 */,
 				9F6E3EAE1B71FBA900F329B9 /* UMessage_Sdk_1.1.0 */,
 				5BD4AAC01B6B6F580041F730 /* UUChart */,
 				5B38C7AE1B5399B80063912C /* SDWebImage */,
@@ -1415,6 +1431,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/bluebao/Vendor/UMessage_Sdk_1.1.0",
+					"$(PROJECT_DIR)/bluebao/Vendor/UMAnalytics_Sdk_3.5.11",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "573c2058-5ec3-4aeb-b57f-95361a11d4b3";
@@ -1433,6 +1450,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/bluebao/Vendor/UMessage_Sdk_1.1.0",
+					"$(PROJECT_DIR)/bluebao/Vendor/UMAnalytics_Sdk_3.5.11",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "573c2058-5ec3-4aeb-b57f-95361a11d4b3";

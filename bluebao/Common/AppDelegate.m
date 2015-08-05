@@ -47,8 +47,7 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     
     
-    
-    if(SYSTEM_VERSION_GREATER_THAN(@"8.0"))
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
     {
         //        register remoteNotification types （iOS 8.0及其以上版本）
         UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
@@ -107,12 +106,25 @@
     UIImage *navBgImg = [UIImage imageWithColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTranslucent:NO];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        [[UINavigationBar appearance] setTranslucent:NO];
+    }
+    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:FONT(18)}];
     
 }
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    [UMessage registerDeviceToken:deviceToken];
+    
+}
 
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    
+    [UMessage didReceiveRemoteNotification:userInfo];
+}
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     
