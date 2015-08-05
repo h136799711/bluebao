@@ -98,7 +98,20 @@
     [_chart removeAll];
     _chart = nil;
     
+    [_lblEmptyTip removeFromSuperview];
     [self.view addSubview:_lblEmptyTip];
+    [self.view setNeedsUpdateConstraints];
+    
+    NSMutableArray * bindConstraint = [[NSMutableArray alloc]initWithArray: [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_lblEmptyTip(>=120)]|"
+                                                                                                                    options:NSLayoutFormatAlignAllCenterX
+                                                                                                                    metrics:nil
+                                                                                                                      views:NSDictionaryOfVariableBindings(_lblEmptyTip)]];
+    
+    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblDate]-15-[_lblEmptyTip]"
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:NSDictionaryOfVariableBindings(_lblEmptyTip,_lblDate)]];
+    [self.view addConstraints:bindConstraint];
     
 }
 
@@ -119,7 +132,6 @@
         
         id obj = [data objectForKey:@"data"];
         
-        NSLog(@"请求返回的数据=%@,%d",obj,(int)[obj isKindOfClass:[NSArray class]]);
         
         if(![obj isKindOfClass:[NSArray class]]){
             
@@ -128,11 +140,8 @@
         
         [self initChart];
         [self.data removeAllObjects];
-        _lblEmptyTip.hidden = YES;
-        _lblEmptyTip.opaque = NO;
-
+        
         NSArray * dataInfo = (NSArray *)obj;
-        NSLog(@"请求dataInfo的数据=%@",dataInfo);
         
         
         
@@ -145,6 +154,14 @@
             return ;
         }
         
+        BOOL flag = [self isThisMonth];
+        
+        NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+        
+        NSDateComponents *nowComponent = [calendar components:unitFlags fromDate:[NSDate date]];
+        
+            
+        
         
         
         //TODO:向服务器请求载入数据
@@ -152,6 +169,10 @@
             for (int i=1; i<=day; i++) {
                 NSLog(@"i=%d",i);
                 
+                if( ((flag && nowComponent.day  > 20 ) ||!flag)  && i%2==0 )
+                {
+                    continue;
+                }
 //                if(i%2 == 1){
                     NSNumber *upload_day = [NSNumber numberWithInteger:0];
                     NSNumber *max_calorie = [NSNumber numberWithInteger:0];
@@ -181,7 +202,6 @@
             }
         
         if(self.data.count > 0){
-            [_lblEmptyTip removeFromSuperview];
             [_chart showInView:self.view];
         }
     } :nil ];
@@ -313,14 +333,18 @@
                                                                                  options:NSLayoutFormatAlignAllCenterX
                                                                                  metrics:nil
                                                                                    views:NSDictionaryOfVariableBindings(_lblEmptyTip)]];
+    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblDate]-15-[_lblEmptyTip]"
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:NSDictionaryOfVariableBindings(_lblEmptyTip,_lblDate)]];
     
-    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_prevBtn]"
+    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[_prevBtn]"
                                                                                  options:NSLayoutFormatAlignAllCenterX
                                                                                  metrics:nil
                                                                                    views:NSDictionaryOfVariableBindings(_prevBtn)]];
     
     
-    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_nextBtn]-10-|"
+    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_nextBtn]-40-|"
                                                                                  options:NSLayoutFormatAlignAllCenterX
                                                                                  metrics:nil
                                                                                    views:NSDictionaryOfVariableBindings(_nextBtn)]];
@@ -345,10 +369,6 @@
                                                                                  options:0
                                                                                  metrics:nil
                                                                                    views:NSDictionaryOfVariableBindings(_lblDate,_chart)]];
-    [bindConstraint  addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblDate]-15-[_lblEmptyTip]"
-                                                                                 options:0
-                                                                                 metrics:nil
-                                                                                   views:NSDictionaryOfVariableBindings(_lblEmptyTip,_lblDate)]];
     
     [self.view addConstraints:bindConstraint];
     
@@ -457,6 +477,7 @@
     
     
     
+    
     return  self.keys;
 }
 
@@ -478,10 +499,10 @@
         id object = [self.data objectForKey:key];
 //        NSLog(@"object=%@",object);
         if(object != nil){
-            if(flag && nowComponent.day <= (values.count)){
+            if(flag && nowComponent.day <= values.count){
                 continue;
             }
-//            NSNumber * num = (NSNumber *)object;
+            //            NSNumber * num = (NSNumber *)object;
 //            if([num floatValue]  > 0){
                 [values addObject:object];
 //            }
