@@ -130,11 +130,11 @@
     
     [BoyeBicyleManager requestMonthlyBicyleData:reqModel :^(NSDictionary* data){
         
+        
         id obj = [data objectForKey:@"data"];
         
         
         if(![obj isKindOfClass:[NSArray class]]){
-            
             return ;
         }
         
