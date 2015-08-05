@@ -29,6 +29,7 @@
     BoyeConnectView         * _connectView;
     
 }
+@property (nonatomic,strong) Bicyle         * bicylelb;
 
 @end
 
@@ -54,7 +55,15 @@
     [headCollectionView reloadData];
     self.userInfo = [MainViewController sharedSliderController].userInfo;
     
+    [self getBicyleData];
 //    NSLog(@" userInfo\r weight  %ld  \r height :%ld \r age: %ld ",self.userInfo.weight,self.userInfo.height,self.userInfo.age);
+}
+-(Bicyle *)bicylelb{
+    
+    if ( _bicylelb == nil ) {
+        _bicylelb = [[Bicyle alloc] init];
+    }
+    return _bicylelb;
 }
 #pragma mark -- 初始化 --
 
@@ -284,8 +293,9 @@
     [BoyeBicyleManager  requestBicyleData:reqModel :^(NSDictionary *successdDic) {
         Bicyle * bicyle = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
         
+        NSLog(@"%@",bicyle);
+
         
-        NSLog(@"\r calorie : %ld   \r speed : %ld",bicyle.calorie,bicyle.speed);
     } :^(NSString *error) {
         
     }];
@@ -301,8 +311,9 @@
     BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
     NSLog(@"  \\\\\\ %@ ",reqModel.bicyleModel);
     reqModel.uid = self.userInfo.uid;
-    reqModel.uuid = @"OTO458-1082"; //LR-866
-//    reqModel.time = 1563146460;
+    
+//    reqModel.uuid = @"OTO458-1082"; //LR-866
+    reqModel.uuid = @"OTO458-1082";
     reqModel.bicyleModel.calorie = 10;
     reqModel.bicyleModel.cost_time = 10;
     reqModel.bicyleModel.distance = 10;
@@ -312,13 +323,14 @@
     reqModel.bicyleModel.upload_time = 1438485055;
     
     NSLog(@"    --  %ld",reqModel.bicyleModel.speed);
-        [BoyeBicyleManager requestBicyleDataUpload:reqModel complete:^(BOOL bicyleSuccessed) {
-    
-            if (bicyleSuccessed) {
-                NSLog(@"ccccc");
-    
-    
-            }
+        [BoyeBicyleManager requestBicyleDataUpload:reqModel
+                                          complete:^(BOOL bicyleSuccessed) {
+                                              if (bicyleSuccessed) {
+                                                  NSLog(@"ccccc");
+                                                  
+                                                  
+                                              }
+            
         }];
 }
 

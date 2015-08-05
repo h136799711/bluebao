@@ -53,11 +53,6 @@
                         :params
                         :^(AFHTTPRequestOperation *operation, id responseObject) {
                             
-                            NSLog(@" \r responseObject %@",responseObject);
-//                            
-//                            NSData * data = [operation.responseString  dataUsingEncoding:NSUTF8StringEncoding];
-//                            NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                            
                             if(responseObject == nil){
                                 
                                 [SVProgressHUD showErrorWithStatus:@"请求返回为空,请重试!"];
@@ -72,7 +67,7 @@
                                 
                             }
 
-                            NSLog(@"\r bicyle dic :%@",dic);
+                            NSLog(@"\r 动感单车数据获取 bicyle dic :%@",dic);
                             NSNumber * code = [dic valueForKey:@"code"];
                             NSLog(@"请求成功！%fl",[code floatValue]);
                             if ([code integerValue] == 0) {
