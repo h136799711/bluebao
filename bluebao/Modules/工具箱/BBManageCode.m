@@ -273,8 +273,9 @@
             
             break;
         case 2:
-            string = [MyTool getStringToInteger:_bicylelb.cost_time];
-            
+//            string = [MyTool getStringToInteger:_bicylelb.cost_time];
+            string = [NSDate getDateHour:_bicylelb.cost_time];
+
             break;
         case 3:
             string = [MyTool getStringToInteger:_bicylelb.calorie];
@@ -290,16 +291,6 @@
     }
     return string;
 }
-
-//-(void) getTime:(NSInteger)timenum{
-//    
-//    if (timenum <60) {
-//        
-//    }
-//    
-//    
-//}
-
 
 -(void)updateValue:(NSString *)hexString{
 //    
@@ -366,6 +357,18 @@
     }
     
 }
+-(void) saveBicyle:(Bicyle *)bicyle{
+    
+    NSString * bicyleString = [NSString stringWithFormat:@"%ld/",bicyle.heart_rate];
+    bicyleString = [MyTool getStringFormstr:bicyleString withNumber:bicyle.speed];
+    bicyleString = [MyTool getStringFormstr:bicyleString withNumber:bicyle.cost_time];
+    bicyleString = [MyTool getStringFormstr:bicyleString withNumber:bicyle.calorie];
+    bicyleString = [MyTool getStringFormstr:bicyleString withNumber:bicyle.total_distance];
 
+    [USER_DEFAULT setObject:bicyleString forKey:@"bicyle_data"];
+    
+    NSArray * array = [bicyleString componentsSeparatedByString:@"/"];
+    
+}
 
 @end

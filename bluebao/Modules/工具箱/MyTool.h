@@ -56,6 +56,7 @@
 #pragma mark --数量与字符串拼接--
 +(NSString *) stringWithNumFormat:(NSString *)string number:(CGFloat)number;
 
++(NSString *) getStringFormstr:(NSString *)string withNumber:(NSInteger)number;
 /// 日期相关  ********
 
 #pragma mark -- 获得当前日期  -

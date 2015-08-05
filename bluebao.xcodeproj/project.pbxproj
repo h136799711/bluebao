@@ -79,6 +79,7 @@
 		5B74F4BA1B590AC9002493E8 /* BlueBaoAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B51B590AC9002493E8 /* BlueBaoAboutVC.m */; };
 		5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B71B590AC9002493E8 /* ContactOurVC.m */; };
 		5B74F4BC1B590AC9002493E8 /* OpinionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B91B590AC9002493E8 /* OpinionVC.m */; };
+		5B8004661B720F3200283B2C /* BoyePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8004651B720F3200283B2C /* BoyePeople.m */; };
 		5BD4AA941B6B27CD0041F730 /* BoyeSlideBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */; };
 		5BD4AA971B6B28980041F730 /* BoyeLeftBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA961B6B28980041F730 /* BoyeLeftBaseVC.m */; };
 		5BD4AAB71B6B49AD0041F730 /* PeopleGoalManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AAB61B6B49AD0041F730 /* PeopleGoalManagerVC.m */; };
@@ -281,6 +282,8 @@
 		5B74F4B71B590AC9002493E8 /* ContactOurVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactOurVC.m; sourceTree = "<group>"; };
 		5B74F4B81B590AC9002493E8 /* OpinionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpinionVC.h; sourceTree = "<group>"; };
 		5B74F4B91B590AC9002493E8 /* OpinionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpinionVC.m; sourceTree = "<group>"; };
+		5B8004641B720F3200283B2C /* BoyePeople.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyePeople.h; sourceTree = "<group>"; };
+		5B8004651B720F3200283B2C /* BoyePeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyePeople.m; sourceTree = "<group>"; };
 		5BD4AA921B6B27CD0041F730 /* BoyeSlideBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeSlideBaseVC.h; sourceTree = "<group>"; };
 		5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeSlideBaseVC.m; sourceTree = "<group>"; };
 		5BD4AA951B6B28980041F730 /* BoyeLeftBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeLeftBaseVC.h; sourceTree = "<group>"; };
@@ -668,6 +671,8 @@
 				5B6FE9AB1B6A0786002D32B0 /* DrawProgreView.m */,
 				5B6FE9AE1B6A07D5002D32B0 /* BoyeConnectView.h */,
 				5B6FE9AF1B6A07D5002D32B0 /* BoyeConnectView.m */,
+				5B8004641B720F3200283B2C /* BoyePeople.h */,
+				5B8004651B720F3200283B2C /* BoyePeople.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1196,6 +1201,7 @@
 				5B0155DA1B5DDD1900056CFC /* DeviceInfoCell.m in Sources */,
 				5BF2E0481B4F6C99004FDDF7 /* NSDateFormatter+Category.m in Sources */,
 				5B6FE9B01B6A07D5002D32B0 /* BoyeConnectView.m in Sources */,
+				5B8004661B720F3200283B2C /* BoyePeople.m in Sources */,
 				5B38C7911B5390CF0063912C /* RegistVC.m in Sources */,
 				5B38C7D81B5399B80063912C /* SDWebImageDownloader.m in Sources */,
 				5B0155DE1B5DDD1900056CFC /* PulsingRadarView.m in Sources */,

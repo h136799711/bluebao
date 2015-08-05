@@ -26,7 +26,6 @@
          "upload_time" = 0;
 
          */
-
         _bicyDeata_id = [[dictionary valueForKey:@"id"] integerValue];  //数据id
         _uuid = [dictionary valueForKey:@"uuid"];
 
@@ -36,6 +35,9 @@
         _heart_rate =    [[dictionary valueForKey:@"heart_rate"] integerValue];
         _speed =    [[dictionary valueForKey:@"speed"] integerValue];
         _upload_time =    [[dictionary valueForKey:@"upload_time"] integerValue];
+        
+        NSLog(@" %@   , %ld  ",[dictionary  valueForKey:@"calorie"],_calorie);
+
     }
     return self;
 }

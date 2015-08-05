@@ -157,6 +157,12 @@
     return str;
 }
 
++(NSString *) getStringFormstr:(NSString *)string withNumber:(NSInteger)number{
+    
+    NSString * str = [NSString stringWithFormat:@"%@%ld",string,number];
+    return str;
+}
+
 
 #pragma mark -- 获得当前日期  -
 +(NSString *) getCurrentDataFormat:(NSString *)formatterStr{
