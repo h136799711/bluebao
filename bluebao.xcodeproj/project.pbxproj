@@ -80,6 +80,9 @@
 		5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B71B590AC9002493E8 /* ContactOurVC.m */; };
 		5B74F4BC1B590AC9002493E8 /* OpinionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B91B590AC9002493E8 /* OpinionVC.m */; };
 		5B8004661B720F3200283B2C /* BoyePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8004651B720F3200283B2C /* BoyePeople.m */; };
+		5B9049041B72EF0600A2E1B7 /* BoyeForgetCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */; };
+		5B9049051B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */; };
+		5B90490B1B72FD2700A2E1B7 /* ConsumerMKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90490A1B72FD2700A2E1B7 /* ConsumerMKView.m */; };
 		5BD4AA941B6B27CD0041F730 /* BoyeSlideBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */; };
 		5BD4AA971B6B28980041F730 /* BoyeLeftBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA961B6B28980041F730 /* BoyeLeftBaseVC.m */; };
 		5BD4AAB71B6B49AD0041F730 /* PeopleGoalManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AAB61B6B49AD0041F730 /* PeopleGoalManagerVC.m */; };
@@ -286,6 +289,11 @@
 		5B74F4B91B590AC9002493E8 /* OpinionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpinionVC.m; sourceTree = "<group>"; };
 		5B8004641B720F3200283B2C /* BoyePeople.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyePeople.h; sourceTree = "<group>"; };
 		5B8004651B720F3200283B2C /* BoyePeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyePeople.m; sourceTree = "<group>"; };
+		5B9049011B72EF0600A2E1B7 /* BoyeForgetCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeForgetCodeVC.h; sourceTree = "<group>"; };
+		5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeForgetCodeVC.m; sourceTree = "<group>"; };
+		5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoyeForgetCodeVC.xib; sourceTree = "<group>"; };
+		5B9049091B72FD2700A2E1B7 /* ConsumerMKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumerMKView.h; sourceTree = "<group>"; };
+		5B90490A1B72FD2700A2E1B7 /* ConsumerMKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumerMKView.m; sourceTree = "<group>"; };
 		5BD4AA921B6B27CD0041F730 /* BoyeSlideBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeSlideBaseVC.h; sourceTree = "<group>"; };
 		5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeSlideBaseVC.m; sourceTree = "<group>"; };
 		5BD4AA951B6B28980041F730 /* BoyeLeftBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeLeftBaseVC.h; sourceTree = "<group>"; };
@@ -447,6 +455,8 @@
 				5B38C75A1B5390CF0063912C /* RegistVC.h */,
 				5B38C75B1B5390CF0063912C /* RegistVC.m */,
 				5B38C75C1B5390CF0063912C /* RegistVC.xib */,
+				5B9049091B72FD2700A2E1B7 /* ConsumerMKView.h */,
+				5B90490A1B72FD2700A2E1B7 /* ConsumerMKView.m */,
 				5BF430F51B5737A7003C7941 /* Model */,
 			);
 			name = "登录";
@@ -698,6 +708,17 @@
 			);
 			name = "关于蓝堡";
 			path = "Modules/关于蓝堡";
+			sourceTree = "<group>";
+		};
+		5B9049001B72EE8100A2E1B7 /* 忘记密码 */ = {
+			isa = PBXGroup;
+			children = (
+				5B9049011B72EF0600A2E1B7 /* BoyeForgetCodeVC.h */,
+				5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */,
+				5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */,
+			);
+			name = "忘记密码";
+			path = "Modules/忘记密码";
 			sourceTree = "<group>";
 		};
 		5BD4AA8E1B6B25430041F730 /* 我的运动数据 */ = {
@@ -975,6 +996,7 @@
 				5B38C76A1B5390CF0063912C /* 工具箱 */,
 				5B38C7561B5390CF0063912C /* 登录 */,
 				5B38C76F1B5390CF0063912C /* 宏定义 */,
+				5B9049001B72EE8100A2E1B7 /* 忘记密码 */,
 				5B38C7781B5390CF0063912C /* 首页 */,
 				5B38C7731B5390CF0063912C /* 目标 */,
 				5B38C7621B5390CF0063912C /* 个人中心 */,
@@ -1164,6 +1186,7 @@
 				5B38C7FF1B53C6DB0063912C /* sd.png in Resources */,
 				5B38C7FE1B53C6DB0063912C /* pw.png in Resources */,
 				5B38C7E81B539A490063912C /* Media.xcassets in Resources */,
+				5B9049051B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib in Resources */,
 				5B38C7AA1B53993B0063912C /* Main.storyboard in Resources */,
 				5B38C8001B53C6DB0063912C /* sport.png in Resources */,
 				5B38C7FB1B53C6DB0063912C /* back.png in Resources */,
@@ -1216,6 +1239,7 @@
 				5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */,
 				5B38C7D71B5399B80063912C /* SDWebImageDecoder.m in Sources */,
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,
+				5B9049041B72EF0600A2E1B7 /* BoyeForgetCodeVC.m in Sources */,
 				5BFBBBA71B637CE400BFB44B /* PictureRespModel.m in Sources */,
 				5B38C7DC1B5399B80063912C /* SDWebImagePrefetcher.m in Sources */,
 				5BFBBBA41B637CC700BFB44B /* PictureReqModel.m in Sources */,
@@ -1298,6 +1322,7 @@
 				5B6FE9AD1B6A0786002D32B0 /* DrawProgreView.m in Sources */,
 				5B38C7D51B5399B80063912C /* SDImageCache.m in Sources */,
 				5BD4AACD1B6B6F580041F730 /* UUBar.m in Sources */,
+				5B90490B1B72FD2700A2E1B7 /* ConsumerMKView.m in Sources */,
 				5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */,
 				5BF88BDA1B69C14A003785D0 /* BicyleReqModel.m in Sources */,
 				5BD4AAB71B6B49AD0041F730 /* PeopleGoalManagerVC.m in Sources */,

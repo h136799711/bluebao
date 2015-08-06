@@ -10,6 +10,7 @@
 #import "RegistVC.h"
 #import "MainViewController.h"
 #import "UserInfo.h"
+#import "BoyeForgetCodeVC.h"
 @interface LoginVC ()
 
 @end
@@ -163,53 +164,13 @@
 #pragma mark -- 忘记密码
 - (IBAction)forgetCodeBtnClick:(UIButton *)sender {
   
-    /**
-    
-     + (void)show;
-     + (void)showOnlyStatus:(NSString *)string withDuration:(NSTimeInterval)duration;
-     + (void)showWithMaskType:(SVProgressHUDMaskType)maskType;
-     + (void)showWithStatus:(NSString*)status;
-     + (void)showWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType;
-     
-     + (void)showProgress:(CGFloat)progress;
-     + (void)showProgress:(CGFloat)progress status:(NSString*)status;
-     + (void)showProgress:(CGFloat)progress status:(NSString*)status maskType:(SVProgressHUDMaskType)maskType;
-     
-     + (void)setStatus:(NSString*)string; // change the HUD loading status while it's showing
-     
-     // stops the activity indicator, shows a glyph + status, and dismisses HUD 1s later
-     + (void)showSuccessWithStatus:(NSString*)string;
-     + (void)showErrorWithStatus:(NSString *)string;
-     + (void)showImage:(UIImage*)image status:(NSString*)status; // use 28x28 white pngs
-     
-     + (void)popActivity;
-     + (void)dismiss;
-     + (void)dismissAfterDelay:(NSTimeInterval)delay;
-     
-     + (BOOL)isVisible;
-     SVProgressHUDMaskTypeNone = 1, // allow user interactions while HUD is displayed
-     SVProgressHUDMaskTypeClear, // don't allow
-     SVProgressHUDMaskTypeBlack, // don't allow and dim the UI in the back of the HUD
-     SVProgressHUDMaskTypeGradient //
-    
-    ***/
-    
-//    [SVProgressHUD showSuccessWithStatus:@"忘记"];
-//        [SVProgressHUD show];
-//    [SVProgressHUD showOnlyStatus:@"什么" withDuration:1.2];
-//    [SVProgressHUD showWithMaskType:4];
-//    [SVProgressHUD showProgress:3];
-//    [SVProgressHUD showProgress:2 status:@"why"];
-//    [SVProgressHUD showProgress:2 status:@"why" maskType:SVProgressHUDMaskTypeBlack];
-//    [SVProgressHUD showSuccessWithStatus:@"成功"];
-//    [SVProgressHUD showErrorWithStatus:@"失败"];
-//    [SVProgressHUD showImage:[UIImage imageNamed:@"sd.png"] status:@"速度"];
-   
-    
-//    [SVProgressHUD showWithStatus:@"why"];
-//    [SVProgressHUD showWithStatus:@"why" maskType:SVProgressHUDMaskTypeBlack];
+    BoyeForgetCodeVC * forgetCode = [[BoyeForgetCodeVC alloc] init];
+    [self.navigationController pushViewController:forgetCode animated:YES];
 
-    [SVProgressHUD showOnlyStatus:@"忘记密码" withDuration:0.5];
+    
+//    [SVProgressHUD showOnlyStatus:@"忘记密码" withDuration:0.5];
+    
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

@@ -1,19 +1,21 @@
 {
   "images" : [
     {
-      "orientation" : "portrait",
-      "idiom" : "iphone",
       "extent" : "full-screen",
-      "minimum-system-version" : "8.0",
+      "idiom" : "iphone",
       "subtype" : "736h",
+      "filename" : "app的欢迎图片1@12422208.png",
+      "minimum-system-version" : "8.0",
+      "orientation" : "portrait",
       "scale" : "3x"
     },
     {
-      "orientation" : "portrait",
-      "idiom" : "iphone",
       "extent" : "full-screen",
-      "minimum-system-version" : "8.0",
+      "idiom" : "iphone",
       "subtype" : "667h",
+      "filename" : "app的欢迎图片1@7501334.png",
+      "minimum-system-version" : "8.0",
+      "orientation" : "portrait",
       "scale" : "2x"
     },
     {
@@ -21,32 +23,37 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "app的欢迎图片1@640960.png",
       "scale" : "2x"
     },
     {
-      "orientation" : "portrait",
-      "idiom" : "iphone",
       "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
+      "idiom" : "iphone",
       "subtype" : "retina4",
+      "filename" : "app的欢迎图片1@6401136.png",
+      "minimum-system-version" : "7.0",
+      "orientation" : "portrait",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
+      "filename" : "app的欢迎图片1@320480.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
+      "filename" : "app的欢迎图片1@640960-1.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
+      "filename" : "app的欢迎图片1@6401136-1.png",
       "subtype" : "retina4",
       "scale" : "2x"
     }

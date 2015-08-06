@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BoyeForgetCodeVC">
+            <connections>
+                <outlet property="forgetNavItem" destination="vko-Qe-C9U" id="RUI-kl-ara"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zl-wF-Z3b">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="W2M-Qk-UFc"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="忘记密码" id="vko-Qe-C9U"/>
+                    </items>
+                </navigationBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邮       箱" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcI-du-KhJ">
+                    <rect key="frame" x="40" y="144" width="70" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="EkQ-85-dX4"/>
+                        <constraint firstAttribute="height" constant="30" id="fgf-mZ-f83"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="xm3-6G-npR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入邮箱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Giz-dE-JQL">
+                    <rect key="frame" x="120" y="144" width="440" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="SHB-XL-Kk7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新 密  码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vat-HR-Snl">
+                    <rect key="frame" x="40" y="204" width="70" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kog-qH-nSn">
+                    <rect key="frame" x="120" y="204" width="440" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="5Zl-wF-Z3b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1io-Zg-Frt"/>
+                <constraint firstItem="Giz-dE-JQL" firstAttribute="centerY" secondItem="TcI-du-KhJ" secondAttribute="centerY" id="6hT-Qj-kKR"/>
+                <constraint firstItem="TcI-du-KhJ" firstAttribute="centerX" secondItem="vat-HR-Snl" secondAttribute="centerX" id="DvV-te-1E2"/>
+                <constraint firstItem="kog-qH-nSn" firstAttribute="height" secondItem="Giz-dE-JQL" secondAttribute="height" id="Dza-mm-04t"/>
+                <constraint firstItem="TcI-du-KhJ" firstAttribute="height" secondItem="vat-HR-Snl" secondAttribute="height" id="G5c-U6-suL"/>
+                <constraint firstItem="vat-HR-Snl" firstAttribute="top" secondItem="TcI-du-KhJ" secondAttribute="bottom" constant="30" id="GjY-uI-mSQ"/>
+                <constraint firstItem="5Zl-wF-Z3b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GzH-yA-qXh"/>
+                <constraint firstItem="TcI-du-KhJ" firstAttribute="top" secondItem="5Zl-wF-Z3b" secondAttribute="bottom" constant="80" id="THz-2B-PwX"/>
+                <constraint firstItem="kog-qH-nSn" firstAttribute="centerX" secondItem="Giz-dE-JQL" secondAttribute="centerX" id="XrO-37-gay"/>
+                <constraint firstItem="Giz-dE-JQL" firstAttribute="leading" secondItem="TcI-du-KhJ" secondAttribute="trailing" constant="10" id="YqR-vD-7cO"/>
+                <constraint firstItem="kog-qH-nSn" firstAttribute="centerY" secondItem="vat-HR-Snl" secondAttribute="centerY" id="bI2-gg-Hdw"/>
+                <constraint firstItem="kog-qH-nSn" firstAttribute="width" secondItem="Giz-dE-JQL" secondAttribute="width" id="d3i-hY-ZOK"/>
+                <constraint firstItem="TcI-du-KhJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="gpj-L2-hel"/>
+                <constraint firstAttribute="trailing" secondItem="5Zl-wF-Z3b" secondAttribute="trailing" id="lkw-ie-zDx"/>
+                <constraint firstItem="TcI-du-KhJ" firstAttribute="width" secondItem="vat-HR-Snl" secondAttribute="width" id="u8X-bf-vat"/>
+                <constraint firstAttribute="trailing" secondItem="Giz-dE-JQL" secondAttribute="trailing" constant="40" id="zPA-GN-AY0"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
