@@ -410,12 +410,12 @@
     
     formatter.dateFormat = @"yyyy年MM月";
     
-    NSDate * date =  [formatter dateFromString:_lblDate.text];
+//    NSDate * date =  [formatter dateFromString:_lblDate.text];
     
     //TODO:请求
-    NSTimeInterval  interval = [date timeIntervalSince1970];
+//    NSTimeInterval  interval = [date timeIntervalSince1970];
     
-    NSNumber * timestamp = [NSNumber numberWithDouble:interval];
+//    NSNumber * timestamp = [NSNumber numberWithDouble:interval];
     
 //    NSLog(@"%@",timestamp);
     

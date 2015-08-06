@@ -28,6 +28,10 @@
     
     NSArray         *_upDownImagName;
     BOOL            _isAge;  //当前选择的是年龄吗
+    /**
+     *  头像ID
+     */
+    NSInteger _avatar_id;
 }
 
 @end
@@ -43,12 +47,13 @@
 //}
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     self.title = @"个人资料";
     self.view.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
     self.navigationController.navigationBarHidden = NO;
-
+    _avatar_id = 0;
     _currentRow = 0;
     sorArray = @[@"身高",@"当前体重",@"目标体重",@"BMI"];
     _upDownImagName = @[@"down.png",@"up.png"];
@@ -321,15 +326,16 @@
     updataModel.target_weight = [self getString:self.userInfo.target_weight];
     updataModel.birthday = self.userInfo.birthday;
     updataModel.uid = self.userInfo.uid;
-    
+    updataModel.avatar_id  = _avatar_id;
     
     [BoyeDefaultManager requestUserInfoUpdata:updataModel complete:^(BOOL succed) {
         
         if (succed) {
             
             [MainViewController sharedSliderController].userInfo = self.userInfo;
-            
+            NSLog(@"更新成功!");
         }
+        
     }];
     
 }
@@ -431,7 +437,7 @@
         picker.delegate = self;
         picker.allowsEditing = YES;//设置可编辑
         picker.sourceType = sourceType;
-        ;//进入照相界面
+        //进入照相界面
         
         [self presentViewController:picker animated:YES completion:nil];
         
@@ -482,9 +488,13 @@
         picModel.type = @"avatar";
         picModel.filePath = fileImage;
         
-        [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
+        [BoyePictureUploadManager requestPictureUpload:picModel :^(NSDictionary *data){
             
-        }];
+            NSLog(@" data %@",data);
+            
+            
+            
+        } :nil];
 
   
     }

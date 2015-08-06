@@ -23,6 +23,10 @@
 @property (nonatomic,copy)  NSString       * height;
 @property (nonatomic,copy)  NSString       * target_weight;
 @property (nonatomic,copy)  NSString       *  age;
+/**
+ *  头像图片——ID
+ */
+@property (nonatomic,assign) NSInteger      avatar_id;
 
 
 

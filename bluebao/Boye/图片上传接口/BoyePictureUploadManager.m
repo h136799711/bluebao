@@ -27,17 +27,9 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
     }];
 }
 
-//头像上传
-+(void)requestUploadUserHead:(PictureReqModel *)picModel complete:(void(^)(BOOL successed)) complete{
-    
-    
-    
-  }
-
-
 
 //图片上传
-+(void)requestPictureUpload:(PictureReqModel *) picModel complete:(void (^)(BOOL successed))complete{
++(void)requestPictureUpload:(PictureReqModel *)picModel :(void(^)(NSDictionary * ))success :(void(^)(NSString *))failure{
 //        
 //
     [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSucced) {
@@ -51,7 +43,7 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
             NSDictionary * params =  @{@"uid":uid,@"type":picModel.type};
             NSString * urlString = [NSString stringWithFormat:@"File/upload?access_token=%@",token];
             
-            [SVProgressHUD showWithStatus:@"上传头像..." maskType:SVProgressHUDMaskTypeClear];
+            [SVProgressHUD showWithStatus:@"上传中..." maskType:SVProgressHUDMaskTypeClear];
             [client   upload:urlString
                   withParams:params
                             :picModel.filePath
@@ -60,7 +52,7 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
                                 NSDictionary * dict = nil;
                                 
                                 if(![responseObject isKindOfClass:[NSDictionary class]]){
-                                    
+                                    [SVProgressHUD showErrorWithStatus:@"数据无法识别,请重试!"];
                                     NSLog(@" !NSDictionary ");
                                     
                                     return;
@@ -69,31 +61,34 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
                                 dict = (NSDictionary *)responseObject;
 
                                 if (dict == nil) {
-                                    
-                                    NSLog(@"dic parse failed \r\n");
+                                    [SVProgressHUD showErrorWithStatus:@"数据为空,请重试!"];
                                     return ;
                                 }
                                 
-                              //  NSLog(@"dict %@ ",dict);
                                 
                                 NSNumber * code = [dict objectForKey:@"code"];
                                 
                                 if ([code intValue] == 0) {
                                     
-                                    complete (YES);
-                                    [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
+                                    success([dict objectForKey:@"data"]);
+                                    [SVProgressHUD showSuccessWithStatus:@"上传成功"];
                                 }else{
                                     
                                     NSString * error = [dict valueForKey:@"data"];
-                                    [SVProgressHUD showErrorWithStatus:error];
-                                    NSLog(@"%@",error);
+                                    if(failure != nil){
+                                        failure(error.description);
+                                    }else{
+                                        [SVProgressHUD showErrorWithStatus:error withDuration:3];
+                                    }
                                 }
                                 
                                 
                             } :^(AFHTTPRequestOperation *operation, NSError *error) {
-                                
-                                NSLog(@" error %@",error);
-                                [SVProgressHUD showErrorWithStatus:@"头像上传失败"];
+                                if(failure != nil){
+                                    failure(error.description);
+                                }else{
+                                    [SVProgressHUD showErrorWithStatus:@"头像上传失败" withDuration:3];
+                                }
                             }];
         }
         

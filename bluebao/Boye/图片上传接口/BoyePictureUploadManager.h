@@ -13,10 +13,6 @@
 //头像请求
 +(void)requestUserHeadDown:(PictureReqModel *) picModel complete:(void(^)(UIImage * headImage))complete;
 
-//头像上传
-+(void)requestUploadUserHead:(PictureReqModel *)picModel complete:(void(^)(BOOL successed)) complete;
-
-
 //图片上传
-+(void)requestPictureUpload:(PictureReqModel *)picModel complete:(void (^)(BOOL successed))complete;
++(void)requestPictureUpload:(PictureReqModel *)picModel :(void(^)(NSDictionary * ))success :(void(^)(NSString *))failure;
 @end
