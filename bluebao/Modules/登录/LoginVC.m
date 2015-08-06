@@ -164,9 +164,9 @@
 #pragma mark -- 忘记密码
 - (IBAction)forgetCodeBtnClick:(UIButton *)sender {
   
-    BoyeForgetCodeVC * forgetCode = [[BoyeForgetCodeVC alloc] init];
-    [self.navigationController pushViewController:forgetCode animated:YES];
-
+//    BoyeForgetCodeVC * forgetCode = [[BoyeForgetCodeVC alloc] init];
+//    [self.navigationController pushViewController:forgetCode animated:YES];
+//
     
 //    [SVProgressHUD showOnlyStatus:@"忘记密码" withDuration:0.5];
     
