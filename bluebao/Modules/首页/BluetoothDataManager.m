@@ -10,6 +10,7 @@
 
 @interface BluetoothDataManager (){
     
+    int count ;
 }
 
 @end
@@ -27,7 +28,7 @@
     
     self =  [super init];
     if (self) {
-        
+        count = 0;
         //TODO:.....
         if([[dataString lowercaseString] isEqualToString:@"da"]){
             NSLog(@"外围设备关闭了!");
@@ -47,12 +48,10 @@
         
         if([cmdStr isEqualToString:@"5a0ee5"] && dataString.length == 32){
             
-           
             
             cmdStr = [[dataString substringWithRange:NSMakeRange(6, 4)] lowercaseString];
             
             //   NSLog(@"时间  %@",cmdStr );
-            
             self.bicyleModel.cost_time = [self getTenHexadecimalFromSixteen:cmdStr] ;
             
             cmdStr = [[dataString substringWithRange:NSMakeRange(10, 4)] lowercaseString];
@@ -103,11 +102,14 @@
 
 -(NSInteger)  getTenHexadecimalFromSixteen:(NSString *)hexstring {
   
-
+    NSArray * a = @[@"时间",@"速度",@"距离",@"热量",@"总距离",@"心率",@"效验"];
+    
+    count =    count % a.count;
+    
     UInt64 num =  strtoul([hexstring UTF8String], 0, 16);
     
-    NSLog(@"  ----蓝牙数据- %llu-",num);
-
+    NSLog(@"  ----蓝牙数据 %@- %llu-",a[count],num);
+    count ++;
     return  (NSInteger)num;
     
 

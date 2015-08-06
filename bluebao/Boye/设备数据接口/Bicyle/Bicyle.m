@@ -19,7 +19,6 @@
   
         _bicyDeata_id = [[dictionary valueForKey:@"id"] integerValue];  //数据id
         _uuid = [dictionary valueForKey:@"uuid"];
-
         _calorie = [[dictionary valueForKey:@"calorie"] integerValue];
         _cost_time =    [[dictionary valueForKey:@"cost_time"] integerValue];
         _distance =    [[dictionary valueForKey:@"distance"] integerValue];
@@ -32,6 +31,13 @@
     return self;
 }
 
+-(void)setUuid:(NSString *)uuid{
+    
+    if (uuid == nil) {
+        _uuid = @"";
+    }
+    _uuid = uuid;
+}
 @end
 
 //-(NSInteger)getStringToINteger:(NSString *)integerString{

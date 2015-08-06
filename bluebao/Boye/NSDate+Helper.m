@@ -102,8 +102,11 @@
 -(BOOL)isOutSetDateTime:(NSDate *)newDate{
     
     if ([self compare:newDate] == NSOrderedAscending) {
+        NSLog(@"11111    no");
+
         return NO;
     }
+    NSLog(@"11111  **********  yes");
     return YES;
 }
 

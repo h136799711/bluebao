@@ -24,16 +24,14 @@
     NSArray                 *_imageName;
     NSArray                 *_sortArray;
     
-    BoyeConnectView         * _connectView; //连接View
     NSInteger        _upTimeInterval; //上传时间间隔
-
 }
 
-@property (nonatomic,strong) BoyeBluetooth              * boyeBluetooth;
-@property (nonatomic,strong) BluetoothDataManager       *currentBluetothData;
-@property (nonatomic,strong) Bicyle                     * bicylelb;
-@property (nonatomic,strong) NSDate                         * lastUpLoadDateTime; //下一个上传时间
-
+@property (nonatomic,strong) BoyeBluetooth              * boyeBluetooth;            //蓝牙
+@property (nonatomic,strong) BluetoothDataManager       *currentBluetothData;       // 当前蓝牙数据解析类
+@property (nonatomic,strong) Bicyle                     * bicylelb;                 // 蓝堡Bicycle数据类
+@property (nonatomic,strong) NSDate                     * nextUpLoadDateTime;       //下一个上传时间
+@property (nonatomic,strong) BoyeConnectView            * connectView;              //连接跑步机
 @end
 
 @implementation HeadPageVC
@@ -45,16 +43,17 @@
     return _bicylelb;
 }
 -(NSDate *)lastUpLoadDateTime{
-    if (_lastUpLoadDateTime == nil) {
-        _lastUpLoadDateTime = [[NSDate date] dateByAddingTimeInterval:_upTimeInterval];
+    if (_nextUpLoadDateTime == nil) {
+        _nextUpLoadDateTime = [NSDate date];
+        _nextUpLoadDateTime = [self nextUploadDataTime];
     }
-    return _lastUpLoadDateTime;
+    return _nextUpLoadDateTime;
 }
 -(BluetoothDataManager *)currentBluetothData{
     
     if (_currentBluetothData == nil) {
         _currentBluetothData = [[BluetoothDataManager alloc] init];
-        
+
     }
     
     return _currentBluetothData;
@@ -233,7 +232,7 @@
 
     
 
-#pragma mark -- 日期 改变  --
+#pragma mark -- 切换日期，查看历史记录   --
 
 -(void)dateChooseView:(DateChooseView *)dateChooseView datestr:(NSString *)datestr{
     
@@ -244,15 +243,20 @@
         NSLog(@"today");
         
      //TODO.....
+        //设备连接，更新UI数据上传
+        if (!self.connectView.isConnect) {
+            //是今日，且设备未连接，则显示今日
+            [self getBicyleData];
+        }
         
-        
-//        [self upLoadBicyleData];
+    //非今日，查看历史数据
     }else{
-        
         NSLog(@"NO today");
         [self getBicyleData];
-        
     }
+    
+    //刷新
+    [_tableView reloadData];
 }
 
 #pragma mark --- 身体指标 ---
@@ -327,15 +331,13 @@
      [BoyeBicyleManager  requestBicyleData:reqModel :^(NSDictionary *successdDic) {
         
         if (successdDic) {
-            
+            //数据请求成功
             self.bicylelb = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
             
+            //任务完成度
             _drawProgreView.goalNum = self.bicylelb.total_distance;
             _drawProgreView.finishNum = self.bicylelb.distance;
-           
-            [_tableView reloadData];
-            
-            
+
         }
     } :^(NSString *error) {
 
@@ -359,14 +361,17 @@
     
 //    reqModel.uuid = @"OTO458-1082"; //LR-866
     reqModel.uuid = @"OTO458-1082";
-    reqModel.bicyleModel.calorie = 10;
-    reqModel.bicyleModel.cost_time = 10;
-    reqModel.bicyleModel.distance = 10;
-    reqModel.bicyleModel.heart_rate = 10;
-    reqModel.bicyleModel.speed = 10;
-    reqModel.bicyleModel.total_distance = 10;
-    reqModel.bicyleModel.upload_time = 1438617600;
-    reqModel.bicyleModel.target_calorie = 10;
+    
+//    reqModel.bicyleModel.calorie = 10;
+//    reqModel.bicyleModel.cost_time = 10;
+//    reqModel.bicyleModel.distance = 10;
+//    reqModel.bicyleModel.heart_rate = 10;
+//    reqModel.bicyleModel.speed = 10;
+//    reqModel.bicyleModel.total_distance = 10;
+//    reqModel.bicyleModel.upload_time = 1438617600;
+//    reqModel.bicyleModel.target_calorie = 10;
+    
+    reqModel.bicyleModel = _currentBluetothData.bicyleModel;
     
     [BoyeBicyleManager requestBicyleDataUpload:reqModel
                                           complete:^(BOOL bicyleSuccessed) {
@@ -387,27 +392,35 @@
     
     NSLog(@"首页委托蓝牙状态变更！%u",stateEvent);
     
+    static  BOOL  isconnect = NO;
     switch (stateEvent) {
         case STATE_CHANGE:
             
             //            [self bluetoothUpdateState];
+            isconnect = NO;
             break;
         case STATE_CONNECTED_DEVICE:
             NSLog(@"连接上一台设备!");
             //            [self didConnectDevice];
+            isconnect = YES;
             break;
         case STATE_DISCONNECT_DEVICE:
             NSLog(@"断开上一台设备!");
             //            [self disConnectDevice];
+            isconnect = NO;
             break;
         case STATE_DISCOVERED_SERVICE:
             //            [self didDiscoverServices:[info objectForKey:@"error"]];
+            isconnect = NO;
             break;
         case STATE_DISCOVERED_CHARACTERISTICS:
             //            [self didDiscoverCharacteristicsForService:[info objectForKey:@"data"] error:[info objectForKey:@"error"]];
+            isconnect = NO;
             break;
         case STATE_UPDATE_VALUE:
         {
+            isconnect = YES;
+            
             CBCharacteristic * characteristic = (CBCharacteristic *)[info objectForKey:@"data"];
             
             NSString * dataValue = [self dataToString:characteristic.value];
@@ -418,17 +431,27 @@
             break;
     }
     
+    self.connectView.isConnect = isconnect;
+    
 }
 
+#pragma mark --获取并解析蓝牙数据 --
 -(void)updateValue:(NSString *)dataString{
 
     NSLog(@" datastring: %@",dataString);
-    
+    //析蓝牙数据
     BluetoothDataManager * bluetoothData = [[BluetoothDataManager alloc] initWithBlueToothData:dataString];
     _currentBluetothData = bluetoothData;
 
     //刷新首页
     if (self.dateChooseView.isToday) {
+        NSLog(@"  8888888888888888888888888 ");
+        
+        if ([_nextUpLoadDateTime isOutSetDateTime:[NSDate date]]) {
+            
+            [self upLoadBicyleData];
+        }
+        
         [_tableView reloadData];
     }
 }
@@ -446,6 +469,11 @@
     
 }
 
+#pragma mark -- 下次上传时间
+-(NSDate *) nextUploadDataTime{
+    
+    return [_nextUpLoadDateTime dateByAddingTimeInterval:_upTimeInterval];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

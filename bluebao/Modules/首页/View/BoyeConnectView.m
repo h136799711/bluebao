@@ -13,8 +13,6 @@
     NSArray   * connArr;
 }
 
-@property (nonatomic,strong) UILabel    * connectStateLabel;
-@property (nonatomic,assign) BOOL       isConnect;
 
 @end
 
@@ -64,45 +62,39 @@
     
     
     //如果已经连接
-    if ([self.connectStateLabel.text isEqualToString:connArr[1]]) {
+      
+    if (self.isConnect) {
+    
+        NSLog(@"连接");
         [SVProgressHUD showOnlyStatus:connArr[1] withDuration:0.5];
-        return;
+//        return;
     }
     
-//    self.isConnect = !self.isConnect;
-//    connBtn.selected = !connBtn.selected;
-//    
-//    //已连接
-//    if (self.isConnect) {
-//        
-//
-//
-//        self.connectStateLabel.text = connArr[connBtn.selected];
-//
-//    }else{
-//        [SVProgressHUD showOnlyStatus:connArr[0] withDuration:0.5];
-//    }
-//    
     
-    NSLog(@"连接");
-    
-
     LNowDevice * device = [BoyeBluetooth sharedBoyeBluetooth].connectedDevice;
     if (device == nil) {
         NSLog(@"device is nil");
+
+        [SVProgressHUD showOnlyStatus:@"没有可连接设备" withDuration:0.5];
+
     }else{
         
-        
         [[MainViewController sharedSliderController].leftView jumpToequipmentManager];
-
     }
-    
 }
 
 
 -(void)setDelegate:(id<BoyeConnectViewDelegate>)delegate{
     
     _delegate = delegate;
+}
+
+-(void)setIsConnect:(BOOL)isConnect{
+    
+    _isConnect = isConnect;
+    
+    self.connectStateLabel.text = connArr[_isConnect];
+  
 }
 
 -(void)initNotification{
