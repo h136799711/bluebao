@@ -360,7 +360,7 @@ static const int MAX_SCAN_SECONDS = 6;
     [self initView];
     [self initLisenter];
     
-    NSDateFormatter * formatter = [NSDate defaultDateFormatter ];
+//    NSDateFormatter * formatter = [NSDate defaultDateFormatter ];
     
     [self scanDevice];
     
