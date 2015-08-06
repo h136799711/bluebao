@@ -18,6 +18,8 @@
 
 @interface BoyeConnectView : UIView
 
+@property (nonatomic,strong) UILabel    * connectStateLabel;
+@property (nonatomic,assign) BOOL       isConnect;
 
 @property (nonatomic,assign) id <BoyeConnectViewDelegate>delegate;
 

@@ -89,7 +89,7 @@
     _finishlabel = [[UILabel alloc] init];
     _finishlabel.bounds  = CGRectMake(0, 0, self.width, 20);
     _finishlabel.center = CGPointMake(self.bounds.size.width/2.0, 5 + _finishlabel.height/2.0 +6);
-    _finishlabel.text = @"已完成";
+    _finishlabel.text = @"距离目标还有";
 //    finishlabel.backgroundColor = [UIColor blueColor];
     _finishlabel.tag = 1;
     _finishlabel.textAlignment = NSTextAlignmentCenter;
@@ -101,6 +101,7 @@
     _efficiLabel.bounds =  CGRectMake(0, 0, _finishlabel.width, pointTow.y - _finishlabel.bottom - 10);
     _efficiLabel.center = CGPointMake(_finishlabel.center.x, _finishlabel.bottom+ _efficiLabel.height/2.0 +5);
     _efficiLabel.text = @"0%";
+    _efficiLabel.textColor = [UIColor colorWithHexString:@"#28cafb"];
     _efficiLabel.tag = 2;
 //    efficiLabel.backgroundColor = [UIColor redColor];
     _efficiLabel.font = FONT(20);
@@ -121,7 +122,8 @@
     _goalValue.bounds = CGRectMake(0, 0, 40, 20);
     _goalValue.tag = 3;
     _goalValue.center = CGPointMake(goal.right + _goalValue.width/2.0 + 3, goal.center.y);
-    _goalValue.text = @"100";
+    _goalValue.text = @"0";
+    _goalValue.textColor = [UIColor colorWithHexString:@"#f78314"];
     _goalValue.font = FONT(16);
     _goalValue.textAlignment = NSTextAlignmentCenter;
     [self addSubview: _goalValue];

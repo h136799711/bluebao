@@ -18,4 +18,11 @@
     return _bicyleModel;
 }
 
+-(void)setUuid:(NSString *)uuid{
+    
+    if (uuid == nil) {
+        _uuid = @"";
+    }
+    _uuid = uuid;
+}
 @end

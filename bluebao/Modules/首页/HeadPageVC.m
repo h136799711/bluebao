@@ -20,32 +20,51 @@
     UITableView             * _tableView;
     NSArray                 * _labelarray;
     UICollectionView        *headCollectionView;
-    NSInteger               itemWidth;
+    NSInteger               itemWidth;   //宽度
     NSArray                 *_imageName;
     NSArray                 *_sortArray;
     
-    
-    
-    BoyeConnectView         * _connectView;
-    
+    NSInteger        _upTimeInterval; //上传时间间隔
 }
-@property (nonatomic,strong) BoyeBluetooth                  * boyeBluetooth;
 
-@property (nonatomic,strong) Bicyle         * bicylelb;
-
+@property (nonatomic,strong) BoyeBluetooth              * boyeBluetooth;            //蓝牙
+@property (nonatomic,strong) BluetoothDataManager       *currentBluetothData;       // 当前蓝牙数据解析类
+@property (nonatomic,strong) Bicyle                     * bicylelb;                 // 蓝堡Bicycle数据类
+@property (nonatomic,strong) NSDate                     * nextUpLoadDateTime;       //下一个上传时间
+@property (nonatomic,strong) BoyeConnectView            * connectView;              //连接跑步机
 @end
 
 @implementation HeadPageVC
+-(Bicyle *)bicylelb{
+    
+    if ( _bicylelb == nil ) {
+        _bicylelb = [[Bicyle alloc] init];
+    }
+    return _bicylelb;
+}
+-(NSDate *)lastUpLoadDateTime{
+    if (_nextUpLoadDateTime == nil) {
+        _nextUpLoadDateTime = [NSDate date];
+        _nextUpLoadDateTime = [self nextUploadDataTime];
+    }
+    return _nextUpLoadDateTime;
+}
+-(BluetoothDataManager *)currentBluetothData{
+    
+    if (_currentBluetothData == nil) {
+        _currentBluetothData = [[BluetoothDataManager alloc] init];
 
-
+    }
+    
+    return _currentBluetothData;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.title =@"蓝堡踏步机";
-
-    self.bicylelb = [[Bicyle alloc] init];
     
+    _upTimeInterval = 10;
     
     _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗",@"路程"];
     _imageName = @[@"xinlv.png",@"sd.png",@"time.png",@"sport.png",@"road.png"];
@@ -57,20 +76,29 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:YES];
-    [_tableView reloadData];
-    [headCollectionView reloadData];
+     //蓝牙
+    self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
+    self.boyeBluetooth.delegate = self;
+    
+    [self doViewAppearBefore];
+  
+}
+
+-(void) doViewAppearBefore{
+    
+    
     self.userInfo = [MainViewController sharedSliderController].userInfo;
     
-    [self getBicyleData];
-//    NSLog(@" userInfo\r weight  %ld  \r height :%ld \r age: %ld ",self.userInfo.weight,self.userInfo.height,self.userInfo.age);
-}
--(Bicyle *)bicylelb{
+    [headCollectionView reloadData];
     
-    if ( _bicylelb == nil ) {
-        _bicylelb = [[Bicyle alloc] init];
-    }
-    return _bicylelb;
+    
+    NSLog(@" ---- current %@  ",self.boyeBluetooth.connectedDevice.uuid);
+    
+    
+    [self getBicyleData];
+
 }
+
 #pragma mark -- 初始化 --
 
 -(void)_initViews{
@@ -118,7 +146,18 @@
             headCell.signLabelSort.text = _labelarray[indexPath.row];
         }
 
-        headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
+        
+        //判断是否是今天
+        if (self.dateChooseView.isToday) {
+            //TODO.....
+            
+            headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_currentBluetothData.bicyleModel];
+
+        }else{
+            
+            headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
+  
+        }
         
         return headCell;
 
@@ -179,7 +218,7 @@
     [self.headView addSubview:_connectView];
     
     
-#pragma mark -- drawProgreView ---
+    #pragma mark -- drawProgreView ---
     
    self.drawProgreView = [[DrawProgreView alloc] init];
     CGFloat   width =  rect.size.height - _connectView.bottom-20;
@@ -191,36 +230,33 @@
     return self.headView ;
 }
 
-    //TODO:dong......
-
     
 
-#pragma mark -- 日期 改变  --
+#pragma mark -- 切换日期，查看历史记录   --
 
 -(void)dateChooseView:(DateChooseView *)dateChooseView datestr:(NSString *)datestr{
     
     
 //    NSLog(@"date  %@",datestr);
-    
-    _drawProgreView.goalNum = 500;
-    _drawProgreView.finishNum = 400;
   
- 
-   BOOL isToday = [dateChooseView.newbDate  isToday];
-    
-  
-    if (isToday) {
-        NSLog(@"YES");
+    if (self.dateChooseView.isToday) {
+        NSLog(@"today");
         
+     //TODO.....
+        //设备连接，更新UI数据上传
+        if (!self.connectView.isConnect) {
+            //是今日，且设备未连接，则显示今日
+            [self getBicyleData];
+        }
         
-        
-        
-        [self upLoadBicyleData];
+    //非今日，查看历史数据
     }else{
-        NSLog(@"NO");
-       
+        NSLog(@"NO today");
         [self getBicyleData];
     }
+    
+    //刷新
+    [_tableView reloadData];
 }
 
 #pragma mark --- 身体指标 ---
@@ -283,7 +319,7 @@
     return cell;
 }
 
-#pragma mark  -- 获得单车数据请求 --
+#pragma mark  -- 单车数据请求 HTTP --
 
 -(void)getBicyleData{
     
@@ -292,14 +328,18 @@
     reqModel.uuid = @"OTO458-1082"; //LR-866
     reqModel.time = [[_dateChooseView.newbDate  dateDayTimeStamp] integerValue];
 
- 
-    [BoyeBicyleManager  requestBicyleData:reqModel :^(NSDictionary *successdDic) {
+     [BoyeBicyleManager  requestBicyleData:reqModel :^(NSDictionary *successdDic) {
         
-       self.bicylelb = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
-        
-        [_tableView reloadData];
+        if (successdDic) {
+            //数据请求成功
+            self.bicylelb = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
+            
+            //任务完成度
+            _drawProgreView.goalNum = self.bicylelb.total_distance;
+            _drawProgreView.finishNum = self.bicylelb.distance;
+
+        }
     } :^(NSString *error) {
-//        NSLog(@"失败");
 
     }];
 }
@@ -311,23 +351,27 @@
     [_tableView reloadData];
 }
 
+//数据上传
 -(void) upLoadBicyleData{
    
     //
     BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
-    NSLog(@" 数据上传 ----------- ");
+
     reqModel.uid = self.userInfo.uid;
     
 //    reqModel.uuid = @"OTO458-1082"; //LR-866
     reqModel.uuid = @"OTO458-1082";
-    reqModel.bicyleModel.calorie = 10;
-    reqModel.bicyleModel.cost_time = 10;
-    reqModel.bicyleModel.distance = 10;
-    reqModel.bicyleModel.heart_rate = 10;
-    reqModel.bicyleModel.speed = 10;
-    reqModel.bicyleModel.total_distance = 10;
-    reqModel.bicyleModel.upload_time = 1438617600;
-    reqModel.bicyleModel.target_calorie = 10;
+    
+//    reqModel.bicyleModel.calorie = 10;
+//    reqModel.bicyleModel.cost_time = 10;
+//    reqModel.bicyleModel.distance = 10;
+//    reqModel.bicyleModel.heart_rate = 10;
+//    reqModel.bicyleModel.speed = 10;
+//    reqModel.bicyleModel.total_distance = 10;
+//    reqModel.bicyleModel.upload_time = 1438617600;
+//    reqModel.bicyleModel.target_calorie = 10;
+    
+    reqModel.bicyleModel = _currentBluetothData.bicyleModel;
     
     [BoyeBicyleManager requestBicyleDataUpload:reqModel
                                           complete:^(BOOL bicyleSuccessed) {
@@ -346,30 +390,37 @@
 -(void)bluetoothStateChange:(id)sender :(enum BOYE_BLUETOOTH_STATE_EVENT)stateEvent :(id)parms{
     NSDictionary * info = (NSDictionary *)parms;
     
-    NSLog(@"委托蓝牙状态变更！%u",stateEvent);
+    NSLog(@"首页委托蓝牙状态变更！%u",stateEvent);
     
+    static  BOOL  isconnect = NO;
     switch (stateEvent) {
         case STATE_CHANGE:
             
-            //            [];
             //            [self bluetoothUpdateState];
+            isconnect = NO;
             break;
         case STATE_CONNECTED_DEVICE:
             NSLog(@"连接上一台设备!");
             //            [self didConnectDevice];
+            isconnect = YES;
             break;
         case STATE_DISCONNECT_DEVICE:
             NSLog(@"断开上一台设备!");
             //            [self disConnectDevice];
+            isconnect = NO;
             break;
         case STATE_DISCOVERED_SERVICE:
             //            [self didDiscoverServices:[info objectForKey:@"error"]];
+            isconnect = NO;
             break;
         case STATE_DISCOVERED_CHARACTERISTICS:
             //            [self didDiscoverCharacteristicsForService:[info objectForKey:@"data"] error:[info objectForKey:@"error"]];
+            isconnect = NO;
             break;
         case STATE_UPDATE_VALUE:
         {
+            isconnect = YES;
+            
             CBCharacteristic * characteristic = (CBCharacteristic *)[info objectForKey:@"data"];
             
             NSString * dataValue = [self dataToString:characteristic.value];
@@ -380,14 +431,29 @@
             break;
     }
     
+    self.connectView.isConnect = isconnect;
+    
 }
 
+#pragma mark --获取并解析蓝牙数据 --
 -(void)updateValue:(NSString *)dataString{
+
     NSLog(@" datastring: %@",dataString);
-    
-    
-    //    BOOL isOK = [];
-    
+    //析蓝牙数据
+    BluetoothDataManager * bluetoothData = [[BluetoothDataManager alloc] initWithBlueToothData:dataString];
+    _currentBluetothData = bluetoothData;
+
+    //刷新首页
+    if (self.dateChooseView.isToday) {
+        NSLog(@"  8888888888888888888888888 ");
+        
+        if ([_nextUpLoadDateTime isOutSetDateTime:[NSDate date]]) {
+            
+            [self upLoadBicyleData];
+        }
+        
+        [_tableView reloadData];
+    }
 }
 
 - (NSString * )dataToString:(NSData *)value{
@@ -403,6 +469,11 @@
     
 }
 
+#pragma mark -- 下次上传时间
+-(NSDate *) nextUploadDataTime{
+    
+    return [_nextUpLoadDateTime dateByAddingTimeInterval:_upTimeInterval];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

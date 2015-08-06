@@ -25,7 +25,7 @@
 #import "Bicyle.h"
 #import "GoalData.h"
 #import "BoyePeople.h"
-
+#import "BluetoothDataManager.h"
 
 #import "BoyeSlideBaseVC.h" //侧滑基类，首页，目标个人中心基类
 #import "BoyeBluetoothBaseVC.h" //蓝牙基类
