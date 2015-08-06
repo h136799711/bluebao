@@ -394,17 +394,19 @@
         picModel.type = @"avatar";
         picModel.filePath = fileImage;
         
-        [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
+        [BoyePictureUploadManager requestPictureUpload:picModel :^(NSDictionary *data){
+            NSLog(@"图片上传=%@",data);
             
-        }];
+        }:nil];
+        
     }
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 #pragma mark --- 蓝牙数据处理 Delegate ----
 
+//
 -(void)bluetoothStateChange:(id)sender :(enum BOYE_BLUETOOTH_STATE_EVENT)stateEvent :(id)parms{
     NSDictionary * info = (NSDictionary *)parms;
     

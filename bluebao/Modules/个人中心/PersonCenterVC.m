@@ -280,13 +280,9 @@
 -(void) requestPictrueUpload:(PictureReqModel *)picModel{
 
     
-    [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
+    [BoyePictureUploadManager requestPictureUpload:picModel  :^(NSDictionary * data){
         
-        if (successed ) {
-            
-            ALERTVIEW(@"成功");
-        }
-    }];
+    }:nil];
     
 
 }
