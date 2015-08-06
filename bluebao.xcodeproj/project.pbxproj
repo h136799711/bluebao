@@ -1444,7 +1444,7 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/UMAnalytics_Sdk_3.5.11",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "573c2058-5ec3-4aeb-b57f-95361a11d4b3";
+				PROVISIONING_PROFILE = "c906a333-5f49-4581-97f4-0bb7294ea8b3";
 			};
 			name = Debug;
 		};
@@ -1463,7 +1463,7 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/UMAnalytics_Sdk_3.5.11",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "573c2058-5ec3-4aeb-b57f-95361a11d4b3";
+				PROVISIONING_PROFILE = "c906a333-5f49-4581-97f4-0bb7294ea8b3";
 			};
 			name = Release;
 		};

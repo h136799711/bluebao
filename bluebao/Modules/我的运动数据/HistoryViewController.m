@@ -66,16 +66,19 @@
     [self reloadData];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    [super viewWillAppear:YES];
-    
+    [MobClick beginLogPageView:@"运动历史数据页面" ];
     self.view.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
     self.navigationController.navigationBarHidden = NO;
 }
--(void)viewDidAppear:(BOOL)animated{
-    
-    
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"运动历史数据页面"];
 }
 
 #pragma mark 1.getter\setter

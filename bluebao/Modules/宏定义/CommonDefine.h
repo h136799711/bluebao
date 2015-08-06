@@ -44,8 +44,8 @@
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
-#define UMENG_APP_KEY                              "55c1c86ce0f55a39430028cf"
-#define UMENG_APP_MASTER_SECRET    "twm1x286y0pynjnqlffkvlmo6hjlzm0k"
+#define UMENG_APP_KEY                              "55c2b2e667e58e2950003a3e"
+#define UMENG_APP_MASTER_SECRET    "yuo6aflppz9rwmbvh5z8sfsfoa05lz4u"
 
 
 #endif
