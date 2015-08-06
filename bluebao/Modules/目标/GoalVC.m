@@ -103,7 +103,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
         GoalData * goaldate = [self.dataArray objectAtIndex:indexPath.row];
         
         cell.timeLabel.text = goaldate.timestr;
-        cell.goalLael.text  = [NSString stringWithFormat:@"%ld卡",goaldate.goalNumber];
+        cell.goalLael.text  = [NSString stringWithFormat:@"%ld卡",(long)goaldate.goalNumber];
         cell.operateLael.text = @"50%";
      
         cell.alterBtn.tag = indexPath.row;

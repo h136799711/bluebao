@@ -361,7 +361,7 @@
 }
 -(void) saveBicyle:(Bicyle *)bicyle{
     
-    NSString * bicyleString = [NSString stringWithFormat:@"%ld/",bicyle.heart_rate];
+    NSString * bicyleString = [NSString stringWithFormat:@"%ld/",(long)bicyle.heart_rate];
     bicyleString = [MyTool getStringFormstr:bicyleString withNumber:bicyle.speed];
     bicyleString = [MyTool getStringFormstr:bicyleString withNumber:bicyle.cost_time];
     bicyleString = [MyTool getStringFormstr:bicyleString withNumber:bicyle.calorie];
@@ -369,7 +369,7 @@
 
     [USER_DEFAULT setObject:bicyleString forKey:@"bicyle_data"];
     
-    NSArray * array = [bicyleString componentsSeparatedByString:@"/"];
+//    NSArray * array = [bicyleString componentsSeparatedByString:@"/"];
     
 }
 

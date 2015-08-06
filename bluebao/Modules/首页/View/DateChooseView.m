@@ -17,13 +17,6 @@
 @end
 
 @implementation DateChooseView
--(NSDate *)nowDayDate:(NSDate *)nowDayDate{
-    if (_nowDayDate == nil) {
-        _nowDayDate = [[NSDate alloc] init];
-    }
-    _nowDayDate = nowDayDate;
-    return _nowDayDate;
-}
 
 -(instancetype)initWithFrame:(CGRect)frame{
     
@@ -37,6 +30,7 @@
         self.frame = CGRectMake(0,0, 180, 25);
     }
     
+    _isToday = YES;
     return self;
 }
 
@@ -97,10 +91,13 @@
     }
 
      self.newbDate= newDate;
-
+    
+    #pragma mark -- 是不是今天
+    
+    self.isToday = [self.newbDate isToday];
+//    NSLog(@" ---%d----  ",self.isToday);
     dateLabel.text = [self getDateString:self.newbDate];
     
-//   NSDateFormatter * format = [NSDate defaultDateFormatter];
     
 }
 

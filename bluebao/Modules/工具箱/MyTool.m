@@ -159,7 +159,7 @@
 
 +(NSString *) getStringFormstr:(NSString *)string withNumber:(NSInteger)number{
     
-    NSString * str = [NSString stringWithFormat:@"%@%ld",string,number];
+    NSString * str = [NSString stringWithFormat:@"%@%ld",string,(long)number];
     return str;
 }
 
