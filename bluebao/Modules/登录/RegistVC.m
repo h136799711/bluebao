@@ -12,6 +12,10 @@
     
 }
 
+//@property (nonatomic,strong) UIScrollView * scrollView;
+//
+//@property (nonatomic,strong) UITextView *userTerms;
+
 @end
 
 @implementation RegistVC
@@ -26,11 +30,27 @@
     
 }
 
+-(void)initUserTerms{
+    
+//    self.scrollView = [[UIScrollView alloc]init];
+//    
+//    self.userTerms = [[UITextView alloc]init];
+//    
+//    [self.scrollView addSubview:self.userTerms];
+//    self.userTerms.textAlignment = NSTextAlignmentCenter;
+//    self.userTerms.scrollEnabled = YES;
+//    self.userTerms.text = @"用户条款，用户条款，用户条款，用户条款，用户条款，用户条款，用户条款，用户条款，";
+    
+}
+
 /*
  *初始化
  */
 
 -(void)_initViews{
+    
+    
+    
     
     self.agreeBtn.selected = YES;
     [ButtonFactory decorateButton:self.registBtn forType:BOYE_BTN_SUCCESS];
@@ -50,6 +70,19 @@
     self.textfield_LeterBox.delegate = self;
     self.textfield_newpsw.delegate = self;
     
+    self.agreeLabel.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *agreeLabelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
+    
+    [self.agreeLabel addGestureRecognizer:agreeLabelTapGestureRecognizer];
+}
+
+-(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
+    
+    UILabel *label=(UILabel*)recognizer.view;
+    
+    NSLog(@"%@被点击了",label.text);
+    [self agree:self.agreeBtn];
 }
 
 #pragma mark - UITextView Delegate Methods

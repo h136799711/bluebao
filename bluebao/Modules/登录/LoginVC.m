@@ -96,9 +96,21 @@
     
     [self.view addGestureRecognizer:singleTap];
     
+    self.label_remberCode.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
+    
+    [self.label_remberCode addGestureRecognizer:labelTapGestureRecognizer];
+    
 }
 
-
+-(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
+    
+    UILabel *label=(UILabel*)recognizer.view;
+    
+    NSLog(@"%@被点击了",label.text);
+    [self rememberCodeClick:self.remberCodeBtn];
+}
 
 -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
