@@ -69,9 +69,9 @@
 -(BoyeBluetooth *)bluetooth{
     if(_bluetooth == nil){
         _bluetooth =  [BoyeBluetooth sharedBoyeBluetooth];
-        _bluetooth.delegate = self;
     }
     
+        _bluetooth.delegate = self;
     return _bluetooth;
 }
 -(void)setDevice:(LNowDevice *)device{
@@ -288,9 +288,7 @@
         case STATE_CONNECTED_DEVICE:
             NSLog(@"连接上一台设备!");
             [self didConnectDevice];
-            //跳回主页
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            
+//            //跳回主页
             break;
         case STATE_DISCONNECT_DEVICE:
             NSLog(@"断开上一台设备!");
@@ -308,6 +306,8 @@
             
             NSString * dataValue = [self dataToString:characteristic.value];
             [self updateValue:dataValue];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+
             
         }
         default:

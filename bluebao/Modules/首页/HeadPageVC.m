@@ -15,7 +15,7 @@
 #import "BoyeConnectView.h"
 
 
-@interface HeadPageVC (){
+@interface HeadPageVC ()<BOYEBluetoothStateChangeDelegate>{
     
     UITableView             * _tableView;
     NSArray                 * _labelarray;
@@ -29,6 +29,8 @@
     BoyeConnectView         * _connectView;
     
 }
+@property (nonatomic,strong) BoyeBluetooth                  * boyeBluetooth;
+
 @property (nonatomic,strong) Bicyle         * bicylelb;
 
 @end
@@ -335,6 +337,72 @@
                                               }
         }];
 }
+
+
+
+
+#pragma mark --- 蓝牙数据处理 Delegate ----
+
+-(void)bluetoothStateChange:(id)sender :(enum BOYE_BLUETOOTH_STATE_EVENT)stateEvent :(id)parms{
+    NSDictionary * info = (NSDictionary *)parms;
+    
+    NSLog(@"委托蓝牙状态变更！%u",stateEvent);
+    
+    switch (stateEvent) {
+        case STATE_CHANGE:
+            
+            //            [];
+            //            [self bluetoothUpdateState];
+            break;
+        case STATE_CONNECTED_DEVICE:
+            NSLog(@"连接上一台设备!");
+            //            [self didConnectDevice];
+            break;
+        case STATE_DISCONNECT_DEVICE:
+            NSLog(@"断开上一台设备!");
+            //            [self disConnectDevice];
+            break;
+        case STATE_DISCOVERED_SERVICE:
+            //            [self didDiscoverServices:[info objectForKey:@"error"]];
+            break;
+        case STATE_DISCOVERED_CHARACTERISTICS:
+            //            [self didDiscoverCharacteristicsForService:[info objectForKey:@"data"] error:[info objectForKey:@"error"]];
+            break;
+        case STATE_UPDATE_VALUE:
+        {
+            CBCharacteristic * characteristic = (CBCharacteristic *)[info objectForKey:@"data"];
+            
+            NSString * dataValue = [self dataToString:characteristic.value];
+            [self updateValue:dataValue];
+            
+        }
+        default:
+            break;
+    }
+    
+}
+
+-(void)updateValue:(NSString *)dataString{
+    NSLog(@" datastring: %@",dataString);
+    
+    
+    //    BOOL isOK = [];
+    
+}
+
+- (NSString * )dataToString:(NSData *)value{
+    
+    NSMutableString* hexString = [NSMutableString string];
+    const unsigned char *p = [value bytes];
+    
+    for (int i=0; i < [value length]; i++) {
+        [hexString appendFormat:@"%02x", *p++];
+    }
+    
+    return [hexString lowercaseString];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

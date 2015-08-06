@@ -1458,6 +1458,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bluebao/bluebao_PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/bluebao/Common/Info.plist";
@@ -1469,7 +1470,7 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/UMAnalytics_Sdk_3.5.11",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "573c2058-5ec3-4aeb-b57f-95361a11d4b3";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1479,6 +1480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bluebao/bluebao_PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/bluebao/Common/Info.plist";
@@ -1490,7 +1492,7 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/UMAnalytics_Sdk_3.5.11",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "573c2058-5ec3-4aeb-b57f-95361a11d4b3";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
