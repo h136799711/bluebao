@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginVC : BaseViewController
+@interface LoginVC : BaseViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *accontNumView;
 

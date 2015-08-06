@@ -87,13 +87,81 @@
     
     self.accontNumTextfield.text = @"2540927273@qq.com";
     self.pswTextfield.text = @"123456";
-
+    
+    self.accontNumTextfield.delegate = self;
+    self.pswTextfield.delegate = self;
+    
+    self.view.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    
+    [self.view addGestureRecognizer:singleTap];
+    
+    self.label_remberCode.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
+    
+    [self.label_remberCode addGestureRecognizer:labelTapGestureRecognizer];
     
 }
+
+-(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
+    
+    UILabel *label=(UILabel*)recognizer.view;
+    
+    NSLog(@"%@被点击了",label.text);
+    [self rememberCodeClick:self.remberCodeBtn];
+}
+
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [self.view endEditing:YES];
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - UITextView Delegate Methods
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    NSLog(@"textFieldShouldReturn%@",textField);
+    [textField resignFirstResponder];
+    if ([textField isEqual:self.accontNumTextfield ]) {
+        [self.pswTextfield becomeFirstResponder];
+    }
+    if([textField isEqual:self.pswTextfield]){
+        [self.loginBtn becomeFirstResponder];
+    }
+    return NO;
+//    return YES;
+}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSLog(@"string= %@",string);
+    
+    if ([string isEqualToString:@"\n"]) {
+        [textField resignFirstResponder];
+        return NO;
+    }
+    
+    
+    return YES;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    NSLog(@"text%@",text);
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - 注册  --
 - (IBAction)registerButton:(UIButton *)sender {
     

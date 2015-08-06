@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegistVC : BaseViewController
+@interface RegistVC : BaseViewController<UITextFieldDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
