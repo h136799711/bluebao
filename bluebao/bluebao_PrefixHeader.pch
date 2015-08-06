@@ -67,6 +67,7 @@
 //友盟统计代码
 #import "MobClick.h"
 #import "MobClickSocialAnalytics.h"
+#import "PrivacyVC.h"
 
 //-------------------打印日志-------------------------
 //DEBUG  模式下打印日志,当前行

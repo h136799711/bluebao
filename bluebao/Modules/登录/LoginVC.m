@@ -79,8 +79,8 @@
     [ButtonFactory decorateButton:self.registerBtn forType:BOYE_BTN_WARNING];
 
     
-    [MyTool cutViewConner:self.loginBtn radius:5];
-    [MyTool cutViewConner:self.registerBtn radius:5];
+//    [MyTool cutViewConner:self.loginBtn radius:5];
+//    [MyTool cutViewConner:self.registerBtn radius:5];
  
     self.accontNumTextfield.clearButtonMode =  UITextFieldViewModeAlways;
     
@@ -169,7 +169,7 @@
     [self.navigationController pushViewController:regist animated:YES];
     
     
-    }
+}
 
 #pragma mark   ---登陆 -----
 - (IBAction)login:(UIButton *)sender {

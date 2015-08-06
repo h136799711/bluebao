@@ -20,6 +20,14 @@
 
 @implementation RegistVC
 
+- (IBAction)btnUserTerms:(UIButton *)sender {
+    
+    PrivacyVC * privacyVC = [[PrivacyVC alloc]init];
+    
+    [self.navigationController pushViewController:privacyVC animated:YES];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -28,6 +36,11 @@
 
     [self _initViews];
     
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 -(void)initUserTerms{

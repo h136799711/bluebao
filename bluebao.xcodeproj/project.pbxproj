@@ -130,6 +130,9 @@
 		5BFBBBA71B637CE400BFB44B /* PictureRespModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBBA61B637CE400BFB44B /* PictureRespModel.m */; };
 		5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCFB001B6224F00076F18B /* UserInfo.m */; };
 		5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */; };
+		9F4FB6321B7332B600440BFC /* PrivacyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4FB6301B7332B600440BFC /* PrivacyVC.m */; };
+		9F4FB6331B7332B600440BFC /* PrivacyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FB6311B7332B600440BFC /* PrivacyVC.xib */; };
+		9F4FB6351B733F6400440BFC /* 用户须知.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FB6341B733F6400440BFC /* 用户须知.rtf */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
 		9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */; };
 		9F6E3EB61B721BB200F329B9 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */; };
@@ -384,7 +387,11 @@
 		5BFCFB001B6224F00076F18B /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		5BFFD9611B54F3F600216795 /* PickerKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerKeyBoard.h; sourceTree = "<group>"; };
 		5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerKeyBoard.m; sourceTree = "<group>"; };
-		9F50E4FE1B4E577600AB6BD8 /* bluebao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluebao.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F4FB62F1B7332B600440BFC /* PrivacyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyVC.h; sourceTree = "<group>"; };
+		9F4FB6301B7332B600440BFC /* PrivacyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyVC.m; sourceTree = "<group>"; };
+		9F4FB6311B7332B600440BFC /* PrivacyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyVC.xib; sourceTree = "<group>"; };
+		9F4FB6341B733F6400440BFC /* 用户须知.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "用户须知.rtf"; sourceTree = "<group>"; };
+		9F50E4FE1B4E577600AB6BD8 /* 蓝堡.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "蓝堡.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E50C1B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F50E5171B4E577700AB6BD8 /* bluebaoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bluebaoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E51C1B4E577700AB6BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -932,6 +939,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		9F4FB62E1B73326800440BFC /* 隐私政策 */ = {
+			isa = PBXGroup;
+			children = (
+				9F4FB62F1B7332B600440BFC /* PrivacyVC.h */,
+				9F4FB6301B7332B600440BFC /* PrivacyVC.m */,
+				9F4FB6311B7332B600440BFC /* PrivacyVC.xib */,
+			);
+			name = "隐私政策";
+			path = "Modules/隐私政策";
+			sourceTree = "<group>";
+		};
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
@@ -945,7 +963,7 @@
 		9F50E4FF1B4E577600AB6BD8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9F50E4FE1B4E577600AB6BD8 /* bluebao.app */,
+				9F50E4FE1B4E577600AB6BD8 /* 蓝堡.app */,
 				9F50E5171B4E577700AB6BD8 /* bluebaoTests.xctest */,
 			);
 			name = Products;
@@ -969,6 +987,7 @@
 			isa = PBXGroup;
 			children = (
 				9F6E3EB71B7229C200F329B9 /* libz.dylib */,
+				9F4FB6341B733F6400440BFC /* 用户须知.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -993,6 +1012,7 @@
 		9F50E5281B4E57F100AB6BD8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9F4FB62E1B73326800440BFC /* 隐私政策 */,
 				5BF4F0091B55F0F7000AB7BD /* Boye */,
 				5B38C76A1B5390CF0063912C /* 工具箱 */,
 				5B38C7561B5390CF0063912C /* 登录 */,
@@ -1118,7 +1138,7 @@
 			);
 			name = bluebao;
 			productName = bluebao;
-			productReference = 9F50E4FE1B4E577600AB6BD8 /* bluebao.app */;
+			productReference = 9F50E4FE1B4E577600AB6BD8 /* 蓝堡.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9F50E5161B4E577700AB6BD8 /* bluebaoTests */ = {
@@ -1183,9 +1203,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B38C8031B53C6DB0063912C /* xinlv.png in Resources */,
+				9F4FB6331B7332B600440BFC /* PrivacyVC.xib in Resources */,
 				5B0155DB1B5DDD1900056CFC /* DeviceInfoCell.xib in Resources */,
 				5B38C7FF1B53C6DB0063912C /* sd.png in Resources */,
 				5B38C7FE1B53C6DB0063912C /* pw.png in Resources */,
+				9F4FB6351B733F6400440BFC /* 用户须知.rtf in Resources */,
 				5B38C7E81B539A490063912C /* Media.xcassets in Resources */,
 				5B9049051B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib in Resources */,
 				5B38C7AA1B53993B0063912C /* Main.storyboard in Resources */,
@@ -1235,6 +1257,7 @@
 				5B0155E41B5DDD9B00056CFC /* LNowDevice.m in Sources */,
 				5B38C7951B5390CF0063912C /* MessageCell.m in Sources */,
 				5BF2E0421B4F6B7E004FDDF7 /* SVProgressHUD.m in Sources */,
+				9F4FB6321B7332B600440BFC /* PrivacyVC.m in Sources */,
 				5BF31F551B67085F00F6F366 /* BoyeToken.m in Sources */,
 				5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */,
 				5B38C7D71B5399B80063912C /* SDWebImageDecoder.m in Sources */,
@@ -1401,6 +1424,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "蓝堡";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1437,6 +1461,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "蓝堡";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1459,7 +1484,7 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/UMessage_Sdk_1.1.0",
 					"$(PROJECT_DIR)/bluebao/Vendor/UMAnalytics_Sdk_3.5.11",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "蓝堡";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -1481,7 +1506,7 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/UMessage_Sdk_1.1.0",
 					"$(PROJECT_DIR)/bluebao/Vendor/UMAnalytics_Sdk_3.5.11",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "蓝堡";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
