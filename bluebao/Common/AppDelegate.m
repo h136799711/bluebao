@@ -53,7 +53,7 @@
 
     [MobClick setEncryptEnabled:YES];
 //    [MobClick checkUpdate];
-    [MobClick checkUpdate:@"发现新版本" cancelButtonTitle:@"忽略" otherButtonTitles:@"前往App Store"];
+//    [MobClick checkUpdate:@"发现新版本" cancelButtonTitle:@"忽略" otherButtonTitles:@"前往App Store"];
 //    [MobClick setLogEnabled:YES];
 }
 
