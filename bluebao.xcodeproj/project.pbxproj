@@ -386,7 +386,6 @@
 		5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerKeyBoard.m; sourceTree = "<group>"; };
 		9F50E4FE1B4E577600AB6BD8 /* bluebao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluebao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E50C1B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9F50E5111B4E577600AB6BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9F50E5171B4E577700AB6BD8 /* bluebaoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bluebaoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E51C1B4E577700AB6BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bluebaoTests.m; sourceTree = "<group>"; };
@@ -958,7 +957,6 @@
 				5B38C7A71B53977B0063912C /* assets */,
 				9F50E5281B4E57F100AB6BD8 /* Modules */,
 				9F50E50B1B4E577600AB6BD8 /* Main.storyboard */,
-				9F50E5101B4E577600AB6BD8 /* LaunchScreen.xib */,
 				9F91E7E41B4E5AE80013F4F1 /* Vendor */,
 				9F91E7E11B4E5ABE0013F4F1 /* Common */,
 				9F50E5011B4E577600AB6BD8 /* Supporting Files */,
@@ -1359,14 +1357,6 @@
 				9F50E50C1B4E577600AB6BD8 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9F50E5101B4E577600AB6BD8 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F50E5111B4E577600AB6BD8 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
