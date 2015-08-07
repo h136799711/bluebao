@@ -33,37 +33,13 @@
     
     [super viewWillAppear:YES];
     
-    self.userInfo = [MainViewController sharedSliderController].userInfo;
-    
-    [self _initPersonMessage];
-    
-//
-//    NSLog(@" ----  %ld   %ld  %f  ",weight,height,bmi );
 }
-//个人资料
--(void)_initPersonMessage{
-  
-    self.userInfo =  [MainViewController sharedSliderController].userInfo;
-//    
-//    NSInteger weight = [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] integerValue];
-//    NSInteger height = [[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] integerValue];
-    
-    
-    CGFloat bmi = [MyTool getBMINumWeight:self.userInfo.weight height:self.userInfo.height];
-    
-    
-    self.heightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.height];
-    self.weightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.weight];
-    self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
-    
-
-}
-
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.userInfo = [MainViewController sharedSliderController].userInfo;
+    
     
     self.title = @"数据中心";
     
@@ -166,14 +142,12 @@
 
     }
     
-//    int weight = [[USER_DEFAULT objectForKey:BOYE_USER_WEIGHT] intValue];
-//    int height = [[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] intValue];
-//    CGFloat bmi = [MyTool getBMINumWeight:weight height:height];
-//    
-//    
-//   self.heightLabel.text = [NSString stringWithFormat:@"%d",height];
-//    self.weightLabel.text = [NSString stringWithFormat:@"%d",weight];
-//    self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
+    CGFloat bmi = [MyTool getBMINumWeight:self.userInfo.weight height:self.userInfo.height];
+    
+    
+    self.heightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.height];
+    self.weightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.weight];
+    self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
     
     return  _views;
 }
@@ -220,14 +194,14 @@
         UIButton * headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         headBtn.frame= imageView.frame;
         [_headView addSubview:headBtn];
-        [headBtn addTarget:self action:@selector(headbutton:) forControlEvents:UIControlEventTouchUpInside];
-        
+//        [headBtn addTarget:self action:@selector(headbutton:) forControlEvents:UIControlEventTouchUpInside];
+        [self avatarRequest];
         
         //姓名
         UILabel  * label_name = [[UILabel alloc] init];
         label_name.bounds = CGRectMake(0, 0, 80, 30);
         label_name.center = CGPointMake(imageView.right + 30+ label_name.width /2.0, imageView.center.y-label_name.height/2.0);
-        label_name.text = @"用户名字";
+        label_name.text = self.userInfo.nickname;
         label_name.font = FONT(15);
         [_headView addSubview:label_name];
         
@@ -236,12 +210,12 @@
         UILabel  * label_ID = [[UILabel alloc] init];
         label_ID.bounds = label_name.bounds;
         label_ID.center = CGPointMake(label_name.center.x, imageView.center.y+label_ID.height/2.0);
-        label_ID.text = @"ID:123456";
+        label_ID.text = [NSString stringWithFormat:@"ID:%ld", self.userInfo.uid];// @"ID:123456";
         label_ID.font = FONT(15);
         label_ID.textColor = [UIColor lightGrayColor];
         [_headView addSubview:label_ID];
         
-     
+        
 
     }
     
@@ -252,67 +226,12 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)headbutton:(UIButton *)button{
+-(void)avatarRequest{
     
+    NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120]];
     
-    PictureReqModel * picModel = [[PictureReqModel alloc] init];
-    picModel.uid  = self.userInfo.uid;
-    picModel.type = @"avatar";
-   
-//   
-//    [BoyePictureUploadManager requestPictureUpload:picModel complete:^(BOOL successed) {
-//        
-//        if (successed ) {
-//            
-//            ALERTVIEW(@"成功");
-//        }
-//    }];
-//
-    //上传
-//    [self requestPictrueUpload:picModel];
-    //下载
-    [self requestUserHeadImagDown:picModel];
-   
-      NSLog(@"图片下载");
-    NSLog(@" 图片上传");
-}
-
--(void) requestPictrueUpload:(PictureReqModel *)picModel{
-
-    
-    [BoyePictureUploadManager requestPictureUpload:picModel  :^(NSDictionary * data){
-        
-    }:nil];
-    
+    [self.head_ImageView  setImageURL:avatar_url placeholder:[UIImage imageNamed:@"Default_header"]];
 
 }
-
-
--(void) requestUserHeadImagDown:(PictureReqModel *)picModel{
- 
-    //头像请求成功，为空，
-    [BoyePictureUploadManager requestUserHeadDown:picModel complete:^(UIImage *headImage) {
-        if (headImage ) {
-            self.head_ImageView.image = headImage;
-        }
-        NSLog(@"");
-        
-    }];
-    //   ****/
-    
-
-}
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

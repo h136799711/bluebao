@@ -22,6 +22,10 @@ static NSString * const BASE_API_URL = @"http://lanbao.itboye.com/api.php/";
 
 
 @implementation BoyeHttpClient
+
++(NSString *)getBaseApiURL{
+    return BASE_API_URL;
+}
 //
 //- (void)initWithBaseURL:(NSString*) baseURL{
 //    self.BASE_API_URL = baseURL;

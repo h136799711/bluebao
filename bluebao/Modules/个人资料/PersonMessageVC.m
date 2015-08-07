@@ -250,7 +250,13 @@
         //创建个人资料信息（头像签名等）
       
         self.headImageBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.headImageBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateNormal];
+        
+//        [self.headImageBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateNormal];
+        
+        NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120]];
+        
+        [self.headImageBtn setImageWithURL:avatar_url   forState:UIControlStateNormal];
+        
         _headView = [BBManageCode  createdPersonInfoShowInView:_headView
                                                        headBtn:self.headImageBtn
                                                  signTestField:self.personSignTextfield

@@ -27,18 +27,19 @@
     MainViewController  * mainVC;
     
 }
-
+@property (nonatomic,strong) UserInfo * userinfo;
 @end
 
 @implementation LetfView
+
 
 -(instancetype)initWithFrame:(CGRect)frame{
     
    self =  [super initWithFrame:frame];
     if (self) {
         
-        [self _initViews];
         mainVC = [MainViewController sharedSliderController];
+        [self _initViews];
     }
     return self;
 }
@@ -48,7 +49,7 @@
 -(void)_initViews
 {
     
-    
+    self.userinfo =  [MainViewController sharedSliderController].userInfo;
     self.tableView = [[UITableView alloc] initWithFrame:self.bounds];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView.delegate = self;
@@ -180,8 +181,13 @@
     [headView addSubview: self.headBtn];
 
     [self.headBtn addTarget:self action:@selector(changeHeadImagClick:) forControlEvents:UIControlEventTouchUpInside];
-    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateNormal];
-    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateHighlighted];
+    
+    NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userinfo.uid :120]];
+    
+    [self.headBtn setImageWithURL:avatar_url   forState:UIControlStateNormal];
+
+//    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateNormal];
+//    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateHighlighted];
 
      self.headBtn.backgroundColor = [UIColor redColor];
     [MyTool cutViewConner: self.headBtn radius: self.headBtn.width/2.0];

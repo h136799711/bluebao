@@ -16,7 +16,12 @@
 
 + (void)startMonitorNetwork;
 + (void)stopMonitorNetwork;
-
+/**
+ *  获取api的地址
+ *
+ *  @return api的地址字符串
+ */
++(NSString *)getBaseApiURL;
 
 // Post请求
 - (void)post:(NSString *)url :(NSDictionary *)withParams :(void(^)(AFHTTPRequestOperation *operation ,id responseObject))success :(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure;
