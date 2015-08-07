@@ -449,9 +449,7 @@
 -(void)updateValue:(NSString *)dataString{
     NSLog(@" datastring: %@",dataString);
     
-    
-//    BOOL isOK = [];
-    
+        
 }
 
 - (NSString * )dataToString:(NSData *)value{

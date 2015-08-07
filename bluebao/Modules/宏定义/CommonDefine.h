@@ -30,7 +30,7 @@
 
 #define BOYE_ACCESS_TOKEN  @"access_token"  //token
 
-#define BOYE_EQUIPMENT_UUID @"equipment_uuid"  //设备UUID
+#define BOYE_EQUIPMENT_UUID @"boye_equipment_uuid"  //设备UUID
 
 #define BOYE_TODAY_TARGET_CALORIE @"today_target_calorie" //今天目标卡路里
 

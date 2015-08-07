@@ -34,4 +34,7 @@
 #pragma mark -- 蓝堡首页 --
 +(NSString *) getHeaderStrRow:(NSInteger)row bicyle:(Bicyle *)_bicylelb;
 
+#pragma mark -- 获得个人健康指标
++(NSString *) getPersonHealthCondition:(NSInteger)row userInfo:(UserInfo *)userInfo;
+
 @end

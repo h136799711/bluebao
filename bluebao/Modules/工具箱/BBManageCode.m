@@ -314,4 +314,15 @@
     
 }
 
+
+#pragma mark -- 获得个人健康指标
++(NSString *) getPersonHealthCondition:(NSInteger)row userInfo:(UserInfo *)userInfo{
+    
+    
+    
+    
+    return nil;
+}
+
+
 @end

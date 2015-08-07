@@ -31,10 +31,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
     // Do any additional setup after loading the view.
     self.title = @"目标设定";
     
-
-    //设置默认目标
-    [[CacheFacade sharedCache] setObject:@"500" forKey:BOYE_TODAY_TARGET_CALORIE];
-    
     
     _isHasData = NO;
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
@@ -110,8 +106,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
         
         cell.timeLabel.text = goaldate.timestr;
         cell.goalLael.text  = [NSString stringWithFormat:@"%ld卡",(long)goaldate.goalNumber];
-        cell.operateLael.text = @"50%";
-     
+        
         cell.alterBtn.tag = indexPath.row;
         cell.deleteBtn.tag = indexPath.row ;
         

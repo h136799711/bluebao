@@ -62,12 +62,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+
+    [[CacheFacade sharedCache] setObject:@"500" forKey:BOYE_TODAY_TARGET_CALORIE];
     self.title =@"蓝堡踏步机";
     
     _upTimeInterval = 20;
     _nextUpLoadDateTime = [NSDate date];
      [self nextLoadTime];;
-
     
     _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗",@"路程"];
     _imageName = @[@"xinlv.png",@"sd.png",@"time.png",@"sport.png",@"road.png"];
@@ -159,7 +160,6 @@
         }else{
             
             headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
-  
         }
         
         return headCell;
@@ -259,24 +259,29 @@
 }
 
 
-//任务完成度
+#pragma mark --  目标 任务完成度 -
 -(void) showFinishProgre{
     //任务完成度
 
     _drawProgreView.finishNum = self.bicylelb.calorie;
 
-    #pragma mark -- TODO......
+    #pragma mark -- TODO..获得默认卡路里....
    
     //今天 ，目标卡路里
     if (self.dateChooseView.isToday == YES && self.connectView.isConnect == YES) {
         //获得缓存卡路里
         _drawProgreView.goalNum =  [[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE] integerValue];
     }else{
-        _drawProgreView.goalNum = self.bicylelb.target_calorie;
+        
+        if (self.bicylelb.target_calorie == 0) {
+            _drawProgreView.goalNum =  [[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE] integerValue];
+            NSLog(@" ********BOYE_TODAY_TARGET_CALORIE*** %@",BOYE_TODAY_TARGET_CALORIE);
+        }else{
+            _drawProgreView.goalNum = self.bicylelb.target_calorie;
+
+        }
     }
     
-//    _drawProgreView.goalNum = 50;
-
     [_drawProgreView showCircleView];
 
     //    NSLog(@" \r------    %ld  %ld",self.bicylelb.target_calorie,self.bicylelb.calorie);
@@ -332,11 +337,12 @@
             cell.infoValue = self.userInfo.age;
         
     }else{
-           cell.infoValue = 10;
+
+    #pragma mark -- TODO...
         
+        cell.infoValue = 10;
         
-        
-        
+        [BBManageCode getPersonHealthCondition:indexPath.row userInfo:self.userInfo];
     }
 
     cell.labelSort.text = _sortArray[indexPath.row];
