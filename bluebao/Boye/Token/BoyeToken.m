@@ -107,7 +107,7 @@
     NSString *access_token=[dic objectForKey:@"access_token"];
     double time=[[dic objectForKey:@"expires_in"] doubleValue];
     
-    [[CacheFacade sharedCache] setObject:access_token forKey:BOYE_ACCESS_TOKEN WithExpireTime: [NSNumber numberWithDouble:[questTime doubleValue] + time ]];
+    [[CacheFacade sharedCache] setObject:access_token forKey:BOYE_ACCESS_TOKEN afterTimeStamp: [NSNumber numberWithDouble:[questTime doubleValue] + time ]];
     
     //计算出距离当前日期 长度为time的日期
 //    NSDate *date=[NSDate dateWithTimeIntervalSinceNow:time];

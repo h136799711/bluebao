@@ -57,6 +57,8 @@
     _unitArray = @[@"公里",@"小时",@"卡"];
     [self _initTableView];
     
+    
+    NSLog(@"test= %@",[[CacheFacade sharedCache] get:@"test"]);
 }
 
 -(void)_initTableView{

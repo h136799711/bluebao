@@ -50,7 +50,7 @@
     NSNumber * currentTimeStamp = [NSDate currentTimeStamp];
     
     double expire_time =   [[NSUserDefaults standardUserDefaults] doubleForKey:[self getExpireTimeKey:key]];
-    NSLog(@"expire_time=%f",expire_time);
+    NSLog(@"key = %@,expire_time=%f , currentTime=%@",key,expire_time,currentTimeStamp);
     
     if(expire_time < currentTimeStamp.doubleValue){
         //已经过期则返回nil，并清除缓存
@@ -63,31 +63,55 @@
 
 /**
  *  设置缓存信息
- *
+ *  使用默认缓存时间
  *  @param object 存入对象
  *  @param key    存入键
  */
 - (void)setObject:(id)object forKey:(NSString *)key{
     
-    NSNumber * expire_time = [NSDate currentTimeStamp];
+    NSNumber * expire_time = [NSNumber numberWithDouble: [[NSDate currentTimeStamp] doubleValue] + self.cacheTime ];
     
     [self setObject:object forKey:key WithExpireTime:expire_time];
 }
+
 /**
+ *
  *  设置缓存信息
  *
- *  @param object 存入对象
- *  @param key    存入键
+ *
+ *  @param object    存入对象
+ *  @param key       键值
+ *  @param seconds  seconds秒后 数据将过期 单位（秒）
  */
-- (void)setObject:(id)object forKey:(NSString *)key WithExpireTime:(NSNumber *)timestamp{
+- (void)setObject:(id)object forKey:(NSString *)key afterSeconds:(double )seconds{
     
     [[NSUserDefaults standardUserDefaults] setObject:object forKey:[self getKey:key]];
     
-    [[NSUserDefaults standardUserDefaults] setDouble: (timestamp.doubleValue+self.cacheTime) forKey:[self getExpireTimeKey:key]];
+    [[NSUserDefaults standardUserDefaults] setDouble: (seconds + [[NSDate currentTimeStamp]doubleValue]) forKey:[self getExpireTimeKey:key]];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
+
+/**
+ *
+ *  设置缓存信息
+ *
+ *
+ *  @param object    存入对象
+ *  @param key       键值
+ *  @param timestamp 此时间戳为过期时间点 ， 单位（秒）
+ */
+- (void)setObject:(id)object forKey:(NSString *)key afterTimeStamp:(NSNumber *)timestamp{
+    
+    [[NSUserDefaults standardUserDefaults] setObject:object forKey:[self getKey:key]];
+    
+    [[NSUserDefaults standardUserDefaults] setDouble: (timestamp.doubleValue) forKey:[self getExpireTimeKey:key]];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
 /**
  *  清空所有缓存
  */
@@ -96,8 +120,15 @@
     NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
     NSDictionary * dict = [defs dictionaryRepresentation];
     for (id key in dict) {
-        [defs removeObjectForKey:key];
+        if([key isKindOfClass:[NSString class]]){
+            NSString * strKey = (NSString *)key;
+            if ( [strKey hasPrefix:self.prefix] ){
+                //只删除 含前缀的值
+                [defs removeObjectForKey:key];
+            }
+        }
     }
+    
     [defs synchronize];
     
 }

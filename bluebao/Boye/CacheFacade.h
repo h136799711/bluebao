@@ -18,9 +18,9 @@
 /**
  *  获取缓存信息
  *
- *  @param key <#key description#>
+ *  @param key 键值
  *
- *  @return <#return value description#>
+ *  @return 存入的对象 或 nil
  */
 -(id)get:(NSString *)key;
 
@@ -33,13 +33,24 @@
 - (void)setObject:(id)object forKey:(NSString *)key;
 
 /**
+ *
+ *  设置缓存信息
+ *
+ *
+ *  @param object    存入对象
+ *  @param key       键值
+ *  @param seconds  seconds秒后 数据将过期 单位（秒）
+ */
+- (void)setObject:(id)object forKey:(NSString *)key afterSeconds:(double )seconds;
+
+/**
  *  设置缓存信息
  *
  *  @param object    缓存数据
  *  @param key       缓存key
  *  @param timestamp 缓存时间（单位：秒）
  */
-- (void)setObject:(id)object forKey:(NSString *)key WithExpireTime:(NSNumber *)timestamp;
+- (void)setObject:(id)object forKey:(NSString *)key afterTimeStamp:(NSNumber *)timestamp;
 
 /**
  *  清空所有缓存
