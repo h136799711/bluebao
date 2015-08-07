@@ -11,8 +11,6 @@
 
 @interface CacheFacade : NSObject
 
-
-
 +(CacheFacade *)sharedCache;
 
 /**

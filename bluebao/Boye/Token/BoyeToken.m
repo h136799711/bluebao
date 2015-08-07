@@ -27,78 +27,7 @@
     
     return YES;
 
-    
-//    if ([self isTokenExist]) {
-//        
-//        if ([self isDateOut]) {
-//            
-//            // ALERTVIEW(@"token过期");
-//            [SVProgressHUD showWithStatus:@"token过期"];
-//            return NO;
-//        }
-//        return YES;
-//    }else{
-//        
-//        // ALERTVIEW(@"token不存在");
-//        [SVProgressHUD showWithStatus:@"token不存在"];
-//
-//        return NO;
-//    }
 }
-
-//是否过期
-//+(BOOL)isDateOut{
-//    
-//    NSDate *end_date=[[NSUserDefaults standardUserDefaults]  objectForKey:BOYE_ENDTIME];
-//    NSDate *now_date=[NSDate date];
-//    
-//    //    NSLog(@" \r *** nowDate: %@   \r  ***  endDate:%@",now_date,end_date);
-//    BOOL isOut = [now_date compare:end_date]==NSOrderedAscending;
-//    
-//    //    NSLog(@" \r *** is out  %d  ",isOut);
-//    return !isOut;
-//    
-//    //return YES;
-//}
-
-////token是否存在
-//+(BOOL) isTokenExist{
-//    
-////    NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
-//    
-//    NSString * token = [[CacheFacade sharedCache]get:BOYE_ACCESS_TOKEN];
-//    
-//    if (token == nil) {
-//        return NO;
-//    }
-//    
-//    return YES;
-//}
-
-
-
-//日期
-//+(NSDateFormatter *)getDateFormatter:(NSString *)format{
-//    
-//    
-//    if(format == nil){
-//        format = @"yyyy-MM-dd HH:mm:ss";
-//    }
-//    
-//    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-//    
-//    [formatter setDateStyle:NSDateFormatterMediumStyle];
-//    [formatter setTimeStyle:NSDateFormatterShortStyle];
-//    [formatter setDateFormat:format];
-//    
-//    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
-//    
-//    [formatter setTimeZone:timeZone];
-//    
-//    return formatter;
-//}
-
-
 
 //保存token 以及计算出过期的时间并保存
 
@@ -108,15 +37,6 @@
     double time=[[dic objectForKey:@"expires_in"] doubleValue];
     
     [[CacheFacade sharedCache] setObject:access_token forKey:BOYE_ACCESS_TOKEN afterTimeStamp: [NSNumber numberWithDouble:[questTime doubleValue] + time ]];
-    
-    //计算出距离当前日期 长度为time的日期
-//    NSDate *date=[NSDate dateWithTimeIntervalSinceNow:time];
-//    
-//    [[NSUserDefaults standardUserDefaults] setObject:access_token forKey:BOYE_ACCESS_TOKEN];
-//    [[NSUserDefaults standardUserDefaults] setObject:date forKey:BOYE_ENDTIME];
-//    
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-    //    NSLog(@" token   - =%@",[USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN]);
     
 }
 
@@ -154,7 +74,6 @@
                         
                         NSDictionary *info = [json valueForKey:@"info"];
                         
-                        NSLog(@"请求成功!%fl",[code floatValue]);
                         NSLog(@"请求结果  info  ：%@",info);
                         
                         

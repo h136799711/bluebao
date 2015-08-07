@@ -130,6 +130,8 @@
 		9F4FB6351B733F6400440BFC /* 用户须知.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FB6341B733F6400440BFC /* 用户须知.rtf */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
 		9F545E971B747D3D002BFF24 /* BicyleStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F545E961B747D3D002BFF24 /* BicyleStatistics.m */; };
+		9F545E9B1B74DAEC002BFF24 /* BoyeCypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F545E9A1B74DAEC002BFF24 /* BoyeCypto.m */; };
+		9F545E9F1B74FC7D002BFF24 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F545E9D1B74FC7D002BFF24 /* GTMBase64.m */; };
 		9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */; };
 		9F6E3EB61B721BB200F329B9 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */; };
 		9F6E3EB81B7229C200F329B9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB71B7229C200F329B9 /* libz.dylib */; };
@@ -390,6 +392,11 @@
 		9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bluebaoTests.m; sourceTree = "<group>"; };
 		9F545E951B747D3D002BFF24 /* BicyleStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicyleStatistics.h; sourceTree = "<group>"; };
 		9F545E961B747D3D002BFF24 /* BicyleStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicyleStatistics.m; sourceTree = "<group>"; };
+		9F545E991B74DAEC002BFF24 /* BoyeCypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeCypto.h; sourceTree = "<group>"; };
+		9F545E9A1B74DAEC002BFF24 /* BoyeCypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeCypto.m; sourceTree = "<group>"; };
+		9F545E9C1B74FC7D002BFF24 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMBase64.h; path = "../../../../../../../Downloads/GTMBase64-master/GTMBase64/GTMBase64.h"; sourceTree = "<group>"; };
+		9F545E9D1B74FC7D002BFF24 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMBase64.m; path = "../../../../../../../Downloads/GTMBase64-master/GTMBase64/GTMBase64.m"; sourceTree = "<group>"; };
+		9F545E9E1B74FC7D002BFF24 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "../../../../../../../Downloads/GTMBase64-master/GTMBase64/GTMDefines.h"; sourceTree = "<group>"; };
 		9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
 		9F6E3EB01B71FBA900F329B9 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -834,6 +841,7 @@
 		5BF4F0091B55F0F7000AB7BD /* Boye */ = {
 			isa = PBXGroup;
 			children = (
+				9F545E981B74DAD5002BFF24 /* 加密工具 */,
 				9F545E941B747CF2002BFF24 /* 统计数据获取 */,
 				5BF88BD41B69C0A5003785D0 /* 设备数据接口 */,
 				5BF31F521B6707D600F6F366 /* Token */,
@@ -1034,6 +1042,18 @@
 				9F545E961B747D3D002BFF24 /* BicyleStatistics.m */,
 			);
 			path = "统计数据获取";
+			sourceTree = "<group>";
+		};
+		9F545E981B74DAD5002BFF24 /* 加密工具 */ = {
+			isa = PBXGroup;
+			children = (
+				9F545E9C1B74FC7D002BFF24 /* GTMBase64.h */,
+				9F545E9D1B74FC7D002BFF24 /* GTMBase64.m */,
+				9F545E9E1B74FC7D002BFF24 /* GTMDefines.h */,
+				9F545E991B74DAEC002BFF24 /* BoyeCypto.h */,
+				9F545E9A1B74DAEC002BFF24 /* BoyeCypto.m */,
+			);
+			path = "加密工具";
 			sourceTree = "<group>";
 		};
 		9F6E3EAE1B71FBA900F329B9 /* UMessage_Sdk_1.1.0 */ = {
@@ -1237,6 +1257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF05F591B4E5EF300CBC510 /* UIViewController+DismissKeyboard.m in Sources */,
+				9F545E9F1B74FC7D002BFF24 /* GTMBase64.m in Sources */,
 				5B38C7D21B5399B80063912C /* MKAnnotationView+WebCache.m in Sources */,
 				5B38C7E21B5399B80063912C /* UIImageView+WebCache.m in Sources */,
 				5B38C7A41B5390CF0063912C /* MainViewController.m in Sources */,
@@ -1276,6 +1297,7 @@
 				5B8004661B720F3200283B2C /* BoyePeople.m in Sources */,
 				5B38C7911B5390CF0063912C /* RegistVC.m in Sources */,
 				5B38C7D81B5399B80063912C /* SDWebImageDownloader.m in Sources */,
+				9F545E9B1B74DAEC002BFF24 /* BoyeCypto.m in Sources */,
 				5B0155DE1B5DDD1900056CFC /* PulsingRadarView.m in Sources */,
 				5BF4F01E1B566088000AB7BD /* MoreExereqBuyVC.m in Sources */,
 				5BFBBBA01B637B8100BFB44B /* BoyePictureUploadManager.m in Sources */,

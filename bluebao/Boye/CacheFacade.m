@@ -68,10 +68,7 @@
  *  @param key    存入键
  */
 - (void)setObject:(id)object forKey:(NSString *)key{
-    
-    NSNumber * expire_time = [NSNumber numberWithDouble: [[NSDate currentTimeStamp] doubleValue] + self.cacheTime ];
-    
-    [self setObject:object forKey:key WithExpireTime:expire_time];
+    [self setObject:object forKey:key afterSeconds:self.cacheTime];
 }
 
 /**
@@ -84,13 +81,8 @@
  *  @param seconds  seconds秒后 数据将过期 单位（秒）
  */
 - (void)setObject:(id)object forKey:(NSString *)key afterSeconds:(double )seconds{
-    
-    [[NSUserDefaults standardUserDefaults] setObject:object forKey:[self getKey:key]];
-    
-    [[NSUserDefaults standardUserDefaults] setDouble: (seconds + [[NSDate currentTimeStamp]doubleValue]) forKey:[self getExpireTimeKey:key]];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
+    NSNumber * timeStamp = [NSNumber numberWithDouble:seconds+[[NSDate currentTimeStamp]doubleValue] ];
+   [self setObject:object forKey:key afterTimeStamp:timeStamp ];
 }
 
 /**
@@ -132,6 +124,7 @@
     [defs synchronize];
     
 }
+
 /**
  *  缓存数据KEY生成
  *
