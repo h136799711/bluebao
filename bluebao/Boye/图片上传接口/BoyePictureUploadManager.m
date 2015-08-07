@@ -9,7 +9,13 @@
 #import "BoyePictureUploadManager.h"
 @implementation BoyePictureUploadManager
 
-static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanbao/api.php/";
+
++(NSString *)getAvatarURL:(NSInteger )uid :(NSInteger )size{
+    
+    NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%ld&size=%ld",[BoyeHttpClient getBaseApiURL],uid,size];
+    
+    return urlstring;
+}
 
 //头像请求
 +(void)requestUserHeadDown:(PictureReqModel *) picModel complete:(void(^)(UIImage * headImage))complete{
@@ -17,8 +23,8 @@ static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanba
     [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSucced) {
         
         if (tokenSucced) {
-         
-            NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%ld&size=%ld",BASE_API_URL,picModel.uid,picModel.size];
+            
+            NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%ld&size=%ld",[BoyeHttpClient getBaseApiURL],picModel.uid,picModel.size];
             NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlstring]];
             UIImage * resultImag = [UIImage imageWithData:data];
             complete( resultImag);
