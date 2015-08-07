@@ -201,11 +201,11 @@
     return 0;
 }
 
-#pragma mark -- 目标 ---
+#pragma mark --   表头  ---
 -(UIView *)headerView{
     
     //日期
-    CGRect rect = CGRectMake(0, 0, _tableView.width, 200);
+    CGRect rect = CGRectMake(0, 0, _tableView.width, 240);
     self.headView = [[UIView alloc] initWithFrame:rect];
  
     //日期改变
@@ -222,11 +222,9 @@
     
     
     #pragma mark -- drawProgreView ---
-    
-   self.drawProgreView = [[DrawProgreView alloc] init];
-    CGFloat   width =  rect.size.height - _connectView.bottom-20;
-    self.drawProgreView.bounds = CGRectMake(0, 0, width,width);
-    self.drawProgreView.center = CGPointMake(self.headView.width/2.0, _connectView.bottom + self.drawProgreView.height/2.0 +10);
+    CGFloat   width =  rect.size.height - _connectView.bottom-3;
+    self.drawProgreView = [[DrawProgreView alloc] initWithFrame:CGRectMake(0, 0, width,width)];
+    self.drawProgreView.center = CGPointMake(self.headView.width/2.0, _connectView.bottom + self.drawProgreView.height/2.0 );
     [self.headView addSubview:self.drawProgreView];
     
     
@@ -364,16 +362,7 @@
     
 //    reqModel.uuid = @"OTO458-1082"; //LR-866
     reqModel.uuid = @"OTO458-1082";
-    
-//    reqModel.bicyleModel.calorie = 10;
-//    reqModel.bicyleModel.cost_time = 10;
-//    reqModel.bicyleModel.distance = 10;
-//    reqModel.bicyleModel.heart_rate = 10;
-//    reqModel.bicyleModel.speed = 10;
-//    reqModel.bicyleModel.total_distance = 10;
-//    reqModel.bicyleModel.upload_time = 1438617600;
-//    reqModel.bicyleModel.target_calorie = 10;
-    
+  
     reqModel.bicyleModel = _currentBluetothData.bicyleModel;
     
     [BoyeBicyleManager requestBicyleDataUpload:reqModel

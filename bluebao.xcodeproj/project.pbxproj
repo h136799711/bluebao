@@ -76,6 +76,7 @@
 		5B74F4BA1B590AC9002493E8 /* BlueBaoAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B51B590AC9002493E8 /* BlueBaoAboutVC.m */; };
 		5B74F4BB1B590AC9002493E8 /* ContactOurVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B71B590AC9002493E8 /* ContactOurVC.m */; };
 		5B74F4BC1B590AC9002493E8 /* OpinionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B91B590AC9002493E8 /* OpinionVC.m */; };
+		5B7580C71B745FCA00B25A02 /* CircleBezierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7580C61B745FCA00B25A02 /* CircleBezierView.m */; };
 		5B8004661B720F3200283B2C /* BoyePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8004651B720F3200283B2C /* BoyePeople.m */; };
 		5B9049041B72EF0600A2E1B7 /* BoyeForgetCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */; };
 		5B9049051B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */; };
@@ -282,6 +283,8 @@
 		5B74F4B71B590AC9002493E8 /* ContactOurVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactOurVC.m; sourceTree = "<group>"; };
 		5B74F4B81B590AC9002493E8 /* OpinionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpinionVC.h; sourceTree = "<group>"; };
 		5B74F4B91B590AC9002493E8 /* OpinionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpinionVC.m; sourceTree = "<group>"; };
+		5B7580C51B745FCA00B25A02 /* CircleBezierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleBezierView.h; sourceTree = "<group>"; };
+		5B7580C61B745FCA00B25A02 /* CircleBezierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleBezierView.m; sourceTree = "<group>"; };
 		5B8004641B720F3200283B2C /* BoyePeople.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyePeople.h; sourceTree = "<group>"; };
 		5B8004651B720F3200283B2C /* BoyePeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyePeople.m; sourceTree = "<group>"; };
 		5B9049011B72EF0600A2E1B7 /* BoyeForgetCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeForgetCodeVC.h; sourceTree = "<group>"; };
@@ -682,6 +685,8 @@
 				5B6FE9AF1B6A07D5002D32B0 /* BoyeConnectView.m */,
 				5B8004641B720F3200283B2C /* BoyePeople.h */,
 				5B8004651B720F3200283B2C /* BoyePeople.m */,
+				5B7580C51B745FCA00B25A02 /* CircleBezierView.h */,
+				5B7580C61B745FCA00B25A02 /* CircleBezierView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1184,7 +1189,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B38C8031B53C6DB0063912C /* xinlv.png in Resources */,
 				9F4FB6331B7332B600440BFC /* PrivacyVC.xib in Resources */,
 				5B0155DB1B5DDD1900056CFC /* DeviceInfoCell.xib in Resources */,
 				5B38C7FE1B53C6DB0063912C /* pw.png in Resources */,
@@ -1249,6 +1253,7 @@
 				5BF431081B57864A003C7941 /* PlaceholderTextView.m in Sources */,
 				5BFBBBA11B637B8100BFB44B /* BoyeDefaultManager.m in Sources */,
 				5B38C7DA1B5399B80063912C /* SDWebImageManager+MJ.m in Sources */,
+				5B7580C71B745FCA00B25A02 /* CircleBezierView.m in Sources */,
 				9F91E7FA1B4E5AE80013F4F1 /* AFHTTPRequestOperationManager.m in Sources */,
 				5BD4AAD01B6B6F580041F730 /* UUChartLabel.m in Sources */,
 				5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */,
