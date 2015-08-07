@@ -15,7 +15,7 @@
 
 @property (nonatomic,strong) UIButton           * headImageBtn; //头像图片
 @property (nonatomic,strong) UITextField        * personSignTextfield;//个人姓名
-@property (nonatomic,strong) UILabel            * signLabel;//提醒标签
+@property (nonatomic,strong) UITextField            * signLabel;//提醒标签
 //@property (nonatomic,strong) UIButton           * heightButton;//用户身高
 @property (nonatomic,strong) UIButton           * sexButton;//体重
 @property (nonatomic,strong) NSMutableArray     * valueArray; //值

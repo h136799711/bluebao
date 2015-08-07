@@ -234,6 +234,7 @@
     
     [SVProgressHUD showWithStatus:@"信息更新..." maskType:SVProgressHUDMaskTypeClear];
     NSDictionary *params = @{
+                             @"uid"             :  [NSNumber numberWithInteger:userUpdata.uid],
                              @"sex"             :userUpdata.sex,
                              @"nickname"        :userUpdata.nickname,
                              @"signature"       :userUpdata.signature,

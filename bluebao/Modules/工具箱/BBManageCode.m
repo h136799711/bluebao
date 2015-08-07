@@ -108,7 +108,7 @@
 
 //个人资料
 
-+(UIView *) createdPersonInfoShowInView:(UIView *)_headView headBtn:(UIButton *)headImageBtn signTestField:(UITextField *)personSignTextfield label:(UILabel *)label{
++(UIView *) createdPersonInfoShowInView:(UIView *)_headView headBtn:(UIButton *)headImageBtn signTestField:(UITextField *)personSignTextfield label:(UITextField *)label{
     
     
     _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
@@ -125,29 +125,40 @@
     
     
     //编辑签名
-    
+    UserInfo * userinfo = [MainViewController sharedSliderController].userInfo;
     personSignTextfield= [[UITextField alloc] init];
-    personSignTextfield.bounds = CGRectMake(0, 0, 80, 30);
+    personSignTextfield.bounds = CGRectMake(0, 0, 240,30);
     personSignTextfield.center = CGPointMake(headImageBtn.center.x, headImageBtn.bottom + personSignTextfield.height/2.0+3);
     personSignTextfield.textAlignment = NSTextAlignmentCenter;
     personSignTextfield. borderStyle  = UITextBorderStyleNone;
     personSignTextfield.font = FONT(16);
-    personSignTextfield.text = @"张三";
+    personSignTextfield.text = userinfo.nickname;
+    personSignTextfield.tag = 1001;
+    personSignTextfield.clearButtonMode = UITextFieldViewModeWhileEditing;
     [_headView addSubview:personSignTextfield];
     
     //    签名
-    label = [[UILabel alloc] init];
-    label.bounds = CGRectMake(0, 0, 160, 12);
-    label.center = CGPointMake(personSignTextfield.center.x, personSignTextfield.bottom + label.height/2.0);
-    label.text = @"请输入您的个性签名";
+    label = [[UITextField alloc] init];
+    label.bounds = CGRectMake(0, 0, 240, 20);
+    label.center = CGPointMake(personSignTextfield.center.x, personSignTextfield.bottom +10+ label.height/2.0);
+    label.text = userinfo.signature;
+    label.tag = 1002;
+    label.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    if([label.text length]== 0){
+        label.text = @"请输入您的个性签名";
+    }
+    
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:13];
+    label.font = [UIFont boldSystemFontOfSize:14];
     label.textColor = [UIColor lightGrayColor];
     [_headView addSubview:label];
 
     return _headView;
     
 }
+
+
 
 
 

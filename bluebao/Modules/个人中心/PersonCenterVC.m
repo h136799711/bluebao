@@ -199,7 +199,7 @@
         
         //姓名
         UILabel  * label_name = [[UILabel alloc] init];
-        label_name.bounds = CGRectMake(0, 0, 80, 30);
+        label_name.bounds = CGRectMake(0, 0, 120, 30);
         label_name.center = CGPointMake(imageView.right + 30+ label_name.width /2.0, imageView.center.y-label_name.height/2.0);
         label_name.text = self.userInfo.nickname;
         label_name.font = FONT(15);
@@ -210,7 +210,8 @@
         UILabel  * label_ID = [[UILabel alloc] init];
         label_ID.bounds = label_name.bounds;
         label_ID.center = CGPointMake(label_name.center.x, imageView.center.y+label_ID.height/2.0);
-        label_ID.text = [NSString stringWithFormat:@"ID:%ld", self.userInfo.uid];// @"ID:123456";
+//        label_ID.text = [NSString stringWithFormat:@"ID:%ld", (long)self.userInfo.uid];
+        label_ID.text = [NSString stringWithFormat:@"%@", self.userInfo.signature];
         label_ID.font = FONT(15);
         label_ID.textColor = [UIColor lightGrayColor];
         [_headView addSubview:label_ID];

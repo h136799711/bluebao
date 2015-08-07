@@ -236,7 +236,11 @@
 #pragma markk -- 获得BMI值 --
 +(CGFloat) getBMINumWeight:(CGFloat)weight height:(CGFloat)height{
     
-    return ( weight/((height/100.0) * (height/100.0)));
+    if(height == 0){
+        return 0;
+    }
+    
+    return  (weight*10000) / (height * height)  ;
 }
 
 #pragma markk -- 获得BMI值指标 --

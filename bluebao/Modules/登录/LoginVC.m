@@ -199,9 +199,10 @@
         
         if (userInfo != nil ) {
             //  NSLog(@" \r-- %@",userInfo);
+            [MainViewController sharedSliderController].userInfo = userInfo;
+            
             [self jumpMainPage];
             
-            [MainViewController sharedSliderController].userInfo = userInfo;
         }
     }];
 
