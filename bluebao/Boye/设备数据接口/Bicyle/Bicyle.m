@@ -26,7 +26,7 @@
         _speed =    [[dictionary valueForKey:@"speed"] integerValue];
         _upload_time =    [[dictionary valueForKey:@"upload_time"] integerValue];
         _total_distance = [[dictionary valueForKey:@"total_distance"] integerValue];
-
+        _target_calorie = [[dictionary valueForKey:@"target_calorie" ] integerValue];
     }
     return self;
 }

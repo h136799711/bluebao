@@ -113,6 +113,7 @@
                                         @"total_distance":[MyTool getStringToInteger:bicyReqModel.bicyleModel.total_distance],
                                         @"cost_time":[MyTool getStringToInteger:bicyReqModel.bicyleModel.cost_time],
                                        @"calorie":[MyTool getStringToInteger:bicyReqModel.bicyleModel.calorie],
+                                       @"target_calorie":[MyTool getStringToInteger:bicyReqModel.bicyleModel.target_calorie],
                                        @"upload_time":[MyTool getStringToInteger:bicyReqModel.bicyleModel.upload_time]
                                        };
             

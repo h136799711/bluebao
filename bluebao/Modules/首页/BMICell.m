@@ -103,17 +103,10 @@
 
     weightValueLabel.text = [NSString stringWithFormat:@"%.1f",weight];
     
-    
-//    
-//    CGFloat bmi = [MyTool getBMINumWeight:weight height:[[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] floatValue]];
-//
-//    bMITargetLabel.text = [MyTool getBMIStringWeight:weight height:[[USER_DEFAULT objectForKey:BOYE_USER_HEIGHT] floatValue]];
-//    
-//    bMIValueLabel.text = [NSString stringWithFormat:@"%0.1f",bmi];
 }
 //////设置BMI
 -(void)setBmiValue:(CGFloat)bmiValue{
-    
+   
     bMIValueLabel.text = [NSString stringWithFormat:@"%.1f",bmiValue];
     bMITargetLabel.text = [MyTool getBMITarget:bmiValue];
 }

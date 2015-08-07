@@ -33,4 +33,5 @@
 
 #pragma mark -- 蓝堡首页 --
 +(NSString *) getHeaderStrRow:(NSInteger)row bicyle:(Bicyle *)_bicylelb;
+
 @end

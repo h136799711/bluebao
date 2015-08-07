@@ -29,6 +29,8 @@
 
 #define BOYE_EQUIPMENT_UUID @"equipment_uuid"  //设备UUID
 
+#define BOYE_TODAY_TARGET_CALORIE @"today_target_calorie" //今天目标卡路里
+
 //#define BOYE_CODEKEY @""
 #define BOYE_ENDTIME @"endTime"             //到期时间
 #define BOYE_USER_HEIGHT @"user_height"     //用户身高

@@ -36,6 +36,7 @@
 #import "MyTool.h"
 #import "BBManageCode.h" //保存代码
 #import "BoyeFileMagager.h"
+#import "CacheFacade.h"
 
 
 #import "BoyeToken.h"//Token请求

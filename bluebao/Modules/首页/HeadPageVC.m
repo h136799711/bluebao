@@ -151,7 +151,7 @@
 
         
         //判断是否是今天
-        if (self.dateChooseView.isToday) {
+        if (self.dateChooseView.isToday && self.connectView.isConnect == YES) {
             //TODO.....
             
             headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_currentBluetothData.bicyleModel];
@@ -226,12 +226,10 @@
     self.drawProgreView = [[DrawProgreView alloc] initWithFrame:CGRectMake(0, 0, width,width)];
     self.drawProgreView.center = CGPointMake(self.headView.width/2.0, _connectView.bottom + self.drawProgreView.height/2.0 );
     [self.headView addSubview:self.drawProgreView];
-    
-    
+    [self.drawProgreView showCircleView];
     return self.headView ;
 }
 
-    
 
 #pragma mark -- 切换日期，查看历史记录   --
 
@@ -250,14 +248,39 @@
             [self getBicyleData];
         }
         
-    //非今日，查看历史数据
     }else{
-        NSLog(@"NO today");
+        //非今日，查看历史数据
         [self getBicyleData];
+        NSLog(@"NO today");
     }
     
     //刷新
     [_tableView reloadData];
+}
+
+
+//任务完成度
+-(void) showFinishProgre{
+    //任务完成度
+
+    _drawProgreView.finishNum = self.bicylelb.calorie;
+
+    #pragma mark -- TODO......
+   
+    //今天 ，目标卡路里
+    if (self.dateChooseView.isToday == YES && self.connectView.isConnect == YES) {
+        //获得缓存卡路里
+        _drawProgreView.goalNum =  [[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE] integerValue];
+    }else{
+        _drawProgreView.goalNum = self.bicylelb.target_calorie;
+    }
+    
+//    _drawProgreView.goalNum = 50;
+
+    [_drawProgreView showCircleView];
+
+    //    NSLog(@" \r------    %ld  %ld",self.bicylelb.target_calorie,self.bicylelb.calorie);
+    
 }
 
 #pragma mark --- 身体指标 ---
@@ -336,14 +359,15 @@
             self.bicylelb = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
             
             //任务完成度
-            _drawProgreView.goalNum = self.bicylelb.total_distance;
-            _drawProgreView.finishNum = self.bicylelb.distance;
-
+            [self showFinishProgre];
+            [_tableView reloadData];
         }
     } :^(NSString *error) {
 
     }];
 }
+
+
 
 //刷新界面数据
 -(void)refreshData:(Bicyle *) bicyle{
@@ -364,7 +388,12 @@
     reqModel.uuid = @"OTO458-1082";
   
     reqModel.bicyleModel = _currentBluetothData.bicyleModel;
+
+    #pragma mark -- TODO:..........
+
     
+    reqModel.bicyleModel.target_calorie = 10;
+
     [BoyeBicyleManager requestBicyleDataUpload:reqModel
                                           complete:^(BOOL bicyleSuccessed) {
                                               if (bicyleSuccessed) {

@@ -20,6 +20,7 @@
     CGFloat          _line_width;  //线宽
     CGFloat          _innerRadius; //内环半径
     CGFloat         _outRadius;   //外环半径
+    CGFloat          _per;
 }
 @property (nonatomic ,strong) CircleBezierView * circleBezierView;
 @end
@@ -36,7 +37,7 @@
         _line_width = 20;
         _outRadius = (self.width - 0.5)/2.0;
         _innerRadius = _outRadius - _line_width;
-        
+        _per = 0;
         [self _initVews];
     }
     return self;
@@ -116,57 +117,81 @@
 
 
 -(void)setGoalNum:(CGFloat)goalNum{
+    
+    if (goalNum <= 0) {
+        goalNum = 0;
+    }
     _goalNum = goalNum;
     
     _goalValue.text  = [NSString stringWithFormat:@"%d",(int)goalNum];
+    
+    [self doing];
 }
 
 -(void)setFinishNum:(CGFloat)finishNum{
 
+    if (finishNum <= 0) {
+        finishNum = 0;
+    }
+    
     _finishNum = finishNum;
 
-    if (self.goalNum <= finishNum) {
-        
+    [self doing];
+   
+}
+
+//
+-(void) doing{
+   
+    //完成度提示
+    if (_goalNum <= _finishNum && _goalNum != 0) {
         _finishlabel.text = @"已完成";
     }else{
         _finishlabel.text = @"距离目标还有";
-
     }
     
-    if (self.goalNum > 0) {
-        
-        CGFloat  percentage = ( (self.goalNum - finishNum) /self.goalNum)*100;
 
-        if (self.goalNum < finishNum) {
-            //超额完成目标
-//            percentage = ( finishNum /self.goalNum)*100;
-        }
-        _efficiLabel.text = [NSString stringWithFormat:@"%ld％",(NSInteger)percentage];
-//        _per = percentage/100.0 ;
-
-    }
+    //判断
+    CGFloat  percentage = 0;
     
+    if (_goalNum > 0) {
+        percentage =  _finishNum*100  /_goalNum;
+      }
+    _efficiLabel.text = [NSString stringWithFormat:@"%ld％",(NSInteger)percentage];
+    _per = percentage/100.0 ;
+
 }
 
 -(void) showCircleView{
     
-        if (_circleBezierView == nil) {
-            _circleBezierView = [[CircleBezierView alloc] initWithFrame:self.frame];
-            _circleBezierView.line_width = _line_width;
-            _circleBezierView.innerRadius = _innerRadius;
-            _circleBezierView.angle = 0.8;
-            [self addSubview:_circleBezierView];
-        }
+    //先清除
+    [self removeCircleView];
+    //再创建
+    [self creatCiecleView];
     
 }
+//创建 cirele
+-(void)creatCiecleView{
+ 
+    if (_circleBezierView == nil) {
+        _circleBezierView = [[CircleBezierView alloc] initWithFrame:self.frame];
+        _circleBezierView.center = CGPointMake(self.width/2.0, self.height/2.0);
+        _circleBezierView.line_width = _line_width;
+        _circleBezierView.innerRadius = _innerRadius;
+        _circleBezierView.angle = _per;
+        [self addSubview:_circleBezierView];
+    }
+}
 
+//清除 cirele
 -(void)removeCircleView{
     
-    [_circleBezierView removeFromSuperview];
-    _circleBezierView = nil;
-    
+    if (_circleBezierView != nil) {
+        [_circleBezierView removeFromSuperview];
+        _circleBezierView = nil;
+    }
 }
-
+//勾股定理
 -(CGFloat) getChordX:(CGFloat)B{
     
     CGFloat A = sqrtf(_innerRadius * _innerRadius - B*B);

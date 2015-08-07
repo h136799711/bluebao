@@ -47,6 +47,8 @@
 +(NSString *)defaultTimeFormatString{
     return @"hh:mm:ss";
 }
+
+
 -(NSString *)defaultTimeFormatString{
     return @"hh:mm:ss";
 }
@@ -54,7 +56,7 @@
 -(BOOL) isToday{
     
     NSDateFormatter * formatter = [NSDate defaultDateFormatter];
-    formatter.dateFormat = @"yyyyMMdd";
+    formatter.dateFormat = [NSDate defaultDateFormatString];
     NSDate *newdate = [NSDate date];
     NSString * newDateString = [formatter stringFromDate:newdate];
     NSString * nowDateString = [formatter stringFromDate:self];
@@ -118,8 +120,14 @@
 //时间转化小时，分钟，秒
 +(NSString *) getDateHour:(NSTimeInterval )time{
     
-    NSDate * date  = [NSDate dateWithTimeIntervalSince1970:time ];
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    //转化为 yyyy-mm --dd 日期
+    formatter.dateFormat = [NSDate  defaultDateFormatString];
+    NSString * dstr = [formatter stringFromDate:[NSDate date]];
+    //新日期
+    NSDate * date = [[formatter dateFromString:dstr] dateByAddingTimeInterval:time];
+    //新格式 hh:mm:ss
+//    formatter.dateFormat = @"mm:ss";
     formatter.dateFormat = [NSDate defaultTimeFormatString];
     NSString * datestr = [formatter stringFromDate:date];
     NSLog(@" date %@  %f ",datestr,time);

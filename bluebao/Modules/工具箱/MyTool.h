@@ -87,4 +87,9 @@
 
 #pragma mark --讲数值转化为字符串
 +(NSString * ) getStringToInteger:(NSInteger) number ;
+
+#pragma mark --将浮点型数值转化为字符串
++(NSString * ) getStringToFloat:(CGFloat) number;
+
+
 @end

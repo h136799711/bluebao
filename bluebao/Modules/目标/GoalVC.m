@@ -31,7 +31,11 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
     // Do any additional setup after loading the view.
     self.title = @"目标设定";
     
-//    _goalCount = 0;
+
+    //设置默认目标
+    [[CacheFacade sharedCache] setObject:@"500" forKey:BOYE_TODAY_TARGET_CALORIE];
+    
+    
     _isHasData = NO;
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -45,6 +49,8 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
  **/
 -(void)_initViews{
 
+     
+    
     [self isHasDataAdjust];  //判断是否包含数据
     [self _initGoalTableView]; //创建表
     [self _initPickerView];  //修改 数据

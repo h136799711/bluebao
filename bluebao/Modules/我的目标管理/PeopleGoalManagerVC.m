@@ -20,6 +20,8 @@
     self.navigationController.navigationBarHidden = NO;
     CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT);
     self.goalTableView.frame = rect;
+    //默认卡路里
+    
     
     // Do any additional setup after loading the view.
 }

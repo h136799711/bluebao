@@ -17,7 +17,7 @@
 
 -(id)initWithFrame:(CGRect)frame{
     
-    self = [self initWithFrame:frame];
+    self = [super initWithFrame:frame];
     if (self) {
         
         self.backgroundColor = [UIColor clearColor];
@@ -30,7 +30,7 @@
     
     
     //圆环
-    UIBezierPath *  pBezier = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0) radius:_innerRadius + _line_width/2.0 startAngle:0 endAngle:2*M_PI * _angle   clockwise:NO];
+    UIBezierPath *  pBezier = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0) radius:_innerRadius + _line_width/2.0 startAngle:-M_PI_2 endAngle:2*M_PI * _angle -M_PI_2  clockwise:YES];
     pBezier.lineWidth = _line_width;
     [[UIColor colorWithHexString:@"#28cafb"]set];
     [pBezier stroke];

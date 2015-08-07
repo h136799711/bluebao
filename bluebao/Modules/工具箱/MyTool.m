@@ -235,8 +235,10 @@
 
 #pragma markk -- 获得BMI值 --
 +(CGFloat) getBMINumWeight:(CGFloat)weight height:(CGFloat)height{
-    
-    return ( weight/((height/100.0) * (height/100.0)));
+    if (height == 0) {
+        return 0;
+    }
+    return ( weight * 10000/((height * height)));
 }
 
 #pragma markk -- 获得BMI值指标 --
@@ -282,14 +284,19 @@
 }
 
 
-#pragma mark --讲数值转化为字符串
+#pragma mark --将数值转化为字符串
 +(NSString * ) getStringToInteger:(NSInteger) number{
 
     NSString * string = [NSString stringWithFormat:@"%ld",number];
     return string;
 }
     
+#pragma mark --将浮点型数值转化为字符串
++(NSString * ) getStringToFloat:(CGFloat) number{
     
+    NSString * string = [NSString stringWithFormat:@"%.2f",number];
+    return string;
+}
     
     
     

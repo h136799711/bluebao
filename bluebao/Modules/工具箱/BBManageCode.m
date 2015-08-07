@@ -250,11 +250,6 @@
         }
     }
     
-//    for (GoalData * g  in dataArray) {
-////        NSLog(@"'\r goal.maxIndex : %ld",g.maxIndex);
-//    }
-//    
-    
     return dataArray;
 }
 
@@ -263,28 +258,28 @@
     
     NSString * string = @"";
     switch (row) {
-        case 0:
+        case 0: //心率
             string = [MyTool getStringToInteger:_bicylelb.heart_rate];
             break;
             
-        case 1:
+        case 1://速度
             string = [MyTool getStringToInteger:_bicylelb.speed];
-            string = [NSString stringWithFormat:@"%@步/分",string];
+            string = [NSString stringWithFormat:@"%@km/h",string];
             
             break;
-        case 2:
+        case 2://时间
 //            string = [MyTool getStringToInteger:_bicylelb.cost_time];
             string = [NSDate getDateHour:_bicylelb.cost_time];
 
             break;
-        case 3:
-            string = [MyTool getStringToInteger:_bicylelb.calorie];
-            string = [NSString stringWithFormat:@"%@千卡",string];
+        case 3://运动消耗
+            string = [MyTool getStringToFloat:_bicylelb.calorie/10.0];
+            string = [NSString stringWithFormat:@"%@卡",string];
 
             break;
-        case 4:
-            string = [MyTool getStringToInteger:_bicylelb.distance];
-            string = [NSString stringWithFormat:@"%@米",string];
+        case 4://路程
+            string = [MyTool getStringToFloat:_bicylelb.distance/100.0];
+            string = [NSString stringWithFormat:@"%@km",string];
 
             break;
             
@@ -294,71 +289,6 @@
     return string;
 }
 
--(void)updateValue:(NSString *)hexString{
-//    
-//    NSLog(@"当前设备： %ld",(long)self.bluetooth.connectedDevice.state);
-//    NSLog(@"当前设备： %@",self.bluetooth.connectedDevice.peripheral);
-//    
-    if([[hexString lowercaseString] isEqualToString:@"da"]){
-        NSLog(@"外围设备关闭了!");
-    }
-    
-    if (hexString.length < 20){
-        return;
-    }
-    
-    //TODO: 有新数据接收时.
-    NSLog(@"======================================");
-    
-    NSLog(@"%@,长度%lu",hexString,(unsigned long)hexString.length);
-    
-    NSRange cmdRang = NSMakeRange(0, 6);
-    NSString * cmdStr = [[hexString substringWithRange:cmdRang] lowercaseString];
-    
-    if([cmdStr isEqualToString:@"5a0ee5"] && hexString.length == 32){
-        
-        LNowBicyleData *data = [[LNowBicyleData alloc] init];
-        
-        cmdStr = [[hexString substringWithRange:NSMakeRange(6, 4)] lowercaseString];
-        //        NSLog(@"时间  %@",cmdStr );
-        data.spendTime = cmdStr.integerValue;
-        
-        cmdStr = [[hexString substringWithRange:NSMakeRange(10, 4)] lowercaseString];
-        //        NSLog(@"速度 %@",cmdStr);
-        data.speed = cmdStr.integerValue;
-        
-        cmdStr = [[hexString substringWithRange:NSMakeRange(14, 4)] lowercaseString];
-        //        NSLog(@"距离 %@",cmdStr);
-        data.distance = cmdStr.integerValue;
-        
-        cmdStr = [[hexString substringWithRange:NSMakeRange(18, 4)] lowercaseString];
-        //        NSLog(@"热量 %@",cmdStr);
-        data.quantityOfHeat = cmdStr.integerValue;
-        
-        cmdStr = [[hexString substringWithRange:NSMakeRange(22, 4)] lowercaseString];
-        //        NSLog(@"总程 %@",cmdStr);
-        data.totalDistance = cmdStr.integerValue;
-        cmdStr = [[hexString substringWithRange:NSMakeRange(26, 2)] lowercaseString];
-        //        NSLog(@"心率 %@",cmdStr);
-        data.heartRate = cmdStr.integerValue;
-        
-        cmdStr = [[hexString substringWithRange:NSMakeRange(28, 2)] lowercaseString];
-        //        NSLog(@"校验和 %@",cmdStr);
-        data.checksum = cmdStr.integerValue;
-        
-//        NSLog(@"data = %@",data);
-//        [self.descData addObject:data];
-//        NSDateFormatter * formatter = [NSDate defaultDateFormatter ];
-//        
-//        NSString * curDateString = [formatter stringFromDate:[NSDate defaultCurrentDate]];
-//        
-//        self.tvLog.text  = [self.tvLog.text stringByAppendingFormat:@"\n %@: %@",curDateString,data ];
-//        
-//        NSLog(@"======================================");
-        
-    }
-    
-}
 -(void) saveBicyle:(Bicyle *)bicyle{
     
     NSString * bicyleString = [NSString stringWithFormat:@"%ld/",(long)bicyle.heart_rate];

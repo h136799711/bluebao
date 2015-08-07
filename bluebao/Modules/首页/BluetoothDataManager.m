@@ -38,6 +38,8 @@
             return self;
         }
         
+        
+        
         //TODO: 有新数据接收时.
         NSLog(@"======================================");
         
@@ -48,35 +50,37 @@
         
         if([cmdStr isEqualToString:@"5a0ee5"] && dataString.length == 32){
             
-            
             cmdStr = [[dataString substringWithRange:NSMakeRange(6, 4)] lowercaseString];
             
-            //   NSLog(@"时间  %@",cmdStr );
-            self.bicyleModel.cost_time = [self getTenHexadecimalFromSixteen:cmdStr] ;
+          //   NSLog(@"时间  %@",cmdStr );
+//            self.bicyleModel.cost_time = [self getTenHexadecimalFromSixteen:cmdStr] ;
+            self.bicyleModel.cost_time = [self getTimes:cmdStr];
             
             cmdStr = [[dataString substringWithRange:NSMakeRange(10, 4)] lowercaseString];
-            //        NSLog(@"速度 %@",cmdStr);
             self.bicyleModel.speed = [self getTenHexadecimalFromSixteen:cmdStr] ;
-            
+                    NSLog(@"速度 %@  %ld",cmdStr,self.bicyleModel.speed );
+
             cmdStr = [[dataString substringWithRange:NSMakeRange(14, 6)] lowercaseString];
-            //        NSLog(@"距离 %@",cmdStr);
             self.bicyleModel.distance = [self getTenHexadecimalFromSixteen:cmdStr] ;
-            
+                    NSLog(@"距离 %@  %ld",cmdStr, self.bicyleModel.distance);
+
             cmdStr = [[dataString substringWithRange:NSMakeRange(20, 4)] lowercaseString];
-            //        NSLog(@"热量 %@",cmdStr);
+            
             self.bicyleModel.calorie = [self getTenHexadecimalFromSixteen:cmdStr] ;
-            
+            NSLog(@"热量 %@  %ld",cmdStr,self.bicyleModel.calorie );
+
             cmdStr = [[dataString substringWithRange:NSMakeRange(24, 4)] lowercaseString];
-            //        NSLog(@"总程 %@",cmdStr);
             self.bicyleModel.total_distance = [self getTenHexadecimalFromSixteen:cmdStr] ;
-            
+            NSLog(@"总程 %@ %ld",cmdStr, self.bicyleModel.total_distance);
+
             
             cmdStr = [[dataString substringWithRange:NSMakeRange(28, 2)] lowercaseString];
           
-          
-            //        NSLog(@"心率 %@",cmdStr);
-            self.bicyleModel.heart_rate = [self getTenHexadecimalFromSixteen:cmdStr] ;
+//            5a0ee5 6231 0a45 002329 001e00000033
             
+            self.bicyleModel.heart_rate = [self getTenHexadecimalFromSixteen:cmdStr] ;
+                    NSLog(@"心率 %@ %ld",cmdStr, self.bicyleModel.heart_rate );
+
             cmdStr = [[dataString substringWithRange:NSMakeRange(30, 2)] lowercaseString];
             //        NSLog(@"校验和 %@",cmdStr);
             _checksum = [self getTenHexadecimalFromSixteen:cmdStr] ;
@@ -102,16 +106,43 @@
 
 -(NSInteger)  getTenHexadecimalFromSixteen:(NSString *)hexstring {
   
-    NSArray * a = @[@"时间",@"速度",@"距离",@"热量",@"总距离",@"心率",@"效验"];
-    
-    count =    count % a.count;
-    
     UInt64 num =  strtoul([hexstring UTF8String], 0, 16);
     
-    NSLog(@"  ----蓝牙数据 %@- %llu-",a[count],num);
-    count ++;
     return  (NSInteger)num;
     
-
 }
+
+//获得时间
+-( NSInteger) getTimes:(NSString * )cmdStr {
+   
+    NSString * minstr =  [cmdStr substringToIndex:2];
+    NSString * scnstr = [cmdStr substringFromIndex:2];
+    NSInteger  min = [self getTenHexadecimalFromSixteen:minstr];
+    NSInteger  scn = [self getTenHexadecimalFromSixteen: scnstr];
+    NSLog(@" -  hour- %@ %ld -min- %@- %ld ",minstr,min,scnstr,scn);
+
+    return min * 60 + scn;
+}
+
+//获得路程
+-(NSInteger) getDistance:(NSString *)cmdStr{
+    
+    NSString * minstr =  [cmdStr substringToIndex:2];
+    NSString * scnstr = [cmdStr substringFromIndex:2];
+    NSInteger  min = [self getTenHexadecimalFromSixteen:minstr];
+    NSInteger  scn = [self getTenHexadecimalFromSixteen: scnstr];
+    NSLog(@" -  hour- %@ %ld -min- %@- %ld ",minstr,min,scnstr,scn);
+
+    return min *100 + scn;
+}
+
+-(NSInteger) getsubString:(NSString *) dataString index:(NSInteger)index length:(NSInteger)length{
+
+    
+   NSString *  cmdStr = [[dataString substringWithRange:NSMakeRange(index, length)] lowercaseString];
+    
+    return [self getTenHexadecimalFromSixteen:cmdStr];
+}
+
+
 @end

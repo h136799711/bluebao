@@ -20,6 +20,11 @@
 @property (nonatomic,assign)CGFloat     goalNum;  //目标
 @property (nonatomic,assign)CGFloat     finishNum;//完成数量
 
-
+//展示园
+-(void) showCircleView;
+//创建 cirele
+-(void)creatCiecleView;
+//清除 cirele
+-(void)removeCircleView;
 
 @end
