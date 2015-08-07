@@ -261,13 +261,23 @@
                                                        headBtn:self.headImageBtn
                                                  signTestField:self.personSignTextfield
                                                          label:self.signLabel];
+        
+        //监听触摸
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+        [_headView addGestureRecognizer:singleTap];
+        
         //头像绑定事件
         [self.headImageBtn addTarget:self action:@selector(uploadHeadImage) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    self.personSignTextfield.text = @"王五";
     
     return _headView;
+}
+
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [self.view endEditing:YES];
+    
 }
 
 
@@ -309,7 +319,16 @@
     self.userInfo.weight = weight;
     self.userInfo.target_weight = target_weight;
     
-//    [MainViewController sharedSliderController].userInfo = self.userInfo;
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    NSDateComponents * components = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];
+    
+    self.userInfo.birthday = [NSString stringWithFormat: @"%d-01-01",components.year - age + 1];
+    
+    UITextField * signature = (UITextField *)[_headView viewWithTag:1001];
+    self.userInfo.signature = signature.text;
+    
+    UITextField * nickname = (UITextField *)[_headView viewWithTag:1002];
+    self.userInfo.nickname = nickname.text;
     
     [self requestPersonInfo];
     
@@ -327,12 +346,11 @@
     updataModel.nickname = self.userInfo.nickname;
     updataModel.signature = self.userInfo.signature;
     updataModel.height =  [self getString:self.userInfo.height];
-    
-    updataModel.weight = [self getString:self.userInfo.weight];
+    updataModel.weight =  [self getString:self.userInfo.weight];
     updataModel.target_weight = [self getString:self.userInfo.target_weight];
     updataModel.birthday = self.userInfo.birthday;
     updataModel.uid = self.userInfo.uid;
-    updataModel.avatar_id  = _avatar_id;
+//    updataModel.avatar_id  = _avatar_id;
     
     [BoyeDefaultManager requestUserInfoUpdata:updataModel complete:^(BOOL succed) {
         

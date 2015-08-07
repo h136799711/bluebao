@@ -171,24 +171,21 @@
 #pragma mark -- 创建去区头 --
 -(UIView *)creatTableViewHeadView{
     
-    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 120)];
+    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 100)];
 //    headView.backgroundColor = [UIColor lightGrayColor];
     
     //头像
     self.headBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
-     self.headBtn.bounds = CGRectMake(0, 0, 50, 50);
-     self.headBtn.center = CGPointMake(20+ self.headBtn.width/2.0,  self.headBtn.height/2.0 + 40);
+     self.headBtn.bounds = CGRectMake(0, 0, 40, 40);
+     self.headBtn.center = CGPointMake(10+ self.headBtn.width/2.0,  self.headBtn.height/2.0 + 40);
     [headView addSubview: self.headBtn];
-
-    [self.headBtn addTarget:self action:@selector(changeHeadImagClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    [self.headBtn addTarget:self action:@selector(changeHeadImagClick:) forControlEvents:UIControlEventTouchUpInside];
+
     NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userinfo.uid :120]];
     
     [self.headBtn setImageWithURL:avatar_url   forState:UIControlStateNormal];
-
-//    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateNormal];
-//    [ self.headBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateHighlighted];
-
+    
      self.headBtn.backgroundColor = [UIColor redColor];
     [MyTool cutViewConner: self.headBtn radius: self.headBtn.width/2.0];
     
@@ -196,7 +193,10 @@
     UILabel * label = [[UILabel alloc] init];
     label.bounds = CGRectMake(0, 0, 100, 12);
     label.center = CGPointMake( self.headBtn.right+ 10+ label.width/2.0,  self.headBtn.center.y + label.height/2.0);
-    label.text = @"请编辑签名";
+//    label.text = @"请编辑签名";
+    label.text = self.userinfo.signature;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor grayColor];
     [headView addSubview:label];
     label.font = [UIFont boldSystemFontOfSize:10];
     
@@ -206,9 +206,10 @@
 //  signTextfield.frame = CGRectMake(label.left, headBtn.center.y - headBtn.height/2.0 - 16, headView.width - headBtn.right - 15 , 30);
     self.signTextfield.bounds = CGRectMake(0, 0,headView.width -  self.headBtn.right - 15 , 30);
     self.signTextfield.center = CGPointMake(label.center.x,  self.headBtn.center.y - self.signTextfield.height/2.0);
-    self.signTextfield.text = @"张三";
+    self.signTextfield.textAlignment = NSTextAlignmentCenter;
+    self.signTextfield.text = self.userinfo.nickname;
     [headView addSubview:self.signTextfield];
-    self.signTextfield.font = [UIFont boldSystemFontOfSize:14];;
+    self.signTextfield.font = [UIFont boldSystemFontOfSize:13];
     self.signTextfield.enabled = NO;
     
     //线

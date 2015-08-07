@@ -42,7 +42,7 @@
         
         if (tokenSucced) {
           
-            NSString *token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+            NSString *token = [BoyeToken getAccessToken];
             BoyeHttpClient * client = [[BoyeHttpClient alloc] init];
             NSString * uid = [NSString stringWithFormat:@"%ld",picModel.uid];
             

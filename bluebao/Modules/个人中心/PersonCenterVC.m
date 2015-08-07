@@ -30,9 +30,13 @@
 @implementation PersonCenterVC
 
 -(void)viewWillAppear:(BOOL)animated{
-    
     [super viewWillAppear:YES];
-    
+    NSLog(@"**********个人中心出现**********");
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSLog(@"**********个人中心消失**********");
 }
 
 
@@ -41,10 +45,10 @@
     self.userInfo = [MainViewController sharedSliderController].userInfo;
     
     
-    self.title = @"数据中心";
+    self.title = @"个人中心";
     
     [self _initViews];
-    
+    [self queryRemoteData];
 }
 //初始化
 -(void)_initViews{
@@ -66,6 +70,89 @@
 //        [MyTool testViews:_tableView];
         [self.view addSubview:_tableView];
     }
+    
+}
+
+#pragma mark 自定义方法
+
+-(void)setBestResult:(NSDictionary *)data{
+    
+    NSString * best_distance = [data objectForKey:@"best_distance"];
+    NSNumber * best_cost_time = [data objectForKey:@"best_cost_time"];
+    NSString * best_calorie = [data objectForKey:@"best_calorie"];
+    NSInteger  bd_tag =  (1100 + 0);
+    NSInteger  bct_tag =  (1100 + 1);
+    NSInteger  bc_tag =  (1100 + 2);
+    
+    
+    MessageCell * lblTmp =  (MessageCell * )[_tableView viewWithTag:bd_tag];
+    lblTmp.label_value.text = [NSString stringWithFormat:@"%@公里",best_distance];
+    lblTmp =  (MessageCell * )[_tableView viewWithTag:bct_tag];
+    
+    lblTmp.label_value.text  =  [NSString stringWithFormat:@"%.2f时",([best_cost_time doubleValue] / 3600)];
+
+    lblTmp =  (MessageCell * )[_tableView viewWithTag:bc_tag];
+    lblTmp.label_value.text  =  [NSString stringWithFormat:@"%@卡",best_calorie];
+
+    
+}
+
+
+-(void)setTotalResult:(NSDictionary *)data{
+    
+    NSString * sum_max_calorie = [data objectForKey:@"sum_max_calorie"];
+    NSNumber * sum_max_distance = [data objectForKey:@"sum_max_distance"];
+    NSString * sum_max_time = [data objectForKey:@"sum_max_time"];
+    NSInteger  bd_tag =  (1000 + 0);
+    NSInteger  bct_tag =  (1000 + 1);
+    NSInteger  bc_tag =  (1000 + 2);
+    
+    
+    MessageCell * lblTmp =  (MessageCell * )[_tableView viewWithTag:bd_tag];
+    lblTmp.label_value.text = [NSString stringWithFormat:@"%@公里",sum_max_distance];
+    lblTmp =  (MessageCell * )[_tableView viewWithTag:bct_tag];
+    
+    lblTmp.label_value.text  =  [NSString stringWithFormat:@"%.2f时",([sum_max_time doubleValue] / 3600)];
+    
+    lblTmp =  (MessageCell * )[_tableView viewWithTag:bc_tag];
+    lblTmp.label_value.text  =  [NSString stringWithFormat:@"%@卡",sum_max_calorie];
+    
+    
+}
+
+#pragma mark 注释-从服务器查询相关数据
+-(void)queryRemoteData{
+    
+    NSNumber * uid = [NSNumber numberWithInteger: self.userInfo.uid ];
+    
+    [BicyleStatistics queryBestResult:uid :^(id  data) {
+        
+        if(data == nil){
+            
+            NSLog(@"数据获取为空!");
+        }
+        
+        if([data isKindOfClass:[NSArray class]]){
+            
+            [self setBestResult:data[0] ];
+        }
+        
+    } :nil];
+    
+    [BicyleStatistics queryTotalResult:uid :^(id data) {
+        
+        if(data == nil){
+            NSLog(@"数据获取为空!");
+        }
+        
+        NSLog(@"data=%@",data);
+        
+        if([data isKindOfClass:[NSDictionary class]]){
+            
+            [self setTotalResult:data ];
+        }
+        
+    } :nil];
     
 }
 
@@ -95,7 +182,7 @@
     //分类
     cell.label_sort.text = _sortArray[indexPath.section][indexPath.row];
     cell.label_value.text = [MyTool stringWithNumFormat:_unitArray[indexPath.row] number:0];
-    
+    cell.tag = 1000+indexPath.section*100+indexPath.row;
     return cell;
 }
 
@@ -145,8 +232,8 @@
     CGFloat bmi = [MyTool getBMINumWeight:self.userInfo.weight height:self.userInfo.height];
     
     
-    self.heightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.height];
-    self.weightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.weight];
+    self.heightLabel.text = [NSString stringWithFormat:@"%ld",(long)self.userInfo.height];
+    self.weightLabel.text = [NSString stringWithFormat:@"%ld",(long)self.userInfo.weight];
     self.BMiLabel.text = [NSString stringWithFormat:@"%.1f",bmi];
     
     return  _views;
@@ -199,7 +286,7 @@
         
         //姓名
         UILabel  * label_name = [[UILabel alloc] init];
-        label_name.bounds = CGRectMake(0, 0, 80, 30);
+        label_name.bounds = CGRectMake(0, 0, 120, 30);
         label_name.center = CGPointMake(imageView.right + 30+ label_name.width /2.0, imageView.center.y-label_name.height/2.0);
         label_name.text = self.userInfo.nickname;
         label_name.font = FONT(15);
@@ -210,7 +297,8 @@
         UILabel  * label_ID = [[UILabel alloc] init];
         label_ID.bounds = label_name.bounds;
         label_ID.center = CGPointMake(label_name.center.x, imageView.center.y+label_ID.height/2.0);
-        label_ID.text = [NSString stringWithFormat:@"ID:%ld", self.userInfo.uid];// @"ID:123456";
+//        label_ID.text = [NSString stringWithFormat:@"ID:%ld", (long)self.userInfo.uid];
+        label_ID.text = [NSString stringWithFormat:@"%@", self.userInfo.signature];
         label_ID.font = FONT(15);
         label_ID.textColor = [UIColor lightGrayColor];
         [_headView addSubview:label_ID];

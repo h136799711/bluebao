@@ -129,6 +129,7 @@
 		9F4FB6331B7332B600440BFC /* PrivacyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FB6311B7332B600440BFC /* PrivacyVC.xib */; };
 		9F4FB6351B733F6400440BFC /* 用户须知.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FB6341B733F6400440BFC /* 用户须知.rtf */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
+		9F545E971B747D3D002BFF24 /* BicyleStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F545E961B747D3D002BFF24 /* BicyleStatistics.m */; };
 		9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */; };
 		9F6E3EB61B721BB200F329B9 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */; };
 		9F6E3EB81B7229C200F329B9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB71B7229C200F329B9 /* libz.dylib */; };
@@ -387,6 +388,8 @@
 		9F50E5171B4E577700AB6BD8 /* bluebaoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bluebaoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F50E51C1B4E577700AB6BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bluebaoTests.m; sourceTree = "<group>"; };
+		9F545E951B747D3D002BFF24 /* BicyleStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicyleStatistics.h; sourceTree = "<group>"; };
+		9F545E961B747D3D002BFF24 /* BicyleStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicyleStatistics.m; sourceTree = "<group>"; };
 		9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
 		9F6E3EB01B71FBA900F329B9 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -831,6 +834,7 @@
 		5BF4F0091B55F0F7000AB7BD /* Boye */ = {
 			isa = PBXGroup;
 			children = (
+				9F545E941B747CF2002BFF24 /* 统计数据获取 */,
 				5BF88BD41B69C0A5003785D0 /* 设备数据接口 */,
 				5BF31F521B6707D600F6F366 /* Token */,
 				5BF31F4E1B6707C900F6F366 /* Boye网络请求 */,
@@ -1021,6 +1025,15 @@
 				5B38C78B1B5390CF0063912C /* Model */,
 			);
 			name = Modules;
+			sourceTree = "<group>";
+		};
+		9F545E941B747CF2002BFF24 /* 统计数据获取 */ = {
+			isa = PBXGroup;
+			children = (
+				9F545E951B747D3D002BFF24 /* BicyleStatistics.h */,
+				9F545E961B747D3D002BFF24 /* BicyleStatistics.m */,
+			);
+			path = "统计数据获取";
 			sourceTree = "<group>";
 		};
 		9F6E3EAE1B71FBA900F329B9 /* UMessage_Sdk_1.1.0 */ = {
@@ -1271,6 +1284,7 @@
 				5B38C7E11B5399B80063912C /* UIImageView+MJWebCache.m in Sources */,
 				5B38C78F1B5390CF0063912C /* LoginVC.m in Sources */,
 				5B38C7D41B5399B80063912C /* NSData+ImageContentType.m in Sources */,
+				9F545E971B747D3D002BFF24 /* BicyleStatistics.m in Sources */,
 				5BF05F571B4E5EF300CBC510 /* UIImage+Color.m in Sources */,
 				5B38C7DF1B5399B80063912C /* UIImage+MultiFormat.m in Sources */,
 				9F91E8001B4E5AE80013F4F1 /* AFURLResponseSerialization.m in Sources */,

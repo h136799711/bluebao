@@ -50,6 +50,7 @@
     NSNumber * currentTimeStamp = [NSDate currentTimeStamp];
     
     double expire_time =   [[NSUserDefaults standardUserDefaults] doubleForKey:[self getExpireTimeKey:key]];
+    NSLog(@"expire_time=%f",expire_time);
     
     if(expire_time < currentTimeStamp.doubleValue){
         //已经过期则返回nil，并清除缓存

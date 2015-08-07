@@ -70,6 +70,7 @@
 #import "MobClickSocialAnalytics.h"
 #import "PrivacyVC.h"
 
+#import "BicyleStatistics.h"
 //-------------------打印日志-------------------------
 //DEBUG  模式下打印日志,当前行
 #ifdef DEBUG
