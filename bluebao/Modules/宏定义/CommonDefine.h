@@ -21,6 +21,9 @@
 #define BOYE_USER_NAME @"boye_user_name" //账号名
 #define BOYE_USER_PSW @"boye_user_psw"//账号密码
 
+//何必都测试请求口令
+//#define BOYE_CLIENT_ID "by55c45a981b1101"
+//#define BOYE_CLIENT_SECRET "8153f22f12c2b37755c555e2048cbccc"
 //请求口令
 #define BOYE_CLIENT_ID "by559a8de1c325c1"
 #define BOYE_CLIENT_SECRET "aedd16f80c192661016eebe3ac35a6e7"

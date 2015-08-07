@@ -64,7 +64,7 @@
 //用户注册接口
 +(void)reqRegister:(User *)user complete:(void(^)(BOOL registSucced))complete{
     
-    NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+    NSString * token = [BoyeToken getAccessToken];
     //e1622ce558609222b6aa91da4beebe91510d93f1
     //    NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
     
@@ -140,7 +140,8 @@
   }
 //用户登录接口
 +(void)reqLogin:(User *)user complete:(void (^)(UserInfo * _userInfo))complete{
-    NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+    
+    NSString * token = [BoyeToken getAccessToken];
     NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
     
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
@@ -152,7 +153,7 @@
                              @"password":user.password
                              };
     
-    NSString * urlstr = [NSString stringWithFormat:@"User/login?access_token=%@",[USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN]];
+    NSString * urlstr = [NSString stringWithFormat:@"User/login?access_token=%@",token];
     [client post:urlstr
                 :params
                 :^(AFHTTPRequestOperation *operation ,id responseObject){
@@ -229,7 +230,7 @@
     
 //    User/update?access_token=ACCESS_TOKEN
     
-    NSString * token = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+    NSString * token = [BoyeToken getAccessToken];
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     
     [SVProgressHUD showWithStatus:@"信息更新..." maskType:SVProgressHUDMaskTypeClear];

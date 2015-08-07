@@ -14,16 +14,9 @@
 //是否存在有效token
 +(BOOL)isTokenEffective;
 
-//是否过期
-+(BOOL)isDateOut;
-
-//token是否存在
-+(BOOL) isTokenExist;
-
-
 //获取有效令牌
 
 +(void)isTokenEffectiveComplete:(void(^)(BOOL  tokenSucced))complete;
 
-
++(NSString *)getAccessToken;
 @end
