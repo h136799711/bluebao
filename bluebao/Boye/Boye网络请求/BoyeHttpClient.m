@@ -16,8 +16,8 @@
 
 @end
 
-static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanbao/api.php/";
-//static NSString * const BASE_API_URL = @"http://lanbao.itboye.com/api.php/";
+//static NSString * const BASE_API_URL = @"http://192.168.0.100/github/201507lanbao/api.php/";
+static NSString * const BASE_API_URL = @"http://lanbao.itboye.com/api.php/";
 
 
 
