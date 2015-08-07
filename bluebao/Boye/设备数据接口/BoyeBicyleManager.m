@@ -35,7 +35,7 @@
         
         if (tokenSucced ) {
             
-            NSString * token  = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+            NSString * token  = [BoyeToken getAccessToken];
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/day?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
             NSString * time = [NSString stringWithFormat:@"%ld",bicyReqModel.time];
@@ -98,7 +98,8 @@
     
     [BoyeToken isTokenEffectiveComplete:^(BOOL tokenSucced) {
         if (tokenSucced) {
-            NSString * token  = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+            NSString * token  =   [BoyeToken getAccessToken];
+            
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/add?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
             NSLog(@" %ld  -----   %@",bicyReqModel.bicyleModel.speed,[MyTool getStringToInteger:bicyReqModel.bicyleModel.speed]);
@@ -160,7 +161,7 @@
         
         if (tokenSucced ) {
             
-            NSString * token  = [USER_DEFAULT objectForKey:BOYE_ACCESS_TOKEN];
+            NSString * token  = [BoyeToken getAccessToken];
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/month?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
             NSString * time = [NSString stringWithFormat:@"%ld",bicyReqModel.time];
