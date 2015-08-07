@@ -60,6 +60,10 @@
  */
 -(BOOL)isOutSetDateTime:(NSDate *)newDate;
 
+/*
+ *当前时间是否超过某个设定时间 ，yes，超过，no ，没有
+ */
++(BOOL) currDateIsOutSetingTime:(NSDate *)date;
 /**
  * 时间转化小时，分钟，秒
  */

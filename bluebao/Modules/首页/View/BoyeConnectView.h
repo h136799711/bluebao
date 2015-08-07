@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CircleBezierView.h"
 
 @class BoyeConnectView;
 @protocol BoyeConnectViewDelegate <NSObject>
