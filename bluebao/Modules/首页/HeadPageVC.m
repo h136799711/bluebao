@@ -42,10 +42,10 @@
     }
     return _bicylelb;
 }
--(NSDate *)lastUpLoadDateTime{
+-(NSDate *)nextUpLoadDateTime{
+    
     if (_nextUpLoadDateTime == nil) {
         _nextUpLoadDateTime = [NSDate date];
-        _nextUpLoadDateTime = [self nextUploadDataTime];
     }
     return _nextUpLoadDateTime;
 }
@@ -64,7 +64,10 @@
     
     self.title =@"蓝堡踏步机";
     
-    _upTimeInterval = 10;
+    _upTimeInterval = 20;
+    _nextUpLoadDateTime = [NSDate date];
+     [self nextLoadTime];;
+
     
     _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗",@"路程"];
     _imageName = @[@"xinlv.png",@"sd.png",@"time.png",@"sport.png",@"road.png"];
@@ -92,7 +95,7 @@
     [headCollectionView reloadData];
     
     
-    NSLog(@" ---- current %@  ",self.boyeBluetooth.connectedDevice.uuid);
+    NSLog(@" ---- current设备UUID %@  ",self.boyeBluetooth.connectedDevice.uuid);
     
     
     [self getBicyleData];
@@ -445,13 +448,13 @@
 
     //刷新首页
     if (self.dateChooseView.isToday) {
-        NSLog(@"  8888888888888888888888888 ");
         
-        if ([_nextUpLoadDateTime isOutSetDateTime:[NSDate date]]) {
+        if ([NSDate currDateIsOutSetingTime:_nextUpLoadDateTime]) {
             
-            [self upLoadBicyleData];
+//            [self upLoadBicyleData];
+            //下次上传时间
+            [self nextLoadTime];
         }
-        
         [_tableView reloadData];
     }
 }
@@ -470,9 +473,9 @@
 }
 
 #pragma mark -- 下次上传时间
--(NSDate *) nextUploadDataTime{
+-(void) nextLoadTime{
     
-    return [_nextUpLoadDateTime dateByAddingTimeInterval:_upTimeInterval];
+    _nextUpLoadDateTime = [_nextUpLoadDateTime dateByAddingTimeInterval:_upTimeInterval];
 }
 
 - (void)didReceiveMemoryWarning {
