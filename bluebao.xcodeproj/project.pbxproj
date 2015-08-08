@@ -125,13 +125,13 @@
 		5BFBBBA71B637CE400BFB44B /* PictureRespModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBBA61B637CE400BFB44B /* PictureRespModel.m */; };
 		5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCFB001B6224F00076F18B /* UserInfo.m */; };
 		5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */; };
+		9F470BC11B758AF500A49750 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BBF1B758AF500A49750 /* GTMBase64.m */; };
 		9F4FB6321B7332B600440BFC /* PrivacyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4FB6301B7332B600440BFC /* PrivacyVC.m */; };
 		9F4FB6331B7332B600440BFC /* PrivacyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FB6311B7332B600440BFC /* PrivacyVC.xib */; };
 		9F4FB6351B733F6400440BFC /* 用户须知.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FB6341B733F6400440BFC /* 用户须知.rtf */; };
 		9F50E51E1B4E577700AB6BD8 /* bluebaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F50E51D1B4E577700AB6BD8 /* bluebaoTests.m */; };
 		9F545E971B747D3D002BFF24 /* BicyleStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F545E961B747D3D002BFF24 /* BicyleStatistics.m */; };
 		9F545E9B1B74DAEC002BFF24 /* BoyeCypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F545E9A1B74DAEC002BFF24 /* BoyeCypto.m */; };
-		9F545E9F1B74FC7D002BFF24 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F545E9D1B74FC7D002BFF24 /* GTMBase64.m */; };
 		9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */; };
 		9F6E3EB61B721BB200F329B9 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */; };
 		9F6E3EB81B7229C200F329B9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB71B7229C200F329B9 /* libz.dylib */; };
@@ -381,6 +381,9 @@
 		5BFCFB001B6224F00076F18B /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		5BFFD9611B54F3F600216795 /* PickerKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerKeyBoard.h; sourceTree = "<group>"; };
 		5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerKeyBoard.m; sourceTree = "<group>"; };
+		9F470BBE1B758AF500A49750 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		9F470BBF1B758AF500A49750 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		9F470BC01B758AF500A49750 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		9F4FB62F1B7332B600440BFC /* PrivacyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyVC.h; sourceTree = "<group>"; };
 		9F4FB6301B7332B600440BFC /* PrivacyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyVC.m; sourceTree = "<group>"; };
 		9F4FB6311B7332B600440BFC /* PrivacyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyVC.xib; sourceTree = "<group>"; };
@@ -394,9 +397,6 @@
 		9F545E961B747D3D002BFF24 /* BicyleStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicyleStatistics.m; sourceTree = "<group>"; };
 		9F545E991B74DAEC002BFF24 /* BoyeCypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeCypto.h; sourceTree = "<group>"; };
 		9F545E9A1B74DAEC002BFF24 /* BoyeCypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeCypto.m; sourceTree = "<group>"; };
-		9F545E9C1B74FC7D002BFF24 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMBase64.h; path = "../../../../../../../Downloads/GTMBase64-master/GTMBase64/GTMBase64.h"; sourceTree = "<group>"; };
-		9F545E9D1B74FC7D002BFF24 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMBase64.m; path = "../../../../../../../Downloads/GTMBase64-master/GTMBase64/GTMBase64.m"; sourceTree = "<group>"; };
-		9F545E9E1B74FC7D002BFF24 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "../../../../../../../Downloads/GTMBase64-master/GTMBase64/GTMDefines.h"; sourceTree = "<group>"; };
 		9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
 		9F6E3EB01B71FBA900F329B9 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -1047,9 +1047,9 @@
 		9F545E981B74DAD5002BFF24 /* 加密工具 */ = {
 			isa = PBXGroup;
 			children = (
-				9F545E9C1B74FC7D002BFF24 /* GTMBase64.h */,
-				9F545E9D1B74FC7D002BFF24 /* GTMBase64.m */,
-				9F545E9E1B74FC7D002BFF24 /* GTMDefines.h */,
+				9F470BBE1B758AF500A49750 /* GTMBase64.h */,
+				9F470BBF1B758AF500A49750 /* GTMBase64.m */,
+				9F470BC01B758AF500A49750 /* GTMDefines.h */,
 				9F545E991B74DAEC002BFF24 /* BoyeCypto.h */,
 				9F545E9A1B74DAEC002BFF24 /* BoyeCypto.m */,
 			);
@@ -1257,7 +1257,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF05F591B4E5EF300CBC510 /* UIViewController+DismissKeyboard.m in Sources */,
-				9F545E9F1B74FC7D002BFF24 /* GTMBase64.m in Sources */,
 				5B38C7D21B5399B80063912C /* MKAnnotationView+WebCache.m in Sources */,
 				5B38C7E21B5399B80063912C /* UIImageView+WebCache.m in Sources */,
 				5B38C7A41B5390CF0063912C /* MainViewController.m in Sources */,
@@ -1288,6 +1287,7 @@
 				5BFBBBA11B637B8100BFB44B /* BoyeDefaultManager.m in Sources */,
 				5B38C7DA1B5399B80063912C /* SDWebImageManager+MJ.m in Sources */,
 				5B7580C71B745FCA00B25A02 /* CircleBezierView.m in Sources */,
+				9F470BC11B758AF500A49750 /* GTMBase64.m in Sources */,
 				9F91E7FA1B4E5AE80013F4F1 /* AFHTTPRequestOperationManager.m in Sources */,
 				5BD4AAD01B6B6F580041F730 /* UUChartLabel.m in Sources */,
 				5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */,
