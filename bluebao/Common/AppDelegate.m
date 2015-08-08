@@ -20,8 +20,6 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[CacheFacade sharedCache]setObject:@"Test" forKey:@"test" WithExpireTime:[NSNumber numberWithInt:10]];
-    
     [NSThread sleepForTimeInterval:2];
     
     // Override point for customization after application launch.
