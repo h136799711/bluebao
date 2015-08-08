@@ -290,6 +290,10 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
             return;
         }
         
+        //设置目标
+        
+        [CommonCache setGoal:[NSNumber numberWithInteger:goal.goalNumber]];
+        
         //添加元素 然后排序
         
         [self.dataArray addObject:goal];
@@ -297,6 +301,9 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
         
     #pragma mark -- 点击修改按钮，替换对应目标数据
     }else{
+        
+        [CommonCache setGoal:[NSNumber numberWithInteger:goal.goalNumber]];
+        
         [self.dataArray replaceObjectAtIndex:self.goalPickerView.tag withObject:goal];
     }
     

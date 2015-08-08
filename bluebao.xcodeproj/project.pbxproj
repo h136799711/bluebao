@@ -126,6 +126,9 @@
 		5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCFB001B6224F00076F18B /* UserInfo.m */; };
 		5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */; };
 		9F470BC11B758AF500A49750 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BBF1B758AF500A49750 /* GTMBase64.m */; };
+		9F470BC51B75E03800A49750 /* CommonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BC41B75E03800A49750 /* CommonCache.m */; };
+		9F470BC91B75E5D300A49750 /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BC81B75E5D300A49750 /* SQLiteManager.m */; };
+		9F470BCB1B75ED7200A49750 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F470BCA1B75ED7200A49750 /* libsqlite3.dylib */; };
 		9F4FB6321B7332B600440BFC /* PrivacyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4FB6301B7332B600440BFC /* PrivacyVC.m */; };
 		9F4FB6331B7332B600440BFC /* PrivacyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FB6311B7332B600440BFC /* PrivacyVC.xib */; };
 		9F4FB6351B733F6400440BFC /* 用户须知.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FB6341B733F6400440BFC /* 用户须知.rtf */; };
@@ -183,8 +186,8 @@
 		5B1D24041B5CD5A000BE460C /* GoalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalData.m; sourceTree = "<group>"; };
 		5B1D24061B5CF6AD00BE460C /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		5B1D24071B5CF6AD00BE460C /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
-		5B1D24091B5CF6E500BE460C /* CacheFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFacade.h; sourceTree = "<group>"; };
-		5B1D240A1B5CF6E500BE460C /* CacheFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheFacade.m; sourceTree = "<group>"; };
+		5B1D24091B5CF6E500BE460C /* CacheFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheFacade.h; path = ../CacheFacade.h; sourceTree = "<group>"; };
+		5B1D240A1B5CF6E500BE460C /* CacheFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheFacade.m; path = ../CacheFacade.m; sourceTree = "<group>"; };
 		5B38C7571B5390CF0063912C /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		5B38C7581B5390CF0063912C /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		5B38C7591B5390CF0063912C /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
@@ -384,6 +387,11 @@
 		9F470BBE1B758AF500A49750 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		9F470BBF1B758AF500A49750 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		9F470BC01B758AF500A49750 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		9F470BC31B75E03800A49750 /* CommonCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCache.h; sourceTree = "<group>"; };
+		9F470BC41B75E03800A49750 /* CommonCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCache.m; sourceTree = "<group>"; };
+		9F470BC71B75E5D300A49750 /* SQLiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
+		9F470BC81B75E5D300A49750 /* SQLiteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteManager.m; sourceTree = "<group>"; };
+		9F470BCA1B75ED7200A49750 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		9F4FB62F1B7332B600440BFC /* PrivacyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyVC.h; sourceTree = "<group>"; };
 		9F4FB6301B7332B600440BFC /* PrivacyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyVC.m; sourceTree = "<group>"; };
 		9F4FB6311B7332B600440BFC /* PrivacyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyVC.xib; sourceTree = "<group>"; };
@@ -435,6 +443,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F470BCB1B75ED7200A49750 /* libsqlite3.dylib in Frameworks */,
 				9F6E3EB81B7229C200F329B9 /* libz.dylib in Frameworks */,
 				5BF5A86A1B65C08000996283 /* MobileCoreServices.framework in Frameworks */,
 				9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
@@ -841,13 +850,13 @@
 		5BF4F0091B55F0F7000AB7BD /* Boye */ = {
 			isa = PBXGroup;
 			children = (
+				9F470BC61B75E44C00A49750 /* SQLIite数据库管理 */,
+				9F470BC21B75E01400A49750 /* 常用缓存管理 */,
 				9F545E981B74DAD5002BFF24 /* 加密工具 */,
 				9F545E941B747CF2002BFF24 /* 统计数据获取 */,
 				5BF88BD41B69C0A5003785D0 /* 设备数据接口 */,
 				5BF31F521B6707D600F6F366 /* Token */,
 				5BF31F4E1B6707C900F6F366 /* Boye网络请求 */,
-				5B1D24091B5CF6E500BE460C /* CacheFacade.h */,
-				5B1D240A1B5CF6E500BE460C /* CacheFacade.m */,
 				5B1D24061B5CF6AD00BE460C /* NSDate+Helper.h */,
 				5B1D24071B5CF6AD00BE460C /* NSDate+Helper.m */,
 				5BF4F0101B560CFA000AB7BD /* ButtonFactory.h */,
@@ -938,6 +947,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		9F470BC21B75E01400A49750 /* 常用缓存管理 */ = {
+			isa = PBXGroup;
+			children = (
+				5B1D24091B5CF6E500BE460C /* CacheFacade.h */,
+				5B1D240A1B5CF6E500BE460C /* CacheFacade.m */,
+				9F470BC31B75E03800A49750 /* CommonCache.h */,
+				9F470BC41B75E03800A49750 /* CommonCache.m */,
+			);
+			path = "常用缓存管理";
+			sourceTree = "<group>";
+		};
+		9F470BC61B75E44C00A49750 /* SQLIite数据库管理 */ = {
+			isa = PBXGroup;
+			children = (
+				9F470BC71B75E5D300A49750 /* SQLiteManager.h */,
+				9F470BC81B75E5D300A49750 /* SQLiteManager.m */,
+			);
+			path = "SQLIite数据库管理";
+			sourceTree = "<group>";
+		};
 		9F4FB62E1B73326800440BFC /* 隐私政策 */ = {
 			isa = PBXGroup;
 			children = (
@@ -952,6 +981,7 @@
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
+				9F470BCA1B75ED7200A49750 /* libsqlite3.dylib */,
 				9F91E8081B4E5B5D0013F4F1 /* Framework */,
 				9F50E5001B4E577600AB6BD8 /* bluebao */,
 				9F50E51A1B4E577700AB6BD8 /* bluebaoTests */,
@@ -1331,6 +1361,7 @@
 				5B38C7D61B5399B80063912C /* SDWebImageCompat.m in Sources */,
 				5B38C79E1B5390CF0063912C /* HeadCollectionViewCell.m in Sources */,
 				5BD4AA971B6B28980041F730 /* BoyeLeftBaseVC.m in Sources */,
+				9F470BC91B75E5D300A49750 /* SQLiteManager.m in Sources */,
 				5B38C7941B5390CF0063912C /* ShareVC.m in Sources */,
 				9F91E7FE1B4E5AE80013F4F1 /* AFURLConnectionOperation.m in Sources */,
 				5B38C79D1B5390CF0063912C /* BMICell.m in Sources */,
@@ -1340,6 +1371,7 @@
 				5B38C79F1B5390CF0063912C /* HeadInfoCell.m in Sources */,
 				5B1D24081B5CF6AD00BE460C /* NSDate+Helper.m in Sources */,
 				9F91E7FB1B4E5AE80013F4F1 /* AFHTTPSessionManager.m in Sources */,
+				9F470BC51B75E03800A49750 /* CommonCache.m in Sources */,
 				5B6FE9AC1B6A0786002D32B0 /* DateChooseView.m in Sources */,
 				5BF430FC1B575979003C7941 /* MoreExerCollectionCell.m in Sources */,
 				5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */,
