@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class DrawProgreView;
+#import "CircleBezierView.h"
 
 @protocol DrawProgreViewDelegate <NSObject>
 
@@ -19,6 +20,7 @@
 @interface DrawProgreView : UIView
 @property (nonatomic,assign)CGFloat     goalNum;  //目标
 @property (nonatomic,assign)CGFloat     finishNum;//完成数量
+@property (nonatomic ,strong) CircleBezierView * circleBezierView;
 
 //展示园
 -(void) showCircleView;
@@ -26,5 +28,8 @@
 -(void)creatCiecleView;
 //清除 cirele
 -(void)removeCircleView;
+
+//默认状态下远
+-(void) defaultCircleView;
 
 @end

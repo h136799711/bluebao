@@ -79,6 +79,7 @@
 
     }else{
         
+        
         [[MainViewController sharedSliderController].leftView jumpToequipmentManager];
     }
 }

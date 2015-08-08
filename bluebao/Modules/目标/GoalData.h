@@ -10,6 +10,7 @@
 
 @interface GoalData : NSObject<NSCoding>
 
+
 @property (nonatomic,assign) NSInteger          goalID;
 
 @property (nonatomic,copy) NSString             * timestr;//时间
@@ -20,5 +21,17 @@
 
 @property (nonatomic,assign) NSInteger          consumeK; //消耗多少卡
 @property (nonatomic,assign) NSInteger          maxIndex;
+
+
+/**
+ *默认目标
+ *
+ * goalNum  500;
+ *
+ * tiemStr 00:00
+ **/
+
++(GoalData *) defauleGoal;
+
 
 @end

@@ -66,7 +66,7 @@
     [[CacheFacade sharedCache] setObject:@"500" forKey:BOYE_TODAY_TARGET_CALORIE];
     self.title =@"蓝堡踏步机";
     
-    _upTimeInterval = 20;
+    _upTimeInterval = 10;
     _nextUpLoadDateTime = [NSDate date];
      [self nextLoadTime];;
     
@@ -259,7 +259,7 @@
 }
 
 
-#pragma mark --  目标 任务完成度 -
+#pragma mark --  展示目标 任务完成度 -
 -(void) showFinishProgre{
     //任务完成度
 
@@ -267,15 +267,27 @@
 
     #pragma mark -- TODO..获得默认卡路里....
    
-    //今天 ，目标卡路里
+    //当天时间，设备连接状态，获得设定的缓存目标
     if (self.dateChooseView.isToday == YES && self.connectView.isConnect == YES) {
         //获得缓存卡路里
-        _drawProgreView.goalNum =  [[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE] integerValue];
-    }else{
         
+         [BoyeFileMagager readDefaultGoalData:^(NSArray *goalArr) {
+             GoalData * goaldata = [goalArr lastObject];
+             _drawProgreView.goalNum =  goaldata.goalNumber;
+             
+             NSLog(@" ********BOYE_TODAY_TARGET_CALORIE*** %@ %ld ",goalArr,[[goalArr lastObject] goalNumber]);
+
+        }];
+//        _drawProgreView.goalNum =  [[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE] integerValue];
+    }else{
+        //获取数据
         if (self.bicylelb.target_calorie == 0) {
+            
             _drawProgreView.goalNum =  [[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE] integerValue];
-            NSLog(@" ********BOYE_TODAY_TARGET_CALORIE*** %@",BOYE_TODAY_TARGET_CALORIE);
+            NSLog(@" ********BOYE_TODAY_TARGET_CALORIE*** %@",[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE]);
+            //默认画半圆
+            [_drawProgreView defaultCircleView];
+            return;
         }else{
             _drawProgreView.goalNum = self.bicylelb.target_calorie;
 
@@ -332,18 +344,10 @@
     HeadCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HeadCollectionViewCell" forIndexPath:indexPath];
 
     cell.labelUnit.text = indexPath.row == 2?@"岁":@"%";
-    if (indexPath.row == 2) {
-
-            cell.infoValue = self.userInfo.age;
-        
-    }else{
-
+   
     #pragma mark -- TODO...
-        
-        cell.infoValue = 10;
-        
-        [BBManageCode getPersonHealthCondition:indexPath.row userInfo:self.userInfo];
-    }
+    
+    cell.infoValue = [BBManageCode getPersonHealthCondition:indexPath.row userInfo:self.userInfo];
 
     cell.labelSort.text = _sortArray[indexPath.row];
     return cell;
@@ -397,7 +401,6 @@
 
     #pragma mark -- TODO:..........
 
-    
     reqModel.bicyleModel.target_calorie = 10;
 
     [BoyeBicyleManager requestBicyleDataUpload:reqModel
@@ -428,8 +431,10 @@
             break;
         case STATE_CONNECTED_DEVICE:
             NSLog(@"连接上一台设备!");
-            //            [self didConnectDevice];
+//                        [self didConnectDevice];
             isconnect = YES;
+            NSLog(@" ***  \r  connectDevice uuid %@  ",self.boyeBluetooth.connectedDevice.uuid);
+            
             break;
         case STATE_DISCONNECT_DEVICE:
             NSLog(@"断开上一台设备!");
@@ -480,6 +485,7 @@
             [self nextLoadTime];
         }
         [_tableView reloadData];
+        [self showFinishProgre];
     }
 }
 

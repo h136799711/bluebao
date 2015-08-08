@@ -10,6 +10,18 @@
 
 @implementation GoalData
 
+-(instancetype)init{
+    
+    self = [super init];
+    if (self) {
+        
+        
+    }
+    return self;
+}
+
+
+
 -(void)setTimestr:(NSString *)timestr{
     
     _timestr = timestr;
@@ -46,5 +58,12 @@
 }
 
 
+//创建默认目标 
++(GoalData *) defauleGoal{
+    GoalData * data = [[self alloc] init];
+    data.goalNumber = 500;
+    data.timestr = @"00:00";
+    return data;
+}
 
 @end

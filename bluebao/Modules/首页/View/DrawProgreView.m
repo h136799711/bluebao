@@ -7,7 +7,7 @@
 //
 
 #import "DrawProgreView.h"
-#import "CircleBezierView.h"
+
 @interface DrawProgreView (){
     
     UILabel         * _goalValue;
@@ -22,7 +22,6 @@
     CGFloat         _outRadius;   //外环半径
     CGFloat          _per;
 }
-@property (nonatomic ,strong) CircleBezierView * circleBezierView;
 @end
 @implementation DrawProgreView
 
@@ -198,6 +197,14 @@
     return A;
 }
 
+//默认状态下远
+
+-(void) defaultCircleView{
+    
+    [self removeCircleView];
+    [self creatCiecleView];
+    _circleBezierView.angle = 0.5;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

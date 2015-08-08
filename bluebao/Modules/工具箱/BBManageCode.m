@@ -316,13 +316,75 @@
 
 
 #pragma mark -- 获得个人健康指标
-+(NSString *) getPersonHealthCondition:(NSInteger)row userInfo:(UserInfo *)userInfo{
++(NSInteger) getPersonHealthCondition:(NSInteger)row userInfo:(UserInfo *)userInfo{
+   
+    NSInteger  valueNum = 0;
+  
     
+    switch (row) {
+        case 0: //体脂肪率
+            valueNum= 36;
+            break;
+        case 1://体水分率
+            valueNum = 50;
+            break;
+        case 2://年龄
+            valueNum = userInfo.age;
+            break;
+        case 3://基础代谢
+            valueNum= 15;
+            break;
+        case 4://肌肉含量
+            valueNum= 45;
+            break;
+        case 5://内脏脂肪率
+            valueNum = 5;
+            break;
+        case 6://骨骼含量
+            valueNum = 3;
+
+            break;
+        case 7://皮下脂肪
+            valueNum = 10;
+            break;
+            
+        default:
+            break;
+    }
     
-    
-    
-    return nil;
+    return valueNum;
 }
 
+//体脂肪率
+-(NSInteger) getBodyFatPercent:(UserInfo *)userInfo{
+    
+    CGFloat bmi = [MyTool getBMINumWeight:userInfo.weight height:userInfo.height];
+    
+    CGFloat bodyfatValue =    1.2 * bmi +0.23 * userInfo.age - 5.4 - 10.8 * userInfo.sex;
+
+    
+    if (bodyfatValue <= 0) {
+        return 36;
+    }
+    
+    return (NSInteger) bodyfatValue;
+}
+
+//基础代谢
+-(NSInteger) getBodyBaseReplace:(UserInfo *)userInfo{
+    
+    CGFloat  value = 0;
+    if (userInfo.age == 1) { //女性
+        value = 66 + (6.3 * userInfo.weight) + (12.9 * (userInfo.height * 100/254))-6.8 * userInfo.age;
+    }else{
+        
+        value = 65.5 + (4.3 * userInfo.weight) +(4.7 * (userInfo.height * 100/254)) - 4.7 * userInfo.age;
+    }
+    
+    if (value <= 0) {
+        return 15;
+    }
+    return value;
+}
 
 @end

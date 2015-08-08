@@ -20,4 +20,17 @@
 
 #pragma mark --- goalData数组读取    
 +(void)readGoalDataName:(NSString *)plistname complete:(void (^)(NSArray * goalArr))complete;
+
+
+/*
+ * 保存到默认文件名下 ，始终都会保存
+ */
++(void)saveDefaultGoalData:(NSArray *)goalDataArray;
+
+
+/*
+ * 读取默认文件名下的目标 ，始终都会保存
+ */
+
++(void) readDefaultGoalData:(void(^)( NSArray * goalArr))complete;
 @end

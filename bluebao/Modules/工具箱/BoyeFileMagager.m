@@ -10,6 +10,20 @@
 
 @implementation BoyeFileMagager
 
+//文件是否存在
++(BOOL)isFileExists:(NSString*)stringname {
+    BOOL isDirectory;
+    
+    NSString * filePath = [NSString stringWithFormat:@"Documents/%@.plist",stringname];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[NSHomeDirectory() stringByAppendingPathComponent:filePath] isDirectory:&isDirectory]) {
+        NSLog(@"文件存在，是一个%@",isDirectory?@"文件夹":@"文件");
+        return  YES;
+    }else{
+        NSLog(@"文件不存在");
+        return NO;
+    }
+}
 
 #pragma mark --- 将文件保存在沙河下 ---
 +(NSString *) getDocumentsImageFile:(NSData *)dataImag userID:(NSInteger)uid{
@@ -57,7 +71,47 @@
     if (goalArray) {
         complete(goalArray);
     }
-
 }
 
+//
++(NSString *) defaultGoalArrFilePlistName{
+    
+    return @"lanbao_goal_arr_plistname";
+}
+
++(NSString *) defaultGoalDataFileName{
+    return @"lanbao_goal_name";
+    
+}
+
+//保存默认目标 ，始终都会保存
++(void)saveDefaultGoalData:(NSArray *)goalDataArray {
+    
+    NSString * defaultName = [self defaultGoalArrFilePlistName];
+    
+    if (goalDataArray == nil) {
+        GoalData * goal = [GoalData defauleGoal];
+        goalDataArray = [[NSArray alloc]initWithObjects:goal, nil];
+    }
+    
+    [self saveGoalData:goalDataArray plistName:defaultName];
+}
+
+//读取默认目标
++(void) readDefaultGoalData:(void(^)( NSArray * goalArr))complete{
+    
+    //文件不存在，创建一个文件
+   BOOL isExist = [self isFileExists:[self defaultGoalArrFilePlistName]];
+    if (!isExist) {
+        [self saveDefaultGoalData:nil];
+    }
+    
+    [self readGoalDataName:[self defaultGoalArrFilePlistName] complete:^(NSArray *goalArr) {
+        if (goalArr == nil) {
+            goalArr = [[NSArray alloc] initWithObjects:[GoalData defauleGoal], nil];
+        }
+        complete(goalArr);
+    }];
+    
+}
 @end

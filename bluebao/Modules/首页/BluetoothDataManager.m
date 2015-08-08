@@ -50,37 +50,38 @@
         
         if([cmdStr isEqualToString:@"5a0ee5"] && dataString.length == 32){
             
+            //时间
             cmdStr = [[dataString substringWithRange:NSMakeRange(6, 4)] lowercaseString];
-            
           //   NSLog(@"时间  %@",cmdStr );
-//            self.bicyleModel.cost_time = [self getTenHexadecimalFromSixteen:cmdStr] ;
             self.bicyleModel.cost_time = [self getTimes:cmdStr];
             
+            //速度
             cmdStr = [[dataString substringWithRange:NSMakeRange(10, 4)] lowercaseString];
             self.bicyleModel.speed = [self getTenHexadecimalFromSixteen:cmdStr] ;
-                    NSLog(@"速度 %@  %ld",cmdStr,self.bicyleModel.speed );
+            NSLog(@"速度 %@  %ld",cmdStr,self.bicyleModel.speed );
 
+            //距离；
             cmdStr = [[dataString substringWithRange:NSMakeRange(14, 6)] lowercaseString];
-            self.bicyleModel.distance = [self getTenHexadecimalFromSixteen:cmdStr] ;
-                    NSLog(@"距离 %@  %ld",cmdStr, self.bicyleModel.distance);
+            self.bicyleModel.distance = [self getDistance:cmdStr] ;
+            NSLog(@"距离 %@  %ld",cmdStr, self.bicyleModel.distance);
 
+            //热量
             cmdStr = [[dataString substringWithRange:NSMakeRange(20, 4)] lowercaseString];
-            
             self.bicyleModel.calorie = [self getTenHexadecimalFromSixteen:cmdStr] ;
             NSLog(@"热量 %@  %ld",cmdStr,self.bicyleModel.calorie );
 
+            //总程
             cmdStr = [[dataString substringWithRange:NSMakeRange(24, 4)] lowercaseString];
-            self.bicyleModel.total_distance = [self getTenHexadecimalFromSixteen:cmdStr] ;
+//            self.bicyleModel.total_distance = [self getTenHexadecimalFromSixteen:cmdStr] ;
+            self.bicyleModel.total_distance = [self getTotalDistance:cmdStr];
             NSLog(@"总程 %@ %ld",cmdStr, self.bicyleModel.total_distance);
 
-            
+            //心率
             cmdStr = [[dataString substringWithRange:NSMakeRange(28, 2)] lowercaseString];
-          
-//            5a0ee5 6231 0a45 002329 001e00000033
-            
             self.bicyleModel.heart_rate = [self getTenHexadecimalFromSixteen:cmdStr] ;
-                    NSLog(@"心率 %@ %ld",cmdStr, self.bicyleModel.heart_rate );
-
+            NSLog(@"心率 %@ %ld",cmdStr, self.bicyleModel.heart_rate );
+            
+            //效验
             cmdStr = [[dataString substringWithRange:NSMakeRange(30, 2)] lowercaseString];
             //        NSLog(@"校验和 %@",cmdStr);
             _checksum = [self getTenHexadecimalFromSixteen:cmdStr] ;
@@ -115,11 +116,9 @@
 //获得时间
 -( NSInteger) getTimes:(NSString * )cmdStr {
    
-    NSString * minstr =  [cmdStr substringToIndex:2];
-    NSString * scnstr = [cmdStr substringFromIndex:2];
-    NSInteger  min = [self getTenHexadecimalFromSixteen:minstr];
-    NSInteger  scn = [self getTenHexadecimalFromSixteen: scnstr];
-    NSLog(@" -  hour- %@ %ld -min- %@- %ld ",minstr,min,scnstr,scn);
+    NSInteger  min = [self getsubString:cmdStr index:0 length:2];
+    NSInteger  scn = [self getsubString:cmdStr index:2 length:2];
+    NSLog(@" -  hour- %ld -min-%ld  ",min,scn);
 
     return min * 60 + scn;
 }
@@ -127,18 +126,22 @@
 //获得路程
 -(NSInteger) getDistance:(NSString *)cmdStr{
     
-    NSString * minstr =  [cmdStr substringToIndex:2];
-    NSString * scnstr = [cmdStr substringFromIndex:2];
-    NSInteger  min = [self getTenHexadecimalFromSixteen:minstr];
-    NSInteger  scn = [self getTenHexadecimalFromSixteen: scnstr];
-    NSLog(@" -  hour- %@ %ld -min- %@- %ld ",minstr,min,scnstr,scn);
-
-    return min *100 + scn;
+    NSInteger  roundnum = [self getsubString:cmdStr index:2 length:2];
+    NSInteger  fraction = [self getsubString:cmdStr index:4 length:2];
+    return roundnum *100 + fraction;
 }
 
+//获得总路程
+-(NSInteger) getTotalDistance:(NSString *)cmdStr{
+    
+    NSInteger  roundnum = [self getsubString:cmdStr index:0 length:2];
+    NSInteger  fraction = [self getsubString:cmdStr index:2 length:2];
+    return roundnum *100 + fraction;
+}
+
+//获得字符串的指定位置并转化为字符串 ，
 -(NSInteger) getsubString:(NSString *) dataString index:(NSInteger)index length:(NSInteger)length{
 
-    
    NSString *  cmdStr = [[dataString substringWithRange:NSMakeRange(index, length)] lowercaseString];
     
     return [self getTenHexadecimalFromSixteen:cmdStr];

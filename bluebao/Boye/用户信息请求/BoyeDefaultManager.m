@@ -177,9 +177,7 @@
                         
                         NSDictionary *info = [json valueForKey:@"data"];
                         
-                        UserInfo * responInfo = [[UserInfo alloc ]initWithUserInfoDictionary:info];
-                        //                          NSLog(@"info ==%@=====%@===%ld===%ld=",responInfo.username,responInfo.nickname,responInfo.height,responInfo.target_weight);
-                        
+                        UserInfo * responInfo = [[UserInfo alloc ]initWithUserInfoDictionary:info];                        
                         
                         complete (responInfo);
                         [SVProgressHUD showSuccessWithStatus:@"登陆成功"];
@@ -235,7 +233,7 @@
     
     [SVProgressHUD showWithStatus:@"信息更新..." maskType:SVProgressHUDMaskTypeClear];
     NSDictionary *params = @{
-                             @"uid"             :  [NSNumber numberWithInteger:userUpdata.uid],
+                             @"uid"             :[NSNumber numberWithInteger:userUpdata.uid],
                              @"sex"             :userUpdata.sex,
                              @"nickname"        :userUpdata.nickname,
                              @"signature"       :userUpdata.signature,

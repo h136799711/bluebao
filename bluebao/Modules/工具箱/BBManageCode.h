@@ -35,6 +35,6 @@
 +(NSString *) getHeaderStrRow:(NSInteger)row bicyle:(Bicyle *)_bicylelb;
 
 #pragma mark -- 获得个人健康指标
-+(NSString *) getPersonHealthCondition:(NSInteger)row userInfo:(UserInfo *)userInfo;
++(NSInteger) getPersonHealthCondition:(NSInteger)row userInfo:(UserInfo *)userInfo;
 
 @end
