@@ -91,5 +91,11 @@
 #pragma mark --将浮点型数值转化为字符串
 +(NSString * ) getStringToFloat:(CGFloat) number;
 
+#pragma mark - 是否是零
++(BOOL) isGoalValueZero:(NSInteger)goalValue ;
+
+#pragma mark -- 默认目标值，
+
++(NSInteger) getDefaultGoalValue:(NSInteger)goalValue ;
 
 @end

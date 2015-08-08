@@ -64,7 +64,7 @@
     
 
     [[CacheFacade sharedCache] setObject:@"500" forKey:BOYE_TODAY_TARGET_CALORIE];
-    self.title =@"蓝堡踏步机";
+    self.title =@"蓝堡动感单车";
     
     _upTimeInterval = 10;
     _nextUpLoadDateTime = [NSDate date];
@@ -75,7 +75,35 @@
     _sortArray = @[@"体脂肪率",@"体水分率",@"体年龄",@"基础代谢",@"肌肉含量",@"内脏含量",@"骨骼含量",@"皮下脂肪"];
     [self _initViews];
     
+   // [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeGoal) userInfo:nil repeats:YES];
+    
+    
 }
+
+-(void)changeGoal{
+    
+    self.bicylelb.heart_rate = [self getNumber:120];
+    self.bicylelb.speed = [self getNumber:36];
+    self.bicylelb.cost_time = [self getNumber:3600];
+    self.bicylelb.calorie = [self getNumber:900];
+    self.bicylelb.distance = [self getNumber:100];
+    
+    [_tableView reloadData];
+ 
+    self.drawProgreView.goalNum = [self getNumber:800];
+    self.drawProgreView.finishNum = self.bicylelb.calorie;
+
+    
+    [self.drawProgreView showCircleView];
+}
+
+-(CGFloat ) getNumber :(NSInteger) num{
+    
+    return  arc4random() %num +10;
+}
+
+
+
 
 -(void)viewWillAppear:(BOOL)animated{
     
@@ -231,26 +259,29 @@
 }
 
 
-#pragma mark -- 切换日期，查看历史记录   --
+#pragma mark --DateChooseViewDelegate  切换日期，查看历史记录   --
 
 -(void)dateChooseView:(DateChooseView *)dateChooseView datestr:(NSString *)datestr{
     
     
 //    NSLog(@"date  %@",datestr);
   
+     //1、选泽日期是今日，
     if (self.dateChooseView.isToday) {
         NSLog(@"today");
         
-     //TODO.....
-        //设备连接，更新UI数据上传
-        if (!self.connectView.isConnect) {
-            //是今日，且设备未连接，则显示今日
+        //设备未连接，获取当日数据，已连接不做处理
+
+        if (self.connectView.isConnect == NO) {
             [self getBicyleData];
         }
         
+     //2、选泽日期是非当日，
     }else{
         //非今日，查看历史数据
+        
         [self getBicyleData];
+        
         NSLog(@"NO today");
     }
     
@@ -259,46 +290,80 @@
 }
 
 
+
 #pragma mark --  展示目标 任务完成度 -
 -(void) showFinishProgre{
     //任务完成度
 
-    _drawProgreView.finishNum = self.bicylelb.calorie;
 
     #pragma mark -- TODO..获得默认卡路里....
-   
-    //当天时间，设备连接状态，获得设定的缓存目标
-    if (self.dateChooseView.isToday == YES && self.connectView.isConnect == YES) {
-        //获得缓存卡路里
-        
-         [BoyeFileMagager readDefaultGoalData:^(NSArray *goalArr) {
-             GoalData * goaldata = [goalArr lastObject];
-             _drawProgreView.goalNum =  goaldata.goalNumber;
-             
-             NSLog(@" ********BOYE_TODAY_TARGET_CALORIE*** %@ %ld ",goalArr,[[goalArr lastObject] goalNumber]);
+    NSLog(@"************1**********************************************");
 
-        }];
-//        _drawProgreView.goalNum =  [[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE] integerValue];
-    }else{
-        //获取数据
-        if (self.bicylelb.target_calorie == 0) {
+    // 1、选中日期是当天
+    if (self.dateChooseView.isToday ) {
+
+        if (self.connectView.isConnect ) { //处于正在连接状态，取缓存目标值
+           
+            //获得缓存卡路里
+//            NSString * goalNumStr =  [CommonCache getGoal];
             
-            _drawProgreView.goalNum =  [[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE] integerValue];
-            NSLog(@" ********BOYE_TODAY_TARGET_CALORIE*** %@",[[CacheFacade sharedCache] get:BOYE_TODAY_TARGET_CALORIE]);
-            //默认画半圆
-            [_drawProgreView defaultCircleView];
-            return;
-        }else{
-            _drawProgreView.goalNum = self.bicylelb.target_calorie;
+            _drawProgreView.finishNum = _currentBluetothData.bicyleModel.calorie;
+            
+            //  TODO .......   缓存
+            
+            
+            _drawProgreView.goalNum = 500;
 
+        } else{  //处于未连接创状态  ，取获取目标值 即 self。bicyle。goal
+            
+            NSLog(@"******************1*isNOTConnect***************************************");
+
+            _drawProgreView.finishNum = self.bicylelb.calorie;
+
+            _drawProgreView.goalNum = self.bicylelb.target_calorie;
+            
         }
+        
+    // 2、选中日期非当天日期， 直接展示数据
+    }else{
+        
+        _drawProgreView.finishNum = self.bicylelb.calorie;
+        _drawProgreView.goalNum = self.bicylelb.target_calorie;
+        
+    }
+
+    
+    // * *  如果goalNum = 0 转化为 500  判断是否为 0
+    _drawProgreView.goalNum = [MyTool  getDefaultGoalValue:_drawProgreView.goalNum];
+    
+
+    
+    // 3 . 如果一点没有做 ，则按默认处理 ，
+    if (_drawProgreView.finishNum == 0) {
+        
+        [_drawProgreView showDefaultCircleView];
+        
+    }else{
+        
+        //画还
+        [_drawProgreView showCircleView];
+    
     }
     
-    [_drawProgreView showCircleView];
-
     //    NSLog(@" \r------    %ld  %ld",self.bicylelb.target_calorie,self.bicylelb.calorie);
     
 }
+
+-(BOOL) isGoalfinishZero:(NSInteger) goalValue finish:(NSInteger) finishValue{
+    
+    if (goalValue == 0 && finishValue == 0) {
+        return YES;
+        
+    }else{
+        return 0;
+    }
+}
+
 
 #pragma mark --- 身体指标 ---
 -(UIView *)footerView{
@@ -512,6 +577,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

@@ -30,6 +30,6 @@
 -(void)removeCircleView;
 
 //默认状态下远
--(void) defaultCircleView;
+-(void) showDefaultCircleView;
 
 @end

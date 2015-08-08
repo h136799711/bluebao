@@ -67,13 +67,13 @@
     _efficiLabel = [[UILabel alloc] init];
     
     CGFloat  haltHeight = 20;
-    _efficiLabel.bounds =  CGRectMake(0, 0, _finishlabel.width, haltHeight*2);
+    _efficiLabel.bounds =  CGRectMake(0, 0, _innerRadius*2, haltHeight*2);
     _efficiLabel.center = CGPointMake(_finishlabel.center.x, _outRadius);
     _efficiLabel.text = @"0%";
     _efficiLabel.textColor = [UIColor colorWithHexString:@"#28cafb"];
     _efficiLabel.tag = 2;
     //    efficiLabel.backgroundColor = [UIColor redColor];
-    _efficiLabel.font = FONT(25);
+    _efficiLabel.font = FONT(30);
     _efficiLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_efficiLabel];
     
@@ -81,19 +81,19 @@
     UILabel  * goal = [[UILabel alloc]  init];
     goal.bounds = CGRectMake(0, 0, 30, 20);
     //    goal.backgroundColor = [UIColor redColor];
-    goal.center = CGPointMake(_outRadius  -  goal.width/2.0 -5, _efficiLabel.bottom +  goal.height/2.0 + 8);
+    goal.center = CGPointMake(_outRadius  -  goal.width/2.0-5 , _efficiLabel.bottom +  goal.height/2.0 + 8);
     goal.font = FONT(13);
     goal.text = @"目标";
     [self addSubview:goal];
     
     //目标值
     _goalValue = [[UILabel alloc] init];
-    _goalValue.bounds = CGRectMake(0, 0, 40, 20);
+    _goalValue.bounds = CGRectMake(0, 0, 60, 20);
     _goalValue.tag = 3;
-    _goalValue.center = CGPointMake(goal.right + _goalValue.width/2.0 + 3, goal.center.y);
+    _goalValue.center = CGPointMake(goal.right + _goalValue.width/2.0 , goal.center.y);
     _goalValue.text = @"0";
     _goalValue.textColor = [UIColor colorWithHexString:@"#f78314"];
-    _goalValue.font = FONT(17);
+    _goalValue.font = FONT(22);
     _goalValue.textAlignment = NSTextAlignmentCenter;
     [self addSubview: _goalValue];
 
@@ -155,7 +155,16 @@
     
     if (_goalNum > 0) {
         percentage =  _finishNum*100  /_goalNum;
-      }
+    }else{
+        
+        NSLog(@"目标值不能小于0");
+        return;
+
+    }
+    
+    if (_goalNum <= _finishNum) {
+        percentage = 100;
+    }
     _efficiLabel.text = [NSString stringWithFormat:@"%ld％",(NSInteger)percentage];
     _per = percentage/100.0 ;
 
@@ -199,7 +208,7 @@
 
 //默认状态下远
 
--(void) defaultCircleView{
+-(void) showDefaultCircleView{
     
     [self removeCircleView];
     [self creatCiecleView];

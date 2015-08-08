@@ -298,8 +298,23 @@
     return string;
 }
     
+#pragma mark -- 默认目标值，
++(BOOL) isGoalValueZero:(NSInteger)goalValue {
     
+    if (goalValue<=0) {
+        return YES;
+    }
+    return NO;
+}
     
-    
+#pragma mark -- 默认目标值，
+
++(NSInteger) getDefaultGoalValue:(NSInteger)goalValue {
+    if ([self isGoalValueZero:goalValue]) {
+        return  500;
+    }else{
+        return goalValue;
+    }
+}
 
 @end

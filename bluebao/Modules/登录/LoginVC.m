@@ -186,9 +186,9 @@
         return;
     }
     
-    [self jumpMainPage];
+//    [self jumpMainPage];
 
-//    [self loginRequest:user];
+    [self loginRequest:user];
     
 }
 //用户登录
