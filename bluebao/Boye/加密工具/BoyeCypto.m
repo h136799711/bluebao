@@ -183,12 +183,13 @@
 }
 
 
-
 +(NSString *)aes256Encrypt:(NSString *)text :(NSString * )key{
+    
+    
     
     NSData *data = [text dataUsingEncoding:NSUTF8StringEncoding];
     
-    char keyPtr[kCCKeySizeAES256+1]; // room for terminator (unused)
+    char keyPtr[kCCKeySizeAES128+1]; // room for terminator (unused)
     bzero(keyPtr, sizeof(keyPtr)); // fill with zeroes (for padding)
     
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
@@ -199,32 +200,44 @@
     void *buffer = malloc(bufferSize);
         
     size_t numBytesEncrypted = 0;
+    
+    char iv[] = {'1','2','3','4','5','6','7','8','1','2','3','4','5','6','7','8'};
+    // 第1种方式
     CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
                                                 kCCAlgorithmAES128,
                                                 kCCOptionPKCS7Padding ,
                                                 keyPtr,
-                                                kCCKeySizeAES256,
-                                              NULL /* initialization vector (optional) */,
+                                                kCCKeySizeAES128,
+                                              iv /* initialization vector (optional) */,
                                               [data bytes], dataLength, /* input */
                                               buffer, bufferSize, /* output */
-                                              &numBytesEncrypted);
-        if (cryptStatus == kCCSuccess) {
-            
+                                                  &numBytesEncrypted);
+    // 第2种方式
+//TODO: 此方式加密有问题，只能处理长度16以下的明文
+//    CCCryptorRef cryptorRef = nil;
+//    CCCryptorStatus cryptStatus = CCCryptorCreateWithMode(kCCEncrypt,
+//                                                          kCCModeCBC, kCCAlgorithmAES128,
+//                                                          ccPKCS7Padding, iv, keyPtr,
+//                                                          kCCKeySizeAES128,NULL,0, 0, 0, &cryptorRef);
+//    cryptStatus = CCCryptorUpdate(cryptorRef, [data bytes], dataLength, buffer, bufferSize, &numBytesEncrypted);
+//    cryptStatus = CCCryptorFinal(cryptorRef, buffer, bufferSize, &numBytesEncrypted);
+    
+    if (cryptStatus == kCCSuccess) {
             NSData * encodeData =  [NSData dataWithBytesNoCopy:buffer length:numBytesEncrypted];
             NSString* encodeResult = [encodeData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
             return encodeResult;
-        }
-        
-        free(buffer);
-        return nil;
+    }
+    
+    free(buffer);
+    return nil;
 }
     
 + (NSString *)aes256Decrypt:(NSString *)encodeText  :(NSString *)key {
     
-    
-    NSData* data = [[NSData alloc] initWithBase64EncodedString:encodeText options:0];
-    
-    char keyPtr[kCCKeySizeAES256+1]; // room for terminator (unused)
+    //解密有问题，只能处理长度16以下的明文
+//    NSData* data = [[NSData alloc] initWithBase64EncodedString:encodeText options:0];
+     NSData* data =  [GTMBase64 decodeString:encodeText];;
+    char keyPtr[kCCKeySizeAES128+1]; // room for terminator (unused)
     bzero(keyPtr, sizeof(keyPtr)); // fill with zeroes (for padding)
     
     
@@ -234,22 +247,55 @@
     
     size_t bufferSize = dataLength + kCCBlockSizeAES128;
     void *buffer = malloc(bufferSize);
-        
+    NSLog(@"%zu",bufferSize);
     size_t numBytesDecrypted = 0;
+    char iv[] = {'1','2','3','4','5','6','7','8','1','2','3','4','5','6','7','8'};
     CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt, kCCAlgorithmAES128,
                                                 kCCOptionPKCS7Padding,
-                                              keyPtr, kCCKeySizeAES256,
-                                              NULL /* initialization vector (optional) */,
+                                              keyPtr, kCCKeySizeAES128,
+                                              iv /* initialization vector (optional) */,
                                               [data bytes], dataLength, /* input */
                                               buffer, bufferSize, /* output */
                                               &numBytesDecrypted);
+    NSString * result = nil;
     
+//    NSLog(@"bufferSize= %ld",bufferSize);
+// TODO: 需要拼接
+//    CCCryptorRef cryptorRef = nil;
+//    CCCryptorStatus cryptStatus = CCCryptorCreateWithMode(
+//                                                          kCCDecrypt,
+//                                                          kCCModeCBC,
+//                                                          kCCAlgorithmAES128,
+//                                                          ccPKCS7Padding,
+//                                                          iv,
+//                                                          keyPtr,
+//                                                          kCCKeySizeAES128 , NULL , 0 ,  0 ,
+//                                                          0
+//                                                          , &cryptorRef);
+    // 每次只翻译部分字节，只能字节拼接
+//    cryptStatus = CCCryptorUpdate(cryptorRef, [data bytes], dataLength, buffer, bufferSize, &numBytesDecrypted);
+//    
+//    NSLog(@"numBytesDecrypted = %zu bufferSize=%ld",numBytesDecrypted,bufferSize);
+//    NSString * result = [[NSString alloc] initWithBytes:buffer length:numBytesDecrypted encoding:NSUTF8StringEncoding];
+//    
+//    NSLog(@"result = %@",result);
+//    
+//    cryptStatus = CCCryptorFinal(cryptorRef, buffer, bufferSize, &numBytesDecrypted);
+//    NSLog(@"numBytesDecrypted = %zu output= %ld",numBytesDecrypted,CCCryptorGetOutputLength(cryptorRef, dataLength, YES));
+    
+    
+//    result = [[NSString alloc] initWithBytes:buffer length:numBytesDecrypted encoding:NSUTF8StringEncoding];
+//    NSLog(@"result = %@",result);
     if (cryptStatus == kCCSuccess) {
-        return [[NSString alloc] initWithBytes:buffer length:numBytesDecrypted encoding:NSUTF8StringEncoding];
+        result = [[NSString alloc] initWithBytes:buffer length:numBytesDecrypted encoding:NSUTF8StringEncoding];
+//        NSLog(@"result = %@",result);
+        
+//        result =  [result stringByAppendingString:[[NSString alloc] initWithBytes:buffer length:numBytesDecrypted encoding:NSUTF8StringEncoding]];
+        
     }
     
     free(buffer);
-    return nil;
+    return result;
     
     
 }
