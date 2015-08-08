@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "BoyeCypto.h"
+#import "CacheFacade.h"
 
 @interface AppDelegate ()
 
@@ -20,21 +20,23 @@
     return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    NSString * key = @"136799711";
-    
-    NSString * content = @"1367997111中文中文中文中文中文中文中文中1";
-    NSString * encode = [BoyeCypto aes256Encrypt:content :key];
-    NSLog(@"aes = %@ length=%ld",encode,content.length);
-    NSLog(@"decode1 = %@", [BoyeCypto aes256Decrypt:encode :key]);
-//    encode =  @"I85KkQnwH25yoqR0mq1jESVnKdmENjv4rLkzs8+vNag=";
-//    NSLog(@"decode2 = %@", [BoyeCypto aes256Decrypt:encode :key]);
-    
-//    content = @"中文hebidu126";
-//     encode = [BoyeCypto aes256Encrypt:content :key];
 //    
-//    NSLog(@"aes = %@",encode);
-//    NSLog(@"decode = %@", [BoyeCypto aes256Decrypt:encode :key]);
+//    NSString * key = @"136799711";
+//    
+//    NSString * content = @"1367997111中文中文中文中文中文中文中文中1";
+//    NSString * encode = [BoyeCypto aes256Encrypt:content :key];
+//    NSLog(@"aes = %@ length=%ld",encode,content.length);
+//    NSLog(@"decode1 = %@", [BoyeCypto aes256Decrypt:encode :key]);
+////    encode =  @"I85KkQnwH25yoqR0mq1jESVnKdmENjv4rLkzs8+vNag=";
+////    NSLog(@"decode2 = %@", [BoyeCypto aes256Decrypt:encode :key]);
+//    
+////    content = @"中文hebidu126";
+////     encode = [BoyeCypto aes256Encrypt:content :key];
+////    
+////    NSLog(@"aes = %@",encode);
+////    NSLog(@"decode = %@", [BoyeCypto aes256Decrypt:encode :key]);
+    
+    NSLog(@"",[[CacheFacade sharedCache]get:@""]);
     
     [NSThread sleepForTimeInterval:2];
     

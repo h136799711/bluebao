@@ -291,7 +291,8 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
         }
         
         //设置目标
-        [[CacheFacade sharedCache]setObject: [ NSNumber numberWithInteger:goal.goalNumber ] forKey:@"GlobalGoalCalorie"];
+        NSNumber * timeStamp = [NSNumber numberWithDouble:[[NSDate distantFuture] timeIntervalSince1970]];
+        [[CacheFacade sharedCache]setObject: [ NSNumber numberWithInteger:goal.goalNumber ] forKey:@"GlobalGoalCalorie" afterTimeStamp:timeStamp];
         
         //添加元素 然后排序
         
@@ -300,7 +301,8 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
         
     #pragma mark -- 点击修改按钮，替换对应目标数据
     }else{
-        [[CacheFacade sharedCache]setObject: [ NSNumber numberWithInteger:goal.goalNumber ] forKey:@"GlobalGoalCalorie"];
+        NSNumber * timeStamp = [NSNumber numberWithDouble:[[NSDate distantFuture] timeIntervalSince1970]];
+        [[CacheFacade sharedCache]setObject: [ NSNumber numberWithInteger:goal.goalNumber ] forKey:@"GlobalGoalCalorie" afterTimeStamp:timeStamp];
         [self.dataArray replaceObjectAtIndex:self.goalPickerView.tag withObject:goal];
     }
     
