@@ -22,6 +22,7 @@
     self.goalTableView.frame = rect;
     //默认卡路里
     
+//    NSLog(@"GlobalGoalCalorie=%@",[CommonCache getGoal]);
     
     // Do any additional setup after loading the view.
 }

@@ -69,6 +69,8 @@
 #import "MobClick.h"
 #import "MobClickSocialAnalytics.h"
 #import "PrivacyVC.h"
+//常用缓存快速调用
+#import "CommonCache.h"
 
 #import "BicyleStatistics.h"
 //-------------------打印日志-------------------------
