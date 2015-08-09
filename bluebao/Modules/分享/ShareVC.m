@@ -44,22 +44,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.continuousMovementDays = 1;
+    
     // Do any additional setup after loading the view.
     self.title = @"分享";
     _shareName = @[@"weixin.png",@"web.png",@"qq.png"];
     _headImageName = @[@"sd",@"sd",@"sd"];
     _labelTextArray = @[@[@"骑行了",@"耗时",@"消耗"],@[@"公里",@"分钟",@"卡"],@[@"roadshare.png",@"timeshare.png",@"sportshare.png"]];
     
-    [self _initViews];;
-//    [self _initShareView];
+    [self _initViews];
     
     [self createdNav];
-    
-//    [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskLandscape];
-    //    [self umengShareInit];
-//    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline]];
-
 }
 
 /**
@@ -69,7 +66,7 @@
     UIButton * btn = ( UIButton *)[self.view viewWithTag:1200];
     btn.hidden = YES;
     
-    btn = (UIButton *)[self.view viewWithTag:12001];
+    btn = (UIButton *)[self.view viewWithTag:1201];
     btn.hidden = YES;
     
     
@@ -81,9 +78,8 @@
     UIButton * btn = ( UIButton *)[self.view viewWithTag:1200];
     btn.hidden = NO;
     
-    btn = (UIButton *)[self.view viewWithTag:12001];
+    btn = (UIButton *)[self.view viewWithTag:1201];
     btn.hidden = NO;
-    
     
 }
 
@@ -93,11 +89,11 @@
 -(void)umengShareAlert{
     UITableViewCell *cell = (UITableViewCell *)[share_tableView viewWithTag:1100];
     
-    NSString *text = @"蓝堡健身,我的最爱!";
+    NSString *text = @"蓝堡动感单车";
     if(cell != nil){
         text  = [NSString stringWithFormat:@"今天是运动的第%ld天",(long)self.continuousMovementDays];
     }
-    text = nil;
+    
     [self hideViewsWhenSharing];
     
     UIImage *image = [[UMSocialScreenShoterDefault screenShoter] getScreenShot];
@@ -108,9 +104,13 @@
                                      shareImage:image
                                      shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToTencent,UMShareToQQ,UMShareToQzone,nil]
                                        delegate:self];
-    
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
+    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
+    [UMSocialData defaultData].extConfig.qzoneData.title = @"蓝堡动感单车";
 //    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://lanbao.app.itboye.com/index.html";
     
+    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline]];
+
 }
 
 //
@@ -220,13 +220,13 @@
     
     switch (row) {
         case 0:
-            cell.valueNum  = lbsport.distance;
+            cell.valueNum  = lbsport.distance/100;
             break;
         case 1:
-            cell.valueNum = lbsport.time_min;
+            cell.valueNum = lbsport.time_min/60;
             break;
         case 2:
-            cell.valueNum = lbsport.calorie;
+            cell.valueNum = lbsport.calorie/10;
             break;
             
         default:
@@ -332,66 +332,42 @@
 }
 
 //创建头像,顶部导航
--(UIView *)createdNav{
-   
-    UIView  * navView = [[UIView alloc] init];
-    navView.frame = CGRectMake(0, 20, SCREEN_WIDTH, NAV_HEIGHT);
-//    navView.backgroundColor = [UIColor redColor];
-    //日期
-//    UILabel * datalabel = [[UILabel alloc] init];
-//    datalabel.frame = CGRectMake(0, 0, navView.width , 44);
-//    datalabel.textAlignment = NSTextAlignmentCenter;
-//    datalabel.font = FONT(18);
-//    datalabel.textColor = [UIColor blackColor];
-//    //当前日期
-//    NSString * dataStr = @"yyyy年MM月dd日";
-//    datalabel.text = [MyTool getCurrentDataFormat:dataStr];
-//    [navView addSubview:datalabel];
-//    
-//    //头像
-//    UIImageView * headImag = [[UIImageView alloc] init];
-//    headImag.bounds = CGRectMake(0, 0, 40, 40);
-//    headImag.center = CGPointMake(SCREEN_WIDTH/2  - 20,navView.bottom+10);
-//    UserInfo *user  = [MainViewController sharedSliderController].userInfo;
-//    
-//    NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:user.uid  :120]];
-//    [headImag setImageWithURL:avatar_url placeholderImage:[UIImage imageNamed:@"testhead.png"]];
-//    
-//    [navView addSubview:headImag];
-//    [MyTool cutViewConner:headImag radius:headImag.width/2.0];
-//    
-//    //昵称
-//    UILabel *  namelabel= [[UILabel alloc] init];
-//    namelabel.bounds = CGRectMake(0, 0, 60, 30);
-//    namelabel.text = user.nickname;
-//    [navView addSubview:namelabel];
-//    namelabel.font = FONT(15);
-//    namelabel.center = CGPointMake(headImag.right + 5+ namelabel.width/2.0 , headImag.center.y - 5);
-//    
+-(void )createdNav{
     //取消
     CGFloat rightspace = 10 ;
     UIButton * cancleBtn = [[UIButton alloc] init];
     cancleBtn.tag = 1201;
     cancleBtn.bounds =  CGRectMake(0, 0, 50, 44);
-    cancleBtn.center =  CGPointMake(rightspace + cancleBtn.width/2.0, navView.height/2.0);
+    cancleBtn.center =  CGPointMake(rightspace + cancleBtn.width/2.0, NAV_HEIGHT/2.0);
     [cancleBtn setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
     [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [navView addSubview:cancleBtn];
+    
     [cancleBtn addTarget:self action:@selector(cancleBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     //提交
     UIButton * submitBtn = [[UIButton alloc] init];
-    submitBtn.tag = 1201;
-    submitBtn.bounds = CGRectMake(0, 0, cancleBtn.width, cancleBtn.height);
-    submitBtn.center = CGPointMake(navView.width - rightspace-submitBtn.width/2.0, navView.height/2.0);
+    submitBtn.tag = 1200;
+    submitBtn.bounds = CGRectMake(0, 0, 50  ,44);
+    submitBtn.center = CGPointMake(SCREEN_WIDTH - rightspace-submitBtn.width/2.0, NAV_HEIGHT/2.0);
     [submitBtn setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
     [submitBtn setTitle:@"确认" forState:UIControlStateNormal];
-    [navView addSubview:submitBtn];
     [submitBtn addTarget:self action:@selector(submitBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:navView];
-    return navView;
-
+    [self.navigationController setNavigationBarHidden:NO];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:cancleBtn];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:submitBtn];
+    
+    UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@"蓝堡动感单车"];
+    [item setLeftBarButtonItem:leftButton];
+    [item setRightBarButtonItem:rightButton];
+    UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, STATUS_HEIGHT, SCREEN_WIDTH, NAV_HEIGHT)];
+    
+    [bar pushNavigationItem:item animated:YES];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
+    [self.view addSubview:bar];
+    
 }
 
 #pragma mark -- 分享  --

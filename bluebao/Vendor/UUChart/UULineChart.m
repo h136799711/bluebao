@@ -275,6 +275,9 @@
 
 - (void)addPoint:(CGPoint)point index:(NSInteger)index isShow:(BOOL)isHollow value:(CGFloat)value
 {
+    if (value <= 0) {
+        return;
+    }
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(5, 5, 8, 8)];
     view.center = point;
     view.layer.masksToBounds = YES;
@@ -293,7 +296,7 @@
         label.text = [NSString stringWithFormat:@"%d",(int)value];
         [self addSubview:label];
 //    }
-    
+
     [self addSubview:view];
 }
 

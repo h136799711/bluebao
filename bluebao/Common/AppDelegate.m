@@ -43,6 +43,7 @@
     
     [self umengShareConfig];
     
+    [self umengqqZoneConfig];
     
     
     
@@ -68,15 +69,15 @@
 
 #pragma mark 友盟代码、推送＋统计＋微信分享
 
--(void)qqZoneConfig{
+-(void)umengqqZoneConfig{
     
-    [UMSocialQQHandler setQQWithAppId:@"1104734137" appKey:@"x4F6P6MXAkkVR4PJ" url:@"http://www.umeng.com/social"];
+    [UMSocialQQHandler setQQWithAppId:@"1104734137" appKey:@"x4F6P6MXAkkVR4PJ" url:@"http://lanbao.app.itboye.com/index.html"];
 }
 
 -(void)umengShareConfig{
     [UMSocialData setAppKey:@UMENG_APP_KEY];
     //设置微信AppId、appSecret，分享url
-    [UMSocialWechatHandler setWXAppId:@"wx5df8e721b02d41d1" appSecret:@"2a559489a116a34453f8e1368db40d25" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:@"wx5df8e721b02d41d1" appSecret:@"2a559489a116a34453f8e1368db40d25" url:@"http://lanbao.app.itboye.com/index.html"];
     [UMSocialData openLog:NO];
 }
 
