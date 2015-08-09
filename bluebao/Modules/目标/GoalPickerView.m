@@ -278,7 +278,7 @@
 
 //默认选中状态
 -(void)defaultSeectedRow{
-    
+
     NSInteger selectRow = 0;
     for (int component = 0;  component   < 6; component++) {
         

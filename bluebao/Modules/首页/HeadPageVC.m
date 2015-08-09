@@ -18,7 +18,7 @@
 
 @interface HeadPageVC ()<BOYEBluetoothStateChangeDelegate>{
     
-    UITableView             * _tableView;
+    UITableView             * _headTableView;
     NSArray                 * _labelarray;
     UICollectionView        *headCollectionView;
     NSInteger               itemWidth;   //宽度
@@ -115,7 +115,7 @@
         [MainViewController sharedSliderController].isVCCancel  = YES;
     }
     
-    [_tableView reloadData];
+    [_headTableView reloadData];
   
 }
 
@@ -146,13 +146,13 @@
 
 -(void)_initHeadInfoTableView{
     CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT);
-    _tableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.tableHeaderView = [self headerView];
-    _tableView.tableFooterView = [self footerView];
-    [self.view addSubview:_tableView];
+    _headTableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
+    _headTableView.delegate = self;
+    _headTableView.dataSource = self;
+    _headTableView.backgroundColor = [UIColor clearColor];
+    _headTableView.tableHeaderView = [self headerView];
+    _headTableView.tableFooterView = [self footerView];
+    [self.view addSubview:_headTableView];
     
 }
 #pragma mark --  主页表 --
@@ -236,7 +236,7 @@
 -(UIView *)headerView{
     
     //日期
-    CGRect rect = CGRectMake(0, 0, _tableView.width, 240);
+    CGRect rect = CGRectMake(0, 0, _headTableView.width, 240);
     self.headView = [[UIView alloc] initWithFrame:rect];
  
     //日期改变
@@ -290,7 +290,7 @@
     }
     
     //刷新
-    [_tableView reloadData];
+    [_headTableView reloadData];
 }
 
 
@@ -426,9 +426,10 @@
             //数据请求成功
             self.bicylelb = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
             
+            NSLog(@"  ---  %ld  - %ld -%ld- ",(long)self.bicylelb.calorie,(long)self.bicylelb.total_distance,self.bicylelb.cost_time);
             //任务完成度
             [self showFinishProgre];
-            [_tableView reloadData];
+            [_headTableView reloadData];
         }
     } :^(NSString *error) {
 
@@ -441,7 +442,7 @@
 -(void)refreshData:(Bicyle *) bicyle{
  
     self.bicylelb = bicyle;
-    [_tableView reloadData];
+    [_headTableView reloadData];
 }
 
 //数据上传
@@ -541,8 +542,7 @@
         //刷新首页
         if (self.dateChooseView.isToday) {
             
-            
-            [_tableView reloadData];
+            [_headTableView reloadData];
             [self showFinishProgre];
             
             //上传

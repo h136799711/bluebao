@@ -18,7 +18,12 @@
     NSString * key = [self defaultNotifyKey:model.db_id];
     
     NSLog(@"date=%@",model.fireDate);
-    [[ LocalNotify sharedNotify]  fireNotification:key At:model.fireDate  WithContent:[NSString stringWithFormat:@" 到运动时间了，目标 %ld ",model.target] HasInterval:NSCalendarUnitWeekday];
+  
+    if (![CommonCache AlarmSwitchIsOn]) {
+        return;
+    }
+    
+    [[ LocalNotify sharedNotify]  fireNotification:key At:model.fireDate  WithContent:[NSString stringWithFormat:@" %@到运动时间了，目标 %ld ",model.date_time,model.target] HasInterval:NSCalendarUnitMinute];
 }
 
 //取消通知
