@@ -13,6 +13,8 @@
 #import "LoginVC.h"
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "BoyeGoalLocaNotify.h"
+#import "BoyeDataBaseManager.h"
 
 #import "PersonMessageVC.h"//个人资料
 #import "BlueBaoAboutVC.h" // 关于蓝堡
@@ -247,9 +249,52 @@
  */
 -(void)reloadAllAlarm{
 
+
+    NSArray * goalModelArr = [BoyeDataBaseManager getAllDataUserID:[MainViewController sharedSliderController].userInfo.uid];
     
-    
+    for (BoyeGoaldbModel * model in goalModelArr) {
+        
+        [self registerLocalNotify:model];
+    }
 }
+
+
+-(void)registerLocalNotify:(BoyeGoaldbModel *)model{
+    
+    NSDate * nowDate =  [NSDate date];
+    NSString * dataFormatt = @"yyyy-MM-dd";
+    NSString *  timestr = [MyTool getCurrentDateFormat:dataFormatt];
+    NSString * datestring = [NSString stringWithFormat:@"%@ %@",timestr,model.date_time];
+    
+    
+    NSDate  * date = [[MyTool  getDateFormatter:@"yyyy-MM-dd HH:mm"] dateFromString:datestring];
+    
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
+    
+    NSInteger selectWeekday = model.weekday + 2;
+    
+    //转换成周日＝1 周一=2 周二＝3
+    if (selectWeekday == 8) {
+        selectWeekday = 1;
+    }
+    
+    NSInteger intervalDay =  selectWeekday - comps.weekday;
+    
+    NSLog(@"相差天数%ld" , (long)intervalDay);
+    NSDate * fireDate = [date dateByAddingTimeInterval:intervalDay*24*3600];
+    
+    NSComparisonResult result = [date compare:nowDate];
+    if ( result == NSOrderedAscending) {
+        fireDate =  [date dateByAddingTimeInterval:7*24*3600];
+    }
+    
+    model.fireDate = fireDate;
+    
+    [BoyeGoalLocaNotify setLocalNotifyGoal:model];
+}
+
 
 /**
  *  闹铃提醒开关

@@ -228,6 +228,7 @@
             break;
     }
     
+    
 }
 
 #pragma mark -重载delegate --
@@ -256,6 +257,8 @@
     
     [self sendSelfFrameNotification];
     [MainViewController sharedSliderController].bottomView.hidden = YES;
+    [self defaultSeectedRow];
+
 }
 
 
@@ -268,9 +271,32 @@
     self.isOpen = NO;
     [self sendSelfFrameNotification];
     [MainViewController sharedSliderController].bottomView.hidden = NO;
+    
+    [self defaultSeectedRow];
+
 }
 
-
+//默认选中状态
+-(void)defaultSeectedRow{
+    
+    NSInteger selectRow = 0;
+    for (int component = 0;  component   < 6; component++) {
+        
+        if (component == 0) {
+            
+             selectRow = 8;
+        } else if (component == 1){
+            
+             selectRow = 1;
+        }else if (component == 2){
+             selectRow = 30;
+        }else{
+             selectRow = 5;
+        }
+        [self.pickerView selectRow:selectRow  inComponent:component animated:YES];
+        [self pickerView:self.pickerView didSelectRow:selectRow inComponent:component];
+    }
+}
 
 #pragma mark --  showInView  --
 -(void)showInView:(UIView *)view{

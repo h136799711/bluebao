@@ -75,7 +75,8 @@
                                 NSDictionary * dataDic = [dic valueForKey:@"data"];
                                 success(dataDic);
                                 
-                                [SVProgressHUD showSuccessWithStatus:@"请求成功"];
+//                                [SVProgressHUD showSuccessWithStatus:@"请求成功"];
+                                [SVProgressHUD dismiss];
                                 NSLog(@"--------");
                             }else{
                                 
@@ -118,7 +119,7 @@
                                        @"upload_time":[MyTool getStringToInteger:bicyReqModel.bicyleModel.upload_time]
                                        };
             
-            [SVProgressHUD showWithStatus:@"数据上传中..." maskType:SVProgressHUDMaskTypeClear];
+//            [SVProgressHUD showWithStatus:@"数据上传中..." maskType:SVProgressHUDMaskTypeClear];
             
             BoyeHttpClient * client = [BoyeHttpClient alloc];
             [client post:urlString
@@ -135,8 +136,9 @@
                             NSLog(@"请求成功！%fl",[code floatValue]);
                             if ([code integerValue] == 0) {
                                 
-                                NSString * successedData = [dic valueForKey:@"data"];
-                                [SVProgressHUD showSuccessWithStatus:successedData];
+//                                NSString * successedData = [dic valueForKey:@"data"];
+//                                [SVProgressHUD showSuccessWithStatus:successedData];
+                                [SVProgressHUD dismiss];
                                 complete(YES);
                             }else{
                                 
@@ -146,7 +148,7 @@
                             }
                         } :^(AFHTTPRequestOperation *operation, NSError *error) {
                             
-                            NSLog(@"error %@",error);
+//                            NSLog(@"error %@",error);
                             [SVProgressHUD showErrorWithStatus:@"请求失败"];
                             
                         }];
