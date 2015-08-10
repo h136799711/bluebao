@@ -56,12 +56,13 @@
     UILabel * label_ = [[UILabel alloc] init];
     label_.frame = CGRectMake(left+(hwb_width +infoLabel_width)*num, 0, hwb_width,  view.height);
     label_.text = a[num];
+    label_.textAlignment = NSTextAlignmentLeft;
     label_.font = FONT(15);
 //    label_.backgroundColor = [UIColor redColor];
     [ view addSubview:label_];
 
     //值
-    UILabel * value_label = [[UILabel alloc]initWithFrame:CGRectMake(label_.right, 0, infoLabel_width, view.height)];
+    UILabel * value_label = [[UILabel alloc]initWithFrame:CGRectMake(label_.right, 0, infoLabel_width+14, view.height)];
     value_label.textColor =  [UIColor colorWithHexString:@"#74e7f7"];
     value_label.font = FONT(20);
     label_.textAlignment = NSTextAlignmentCenter;

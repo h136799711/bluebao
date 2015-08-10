@@ -209,15 +209,15 @@
         for (int i = 0; i < 3; i++) {
             switch (i) {
                 case 0:
-                    self.heightLabel =  [BBManageCode creatMessageCenterInViews:_views num:i];;
+                    self.heightLabel =  [BBManageCode creatMessageCenterInViews:_views num:i];
                     break;
                     
                 case 1:
-                    self.weightLabel =  [BBManageCode creatMessageCenterInViews:_views num:i];;
+                    self.weightLabel =  [BBManageCode creatMessageCenterInViews:_views num:i];
                     break;
                     
                 case 2:
-                    self.BMiLabel =  [BBManageCode creatMessageCenterInViews:_views num:i];;
+                    self.BMiLabel =  [BBManageCode creatMessageCenterInViews:_views num:i];
                     break;
                     
                 default:
