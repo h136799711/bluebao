@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "LoginVC.h"
 #import "UMessage.h"
+#import "UMSocial.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

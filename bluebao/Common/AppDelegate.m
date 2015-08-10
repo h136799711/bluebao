@@ -36,7 +36,7 @@
 ////    NSLog(@"aes = %@",encode);
 ////    NSLog(@"decode = %@", [BoyeCypto aes256Decrypt:encode :key]);
     
-    NSLog(@"",[[CacheFacade sharedCache]get:@""]);
+//    NSLog(@"",[[CacheFacade sharedCache]get:@""]);
     
     [NSThread sleepForTimeInterval:2];
     
@@ -61,6 +61,10 @@
 }
 
 #pragma mark 友盟代码、推送＋统计
+
+-(void)umengShareConfig{
+    [UMSocialData setAppKey:@UMENG_APP_KEY];
+}
 
 -(void)umengAnalytics{
     [MobClick startWithAppkey:@UMENG_APP_KEY reportPolicy:BATCH   channelId:@"APP_STORE"];
