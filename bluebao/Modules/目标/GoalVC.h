@@ -17,5 +17,15 @@
 @property (nonatomic,strong) UITableView         *goalTableView;
 @property (nonatomic,strong) UserInfo           * useInfo;
 @property (nonatomic,strong) WeekSegmentlView   *weekSegment;
+@property (nonatomic,strong) UIView             *footerView;
+@property (nonatomic,strong) UIView             *headerView;
+@property (nonatomic,strong) NSString           *goalDateLabeltext;
+@property (nonatomic,assign) BOOL               isHasData;
 
+//BOOL                  _isHasData;
+//UIView                  *_headerView;
+//UIView                  *_footerView;
+//NSString                *_goalDateLabeltext;
+
+-(void)_initViews;
 @end

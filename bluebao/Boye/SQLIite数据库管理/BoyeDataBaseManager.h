@@ -93,6 +93,12 @@
 +(BoyeGoaldbModel*) selectDataModel:(BoyeGoaldbModel*)model;
 
 /**
+ *查询数据ID
+ * @param   uid ,weekday ,data_time
+ */
+
++(NSInteger)selectedDateModelID:(BoyeGoaldbModel *)model;
+/**
  *
  * 查询数据
  *  @param  db_id 数据 id 

@@ -16,15 +16,17 @@
 /**
  * 发通知
  *@param
- *
  **/
-+(void)setLocalNotifyGoal;
+
++(void)setLocalNotifyGoal:(BoyeGoaldbModel * )model;
 
 /**
  * 取消通知
- *@param
- *
+ *@param*
  **/
-+(void) cancelLocalNotify;
++(void) removeLocalNotifyKey:(NSInteger)goalID;
+//取消所有通知
++(void)removeAllLocalNotify;
+
 
 @end

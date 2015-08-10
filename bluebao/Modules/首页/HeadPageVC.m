@@ -153,7 +153,6 @@
     _tableView.tableHeaderView = [self headerView];
     _tableView.tableFooterView = [self footerView];
     [self.view addSubview:_tableView];
-
     
 }
 #pragma mark --  主页表 --
@@ -351,7 +350,9 @@
     
     UIView * view  = [[UIView alloc] init];
     view.backgroundColor = [UIColor clearColor];
-    view.frame = CGRectMake(0, 0, SCREEN_WIDTH, itemWidth *2 +minInteritemSpacing+10);
+    CGFloat  labe_height = 35;
+    view.frame = CGRectMake(0, 0, SCREEN_WIDTH, itemWidth *2 +minInteritemSpacing+10 + labe_height );
+    
     //初始化collection view
     UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumLineSpacing = minLineSpacing;      //水平间距
@@ -360,17 +361,28 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     flowLayout.sectionInset = UIEdgeInsetsMake(1, 0, 0, 0);//整体相对页面的位置，上左下右
     //collectionView
-    CGRect frame = CGRectMake(20,20,SCREEN_WIDTH-20*2,180);
+    CGRect frame = CGRectMake(20,15,SCREEN_WIDTH-20*2,view.height-labe_height -20);
     headCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
     headCollectionView.scrollEnabled = YES;
     headCollectionView.delegate = self;
     headCollectionView.dataSource = self;
     headCollectionView.alwaysBounceVertical = YES;
     headCollectionView.backgroundColor = [UIColor clearColor];
-    
+
     [headCollectionView registerClass:[HeadCollectionViewCell class] forCellWithReuseIdentifier:@"HeadCollectionViewCell"];
     
     [view addSubview:headCollectionView];
+    
+    //label 提示
+    UILabel * label = [[UILabel alloc] init];
+    label.frame = CGRectMake(0, headCollectionView.bottom, view.width, view.height-headCollectionView.bottom);
+    label.backgroundColor = [UIColor clearColor];
+    label.font = FONT(13);
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = @"以上数据仅做参考";
+    label.textColor = [UIColor lightGrayColor];
+    [view addSubview:label];
+    
     return view;
 }
 

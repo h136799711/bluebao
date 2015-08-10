@@ -62,25 +62,30 @@
     
     
     //如果已经连接
-      
-    if (self.isConnect) {
-    
-        NSLog(@"连接");
-        [SVProgressHUD showOnlyStatus:connArr[1] withDuration:0.5];
+//      
+//    if (self.isConnect) {
+//    
+//        NSLog(@"连接");
+//        [SVProgressHUD showOnlyStatus:connArr[1] withDuration:0.5];
 //        return;
-    }
-    
+//    }
+//    
     
     LNowDevice * device = [BoyeBluetooth sharedBoyeBluetooth].connectedDevice;
     if (device == nil) {
         NSLog(@"device is nil");
 
-        [SVProgressHUD showOnlyStatus:@"没有可连接设备" withDuration:0.5];
+                
+        [[MainViewController sharedSliderController].leftView jumpToequipmentManager];
 
     }else{
+      
+        if (device.state == CBPeripheralStateDisconnected ) {
+            [[MainViewController sharedSliderController].leftView jumpToequipmentManager];
+
+            return;
+        }
         
-        
-        [[MainViewController sharedSliderController].leftView jumpToequipmentManager];
     }
 }
 

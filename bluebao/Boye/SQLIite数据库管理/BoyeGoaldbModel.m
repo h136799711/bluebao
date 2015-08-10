@@ -10,6 +10,11 @@
 
 @implementation BoyeGoaldbModel
  
-
+-(void)setFireDate:(NSDate *)fireDate{
+    if (_fireDate == nil) {
+        _fireDate = [[NSDate alloc] init];
+    }
+    _fireDate = fireDate;
+}
 
 @end

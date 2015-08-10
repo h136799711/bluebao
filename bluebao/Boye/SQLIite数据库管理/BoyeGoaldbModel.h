@@ -16,5 +16,6 @@
 @property (nonatomic,assign) NSInteger      weekday;            //星期
 @property (nonatomic,strong) NSString       *create_time;       //插入时间
 
+@property (nonatomic,strong) NSDate         * fireDate;  //提醒时间
 
 @end

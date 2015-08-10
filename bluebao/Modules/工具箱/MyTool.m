@@ -183,7 +183,7 @@
 +(NSString *) getCurrentDateFormat:(NSString *)formatterStr{
    
     if(formatterStr == nil){
-        formatterStr = @"yyyy-MM-dd HH:mm:ss";
+        formatterStr = [self defaultdateString];
     }
     NSDateFormatter *dateFormatter = [NSDate defaultDateFormatter];
     dateFormatter.dateFormat = formatterStr;
@@ -208,14 +208,15 @@
 +(NSDate *) getCurrentDate:(NSString *) dateFormat{
     
     if (dateFormat == nil) {
-        dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        dateFormat = [self defaultdateString];
     }
    NSDateFormatter * formatter = [self getDateFormatter:dateFormat ];
     formatter.dateFormat = dateFormat;
     NSString * datestr = [self getCurrentDateFormat:dateFormat];
     
     NSDate * currDate = [formatter dateFromString:datestr];
-    NSLog(@"Datae-- %@- %@ ",datestr,currDate);
+    currDate = [currDate dateByAddingTimeInterval:8 *3600];
+    NSLog(@"\r Datae-- - %@ ",currDate);
     return currDate;
 }
 
@@ -224,14 +225,12 @@
     
     
     if(format == nil){
-        format = @"yyyy-MM-dd HH:mm:ss";
+        format =[self defaultdateString];
     }
     
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateStyle:NSDateFormatterMediumStyle];
-//    [formatter setTimeStyle:NSDateFormatterShortStyle];
-//    [formatter setDateFormat:format];
-    
+
+    formatter.dateFormat= format;
     NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
     
     [formatter setTimeZone:timeZone];
@@ -246,7 +245,7 @@
     
     NSLog(@"datestr:%@",datestr);
     if (format == nil) {
-        format = @"yyyy-MM-dd-HH:mm:ss";
+        format = [self defaultdateString];
     }
     NSDateFormatter * dateformat = [[NSDateFormatter alloc] init];
   
@@ -255,6 +254,10 @@
     return date;
 }
 
++(NSString *)defaultdateString{
+    
+    return  @"yyyy-MM-dd HH:mm:ss";
+}
 #pragma mark -- 获得BMI --
 +(NSString *) getBMIStringWeight:(CGFloat)weight height:(CGFloat)height{
     

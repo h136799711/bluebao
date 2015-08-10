@@ -189,8 +189,18 @@ static  SQLiteManager   * sqlManager;
     [set close];
     [__db close];
     return record;
-    
 }
+//查询数据 id
++(NSInteger)selectedDateModelID:(BoyeGoaldbModel *)model{
+    
+    BoyeGoaldbModel * selectModel = [self selectDataModel:model];
+    if (model!= nil) {
+        return selectModel.db_id;
+    }
+    return 0;
+}
+
+
 
 //删除数据
 +(void)deleteAllData{

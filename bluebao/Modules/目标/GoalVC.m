@@ -13,18 +13,15 @@
 #import "BoyeDataBaseManager.h"
 #import "BoyeGoaldbModel.h"
 #import "BoyeGoalLocaNotify.h"
+#import "BoyeGoalLocaNotify.h"
 
 static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
 @interface GoalVC (){
     
-//    UITableView         * _goalTableView;
-//    int                  _goalCount;
-    BOOL                  _isHasData;
-    UIView                  *_headerView;
-    UIView                  *_footerView;
-    NSString                *_goalDateLabeltext;
-    NSArray                 * btnArray;
+
+    NSInteger           currWeek;
+    
 }
 
 @end
@@ -35,13 +32,14 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"目标设定";
-    
+    currWeek = 0;
     _isHasData = NO;
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     
     _goalDateLabeltext = [[NSString alloc] init];
     
     [self _initViews];
+
 }
 
 
@@ -76,7 +74,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     [self _initPickerView];  //修改 数据
     [self _initNotificationCenter];
     [self _initGest];
-//    [self alarmBellSetting];
     
 }
 
@@ -99,7 +96,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     }
 }
 #pragma mark -- 创建日期标签 yy-M-dd---
--(UIView *)creatHeaderView{
+-(void)creatHeaderView{
     
     _headerView = [[UIView alloc] init];
     _headerView.backgroundColor = [UIColor clearColor];
@@ -115,7 +112,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     headerLabel.text = [MyTool getCurrentDateFormat:@"yy-M-dd"];
     
     _goalDateLabeltext = headerLabel.text;
-
+    NSLog(@"****************************************");
     //线
     [MyTool createLineInView:_headerView fram:CGRectMake(0, headerLabel.bottom, _headerView.width, 0.5)];
     
@@ -127,7 +124,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
   
     
     [self.view addSubview:_headerView];
-    return _headerView;
 }
 
 #pragma mark -- WeekSegmentDelegate ---
@@ -228,11 +224,16 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     BoyeGoaldbModel * model = self.dataArray[deleteBtn.tag];
     //删除数据库数据
     [BoyeDataBaseManager deleteDataID:model.db_id];
+    
+    // TODO.....
+    
+    //移除通知
+    [self removeNotify:model];
+    
     //删除数据源
     [self.dataArray removeObjectAtIndex:deleteBtn.tag];
     
     //然后刷新tableView(动态删除某些行)
-    
     [_goalTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:deleteBtn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     //是否含有数据
@@ -241,19 +242,8 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     [_goalTableView reloadData];
     
     [self.goalPickerView close];
-
-//    //保存最新目标
-//    [self saveGoalArrayToDocments];
 }
 
-
--(void)btnClick:(UIButton *)btn{
-    
-    NSLog(@" btn.tag  %ld "   , btn.tag);
-    
-    
-    
-}
 
 
 
@@ -332,6 +322,10 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     goalModel.create_time = [MyTool getCurrentDateFormat:nil];
     goalModel.weekday = self.weekSegment.selectIndex;
 
+    goalModel.fireDate = [self getFullDayTimeString:goalModel.date_time];
+    
+    
+    
     #pragma mark -- 点击添加按钮，相同日期不可添加，不同日期要排序
     if (self.goalPickerView.tag == -1) {
         
@@ -349,20 +343,25 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 }
 
 //添加数据
--(void) touchAdd:(BoyeGoaldbModel *) model{
+-(BOOL) touchAdd:(BoyeGoaldbModel *) model{
 
     //有相同的不添加
     if ([BoyeDataBaseManager  isExistUserGoal:model] ) {
         [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
-        return ;
+        return NO;
     }
 //    
     [BoyeDataBaseManager insertGoalWithDate:model];
-    [BoyeDataBaseManager getGoalDataUserID:self.useInfo.uid week:model.weekday];
     
+    [BoyeDataBaseManager getGoalDataUserID:self.useInfo.uid week:model.weekday];
       //添加元素
     [self refreshGoalTableView];
+    //TODO.... 设置通知
+    model.db_id = [BoyeDataBaseManager selectedDateModelID:model];
+    [self settdNotify:model];
 
+    return YES;
+    
 }
 
 //点击修改
@@ -376,7 +375,11 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
         
         [BoyeDataBaseManager insertGoalWithDate:model];
         [self refreshGoalTableView];
-
+        
+        //TOD... ,设置通知
+        
+        model.db_id = [BoyeDataBaseManager selectedDateModelID:model];
+        [self settdNotify:model];
         
     }else{
         //数据存在，修改日期是当前日期则可以修改，
@@ -387,7 +390,13 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
             [BoyeDataBaseManager alertData:model];
             
             [self refreshGoalTableView];
-
+            
+            
+            //移除通知
+            [self removeNotify:model];
+            //设置新通知
+            [self settdNotify:model];
+            
         }else{
 
             [SVProgressHUD showOnlyStatus:@"修改日期不匹配" withDuration:0.5];
@@ -471,7 +480,10 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     //
     [self.goalPickerView close];
     
-   
+//    [self removeAllNotify];
+    
+//    [self getcurrentDay];
+
 }
 
 
@@ -489,22 +501,52 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 }
 
 
-#pragma mark -- 设置闹铃 --
--(void)alarmBellSetting{
+#pragma mark -- ****  设置闹铃   ** --
+
+-(void) settdNotify:(BoyeGoaldbModel *)mode{
     
-    NSDate * fireDate = [[NSDate date] dateByAddingTimeInterval: 18];
-//
-//    [[LocalNotify sharedNotify]fireNotificationAt:fireDate
-//                                                 :[NSString stringWithFormat:@"该运动啦!"]
-//                                                 :0 ];
-    
-//    
+    [BoyeGoalLocaNotify setLocalNotifyGoal:mode];
+    NSLog(@"设置闹铃");
 }
 
--(void)removeAlarmBel:(NSDate *)date{
+-(void) removeNotify:(BoyeGoaldbModel *)mode{
     
-    
+    [BoyeGoalLocaNotify removeLocalNotifyKey:mode.db_id];
+        NSLog(@"移除指定闹铃闹铃");
 }
+
+//-(void)removeAllNotify{
+//    
+//    [BoyeGoalLocaNotify removeAllLocalNotify ];
+//
+//}
+
+-(NSDate *) getFullDayTimeString:(NSString *)hourstr {
+    
+ NSDate * nowDate =  [NSDate date];
+    
+    NSString * dataFormatt = @"yyyy-MM-dd";
+      NSString *  timestr = [MyTool getCurrentDateFormat:dataFormatt];
+    NSString * datestring = [NSString stringWithFormat:@"%@ %@",timestr,hourstr];
+
+    
+    NSDate  * date = [[MyTool  getDateFormatter:@"yyyy-MM-ddHH:mm"] dateFromString:datestring];
+    
+    NSLog(@" full  %@   -- %@ -%@",datestring,date,nowDate);
+
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+
+    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
+    
+    NSLog(@"  -- %ld   -%ld", comps.weekday,self.weekSegment.selectIndex);
+    
+     // 不是当天
+    
+    
+    return date ;
+}
+
+
 
 -(void)viewWillDisappear:(BOOL)animated{
     

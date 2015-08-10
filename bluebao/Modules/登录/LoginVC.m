@@ -11,7 +11,7 @@
 #import "MainViewController.h"
 #import "UserInfo.h"
 #import "BoyeForgetCodeVC.h"
-#import "BoyeGoalLocaNotify.h"
+
 
 @interface LoginVC ()
 
@@ -61,17 +61,7 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    [BoyeGoalLocaNotify setLocalNotifyGoal];
-
-    
-    
-    
     [self _initViews];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    [BoyeGoalLocaNotify  cancelLocalNotify];
 }
 
 #pragma mark -- 初始化 ---

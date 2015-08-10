@@ -7,6 +7,7 @@
 //
 
 #import "GoalVC.h"
+#import "WeekSegmentlView.h"
 
 @interface PeopleGoalManagerVC : GoalVC
 
