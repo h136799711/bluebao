@@ -36,9 +36,9 @@
 ////    NSLog(@"aes = %@",encode);
 ////    NSLog(@"decode = %@", [BoyeCypto aes256Decrypt:encode :key]);
     
-    NSLog(@"",[[CacheFacade sharedCache]get:@""]);
+//    NSLog(@"",[[CacheFacade sharedCache]get:@""]);
     
-    [NSThread sleepForTimeInterval:2];
+    [NSThread sleepForTimeInterval:1];
     
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -57,10 +57,19 @@
     
     [self umengAnalytics];
     
+    [self umengShareConfig];
+    
     return YES;
 }
 
-#pragma mark 友盟代码、推送＋统计
+#pragma mark 友盟代码、推送＋统计＋微信分享
+
+-(void)umengShareConfig{
+    [UMSocialData setAppKey:@UMENG_APP_KEY];
+    //设置微信AppId、appSecret，分享url
+    [UMSocialWechatHandler setWXAppId:@"wx5df8e721b02d41d1" appSecret:@"2a559489a116a34453f8e1368db40d25" url:@"http://www.umeng.com/social"];
+    [UMSocialData openLog:YES];
+}
 
 -(void)umengAnalytics{
     [MobClick startWithAppkey:@UMENG_APP_KEY reportPolicy:BATCH   channelId:@"APP_STORE"];
@@ -73,6 +82,7 @@
 //    [MobClick checkUpdate:@"发现新版本" cancelButtonTitle:@"忽略" otherButtonTitles:@"前往App Store"];
 //    [MobClick setLogEnabled:YES];
 }
+
 
 -(void)umengPushConfig:(NSDictionary *)launchOptions{
     
@@ -123,7 +133,17 @@
 //    [UMessage setLogEnabled:YES];
 
 }
-
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
 #pragma mark --登陆 注册--
 -(void)_initLogin{
     

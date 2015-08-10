@@ -69,10 +69,14 @@
 #import "MobClick.h"
 #import "MobClickSocialAnalytics.h"
 #import "PrivacyVC.h"
+#import "UMessage.h"
+#import "UMSocial.h"
+#import "UMSocialScreenShoter.h"
 //常用缓存快速调用
 #import "CommonCache.h"
 
 #import "BicyleStatistics.h"
+#import "UMSocialWechatHandler.h"
 //-------------------打印日志-------------------------
 //DEBUG  模式下打印日志,当前行
 #ifdef DEBUG
