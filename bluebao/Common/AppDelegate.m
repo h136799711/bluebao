@@ -141,7 +141,8 @@
     UIImage *navBgImg = [UIImage imageWithColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-    
+
+
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         [[UINavigationBar appearance] setTranslucent:NO];
     }

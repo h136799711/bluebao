@@ -271,16 +271,18 @@
 
 
 #pragma mark --是否存在相同的日期--
-+(void) isSameGoalData:(GoalData *) dateOne array:(NSArray *)dateArray complete:(void(^)(BOOL sameGoal))complete{
++(void) isSameGoalData:(GoalData *) dateOne array:(NSArray *)dateArray complete:(void(^)(NSInteger goalIndex))complete{
     
-    for (GoalData * dateTow in dateArray) {
-       
+    NSInteger  index = -1;
+    for (int i = 0 ; i < dateArray.count; i ++) {
+        GoalData * dateTow  = dateArray[i];
         if (dateOne.maxIndex == dateTow.maxIndex) {
-           
-            complete (YES);
-            return ;
+        
+            index = i;
+            break;
         }
     }
+    complete(index);
 }
 
 
@@ -307,7 +309,7 @@
     return NO;
 }
     
-#pragma mark -- 默认目标值，
+#pragma mark -- 默认目标值，500
 
 +(NSInteger) getDefaultGoalValue:(NSInteger)goalValue {
     if ([self isGoalValueZero:goalValue]) {
@@ -316,5 +318,18 @@
         return goalValue;
     }
 }
+
++(void) tesGoal:(NSArray *) arr{
+    NSLog(@"------------goal----------------------------------");
+    for (GoalData * data in arr) {
+        
+        NSLog(@" -time %@- goalnum%ld-",data.timestr,data.goalNumber);
+    }
+    
+}
+
+
+
+
 
 @end

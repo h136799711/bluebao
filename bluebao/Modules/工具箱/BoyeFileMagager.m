@@ -11,18 +11,23 @@
 @implementation BoyeFileMagager
 
 //文件是否存在
-+(BOOL)isFileExists:(NSString*)stringname {
++(BOOL)isFileExists:(NSString*)filePath {
     BOOL isDirectory;
     
-    NSString * filePath = [NSString stringWithFormat:@"Documents/%@.plist",stringname];
+//    NSString * filePath = [NSString stringWithFormat:@"Documents/%@.plist",stringname];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:[NSHomeDirectory() stringByAppendingPathComponent:filePath] isDirectory:&isDirectory]) {
+        
         NSLog(@"文件存在，是一个%@",isDirectory?@"文件夹":@"文件");
-        return  YES;
-    }else{
-        NSLog(@"文件不存在");
-        return NO;
+        if (!isDirectory) {
+            
+            return YES;
+        }
+       
     }
+    NSLog(@"文件不存在");
+    
+    return NO;
 }
 
 #pragma mark --- 将文件保存在沙河下 ---
@@ -51,9 +56,10 @@
 #pragma mark --- goalData数组保存
 +(void) saveGoalData:(NSArray *)goalDataArray plistName:(NSString *)plistname{
     
+    
     NSData * data = [NSKeyedArchiver archivedDataWithRootObject:goalDataArray];
-    NSString * pathName = [NSString stringWithFormat:@"Documents/%@.plist",plistname];
-    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:pathName];
+    
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:[self getFullFilePath:plistname]];
     
     [data writeToFile:path atomically:NO];
 
@@ -63,7 +69,23 @@
 
 +(void)readGoalDataName:(NSString *)plistname complete:(void (^)(NSArray * goalArr))complete{
   
-    NSString * pathName = [NSString stringWithFormat:@"Documents/%@.plist",plistname];
+//    NSString * filePath = [NSString stringWithFormat:@"Documents/%@.plist",plistname];
+    NSString * filePath = [self getFullFilePath:plistname];
+
+    //文件不存在，创建一个文件
+    BOOL isExist = [self isFileExists: filePath];
+    if (!isExist) {
+        
+//        [SVProgressHUD showOnlyStatus:@"文件不存在" withDuration:0.5];
+        
+        //createFileAtPath创建一个文件。
+        [self  saveGoalData:nil plistName:plistname] ;
+        
+        return;
+    }
+    
+    //获得完整路径
+    NSString * pathName = [self getFullFilePath:plistname];
     NSData * data = [NSData dataWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:pathName]];
     //
     NSArray * goalArray = [NSKeyedUnarchiver unarchiveObjectWithData:data] ;
@@ -73,14 +95,21 @@
     }
 }
 
-//
+//目标数组保存文件名称 :名称+ uid
 +(NSString *) defaultGoalArrFilePlistName{
     
-    return @"lanbao_goal_arr_plistname";
+    UserInfo * userInfo = [MainViewController sharedSliderController].userInfo;
+    NSString * plistname = [NSString stringWithFormat:@"lanbao_goal_arr_%ld_plistname",userInfo.uid];
+    return plistname;
 }
 
+//单个目标保存文件名称 :名称+ uid
 +(NSString *) defaultGoalDataFileName{
-    return @"lanbao_goal_name";
+    
+    UserInfo * userInfo = [MainViewController sharedSliderController].userInfo;
+    NSString * plistname = [NSString stringWithFormat:@"lanbao_goal_%ld_plistname",userInfo.uid];
+
+    return plistname;
     
 }
 
@@ -88,30 +117,26 @@
 +(void)saveDefaultGoalData:(NSArray *)goalDataArray {
     
     NSString * defaultName = [self defaultGoalArrFilePlistName];
-    
-    if (goalDataArray == nil) {
-        GoalData * goal = [GoalData defauleGoal];
-        goalDataArray = [[NSArray alloc]initWithObjects:goal, nil];
-    }
-    
+  
     [self saveGoalData:goalDataArray plistName:defaultName];
 }
 
 //读取默认目标
 +(void) readDefaultGoalData:(void(^)( NSArray * goalArr))complete{
-    
-    //文件不存在，创建一个文件
-   BOOL isExist = [self isFileExists:[self defaultGoalArrFilePlistName]];
-    if (!isExist) {
-        [self saveDefaultGoalData:nil];
-    }
-    
+ 
     [self readGoalDataName:[self defaultGoalArrFilePlistName] complete:^(NSArray *goalArr) {
-        if (goalArr == nil) {
-            goalArr = [[NSArray alloc] initWithObjects:[GoalData defauleGoal], nil];
+        if (goalArr != nil) {
+            complete(goalArr);
         }
-        complete(goalArr);
     }];
     
 }
+
+//获得完整路径
++(NSString *) getFullFilePath:(NSString * )filename{
+    
+    NSString * filePath = [NSString stringWithFormat:@"Documents/%@.plist",filename];
+    return filePath;
+}
+
 @end

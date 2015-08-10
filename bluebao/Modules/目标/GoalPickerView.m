@@ -68,11 +68,11 @@
         //取消按钮
         UIButton * cancalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         cancalBtn.tag = 0;
-        cancalBtn.bounds = CGRectMake(0, 0, 40, 30);
+        cancalBtn.bounds = CGRectMake(0, 0, 80, topView.height);
         
-        cancalBtn.center = CGPointMake(cancalBtn.bounds.size.width/2.0 + 10, topView.bounds.size.height /2.0);
+        cancalBtn.center = CGPointMake(cancalBtn.bounds.size.width/2.0 , topView.bounds.size.height /2.0);
         [cancalBtn setTitle:@"取消" forState:UIControlStateNormal];
-//        [cancalBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
         [cancalBtn setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
 
         [topView addSubview:cancalBtn];
@@ -82,11 +82,11 @@
         //完成按钮
         UIButton * finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         finishBtn.tag = 1;
-        finishBtn.bounds = CGRectMake(0, 0, 40, 30);
-        CGFloat  x  =  topView.bounds.size.width - 10 - finishBtn.bounds.size.width/2.0;
+        finishBtn.bounds = CGRectMake(0, 0, 80, topView.height);
+        CGFloat  x  =  topView.bounds.size.width  - finishBtn.bounds.size.width/2.0;
         finishBtn.center = CGPointMake(x, topView.height /2.0);
         [finishBtn setTitle:@"完成" forState:UIControlStateNormal];
-//        [finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        finishBtn.backgroundColor = [UIColor redColor];
         [finishBtn setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
 
         [topView addSubview:finishBtn];

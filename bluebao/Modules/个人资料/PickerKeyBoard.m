@@ -43,8 +43,8 @@
     //完成按钮
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    button.bounds = CGRectMake(0, 0, 60, 30);
-    CGFloat  x  =  topView.width - 10 - button.bounds.size.width/2.0;
+    button.bounds = CGRectMake(0, 0, 80, topView.height);
+    CGFloat  x  =  topView.width  - button.bounds.size.width/2.0;
     button.center = CGPointMake(x, topView.height /2.0);
     [button setTitle:@"完成" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
