@@ -129,7 +129,9 @@ CGFloat SVProgressHUDRingThickness = 6;
 + (void)showOnlyStatus:(NSString *)string withDuration:(NSTimeInterval)duration {
     [[self sharedView] showImage:nil status:string duration:duration];
 }
-
++ (void)showSuccessWithStatus:(NSString *)string withDuration:(NSTimeInterval)duration {
+    [[self sharedView]  showImage:[[self sharedView] hudSuccessImage] status:string duration:duration];
+}
 + (void)showSuccessWithStatus:(NSString *)string {
     [self showImage:[[self sharedView] hudSuccessImage] status:string];
 }

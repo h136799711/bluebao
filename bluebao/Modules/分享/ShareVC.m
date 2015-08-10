@@ -191,11 +191,10 @@
     //根据`responseCode`得到发送结果,如果分享成功
     if(response.responseCode == UMSResponseCodeSuccess)
     {
-        [SVProgressHUD showWithStatus:@"分享成功!"];
+        [SVProgressHUD showSuccessWithStatus:@"分享成功!"  withDuration:2 ];
     }else{
-        [SVProgressHUD showErrorWithStatus:@"分享失败!"];
+        [SVProgressHUD showErrorWithStatus:@"分享失败!" withDuration:3];
     }
-    
     
 }
 
