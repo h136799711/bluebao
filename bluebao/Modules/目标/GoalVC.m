@@ -20,6 +20,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     UIView                  *_headerView;
     UIView                  *_footerView;
     NSString                *_goalDateLabeltext;
+    
 }
 
 @end
@@ -295,13 +296,14 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
 -(void)goalPickerView:(GoalPickerView *)picker dateString:(NSString *)time goalNumber:(NSInteger)goalNumber{
     
+    NSLog(@"****************************************************************");
     GoalData * goal = [[GoalData alloc] init];
     goal.timestr = time;
     goal.goalNumber = goalNumber;
     NSString * datestr = [self getFullDateString:goal.timestr];
     goal.dateTime = [MyTool changeStringToDate:datestr formatter:@"yy-M-dd-HH:mm"];
     
-    NSLog(@"///////////timestr//// %@",goal.timestr);
+    NSLog(@"///////////timestr//// %@ -- %ld",goal.timestr,self.goalPickerView.tag);
     
     
 //    NSLog(@"////////////****///dataTime: %@",goal.dateTime);
@@ -311,9 +313,12 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
         
         //有相同的不添加
         if ([self isExitSame:goal] != -1) {
-            
+            [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
+
             return;
         }
+        NSLog(@"\r //////////、、、、、、、1、、、、、、、、、、、");
+        NSLog(@" **********  %ld -- goal %ld",[self isExitSame:goal],self.goalPickerView.tag);
 
         //添加元素 然后排序
         [self.dataArray addObject:goal];
@@ -322,31 +327,36 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     #pragma mark -- 点击修改按钮，替换对应目标数据
     }else{
         
-        
         //有相同的不添加
-        
-        if ([self isExitSame:goal] == self.goalPickerView.tag ) {
-            NSLog(@"   ");
+        if ([self isExitSame:goal] != self.goalPickerView.tag && [self isExitSame:goal] != -1) {
+            [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
+
             return;
         }
 
+        NSLog(@" **********  %ld -- goal %ld",[self isExitSame:goal],self.goalPickerView.tag);
         
-        NSLog(@"---- ");
-        [self.dataArray replaceObjectAtIndex:self.goalPickerView.tag withObject:goal];
+        NSLog(@"、、、、、、、2、、、、、、、、、、");
 
+        [self.dataArray replaceObjectAtIndex:self.goalPickerView.tag withObject:goal];
     }
     
     
+    NSLog(@"、、、、、、、3、、、、、、、、、、");
+    NSLog(@" **********  %ld -- goal %ld",[self isExitSame:goal],self.goalPickerView.tag);
+
+
     [CommonCache setGoal:[NSNumber numberWithInteger:goal.goalNumber]];
 
     [self isHasDataAdjust];
     [_goalTableView reloadData];
     
     
-    // 保存目标对象 ,目标创建，修改，无数据都可保存，
+    // 保存目标对象到沙河 ,目标创建，修改，无数据都可保存，
     [self saveGoalArrayToDocments];
-    
+        NSLog(@"****************************************************************");
 }
+
 
 //是否存在相同日期的目标 :-1 不存在相同日期
 -(NSInteger) isExitSame:(GoalData *)goal{
@@ -360,10 +370,12 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
             NSLog(@" //////////////////// %ld",goalIndex);
 
             if (goalIndex != -1) {
+             isSameGoal = goalIndex;
                 
-                [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
-                isSameGoal = goalIndex;
-                
+                NSLog(@" 有相同日期的数据");
+
+            }else{
+                NSLog(@" 没有有相同日期的数据");
             }
         }];
     }

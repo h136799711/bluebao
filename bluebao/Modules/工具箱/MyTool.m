@@ -277,7 +277,7 @@
     for (int i = 0 ; i < dateArray.count; i ++) {
         GoalData * dateTow  = dateArray[i];
         if (dateOne.maxIndex == dateTow.maxIndex) {
-        
+            NSLog(@"  maxindex %ld - %ld",dateOne.maxIndex,dateTow.maxIndex);
             index = i;
             break;
         }
