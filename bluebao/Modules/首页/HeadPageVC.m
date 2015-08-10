@@ -452,8 +452,7 @@
 
     reqModel.uid = self.userInfo.uid;
     
-    reqModel.uuid = @"OTO458-1082"; //LR-866
-//    reqModel.uuid = self.boyeBluetooth.connectedDevice.uuid;
+    reqModel.uuid = self.boyeBluetooth.connectedDevice.uuid;
   
     reqModel.bicyleModel = _currentBluetothData.bicyleModel;
 

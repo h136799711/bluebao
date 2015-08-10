@@ -1,13 +1,13 @@
+////
+////  OpinionVC.h
+////  bluebao
+////
+////  Created by boye_mac1 on 15/7/16.
+////  Copyright (c) 2015年 Boye. All rights reserved.
+////
 //
-//  OpinionVC.h
-//  bluebao
+//#import "BaseViewController.h"
 //
-//  Created by boye_mac1 on 15/7/16.
-//  Copyright (c) 2015年 Boye. All rights reserved.
+//@interface OpinionVC : BaseViewController
 //
-
-#import "BaseViewController.h"
-
-@interface OpinionVC : BaseViewController
-
-@end
+//@end

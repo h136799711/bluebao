@@ -43,13 +43,20 @@
 
 -(void)_initTableView{
     
-    self.tableView_set = [[UITableView alloc] initWithFrame:CGRectMake(0,20, SCREEN_WIDTH,44 *_setArray.count)];
+    self.tableView_set = [[UITableView alloc] initWithFrame:CGRectMake(0,20, SCREEN_WIDTH,44 *(_setArray.count+1))];
     self.tableView_set.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView_set.delegate = self;
     self.tableView_set.dataSource = self;
 
     [self.view addSubview:self.tableView_set];
     
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return @"闹铃提醒类型";
+    }
+    return @"闹铃提醒类型";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -113,6 +120,11 @@
 //    }
     //不是最后一个
     _currSelectedRow = indexPath.row;
+    if (_currSelectedRow == 0) {
+        NSLog(@"震动按了!");
+    }else{
+        NSLog(@"声音按了!");
+    }
     [tableView reloadData];
 
 }

@@ -71,40 +71,40 @@
 +(NSInteger )getBasalMetabolicRate:(NSInteger )age :(NSInteger )sex :(float )weight :(float)height{
     
     
-    /**
-     *
-     男
-  0-3岁   60.9m — 54                          0.2550m — 0.226
-   3-10岁    22.7m + 495                         0.0949m + 2.07
-   10-18岁  17.5m + 651                         0.0732m +2.72
-  18-30   15.3m + 679                         0.0640m +2.84
-   》30    11.6m + 879                         0.0485m + 3.67
-   
-     
-     
-     女
-  0-3岁      61.0m — 51                         0.2550m — 0.214
-  3-10岁    22.5m +499                         0.9410m +2.09
-  10-18岁 12.2m +746                         0.0510m +3.12
-  18-30     14.7m +496                         0.0615m +2.08
-  》30       8.7m +820                           0.0364m +3.47
-     
-     
-     
-     
-     
-     */
+   // Harris-Benedict公式
+   // 男性: BMR = 66+(13.7× 体重(kg))+(5×身高(cm)) – (6.8×年龄(岁))
+   // 女性: BMR = 655+(9.6×体重(kg))+(1.8×身高(cm))–(4.7×年龄(岁))
     
+   // The Mufflin equation
+   // 男性: RMR=(10×体重(kg))+(6.25×身高(cm))-(5×年龄(岁)) + 5
+   // 女性: RMR=(10×体重(kg))+(6.25×身高(cm))-(5×年龄(岁)) - 161
     
+    // 一个更准确的计算公式是以瘦体重为基础的Katch-McArdle公式
     
-    return 13;
+    // Katch-McArdle公式
+    // BMR/RMR(男性与女性)=370+(21.6*瘦体重(kg))
+//    S（m2）=0.0061×身高（cm）+0.0128×体重（kg）-0.1529
+    
+//    float S = 0.0061 * (height*100)+ 0.0128 * weight - 0.1529;
+    float bmr = 0;
+    if(sex == 0){
+        bmr = 66 + (13.7 * weight)+( 5 * height *100) - ( 6.8 * age);
+    }else{
+        bmr = 6655+ (9.6 * weight)+( 1.8 * height *100) - ( 4.7 * age);
+    }
+    
+    float normalBMR = [self getNormalBMR:age :sex :weight :height ];
+    
+    bmr = 100*normalBMR/bmr - 100;
+    NSLog(@"bmr=%d",(int)bmr);
+    if(bmr < 0){
+        bmr = bmr * -1;
+    }
+    
+    return (int)bmr;
 }
 
-+(NSInteger)getViscusPate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
-    
-    
-    return 2;
-}
+
 
 +(NSInteger)getSkeletonRate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
     
@@ -131,9 +131,25 @@
     
 }
 
++(NSInteger)getViscusPate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
+    
+    float bmi = [self getBMI:weight :height];
+    
+    if (bmi <25) {
+        return (int)(( bmi / 25) * 9  );
+    }else if(bmi < 35){
+        return (int)(( bmi / 35) * 14  );
+    }
+    
+    return (int)((bmi / 40) * 30);
+}
+
 +(NSInteger) getSubcutaneousFatRate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
     
-    return 5;
+    float fatRate = [self getBodyFatRateBy:age :sex :weight :height];
+    
+    
+    return fatRate*0.1532;
 }
 
 +(NSInteger)getMusclePate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
@@ -172,6 +188,13 @@
     return age;
 }
 
-
++(float)getNormalBMR:(NSInteger )age :(NSInteger )sex :(float )weight :(float)height{
+    if(sex == 0){
+        return 1210;
+    }else{
+        return 1550;
+    }
+    
+}
 
 @end

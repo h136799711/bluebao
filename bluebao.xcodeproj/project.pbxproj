@@ -91,7 +91,6 @@
 		5B9067671B7DCC6300BA04AC /* lanbao.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5B9067661B7DCC6300BA04AC /* lanbao.sqlite */; };
 		5B90676B1B7DD70800BA04AC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */; };
 		5B9B637C1B7EC2B000ED1D96 /* WeekSegmentlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9B637B1B7EC2B000ED1D96 /* WeekSegmentlView.m */; };
-		5B9B63831B7F18FF00ED1D96 /* localnotify.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B9B63821B7F18FF00ED1D96 /* localnotify.mp3 */; };
 		5B9B63861B7F204A00ED1D96 /* BoyeGoalLocaNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9B63851B7F204A00ED1D96 /* BoyeGoalLocaNotify.m */; };
 		5BA4EDB41B7AD97F0008A4F5 /* CheckBluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA4EDB31B7AD97F0008A4F5 /* CheckBluetoothData.m */; };
 		5BD4AA941B6B27CD0041F730 /* BoyeSlideBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */; };
@@ -151,6 +150,7 @@
 		9F3C9A2E1B789DFE00A373CC /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C9A291B789DFD00A373CC /* libSocialWechat.a */; };
 		9F3C9A2F1B789DFE00A373CC /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C9A2A1B789DFE00A373CC /* libWeChatSDK.a */; };
 		9F454CE91B7EDC3C009CE230 /* PeopleBodyParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F454CE81B7EDC3C009CE230 /* PeopleBodyParams.m */; };
+		9F454CED1B7F31D6009CE230 /* localnotify.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9F454CEC1B7F31D6009CE230 /* localnotify.mp3 */; };
 		9F470BC11B758AF500A49750 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BBF1B758AF500A49750 /* GTMBase64.m */; };
 		9F470BC51B75E03800A49750 /* CommonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BC41B75E03800A49750 /* CommonCache.m */; };
 		9F470BC91B75E5D300A49750 /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BC81B75E5D300A49750 /* SQLiteManager.m */; };
@@ -188,7 +188,6 @@
 		9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F41B4E5AE80013F4F1 /* AFURLRequestSerialization.m */; };
 		9F91E8001B4E5AE80013F4F1 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F61B4E5AE80013F4F1 /* AFURLResponseSerialization.m */; };
 		9F91E8011B4E5AE80013F4F1 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */; };
-		9FAB91F81B7DFE0C00BC2B8B /* localnotify.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9FAB91F71B7DFE0C00BC2B8B /* localnotify.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,7 +355,6 @@
 		5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		5B9B637A1B7EC2B000ED1D96 /* WeekSegmentlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekSegmentlView.h; sourceTree = "<group>"; };
 		5B9B637B1B7EC2B000ED1D96 /* WeekSegmentlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekSegmentlView.m; sourceTree = "<group>"; };
-		5B9B63821B7F18FF00ED1D96 /* localnotify.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = localnotify.mp3; path = ../localnotify.mp3; sourceTree = "<group>"; };
 		5B9B63841B7F204A00ED1D96 /* BoyeGoalLocaNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeGoalLocaNotify.h; sourceTree = "<group>"; };
 		5B9B63851B7F204A00ED1D96 /* BoyeGoalLocaNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeGoalLocaNotify.m; sourceTree = "<group>"; };
 		5BA4EDB21B7AD97F0008A4F5 /* CheckBluetoothData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBluetoothData.h; sourceTree = "<group>"; };
@@ -467,6 +465,7 @@
 		9F3C9A2D1B789DFE00A373CC /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		9F454CE71B7EDC3C009CE230 /* PeopleBodyParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleBodyParams.h; sourceTree = "<group>"; };
 		9F454CE81B7EDC3C009CE230 /* PeopleBodyParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleBodyParams.m; sourceTree = "<group>"; };
+		9F454CEC1B7F31D6009CE230 /* localnotify.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = localnotify.mp3; path = assets/localnotify.mp3; sourceTree = "<group>"; };
 		9F470BBE1B758AF500A49750 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		9F470BBF1B758AF500A49750 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		9F470BC01B758AF500A49750 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -545,7 +544,6 @@
 		9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		9FAB91F71B7DFE0C00BC2B8B /* localnotify.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = localnotify.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1279,12 +1277,12 @@
 		9F50E5011B4E577600AB6BD8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F454CEC1B7F31D6009CE230 /* localnotify.mp3 */,
 				5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */,
 				9F3321671B787FE400DDCEE4 /* libstdc++.dylib */,
 				9F3321611B787FB800DDCEE4 /* libiconv.dylib */,
 				9F470BCA1B75ED7200A49750 /* libsqlite3.dylib */,
 				9F6E3EB71B7229C200F329B9 /* libz.dylib */,
-				5B9B63821B7F18FF00ED1D96 /* localnotify.mp3 */,
 				9F4FB6341B733F6400440BFC /* 用户须知.rtf */,
 			);
 			name = "Supporting Files";
@@ -1544,12 +1542,11 @@
 				9F4983761B784E3100B07AE6 /* UMSLoginViewController.xib in Resources */,
 				9F4983741B784E3100B07AE6 /* UMShareEditViewController.xib in Resources */,
 				5B38C7FB1B53C6DB0063912C /* back.png in Resources */,
-				9FAB91F81B7DFE0C00BC2B8B /* localnotify.mp3 in Resources */,
 				9F4983791B784E3100B07AE6 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				5B38C7921B5390CF0063912C /* RegistVC.xib in Resources */,
 				5B38C7FD1B53C6DB0063912C /* edit.png in Resources */,
 				5B38C7FA1B53C6DB0063912C /* add.png in Resources */,
-				5B9B63831B7F18FF00ED1D96 /* localnotify.mp3 in Resources */,
+				9F454CED1B7F31D6009CE230 /* localnotify.mp3 in Resources */,
 				9F3C998D1B7A37DC00D5C0A3 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				5BF2E0411B4F6B7E004FDDF7 /* SVProgressHUD.bundle in Resources */,
 				5B9067671B7DCC6300BA04AC /* lanbao.sqlite in Resources */,
