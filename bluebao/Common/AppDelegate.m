@@ -160,13 +160,14 @@
     //colorWithHexString:@"#f8f8f8"]  colorWithHexString:@"#14caff"
     UIImage *navBgImg = [UIImage imageWithColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-    
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+
+
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         [[UINavigationBar appearance] setTranslucent:NO];
     }
     
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:FONT(18)}];
     
 }

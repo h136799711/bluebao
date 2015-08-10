@@ -17,12 +17,14 @@
 @property (nonatomic,strong) UITextField        * personSignTextfield;//个人姓名
 @property (nonatomic,strong) UITextField            * signLabel;//提醒标签
 //@property (nonatomic,strong) UIButton           * heightButton;//用户身高
-@property (nonatomic,strong) UIButton           * sexButton;//体重
+
+@property (nonatomic,strong) UIButton           * sexButton;//
 @property (nonatomic,strong) NSMutableArray     * valueArray; //值
 @property (nonatomic,strong) PickerKeyBoard     * pickerKeyBoard; //pickerView
 @property (nonatomic,assign) CGFloat             outHeight;
 @property (nonatomic,strong) UIButton           * ageBtn; //用户年龄
 @property (nonatomic,strong) UIButton           * ageImageBtn; //用户年龄
+@property (nonatomic,strong) UIButton           * sexImageBtn; //用户年龄
 
 @property (nonatomic,strong) UserInfo * userInfo;
 @end

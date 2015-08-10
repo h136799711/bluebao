@@ -150,14 +150,22 @@
                              ImagName:nil
                            titleLabel:sortName[i]];
         
-        [button addTarget:self
-                   action:@selector(buttonPress:) forControlEvents:UIControlEventTouchUpInside];
-
+       
         [self.buttonArray addObject:button];
         
         if (i==0) {
             [self buttonPress:button];
         }
+        
+        //底部按钮的覆盖层按钮
+        UIButton * upButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        upButton.tag = i;
+        upButton.bounds = CGRectMake(0, 0, _bottomView.width/4.0, _bottomView.height);
+        upButton.center = CGPointMake(upButton.width * i + upButton.width/2.0  , _bottomView.height/2.0);
+        [_bottomView addSubview:upButton];
+        [upButton addTarget:self
+                   action:@selector(buttonPress:) forControlEvents:UIControlEventTouchUpInside];
+
     }
 
 }
@@ -165,8 +173,7 @@
 #pragma mark -- 点击事件 --
 -(void)buttonPress:(UIButton *)button{
     
-    
-    
+        
     if (button.tag == 3) {
         ShareVC * share = [[ShareVC alloc] init];
 //        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:share];
@@ -174,6 +181,7 @@
         [self  presentViewController:share animated:YES completion:nil];
         
     }else{
+        
         
         UIViewController * vc = self.viewcontrollers[button.tag];
         
@@ -185,8 +193,8 @@
         }
         
         select_button.selected = NO;
-        select_button = button;
-        button.selected = YES;
+        select_button = self.buttonArray[button.tag];
+        select_button.selected = YES;
         
     }
 

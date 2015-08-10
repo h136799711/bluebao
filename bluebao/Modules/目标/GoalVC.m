@@ -10,7 +10,7 @@
 #import "GoalCell.h"
 #import "GoalData.h"
 
-static  NSString * const goalArrNameString = @"boyeGoalArray";
+static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
 @interface GoalVC (){
     
@@ -20,6 +20,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
     UIView                  *_headerView;
     UIView                  *_footerView;
     NSString                *_goalDateLabeltext;
+    
 }
 
 @end
@@ -38,7 +39,33 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
     _goalDateLabeltext = [[NSString alloc] init];
     
     [self _initViews];
-   }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    
+    //进入页面获得保存目标
+    [self getDocumentsFile];
+}
+//进入页面获得保存目标
+-(void) getDocumentsFile{
+    
+    //读取文件
+    [BoyeFileMagager readDefaultGoalData:^(NSArray *goalArr) {
+        
+        if (goalArr != nil) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+            [self.dataArray removeAllObjects];
+            for (GoalData * data in goalArr) {
+                [self.dataArray addObject:data];
+            }
+            
+            [self isHasDataAdjust];
+            [_goalTableView reloadData];
+        }
+    }];
+}
+
 
 /*
  *初始化
@@ -149,7 +176,10 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
 
     self.goalPickerView.tag = alterBtn.tag;
     [self.goalPickerView open];
-    
+   
+//    GoalData * goal = self.dataArray[alterBtn.tag];
+//    [CommonCache setGoal:[NSNumber numberWithInteger:goal.goalNumber]];
+//
     
 }
 #pragma mark  --delete  --
@@ -172,6 +202,9 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
     [_goalTableView reloadData];
     
     [self.goalPickerView close];
+
+    //保存最新目标
+    [self saveGoalArrayToDocments];
 }
 
 #pragma mark -- 创建日期标签 ---
@@ -254,18 +287,23 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
     }
 }
 
+/*
+ *self.goalPickerView.tag == -1,# 点击添加按钮
+ *                        else，# 点击修改按钮
+ */
 
-#pragma mark---PickerDelegate  --
+#pragma mark--- PickerDelegate 返回日期和目标值---
 
 -(void)goalPickerView:(GoalPickerView *)picker dateString:(NSString *)time goalNumber:(NSInteger)goalNumber{
     
+    NSLog(@"****************************************************************");
     GoalData * goal = [[GoalData alloc] init];
     goal.timestr = time;
     goal.goalNumber = goalNumber;
     NSString * datestr = [self getFullDateString:goal.timestr];
     goal.dateTime = [MyTool changeStringToDate:datestr formatter:@"yy-M-dd-HH:mm"];
     
-    
+    NSLog(@"///////////timestr//// %@ -- %ld",goal.timestr,self.goalPickerView.tag);
     
     
 //    NSLog(@"////////////****///dataTime: %@",goal.dateTime);
@@ -273,55 +311,75 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
     #pragma mark -- 点击添加按钮，相同日期不可添加，不同日期要排序
     if (self.goalPickerView.tag == -1) {
         
-        __block  BOOL  isSameGoal = NO;
-        //判断是否存在相同日期
-        if (self.dataArray.count != 0) {
-            //是否存在相同日期
-            [MyTool isSameGoalData:goal array:self.dataArray complete:^(BOOL sameGoal) {
-                if (sameGoal) {
-                    [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
-                    isSameGoal = YES;
-                    return ;
-                }
-            }];
-        }
         //有相同的不添加
-        if (isSameGoal ) {
+        if ([self isExitSame:goal] != -1) {
+            [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
+
             return;
         }
-        
-        //设置目标
-        
-        [CommonCache setGoal:[NSNumber numberWithInteger:goal.goalNumber]];
-        
+        NSLog(@"\r //////////、、、、、、、1、、、、、、、、、、、");
+        NSLog(@" **********  %ld -- goal %ld",[self isExitSame:goal],self.goalPickerView.tag);
+
         //添加元素 然后排序
-        
         [self.dataArray addObject:goal];
         self.dataArray = (NSMutableArray *)[BBManageCode  sequenceGoalDataArray:self.dataArray];
         
     #pragma mark -- 点击修改按钮，替换对应目标数据
     }else{
         
-        [CommonCache setGoal:[NSNumber numberWithInteger:goal.goalNumber]];
+        //有相同的不添加
+        if ([self isExitSame:goal] != self.goalPickerView.tag && [self isExitSame:goal] != -1) {
+            [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
+
+            return;
+        }
+
+        NSLog(@" **********  %ld -- goal %ld",[self isExitSame:goal],self.goalPickerView.tag);
         
+        NSLog(@"、、、、、、、2、、、、、、、、、、");
+
         [self.dataArray replaceObjectAtIndex:self.goalPickerView.tag withObject:goal];
     }
     
+    
+    NSLog(@"、、、、、、、3、、、、、、、、、、");
+    NSLog(@" **********  %ld -- goal %ld",[self isExitSame:goal],self.goalPickerView.tag);
+
+
+    [CommonCache setGoal:[NSNumber numberWithInteger:goal.goalNumber]];
+
     [self isHasDataAdjust];
     [_goalTableView reloadData];
     
-//    NSLog(@"  ----- %f ---",_goalTableView.rowHeight);
-//    
-//    if (self.dataArray) {
-//        [BoyeFileMagager saveGoalData:self.dataArray plistName: goalArrNameString];
-//       
-//        [BoyeFileMagager readGoalDataName:goalArrNameString complete:^(NSArray *goalArr) {
-//            
-//        }];
-//    }
     
+    // 保存目标对象到沙河 ,目标创建，修改，无数据都可保存，
+    [self saveGoalArrayToDocments];
+        NSLog(@"****************************************************************");
+}
+
+
+//是否存在相同日期的目标 :-1 不存在相同日期
+-(NSInteger) isExitSame:(GoalData *)goal{
     
-    
+    __block  NSInteger  isSameGoal = -1;
+    //判断是否存在相同日期
+    if (self.dataArray.count != 0) {
+        //是否存在相同日期
+        [MyTool isSameGoalData:goal array:self.dataArray complete:^(NSInteger goalIndex) {
+          
+            NSLog(@" //////////////////// %ld",goalIndex);
+
+            if (goalIndex != -1) {
+             isSameGoal = goalIndex;
+                
+                NSLog(@" 有相同日期的数据");
+
+            }else{
+                NSLog(@" 没有有相同日期的数据");
+            }
+        }];
+    }
+    return isSameGoal;
 }
 
 
@@ -402,6 +460,19 @@ static  NSString * const goalArrNameString = @"boyeGoalArray";
     NSString * datestr = [NSString stringWithFormat:@"%@-%@",_goalDateLabeltext,dmstr];
 //    NSLog(@"\r ****** datestr:  %@",datestr);
     return datestr;
+}
+
+//保存目标对象
+-(void)saveGoalArrayToDocments{
+    
+    [BoyeFileMagager saveDefaultGoalData:self.dataArray];
+    
+    [BoyeFileMagager readDefaultGoalData:^(NSArray *goalArr) {
+        [MyTool tesGoal:goalArr];
+
+    }];
+   //读取
+
 }
 /*
 #pragma mark - Navigation

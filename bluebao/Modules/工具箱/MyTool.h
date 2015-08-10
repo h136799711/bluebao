@@ -10,11 +10,12 @@
 
 @interface MyTool : NSObject
 
-#pragma mark --test--
+// --test---------
 
 +(void) testViews:(UIView * )view;
 +(void) testViewsBackGroundView:(UIView*)view colorNum:(int)num;
-
++(void) tesGoal:(NSArray *) arr;
+// ----------------------------
 
 #pragma mark  获得字符串的大小（size）
 +(CGSize)getSizeString:(NSString *)info font:(float) font;
@@ -68,8 +69,8 @@
 #pragma mark -- 时间字符串 转化为date ---
 +(NSDate *) changeStringToDate:(NSString *)datestr formatter:(NSString *)format;
 
-#pragma mark --是否存在相同的日期--
-+(void) isSameGoalData:(GoalData *) dateOne array:(NSArray *)dateArray complete:(void(^)(BOOL sameGoal))complete;
+#pragma mark --是否存在相同的日期-- 不等于 -1 就是存在
++(void) isSameGoalData:(GoalData *) dateOne array:(NSArray *)dateArray complete:(void(^)(NSInteger goalIndex))complete;
 
 //////计算BMI********
 
@@ -97,5 +98,6 @@
 #pragma mark -- 默认目标值，
 
 +(NSInteger) getDefaultGoalValue:(NSInteger)goalValue ;
+
 
 @end

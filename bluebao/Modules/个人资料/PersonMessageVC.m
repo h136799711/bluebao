@@ -28,6 +28,7 @@
     
     NSArray         *_upDownImagName;
     BOOL            _isAge;  //当前选择的是年龄吗
+   
     /**
      *  头像ID
      */
@@ -68,9 +69,7 @@
     
     _isAge = NO;
     //创建视图
-//    info.age = 17;
     [self _initViews];
-//    [self.ageBtn setTitle:[NSString stringWithFormat:@"%ld",info.age] forState:UIControlStateNormal];
 }
 
 /*
@@ -87,7 +86,8 @@
     //监听Picker位置
     [self _initNotificationCenter ];
     
-    
+    //关闭picker手势
+    [self _initGest];
 }
 
 
@@ -205,20 +205,13 @@
     return [self _gettHeaderInSection];
 }
 
-#pragma mark --- 性别 ---
--(void)sexBtnClick:(UIButton *)sexImagBtn{
-    
-    self.sexButton.selected = !self.sexButton.selected;
-    sexImagBtn.selected = !sexImagBtn.selected;
-    
-}
 
 #pragma mark -- 年龄 --
 -(void)ageBtnClick:(UIButton *)ageImagBtn{
    
-    ageImagBtn.selected = !ageImagBtn.selected;
+    self.ageImageBtn.selected = !self.ageImageBtn.selected;
     
-    if (ageImagBtn.selected == YES) {
+    if ( self.ageImageBtn.selected == YES) {
     
         //当前年龄，
         self.pickerKeyBoard.minimumZoom = 8;
@@ -322,7 +315,7 @@
     NSCalendar * calendar = [NSCalendar currentCalendar];
     NSDateComponents * components = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];
     
-    self.userInfo.birthday = [NSString stringWithFormat: @"%d-01-01",components.year - age + 1];
+    self.userInfo.birthday = [NSString stringWithFormat: @"%ld-01-01",components.year - age + 1];
     
     UITextField * signature = (UITextField *)[_headView viewWithTag:1002];
     self.userInfo.signature = signature.text;
@@ -422,7 +415,8 @@
                                                      otherButtonTitles:@"拍一张照",@"从相册中选", nil];
     [actionSheet showInView:self.view];
 
-   
+    [self.pickerKeyBoard close];
+
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -522,9 +516,7 @@
 
   
     }
-    
-    
-    
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -560,15 +552,17 @@
         
         //下拉按钮图片
         UIButton  * sexImagButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        sexImagButton.userInteractionEnabled = NO;
         sexImagButton.bounds = CGRectMake(0, 0, 16, 14);
         sexImagButton.center = CGPointMake(sexView.width - 15 - sexImagButton.width/2.0, sex_label.center.y);
         [sexImagButton setImage:[UIImage imageNamed:_upDownImagName[0]] forState:UIControlStateNormal];
         [sexImagButton setImage:[UIImage imageNamed:_upDownImagName[1]] forState:UIControlStateSelected];
         [sexView addSubview:sexImagButton];
-        [sexImagButton addTarget:self action:@selector(sexBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        self.sexImageBtn = sexImagButton;
         
         //性别按钮
         UIButton * sexBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        sexBtn.userInteractionEnabled = NO;
         sexBtn.bounds = CGRectMake(0, 0, sexImagButton.left - sex_label.right, 30);
         sexBtn.center = CGPointMake(sex_label.right + sexBtn.width/2.0, sex_label.center.y);
         [sexBtn setTitle:@"女" forState:UIControlStateNormal];
@@ -583,54 +577,112 @@
      ////  ///////////////////////////////////////////////////////////////////////
         
         //年龄
-        UIView * heightView = [[UIView alloc] init];
-        heightView.bounds = CGRectMake(0, 0, sexView.width, sexView.height);
-        heightView.center = CGPointMake(sexView.right + betwen + heightView.width/2.0, sexView.center.y);
-        heightView.backgroundColor = [UIColor colorWithHexString:@"#fcfcfc"];
-        heightView.layer.shadowColor = [UIColor colorWithHexString:@"#c8c8c8"].CGColor;
-        heightView.layer.shadowRadius = 2;
-        [_sexheightView addSubview:heightView];
-        [MyTool cutViewConner:heightView radius:5];
+        UIView * ageView = [[UIView alloc] init];
+        ageView.bounds = CGRectMake(0, 0, sexView.width, sexView.height);
+        ageView.center = CGPointMake(sexView.right + betwen + ageView.width/2.0, sexView.center.y);
+        ageView.backgroundColor = [UIColor colorWithHexString:@"#fcfcfc"];
+        ageView.layer.shadowColor = [UIColor colorWithHexString:@"#c8c8c8"].CGColor;
+        ageView.layer.shadowRadius = 2;
+        [_sexheightView addSubview:ageView];
+        [MyTool cutViewConner:ageView radius:5];
         
         //label 年龄
         UILabel * height_label = [[UILabel alloc] init];
         height_label.bounds = CGRectMake(0, 0, 35, 25);
         //        height_label.backgroundColor = [UIColor redColor];
-        height_label.center = CGPointMake(10+ height_label.width/2.0, heightView.height/2.0);
+        height_label.center = CGPointMake(10+ height_label.width/2.0, ageView.height/2.0);
         height_label.text = @"年龄";
         height_label.font = FONT(16);
-        [heightView addSubview:height_label];
+        [ageView addSubview:height_label];
         
         //下拉按钮图片
         self.ageImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.ageImageBtn.bounds = CGRectMake(0, 0, sexImagButton.width, sexImagButton.height);
         self.ageImageBtn.center = CGPointMake(sexView.width - 15 - self.ageImageBtn.width/2.0, height_label.center.y);
-        
+        self.ageImageBtn.userInteractionEnabled = NO;
         [self.ageImageBtn setImage:[UIImage imageNamed:_upDownImagName[0]] forState:UIControlStateNormal];
         [self.ageImageBtn setImage:[UIImage imageNamed:_upDownImagName[1]] forState:UIControlStateSelected];
-        [heightView addSubview:self.ageImageBtn];
-        [self.ageImageBtn addTarget:self action:@selector(ageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [ageView addSubview:self.ageImageBtn];
 
         //年龄按钮
         UIButton * ageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         ageBtn.bounds = CGRectMake(0, 0, self.ageImageBtn.left - height_label.right, 30);
         ageBtn.center = CGPointMake(height_label.right + ageBtn.width/2.0, height_label.center.y);
-//
+        ageBtn.userInteractionEnabled = NO;
         [ageBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         ageBtn.titleLabel.font = FONT(16);
-        [heightView addSubview:ageBtn];
-        
+        [ageView addSubview:ageBtn];
+
         
         NSInteger age = [MainViewController sharedSliderController].userInfo.age;
         self.ageBtn = ageBtn;
         [self.ageBtn setTitle:[NSString stringWithFormat:@"%ld",age] forState:UIControlStateNormal];
-
+        
+        // 性别，身高 手势  。。
+        //性别初始化 ， 男:1 ， 女:0; 默认女
+        UITapGestureRecognizer * sexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sexTapClick:)];
+        [self isManOrWenman:self.userInfo.sex];
+        [sexView addGestureRecognizer:sexTap];
+        
+        //身高，
+        UITapGestureRecognizer * ageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ageTapClick:)];
+        
+        [ageView addGestureRecognizer:ageTap];
     }
     
     return _sexheightView;
 }
 
 
+#pragma mark -- **   sex  修改
+-(void)sexTapClick:(UITapGestureRecognizer *)tap{
+    
+    self.sexButton.selected = !self.sexButton.selected;
+    self.sexImageBtn.selected = !self.sexImageBtn.selected;
+    
+    [self.pickerKeyBoard close];
+}
+//判断男女
+-(void) isManOrWenman:(NSInteger) sexIndex{
+
+    if (sexIndex == 1) {  //男
+        self.sexButton.selected = YES;
+        self.sexImageBtn.selected = YES;
+
+    }else{ //女
+        self.sexButton.selected = NO;
+        self.sexImageBtn.selected = NO;
+    }
+}
+
+#pragma mark -- **  age  修改
+-(void)ageTapClick:(UITapGestureRecognizer *)tap{
+    
+    self.ageImageBtn.selected = !self.ageImageBtn.selected;
+    
+    if ( self.ageImageBtn.selected == YES) {
+        
+        //当前年龄，
+        self.pickerKeyBoard.minimumZoom = 8;
+        self.pickerKeyBoard.maximumZoom = 100;
+        
+        self.pickerKeyBoard.currentmumZoom =  [self.ageBtn.currentTitle integerValue] ;
+        self.pickerKeyBoard.dataName = @"年龄";
+        self.pickerKeyBoard.dataUnit = @"";
+        
+        self.pickerKeyBoard.tag = 10;
+        
+        [self.pickerKeyBoard.pickerView reloadAllComponents];
+        [self.pickerKeyBoard open];
+        _isAge = YES;
+        
+    }else{
+        [self.pickerKeyBoard close];
+        _isAge = NO;
+    }
+    NSLog(@"   --- age ----");
+
+}
 
 //获得字符串
 -(NSInteger) getCurrentNum:(NSString *)numString{
@@ -698,14 +750,24 @@
     return string;
 }
 
-
-
-
 -(NSString *) getString:(NSInteger)num{
-    
     return [NSString stringWithFormat:@"%ld",num];
+}
+
+
+#pragma mark -- 目标界面点击手势 关闭picker--
+-(void)_initGest{
+    
+//    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
+   // [self.view addGestureRecognizer:tap];
     
 }
+-(void)tapGesture:(UITapGestureRecognizer *)tap{
+    //
+//    [self.pickerKeyBoard close];
+}
+
+
 /*
 #pragma mark - Navigation
 

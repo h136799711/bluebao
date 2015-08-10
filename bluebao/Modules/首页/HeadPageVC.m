@@ -297,7 +297,7 @@
 
 
     #pragma mark -- TODO..获得默认卡路里....
-    NSLog(@"************1**********************************************");
+//    NSLog(@"************1**********************************************");
 
     // 1、选中日期是当天
     if (self.dateChooseView.isToday ) {
@@ -311,12 +311,12 @@
             
             //  TODO .......   缓存
             
-            
-            _drawProgreView.goalNum = 500;
+
+            _drawProgreView.goalNum = [[CommonCache getGoal] integerValue];
 
         } else{  //处于未连接创状态  ，取获取目标值 即 self。bicyle。goal
             
-            NSLog(@"******************1*isNOTConnect***************************************");
+//            NSLog(@"******************1*isNOTConnect***************************************");
 
             _drawProgreView.finishNum = self.bicylelb.calorie;
 
@@ -345,7 +345,7 @@
         
     }else{
         
-        //画还
+        //正常画环
         [_drawProgreView showCircleView];
     
     }
