@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B0074861B73103D00CDB285 /* BluetoothDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0074851B73103D00CDB285 /* BluetoothDataManager.m */; };
 		5B0155D91B5DDD1900056CFC /* DeviceBindController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0155D01B5DDD1900056CFC /* DeviceBindController.m */; };
 		5B0155DA1B5DDD1900056CFC /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0155D21B5DDD1900056CFC /* DeviceInfoCell.m */; };
 		5B0155DB1B5DDD1900056CFC /* DeviceInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B0155D31B5DDD1900056CFC /* DeviceInfoCell.xib */; };
@@ -79,6 +78,7 @@
 		5B7580C71B745FCA00B25A02 /* CircleBezierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7580C61B745FCA00B25A02 /* CircleBezierView.m */; };
 		5B8004661B720F3200283B2C /* BoyePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8004651B720F3200283B2C /* BoyePeople.m */; };
 		5B84D3D71B79917800523741 /* LBSportShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B84D3D61B79917800523741 /* LBSportShareModel.m */; };
+		5B84D40D1B7A131000523741 /* BluetoothDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B84D40C1B7A131000523741 /* BluetoothDataManager.m */; };
 		5B9049041B72EF0600A2E1B7 /* BoyeForgetCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */; };
 		5B9049051B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */; };
 		5BD4AA941B6B27CD0041F730 /* BoyeSlideBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */; };
@@ -184,8 +184,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5B0074841B73103D00CDB285 /* BluetoothDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDataManager.h; sourceTree = "<group>"; };
-		5B0074851B73103D00CDB285 /* BluetoothDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothDataManager.m; sourceTree = "<group>"; };
 		5B0155CF1B5DDD1900056CFC /* DeviceBindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceBindController.h; sourceTree = "<group>"; };
 		5B0155D01B5DDD1900056CFC /* DeviceBindController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceBindController.m; sourceTree = "<group>"; };
 		5B0155D11B5DDD1900056CFC /* DeviceInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoCell.h; sourceTree = "<group>"; };
@@ -317,6 +315,8 @@
 		5B8004651B720F3200283B2C /* BoyePeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyePeople.m; sourceTree = "<group>"; };
 		5B84D3D51B79917800523741 /* LBSportShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSportShareModel.h; sourceTree = "<group>"; };
 		5B84D3D61B79917800523741 /* LBSportShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSportShareModel.m; sourceTree = "<group>"; };
+		5B84D40B1B7A131000523741 /* BluetoothDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDataManager.h; sourceTree = "<group>"; };
+		5B84D40C1B7A131000523741 /* BluetoothDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothDataManager.m; sourceTree = "<group>"; };
 		5B9049011B72EF0600A2E1B7 /* BoyeForgetCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeForgetCodeVC.h; sourceTree = "<group>"; };
 		5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeForgetCodeVC.m; sourceTree = "<group>"; };
 		5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoyeForgetCodeVC.xib; sourceTree = "<group>"; };
@@ -637,8 +637,7 @@
 				5B38C77C1B5390CF0063912C /* HeadCollectionViewCell.m */,
 				5B38C77D1B5390CF0063912C /* HeadInfoCell.h */,
 				5B38C77E1B5390CF0063912C /* HeadInfoCell.m */,
-				5B0074841B73103D00CDB285 /* BluetoothDataManager.h */,
-				5B0074851B73103D00CDB285 /* BluetoothDataManager.m */,
+				5B84D40A1B7A12B900523741 /* Model */,
 				5B6FE9A71B6A0786002D32B0 /* View */,
 			);
 			name = "首页";
@@ -795,6 +794,15 @@
 			);
 			name = "关于蓝堡";
 			path = "Modules/关于蓝堡";
+			sourceTree = "<group>";
+		};
+		5B84D40A1B7A12B900523741 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B84D40B1B7A131000523741 /* BluetoothDataManager.h */,
+				5B84D40C1B7A131000523741 /* BluetoothDataManager.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5B9049001B72EE8100A2E1B7 /* 忘记密码 */ = {
@@ -1494,6 +1502,7 @@
 				5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */,
 				5B0155DA1B5DDD1900056CFC /* DeviceInfoCell.m in Sources */,
 				5BF2E0481B4F6C99004FDDF7 /* NSDateFormatter+Category.m in Sources */,
+				5B84D40D1B7A131000523741 /* BluetoothDataManager.m in Sources */,
 				5B6FE9B01B6A07D5002D32B0 /* BoyeConnectView.m in Sources */,
 				5B8004661B720F3200283B2C /* BoyePeople.m in Sources */,
 				5B38C7911B5390CF0063912C /* RegistVC.m in Sources */,
@@ -1551,7 +1560,6 @@
 				5B38C7A31B5390CF0063912C /* LetfView.m in Sources */,
 				5B38C7A51B5390CF0063912C /* BaseViewController.m in Sources */,
 				5B0155D91B5DDD1900056CFC /* DeviceBindController.m in Sources */,
-				5B0074861B73103D00CDB285 /* BluetoothDataManager.m in Sources */,
 				9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */,
 				5B38C7A11B5390CF0063912C /* LeftMenu.m in Sources */,
 				5B0155DC1B5DDD1900056CFC /* DeviceInfoViewController.m in Sources */,

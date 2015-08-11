@@ -24,7 +24,7 @@
         _username = [diction valueForKey:@"username"];
         _target_weight = [[diction valueForKey:@"target_weight"] integerValue];
         _signature = [diction valueForKey:@"signature"];
-        
+        _continuous_day = [[diction valueForKey:@"continuous_day"] integerValue];
         NSInteger  year = [[MyTool getCurrentDataFormat:@"yyyy"] integerValue];
         
 //        NSLog(@" --_bring%ld--year %ld---",[_birthday integerValue],year);

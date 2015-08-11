@@ -103,6 +103,7 @@
         self.pickerView.delegate = self;
         self.pickerView.dataSource = self;
         self.pickerView.backgroundColor = [UIColor whiteColor];
+        
         [downView addSubview: self.pickerView];
     }
     
@@ -132,6 +133,19 @@
         return 10;
     }
     
+}
+
+
+-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+    
+    if (component ==1) {
+        return 15;
+    }
+    if (component == 3 || component == 5) {
+        return 60;
+    }
+    
+    return 35;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{

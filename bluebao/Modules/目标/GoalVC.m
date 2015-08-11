@@ -445,12 +445,13 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 #pragma mark -- 设置闹铃 --
 -(void)alarmBellSetting{
     
-    NSDate * fireDate = [[NSDate date] dateByAddingTimeInterval: 18];
+//    NSDate * fireDate = [[NSDate date] dateByAddingTimeInterval: 18000];
+//    
+//    [[LocalNotify sharedNotify]fireNotificationAt:fireDate
+//                                                 :[NSString stringWithFormat:@"%@了，该运动啦!",[[NSDate defaultDateFormatter] stringFromDate:fireDate] ]
+//                                                 :NSCalendarUnitMinute ];
     
-    [[LocalNotify sharedNotify]fireNotificationAt:fireDate
-                                                 :[NSString stringWithFormat:@"%@了，该运动啦!",[[NSDate defaultDateFormatter] stringFromDate:fireDate] ]
-                                                 :NSCalendarUnitMinute ];
-    
+//    
 }
 
 -(void)removeAlarmBel:(NSDate *)date{

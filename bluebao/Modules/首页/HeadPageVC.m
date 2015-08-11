@@ -160,8 +160,9 @@
         //判断是否是今天
         if (self.dateChooseView.isToday && self.connectView.isConnect == YES) {
             //TODO.....
+            _bicylelb = _currentBluetothData.bicyleModel;
             
-            headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_currentBluetothData.bicyleModel];
+            headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
 
         }else{
             
@@ -292,12 +293,18 @@
     }
     
     // * *  如果goalNum = 0 转化为 500  判断是否为 0
-    _drawProgreView.goalNum = [MyTool  getDefaultGoalValue:_drawProgreView.goalNum];
+//    _drawProgreView.goalNum = [MyTool  getDefaultGoalValue:_drawProgreView.goalNum];
     
     [_drawProgreView showCircleView];
 
     
     // 3 . 如果一点没有做 ，则按默认处理 ，
+    
+    LBSportShareModel * lanbao = [LBSportShareModel sharedLBSportShareModel];
+    
+    lanbao.distance = self.bicylelb.distance;
+    lanbao.calorie = self.bicylelb.calorie;
+
 }
 
 -(BOOL) isGoalfinishZero:(NSInteger) goalValue finish:(NSInteger) finishValue{
@@ -524,26 +531,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark -- 将要消失||隐藏
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:YES];
-    NSLog(@" yicang ");
-    
-    LBSportShareModel * lanbao = [LBSportShareModel sharedLBSportShareModel];
-    Bicyle * bicyle = [[Bicyle alloc] init];
-    
-    if (self.dateChooseView.isToday == YES && self.connectView.isConnect == YES) {
-        
-        bicyle = _currentBluetothData.bicyleModel;
-    }else{
-        bicyle = self.bicylelb;
-        
-    }
-    lanbao.distance = bicyle.distance;
-    lanbao.calorie = bicyle.calorie;
-    
-    NSLog(@" distance %f -- calorie %f ",lanbao.distance,lanbao.calorie);
-    
-}
+//#pragma mark -- 将要消失||隐藏
+//-(void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:YES];
+//    
+//    LBSportShareModel * lanbao = [LBSportShareModel sharedLBSportShareModel];
+//    
+//       
+//    NSLog(@"***************************** distance %f -- calorie %f ",lanbao.distance,lanbao.calorie);
+//    
+//}
 
 @end

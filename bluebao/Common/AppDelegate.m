@@ -186,8 +186,8 @@
     
     if (notification) {
         
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:notification.alertBody delegate:self cancelButtonTitle:@"我知道啦！" otherButtonTitles: nil];
-        [alert show];
+//        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:notification.alertBody delegate:self cancelButtonTitle:@"我知道啦！" otherButtonTitles: nil];
+//        [alert show];
         
     }
     
