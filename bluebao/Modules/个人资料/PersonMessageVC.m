@@ -317,10 +317,10 @@
     
     self.userInfo.birthday = [NSString stringWithFormat: @"%ld-01-01",components.year - age + 1];
     
-    UITextField * signature = (UITextField *)[_headView viewWithTag:1001];
+    UITextField * signature = (UITextField *)[_headView viewWithTag:1002];
     self.userInfo.signature = signature.text;
     
-    UITextField * nickname = (UITextField *)[_headView viewWithTag:1002];
+    UITextField * nickname = (UITextField *)[_headView viewWithTag:1001];
     self.userInfo.nickname = nickname.text;
     
     [self requestPersonInfo];
