@@ -150,6 +150,14 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
+    
+    //如果是lanbaoitboye则YES
+    NSString *handleUrl = [url absoluteString];
+    if ([handleUrl hasPrefix:@"lanbaoitboye://"]) {
+        
+        return YES;
+    }
+    
     return  [UMSocialSnsService handleOpenURL:url];
 }
 #pragma mark --登陆 注册--

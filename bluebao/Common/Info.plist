@@ -44,9 +44,21 @@
 				<string>wx5df8e721b02d41d1</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>user</string>
+			<key>CFBundleURLName</key>
+			<string>com.itboye.lanbao</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>lanbaoitboye</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
