@@ -44,6 +44,8 @@
 @property (nonatomic,assign) NSInteger       height;
 @property (nonatomic,assign) NSInteger       target_weight;
 @property (nonatomic,assign) NSInteger       age;
+@property (nonatomic,assign) NSInteger        continuous_day;
+
 
 @property (nonatomic,copy)  NSString         *realname;
 @property (nonatomic,copy)  NSString         *signature;

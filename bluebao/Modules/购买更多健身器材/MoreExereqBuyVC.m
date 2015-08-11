@@ -28,7 +28,9 @@
     self.title = @"购买更多健身器材";
     self.navigationController.navigationBarHidden = NO;
 
-    _urlStringName = @[@"https://list.tmall.com/search_product.htm?q=%C5%DC%B2%BD%BB%FA&type=p&spm=a220m.1000858.a2227oh.d100&xl=paob_1&from=.list.pc_1_suggest",@"http://search.jd.com/search?keyword=%E8%B7%91%E6%AD%A5%E6%9C%BA&enc=utf-8&qr=&qrst=UNEXPAND&as=1&as_key=title_key%2C%2C%E8%B7%91%E6%AD%A5%E6%9C%BA&rt=1&stop=1&wtype=1#filter",@"http://search.yhd.com/c0-0/k%25E8%25B7%2591%25E6%25AD%25A5%25E6%259C%25BA/6/?tp=1.1.12.0.19.KunReDI-10-D3"];
+
+    _urlStringName = @[@"https://lanbao.m.tmall.com/",@"http://ok.jd.com/m/index-24454.htm",@"http://m.yhd.com/store/m-156767-6.html"];
+    
     _nameArray = @[@"天猫",@"京东",@"一号店"];
     _scImagName = @[@"tmall.png",@"jd.png",@"1hao.png"];
     [self _initViews];
@@ -91,13 +93,15 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     NSLog(@"%@",_nameArray[indexPath.row]);
+//    
+//    WebViewController * web = [[WebViewController alloc] init];
+//    web.urlString = _urlStringName[indexPath.row];
+//    NSLog(@" indexPath   %ld ",indexPath.row);
+//    web.title =  _nameArray [indexPath.row];
+//    [self.navigationController pushViewController:web animated:YES];
     
-    WebViewController * web = [[WebViewController alloc] init];
-    web.urlString = _urlStringName[indexPath.row];
-    NSLog(@" indexPath   %ld ",indexPath.row);
-    web.title =  _nameArray [indexPath.row];
-    [self.navigationController pushViewController:web animated:YES];
-    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_urlStringName[indexPath.row]]];
+
 }
 
 

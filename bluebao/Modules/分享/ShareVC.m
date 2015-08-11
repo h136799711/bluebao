@@ -7,7 +7,7 @@
 //
 
 #import "ShareVC.h"
-
+#import "LBSportShareModel.h"
 @interface ShareVC (){
     
     UITableView     *share_tableView;
@@ -138,7 +138,8 @@
     cell.textLabel.textColor = [UIColor lightGrayColor];
     cell.textLabel.font = FONT(13);
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"今天已经是第7天运动了，加油！坚持";
+        UserInfo * userinfo = [MainViewController sharedSliderController].userInfo;
+        cell.textLabel.text =[NSString stringWithFormat: @"今天已经是第%ld天运动了，加油！坚持",userinfo.continuous_day ];
         cell.tag = 1100;
         
     }else if (indexPath.row == 1) {
@@ -230,9 +231,12 @@
         //
         [self createdLabelShowInView:_headerView];
     }
+    LBSportShareModel * lbsport = [LBSportShareModel sharedLBSportShareModel];
+
+    NSInteger step = (NSInteger) (lbsport.distance * 1000 /(1.2* 100));
     
-    [self showInfoString:100 type:0];
-    [self showInfoString:100 type:1];
+    [self showInfoString:step type:0];
+    [self showInfoString:lbsport.calorie/10 type:1];
     
     return _headerView;
 }
@@ -260,6 +264,7 @@
 #pragma mark -- 跑了多少步 --
 
 -(void)createdLabelShowInView:(UIView *)showView{
+    
     
     for (int i = 0;  i < 2; i ++) {
         

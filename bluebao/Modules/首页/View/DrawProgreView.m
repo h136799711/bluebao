@@ -165,7 +165,10 @@
     if (_goalNum <= _finishNum) {
         percentage = 100;
     }
+    
     _efficiLabel.text = [NSString stringWithFormat:@"%ld％",(NSInteger)percentage];
+    
+
     _per = percentage/100.0 ;
 
 }
@@ -186,6 +189,8 @@
         _circleBezierView.center = CGPointMake(self.width/2.0, self.height/2.0);
         _circleBezierView.line_width = _line_width;
         _circleBezierView.innerRadius = _innerRadius;
+        
+        
         _circleBezierView.angle = _per;
         [self addSubview:_circleBezierView];
     }

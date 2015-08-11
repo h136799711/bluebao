@@ -451,6 +451,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
                                                  :[NSString stringWithFormat:@"该运动啦!"]
                                                  :0 ];
     
+//    
 }
 
 -(void)removeAlarmBel:(NSDate *)date{
