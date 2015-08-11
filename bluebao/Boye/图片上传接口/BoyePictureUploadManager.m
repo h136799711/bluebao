@@ -10,9 +10,21 @@
 @implementation BoyePictureUploadManager
 
 
-+(NSString *)getAvatarURL:(NSInteger )uid :(NSInteger )size{
+
+static NSInteger cache=0;
+
+
++(NSString *)getAvatarURL:(NSInteger )uid :(NSInteger )size {
+    return [self getAvatarURL:uid :size :NO];
+}
+
++(NSString *)getAvatarURL:(NSInteger )uid :(NSInteger )size :(BOOL)refresh{
     
-    NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%ld&size=%ld",[BoyeHttpClient getBaseApiURL],uid,size];
+    if(refresh){
+        cache = cache+1;
+    }
+    
+    NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%d&size=%d&cache=%d",[BoyeHttpClient getBaseApiURL],uid,size,cache];
     
     return urlstring;
 }

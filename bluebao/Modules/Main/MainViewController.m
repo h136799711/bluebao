@@ -303,6 +303,7 @@
         [self.view sendSubviewToBack:_leftView];
         _leftView.delegate = self;
     }
+    [_leftView willAppear];
     _leftView.leftInfo = [MainViewController sharedSliderController].userInfo;
 }
 
@@ -407,7 +408,7 @@
         
         [BoyePictureUploadManager requestPictureUpload:picModel :^(NSDictionary *data){
             NSLog(@"图片上传=%@",data);
-            
+            [self.leftView willAppear];
         }:nil];
         
     }

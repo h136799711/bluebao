@@ -14,6 +14,17 @@
 +(void)requestUserHeadDown:(PictureReqModel *) picModel complete:(void(^)(UIImage * headImage))complete;
 
 /**
+ *
+ *  获取头像地址
+ *
+ *  @param uid  用户ID
+ *  @param size 头像尺寸整数
+ *  @param refresh 是否刷新
+ *
+ *  @return 头像地址
+ */
++(NSString *)getAvatarURL:(NSInteger )uid :(NSInteger )size :(BOOL)refresh;
+/**
  *  获取头像地址
  *
  *  @param uid  用户ID
