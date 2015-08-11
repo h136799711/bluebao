@@ -325,10 +325,10 @@
     NSInteger sex = userInfo.sex;
     float weight = (float)userInfo.weight;
     float height = (float)userInfo.height/100;
-    NSLog(@"年龄%ld,性别%ld 体重%f（kg），身高%f(米）",(long)age,(long)sex,weight,height);
+//    NSLog(@"年龄%ld,性别%ld 体重%f（kg），身高%f(米）",(long)age,(long)sex,weight,height);
     switch (row) {
         case 0: //体脂肪率
-            valueNum= 36;
+            valueNum= [PeopleBodyParams getBodyFatRateBy:age :sex :weight :height];
             break;
         case 1://体水分率
             valueNum = [PeopleBodyParams getBodyWaterRateBy:age :sex :weight :height];

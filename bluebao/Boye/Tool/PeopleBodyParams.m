@@ -32,7 +32,7 @@
     float rate = [self getBMI:weight :height];
     
     rate = (1.2*rate  + 0.23 * age -5.4 - 10.8*sex);
-    NSLog(@"体脂肪率%ld",(long)rate);
+//    NSLog(@"体脂肪率%ld",(long)rate);
     return (NSInteger)rate;
 }
 

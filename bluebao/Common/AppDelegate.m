@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CacheFacade.h"
-
+//#import "BoyeGoalLocaNotify.h"
 @interface AppDelegate ()
 
 @end
@@ -21,15 +21,11 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-//    [NSThread sleepForTimeInterval:1];
     
-    // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-    
+
     //导航
     [self _initBarAppearance];
     //登陆
@@ -59,9 +55,9 @@
     UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (localNotif)
     {
-        NSLog(@"接受到的通知: %@",localNotif);
-        NSDictionary* infoDic = localNotif.userInfo;
-        NSLog(@"userInfo description=%@",[infoDic description]);
+//        NSLog(@"接受到的通知: %@",localNotif);
+//        NSDictionary* infoDic = localNotif.userInfo;
+//        NSLog(@"userInfo description=%@",[infoDic description]);
 //        NSString* codeStr = [infoDic objectForKey:CODE];
     }
 }
@@ -81,7 +77,7 @@
     [UMSocialData setAppKey:@UMENG_APP_KEY];
     //设置微信AppId、appSecret，分享url
     [UMSocialWechatHandler setWXAppId:@"wx5df8e721b02d41d1" appSecret:@"2a559489a116a34453f8e1368db40d25" url:@"http://www.umeng.com/social"];
-    [UMSocialData openLog:YES];
+    [UMSocialData openLog:NO];
 }
 
 -(void)umengAnalytics{
