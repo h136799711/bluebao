@@ -130,6 +130,7 @@
 		9F3321641B787FCC00DDCEE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3321631B787FCC00DDCEE4 /* CoreGraphics.framework */; };
 		9F3321661B787FDB00DDCEE4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3321651B787FDB00DDCEE4 /* CoreTelephony.framework */; };
 		9F3321681B787FE400DDCEE4 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3321671B787FE400DDCEE4 /* libstdc++.dylib */; };
+		9F3C99851B799AEA00D5C0A3 /* LocalNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C99841B799AEA00D5C0A3 /* LocalNotify.m */; };
 		9F3C9A2E1B789DFE00A373CC /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C9A291B789DFD00A373CC /* libSocialWechat.a */; };
 		9F3C9A2F1B789DFE00A373CC /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C9A2A1B789DFE00A373CC /* libWeChatSDK.a */; };
 		9F470BC11B758AF500A49750 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BBF1B758AF500A49750 /* GTMBase64.m */; };
@@ -409,6 +410,8 @@
 		9F3321631B787FCC00DDCEE4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9F3321651B787FDB00DDCEE4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		9F3321671B787FE400DDCEE4 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		9F3C99831B799AEA00D5C0A3 /* LocalNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotify.h; sourceTree = "<group>"; };
+		9F3C99841B799AEA00D5C0A3 /* LocalNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotify.m; sourceTree = "<group>"; };
 		9F3C9A291B789DFD00A373CC /* libSocialWechat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWechat.a; sourceTree = "<group>"; };
 		9F3C9A2A1B789DFE00A373CC /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		9F3C9A2B1B789DFE00A373CC /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
@@ -915,6 +918,7 @@
 		5BF4F0091B55F0F7000AB7BD /* Boye */ = {
 			isa = PBXGroup;
 			children = (
+				9F3C99821B799ACA00D5C0A3 /* 消息通知管理 */,
 				9F470BC61B75E44C00A49750 /* SQLIite数据库管理 */,
 				9F470BC21B75E01400A49750 /* 常用缓存管理 */,
 				9F545E981B74DAD5002BFF24 /* 加密工具 */,
@@ -1010,6 +1014,15 @@
 				5BFBBB971B635BB100BFB44B /* UserUpdataReqModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9F3C99821B799ACA00D5C0A3 /* 消息通知管理 */ = {
+			isa = PBXGroup;
+			children = (
+				9F3C99831B799AEA00D5C0A3 /* LocalNotify.h */,
+				9F3C99841B799AEA00D5C0A3 /* LocalNotify.m */,
+			);
+			path = "消息通知管理";
 			sourceTree = "<group>";
 		};
 		9F3C9A281B789DFD00A373CC /* Wechat */ = {
@@ -1504,6 +1517,7 @@
 				5B38C7DE1B5399B80063912C /* UIImage+GIF.m in Sources */,
 				5B38C79B1B5390CF0063912C /* GoalCell.m in Sources */,
 				5BF88BD71B69C0ED003785D0 /* BoyeBicyleManager.m in Sources */,
+				9F3C99851B799AEA00D5C0A3 /* LocalNotify.m in Sources */,
 				5BD4AACE1B6B6F580041F730 /* UUBarChart.m in Sources */,
 				5B1D24051B5CD5A000BE460C /* GoalData.m in Sources */,
 				5B6FE9B31B6A0DBE002D32B0 /* BoyeFileMagager.m in Sources */,
