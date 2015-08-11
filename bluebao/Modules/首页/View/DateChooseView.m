@@ -45,7 +45,7 @@
     leftBtn.tag = 0;
     [leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [leftBtn addTarget:self action:@selector(changeDateClick:) forControlEvents:UIControlEventTouchUpInside];
-//    leftBtn.backgroundColor = [UIColor blueColor];
+    leftBtn.backgroundColor = [UIColor blueColor];
     [self addSubview:leftBtn];
     
     
@@ -58,7 +58,7 @@
     [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(changeDateClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:rightBtn];
-//    rightBtn.backgroundColor = [UIColor blueColor];
+    rightBtn.backgroundColor = [UIColor blueColor];
 
     //日期显示
     CGFloat  widthLab = self.bounds.size.width - leftBtn.bounds.size.width - rightBtn.bounds.size.width;

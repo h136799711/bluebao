@@ -47,7 +47,7 @@
 //创建身高体重等
 +(UILabel *)creatMessageCenterInViews:(UIView *)view  num:(int) num{
     
-    CGFloat  left = 35; //左间距
+    CGFloat  left = 30; //左间距
     CGFloat  hwb_width = 35;
     CGFloat infoLabel_width = ( view.width - left *2 -hwb_width *3)/3.0;
     NSArray  * a = @[@"身高",@"体重",@"BMI"];
@@ -63,11 +63,14 @@
     //值
     UILabel * value_label = [[UILabel alloc]initWithFrame:CGRectMake(label_.right, 0, infoLabel_width, view.height)];
     value_label.textColor =  [UIColor colorWithHexString:@"#74e7f7"];
+    if (num == 2) {
+        value_label.frame = CGRectMake(label_.right, 0, value_label.width + 10, value_label.height);
+    }
     value_label.font = FONT(20);
-    label_.textAlignment = NSTextAlignmentCenter;
+    value_label.textAlignment = NSTextAlignmentCenter;
     
     [view addSubview:value_label];
-//    value_label.backgroundColor = [UIColor redColor];
+//    value_label.backgroundColor = [UIColor blueColor];
 //    value_label.text = @"xxxx";
     
     

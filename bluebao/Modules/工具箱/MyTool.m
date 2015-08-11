@@ -96,6 +96,13 @@
         }
     }
 }
+#pragma mark -清理所有子视图
++(void)clearAllSonView:(UIView *)view{
+  
+    for (UIView * sonView in [view subviews]) {
+        [sonView removeFromSuperview];
+    }
+}
 
 
 #pragma mark 切割圆角
@@ -274,9 +281,10 @@
 +(void) isSameGoalData:(GoalData *) dateOne array:(NSArray *)dateArray complete:(void(^)(NSInteger goalIndex))complete{
     
     NSInteger  index = -1;
+    
     for (int i = 0 ; i < dateArray.count; i ++) {
         GoalData * dateTow  = dateArray[i];
-        if (dateOne.maxIndex == dateTow.maxIndex) {
+        if ([dateOne.timestr isEqualToString:dateTow.timestr]) {
             NSLog(@"  maxindex %ld - %ld",dateOne.maxIndex,dateTow.maxIndex);
             index = i;
             break;
@@ -323,7 +331,7 @@
     NSLog(@"------------goal----------------------------------");
     for (GoalData * data in arr) {
         
-        NSLog(@" -time %@- goalnum%ld-",data.timestr,data.goalNumber);
+        NSLog(@" \r-time %@- goalnum%ld maindex  %ld-",data.timestr,data.goalNumber,data.maxIndex);
     }
     
 }

@@ -75,34 +75,9 @@
     _sortArray = @[@"体脂肪率",@"体水分率",@"体年龄",@"基础代谢",@"肌肉含量",@"内脏含量",@"骨骼含量",@"皮下脂肪"];
     [self _initViews];
     
-   // [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeGoal) userInfo:nil repeats:YES];
     
     
 }
-
--(void)changeGoal{
-    
-    self.bicylelb.heart_rate = [self getNumber:120];
-    self.bicylelb.speed = [self getNumber:36];
-    self.bicylelb.cost_time = [self getNumber:3600];
-    self.bicylelb.calorie = [self getNumber:900];
-    self.bicylelb.distance = [self getNumber:100];
-    
-    [_tableView reloadData];
- 
-    self.drawProgreView.goalNum = [self getNumber:800];
-    self.drawProgreView.finishNum = self.bicylelb.calorie;
-
-    
-    [self.drawProgreView showCircleView];
-}
-
--(CGFloat ) getNumber :(NSInteger) num{
-    
-    return  arc4random() %num +10;
-}
-
-
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -112,7 +87,12 @@
     self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
     self.boyeBluetooth.delegate = self;
     
-    [self doViewAppearBefore];
+   
+    if ([MainViewController sharedSliderController].isVCCancel == NO) {
+        [self doViewAppearBefore];
+        [MainViewController sharedSliderController].isVCCancel  = YES;
+    }
+
   
 }
 
@@ -122,8 +102,6 @@
     self.userInfo = [MainViewController sharedSliderController].userInfo;
     
     [headCollectionView reloadData];
-    
-    
     NSLog(@" ---- current设备UUID %@  ",self.boyeBluetooth.connectedDevice.uuid);
     
     
@@ -254,6 +232,7 @@
     self.drawProgreView = [[DrawProgreView alloc] initWithFrame:CGRectMake(0, 0, width,width)];
     self.drawProgreView.center = CGPointMake(self.headView.width/2.0, _connectView.bottom + self.drawProgreView.height/2.0 );
     [self.headView addSubview:self.drawProgreView];
+    
     [self.drawProgreView showCircleView];
     return self.headView ;
 }
@@ -293,65 +272,32 @@
 
 #pragma mark --  展示目标 任务完成度 -
 -(void) showFinishProgre{
-    //任务完成度
-
-
-    #pragma mark -- TODO..获得默认卡路里....
-//    NSLog(@"************1**********************************************");
+  
+#pragma mark -- TODO..获得默认卡路里....
 
     // 1、选中日期是当天
-    if (self.dateChooseView.isToday ) {
-
-        if (self.connectView.isConnect ) { //处于正在连接状态，取缓存目标值
-           
+    if (self.dateChooseView.isToday== YES && self.connectView.isConnect == YES ) {
+        //处于正在连接状态，取缓存目标值
             //获得缓存卡路里
-//            NSString * goalNumStr =  [CommonCache getGoal];
-            
             _drawProgreView.finishNum = _currentBluetothData.bicyleModel.calorie;
-            
-            //  TODO .......   缓存
-            
-
             _drawProgreView.goalNum = [[CommonCache getGoal] integerValue];
 
-        } else{  //处于未连接创状态  ，取获取目标值 即 self。bicyle。goal
-            
-//            NSLog(@"******************1*isNOTConnect***************************************");
+        } else{
+            //处于未连接创状态  ，取获取目标值 即 self。bicyle。goal
+//            NSLog(@"*******isNotConnect*****OR NoToday**获取历史数据展示********************************");
+            // 2、选中日期非当天日期， 直接展示数据
 
             _drawProgreView.finishNum = self.bicylelb.calorie;
-
             _drawProgreView.goalNum = self.bicylelb.target_calorie;
-            
-        }
-        
-    // 2、选中日期非当天日期， 直接展示数据
-    }else{
-        
-        _drawProgreView.finishNum = self.bicylelb.calorie;
-        _drawProgreView.goalNum = self.bicylelb.target_calorie;
-        
     }
-
     
     // * *  如果goalNum = 0 转化为 500  判断是否为 0
     _drawProgreView.goalNum = [MyTool  getDefaultGoalValue:_drawProgreView.goalNum];
     
+    [_drawProgreView showCircleView];
 
     
     // 3 . 如果一点没有做 ，则按默认处理 ，
-    if (_drawProgreView.finishNum == 0) {
-        
-        [_drawProgreView showDefaultCircleView];
-        
-    }else{
-        
-        //正常画环
-        [_drawProgreView showCircleView];
-    
-    }
-    
-    //    NSLog(@" \r------    %ld  %ld",self.bicylelb.target_calorie,self.bicylelb.calorie);
-    
 }
 
 -(BOOL) isGoalfinishZero:(NSInteger) goalValue finish:(NSInteger) finishValue{
@@ -578,15 +524,26 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark -- 将要消失||隐藏
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    NSLog(@" yicang ");
+    
+    LBSportShareModel * lanbao = [LBSportShareModel sharedLBSportShareModel];
+    Bicyle * bicyle = [[Bicyle alloc] init];
+    
+    if (self.dateChooseView.isToday == YES && self.connectView.isConnect == YES) {
+        
+        bicyle = _currentBluetothData.bicyleModel;
+    }else{
+        bicyle = self.bicylelb;
+        
+    }
+    lanbao.distance = bicyle.distance;
+    lanbao.calorie = bicyle.calorie;
+    
+    NSLog(@" distance %f -- calorie %f ",lanbao.distance,lanbao.calorie);
+    
 }
-*/
 
 @end

@@ -43,6 +43,8 @@
     [aCoder encodeObject:_timestr forKey:@"goal_time"];
     [aCoder encodeInteger:_goalID forKey:@"goal_ID"];
     [aCoder encodeInteger:_goalNumber forKey:@"goalNumbe"];
+    [aCoder encodeInteger:_maxIndex forKey:@"maxIndex"];
+    [aCoder encodeObject:_dateTime forKey:@"dateTime"];
 }
 
 //解码方法，把二进制数据转化为People对象。
@@ -53,6 +55,8 @@
         _timestr = [[aDecoder decodeObjectForKey:@"goal_time"] copy];
         _goalID = [aDecoder decodeIntegerForKey:@"goal_ID"];
         _goalNumber = [aDecoder decodeIntegerForKey:@"goalNumbe"];
+        _maxIndex = [aDecoder decodeIntegerForKey:@"maxIndex"];
+        _dateTime = [aDecoder decodeObjectForKey:@"_dateTime"];
     }
     return self;
 }

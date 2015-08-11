@@ -36,6 +36,9 @@
 #pragma mark   清理特殊标签的子视图 ---
 +(void)clearCellSonView:(UIView*)contentView viewTag:(NSInteger) tag;
 
+#pragma mark -清理所有子视图
++(void)clearAllSonView:(UIView *)view;
+
 #pragma mark 切割圆角
 +(void)cutViewConner:(UIView *)view radius:(CGFloat)radius;
 

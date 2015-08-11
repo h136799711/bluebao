@@ -18,7 +18,7 @@
 @interface MainViewController ()<BOYEBluetoothStateChangeDelegate>{
     
     CGFloat         _slidepy;
-    UIView          * _contentView;
+
     UIView          * _bottomView;  // 底部视图
     UIButton        * select_button;//记录选中按钮；
     
@@ -84,7 +84,7 @@
     
     //创建视图
     [self _initViews];
-   
+
 }
 
 //初始化视图
@@ -103,6 +103,9 @@
 
 -(void)creatTabbar{
     
+    if (_contentView  != nil) {
+        return;
+    }
     
     //包含视图
     _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];

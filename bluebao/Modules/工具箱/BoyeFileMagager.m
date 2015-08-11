@@ -18,15 +18,12 @@
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:[NSHomeDirectory() stringByAppendingPathComponent:filePath] isDirectory:&isDirectory]) {
         
-        NSLog(@"文件存在，是一个%@",isDirectory?@"文件夹":@"文件");
+//        NSLog(@"文件存在，是一个%@",isDirectory?@"文件夹":@"文件");
         if (!isDirectory) {
-            
             return YES;
         }
-       
     }
-    NSLog(@"文件不存在");
-    
+//    NSLog(@"文件不存在");
     return NO;
 }
 
