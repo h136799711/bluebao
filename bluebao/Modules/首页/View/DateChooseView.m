@@ -23,11 +23,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.frame = CGRectMake(frame.origin.x, frame.origin.y, 190, 25);
+        self.frame = CGRectMake(frame.origin.x, frame.origin.y, 220, 30);
         [self _inits];
         
     }else{
-        self.frame = CGRectMake(0,0, 180, 25);
+        self.frame = CGRectMake(0,0, 220, 30);
     }
     
     _isToday = YES;
@@ -39,13 +39,13 @@
     
     //左边
     UIButton  * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(0, 0, 25, self.bounds.size.height);
+    leftBtn.frame = CGRectMake(0, 0, 40, self.bounds.size.height);
     [leftBtn setTitle:@"<" forState:UIControlStateNormal];
     leftBtn.titleLabel.font = FONT(16);
     leftBtn.tag = 0;
     [leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [leftBtn addTarget:self action:@selector(changeDateClick:) forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.backgroundColor = [UIColor blueColor];
+//    leftBtn.backgroundColor = [UIColor blueColor];
     [self addSubview:leftBtn];
     
     
@@ -58,7 +58,7 @@
     [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(changeDateClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:rightBtn];
-    rightBtn.backgroundColor = [UIColor blueColor];
+//    rightBtn.backgroundColor = [UIColor blueColor];
 
     //日期显示
     CGFloat  widthLab = self.bounds.size.width - leftBtn.bounds.size.width - rightBtn.bounds.size.width;

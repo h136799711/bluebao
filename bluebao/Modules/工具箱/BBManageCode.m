@@ -14,7 +14,7 @@
 //创建目标区头
 +(UIView *)creatGoalHeaderView{
     
-    NSArray * array = @[@"时间",@"目标",@"操作"];
+    NSArray * array = @[@"提醒时间",@"目标",@"操作"];
     UIView * title_view = [[UIView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, 40)];
     
     //上横线
@@ -49,7 +49,7 @@
     
     CGFloat  left = 30; //左间距
     CGFloat  hwb_width = 35;
-    CGFloat infoLabel_width = ( view.width - left *2 -hwb_width *3)/3.0;
+    CGFloat infoLabel_width = ( view.width - left *2 -hwb_width *3-10)/3.0;
     NSArray  * a = @[@"身高",@"体重",@"BMI"];
 
     //身高体重、、
@@ -58,21 +58,18 @@
     label_.text = a[num];
     label_.textAlignment = NSTextAlignmentLeft;
     label_.font = FONT(15);
-//    label_.backgroundColor = [UIColor redColor];
     [ view addSubview:label_];
 
     //值
-    UILabel * value_label = [[UILabel alloc]initWithFrame:CGRectMake(label_.right, 0, infoLabel_width+14, view.height)];
+    UILabel * value_label = [[UILabel alloc]initWithFrame:CGRectMake(label_.right, 0, infoLabel_width, view.height)];
     value_label.textColor =  [UIColor colorWithHexString:@"#74e7f7"];
     if (num == 2) {
-        value_label.frame = CGRectMake(label_.right, 0, value_label.width + 10, value_label.height);
+        value_label.frame = CGRectMake(label_.right, 0, value_label.width + 14, value_label.height);
     }
     value_label.font = FONT(20);
     value_label.textAlignment = NSTextAlignmentCenter;
     
     [view addSubview:value_label];
-//    value_label.backgroundColor = [UIColor blueColor];
-//    value_label.text = @"xxxx";
     
     
     return value_label;

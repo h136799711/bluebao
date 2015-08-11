@@ -9,6 +9,7 @@
 #import "GoalVC.h"
 #import "GoalCell.h"
 #import "GoalData.h"
+#import "LocalNotify.h"
 
 static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
@@ -71,15 +72,13 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
  *初始化
  **/
 -(void)_initViews{
-
-     
     
     [self isHasDataAdjust];  //判断是否包含数据
     [self _initGoalTableView]; //创建表
     [self _initPickerView];  //修改 数据
     [self _initNotificationCenter];
     [self _initGest];
-
+    [self alarmBellSetting];
 }
 
 #pragma mark -- 目标设定 --
@@ -441,6 +440,22 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 -(void)saveGoalArrayToDocments{
     
     [BoyeFileMagager saveDefaultGoalData:self.dataArray];
+}
+
+#pragma mark -- 设置闹铃 --
+-(void)alarmBellSetting{
+    
+    NSDate * fireDate = [[NSDate date] dateByAddingTimeInterval: 18];
+    
+    [[LocalNotify sharedNotify]fireNotificationAt:fireDate
+                                                 :[NSString stringWithFormat:@"%@了，该运动啦!",[[NSDate defaultDateFormatter] stringFromDate:fireDate] ]
+                                                 :NSCalendarUnitMinute ];
+    
+}
+
+-(void)removeAlarmBel:(NSDate *)date{
+    
+    
 }
 /*
 #pragma mark - Navigation
