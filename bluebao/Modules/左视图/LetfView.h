@@ -26,4 +26,7 @@
 @property (nonatomic,assign)id<LetfViewDelegate>delegate;
 
 -(void)jumpToequipmentManager;
+
+-(void)willAppear;
+
 @end

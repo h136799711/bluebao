@@ -85,8 +85,8 @@
     self.accontNumTextfield.clearButtonMode =  UITextFieldViewModeAlways;
     
     
-    self.accontNumTextfield.text = @"2540927273@qq.com";
-    self.pswTextfield.text = @"123456";
+//    self.accontNumTextfield.text = @"2540927273@qq.com";
+//    self.pswTextfield.text = @"123456";
     
     self.accontNumTextfield.delegate = self;
     self.pswTextfield.delegate = self;

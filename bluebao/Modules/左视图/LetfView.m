@@ -66,7 +66,9 @@
     sortArray = @[@"我的个人资料",@"设备管理",@"我的运动数据",@"我的目标管理",@"关于蓝堡",@"购买更多健身器材",@"关闭闹铃提醒",@"设置",@"注销"];
 }
 
-
+-(void)willAppear{
+    [self setAvatar];
+}
 
 #pragma mark - UITableView Delegate & Datasrouce -
 
@@ -169,6 +171,15 @@
  }
 
 #pragma mark -- 创建去区头 --
+
+-(void)setAvatar{
+    
+    NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userinfo.uid :120 :YES]];
+    NSLog(@"头像地址:%@",avatar_url);
+    [self.headBtn setImageWithURL:avatar_url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Default_header"]];
+    
+}
+
 -(UIView *)creatTableViewHeadView{
     
     UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 100)];
@@ -182,9 +193,7 @@
     
     [self.headBtn addTarget:self action:@selector(changeHeadImagClick:) forControlEvents:UIControlEventTouchUpInside];
 
-    NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userinfo.uid :120]];
     
-    [self.headBtn setImageWithURL:avatar_url   forState:UIControlStateNormal];
     
      self.headBtn.backgroundColor = [UIColor redColor];
     [MyTool cutViewConner: self.headBtn radius: self.headBtn.width/2.0];

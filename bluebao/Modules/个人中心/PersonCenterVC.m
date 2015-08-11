@@ -31,6 +31,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    [self avatarRequest];
     NSLog(@"**********个人中心出现**********");
 }
 
@@ -329,8 +330,8 @@
 -(void)avatarRequest{
     
     NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120]];
-    [self.head_ImageView setImageWithURL:avatar_url];
-//    [self.head_ImageView  setImageURL:avatar_url placeholder:[UIImage imageNamed:@"Default_header"]];
+    [self.head_ImageView setImageWithURL:avatar_url placeholderImage:[UIImage imageNamed:@"Default_header"] options:SDWebImageRefreshCached];
+     //    [self.head_ImageView  setImageURL:avatar_url placeholder:[UIImage imageNamed:@"Default_header"]];
 
 }
 
