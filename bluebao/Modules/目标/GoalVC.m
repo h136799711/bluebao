@@ -446,10 +446,10 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 -(void)alarmBellSetting{
     
     NSDate * fireDate = [[NSDate date] dateByAddingTimeInterval: 18];
-    
+//
     [[LocalNotify sharedNotify]fireNotificationAt:fireDate
-                                                 :[NSString stringWithFormat:@"%@了，该运动啦!",[[NSDate defaultDateFormatter] stringFromDate:fireDate] ]
-                                                 :NSCalendarUnitMinute ];
+                                                 :[NSString stringWithFormat:@"该运动啦!"]
+                                                 :0 ];
     
 }
 

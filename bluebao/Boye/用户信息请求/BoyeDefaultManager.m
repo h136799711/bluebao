@@ -146,7 +146,7 @@
     
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     
-    [SVProgressHUD showWithStatus:@"正在登陆..." maskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
     
     NSDictionary *params = @{
                              @"username":user.username,
@@ -180,7 +180,7 @@
                         UserInfo * responInfo = [[UserInfo alloc ]initWithUserInfoDictionary:info];                        
                         
                         complete (responInfo);
-                        [SVProgressHUD showSuccessWithStatus:@"登陆成功"];
+                        [SVProgressHUD showSuccessWithStatus:@"登录成功"];
                     }else{
                         
                         [BoyeDefaultManager getCodeWrongData:json];
@@ -190,7 +190,7 @@
                     
                 }
                 :^(AFHTTPRequestOperation *operation ,NSError *error){
-                    [SVProgressHUD showErrorWithStatus:@"登陆失败"];
+                    [SVProgressHUD showErrorWithStatus:@"登录失败"];
                 }];
 
 }

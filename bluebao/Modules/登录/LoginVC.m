@@ -171,7 +171,7 @@
     
 }
 
-#pragma mark   ---登陆 -----
+#pragma mark   ---登录 -----
 - (IBAction)login:(UIButton *)sender {
     
 //    self.accontNumTextfield.text = @"2540927273@qq.com";
@@ -194,7 +194,7 @@
 //用户登录
 -(void)loginRequest:(User*)user{
     
-    //登陆请求
+    //登录请求
     [BoyeDefaultManager requestLoginUser:user complete:^(UserInfo * userInfo) {
         
         if (userInfo != nil ) {
