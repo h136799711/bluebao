@@ -11,11 +11,21 @@
 #import "LetfView.h"
 
 @interface MainViewController : BaseViewController<LetfViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
-@property (nonatomic,strong) UserInfo * userInfo;
-@property (nonatomic,assign) BOOL       isOpen;
+@property (nonatomic,strong) UserInfo           * userInfo;
+@property (nonatomic,assign) BOOL               isOpen;
 @property (nonatomic,strong)   LetfView          *leftView;
 
+/*
+ * VC注销
+ *第一次进入首页，需要请求数据，其他情况，不请求；如果注销了，再次进入仍需要请求；
+ **/
+@property (nonatomic,assign) BOOL               isVCCancel;
 
+/**
+ * 包含视图
+ */
+
+@property (nonatomic,strong) UIView          * contentView;
 
 + (MainViewController*)sharedSliderController;
 

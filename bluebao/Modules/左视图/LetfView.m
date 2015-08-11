@@ -117,8 +117,11 @@
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:login];
         UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
         window.rootViewController = nav;
-      
-       //设备管理
+        
+        //是
+        [MainViewController sharedSliderController].isVCCancel  = NO;
+
+        //设备管理
     } else if (indexPath.row == 0){
             //个人资料
         PersonMessageVC * person = [[PersonMessageVC alloc] init];

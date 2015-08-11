@@ -28,7 +28,7 @@
         UITableViewCell *cell = (UITableViewCell *)[share_tableView viewWithTag:1100];
         if(cell != nil){
             if(newValue > 1){
-                cell.textLabel.text = [NSString stringWithFormat:@"今天已经是第%d天运动了，加油，坚持！",newValue];
+                cell.textLabel.text = [NSString stringWithFormat:@"今天已经是第%ld天运动了，加油，坚持！",(long)newValue];
             }else{
                 cell.textLabel.text = @"今天是第1天运动，请加油，坚持下去！";
             }
@@ -89,7 +89,7 @@
     
     NSString *text = @"蓝堡健身,我的最爱!";
     if(cell != nil){
-        text  = [NSString stringWithFormat:@"今天已经是第%d天运动了，加油！坚持",self.continuousMovementDays];
+        text  = [NSString stringWithFormat:@"今天已经是第%ld天运动了，加油！坚持",(long)self.continuousMovementDays];
     }
     
     [self hideViewsWhenSharing];

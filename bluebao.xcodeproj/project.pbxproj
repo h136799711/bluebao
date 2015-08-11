@@ -78,6 +78,7 @@
 		5B74F4BC1B590AC9002493E8 /* OpinionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B74F4B91B590AC9002493E8 /* OpinionVC.m */; };
 		5B7580C71B745FCA00B25A02 /* CircleBezierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7580C61B745FCA00B25A02 /* CircleBezierView.m */; };
 		5B8004661B720F3200283B2C /* BoyePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8004651B720F3200283B2C /* BoyePeople.m */; };
+		5B84D3D71B79917800523741 /* LBSportShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B84D3D61B79917800523741 /* LBSportShareModel.m */; };
 		5B9049041B72EF0600A2E1B7 /* BoyeForgetCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */; };
 		5B9049051B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */; };
 		5BD4AA941B6B27CD0041F730 /* BoyeSlideBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */; };
@@ -314,6 +315,8 @@
 		5B7580C61B745FCA00B25A02 /* CircleBezierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleBezierView.m; sourceTree = "<group>"; };
 		5B8004641B720F3200283B2C /* BoyePeople.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyePeople.h; sourceTree = "<group>"; };
 		5B8004651B720F3200283B2C /* BoyePeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyePeople.m; sourceTree = "<group>"; };
+		5B84D3D51B79917800523741 /* LBSportShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSportShareModel.h; sourceTree = "<group>"; };
+		5B84D3D61B79917800523741 /* LBSportShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSportShareModel.m; sourceTree = "<group>"; };
 		5B9049011B72EF0600A2E1B7 /* BoyeForgetCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeForgetCodeVC.h; sourceTree = "<group>"; };
 		5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeForgetCodeVC.m; sourceTree = "<group>"; };
 		5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoyeForgetCodeVC.xib; sourceTree = "<group>"; };
@@ -552,6 +555,8 @@
 			children = (
 				5B38C7601B5390CF0063912C /* ShareVC.h */,
 				5B38C7611B5390CF0063912C /* ShareVC.m */,
+				5B84D3D51B79917800523741 /* LBSportShareModel.h */,
+				5B84D3D61B79917800523741 /* LBSportShareModel.m */,
 			);
 			name = "分享";
 			path = "Modules/分享";
@@ -1457,6 +1462,7 @@
 				5B38C7A41B5390CF0063912C /* MainViewController.m in Sources */,
 				5B38C7A21B5390CF0063912C /* LeftMenuCell.m in Sources */,
 				5BF88BDD1B69C16D003785D0 /* BicyleRespModel.m in Sources */,
+				5B84D3D71B79917800523741 /* LBSportShareModel.m in Sources */,
 				5BD4AAD21B6B6F580041F730 /* UULineChart.m in Sources */,
 				5B0155E71B5DDDB300056CFC /* LNowBicyleData.m in Sources */,
 				5B38C7A01B5390CF0063912C /* HeadPageVC.m in Sources */,

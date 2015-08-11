@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 #import "DateChooseView.h"
 #import "DrawProgreView.h"
+#import "LBSportShareModel.h"
 
 @interface HeadPageVC : BoyeSlideBaseVC<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,DateChooseViewDelegate>
 
