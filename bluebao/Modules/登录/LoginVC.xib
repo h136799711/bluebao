@@ -32,7 +32,7 @@
                         <color key="textColor" red="0.65608974976792889" green="0.096323900124836562" blue="0.70101767778396606" alpha="1" colorSpace="calibratedRGB"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="登陆" id="hcR-So-m2o"/>
+                        <navigationItem title="登录" id="hcR-So-m2o"/>
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMl-Ox-hIF">
