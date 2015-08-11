@@ -85,7 +85,17 @@
     NSInteger  bd_tag =  (1100 + 0);
     NSInteger  bct_tag =  (1100 + 1);
     NSInteger  bc_tag =  (1100 + 2);
+    if ((NSNull *)best_distance == [NSNull null]) {
+        best_distance = @"0";
+    }
     
+    if ((NSNull *)best_cost_time ==  [NSNull null]) {
+        best_cost_time = [NSNumber numberWithInt:0];// 0;
+    }
+    
+    if ((NSNull *)best_calorie == [NSNull null]) {
+        best_calorie = @"0";
+    }
     
     MessageCell * lblTmp =  (MessageCell * )[_tableView viewWithTag:bd_tag];
     lblTmp.label_value.text = [NSString stringWithFormat:@"%@公里",best_distance];
@@ -319,8 +329,8 @@
 -(void)avatarRequest{
     
     NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120]];
-    
-    [self.head_ImageView  setImageURL:avatar_url placeholder:[UIImage imageNamed:@"Default_header"]];
+    [self.head_ImageView setImageWithURL:avatar_url];
+//    [self.head_ImageView  setImageURL:avatar_url placeholder:[UIImage imageNamed:@"Default_header"]];
 
 }
 

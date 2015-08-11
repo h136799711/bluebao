@@ -59,6 +59,14 @@
     
     [self umengShareConfig];
     
+//    NSArray *localNotifications = [UIApplication sharedApplication].scheduledLocalNotifications;
+//    
+//    for (UILocalNotification *notification in localNotifications) {
+//        NSLog(@"%@",notification.alertBody);
+//        
+////        NSDictionary *userInfo = notification.userInfo;
+//        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+//    }
     return YES;
 }
 
