@@ -86,7 +86,10 @@
      //蓝牙
     self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
     self.boyeBluetooth.delegate = self;
-    
+   
+    self.userInfo = [MainViewController sharedSliderController].userInfo;
+    [headCollectionView reloadData];
+
    
     if ([MainViewController sharedSliderController].isVCCancel == NO) {
         [self doViewAppearBefore];
@@ -491,6 +494,9 @@
     NSLog(@" datastring: %@",dataString);
     //析蓝牙数据
     BluetoothDataManager * bluetoothData = [[BluetoothDataManager alloc] initWithBlueToothData:dataString];
+   
+    // TODO...
+    
     _currentBluetothData = bluetoothData;
 
     //刷新首页

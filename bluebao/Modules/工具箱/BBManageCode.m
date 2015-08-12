@@ -68,7 +68,7 @@
     }
     value_label.font = FONT(20);
     value_label.textAlignment = NSTextAlignmentCenter;
-    
+    value_label.tag = num +1;
     [view addSubview:value_label];
     
     

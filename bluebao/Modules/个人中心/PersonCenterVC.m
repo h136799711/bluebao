@@ -328,11 +328,15 @@
 }
 
 -(void)avatarRequest{
-    
+   
+    self.userInfo = [MainViewController sharedSliderController].userInfo;
+
     NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120]];
     [self.head_ImageView setImageWithURL:avatar_url placeholderImage:[UIImage imageNamed:@"Default_header"] options:SDWebImageRefreshCached];
      //    [self.head_ImageView  setImageURL:avatar_url placeholder:[UIImage imageNamed:@"Default_header"]];
-
+    self.heightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.height];
+    self.weightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.weight];
+    self.BMiLabel.text = [NSString stringWithFormat:@"%@",[MyTool getBMIStringWeight:self.userInfo.weight height:self.userInfo.height]];
 }
 
 @end
