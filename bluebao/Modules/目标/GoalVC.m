@@ -458,6 +458,12 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     
     
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:YES];
+    [self.goalPickerView close];
+}
 /*
 #pragma mark - Navigation
 

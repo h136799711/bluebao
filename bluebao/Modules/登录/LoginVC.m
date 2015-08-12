@@ -39,7 +39,7 @@
 //初始化
 -(void)_inits{
     
-    NSString * userName = [USER_DEFAULT objectForKey:BOYE_USER_NAME];
+    NSString * userName = [[CacheFacade sharedCache] get:BOYE_USER_NAME];
     if (userName != nil) {
         self.accontNumTextfield.text = userName;
     }
@@ -201,6 +201,7 @@
             //  NSLog(@" \r-- %@",userInfo);
             [MainViewController sharedSliderController].userInfo = userInfo;
             
+            [[CacheFacade   sharedCache] setObject:userInfo.username forKey:BOYE_USER_NAME afterSeconds:3600*24];
             [self jumpMainPage];
             
         }
@@ -228,6 +229,7 @@
     }else{
         self.label_remberCode.textColor = [UIColor lightGrayColor];
     }
+    
 }
 
 #pragma mark -- 忘记密码

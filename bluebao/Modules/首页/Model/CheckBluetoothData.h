@@ -14,20 +14,18 @@
  * 蓝牙数据是否可用
  **/
 @property (nonatomic,assign) BOOL       isUsable;
-
+@property (nonatomic,assign) BOOL       isOutTime;
 
 /**
  *检查后返回的蓝牙数据
- *
  */
-@property (nonatomic,assign) BluetoothDataManager * bluetoothData;
+@property (nonatomic,strong) BluetoothDataManager * bluetoothData;
 
 /**
- *
- *
+ *上次可用蓝牙数据
  */
 
-@property (nonatomic,assign) BluetoothDataManager * lastUsableData;
+@property (nonatomic,strong) BluetoothDataManager * lastUsableData;
 
 /*
  * 蓝牙数据检查
@@ -35,6 +33,14 @@
  * return  有效的蓝牙数据
  */
 
--(BluetoothDataManager *) bluetoothDataCheck:(BluetoothDataManager *) blueData;
+//-(BluetoothDataManager *) bluetoothDataCheck:(BluetoothDataManager *) blueData;
+
+/*
+ * 检查蓝牙数据的可用性
+ */
+-(BOOL) checkBluetoothDataUsable:(BluetoothDataManager *) blueData;
+
+//检查数据可用
++(BOOL) checkDataUsable:(BluetoothDataManager * )blueData;
 
 @end

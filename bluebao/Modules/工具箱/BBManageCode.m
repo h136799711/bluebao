@@ -275,7 +275,7 @@
             break;
             
         case 1://速度
-            string = [MyTool getStringToInteger:_bicylelb.speed];
+            string = [MyTool getStringToInteger:_bicylelb.speed/10.0];
             string = [NSString stringWithFormat:@"%@km/h",string];
             
             break;
@@ -388,4 +388,105 @@
     return value;
 }
 
+#pragma mark -- 目标pickerView
++(UIView *)getGoalPickerView:(UIPickerView *)pickerView Row:(NSInteger)row Component:(NSInteger)component reusingView:(UIView *)view{
+
+    static NSInteger  font =  20;
+    
+    if (component == 0) {
+        UILabel * hourlabel = (UILabel *)view;
+        if (hourlabel == nil) {
+            hourlabel =  [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
+        }
+        hourlabel.text = [self getDateString:row];;
+        hourlabel.textAlignment = NSTextAlignmentRight;
+        hourlabel.font = FONT(font);
+        
+        return hourlabel;
+    }else if (component == 1){
+      
+        UILabel * label = (UILabel *)view;
+        if (label == nil) {
+            label =  [[UILabel alloc] initWithFrame:CGRectMake(0.0f , 0.0f, 8.0f, 30.0f)];
+        }
+        label.text = @":";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = FONT(font+3);
+
+        return label;
+        
+    }else if (component == 2){
+       
+        UILabel * minlabel = (UILabel *)view;
+        if (minlabel == nil) {
+            minlabel =  [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 90.0f, 30.0f)];
+        }
+        minlabel.text = [self getDateString:row];;
+        minlabel.textAlignment = NSTextAlignmentLeft;
+        minlabel.font = FONT(font);
+        
+        return minlabel;
+
+    }else if (component == 3){
+        
+        UILabel * callabel = (UILabel *)view;
+        if (callabel == nil) {
+            callabel =  [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 30.0f)];
+        }
+        callabel.text = [self getNumberString:row];
+        callabel.textAlignment = NSTextAlignmentRight;
+        callabel.font = FONT(font);
+        
+        return callabel;
+
+    }else if (component == 4){
+        
+        UILabel * callabel = (UILabel *)view;
+        if (callabel == nil) {
+            callabel =  [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 30.0f)];
+        }
+        callabel.text = [self getNumberString:row];
+        callabel.textAlignment = NSTextAlignmentCenter;
+        callabel.font = FONT(font);
+        
+        return callabel;
+
+    }else{
+        
+        UILabel * callabel = (UILabel *)view;
+        if (callabel == nil) {
+            callabel =  [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 40.0f, 30.0f)];
+        }
+        callabel.text = [NSString stringWithFormat:@"%ld卡",row];
+        callabel.textAlignment = NSTextAlignmentLeft;
+        callabel.font = FONT(font);
+        
+        return callabel;
+   
+    }
+    
+
+    return view;
+}
+
+#pragma mark -- 转化为字符串  01- 09 - 24 - 60
++(NSString *) getDateString:(NSInteger)num{
+    
+    NSString  *numstr = [[NSString alloc] init];
+    if (num < 10) {
+        numstr = [NSString stringWithFormat:@"0%ld",num];
+    }else{
+        
+        numstr = [NSString stringWithFormat:@"%ld",num];
+    }
+    
+    return numstr;
+}
+
+//数值转化为字符串
++(NSString *) getNumberString:(NSInteger)num{
+    
+    NSString * numstr = [NSString stringWithFormat:@"%ld",num];
+    return numstr;
+}
 @end

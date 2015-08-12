@@ -19,7 +19,7 @@
     if (self ) {
 //        self.backgroundColor = [UIColor redColor];
         
-        //分类
+        //指标
         CGFloat  s_nit = 20;
 
         self.labelSort = [[UILabel alloc] init];
@@ -34,10 +34,10 @@
         
         //数值
         _infoLabel= [[UILabel alloc] init];
-        _infoLabel.bounds = CGRectMake(0,0,self.contentView.width - 10,self.contentView.height - self.labelSort.height);
-        _infoLabel.center = CGPointMake(_infoLabel.width/2.0, _infoLabel.height/2.0);
-        _infoLabel.textColor = [UIColor colorWithHexString:@"#74e7f7"];
-        _infoLabel.font = FONT(25);
+        _infoLabel.bounds = CGRectMake(0,0,40,35);
+        _infoLabel.center = CGPointMake(self.contentView.width/2.0,self.labelSort.top - _infoLabel.height/2.0+5);
+        _infoLabel.textColor = [UIColor colorWithHexString:@"#74e7f8"]; //
+        _infoLabel.font = FONT(28);
        _infoLabel.textAlignment = NSTextAlignmentCenter;
 
         [self.contentView addSubview:_infoLabel];
@@ -45,7 +45,8 @@
         //单位
         CGFloat  h_unit = 15;
         self.labelUnit = [[UILabel alloc] init];
-        self.labelUnit.frame = CGRectMake(_infoLabel.right , _infoLabel.center.y , 15, h_unit);
+        self.labelUnit.bounds = CGRectMake(0,0 , 15, h_unit);
+        self.labelUnit.center = CGPointMake(_infoLabel.right + self.labelUnit.width/2.0, _infoLabel.center.y+2);
 //        self.labelUnit.textColor =[UIColor blackColor];
         
         self.labelUnit.textAlignment = NSTextAlignmentLeft;

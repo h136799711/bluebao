@@ -26,7 +26,10 @@
  */
 
 @property (nonatomic,strong) UIView          * contentView;
-
+/**
+ *底部视图
+ */
+@property (nonatomic,strong) UIView          * bottomView;
 + (MainViewController*)sharedSliderController;
 
 

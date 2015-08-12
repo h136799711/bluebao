@@ -104,6 +104,14 @@
     }
 }
 
+#pragma mark -所有子视图是否可用
++(void)touchAbleSonView:(UIView *)view able:(BOOL)able{
+    
+    for (UIView * sonView in [view subviews]) {
+        sonView.userInteractionEnabled = able;
+    }
+}
+
 
 #pragma mark 切割圆角
 +(void)cutViewConner:(UIView *)view radius:(CGFloat)radius{

@@ -19,7 +19,6 @@
     
     CGFloat         _slidepy;
 
-    UIView          * _bottomView;  // 底部视图
     UIButton        * select_button;//记录选中按钮；
     
     NSMutableArray  *  array; //保存导航
@@ -115,6 +114,8 @@
     //底部视图
     _bottomView = [[UIView alloc] initWithFrame:CGRectMake(_contentView.left, SCREEN_HEIGHT - 49, SCREEN_WIDTH, 49)];
     _bottomView.backgroundColor = [UIColor whiteColor];
+    [MyTool createLineInView:_bottomView fram:CGRectMake(0, 0, _bottomView.width, 1)];
+    
 //    _bottomView.backgroundColor = [UIColor colorWithRed:(14/255.0) green:(144/255.0) blue:(210/255.0) alpha:1];
     [self.view addSubview:_bottomView];
     
@@ -123,11 +124,7 @@
     //个人中心
     PersonCenterVC *  person = [[PersonCenterVC alloc] init];
     UINavigationController * navp = [[UINavigationController alloc] initWithRootViewController:person];
-//    
-//    //分享
-//    ShareVC * share = [[ShareVC alloc] init];
-//    UINavigationController * navs = [[UINavigationController alloc] initWithRootViewController:share];
-//    
+   
     //目标
     GoalVC * goal  = [[GoalVC alloc] init];
     UINavigationController * navg = [[UINavigationController alloc] initWithRootViewController:goal];
@@ -260,6 +257,7 @@
                         duration:timer
                        pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
     [_bottomView setUserInteractionEnabled:YES];
+    [MyTool touchAbleSonView:_contentView able:YES];
     self.isOpen = NO;
 }
 //open
@@ -272,6 +270,7 @@
                         duration:timer
                        pointCent:CGPointMake(_contentView.center.x, _bottomView.center.y)];
     [_bottomView setUserInteractionEnabled:NO];
+        [MyTool touchAbleSonView:_contentView able:NO];
    self.isOpen = YES;
 }
 
@@ -494,6 +493,7 @@
 -(void) saveB{
     
 }
+
 
 
 /*

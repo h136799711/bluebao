@@ -96,20 +96,56 @@
         //底部
         UIView * downView = [[UIView alloc] init];
         downView.frame = CGRectMake(0, topView.bottom, topView.width, self.height-topView.height);
+        downView.backgroundColor = [UIColor whiteColor];
         [self addSubview:downView];
         
-#pragma mark -- PickView
+        // 提示
+        UIView * remindView = [[UIView alloc] init];
+        remindView.backgroundColor = [UIColor lightGrayColor];
+        remindView.frame = CGRectMake(0, 0, downView.width, 30);
+        [downView addSubview:remindView];
+        [self remindLabel:remindView];
+
+
+        #pragma mark -- PickView
         self.pickerView = [[UIPickerView alloc] init];
         self.pickerView.delegate = self;
         self.pickerView.dataSource = self;
-        self.pickerView.backgroundColor = [UIColor whiteColor];
+         self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        self.pickerView.frame = CGRectMake(0, remindView.bottom, downView.width, downView.height-remindView.height);
         
+        
+        self.pickerView.backgroundColor = [UIColor whiteColor];
+         self.pickerView.showsSelectionIndicator = YES;
         [downView addSubview: self.pickerView];
+        
+        
     }
     
 }
 
-
+//提醒
+-(void)remindLabel:(UIView *)remindView{
+    
+    CGFloat  left = (remindView.width -200)/2.0;
+    //时间
+    UILabel * timelabel = [[UILabel alloc] init];
+    timelabel.frame = CGRectMake(left, 0, 50, remindView.height);
+    timelabel.text = @"时间";
+    timelabel.font = FONT(15);
+    timelabel.textAlignment = NSTextAlignmentCenter;
+    [remindView addSubview:timelabel];
+    
+    //目标
+    UILabel * goalLabel = [[UILabel alloc] init];
+    goalLabel.bounds = CGRectMake(0, 0, 80, remindView.height);
+    goalLabel.center = CGPointMake(remindView.width-left-goalLabel.width/2.0-5, timelabel.center.y);
+    goalLabel.text = @"目标";
+    goalLabel.font = FONT(15);
+    goalLabel.textAlignment = NSTextAlignmentCenter;
+    [remindView addSubview:goalLabel];
+    
+}
 
 #pragma mark --- pickView --
 
@@ -135,38 +171,33 @@
     
 }
 
-
 -(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     
-    if (component ==1) {
-        return 15;
+    switch (component) {
+        case 0:
+            return 20;
+            break;
+        case 1:
+            return 9;
+        case 2:
+            return 90;;
+        case 3:
+            return 20;;
+        case 4:
+            return 20;
+        case 5:
+            return 40;;
+        default:
+            break;
     }
-    if (component == 3 || component == 5) {
-        return 60;
-    }
-    
-    return 35;
+    return 60;
 }
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     
-    
-    if (component == 1) {
-       
-        return @":";
-    }else if (component == 0||component == 2){
-        
-        NSString  *numstr = [self getDateString:row];
-        return  numstr;
-    }else if (component == 5){
-        
-        return [NSString stringWithFormat:@"%ld卡",row];
-    }else{
-        
-        return [self getNumberString:row];
-    }
+  return [BBManageCode getGoalPickerView:(UIPickerView *)pickerView Row:(NSInteger)row Component:(NSInteger)component reusingView:(UIView *)view];
 
 }
+
 
 #pragma mark -- 选中之后  --
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
@@ -224,6 +255,7 @@
     self.isOpen = YES;
     
     [self sendSelfFrameNotification];
+    [MainViewController sharedSliderController].bottomView.hidden = YES;
 }
 
 
@@ -235,6 +267,7 @@
                        pointCent:CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT)];
     self.isOpen = NO;
     [self sendSelfFrameNotification];
+    [MainViewController sharedSliderController].bottomView.hidden = NO;
 }
 
 
@@ -303,8 +336,6 @@
     
     _goalData = goalData;
  
-    //小时
-
 }
 #pragma mark -- 重载 数据分类 属性 --
 

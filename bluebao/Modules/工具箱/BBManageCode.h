@@ -37,4 +37,8 @@
 #pragma mark -- 获得个人健康指标
 +(NSInteger) getPersonHealthCondition:(NSInteger)row userInfo:(UserInfo *)userInfo;
 
+#pragma mark -- 目标pickerView
++(UIView *)getGoalPickerView:(UIPickerView *)pickerView Row:(NSInteger)row Component:(NSInteger)component reusingView:(UIView *)view;
+
+
 @end
