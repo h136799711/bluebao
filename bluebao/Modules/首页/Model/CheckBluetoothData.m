@@ -24,31 +24,29 @@
 
 -(BOOL) checkBluetoothDataUsable:(BluetoothDataManager *) blueData{
     
-    if (blueData.bicyleModel.calorie != 0) {
+//    BOOL ret = YES;
+    
+    if( [self get] == nil ){
         
-        NSLog(@" 数据可用 ");
-
-            [self setOutDate];
-
+//        ret = YES;
+        
+        [self setOutDate];
         return YES;
-        
-    }else{      //数据不合理，
-        
-        if ([self get] == nil) {  //过期，或没有缓存，
-
-            self.isOutTime = YES;
-            
-            NSLog(@" 数据不可用，不在有效时间范围内 ");
-
-        }else{
-          
-            self.isOutTime = NO;
-            NSLog(@" 数据不可用，在有效时间范围内 ");
-        }
     }
-    return NO;
-}
-
+       
+    
+    if (blueData.bicyleModel.calorie == 0
+               && blueData.bicyleModel.distance == 0
+               && blueData.bicyleModel.heart_rate == 0
+    ) {
+               return  NO;
+    }
+    
+  
+    
+    [self setOutDate];
+    
+    return YES;
 
 //  类方法
 +(BOOL) checkDataUsable:(BluetoothDataManager * )blueData{

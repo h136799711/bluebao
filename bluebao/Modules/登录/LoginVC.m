@@ -183,11 +183,11 @@
     
 }
 
-#pragma mark   ---登陆 -----
+#pragma mark   ---登录 -----
 - (IBAction)login:(UIButton *)sender {
     
 //    self.accontNumTextfield.text = @"2540927273@qq.com";
-    self.pswTextfield.text = @"123456";
+//    self.pswTextfield.text = @"123456";
 
     User * user = [[User alloc] init];
     user.username = self.accontNumTextfield.text;
@@ -206,7 +206,7 @@
 //用户登录
 -(void)loginRequest:(User*)user{
     
-    //登陆请求
+    //登录请求
     [BoyeDefaultManager requestLoginUser:user complete:^(UserInfo * userInfo) {
         
         if (userInfo != nil ) {
@@ -282,13 +282,13 @@
 
         return NO;
     }
-    
-    if (![MyTool validateEmail:user.username]) {
-       
-        [SVProgressHUD showOnlyStatus:@"邮箱格式不正确" withDuration:duration];
-
-        return NO;
-    }
+//不检测邮箱格式    
+//    if (![MyTool validateEmail:user.username]) {
+//       
+//        [SVProgressHUD showOnlyStatus:@"邮箱格式不正确" withDuration:duration];
+//
+//        return NO;
+//    }
     
     if (user.username.length >=18) {
         [SVProgressHUD showOnlyStatus:@"用户名长度太长" withDuration:duration];

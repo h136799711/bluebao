@@ -13,6 +13,8 @@
 
 +(CacheFacade *)sharedCache;
 
+
+
 /**
  *  获取缓存信息
  *

@@ -166,7 +166,7 @@
         percentage = 100;
     }
     
-    _efficiLabel.text = [NSString stringWithFormat:@"%ld％",(NSInteger)percentage];
+    _efficiLabel.text = [NSString stringWithFormat:@"%ld％",(long)percentage];
     
 
     _per = percentage/100.0 ;

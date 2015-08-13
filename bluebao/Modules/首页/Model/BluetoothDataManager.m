@@ -59,7 +59,7 @@
     
     
     //TODO: 有新数据接收时.
-    NSLog(@"======================================");
+//    NSLog(@"======================================");
     
    // NSLog(@"%@,长度%lu",dataString,(unsigned long)dataString.length);
     
@@ -76,28 +76,28 @@
         //速度
         cmdStr = [[dataString substringWithRange:NSMakeRange(10, 4)] lowercaseString];
         self.bicyleModel.speed = [self getTenHexadecimalFromSixteen:cmdStr] ;
-        NSLog(@"速度 %@  %ld",cmdStr,self.bicyleModel.speed );
+//        NSLog(@"速度 %@  %ld",cmdStr,self.bicyleModel.speed );
         
         //距离；
         cmdStr = [[dataString substringWithRange:NSMakeRange(14, 6)] lowercaseString];
         self.bicyleModel.distance = [self getDistance:cmdStr] ;
-        NSLog(@"距离 %@  %ld",cmdStr, self.bicyleModel.distance);
+//        NSLog(@"距离 %@  %ld",cmdStr, self.bicyleModel.distance);
         
         //热量
         cmdStr = [[dataString substringWithRange:NSMakeRange(20, 4)] lowercaseString];
         self.bicyleModel.calorie = [self getTenHexadecimalFromSixteen:cmdStr] ;
-        NSLog(@"热量 %@  %ld",cmdStr,self.bicyleModel.calorie );
+        NSLog(@"=========热量 %@  %ld==========",cmdStr,self.bicyleModel.calorie );
         
         //总程
         cmdStr = [[dataString substringWithRange:NSMakeRange(24, 4)] lowercaseString];
         //            self.bicyleModel.total_distance = [self getTenHexadecimalFromSixteen:cmdStr] ;
         self.bicyleModel.total_distance = [self getTotalDistance:cmdStr];
-        NSLog(@"总程 %@ %ld",cmdStr, self.bicyleModel.total_distance);
+//        NSLog(@"总程 %@ %ld",cmdStr, self.bicyleModel.total_distance);
         
         //心率
         cmdStr = [[dataString substringWithRange:NSMakeRange(28, 2)] lowercaseString];
         self.bicyleModel.heart_rate = [self getTenHexadecimalFromSixteen:cmdStr] ;
-        NSLog(@"心率 %@ %ld",cmdStr, self.bicyleModel.heart_rate );
+//        NSLog(@"心率 %@ %ld",cmdStr, self.bicyleModel.heart_rate );
         
         //效验
         cmdStr = [[dataString substringWithRange:NSMakeRange(30, 2)] lowercaseString];

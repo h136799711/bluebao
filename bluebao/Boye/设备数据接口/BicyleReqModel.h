@@ -12,11 +12,13 @@
 
 
 @property (nonatomic,assign) NSInteger          uid;
-@property (nonatomic,copy) NSString             *uuid;//设备id
+//@property (nonatomic,copy) NSString          *uuid;//设备id
 @property (nonatomic,assign)NSInteger          time;
 
 @property (nonatomic,strong) Bicyle * bicyleModel;
 
 
+-(NSString *)uuid;
+-(void)setUuid:(NSString *)uuid;
 
 @end

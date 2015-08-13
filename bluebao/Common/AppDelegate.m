@@ -72,6 +72,11 @@
 
 #pragma mark 友盟代码、推送＋统计＋微信分享
 
+-(void)qqZoneConfig{
+    
+    [UMSocialQQHandler setQQWithAppId:@"1104734137" appKey:@"x4F6P6MXAkkVR4PJ" url:@"http://www.umeng.com/social"];
+}
+
 -(void)umengShareConfig{
     [UMSocialData setAppKey:@UMENG_APP_KEY];
     //设置微信AppId、appSecret，分享url

@@ -91,7 +91,7 @@
     if(cell != nil){
         text  = [NSString stringWithFormat:@"今天已经是第%ld天运动了，加油！坚持",(long)self.continuousMovementDays];
     }
-    
+    text = nil;
     [self hideViewsWhenSharing];
     
     UIImage *image = [[UMSocialScreenShoterDefault screenShoter] getScreenShot];
@@ -100,10 +100,10 @@
                                          appKey:@UMENG_APP_KEY
                                       shareText:text
                                      shareImage:image
-                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToTencent,nil]
+                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToTencent,UMShareToQQ,UMShareToQzone,nil]
                                        delegate:self];
     
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://lanbao.app.itboye.com/index.html";
+//    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://lanbao.app.itboye.com/index.html";
     
 }
 
