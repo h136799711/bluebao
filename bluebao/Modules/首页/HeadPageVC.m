@@ -60,12 +60,12 @@
     return _currentBluetothData;
 }
 
-//-(BluetoothDataManager *)lastUsedBluetothData{
-//    if (_lastUsedBluetothData == nil) {
-//        _lastUsedBluetothData = [[BluetoothDataManager alloc] init];
-//    }
-//    return _lastUsedBluetothData;
-//}
+-(BluetoothDataManager *)lastUsedBluetothData{
+    if (_lastUsedBluetothData == nil) {
+        _lastUsedBluetothData = [[BluetoothDataManager alloc] init];
+    }
+    return _lastUsedBluetothData;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -183,6 +183,12 @@
         if (self.dateChooseView.isToday && self.connectView.isConnect == YES) {
             //TODO.....
             _bicylelb = _currentBluetothData.bicyleModel;
+            
+            headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
+
+        }else{
+            
+            headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
         }
         
         headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
@@ -397,8 +403,8 @@
     
     BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
     reqModel.uid = self.userInfo.uid;
-    reqModel.uuid = @"OTO458-1082"; //LR-866
-//    reqModel.uuid = self.boyeBluetooth.connectedDevice.uuid;
+//    reqModel.uuid = @"OTO458-1082"; //LR-866
+    reqModel.uuid = self.boyeBluetooth.connectedDevice.uuid;
     reqModel.time = [[_dateChooseView.newbDate  dateDayTimeStamp] integerValue];
 
      [BoyeBicyleManager  requestBicyleData:reqModel :^(NSDictionary *successdDic) {
@@ -512,8 +518,6 @@
     //析蓝牙数据
     BluetoothDataManager * bluetoothData = [[BluetoothDataManager alloc] initWithBlueToothData:dataString];
    
-    
-    
     #pragma mark -- TODO.蓝牙数据检查...
     CheckBluetoothData * check = [[CheckBluetoothData alloc] init];
    BOOL isable = [check checkBluetoothDataUsable:bluetoothData];
@@ -551,18 +555,7 @@
     
 
     
-    //刷新首页
-    if (self.dateChooseView.isToday) {
-        
-        if ([NSDate currDateIsOutSetingTime:_nextUpLoadDateTime]) {
-            
-//            [self upLoadBicyleData];
-            //下次上传时间
-            [self nextLoadTime];
-        }
-        [_tableView reloadData];
-        [self showFinishProgre];
-    }
+    
 }
 
 - (NSString * )dataToString:(NSData *)value{

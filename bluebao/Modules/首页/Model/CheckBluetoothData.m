@@ -19,8 +19,13 @@
     return self;
 }
 
-
-///  数据可用，如果out ，set，  不可用，out ，在，有效期之后，
+//-(BluetoothDataManager *)lastUsableData{
+//    if (_lastUsableData == nil) {
+//        _lastUsableData = [[BluetoothDataManager alloc] init];
+//    }
+//    return _lastUsableData;
+//}
+///  数据可用，如果out ，set，  不可用，out ，在，有效期之后，传什么，书神马
 
 -(BOOL) checkBluetoothDataUsable:(BluetoothDataManager *) blueData{
     
@@ -47,6 +52,36 @@
     [self setOutDate];
     
     return YES;
+
+    
+//    if (blueData.bicyleModel.calorie != 0) {
+//        
+//        NSLog(@" 数据可用 ");
+//        
+//        [self setOutDate];
+//        
+//        return YES;
+//        
+//    }else{      //数据不合理，
+//        
+//        if ([self get] == nil) {  //过期，或没有缓存，
+//            
+//            self.isOutTime = YES;
+//            
+//            NSLog(@" 数据不可用，不在有效时间范围内 ");
+//            
+//        }else{
+//            
+//            self.isOutTime = NO;
+//            NSLog(@" 数据不可用，在有效时间范围内 ");
+//        }
+//    }
+//    return NO;
+
+    
+    
+}
+
 
 //  类方法
 +(BOOL) checkDataUsable:(BluetoothDataManager * )blueData{

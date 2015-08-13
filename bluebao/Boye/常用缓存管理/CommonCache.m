@@ -20,10 +20,6 @@
     UserInfo * userinfo = [MainViewController sharedSliderController].userInfo;
     NSString * key = [NSString stringWithFormat:@"GlobalGoalCalorie_uid_%ld",(long)userinfo.uid];
     NSString * goal =  [[CacheFacade sharedCache]get:key];
-    if (goal == nil) {
-        
-        return [self defaultString];
-    }
     
     if (goal == nil) {
         return [self defaultGoal];
@@ -43,8 +39,7 @@
     
 }
 
-//默认值
-+(NSString *) defaultString{
++(NSString *)defaultGoal{
     
     return @"500";
 }
