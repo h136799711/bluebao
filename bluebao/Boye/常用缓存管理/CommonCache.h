@@ -23,4 +23,20 @@
  */
 +(void)setGoal:(NSNumber *)goal;
 
+/**
+ *获取用户账号信息
+ *
+ * @return 账号信息
+ */
+
++(NSString *) getUserAccountInfoKey:(NSString *)keyString;
+
+/**
+ *缓存用户账号信息
+ *
+ * 
+ */
+
++(void) saveUserAccountInfo:(NSString *)info key:(NSString *)keyString;
+
 @end

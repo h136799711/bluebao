@@ -79,6 +79,7 @@
 		5B8004661B720F3200283B2C /* BoyePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8004651B720F3200283B2C /* BoyePeople.m */; };
 		5B84D3D71B79917800523741 /* LBSportShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B84D3D61B79917800523741 /* LBSportShareModel.m */; };
 		5B84D40D1B7A131000523741 /* BluetoothDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B84D40C1B7A131000523741 /* BluetoothDataManager.m */; };
+		5B8AEB811B7C4A4700567B46 /* BoyeDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AEB801B7C4A4700567B46 /* BoyeDataBaseManager.m */; };
 		5B9049041B72EF0600A2E1B7 /* BoyeForgetCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */; };
 		5B9049051B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */; };
 		5BA4EDB41B7AD97F0008A4F5 /* CheckBluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA4EDB31B7AD97F0008A4F5 /* CheckBluetoothData.m */; };
@@ -318,6 +319,8 @@
 		5B84D3D61B79917800523741 /* LBSportShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSportShareModel.m; sourceTree = "<group>"; };
 		5B84D40B1B7A131000523741 /* BluetoothDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDataManager.h; sourceTree = "<group>"; };
 		5B84D40C1B7A131000523741 /* BluetoothDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothDataManager.m; sourceTree = "<group>"; };
+		5B8AEB7F1B7C4A4700567B46 /* BoyeDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeDataBaseManager.h; sourceTree = "<group>"; };
+		5B8AEB801B7C4A4700567B46 /* BoyeDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeDataBaseManager.m; sourceTree = "<group>"; };
 		5B9049011B72EF0600A2E1B7 /* BoyeForgetCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeForgetCodeVC.h; sourceTree = "<group>"; };
 		5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeForgetCodeVC.m; sourceTree = "<group>"; };
 		5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoyeForgetCodeVC.xib; sourceTree = "<group>"; };
@@ -1071,6 +1074,8 @@
 			children = (
 				9F470BC71B75E5D300A49750 /* SQLiteManager.h */,
 				9F470BC81B75E5D300A49750 /* SQLiteManager.m */,
+				5B8AEB7F1B7C4A4700567B46 /* BoyeDataBaseManager.h */,
+				5B8AEB801B7C4A4700567B46 /* BoyeDataBaseManager.m */,
 			);
 			path = "SQLIite数据库管理";
 			sourceTree = "<group>";
@@ -1565,6 +1570,7 @@
 				5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */,
 				5BD4AACF1B6B6F580041F730 /* UUChart.m in Sources */,
 				5B38C7A31B5390CF0063912C /* LetfView.m in Sources */,
+				5B8AEB811B7C4A4700567B46 /* BoyeDataBaseManager.m in Sources */,
 				5B38C7A51B5390CF0063912C /* BaseViewController.m in Sources */,
 				5B0155D91B5DDD1900056CFC /* DeviceBindController.m in Sources */,
 				9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */,

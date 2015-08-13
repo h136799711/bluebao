@@ -19,13 +19,8 @@
     return self;
 }
 
--(BluetoothDataManager *)lastUsableData{
-    if (_lastUsableData == nil) {
-        _lastUsableData = [[BluetoothDataManager alloc] init];
-    }
-    return _lastUsableData;
-}
-///  数据可用，如果out ，set，  不可用，out ，在，有效期之后，传什么，书神马
+
+///  数据可用，如果out ，set，  不可用，out ，在，有效期之后，
 
 -(BOOL) checkBluetoothDataUsable:(BluetoothDataManager *) blueData{
     
@@ -55,14 +50,34 @@
 }
 
 
-
-
 //  类方法
 +(BOOL) checkDataUsable:(BluetoothDataManager * )blueData{
     
    return  [[self alloc] checkBluetoothDataUsable:blueData];
 }
+//数据是否为 0
+-(BOOL) isDataNull:(NSInteger)datanum {
+    if (datanum== 0) {
+        return YES;
+    }
+    return NO;
+}
 
+-(BOOL) isSettingTimeOut{
+    
+    if ([self get]== nil ) {
+        
+        self.isOutTime = YES;
+        NSLog(@" 数据不可用，不在有效时间范围内 ");
+
+        return YES;
+    }else{
+        
+        self.isOutTime = NO;
+        NSLog(@" 数据不可用，在有效时间范围内 ");
+        return NO;
+    }
+}
 
 //设置时间段 、时间段内 返回上一个数据 ，过了时间，返回
 -(void)  setOutDate{

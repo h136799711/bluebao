@@ -61,7 +61,7 @@
     //TODO: 有新数据接收时.
     NSLog(@"======================================");
     
-    NSLog(@"%@,长度%lu",dataString,(unsigned long)dataString.length);
+   // NSLog(@"%@,长度%lu",dataString,(unsigned long)dataString.length);
     
     NSRange cmdRang = NSMakeRange(0, 6);
     NSString * cmdStr = [[dataString substringWithRange:cmdRang] lowercaseString];
@@ -133,7 +133,7 @@
    
     NSInteger  min = [self getsubString:cmdStr index:0 length:2];
     NSInteger  scn = [self getsubString:cmdStr index:2 length:2];
-    NSLog(@" -  hour- %ld -min-%ld  ",min,scn);
+   // NSLog(@" -  hour- %ld -min-%ld  ",min,scn);
 
     return min * 60 + scn;
 }

@@ -60,6 +60,8 @@
     _upDownImagName = @[@"down.png",@"up.png"];
     
     self.userInfo = [MainViewController sharedSliderController].userInfo;
+    //处理初始状态
+    [self _initInfo];
     
     NSString * heightStr = [self getStrNum:self.userInfo.height unit:@"CM"];
     NSString * weightStr = [self getStrNum:self.userInfo.weight unit:@"KG"];
@@ -72,6 +74,21 @@
     [self _initViews];
 }
 
+-(void)_initInfo{
+    
+    if (self.userInfo.age<= 8) {
+        self.userInfo.age = 20;
+    }
+    if (self.userInfo.height <= 150) {
+        self.userInfo.height = 170;
+    }
+    if (self.userInfo.weight <=30) {
+        self.userInfo.weight = 55;
+    }
+    if (self.userInfo.target_weight <= 30) {
+        self.userInfo.target_weight = 55;
+    }
+}
 /*
  *初始化视图
  **/
@@ -90,6 +107,9 @@
     [self _initGest];
 }
 
+-(void)peosonInfo{
+    
+}
 
 #pragma mark ----创建表 ---
 -(void)_initTableview{
@@ -398,6 +418,7 @@
     NSInteger  weight = [self getCurrentNum:self.valueArray[1]];
     
     NSString * bmistr =  [MyTool getBMIStringWeight:weight height:height];
+    
     [self.valueArray replaceObjectAtIndex:sorArray.count -1 withObject:bmistr];
     
 

@@ -10,6 +10,7 @@
 #import "BluetoothDataManager.h"
 @interface CheckBluetoothData : NSObject
 
+
 /**
  * 蓝牙数据是否可用
  **/
@@ -20,12 +21,12 @@
  *检查后返回的蓝牙数据
  */
 @property (nonatomic,strong) BluetoothDataManager * bluetoothData;
-
-/**
- *上次可用蓝牙数据
- */
-
-@property (nonatomic,strong) BluetoothDataManager * lastUsableData;
+//
+///**
+// *上次可用蓝牙数据
+// */
+//
+//@property (nonatomic,strong) BluetoothDataManager * lastUsableData;
 
 /*
  * 蓝牙数据检查

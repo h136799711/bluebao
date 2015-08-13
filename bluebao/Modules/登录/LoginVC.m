@@ -36,16 +36,37 @@
     [self _inits];
 }
 
-//初始化
+//初始化用户名密码
+/*
+ * 登录成功，缓存用户名，
+ * 选中记住密码，下次登陆显示密码，
+ */
+
 -(void)_inits{
-    
-    NSString * userName = [[CacheFacade sharedCache] get:BOYE_USER_NAME];
+   
+
+    NSString * userName =[CommonCache getUserAccountInfoKey:BOYE_USER_NAME];
     if (userName != nil) {
         self.accontNumTextfield.text = userName;
+        
+        NSString * userpsw = [CommonCache getUserAccountInfoKey:BOYE_USER_PSW];
+        if (userpsw != nil) {
+            self.pswTextfield.text = userpsw;
+            self.remberCodeBtn.selected = NO;
+        }else{
+           
+            self.pswTextfield.text = @"";
+            self.remberCodeBtn.selected = YES;
+        }
+
+        
+    }else{
+        self.pswTextfield.text = @"";
+        self.remberCodeBtn.selected = YES;
     }
-    self.pswTextfield.text = @"";
-    self.remberCodeBtn.selected = YES;
+    
     [self rememberCodeClick:self.remberCodeBtn];
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,15 +99,8 @@
     //注册
     [ButtonFactory decorateButton:self.registerBtn forType:BOYE_BTN_WARNING];
 
-    
-//    [MyTool cutViewConner:self.loginBtn radius:5];
-//    [MyTool cutViewConner:self.registerBtn radius:5];
  
     self.accontNumTextfield.clearButtonMode =  UITextFieldViewModeAlways;
-    
-    
-//    self.accontNumTextfield.text = @"2540927273@qq.com";
-//    self.pswTextfield.text = @"123456";
     
     self.accontNumTextfield.delegate = self;
     self.pswTextfield.delegate = self;
@@ -148,7 +162,6 @@
         return NO;
     }
     
-    
     return YES;
 }
 
@@ -167,7 +180,6 @@
     
     RegistVC * regist = [[RegistVC alloc] init];
     [self.navigationController pushViewController:regist animated:YES];
-    
     
 }
 
@@ -200,8 +212,16 @@
         if (userInfo != nil ) {
             //  NSLog(@" \r-- %@",userInfo);
             [MainViewController sharedSliderController].userInfo = userInfo;
+            //缓存用户 id
             
-            [[CacheFacade   sharedCache] setObject:userInfo.username forKey:BOYE_USER_NAME afterSeconds:3600*24];
+            [CommonCache saveUserAccountInfo:user.username key:BOYE_USER_NAME];
+            if (self.remberCodeBtn.selected ) {
+                NSLog(@"记住密码");
+                [CommonCache saveUserAccountInfo:user.password key:BOYE_USER_PSW];
+            }else{
+                [CommonCache saveUserAccountInfo:nil key:BOYE_USER_PSW];
+            }
+            
             [self jumpMainPage];
             
         }
@@ -229,6 +249,7 @@
     }else{
         self.label_remberCode.textColor = [UIColor lightGrayColor];
     }
+    
     
 }
 

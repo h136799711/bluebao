@@ -159,6 +159,8 @@
     [UIView commitAnimations];
     self.isOpen = YES;
     [self sendSelfFrameNotification];
+    
+    [self.pickerView selectRow:self.currentmumZoom-self.minimumZoom inComponent:1 animated:NO];
 
 }
 
@@ -206,9 +208,8 @@
 -(void)setCurrentmumZoom:(NSInteger)currentmumZoom{
     _currentmumZoom = currentmumZoom;
     if (_currentmumZoom < self.minimumZoom) {
-        _currentmumZoom = self.minimumZoom;
+        _currentmumZoom = self.minimumZoom+10;
     }
-    [self.pickerView selectRow:self.currentmumZoom-self.minimumZoom inComponent:1 animated:NO];
     
 //    NSLog(@" - -%ld--   %ld -  row - %ld" ,self.minimumZoom,self.currentmumZoom, self.currentmumZoom-self.minimumZoom );
 }

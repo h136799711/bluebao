@@ -20,6 +20,10 @@
     UserInfo * userinfo = [MainViewController sharedSliderController].userInfo;
     NSString * key = [NSString stringWithFormat:@"GlobalGoalCalorie_uid_%ld",userinfo.uid];
     NSString * goal =  [[CacheFacade sharedCache]get:key];
+    if (goal == nil) {
+        
+        return [self defaultString];
+    }
     
     return goal;
 }
@@ -35,6 +39,32 @@
     
 }
 
+//默认值
++(NSString *) defaultString{
+    
+    return @"500";
+}
+
+
+/**
+ *获取用户密码
+ *
+ * @return 密码
+ */
+
++(NSString *) getUserAccountInfoKey:(NSString *)keyString{
+    
+    NSString * key = [NSString stringWithFormat:@"%@_",keyString];
+    NSString * result = [[CacheFacade sharedCache] get:key];
+    return result;
+}
+
++(void) saveUserAccountInfo:(NSString *)info key:(NSString *)keyString{
+    
+    NSString * key = [NSString stringWithFormat:@"%@_",keyString];
+    
+    [[CacheFacade  sharedCache] setObject:info forKey:key afterSeconds:3600*24*30];
+}
 
 
 
