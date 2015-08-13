@@ -39,6 +39,9 @@
 #pragma mark -清理所有子视图
 +(void)clearAllSonView:(UIView *)view;
 
+#pragma mark -所有子视图是否可用
++(void)touchAbleSonView:(UIView *)view able:(BOOL)able;
+
 #pragma mark 切割圆角
 +(void)cutViewConner:(UIView *)view radius:(CGFloat)radius;
 

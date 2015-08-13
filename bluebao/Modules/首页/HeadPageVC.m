@@ -13,6 +13,7 @@
 #import "DrawProgreView.h"
 #import "BicyleReqModel.h"
 #import "BoyeConnectView.h"
+#import "CheckBluetoothData.h"
 
 
 @interface HeadPageVC ()<BOYEBluetoothStateChangeDelegate>{
@@ -29,6 +30,8 @@
 
 @property (nonatomic,strong) BoyeBluetooth              * boyeBluetooth;            //蓝牙
 @property (nonatomic,strong) BluetoothDataManager       *currentBluetothData;       // 当前蓝牙数据解析类
+@property (nonatomic,strong) BluetoothDataManager       *lastUsedBluetothData;       // 当前蓝牙数据解析类
+
 @property (nonatomic,strong) Bicyle                     * bicylelb;                 // 蓝堡Bicycle数据类
 @property (nonatomic,strong) NSDate                     * nextUpLoadDateTime;       //下一个上传时间
 @property (nonatomic,strong) BoyeConnectView            * connectView;              //连接跑步机
@@ -53,10 +56,15 @@
     
     if (_currentBluetothData == nil) {
         _currentBluetothData = [[BluetoothDataManager alloc] init];
-
     }
-    
     return _currentBluetothData;
+}
+
+-(BluetoothDataManager *)lastUsedBluetothData{
+    if (_lastUsedBluetothData == nil) {
+        _lastUsedBluetothData = [[BluetoothDataManager alloc] init];
+    }
+    return _lastUsedBluetothData;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,20 +73,31 @@
 
     [[CacheFacade sharedCache] setObject:@"500" forKey:BOYE_TODAY_TARGET_CALORIE];
     self.title =@"蓝堡动感单车";
-    
-    _upTimeInterval = 10;
-    _nextUpLoadDateTime = [NSDate date];
-     [self nextLoadTime];;
+
+    //初始化数据上传时间
+    [self _initUpTime];
     
     _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗",@"路程"];
     _imageName = @[@"xinlv.png",@"sd.png",@"time.png",@"sport.png",@"road.png"];
     _sortArray = @[@"体脂肪率",@"体水分率",@"体年龄",@"基础代谢",@"肌肉含量",@"内脏含量",@"骨骼含量",@"皮下脂肪"];
     [self _initViews];
     
-    
+    [self test];
     
 }
 
+/**
+ * 初始化数据上传时间
+ *
+ **/
+
+-(void)_initUpTime{
+    
+    _upTimeInterval = 10;
+    _nextUpLoadDateTime = [NSDate date];
+    [self nextLoadTime];;
+    
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     
@@ -86,7 +105,10 @@
      //蓝牙
     self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
     self.boyeBluetooth.delegate = self;
-    
+   
+    self.userInfo = [MainViewController sharedSliderController].userInfo;
+    [headCollectionView reloadData];
+
    
     if ([MainViewController sharedSliderController].isVCCancel == NO) {
         [self doViewAppearBefore];
@@ -194,7 +216,7 @@
     
     if (indexPath.row == _labelarray.count) {
         
-        return 80;
+        return 60;
     }else{
         return 44;
     }
@@ -321,15 +343,17 @@
 #pragma mark --- 身体指标 ---
 -(UIView *)footerView{
     
-  
+    CGFloat  minLineSpacing = 15;
+    CGFloat  minInteritemSpacing = 15;
+    
     UIView * view  = [[UIView alloc] init];
     view.backgroundColor = [UIColor clearColor];
-    view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 200);
+    view.frame = CGRectMake(0, 0, SCREEN_WIDTH, itemWidth *2 +minInteritemSpacing+10);
     //初始化collection view
     UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
-    flowLayout.minimumLineSpacing = 10;      //水平间距
-    flowLayout.minimumInteritemSpacing = 10; //垂直间距
-    flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth);
+    flowLayout.minimumLineSpacing = minLineSpacing;      //水平间距
+    flowLayout.minimumInteritemSpacing = minInteritemSpacing; //垂直间距
+    flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth-10);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     flowLayout.sectionInset = UIEdgeInsetsMake(1, 0, 0, 0);//整体相对页面的位置，上左下右
     //collectionView
@@ -377,7 +401,8 @@
     
     BicyleReqModel * reqModel = [[BicyleReqModel alloc] init];
     reqModel.uid = self.userInfo.uid;
-    reqModel.uuid = @"OTO458-1082"; //LR-866
+//    reqModel.uuid = @"OTO458-1082"; //LR-866
+    reqModel.uuid = self.boyeBluetooth.connectedDevice.uuid;
     reqModel.time = [[_dateChooseView.newbDate  dateDayTimeStamp] integerValue];
 
      [BoyeBicyleManager  requestBicyleData:reqModel :^(NSDictionary *successdDic) {
@@ -413,13 +438,13 @@
     reqModel.uid = self.userInfo.uid;
     
 //    reqModel.uuid = @"OTO458-1082"; //LR-866
-    reqModel.uuid = @"OTO458-1082";
+    reqModel.uuid = self.boyeBluetooth.connectedDevice.uuid;
   
     reqModel.bicyleModel = _currentBluetothData.bicyleModel;
 
     #pragma mark -- TODO:..........
 
-    reqModel.bicyleModel.target_calorie = 10;
+    reqModel.bicyleModel.target_calorie = [[CommonCache getGoal]integerValue];
 
     [BoyeBicyleManager requestBicyleDataUpload:reqModel
                                           complete:^(BOOL bicyleSuccessed) {
@@ -491,14 +516,35 @@
     NSLog(@" datastring: %@",dataString);
     //析蓝牙数据
     BluetoothDataManager * bluetoothData = [[BluetoothDataManager alloc] initWithBlueToothData:dataString];
+   
+    #pragma mark -- TODO.蓝牙数据检查...
+    CheckBluetoothData * check = [[CheckBluetoothData alloc] init];
+   BOOL isable = [check checkBluetoothDataUsable:bluetoothData];
+    
+    if (isable == YES ) {  //数据有效
+        _lastUsedBluetothData = bluetoothData;
+    
+    }else{    //数据无效
+
+        if (check.isOutTime) {
+    #pragma makr -- TODO ...
+           
+        bluetoothData.bicyleModel.calorie = _lastUsedBluetothData.bicyleModel.calorie;
+            
+        }else{
+
+        }
+    }
+    
     _currentBluetothData = bluetoothData;
 
+    
     //刷新首页
     if (self.dateChooseView.isToday) {
         
         if ([NSDate currDateIsOutSetingTime:_nextUpLoadDateTime]) {
             
-//            [self upLoadBicyleData];
+            [self upLoadBicyleData];
             //下次上传时间
             [self nextLoadTime];
         }
@@ -531,6 +577,30 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)test{
+    
+//    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(testgoal) userInfo:nil repeats:YES];
+
+}
+-(void)testgoal{
+  
+    static NSInteger count = 0;
+    count ++;
+    count = count %25; ;
+    BluetoothDataManager * bluetoothData = [[BluetoothDataManager alloc] init];
+    bluetoothData.bicyleModel.calorie = arc4random() %5;
+    
+    if (count >= 12) {
+        bluetoothData.bicyleModel.calorie = 0;
+    }
+    NSLog(@"%ld --- %ld",bluetoothData.bicyleModel.calorie,count);
+
+    if ([CheckBluetoothData checkDataUsable:bluetoothData]) {
+        _currentBluetothData = bluetoothData;
+    }
+
+    
+}
 //#pragma mark -- 将要消失||隐藏
 //-(void)viewWillDisappear:(BOOL)animated{
 //    [super viewWillDisappear:YES];

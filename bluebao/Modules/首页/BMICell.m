@@ -32,7 +32,7 @@
         
         self.backgroundColor = [UIColor clearColor];
         self.contentView.backgroundColor = [UIColor clearColor];
-        self.contentView.height = 80;
+        self.contentView.height = 60;
         array = @[@"体重",@"BMI",@"正常"];
        
         //顶部线条
@@ -119,7 +119,7 @@
 -(UILabel *)line:(CGFloat)height{
     
     UILabel * label = [[UILabel alloc] init];
-    label.frame =CGRectMake(0, height, SCREEN_WIDTH, 1);
+    label.frame =CGRectMake(0, height, SCREEN_WIDTH, 0.5);
     label.backgroundColor =[UIColor colorWithHexString:@"#babbb8"];
     return label;
 }

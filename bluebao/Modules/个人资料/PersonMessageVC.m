@@ -173,13 +173,13 @@
   
     self.pickerKeyBoard.tag = 0;
     if (indexPath.row == 0) {
-        self.pickerKeyBoard.minimumZoom = 50;
+        self.pickerKeyBoard.minimumZoom = 150;
         self.pickerKeyBoard.maximumZoom = 250;
         self.pickerKeyBoard.dataUnit = @"CM";
 
     }else{
        
-        self.pickerKeyBoard.minimumZoom = 20;
+        self.pickerKeyBoard.minimumZoom = 30;
         self.pickerKeyBoard.maximumZoom = 150;
         self.pickerKeyBoard.dataUnit = @"KG";
         

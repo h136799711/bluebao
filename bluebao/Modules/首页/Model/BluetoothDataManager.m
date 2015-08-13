@@ -16,6 +16,14 @@
 @end
 @implementation BluetoothDataManager
 
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        
+        
+    }
+    return self;
+}
 
 -(Bicyle *)bicyleModel{
     if (_bicyleModel == nil) {
@@ -23,6 +31,7 @@
     }
     return _bicyleModel;
 }
+
 
 -(instancetype)initWithBlueToothData:(NSString *)dataString{
     
@@ -38,71 +47,77 @@
             return self;
         }
         
-        
-        
-        //TODO: 有新数据接收时.
-        NSLog(@"======================================");
-        
-        NSLog(@"%@,长度%lu",dataString,(unsigned long)dataString.length);
-        
-        NSRange cmdRang = NSMakeRange(0, 6);
-        NSString * cmdStr = [[dataString substringWithRange:cmdRang] lowercaseString];
-        
-        if([cmdStr isEqualToString:@"5a0ee5"] && dataString.length == 32){
-            
-            //时间
-            cmdStr = [[dataString substringWithRange:NSMakeRange(6, 4)] lowercaseString];
-          //   NSLog(@"时间  %@",cmdStr );
-            self.bicyleModel.cost_time = [self getTimes:cmdStr];
-            
-            //速度
-            cmdStr = [[dataString substringWithRange:NSMakeRange(10, 4)] lowercaseString];
-            self.bicyleModel.speed = [self getTenHexadecimalFromSixteen:cmdStr] ;
-            NSLog(@"速度 %@  %ld",cmdStr,self.bicyleModel.speed );
-
-            //距离；
-            cmdStr = [[dataString substringWithRange:NSMakeRange(14, 6)] lowercaseString];
-            self.bicyleModel.distance = [self getDistance:cmdStr] ;
-            NSLog(@"距离 %@  %ld",cmdStr, self.bicyleModel.distance);
-
-            //热量
-            cmdStr = [[dataString substringWithRange:NSMakeRange(20, 4)] lowercaseString];
-            self.bicyleModel.calorie = [self getTenHexadecimalFromSixteen:cmdStr] ;
-            NSLog(@"热量 %@  %ld",cmdStr,self.bicyleModel.calorie );
-
-            //总程
-            cmdStr = [[dataString substringWithRange:NSMakeRange(24, 4)] lowercaseString];
-//            self.bicyleModel.total_distance = [self getTenHexadecimalFromSixteen:cmdStr] ;
-            self.bicyleModel.total_distance = [self getTotalDistance:cmdStr];
-            NSLog(@"总程 %@ %ld",cmdStr, self.bicyleModel.total_distance);
-
-            //心率
-            cmdStr = [[dataString substringWithRange:NSMakeRange(28, 2)] lowercaseString];
-            self.bicyleModel.heart_rate = [self getTenHexadecimalFromSixteen:cmdStr] ;
-            NSLog(@"心率 %@ %ld",cmdStr, self.bicyleModel.heart_rate );
-            
-            //效验
-            cmdStr = [[dataString substringWithRange:NSMakeRange(30, 2)] lowercaseString];
-            //        NSLog(@"校验和 %@",cmdStr);
-            _checksum = [self getTenHexadecimalFromSixteen:cmdStr] ;
-            
-            
-            //        NSLog(@"data = %@",data);
-            //        [self.descData addObject:data];
-            //        NSDateFormatter * formatter = [NSDate defaultDateFormatter ];
-            //
-            //        NSString * curDateString = [formatter stringFromDate:[NSDate defaultCurrentDate]];
-            //        
-            //        self.tvLog.text  = [self.tvLog.text stringByAppendingFormat:@"\n %@: %@",curDateString,data ];
-            //        
-            //        NSLog(@"======================================");
-            
-        }
-        
+        [self handleBluetoothData:dataString];
 
     }
     
     return self;
+}
+
+//处理数据
+-(void) handleBluetoothData:(NSString *)dataString{
+    
+    
+    //TODO: 有新数据接收时.
+    NSLog(@"======================================");
+    
+    NSLog(@"%@,长度%lu",dataString,(unsigned long)dataString.length);
+    
+    NSRange cmdRang = NSMakeRange(0, 6);
+    NSString * cmdStr = [[dataString substringWithRange:cmdRang] lowercaseString];
+    
+    if([cmdStr isEqualToString:@"5a0ee5"] && dataString.length == 32){
+        
+        //时间
+        cmdStr = [[dataString substringWithRange:NSMakeRange(6, 4)] lowercaseString];
+        //   NSLog(@"时间  %@",cmdStr );
+        self.bicyleModel.cost_time = [self getTimes:cmdStr];
+        
+        //速度
+        cmdStr = [[dataString substringWithRange:NSMakeRange(10, 4)] lowercaseString];
+        self.bicyleModel.speed = [self getTenHexadecimalFromSixteen:cmdStr] ;
+        NSLog(@"速度 %@  %ld",cmdStr,self.bicyleModel.speed );
+        
+        //距离；
+        cmdStr = [[dataString substringWithRange:NSMakeRange(14, 6)] lowercaseString];
+        self.bicyleModel.distance = [self getDistance:cmdStr] ;
+        NSLog(@"距离 %@  %ld",cmdStr, self.bicyleModel.distance);
+        
+        //热量
+        cmdStr = [[dataString substringWithRange:NSMakeRange(20, 4)] lowercaseString];
+        self.bicyleModel.calorie = [self getTenHexadecimalFromSixteen:cmdStr] ;
+        NSLog(@"热量 %@  %ld",cmdStr,self.bicyleModel.calorie );
+        
+        //总程
+        cmdStr = [[dataString substringWithRange:NSMakeRange(24, 4)] lowercaseString];
+        //            self.bicyleModel.total_distance = [self getTenHexadecimalFromSixteen:cmdStr] ;
+        self.bicyleModel.total_distance = [self getTotalDistance:cmdStr];
+        NSLog(@"总程 %@ %ld",cmdStr, self.bicyleModel.total_distance);
+        
+        //心率
+        cmdStr = [[dataString substringWithRange:NSMakeRange(28, 2)] lowercaseString];
+        self.bicyleModel.heart_rate = [self getTenHexadecimalFromSixteen:cmdStr] ;
+        NSLog(@"心率 %@ %ld",cmdStr, self.bicyleModel.heart_rate );
+        
+        //效验
+        cmdStr = [[dataString substringWithRange:NSMakeRange(30, 2)] lowercaseString];
+        //        NSLog(@"校验和 %@",cmdStr);
+        _checksum = [self getTenHexadecimalFromSixteen:cmdStr] ;
+        
+        
+        //        NSLog(@"data = %@",data);
+        //        [self.descData addObject:data];
+        //        NSDateFormatter * formatter = [NSDate defaultDateFormatter ];
+        //
+        //        NSString * curDateString = [formatter stringFromDate:[NSDate defaultCurrentDate]];
+        //
+        //        self.tvLog.text  = [self.tvLog.text stringByAppendingFormat:@"\n %@: %@",curDateString,data ];
+        //
+        //        NSLog(@"======================================");
+        
+    }
+    
+    
 }
 
 -(NSInteger)  getTenHexadecimalFromSixteen:(NSString *)hexstring {
