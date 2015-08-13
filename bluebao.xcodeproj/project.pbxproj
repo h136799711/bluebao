@@ -1693,7 +1693,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "蓝堡";
-				PROVISIONING_PROFILE = "222c8322-80c6-45e8-8574-7400051bb8e9";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1731,7 +1731,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "蓝堡";
-				PROVISIONING_PROFILE = "222c8322-80c6-45e8-8574-7400051bb8e9";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1763,7 +1763,7 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "蓝堡";
-				PROVISIONING_PROFILE = "222c8322-80c6-45e8-8574-7400051bb8e9";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1793,7 +1793,7 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "蓝堡";
-				PROVISIONING_PROFILE = "222c8322-80c6-45e8-8574-7400051bb8e9";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
