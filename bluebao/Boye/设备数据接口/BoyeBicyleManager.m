@@ -37,8 +37,8 @@
             
             NSString * token  = [BoyeToken getAccessToken];
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/day?access_token=%@",token];
-            NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
-            NSString * time = [NSString stringWithFormat:@"%ld",bicyReqModel.time];
+            NSString * uid = [NSString stringWithFormat:@"%ld",(long)bicyReqModel.uid];
+            NSString * time = [NSString stringWithFormat:@"%ld",(long)bicyReqModel.time];
             NSLog(@"--\r-uid- %@- %@ -uuid -time-%@ ",uid,bicyReqModel.uuid,time);
             NSDictionary * params =  @{
                                        @"uid":uid,

@@ -60,12 +60,12 @@
     return _currentBluetothData;
 }
 
--(BluetoothDataManager *)lastUsedBluetothData{
-    if (_lastUsedBluetothData == nil) {
-        _lastUsedBluetothData = [[BluetoothDataManager alloc] init];
-    }
-    return _lastUsedBluetothData;
-}
+//-(BluetoothDataManager *)lastUsedBluetothData{
+//    if (_lastUsedBluetothData == nil) {
+//        _lastUsedBluetothData = [[BluetoothDataManager alloc] init];
+//    }
+//    return _lastUsedBluetothData;
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -522,35 +522,39 @@
    BOOL isable = [check checkBluetoothDataUsable:bluetoothData];
     
     if (isable == YES ) {  //数据有效
-        _lastUsedBluetothData = bluetoothData;
-    
-    }else{    //数据无效
-
-        if (check.isOutTime) {
-    #pragma makr -- TODO ...
-           
-        bluetoothData.bicyleModel.calorie = _lastUsedBluetothData.bicyleModel.calorie;
-            
-        }else{
-
-        }
-    }
-    
-    _currentBluetothData = bluetoothData;
-
-    
-    //刷新首页
-    if (self.dateChooseView.isToday) {
+//        _lastUsedBluetothData = bluetoothData;
+        _currentBluetothData = bluetoothData;
         
-        if ([NSDate currDateIsOutSetingTime:_nextUpLoadDateTime]) {
+        //刷新首页
+        if (self.dateChooseView.isToday) {
             
-            [self upLoadBicyleData];
-            //下次上传时间
-            [self nextLoadTime];
+            
+            
+            [_tableView reloadData];
+            [self showFinishProgre];
+            
+            //上传
+            if ([NSDate currDateIsOutSetingTime:_nextUpLoadDateTime]) {
+                
+                [self upLoadBicyleData];
+                //设置下次上传时间
+                [self nextLoadTime];
+            }
+            
         }
-        [_tableView reloadData];
-        [self showFinishProgre];
+        
+        
+    }else{    //数据无效
+        
+        //TODO: 更新时间
+       
+        
+        
     }
+    
+
+    
+    
 }
 
 - (NSString * )dataToString:(NSData *)value{

@@ -18,8 +18,12 @@
 +(NSString *)getGoal{
     
     UserInfo * userinfo = [MainViewController sharedSliderController].userInfo;
-    NSString * key = [NSString stringWithFormat:@"GlobalGoalCalorie_uid_%ld",userinfo.uid];
+    NSString * key = [NSString stringWithFormat:@"GlobalGoalCalorie_uid_%ld",(long)userinfo.uid];
     NSString * goal =  [[CacheFacade sharedCache]get:key];
+    
+    if (goal == nil) {
+        return [self defaultGoal];
+    }
     
     return goal;
 }
@@ -29,13 +33,16 @@
     
     NSNumber * timeStamp = [NSNumber numberWithDouble:[[NSDate distantFuture] timeIntervalSince1970]];
     UserInfo * userinfo = [MainViewController sharedSliderController].userInfo;
-    NSString * key = [NSString stringWithFormat:@"GlobalGoalCalorie_uid_%ld",userinfo.uid];
+    NSString * key = [NSString stringWithFormat:@"GlobalGoalCalorie_uid_%ld",(long)userinfo.uid];
     
     [[CacheFacade sharedCache]setObject: goal forKey:key afterTimeStamp:timeStamp];
     
 }
 
-
++(NSString *)defaultGoal{
+    
+    return @"500";
+}
 
 
 @end
