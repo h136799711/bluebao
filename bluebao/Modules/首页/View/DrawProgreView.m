@@ -162,7 +162,7 @@
 
     }
     
-    if (_goalNum <= _finishNum) {
+    if (percentage > 100) {
         percentage = 100;
     }
     

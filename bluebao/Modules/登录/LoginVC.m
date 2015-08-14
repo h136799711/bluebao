@@ -39,13 +39,20 @@
 //初始化
 -(void)_inits{
     
+    self.pswTextfield.text = @"";
     NSString * userName = [[CacheFacade sharedCache] get:BOYE_USER_NAME];
     if (userName != nil) {
         self.accontNumTextfield.text = userName;
+        
+        NSString * pwd =  [[CacheFacade sharedCache] get:userName];
+        if (pwd != nil){
+            self.remberCodeBtn.selected = NO;
+            [self rememberCodeClick:self.remberCodeBtn];
+            self.pswTextfield.text = pwd;
+        }
+        
     }
-    self.pswTextfield.text = @"";
-    self.remberCodeBtn.selected = YES;
-    [self rememberCodeClick:self.remberCodeBtn];
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -187,7 +194,11 @@
     }
     
 //    [self jumpMainPage];
-
+    
+    if (self.remberCodeBtn.selected) {
+        [[CacheFacade sharedCache] setObject:user.password forKey:user.username afterSeconds:24*3600*365];
+    }
+    
     [self loginRequest:user];
     
 }

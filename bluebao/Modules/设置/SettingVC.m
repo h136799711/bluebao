@@ -28,7 +28,7 @@
     
     _currSelectedRow = 0;
     _lastSelectedRow = _currSelectedRow;
-    _setArray = @[@"震动",@"声音",@"检查新版本"];
+    _setArray = @[@"震动",@"声音"];
 
     [self _initViews];
 }
@@ -54,7 +54,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 3;
+    return 2;
 }
 
 
@@ -82,35 +82,35 @@
     
     
     //选中后样式
-    if (indexPath.row == _setArray.count -1) {
-        
-        cell.detailTextLabel.text =  @"v1.1";
-        cell.accessoryType = UITableViewCellAccessoryNone;
-
-    }else{
-        
+//    if (indexPath.row == _setArray.count -1) {
+//        
+//        cell.detailTextLabel.text =  @"v1.1";
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//
+//    }else{
+    
         NSInteger   row = 0;
-        if (_currSelectedRow != _setArray.count -1) {
+//        if (_currSelectedRow != _setArray.count -1) {
             row = _currSelectedRow;
-        }else{
-            row = _lastSelectedRow;
-        }
+//        }else{
+//            row = _lastSelectedRow;
+//        }
         //震动or声音
         cell.accessoryType =  row == indexPath.row
         ? UITableViewCellAccessoryCheckmark
         :UITableViewCellAccessoryNone;
         cell.detailTextLabel.text = @"";
         
-    }
+//    }
     return cell;
 }
 
 //切换设置
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (_currSelectedRow != _setArray.count -1) {
-        _lastSelectedRow = _currSelectedRow;
-    }
+//    if (_currSelectedRow != _setArray.count -1) {
+//        _lastSelectedRow = _currSelectedRow;
+//    }
     //不是最后一个
     _currSelectedRow = indexPath.row;
     [tableView reloadData];
