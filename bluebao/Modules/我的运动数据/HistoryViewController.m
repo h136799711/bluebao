@@ -191,7 +191,10 @@
 //                            NSLog(@"upload_day=%@,calorie=%@",upload_day,max_calorie);
                             
                             max_calorie = [formatter numberFromString:(NSString *)[dict valueForKey:@"max_calorie"]];
-                            
+                            if (max_calorie != nil) {
+                                max_calorie = [NSNumber numberWithFloat: ([max_calorie floatValue] / 10.0)];
+
+                            }
                             break;
                         }
                     }
