@@ -36,12 +36,7 @@
     [self _inits];
 }
 
-//初始化用户名密码
-/*
- * 登录成功，缓存用户名，
- * 选中记住密码，下次登陆显示密码，
- */
-
+//初始化
 -(void)_inits{
     
     self.pswTextfield.text = @"";
@@ -209,14 +204,7 @@
             [MainViewController sharedSliderController].userInfo = userInfo;
             //缓存用户 id
             
-            [CommonCache saveUserAccountInfo:user.username key:BOYE_USER_NAME];
-            if (self.remberCodeBtn.selected ) {
-                NSLog(@"记住密码");
-                [CommonCache saveUserAccountInfo:user.password key:BOYE_USER_PSW];
-            }else{
-                [CommonCache saveUserAccountInfo:nil key:BOYE_USER_PSW];
-            }
-            
+            [[CacheFacade   sharedCache] setObject:userInfo.username forKey:BOYE_USER_NAME afterSeconds:3600*24];
             [self jumpMainPage];
             
         }

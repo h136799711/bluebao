@@ -45,26 +45,4 @@
 }
 
 
-/**
- *获取用户密码
- *
- * @return 密码
- */
-
-+(NSString *) getUserAccountInfoKey:(NSString *)keyString{
-    
-    NSString * key = [NSString stringWithFormat:@"%@_",keyString];
-    NSString * result = [[CacheFacade sharedCache] get:key];
-    return result;
-}
-
-+(void) saveUserAccountInfo:(NSString *)info key:(NSString *)keyString{
-    
-    NSString * key = [NSString stringWithFormat:@"%@_",keyString];
-    
-    [[CacheFacade  sharedCache] setObject:info forKey:key afterSeconds:3600*24*30];
-}
-
-
-
 @end
