@@ -447,9 +447,9 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     
     NSDate * fireDate = [[NSDate date] dateByAddingTimeInterval: 18];
 //
-    [[LocalNotify sharedNotify]fireNotificationAt:fireDate
-                                                 :[NSString stringWithFormat:@"该运动啦!"]
-                                                 :0 ];
+//    [[LocalNotify sharedNotify]fireNotificationAt:fireDate
+//                                                 :[NSString stringWithFormat:@"该运动啦!"]
+//                                                 :0 ];
     
 //    
 }

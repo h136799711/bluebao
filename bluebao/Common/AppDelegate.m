@@ -20,25 +20,8 @@
     return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    
-//    NSString * key = @"136799711";
-//    
-//    NSString * content = @"1367997111中文中文中文中文中文中文中文中1";
-//    NSString * encode = [BoyeCypto aes256Encrypt:content :key];
-//    NSLog(@"aes = %@ length=%ld",encode,content.length);
-//    NSLog(@"decode1 = %@", [BoyeCypto aes256Decrypt:encode :key]);
-////    encode =  @"I85KkQnwH25yoqR0mq1jESVnKdmENjv4rLkzs8+vNag=";
-////    NSLog(@"decode2 = %@", [BoyeCypto aes256Decrypt:encode :key]);
-//    
-////    content = @"中文hebidu126";
-////     encode = [BoyeCypto aes256Encrypt:content :key];
-////    
-////    NSLog(@"aes = %@",encode);
-////    NSLog(@"decode = %@", [BoyeCypto aes256Decrypt:encode :key]);
     
-//    NSLog(@"",[[CacheFacade sharedCache]get:@""]);
-    
-    [NSThread sleepForTimeInterval:1];
+//    [NSThread sleepForTimeInterval:1];
     
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -51,6 +34,11 @@
     [self _initBarAppearance];
     //登陆
     [self _initLogin];
+    
+    
+    [self loadConfig];
+    
+    [self handleLocalNotificationOpenApp:launchOptions];
 
     //
     [self umengPushConfig:launchOptions];
@@ -59,15 +47,27 @@
     
     [self umengShareConfig];
     
-//    NSArray *localNotifications = [UIApplication sharedApplication].scheduledLocalNotifications;
-//    
-//    for (UILocalNotification *notification in localNotifications) {
-//        NSLog(@"%@",notification.alertBody);
-//        
-////        NSDictionary *userInfo = notification.userInfo;
-//        [[UIApplication sharedApplication] cancelLocalNotification:notification];
-//    }
+    
+    
+    
     return YES;
+}
+
+#pragma mark 初始化配置
+
+-(void)handleLocalNotificationOpenApp:(NSDictionary *)launchOptions{
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif)
+    {
+        NSLog(@"接受到的通知: %@",localNotif);
+        NSDictionary* infoDic = localNotif.userInfo;
+        NSLog(@"userInfo description=%@",[infoDic description]);
+//        NSString* codeStr = [infoDic objectForKey:CODE];
+    }
+}
+
+-(void)loadConfig{
+    
 }
 
 #pragma mark 友盟代码、推送＋统计＋微信分享
@@ -207,7 +207,7 @@
     
     if (notification) {
         
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:notification.alertBody delegate:self cancelButtonTitle:@"我知道啦！" otherButtonTitles: nil];
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"系统提示" message:notification.alertBody delegate:self cancelButtonTitle:@"我知道啦！" otherButtonTitles: nil];
         [alert show];
         
     }

@@ -176,6 +176,7 @@
 		9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F41B4E5AE80013F4F1 /* AFURLRequestSerialization.m */; };
 		9F91E8001B4E5AE80013F4F1 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F61B4E5AE80013F4F1 /* AFURLResponseSerialization.m */; };
 		9F91E8011B4E5AE80013F4F1 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */; };
+		9FAB91F81B7DFE0C00BC2B8B /* localnotify.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9FAB91F71B7DFE0C00BC2B8B /* localnotify.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -511,6 +512,7 @@
 		9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9FAB91F71B7DFE0C00BC2B8B /* localnotify.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = localnotify.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1202,6 +1204,7 @@
 		9F50E5011B4E577600AB6BD8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9FAB91F71B7DFE0C00BC2B8B /* localnotify.mp3 */,
 				9F3321671B787FE400DDCEE4 /* libstdc++.dylib */,
 				9F3321611B787FB800DDCEE4 /* libiconv.dylib */,
 				9F470BCA1B75ED7200A49750 /* libsqlite3.dylib */,
@@ -1463,6 +1466,7 @@
 				9F4983761B784E3100B07AE6 /* UMSLoginViewController.xib in Resources */,
 				9F4983741B784E3100B07AE6 /* UMShareEditViewController.xib in Resources */,
 				5B38C7FB1B53C6DB0063912C /* back.png in Resources */,
+				9FAB91F81B7DFE0C00BC2B8B /* localnotify.mp3 in Resources */,
 				9F4983791B784E3100B07AE6 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				5B38C7921B5390CF0063912C /* RegistVC.xib in Resources */,
 				5B38C7FD1B53C6DB0063912C /* edit.png in Resources */,

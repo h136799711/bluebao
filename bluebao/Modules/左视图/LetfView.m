@@ -97,8 +97,9 @@
         UISwitch * stch = [[UISwitch alloc] init];
         stch.bounds = CGRectMake(0, 0, 50, 30);
         stch.center = CGPointMake(tableView.width - stch.width/2.0 - 10,cell.contentView.center.y );
+        stch.on = [LocalNotify sharedNotify].isNotify;
         [stch addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
-        stch.on = YES;
+        
         [cell.contentView addSubview:stch];
     }
     
@@ -241,7 +242,24 @@
 
 #pragma mark -- 闹铃开关 --
 
+/**
+ *  闹铃提醒开关
+ *
+ *  @param stch UISwitch
+ */
 -(void)switchClick:(UISwitch *)stch{
+    
+    if (stch.isOn) {
+        
+        [[LocalNotify sharedNotify] turnOn];
+        //TODO: 再次读取，提醒设置，发送通知。
+        NSDate * date = [[NSDate date] dateByAddingTimeInterval:6];
+        [[LocalNotify sharedNotify]fireNotification:@"123456" At:date WithContent:@"测试" HasInterval:NSCalendarUnitMinute];
+        
+    }else{
+        [[LocalNotify sharedNotify] turnOff];
+        [[LocalNotify sharedNotify] cancelAll];
+    }
     
     NSLog(@"闹铃");
    // [self localNotification];
