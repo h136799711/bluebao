@@ -32,7 +32,7 @@
         
         self.backgroundColor = [UIColor clearColor];
         self.contentView.backgroundColor = [UIColor clearColor];
-        self.contentView.height = 60;
+        self.contentView.height = 56;
         array = @[@"体重",@"BMI",@"正常"];
        
         //顶部线条

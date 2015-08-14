@@ -60,12 +60,12 @@
     return _currentBluetothData;
 }
 
-//-(BluetoothDataManager *)lastUsedBluetothData{
-//    if (_lastUsedBluetothData == nil) {
-//        _lastUsedBluetothData = [[BluetoothDataManager alloc] init];
-//    }
-//    return _lastUsedBluetothData;
-//}
+-(BluetoothDataManager *)lastUsedBluetothData{
+    if (_lastUsedBluetothData == nil) {
+        _lastUsedBluetothData = [[BluetoothDataManager alloc] init];
+    }
+    return _lastUsedBluetothData;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -191,6 +191,8 @@
             headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
         }
         
+        headCell.signLabelValue.text = [BBManageCode getHeaderStrRow:indexPath.row bicyle:_bicylelb];
+        
         return headCell;
 
     }else{
@@ -216,7 +218,7 @@
     
     if (indexPath.row == _labelarray.count) {
         
-        return 60;
+        return 56;
     }else{
         return 44;
     }
@@ -437,8 +439,8 @@
 
     reqModel.uid = self.userInfo.uid;
     
-//    reqModel.uuid = @"OTO458-1082"; //LR-866
-    reqModel.uuid = self.boyeBluetooth.connectedDevice.uuid;
+    reqModel.uuid = @"OTO458-1082"; //LR-866
+//    reqModel.uuid = self.boyeBluetooth.connectedDevice.uuid;
   
     reqModel.bicyleModel = _currentBluetothData.bicyleModel;
 
@@ -450,7 +452,6 @@
                                           complete:^(BOOL bicyleSuccessed) {
                                               if (bicyleSuccessed) {
                                                   NSLog(@"bicyleSuccessed");
-                                                  
                                               }
         }];
 }
@@ -605,6 +606,18 @@
 
     
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    NSLog(@" ************************ 视图将要小时") ;;
+    if ([MainViewController sharedSliderController].isVCCancel) {
+            NSLog(@" 点击了注销") ;;
+        
+        self.connectView.isConnect = NO;
+    }
+    
+}
+
 //#pragma mark -- 将要消失||隐藏
 //-(void)viewWillDisappear:(BOOL)animated{
 //    [super viewWillDisappear:YES];
