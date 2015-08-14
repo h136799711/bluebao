@@ -10,6 +10,8 @@
 #import "GoalCell.h"
 #import "GoalData.h"
 #import "LocalNotify.h"
+#import "BoyeDataBaseManager.h"
+#import "BoyeGoaldbModel.h"
 
 static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
@@ -21,7 +23,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     UIView                  *_headerView;
     UIView                  *_footerView;
     NSString                *_goalDateLabeltext;
-    
+    NSArray                 * btnArray;
 }
 
 @end
@@ -51,20 +53,18 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 //进入页面获得保存目标
 -(void) getDocumentsFile{
     
-    //读取文件
-    [BoyeFileMagager readDefaultGoalData:^(NSArray *goalArr) {
+    NSArray * dataArray = [BoyeDataBaseManager getGoalDataUserID:self.useInfo.uid week:0];
+    if (dataArray) {
         
-        if (goalArr != nil) {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-            [self.dataArray removeAllObjects];
-            for (GoalData * data in goalArr) {
-                [self.dataArray addObject:data];
-            }
-            
-            [self isHasDataAdjust];
-            [_goalTableView reloadData];
+        for (BoyeGoaldbModel * model in dataArray) {
+            [self.dataArray addObject:model];
         }
-    }];
+    }
+    
+    [self isHasDataAdjust];
+    [_goalTableView reloadData];
+    
+
 }
 
 
@@ -128,10 +128,10 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
             [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        GoalData * goaldate = [self.dataArray objectAtIndex:indexPath.row];
+       BoyeGoaldbModel * goaldate = [self.dataArray objectAtIndex:indexPath.row];
         
-        cell.timeLabel.text = goaldate.timestr;
-        cell.goalLael.text  = [NSString stringWithFormat:@"%ld卡",(long)goaldate.goalNumber];
+        cell.timeLabel.text = goaldate.date_time;
+        cell.goalLael.text  = [NSString stringWithFormat:@"%ld卡",goaldate.target];
         
         cell.alterBtn.tag = indexPath.row;
         cell.deleteBtn.tag = indexPath.row ;
@@ -185,9 +185,11 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 -(void) deleteBtnClick:(UIButton *)deleteBtn{
     
     NSLog(@"删除");
-    
     self.goalPickerView.tag = deleteBtn.tag;
-    
+   
+    BoyeGoaldbModel * model = self.dataArray[deleteBtn.tag];
+    //删除数据库数据
+    [BoyeDataBaseManager deleteDataID:model.db_id];
     //删除数据源
     [self.dataArray removeObjectAtIndex:deleteBtn.tag];
     
@@ -202,8 +204,8 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     
     [self.goalPickerView close];
 
-    //保存最新目标
-    [self saveGoalArrayToDocments];
+//    //保存最新目标
+//    [self saveGoalArrayToDocments];
 }
 
 #pragma mark -- 创建日期标签 ---
@@ -212,21 +214,41 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     if (_headerView == nil) {
        _headerView = [[UIView alloc] init];
         _headerView.backgroundColor = [UIColor clearColor];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 100);
         
         UILabel * headerLabel = [[UILabel alloc] init];
-        headerLabel.frame = _headerView.frame;
+        headerLabel.frame = CGRectMake(0, 0, _headerView.width, 40);
         headerLabel.tag = 10;
         headerLabel.textAlignment = NSTextAlignmentCenter;
         headerLabel.font = FONT(17);
         [_headerView addSubview:headerLabel];
+        
+        btnArray =  [BBManageCode createWeekDayView:_headerView cutHeight:headerLabel.height];
+        for (UIButton * btn in btnArray) {
+            
+            [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+        }
+
     }
     
     UILabel * headl = (UILabel *)[_headerView viewWithTag:10];
     headl.text = [MyTool getCurrentDataFormat:@"yy-M-dd"];
     _goalDateLabeltext = headl.text;
+    
+    
+    
     return _headerView;
 }
+-(void)btnClick:(UIButton *)btn{
+    
+    NSLog(@" btn.tag  %ld "   , btn.tag);
+    
+    
+    
+}
+
+
 
 #pragma mark --- 创建底部按钮 --
 -(UIView * )creatFooterView{
@@ -295,66 +317,70 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
 -(void)goalPickerView:(GoalPickerView *)picker dateString:(NSString *)time goalNumber:(NSInteger)goalNumber{
     
-    GoalData * goal = [[GoalData alloc] init];
-    goal.timestr = time;
-    goal.goalNumber = goalNumber;
-    NSString * datestr = [self getFullDateString:goal.timestr];
-    goal.dateTime = [MyTool changeStringToDate:datestr formatter:@"yy-M-dd-HH:mm"];
-    
+       //数据库模型
+    BoyeGoaldbModel * goalModel = [[BoyeGoaldbModel alloc] init];
+    goalModel.uid =   self.useInfo.uid;
+    goalModel.date_time = time;
+    goalModel.target = goalNumber;
+    goalModel.create_time = [MyTool getCurrentDataFormat:nil];
+    goalModel.weekday = 0;
 
-    NSInteger indexTest =   [self isExitSame:goal];
-    
     #pragma mark -- 点击添加按钮，相同日期不可添加，不同日期要排序
     if (self.goalPickerView.tag == -1) {
         
-        //有相同的不添加
-        if (indexTest != -1) {
-            [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
-
-            return;
-        }
-        //添加元素 然后排序
-        [self.dataArray addObject:goal];
-        self.dataArray = (NSMutableArray *)[BBManageCode  sequenceGoalDataArray:self.dataArray];
+       [self touchAdd:goalModel];
+       
         
     #pragma mark -- 点击修改按钮，替换对应目标数据
     }else{
+ 
+//    TODO:....
+    
+    
+    }
+
+}
+
+//添加数据
+-(void) touchAdd:(BoyeGoaldbModel *) model{
+
+    //有相同的不添加
+    if ([BoyeDataBaseManager  isExistUserGoal:model] ) {
+        [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
+        return ;
+    }
+//    
+    [BoyeDataBaseManager insertGoalWithDate:model];
+    [BoyeDataBaseManager getGoalDataUserID:[MainViewController sharedSliderController].userInfo.uid week:0];
+    
+      //添加元素
+    [self refreshGoalTableView];
+
+}
+
+//从数据库获取数据
+-(void) refreshGoalTableView{
+    
+    //TOD......
+    
+    [self.dataArray removeAllObjects];
+   
+    //获得数据库数据
+   NSArray * dataArray = [BoyeDataBaseManager getGoalDataUserID:self.useInfo.uid week:0];
+    if (dataArray) {
         
-        //有相同的不添加
-        if (indexTest != -1 && indexTest != self.goalPickerView.tag) {
-            [SVProgressHUD showOnlyStatus:@"目标修改日期不匹配" withDuration:0.5];
-            NSLog(@" 目标修改日期不匹配");
-            return;
+        for (BoyeGoaldbModel * model in dataArray) {
+            [self.dataArray addObject:model];
         }
-        [self.dataArray replaceObjectAtIndex:self.goalPickerView.tag withObject:goal];
     }
     
-    //缓存目标
-    [CommonCache setGoal:[NSNumber numberWithInteger:goal.goalNumber]];
+    
     [self isHasDataAdjust];
     [_goalTableView reloadData];
-    // 保存目标对象到沙河 ,目标创建，修改，无数据都可保存，
-    [self saveGoalArrayToDocments];
-}
-
-
-//是否存在相同日期的目标 :-1 不存在相同日期
--(NSInteger) isExitSame:(GoalData *)goal{
     
-    __block  NSInteger  isSameGoal = -1;
-    //判断是否存在相同日期
-    if (self.dataArray.count != 0) {
-        //是否存在相同日期
-        [MyTool isSameGoalData:goal array:self.dataArray complete:^(NSInteger goalIndex) {
-          
-            if (goalIndex != -1) {
-             isSameGoal = goalIndex;
-                NSLog(@" 有相同日期的数据");
-            }
-        }];
-    }
-    return isSameGoal;
+    
 }
+
 
 
 -(void)goalTimeNot{
@@ -420,6 +446,8 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 -(void)tapGesture:(UITapGestureRecognizer *)tap{
     //
     [self.goalPickerView close];
+    
+   
 }
 
 

@@ -130,8 +130,8 @@
     CGFloat  left = (remindView.width -200)/2.0;
     //时间
     UILabel * timelabel = [[UILabel alloc] init];
-    timelabel.frame = CGRectMake(left, 0, 50, remindView.height);
-    timelabel.text = @"时间";
+    timelabel.frame = CGRectMake(left, 0, 70, remindView.height);
+    timelabel.text = @"提醒时间";
     timelabel.font = FONT(15);
     timelabel.textAlignment = NSTextAlignmentCenter;
     [remindView addSubview:timelabel];
