@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface BlueBaoAboutVC : BoyeLeftBaseVC<UITableViewDataSource,UITableViewDelegate>
+@interface BlueBaoAboutVC : BoyeLeftBaseVC<UIWebViewDelegate>
 @property (nonatomic,strong) UITableView * tableView_lb;
 @end

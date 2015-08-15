@@ -206,9 +206,12 @@
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     
     if (notification) {
-        
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"系统提示" message:notification.alertBody delegate:self cancelButtonTitle:@"我知道啦！" otherButtonTitles: nil];
-        [alert show];
+        if([UIApplication sharedApplication].applicationState != UIApplicationStateActive){
+            
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"系统提示" message:notification.alertBody delegate:self cancelButtonTitle:@"我知道啦！" otherButtonTitles: nil];
+            [alert show];
+            
+        }
         
     }
     

@@ -243,6 +243,15 @@
 #pragma mark -- 闹铃开关 --
 
 /**
+ *  读取提醒设置，并注册本地通知。
+ */
+-(void)reloadAllAlarm{
+
+    
+    
+}
+
+/**
  *  闹铃提醒开关
  *
  *  @param stch UISwitch
@@ -252,9 +261,11 @@
     if (stch.isOn) {
         
         [[LocalNotify sharedNotify] turnOn];
+        
         //TODO: 再次读取，提醒设置，发送通知。
-        NSDate * date = [[NSDate date] dateByAddingTimeInterval:6];
-        [[LocalNotify sharedNotify]fireNotification:@"123456" At:date WithContent:@"测试" HasInterval:NSCalendarUnitMinute];
+        [self reloadAllAlarm];
+//        NSDate * date = [[NSDate date] dateByAddingTimeInterval:6];
+//        [[LocalNotify sharedNotify]fireNotification:@"123456" At:date WithContent:@"测试" HasInterval:NSCalendarUnitMinute];
         
     }else{
         [[LocalNotify sharedNotify] turnOff];
