@@ -70,4 +70,6 @@
 
 +(NSString *) getDateHour:(NSTimeInterval )time;
 
+//默认日期格式
++(NSString *)defaultDateTimeFormatString;
 @end

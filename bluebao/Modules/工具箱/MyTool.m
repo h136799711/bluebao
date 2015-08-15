@@ -24,7 +24,7 @@
     if (num == 0) {
         view.backgroundColor = [UIColor redColor];
     }else if (num == 1){
-        view.backgroundColor = [UIColor blackColor];
+        view.backgroundColor = [UIColor yellowColor];
     }else{
         view.backgroundColor = [UIColor blueColor];
     }
@@ -185,7 +185,8 @@
     if(formatterStr == nil){
         formatterStr = @"yyyy-MM-dd HH:mm:ss";
     }
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [NSDate defaultDateFormatter];
+    dateFormatter.dateFormat = formatterStr;
     
 
     //设定时间格式,这里可以设置成自己需要的格式
@@ -343,9 +344,10 @@
     }
     
 }
-
-
-
-
++(NSArray *) weekString{
+    
+    NSArray * array = [[NSArray alloc] initWithObjects:@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六",@"星期日", nil];
+    return array;
+}
 
 @end

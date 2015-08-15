@@ -77,6 +77,9 @@
 
 #pragma mark --是否存在相同的日期-- 不等于 -1 就是存在
 +(void) isSameGoalData:(GoalData *) dateOne array:(NSArray *)dateArray complete:(void(^)(NSInteger goalIndex))complete;
+//星期
++(NSArray *) weekString;
+
 
 //////计算BMI********
 
@@ -104,6 +107,5 @@
 #pragma mark -- 默认目标值，
 
 +(NSInteger) getDefaultGoalValue:(NSInteger)goalValue ;
-
 
 @end

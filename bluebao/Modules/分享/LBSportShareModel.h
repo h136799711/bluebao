@@ -24,7 +24,10 @@
  * step   ,运动多少步
  */
 @property (nonatomic,assign) CGFloat          calorie; //消耗了多少卡
-
+/* 运动时间
+ *    
+ */
+@property (nonatomic,assign) CGFloat        time_min; //耗时
 /*
  *单例
  */

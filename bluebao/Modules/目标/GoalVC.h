@@ -15,4 +15,5 @@
 @property (nonatomic,strong) GoalPickerView     * goalPickerView;
 @property (nonatomic,assign) CGFloat             outHeight;
 @property (nonatomic,strong) UITableView         *goalTableView;
+@property (nonatomic,strong) UserInfo           * useInfo;
 @end

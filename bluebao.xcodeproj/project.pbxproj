@@ -82,6 +82,14 @@
 		5B8AEB811B7C4A4700567B46 /* BoyeDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AEB801B7C4A4700567B46 /* BoyeDataBaseManager.m */; };
 		5B9049041B72EF0600A2E1B7 /* BoyeForgetCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */; };
 		5B9049051B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */; };
+		5B9067431B7D722D00BA04AC /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9067421B7D722D00BA04AC /* ShareCell.m */; };
+		5B9067471B7DB7B900BA04AC /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9067461B7DB7B900BA04AC /* HMSegmentedControl.m */; };
+		5B9067601B7DC8EA00BA04AC /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90675B1B7DC8EA00BA04AC /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B9067611B7DC8EA00BA04AC /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90675D1B7DC8EA00BA04AC /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B9067621B7DC8EA00BA04AC /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90675F1B7DC8EA00BA04AC /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B9067651B7DCAB800BA04AC /* BoyeGoaldbModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9067641B7DCAB800BA04AC /* BoyeGoaldbModel.m */; };
+		5B9067671B7DCC6300BA04AC /* lanbao.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5B9067661B7DCC6300BA04AC /* lanbao.sqlite */; };
+		5B90676B1B7DD70800BA04AC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */; };
 		5BA4EDB41B7AD97F0008A4F5 /* CheckBluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA4EDB31B7AD97F0008A4F5 /* CheckBluetoothData.m */; };
 		5BD4AA941B6B27CD0041F730 /* BoyeSlideBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */; };
 		5BD4AA971B6B28980041F730 /* BoyeLeftBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA961B6B28980041F730 /* BoyeLeftBaseVC.m */; };
@@ -329,6 +337,20 @@
 		5B9049011B72EF0600A2E1B7 /* BoyeForgetCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeForgetCodeVC.h; sourceTree = "<group>"; };
 		5B9049021B72EF0600A2E1B7 /* BoyeForgetCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeForgetCodeVC.m; sourceTree = "<group>"; };
 		5B9049031B72EF0600A2E1B7 /* BoyeForgetCodeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoyeForgetCodeVC.xib; sourceTree = "<group>"; };
+		5B9067411B7D722D00BA04AC /* ShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
+		5B9067421B7D722D00BA04AC /* ShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCell.m; sourceTree = "<group>"; };
+		5B9067451B7DB7B900BA04AC /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		5B9067461B7DB7B900BA04AC /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		5B90675A1B7DC8EA00BA04AC /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		5B90675B1B7DC8EA00BA04AC /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		5B90675C1B7DC8EA00BA04AC /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		5B90675D1B7DC8EA00BA04AC /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		5B90675E1B7DC8EA00BA04AC /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		5B90675F1B7DC8EA00BA04AC /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		5B9067631B7DCAB800BA04AC /* BoyeGoaldbModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeGoaldbModel.h; sourceTree = "<group>"; };
+		5B9067641B7DCAB800BA04AC /* BoyeGoaldbModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeGoaldbModel.m; sourceTree = "<group>"; };
+		5B9067661B7DCC6300BA04AC /* lanbao.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = lanbao.sqlite; sourceTree = "<group>"; };
+		5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		5BA4EDB21B7AD97F0008A4F5 /* CheckBluetoothData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBluetoothData.h; sourceTree = "<group>"; };
 		5BA4EDB31B7AD97F0008A4F5 /* CheckBluetoothData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckBluetoothData.m; sourceTree = "<group>"; };
 		5BD4AA921B6B27CD0041F730 /* BoyeSlideBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeSlideBaseVC.h; sourceTree = "<group>"; };
@@ -523,6 +545,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B90676B1B7DD70800BA04AC /* libsqlite3.0.dylib in Frameworks */,
 				9F3C998B1B7A37DC00D5C0A3 /* libSocialQQ.a in Frameworks */,
 				9F6E3EB81B7229C200F329B9 /* libz.dylib in Frameworks */,
 				9F3C9A2F1B789DFE00A373CC /* libWeChatSDK.a in Frameworks */,
@@ -575,6 +598,8 @@
 			children = (
 				5B38C7601B5390CF0063912C /* ShareVC.h */,
 				5B38C7611B5390CF0063912C /* ShareVC.m */,
+				5B9067411B7D722D00BA04AC /* ShareCell.h */,
+				5B9067421B7D722D00BA04AC /* ShareCell.m */,
 				5B84D3D51B79917800523741 /* LBSportShareModel.h */,
 				5B84D3D61B79917800523741 /* LBSportShareModel.m */,
 			);
@@ -836,6 +861,28 @@
 			);
 			name = "忘记密码";
 			path = "Modules/忘记密码";
+			sourceTree = "<group>";
+		};
+		5B9067441B7DB7B900BA04AC /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				5B9067451B7DB7B900BA04AC /* HMSegmentedControl.h */,
+				5B9067461B7DB7B900BA04AC /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
+		5B9067591B7DC8EA00BA04AC /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				5B90675A1B7DC8EA00BA04AC /* FMDatabase.h */,
+				5B90675B1B7DC8EA00BA04AC /* FMDatabase.m */,
+				5B90675C1B7DC8EA00BA04AC /* FMDatabaseAdditions.h */,
+				5B90675D1B7DC8EA00BA04AC /* FMDatabaseAdditions.m */,
+				5B90675E1B7DC8EA00BA04AC /* FMResultSet.h */,
+				5B90675F1B7DC8EA00BA04AC /* FMResultSet.m */,
+			);
+			path = FMDB;
 			sourceTree = "<group>";
 		};
 		5BD4AA8E1B6B25430041F730 /* 我的运动数据 */ = {
@@ -1107,10 +1154,13 @@
 		9F470BC61B75E44C00A49750 /* SQLIite数据库管理 */ = {
 			isa = PBXGroup;
 			children = (
+				5B9067661B7DCC6300BA04AC /* lanbao.sqlite */,
 				9F470BC71B75E5D300A49750 /* SQLiteManager.h */,
 				9F470BC81B75E5D300A49750 /* SQLiteManager.m */,
 				5B8AEB7F1B7C4A4700567B46 /* BoyeDataBaseManager.h */,
 				5B8AEB801B7C4A4700567B46 /* BoyeDataBaseManager.m */,
+				5B9067631B7DCAB800BA04AC /* BoyeGoaldbModel.h */,
+				5B9067641B7DCAB800BA04AC /* BoyeGoaldbModel.m */,
 			);
 			path = "SQLIite数据库管理";
 			sourceTree = "<group>";
@@ -1184,6 +1234,7 @@
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
+				5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */,
 				9F91E8081B4E5B5D0013F4F1 /* Framework */,
 				9F50E5001B4E577600AB6BD8 /* bluebao */,
 				9F50E51A1B4E577700AB6BD8 /* bluebaoTests */,
@@ -1329,6 +1380,8 @@
 		9F91E7E41B4E5AE80013F4F1 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				5B9067591B7DC8EA00BA04AC /* FMDB */,
+				5B9067441B7DB7B900BA04AC /* HMSegmentedControl */,
 				9F3C99861B7A37DC00D5C0A3 /* TencentOpenAPI */,
 				9F3C9A281B789DFD00A373CC /* Wechat */,
 				9F49837A1B7856C800B07AE6 /* UMSocial_ScreenShot_Sdk */,
@@ -1486,6 +1539,7 @@
 				5B38C7FA1B53C6DB0063912C /* add.png in Resources */,
 				9F3C998D1B7A37DC00D5C0A3 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				5BF2E0411B4F6B7E004FDDF7 /* SVProgressHUD.bundle in Resources */,
+				5B9067671B7DCC6300BA04AC /* lanbao.sqlite in Resources */,
 				5B38C8021B53C6DB0063912C /* user.png in Resources */,
 				5BF2E03F1B4F6B7E004FDDF7 /* MBProgressHUD.bundle in Resources */,
 				9F4983751B784E3100B07AE6 /* UMShareEditViewControlleriPad.xib in Resources */,
@@ -1554,10 +1608,12 @@
 				5BA4EDB41B7AD97F0008A4F5 /* CheckBluetoothData.m in Sources */,
 				5B0155DA1B5DDD1900056CFC /* DeviceInfoCell.m in Sources */,
 				5BF2E0481B4F6C99004FDDF7 /* NSDateFormatter+Category.m in Sources */,
+				5B9067601B7DC8EA00BA04AC /* FMDatabase.m in Sources */,
 				5B84D40D1B7A131000523741 /* BluetoothDataManager.m in Sources */,
 				5B6FE9B01B6A07D5002D32B0 /* BoyeConnectView.m in Sources */,
 				5B8004661B720F3200283B2C /* BoyePeople.m in Sources */,
 				5B38C7911B5390CF0063912C /* RegistVC.m in Sources */,
+				5B9067471B7DB7B900BA04AC /* HMSegmentedControl.m in Sources */,
 				5B38C7D81B5399B80063912C /* SDWebImageDownloader.m in Sources */,
 				9F545E9B1B74DAEC002BFF24 /* BoyeCypto.m in Sources */,
 				5B0155DE1B5DDD1900056CFC /* PulsingRadarView.m in Sources */,
@@ -1580,6 +1636,7 @@
 				5BD4AA941B6B27CD0041F730 /* BoyeSlideBaseVC.m in Sources */,
 				5BD4AAD11B6B6F580041F730 /* UUColor.m in Sources */,
 				5BF430F91B573802003C7941 /* User.m in Sources */,
+				5B9067611B7DC8EA00BA04AC /* FMDatabaseAdditions.m in Sources */,
 				5BD4AAD51B6B6F7E0041F730 /* HistoryViewController.m in Sources */,
 				5B38C7DE1B5399B80063912C /* UIImage+GIF.m in Sources */,
 				5B38C79B1B5390CF0063912C /* GoalCell.m in Sources */,
@@ -1611,9 +1668,11 @@
 				5BD4AACF1B6B6F580041F730 /* UUChart.m in Sources */,
 				5B38C7A31B5390CF0063912C /* LetfView.m in Sources */,
 				5B8AEB811B7C4A4700567B46 /* BoyeDataBaseManager.m in Sources */,
+				5B9067651B7DCAB800BA04AC /* BoyeGoaldbModel.m in Sources */,
 				5B38C7A51B5390CF0063912C /* BaseViewController.m in Sources */,
 				5B0155D91B5DDD1900056CFC /* DeviceBindController.m in Sources */,
 				9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */,
+				5B9067431B7D722D00BA04AC /* ShareCell.m in Sources */,
 				5B38C7A11B5390CF0063912C /* LeftMenu.m in Sources */,
 				5B0155DC1B5DDD1900056CFC /* DeviceInfoViewController.m in Sources */,
 				5BF05F551B4E5EF300CBC510 /* BaseTextField.m in Sources */,
@@ -1630,6 +1689,7 @@
 				5B38C7D51B5399B80063912C /* SDImageCache.m in Sources */,
 				5BD4AACD1B6B6F580041F730 /* UUBar.m in Sources */,
 				5BF4F0211B56609D000AB7BD /* SettingVC.m in Sources */,
+				5B9067621B7DC8EA00BA04AC /* FMResultSet.m in Sources */,
 				5BF88BDA1B69C14A003785D0 /* BicyleReqModel.m in Sources */,
 				5BD4AAB71B6B49AD0041F730 /* PeopleGoalManagerVC.m in Sources */,
 				5BF430FF1B575CE6003C7941 /* WebViewController.m in Sources */,
