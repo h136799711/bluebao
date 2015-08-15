@@ -61,7 +61,7 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    [BoyeGoalLocaNotify setLocalNotifyGoal];
+//    [BoyeGoalLocaNotify setLocalNotifyGoal];
 
     
     
@@ -71,7 +71,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
-    [BoyeGoalLocaNotify  cancelLocalNotify];
+//    [BoyeGoalLocaNotify  cancelLocalNotify];
 }
 
 #pragma mark -- 初始化 ---
