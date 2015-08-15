@@ -112,7 +112,6 @@ static  SQLiteManager   * sqlManager;
         [set close];
     [__db close];
     
-    [self test:array];
     return array;
 }
 
@@ -157,30 +156,55 @@ static  SQLiteManager   * sqlManager;
     [__db close];
 }
 //搜索数据
-+(void) selectDataID:(NSInteger)db_id {
++(BoyeGoaldbModel*) selectDataID:(NSInteger)db_id {
     
     
     [self safeDataBase];
     NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE id = %ld",db_id];
     [__db open];
-
+    BoyeGoaldbModel *record;
     FMResultSet * set = [__db executeQuery:sql];
-    [set next];
-    
-    BoyeGoaldbModel *record = [[BoyeGoaldbModel alloc] init];
-    record.db_id = [set intForColumn:@"id"];
-    record.target = [set intForColumn:@"target"];
-    record.date_time = [set stringForColumn:@"date_time"];
-    record.uid = [set intForColumn:@"uid"];
-    record.weekday = [set intForColumn:@"weekday"];
-    record.create_time = [set stringForColumn:@"create_time"];
+   
+    if ([set next]) {
+        record = [[BoyeGoaldbModel alloc] init];
+        record.db_id = [set intForColumn:@"id"];
+        record.target = [set intForColumn:@"target"];
+        record.date_time = [set stringForColumn:@"date_time"];
+        record.uid = [set intForColumn:@"uid"];
+        record.weekday = [set intForColumn:@"weekday"];
+        record.create_time = [set stringForColumn:@"create_time"];
+    }
     
     [set close];
     [__db close];
+    return record;
     
 }
 
-
+//搜索数据
++(BoyeGoaldbModel*) selectDataModel:(BoyeGoaldbModel*)model{
+    
+    [self safeDataBase];
+    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND  weekday = %ld AND date_time = '%@'",model.uid,model.weekday,model.date_time];
+    [__db open];
+    BoyeGoaldbModel *record;
+    FMResultSet * set = [__db executeQuery:sql];
+    
+    if ([set next]) {
+        record = [[BoyeGoaldbModel alloc] init];
+        record.db_id = [set intForColumn:@"id"];
+        record.target = [set intForColumn:@"target"];
+        record.date_time = [set stringForColumn:@"date_time"];
+        record.uid = [set intForColumn:@"uid"];
+        record.weekday = [set intForColumn:@"weekday"];
+        record.create_time = [set stringForColumn:@"create_time"];
+    }
+    
+    [set close];
+    [__db close];
+    return record;
+    
+}
 
 //删除数据
 +(void)deleteAllData{
@@ -213,17 +237,6 @@ static  SQLiteManager   * sqlManager;
     FMResultSet *set = [__db executeQuery:sql];
     if ([set next]) {
         
-        BoyeGoaldbModel *record = [[BoyeGoaldbModel alloc] init];
-        
-        record.db_id = [set intForColumn:@"id"];
-        record.target = [set intForColumn:@"target"];
-        record.date_time = [set stringForColumn:@"date_time"];
-        record.uid = [set intForColumn:@"uid"];
-        record.weekday = [set intForColumn:@"weekday"];
-        record.create_time = [set stringForColumn:@"create_time"];
-
-        [self test:@[record]];
-        
         isExist = YES;
         NSLog(@"yes");
     }else{
@@ -232,15 +245,13 @@ static  SQLiteManager   * sqlManager;
     }
     [set close];
     [__db close];
-    
     return isExist;
-    
 }
 
 //修改数据
 +(void) alertData:(BoyeGoaldbModel *)model{
     
-    NSString * sql = [NSString stringWithFormat:@"UPDATE lanbao_target SET date_time = ‘%@’ AND target = %ld WHERE id = %ld ",model.date_time,model.target,model.db_id];
+    NSString * sql = [NSString stringWithFormat:@"UPDATE lanbao_target SET date_time = '%@' , target = %ld WHERE id = %ld ",model.date_time,model.target,model.db_id];
   
     [self safeDataBase];
     [__db open];

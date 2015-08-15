@@ -328,7 +328,7 @@
     
     lanbao.distance = self.bicylelb.distance;
     lanbao.calorie = self.bicylelb.calorie;
-
+    lanbao.time_min = self.bicylelb.cost_time;
 }
 
 -(BOOL) isGoalfinishZero:(NSInteger) goalValue finish:(NSInteger) finishValue{
@@ -528,7 +528,6 @@
         
         //刷新首页
         if (self.dateChooseView.isToday) {
-            
             
             
             [_tableView reloadData];

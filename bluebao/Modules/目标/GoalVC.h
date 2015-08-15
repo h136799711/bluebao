@@ -8,12 +8,14 @@
 
 #import "BaseViewController.h"
 #import "GoalPickerView.h"
-
-@interface GoalVC : BoyeSlideBaseVC<UITableViewDelegate,UITableViewDataSource,GoalPickerViewDelegate>
+#import "WeekSegmentlView.h"
+@interface GoalVC : BoyeSlideBaseVC<UITableViewDelegate,UITableViewDataSource,GoalPickerViewDelegate,WeekSegmentlViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray     *dataArray;
 @property (nonatomic,strong) GoalPickerView     * goalPickerView;
 @property (nonatomic,assign) CGFloat             outHeight;
 @property (nonatomic,strong) UITableView         *goalTableView;
 @property (nonatomic,strong) UserInfo           * useInfo;
+@property (nonatomic,strong) WeekSegmentlView   *weekSegment;
+
 @end

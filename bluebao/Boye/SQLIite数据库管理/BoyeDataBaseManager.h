@@ -59,4 +59,7 @@
 //修改数据
 +(void) alertData:(BoyeGoaldbModel *)model;
 +(void) test:(NSArray *)array;
+
+//搜索数据
++(BoyeGoaldbModel*) selectDataModel:(BoyeGoaldbModel*)model;
 @end

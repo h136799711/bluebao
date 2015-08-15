@@ -90,6 +90,7 @@
 		5B9067651B7DCAB800BA04AC /* BoyeGoaldbModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9067641B7DCAB800BA04AC /* BoyeGoaldbModel.m */; };
 		5B9067671B7DCC6300BA04AC /* lanbao.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5B9067661B7DCC6300BA04AC /* lanbao.sqlite */; };
 		5B90676B1B7DD70800BA04AC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */; };
+		5B9B637C1B7EC2B000ED1D96 /* WeekSegmentlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9B637B1B7EC2B000ED1D96 /* WeekSegmentlView.m */; };
 		5BA4EDB41B7AD97F0008A4F5 /* CheckBluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA4EDB31B7AD97F0008A4F5 /* CheckBluetoothData.m */; };
 		5BD4AA941B6B27CD0041F730 /* BoyeSlideBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA931B6B27CD0041F730 /* BoyeSlideBaseVC.m */; };
 		5BD4AA971B6B28980041F730 /* BoyeLeftBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4AA961B6B28980041F730 /* BoyeLeftBaseVC.m */; };
@@ -349,6 +350,8 @@
 		5B9067641B7DCAB800BA04AC /* BoyeGoaldbModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeGoaldbModel.m; sourceTree = "<group>"; };
 		5B9067661B7DCC6300BA04AC /* lanbao.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = lanbao.sqlite; sourceTree = "<group>"; };
 		5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		5B9B637A1B7EC2B000ED1D96 /* WeekSegmentlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekSegmentlView.h; sourceTree = "<group>"; };
+		5B9B637B1B7EC2B000ED1D96 /* WeekSegmentlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekSegmentlView.m; sourceTree = "<group>"; };
 		5BA4EDB21B7AD97F0008A4F5 /* CheckBluetoothData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBluetoothData.h; sourceTree = "<group>"; };
 		5BA4EDB31B7AD97F0008A4F5 /* CheckBluetoothData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckBluetoothData.m; sourceTree = "<group>"; };
 		5BD4AA921B6B27CD0041F730 /* BoyeSlideBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeSlideBaseVC.h; sourceTree = "<group>"; };
@@ -661,6 +664,8 @@
 				5B1D24041B5CD5A000BE460C /* GoalData.m */,
 				5B38C7741B5390CF0063912C /* GoalCell.h */,
 				5B38C7751B5390CF0063912C /* GoalCell.m */,
+				5B9B637A1B7EC2B000ED1D96 /* WeekSegmentlView.h */,
+				5B9B637B1B7EC2B000ED1D96 /* WeekSegmentlView.m */,
 			);
 			name = "目标";
 			path = "Modules/目标";
@@ -1636,6 +1641,7 @@
 				9F470BC91B75E5D300A49750 /* SQLiteManager.m in Sources */,
 				5B38C7941B5390CF0063912C /* ShareVC.m in Sources */,
 				9F91E7FE1B4E5AE80013F4F1 /* AFURLConnectionOperation.m in Sources */,
+				5B9B637C1B7EC2B000ED1D96 /* WeekSegmentlView.m in Sources */,
 				5B38C79D1B5390CF0063912C /* BMICell.m in Sources */,
 				9F91E7FD1B4E5AE80013F4F1 /* AFSecurityPolicy.m in Sources */,
 				5B74F4A81B58FF75002493E8 /* GoalPickerView.m in Sources */,
