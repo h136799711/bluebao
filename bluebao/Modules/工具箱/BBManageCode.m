@@ -328,7 +328,7 @@
     NSLog(@"年龄%ld,性别%ld 体重%f（kg），身高%f(米）",(long)age,(long)sex,weight,height);
     switch (row) {
         case 0: //体脂肪率
-            valueNum= [PeopleBodyParams getBodyFatRateBy:age :sex :weight :height];
+            valueNum= 36;
             break;
         case 1://体水分率
             valueNum = [PeopleBodyParams getBodyWaterRateBy:age :sex :weight :height];
