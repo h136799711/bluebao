@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PeopleBodyParams.h"
 
 @interface BBManageCode : NSObject
 
