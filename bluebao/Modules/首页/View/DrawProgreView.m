@@ -153,15 +153,11 @@
     //判断
     CGFloat  percentage = 0;
     
-    if (_goalNum > 0) {
-        percentage =  _finishNum*10 /_goalNum;
-    }else{
-        
-        NSLog(@"目标值不能小于0");
-        return;
-
+    if (_goalNum <= 0) {
+        _goalNum = 500;
     }
     
+    percentage =  _finishNum*10 /_goalNum;
     if (percentage > 100) {
         percentage = 100;
     }
