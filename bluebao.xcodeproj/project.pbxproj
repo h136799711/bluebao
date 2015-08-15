@@ -1224,7 +1224,6 @@
 		9F50E4F51B4E577600AB6BD8 = {
 			isa = PBXGroup;
 			children = (
-				5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */,
 				9F91E8081B4E5B5D0013F4F1 /* Framework */,
 				9F50E5001B4E577600AB6BD8 /* bluebao */,
 				9F50E51A1B4E577700AB6BD8 /* bluebaoTests */,
@@ -1258,6 +1257,7 @@
 		9F50E5011B4E577600AB6BD8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */,
 				9F3321671B787FE400DDCEE4 /* libstdc++.dylib */,
 				9F3321611B787FB800DDCEE4 /* libiconv.dylib */,
 				9F470BCA1B75ED7200A49750 /* libsqlite3.dylib */,

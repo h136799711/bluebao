@@ -24,7 +24,7 @@
 /**
  *  向数据库插入记录
  *
- *  参数， 数据库模型
+ *  @param，model 数据库模型
  */
 
 //插入数据
@@ -32,7 +32,9 @@
 
 /**
  * 读取，某一周的目标计划，
- * 参数 ，用户id ， week
+ * @param uid 用户 uid ，
+ * @param week 周
+
  */
 
 +(NSArray *) getGoalDataUserID:(NSInteger) uid week:(NSInteger) weekday;
@@ -40,26 +42,69 @@
 
 /**
  *删除一条记录
- * 参数，目标键值 key
+ *  @param ，数据id db_id
  */
 
 //删除数据
 +(void) deleteDataID:(NSInteger)db_id;
+
+/**
+ *  删除所有记录
+ */
+
 +(void)deleteAllData;
 
 /**
  * 修改记录
+ * @param model  数据模型 
+ *      标识         ( uid,用户uid；weekday ，星期；
+        修改     date_time，时间；target ， 目标
+ *
  **/
+//修改数据
++(void) alertData:(BoyeGoaldbModel *)model;
 
 //获得所有数据
 +(NSArray *) getAllData;
+/**
+ *
+ * 获得用户数据
+ *  @param uid  用户 uid
+ **/
+
++(NSArray *) getAllDataUserID:(NSInteger)uid;
+
+/**
+ *
+ * 数据是否存在
+ *  @param   uid ,weekday data_time
+ **/
+
 //数据是否存在
 +(BOOL )isExistUserGoal:(BoyeGoaldbModel *) model;
+//搜索数据
 
-//修改数据
-+(void) alertData:(BoyeGoaldbModel *)model;
+/**
+ *
+ * 查询数据
+ *  @param   uid ,weekday ,data_time
+ **/
+
++(BoyeGoaldbModel*) selectDataModel:(BoyeGoaldbModel*)model;
+
+/**
+ *
+ * 查询数据
+ *  @param  db_id 数据 id 
+ **/
+//搜索数据
++(BoyeGoaldbModel*) selectDataID:(NSInteger)db_id;
+
+
+
 +(void) test:(NSArray *)array;
 
-//搜索数据
-+(BoyeGoaldbModel*) selectDataModel:(BoyeGoaldbModel*)model;
+
+
+
 @end
