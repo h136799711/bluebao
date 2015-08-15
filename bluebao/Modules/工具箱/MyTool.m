@@ -180,7 +180,7 @@
 
 
 #pragma mark -- 获得当前日期  -
-+(NSString *) getCurrentDataFormat:(NSString *)formatterStr{
++(NSString *) getCurrentDateFormat:(NSString *)formatterStr{
    
     if(formatterStr == nil){
         formatterStr = @"yyyy-MM-dd HH:mm:ss";

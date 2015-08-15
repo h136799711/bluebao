@@ -114,7 +114,8 @@
         [self doViewAppearBefore];
         [MainViewController sharedSliderController].isVCCancel  = YES;
     }
-
+    
+    [_tableView reloadData];
   
 }
 

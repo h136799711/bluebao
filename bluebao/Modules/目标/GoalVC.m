@@ -110,7 +110,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     headerLabel.textAlignment = NSTextAlignmentCenter;
     headerLabel.font = FONT(17);
     [_headerView addSubview:headerLabel];
-    headerLabel.text = [MyTool getCurrentDataFormat:@"yy-M-dd"];
+    headerLabel.text = [MyTool getCurrentDateFormat:@"yy-M-dd"];
     
     _goalDateLabeltext = headerLabel.text;
 
@@ -327,7 +327,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     goalModel.uid =   self.useInfo.uid;
     goalModel.date_time = time;
     goalModel.target = goalNumber;
-    goalModel.create_time = [MyTool getCurrentDataFormat:nil];
+    goalModel.create_time = [MyTool getCurrentDateFormat:nil];
     goalModel.weekday = self.weekSegment.selectIndex;
 
     #pragma mark -- 点击添加按钮，相同日期不可添加，不同日期要排序

@@ -39,7 +39,7 @@
     
     //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
     [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
-    NSString * datastr = [MyTool getCurrentDataFormat:@"yyyyMMddhhmmss"];
+    NSString * datastr = [MyTool getCurrentDateFormat:@"yyyyMMddhhmmss"];
     NSString * imageName = [NSString stringWithFormat:@"/%@_%ld_%@",datastr,uid,@"image.png"];
     
     [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:imageName] contents:dataImag attributes:nil];
