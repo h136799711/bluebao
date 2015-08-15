@@ -11,6 +11,8 @@
 #import "MainViewController.h"
 #import "UserInfo.h"
 #import "BoyeForgetCodeVC.h"
+#import "BoyeGoalLocaNotify.h"
+
 @interface LoginVC ()
 
 @end
@@ -58,10 +60,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
+    [BoyeGoalLocaNotify setLocalNotifyGoal];
+
+    
+    
+    
     [self _initViews];
 }
 
-
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    [BoyeGoalLocaNotify  cancelLocalNotify];
+}
 
 #pragma mark -- 初始化 ---
 
@@ -248,11 +259,7 @@
     
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    
-    [SVProgressHUD dismiss];
-}
+
 
 #pragma mark --检查输入是否正确 --
 -(BOOL)isRightInput:(User *)user{

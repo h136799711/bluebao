@@ -328,7 +328,7 @@
     NSLog(@"年龄%ld,性别%ld 体重%f（kg），身高%f(米）",(long)age,(long)sex,weight,height);
     switch (row) {
         case 0: //体脂肪率
-            valueNum= [PeopleBodyParams getBodyFatRateBy:age :sex :weight :height];
+            valueNum= 36;
             break;
         case 1://体水分率
             valueNum = [PeopleBodyParams getBodyWaterRateBy:age :sex :weight :height];
@@ -493,37 +493,5 @@
     return numstr;
 }
 
-+(NSArray *) createWeekDayView:(UIView *) view cutHeight:(CGFloat) height{
-    
-    NSMutableArray * btnArray = [[NSMutableArray alloc] initWithCapacity:0];
-    NSArray  *a = @[@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日"];
-    UIView * backView = [[UIView alloc] init];
-    backView.frame = CGRectMake(0, 0, view.width, view.height - height);
-    backView.backgroundColor = [UIColor clearColor];
-    CGFloat  width = backView.width/7.0;
-    for (int i = 0 ; i < 7; i ++) {
-        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        btn.bounds = CGRectMake(0, 0, width, backView.height - 2);
-        btn.center = CGPointMake(width /2.0 + width * i, btn.height/2.0+height);
-        [btn setTitle:a[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor colorWithHexString:@"#949494"] forState:UIControlStateSelected];
-        btn.titleLabel.font  = FONT(15);
-        btn.tag = i;
-        [btnArray addObject:btn];
-        [backView addSubview:btn];
 
-        
-        UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(btn.x, btn.bottom, btn.width, 2);
-        label.textColor = [UIColor colorWithHexString:@"#949494"];
-        label.tag = btn.tag +1;
-        [backView addSubview:label];
-    }
-    
-    
-    [view addSubview:backView];
-    return btnArray;
-}
 @end

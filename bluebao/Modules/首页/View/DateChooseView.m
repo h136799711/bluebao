@@ -70,8 +70,8 @@
     self.newbDate = [NSDate date] ;
     _currentDate = self.newbDate;
     
-    dateLabel.text =  [self getDateString: self.newbDate ];
-    
+//    dateLabel.text =  [self getDateString: self.newbDate ];
+    dateLabel.text = @"今天";
 }
 
 #pragma mark -- 日期改变 --
@@ -117,6 +117,10 @@
         
         [_delegate dateChooseView:self datestr:dateString];
     }
+    if (self.isToday) {
+        return @"今天";
+    }
+    
     return dateString;
 }
 

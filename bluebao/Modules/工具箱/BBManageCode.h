@@ -41,6 +41,5 @@
 #pragma mark -- 目标pickerView
 +(UIView *)getGoalPickerView:(UIPickerView *)pickerView Row:(NSInteger)row Component:(NSInteger)component reusingView:(UIView *)view;
 
-+(NSArray *) createWeekDayView:(UIView *) view cutHeight:(CGFloat) height;
 
 @end

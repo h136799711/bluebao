@@ -172,12 +172,14 @@
         }
         
         if (indexPath.row == 4) {
-            UserInfo * userinfo = [MainViewController sharedSliderController].userInfo;
-            cell.textLabel.text =[NSString stringWithFormat: @"今天是运动的第%ld天",userinfo.continuous_day ];
+          
+            
+            cell.textLabel.attributedText =  [self  sportContinDays];
             cell.tag = 1100;
 
         } else if (indexPath.row == 5){
             cell.textLabel.text = @"全力以赴，不负自己！加油！坚持！";
+            
         }else{
             cell.textLabel.text = @"";
         }
@@ -185,25 +187,46 @@
         return cell;
     }
 }
+//连续运动的天数
+-(NSMutableAttributedString * )sportContinDays{
+    
+    UserInfo * userinfo = [MainViewController sharedSliderController].userInfo;
+    NSInteger day = userinfo.continuous_day;
+    if (day== 0) {
+        day = 1;
+    }
+    NSString *sportstr = [NSString stringWithFormat: @"今天是运动的第%ld天",day ];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:sportstr];
+    
+    //设置颜色
+    
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#4ab4e4"] range:NSMakeRange(7,sportstr.length-8)]; // 0为起始位置 length是从起始位置开始 设置指定颜色的长度
+    
+   return  attributedString;
+    
+}
+/**
+ 
 
+ 
+ **/
 //分享数据
 -(void) shareSportData:(ShareCell *)cell row:(NSInteger) row{
     
     cell.headImageView.image = [UIImage imageNamed:_labelTextArray[2][row]];
     cell.labelSort.text = _labelTextArray[0][row];
     cell.labelUnit.text = _labelTextArray[1][row];
-    cell.labelValueNum.text = @"10060";
     LBSportShareModel * lbsport = [LBSportShareModel sharedLBSportShareModel];
     
     switch (row) {
         case 0:
-            
+            cell.valueNum  = lbsport.distance;
             break;
         case 1:
-            
+            cell.valueNum = lbsport.time_min;
             break;
         case 2:
-            
+            cell.valueNum = lbsport.calorie;
             break;
             
         default:
@@ -211,7 +234,6 @@
     }
 
 }
-
 
 #pragma mark -- 友盟分享委托
 

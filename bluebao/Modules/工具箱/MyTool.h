@@ -67,7 +67,10 @@
 /// 日期相关  ********
 
 #pragma mark -- 获得当前日期  -
-+(NSString *) getCurrentDataFormat:(NSString *)formatterStr;
++(NSString *) getCurrentDateFormat:(NSString *)formatterStr;
+
+//当前时间
++(NSDate *) getCurrentDate:(NSString *) dateFormat;
 
 #pragma mark -- 获得当前日期-
 +(NSDateFormatter *)getDateFormatter:(NSString *)format;
