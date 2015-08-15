@@ -321,32 +321,35 @@
    
     NSInteger  valueNum = 0;
   
-    
+    NSInteger age = userInfo.age;
+    NSInteger sex = userInfo.sex;
+    float weight = (float)userInfo.weight;
+    float height = (float)userInfo.height/100;
+    NSLog(@"年龄%ld,性别%ld 体重%f（kg），身高%f(米）",(long)age,(long)sex,weight,height);
     switch (row) {
         case 0: //体脂肪率
-            valueNum= 36;
+            valueNum= [PeopleBodyParams getBodyFatRateBy:age :sex :weight :height];
             break;
         case 1://体水分率
-            valueNum = 50;
+            valueNum = [PeopleBodyParams getBodyWaterRateBy:age :sex :weight :height];
             break;
         case 2://年龄
-            valueNum = userInfo.age;
+            valueNum = [PeopleBodyParams getBodyAge:age :sex :weight :height];
             break;
         case 3://基础代谢
-            valueNum= 15;
+            valueNum = [PeopleBodyParams getBasalMetabolicRate:age :sex :weight :height];
             break;
         case 4://肌肉含量
-            valueNum= 45;
+            valueNum = [PeopleBodyParams getMusclePate:age :sex :weight :height];
             break;
         case 5://内脏脂肪率
-            valueNum = 5;
+            valueNum = [PeopleBodyParams getViscusPate:age :sex :weight :height];
             break;
         case 6://骨骼含量
-            valueNum = 3;
-
+            valueNum = [PeopleBodyParams getSkeletonRate:age :sex :weight :height];
             break;
         case 7://皮下脂肪
-            valueNum = 10;
+            valueNum = [PeopleBodyParams getSubcutaneousFatRate:age :sex :weight :height];
             break;
             
         default:

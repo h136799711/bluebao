@@ -148,6 +148,7 @@
 		9F3C998D1B7A37DC00D5C0A3 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9F3C99891B7A37DC00D5C0A3 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		9F3C9A2E1B789DFE00A373CC /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C9A291B789DFD00A373CC /* libSocialWechat.a */; };
 		9F3C9A2F1B789DFE00A373CC /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C9A2A1B789DFE00A373CC /* libWeChatSDK.a */; };
+		9F454CE91B7EDC3C009CE230 /* PeopleBodyParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F454CE81B7EDC3C009CE230 /* PeopleBodyParams.m */; };
 		9F470BC11B758AF500A49750 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BBF1B758AF500A49750 /* GTMBase64.m */; };
 		9F470BC51B75E03800A49750 /* CommonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BC41B75E03800A49750 /* CommonCache.m */; };
 		9F470BC91B75E5D300A49750 /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BC81B75E5D300A49750 /* SQLiteManager.m */; };
@@ -185,6 +186,7 @@
 		9F91E7FF1B4E5AE80013F4F1 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F41B4E5AE80013F4F1 /* AFURLRequestSerialization.m */; };
 		9F91E8001B4E5AE80013F4F1 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F61B4E5AE80013F4F1 /* AFURLResponseSerialization.m */; };
 		9F91E8011B4E5AE80013F4F1 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */; };
+		9FAB91F81B7DFE0C00BC2B8B /* localnotify.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9FAB91F71B7DFE0C00BC2B8B /* localnotify.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -458,6 +460,8 @@
 		9F3C9A2B1B789DFE00A373CC /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
 		9F3C9A2C1B789DFE00A373CC /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		9F3C9A2D1B789DFE00A373CC /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		9F454CE71B7EDC3C009CE230 /* PeopleBodyParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleBodyParams.h; sourceTree = "<group>"; };
+		9F454CE81B7EDC3C009CE230 /* PeopleBodyParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleBodyParams.m; sourceTree = "<group>"; };
 		9F470BBE1B758AF500A49750 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		9F470BBF1B758AF500A49750 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		9F470BC01B758AF500A49750 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -536,6 +540,7 @@
 		9F91E7F81B4E5AE80013F4F1 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		9F91E8041B4E5B440013F4F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9F91E8061B4E5B570013F4F1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9FAB91F71B7DFE0C00BC2B8B /* localnotify.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = localnotify.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1000,6 +1005,7 @@
 		5BF4F0091B55F0F7000AB7BD /* Boye */ = {
 			isa = PBXGroup;
 			children = (
+				9F454CE61B7EDBE9009CE230 /* Tool */,
 				9F3C99821B799ACA00D5C0A3 /* 消息通知管理 */,
 				9F470BC61B75E44C00A49750 /* SQLIite数据库管理 */,
 				9F470BC21B75E01400A49750 /* 常用缓存管理 */,
@@ -1128,6 +1134,15 @@
 				9F3C9A2D1B789DFE00A373CC /* WXApiObject.h */,
 			);
 			path = Wechat;
+			sourceTree = "<group>";
+		};
+		9F454CE61B7EDBE9009CE230 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				9F454CE71B7EDC3C009CE230 /* PeopleBodyParams.h */,
+				9F454CE81B7EDC3C009CE230 /* PeopleBodyParams.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		9F470BC21B75E01400A49750 /* 常用缓存管理 */ = {
@@ -1521,6 +1536,7 @@
 				9F4983761B784E3100B07AE6 /* UMSLoginViewController.xib in Resources */,
 				9F4983741B784E3100B07AE6 /* UMShareEditViewController.xib in Resources */,
 				5B38C7FB1B53C6DB0063912C /* back.png in Resources */,
+				9FAB91F81B7DFE0C00BC2B8B /* localnotify.mp3 in Resources */,
 				9F4983791B784E3100B07AE6 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				5B38C7921B5390CF0063912C /* RegistVC.xib in Resources */,
 				5B38C7FD1B53C6DB0063912C /* edit.png in Resources */,
@@ -1578,6 +1594,7 @@
 				5B38C7D71B5399B80063912C /* SDWebImageDecoder.m in Sources */,
 				9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */,
 				5B9049041B72EF0600A2E1B7 /* BoyeForgetCodeVC.m in Sources */,
+				9F454CE91B7EDC3C009CE230 /* PeopleBodyParams.m in Sources */,
 				5BFBBBA71B637CE400BFB44B /* PictureRespModel.m in Sources */,
 				5B38C7DC1B5399B80063912C /* SDWebImagePrefetcher.m in Sources */,
 				5BFBBBA41B637CC700BFB44B /* PictureReqModel.m in Sources */,

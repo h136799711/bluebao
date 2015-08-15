@@ -245,12 +245,12 @@
                     }
                 }
                 [progressline moveToPoint:point];
-//                [self addPoint:point
-//                         index:i
-//                        isShow:isShowMaxAndMinPoint
-//                         value:[valueString floatValue]];
+                [self addPoint:point
+                         index:i
+                        isShow:isShowMaxAndMinPoint
+                         value:[valueString floatValue]];
                 
-//                [progressline stroke];
+                [progressline stroke];
             }
             index += 1;
         }
@@ -281,10 +281,10 @@
     view.layer.cornerRadius = 4;
     view.layer.borderWidth = 2;
     view.layer.borderColor = [[_colors objectAtIndex:index] CGColor]?[[_colors objectAtIndex:index] CGColor]:UUGreen.CGColor;
-    
-    if (isHollow) {
-        view.backgroundColor = [UIColor whiteColor];
-    }else{
+    //所有的点都画出来
+//    if (isHollow) {
+//        view.backgroundColor = [UIColor whiteColor];
+//    }else{
         view.backgroundColor = [_colors objectAtIndex:index]?[_colors objectAtIndex:index]:UUGreen;
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(point.x-UUTagLabelwidth/2.0, point.y-UULabelHeight*2, UUTagLabelwidth, UULabelHeight)];
         label.font = [UIFont systemFontOfSize:10];
@@ -292,7 +292,7 @@
         label.textColor = view.backgroundColor;
         label.text = [NSString stringWithFormat:@"%d",(int)value];
         [self addSubview:label];
-    }
+//    }
     
     [self addSubview:view];
 }

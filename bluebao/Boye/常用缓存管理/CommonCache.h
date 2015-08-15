@@ -23,4 +23,19 @@
  */
 +(void)setGoal:(NSNumber *)goal;
 
+/**
+ *  是否闹铃
+ *
+ *  @return BOOL 
+ */
++(BOOL) AlarmSwitchIsOn;
+
+
+/**
+ *  设置闹铃状态
+ *
+ *  @param state BOOL
+ */
++(void)setAlarmSwitch:(BOOL) state;
+
 @end

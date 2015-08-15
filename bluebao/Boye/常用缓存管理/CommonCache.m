@@ -8,6 +8,7 @@
 
 #import "CommonCache.h"
 
+
 @implementation CommonCache
 
 /**
@@ -44,5 +45,28 @@
     return @"500";
 }
 
++(BOOL) AlarmSwitchIsOn{
+    
+    NSString * key = @"COMMON_ALARM_SWITCH";
+    
+    NSString * state = [[CacheFacade sharedCache] get:key];
+    
+    if(state == nil || [state isEqualToString:@"YES"]){
+        
+        return YES;
+        
+    }
+    
+    return NO;
+}
+
++(void)setAlarmSwitch:(BOOL )state{
+    NSString * key = @"COMMON_ALARM_SWITCH";
+    if (state) {
+        [[CacheFacade sharedCache] setObject:@"YES" forKey:key afterSeconds:30*24*3600];
+    }else{
+        [[CacheFacade sharedCache] setObject:@"NO" forKey:key afterSeconds:30*24*3600];
+    }
+}
 
 @end
