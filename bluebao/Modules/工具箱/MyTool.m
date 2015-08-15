@@ -204,6 +204,20 @@
 //    NSLog(@"\r currentdatestr :%@",currentDateStr);
     return currentDateStr;
 }
+//当前时间
++(NSDate *) getCurrentDate:(NSString *) dateFormat{
+    
+    if (dateFormat == nil) {
+        dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    }
+   NSDateFormatter * formatter = [self getDateFormatter:dateFormat ];
+    formatter.dateFormat = dateFormat;
+    NSString * datestr = [self getCurrentDateFormat:dateFormat];
+    
+    NSDate * currDate = [formatter dateFromString:datestr];
+    NSLog(@"Datae-- %@- %@ ",datestr,currDate);
+    return currDate;
+}
 
 //日期
 +(NSDateFormatter *)getDateFormatter:(NSString *)format{

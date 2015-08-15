@@ -12,6 +12,7 @@
 #import "LocalNotify.h"
 #import "BoyeDataBaseManager.h"
 #import "BoyeGoaldbModel.h"
+#import "BoyeGoalLocaNotify.h"
 
 static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
@@ -35,7 +36,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     // Do any additional setup after loading the view.
     self.title = @"目标设定";
     
-    
     _isHasData = NO;
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -43,6 +43,8 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     
     [self _initViews];
 }
+
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];

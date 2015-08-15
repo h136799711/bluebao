@@ -13,6 +13,18 @@
 @interface BoyeGoalLocaNotify : NSObject
 
 
+/**
+ * 发通知
+ *@param
+ *
+ **/
++(void)setLocalNotifyGoal;
 
+/**
+ * 取消通知
+ *@param
+ *
+ **/
++(void) cancelLocalNotify;
 
 @end
