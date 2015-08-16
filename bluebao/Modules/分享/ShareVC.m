@@ -89,11 +89,11 @@
 -(void)umengShareAlert{
     UITableViewCell *cell = (UITableViewCell *)[share_tableView viewWithTag:1100];
     
-    NSString *text = @"蓝堡健身,我的最爱!";
+    NSString *text = @"蓝堡动感单车";
     if(cell != nil){
         text  = [NSString stringWithFormat:@"今天是运动的第%ld天",(long)self.continuousMovementDays];
     }
-    text = nil;
+    
     [self hideViewsWhenSharing];
     
     UIImage *image = [[UMSocialScreenShoterDefault screenShoter] getScreenShot];
@@ -106,6 +106,7 @@
                                        delegate:self];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
     [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
+    [UMSocialData defaultData].extConfig.qzoneData.title = @"蓝堡动感单车";
 //    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://lanbao.app.itboye.com/index.html";
     
     [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline]];

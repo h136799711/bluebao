@@ -120,6 +120,17 @@
     NSInteger  bct_tag =  (1000 + 1);
     NSInteger  bc_tag =  (1000 + 2);
     
+    if ((NSNull *)sum_max_calorie == [NSNull null]) {
+        sum_max_calorie = @"0";
+    }
+    
+    if ((NSNull *)sum_max_distance ==  [NSNull null]) {
+        sum_max_distance = [NSNumber numberWithInt:0];// 0;
+    }
+    
+    if ((NSNull *)sum_max_time == [NSNull null]) {
+        sum_max_time = @"0";
+    }
     
     MessageCell * lblTmp =  (MessageCell * )[_tableView viewWithTag:bd_tag];
     lblTmp.label_value.text = [NSString stringWithFormat:@"%@公里",sum_max_distance];
