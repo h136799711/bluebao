@@ -91,14 +91,14 @@
         notification.alertBody=content;//弹出的提示信息
         notification.applicationIconBadgeNumber=1; //应用程序的右上角小数字
         if (self.hasSound) {
-            notification.soundName= UILocalNotificationDefaultSoundName ;//本地化通知的声音
-//            notification.soundName= @"localnotify.mp3" ;//使用铃声
+//            notification.soundName= UILocalNotificationDefaultSoundName ;//本地化通知的声音
+            notification.soundName= @"localnotify.mp3" ;//使用铃声
         }else{
             notification.soundName = nil;
         }
         
         if(self.hasVibration){
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         }
         notification.hasAction = NO;
         [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
