@@ -13,6 +13,8 @@
 #import "LoginVC.h"
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "BoyeGoalLocaNotify.h"
+#import "BoyeDataBaseManager.h"
 
 #import "PersonMessageVC.h"//个人资料
 #import "BlueBaoAboutVC.h" // 关于蓝堡
@@ -50,19 +52,19 @@
 {
     
     self.userinfo =  [MainViewController sharedSliderController].userInfo;
-    self.tableView = [[UITableView alloc] initWithFrame:self.bounds];
-    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    self.left_tableView = [[UITableView alloc] initWithFrame:self.bounds];
+    self.left_tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.left_tableView.delegate = self;
+    self.left_tableView.dataSource = self;
     //    self.tableView.rowHeight = LEFT_MENU_HEIGHT;
-        self.tableView.tableHeaderView = [self creatTableViewHeadView];
-    [self addSubview:self.tableView];
+        self.left_tableView.tableHeaderView = [self creatTableViewHeadView];
+    [self addSubview:self.left_tableView];
     
 
-    UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.tableView.bounds];
+    UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.left_tableView.bounds];
     bgImgView.image = [UIImage imageNamed:@"left_menu_bg"];
-    self.tableView.backgroundView = bgImgView;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.left_tableView.backgroundView = bgImgView;
+    self.left_tableView.backgroundColor = [UIColor clearColor];
     sortArray = @[@"我的个人资料",@"设备管理",@"我的运动数据",@"我的目标管理",@"关于蓝堡",@"购买更多健身器材",@"闹铃开关",@"设置",@"注销"];
 }
 
@@ -240,16 +242,7 @@
 }
 
 
-#pragma mark -- 闹铃开关 --
 
-/**
- *  读取提醒设置，并注册本地通知。
- */
--(void)reloadAllAlarm{
-
-    
-    
-}
 
 /**
  *  闹铃提醒开关
@@ -274,6 +267,59 @@
     
     NSLog(@"闹铃");
    // [self localNotification];
+}
+#pragma mark -- 闹铃开关 --
+
+/**
+ *  读取提醒设置，并注册本地通知。
+ */
+-(void)reloadAllAlarm{
+    
+    
+    NSArray * goalModelArr = [BoyeDataBaseManager getAllDataUserID:[MainViewController sharedSliderController].userInfo.uid];
+    
+    
+    for (BoyeGoaldbModel * model in goalModelArr) {
+        
+        [self registerLocalNotify:model];
+    }
+}
+
+
+-(void)registerLocalNotify:(BoyeGoaldbModel *)model{
+    
+    NSDate * nowDate =  [NSDate date];
+    NSString * dataFormatt = @"yyyy-MM-dd";
+    NSString *  timestr = [MyTool getCurrentDateFormat:dataFormatt];
+    NSString * datestring = [NSString stringWithFormat:@"%@ %@",timestr,model.date_time];
+    
+    
+    NSDate  * date = [[MyTool  getDateFormatter:@"yyyy-MM-dd HH:mm"] dateFromString:datestring];
+    
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
+    
+    NSInteger selectWeekday = model.weekday + 2;
+    
+    //转换成周日＝1 周一=2 周二＝3
+    if (selectWeekday == 8) {
+        selectWeekday = 1;
+    }
+    
+    NSInteger intervalDay =  selectWeekday - comps.weekday;
+    
+    NSLog(@"相差天数%ld" , (long)intervalDay);
+    NSDate * fireDate = [date dateByAddingTimeInterval:intervalDay*24*3600];
+    
+    NSComparisonResult result = [date compare:nowDate];
+    if ( result == NSOrderedAscending) {
+        fireDate =  [date dateByAddingTimeInterval:7*24*3600];
+    }
+    
+    model.fireDate = fireDate;
+    
+    [BoyeGoalLocaNotify setLocalNotifyGoal:model];
 }
 
 -(void)localNotification{

@@ -14,7 +14,7 @@
 #import "GoalVC.h"
 #import "LetfView.h"
 #import "HeadPageVC.h"
-
+#import "BoyeGoalLocaNotify.h"
 @interface MainViewController ()<BOYEBluetoothStateChangeDelegate>{
     
     CGFloat         _slidepy;
@@ -48,6 +48,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 
+    [self mainViewAppearBefore];
+    
+}
+
+-(void) mainViewAppearBefore{
+    
     self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
     self.boyeBluetooth.delegate = self;
     
@@ -56,13 +62,16 @@
     self.navigationController.navigationBarHidden = YES;
     
     if (self.buttonArray) {
-
+        
         [self buttonPress:self.buttonArray[0]];//
     }
-
+    
     [self creatLeftView];
     
+    //移除所有非当前用户目标闹铃提醒
+    [BoyeGoalLocaNotify removeLocalNotifyKey:self.userInfo.uid ];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

@@ -43,11 +43,12 @@
 
 -(void)_initTableView{
     
-    self.tableView_set = [[UITableView alloc] initWithFrame:CGRectMake(0,20, SCREEN_WIDTH,44 *(_setArray.count+1))];
+    self.tableView_set = [[UITableView alloc] initWithFrame:CGRectMake(0,20, SCREEN_WIDTH,SCREEN_HEIGHT - NAV_HEIGHT - STATE_CHANGE - 20) style:UITableViewStyleGrouped];
     self.tableView_set.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView_set.delegate = self;
     self.tableView_set.dataSource = self;
-
+    self.tableView_set.backgroundColor = [UIColor clearColor];
+    self.tableView_set.bounces = NO;
     [self.view addSubview:self.tableView_set];
     
 }
@@ -63,7 +64,9 @@
     
     return 2;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 20;
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -80,10 +83,10 @@
         [cell.contentView addSubview:lineLabel];
     }
     
-    //隐藏横线
-    UILabel * line = (UILabel *) [cell.contentView viewWithTag:1008];
-    line.alpha = indexPath.row == _setArray.count-1?0:0.5;
-    
+//    //隐藏横线
+//    UILabel * line = (UILabel *) [cell.contentView viewWithTag:1008];
+//    line.alpha = indexPath.row == _setArray.count-1?0:0.5;
+//    
 
     cell.textLabel.text = _setArray[indexPath.row];
     

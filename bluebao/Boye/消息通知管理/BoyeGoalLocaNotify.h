@@ -25,8 +25,24 @@
  *@param*
  **/
 +(void) removeLocalNotifyKey:(NSInteger)goalID;
-//取消所有通知
+
+
+/**
+ *  取消所有通知
+ **/
+
 +(void)removeAllLocalNotify;
 
+/**
+ * 移除当前应用，用户以外其他所有通知
+ **/
+
++(void)removeAllLocalNotifyOutUser:(NSInteger)uid;
+
+/**
+ * 根据目标获得有效的闹铃时间
+ *
+ **/
++(NSDate *)registerLocalNotify:(BoyeGoaldbModel *)model;
 
 @end

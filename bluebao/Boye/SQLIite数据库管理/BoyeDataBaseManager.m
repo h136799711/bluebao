@@ -257,7 +257,7 @@ static  SQLiteManager   * sqlManager;
 }
 
 +(void) test:(NSArray *)array{
-    
+
     for (BoyeGoaldbModel * model in array) {
         NSLog(@"id %ld",model.db_id);
         NSLog(@"target %ld",model.target);

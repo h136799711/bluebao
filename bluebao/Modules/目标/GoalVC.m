@@ -122,7 +122,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     headerLabel.text = [MyTool getCurrentDateFormat:@"yy-M-dd"];
     
     _goalDateLabeltext = headerLabel.text;
-    NSLog(@"****************************************");
     //线
     [MyTool createLineInView:_headerView fram:CGRectMake(0, headerLabel.bottom, _headerView.width, 0.5)];
     
@@ -139,7 +138,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 #pragma mark -- WeekSegmentDelegate ---
 -(void)segment:(WeekSegmentlView *)segment index:(NSInteger)index{
     
-    NSLog(@"  segment  %ld  ",(long)self.weekSegment.selectIndex );
     
     [self refreshGoalTableView];
     [self.goalPickerView close];
@@ -220,9 +218,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     self.goalPickerView.tag = alterBtn.tag;
     [self.goalPickerView open];
    
-//    GoalData * goal = self.dataArray[alterBtn.tag];
-//    [CommonCache setGoal:[NSNumber numberWithInteger:goal.goalNumber]];
-//
+
     
 }
 #pragma mark  --delete  --
@@ -302,7 +298,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     }
 }
 
-
 #pragma mark -- 创建PIcker --
 
 -(void)_initPickerView{
@@ -314,7 +309,15 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
         [self.view addSubview:self.goalPickerView];
     }
 }
-
+// 是否超出个数
+-(BOOL)isGoalNumOut{
+    if (self.dataArray.count >=10) {
+        
+        return YES;
+    }else{
+      return   NO;
+    }
+}
 /*
  *self.goalPickerView.tag == -1,# 点击添加按钮
  *                        else，# 点击修改按钮
@@ -323,6 +326,17 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 #pragma mark--- PickerDelegate 返回日期和目标值---
 
 -(void)goalPickerView:(GoalPickerView *)picker dateString:(NSString *)time goalNumber:(NSInteger)goalNumber{
+    
+    if ([self isGoalNumOut]) {
+        
+        [SVProgressHUD showErrorWithStatus:@"目标个数已满，不能再添加了" withDuration:0.5];
+        return;
+    }else{
+        if (goalNumber<=0) {
+        [SVProgressHUD showErrorWithStatus:@"目标不能为0" withDuration:0.5];
+            return;
+        }
+    }
     
        //数据库模型
     BoyeGoaldbModel * goalModel = [[BoyeGoaldbModel alloc] init];
@@ -337,24 +351,21 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
         
        [self touchAdd:goalModel];
        
-        
     #pragma mark -- 点击修改按钮，替换对应目标数据
     }else{
         
-//    TODO:....
         [self touchAlter:goalModel];
-    
-    }
+        }
 
 }
 
 //添加数据
--(BOOL) touchAdd:(BoyeGoaldbModel *) model{
+-(void) touchAdd:(BoyeGoaldbModel *) model{
 
     //有相同的不添加
     if ([BoyeDataBaseManager  isExistUserGoal:model] ) {
         [SVProgressHUD showOnlyStatus:@"存在相同时间目标" withDuration:0.5];
-        return NO;
+        return ;
     }
 //    
     [BoyeDataBaseManager insertGoalWithDate:model];
@@ -366,9 +377,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     model.db_id = [BoyeDataBaseManager selectedDateModelID:model];
     
     [self registerLocalNotify:model];
-
-    return YES;
-    
 }
 
 //点击修改
@@ -421,8 +429,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
             [self.dataArray addObject:model];
         }
     }
-        [BoyeDataBaseManager test:self.dataArray];
-
+    
     [self isHasDataAdjust];
     [_goalTableView reloadData];
 }

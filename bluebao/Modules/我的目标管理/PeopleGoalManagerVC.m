@@ -19,26 +19,16 @@
     
     self.title = @"我的目标管理";
     self.navigationController.navigationBarHidden = NO;
-//    CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT);
-    self.goalTableView.frame = CGRectMake(self.goalTableView.x, self.goalTableView.top, self.goalTableView.width, self.goalTableView.height + TABBAR_HEIGHT);
-    //默认卡路里
-    
-//    NSLog(@"GlobalGoalCalorie=%@",[CommonCache getGoal]);
-    
-    // Do any additional setup after loading the view.
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+
+    self.goalTableView.height = self.goalTableView.height + TABBAR_HEIGHT;
+
 }
 
--(void)_initViews{
-    [super _initViews];
+-(void)viewWillDisappear:(BOOL)animated{
     
+    [super viewWillDisappear:YES];
+    self.goalTableView.height = self.goalTableView.height - TABBAR_HEIGHT;
 }
-
-
-
-
 
 -(void)_initNavs{
     
