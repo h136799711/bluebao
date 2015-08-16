@@ -23,7 +23,7 @@
     NSString * goal =  [[CacheFacade sharedCache]get:key];
     
     if (goal == nil) {
-        return [self defaultGoal];
+        return [NSString stringWithFormat:@"%d",DEFAULT_GOAL];
     }
     
     return goal;
@@ -40,10 +40,6 @@
     
 }
 
-+(NSString *)defaultGoal{
-    
-    return @"500";
-}
 
 +(BOOL) AlarmSwitchIsOn{
     

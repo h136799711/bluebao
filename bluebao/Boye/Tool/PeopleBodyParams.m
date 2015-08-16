@@ -29,6 +29,10 @@
  *
  */
 +(NSInteger )getBodyFatRateBy:(NSInteger )age :(NSInteger )sex :(float )weight :(float)height{
+    
+    if (weight == 0 || height == 0) {
+        return 0;
+    }
     float rate = [self getBMI:weight :height];
     
     rate = (1.2*rate  + 0.23 * age -5.4 - 10.8*sex);
@@ -37,7 +41,9 @@
 }
 
 +(NSInteger )getBodyWaterRateBy:(NSInteger )age :(NSInteger )sex :(float )weight :(float)height{
-    
+    if (weight == 0 || height == 0) {
+        return 0;
+    }
     float rate = 0;
     if(sex == 0){
         
@@ -69,7 +75,9 @@
 }
 
 +(NSInteger )getBasalMetabolicRate:(NSInteger )age :(NSInteger )sex :(float )weight :(float)height{
-    
+    if (weight == 0 || height == 0) {
+        return 0;
+    }
     
    // Harris-Benedict公式
    // 男性: BMR = 66+(13.7× 体重(kg))+(5×身高(cm)) – (6.8×年龄(岁))
@@ -107,7 +115,9 @@
 
 
 +(NSInteger)getSkeletonRate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
-    
+    if (weight == 0 || height == 0) {
+        return 0;
+    }
     if(sex == 0){
         
         if(age < 39){
@@ -133,6 +143,10 @@
 
 +(NSInteger)getViscusPate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
     
+    if (weight == 0 || height == 0) {
+        return 0;
+    }
+    
     float bmi = [self getBMI:weight :height];
     
     if (bmi <25) {
@@ -145,6 +159,9 @@
 }
 
 +(NSInteger) getSubcutaneousFatRate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
+    if (weight == 0 || height == 0) {
+        return 0;
+    }
     
     float fatRate = [self getBodyFatRateBy:age :sex :weight :height];
     
@@ -153,7 +170,9 @@
 }
 
 +(NSInteger)getMusclePate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
-    
+    if (weight == 0 || height == 0) {
+        return 0;
+    }
     if (sex == 0) {
         if (height < 1.6) {
             //31.9+- 2.8

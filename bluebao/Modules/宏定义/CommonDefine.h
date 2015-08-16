@@ -39,6 +39,7 @@
 #define BOYE_USER_HEIGHT @"user_height"     //用户身高
 #define BOYE_USER_WEIGHT @"user_weight"     //用户体重
 #define BOYE_USER_AGE @"user_age"           //用年龄
+#define DEFAULT_GOAL 500 //默认的目标值
 
 
 // Include any system framework and library headers here that should be included in all compilation units.

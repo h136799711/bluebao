@@ -119,21 +119,19 @@
    return   [[NSDate date] isOutSetDateTime:date];
 }
 
-//时间转化小时，分钟，秒
+//秒 转化小时，分钟，秒
 +(NSString *) getDateHour:(NSTimeInterval )time{
     
-    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    //转化为 yyyy-mm --dd 日期
-    formatter.dateFormat = [NSDate  defaultDateFormatString];
-    NSString * dstr = [formatter stringFromDate:[NSDate date]];
-    //新日期
-    NSDate * date = [[formatter dateFromString:dstr] dateByAddingTimeInterval:time];
-    //新格式 hh:mm:ss
-//    formatter.dateFormat = @"mm:ss";
-    formatter.dateFormat = [NSDate defaultTimeFormatString];
-    NSString * datestr = [formatter stringFromDate:date];
-    NSLog(@" date %@  %f ",datestr,time);
-    return datestr;
+    int total = (int)time;
+    
+    int hour  = (int)floor(time / 3600);
+    
+    int min = (int)floor((total%3600)/60);
+    
+    int seconds = (int)floor(((total%3600)%60)%60);
+    
+    NSString * ret = [NSString stringWithFormat:@"%02d:%02d:%02d",hour,min,seconds];
+    return ret;
 }
 
 @end

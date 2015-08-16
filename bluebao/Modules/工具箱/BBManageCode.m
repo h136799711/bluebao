@@ -355,7 +355,10 @@
         default:
             break;
     }
-    
+    if(row < 8){
+        NSLog(@"=================");
+        NSLog(@"%ld row=%ld" , row , (long)valueNum);
+    }
     return valueNum;
 }
 
