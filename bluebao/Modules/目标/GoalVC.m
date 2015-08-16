@@ -55,8 +55,18 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 }
 //进入页面获得目标
 -(void) getDocumentsFile{
+    NSCalendar * calendar = [NSCalendar currentCalendar];
     
-    self.weekSegment.selectIndex = 0;
+    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:[NSDate date]];
+    
+    NSInteger selectWeekday = comps.weekday - 1;
+    
+    //转换成周日＝1 周一=2 周二＝3
+    if (selectWeekday == 0) {
+        selectWeekday = 7;
+    }
+    
+    self.weekSegment.selectIndex = selectWeekday-1;
     [self refreshGoalTableView];
     NSLog(@" weekSegment  ");
 }
