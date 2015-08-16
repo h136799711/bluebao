@@ -620,9 +620,9 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
-    NSLog(@" ************************ 视图将要小时") ;;
+//    NSLog(@" ************************ 视图将要小时") ;;
     if ([MainViewController sharedSliderController].isVCCancel) {
-            NSLog(@" 点击了注销") ;;
+//            NSLog(@" 点击了注销") ;;
         
         self.connectView.isConnect = NO;
     }

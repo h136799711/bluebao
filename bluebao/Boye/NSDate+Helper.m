@@ -33,6 +33,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     formatter.dateFormat = [NSDate defaultDateTimeFormatString];
     formatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:8*3600];
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh"];
+    formatter.locale = locale;
     return formatter;
 }
 

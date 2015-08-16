@@ -82,7 +82,7 @@
         
         notification.userInfo = userinfo;
         
-        notification.fireDate = [NSDate date];//本次开启立即执行的周期
+        notification.fireDate = date;//本次开启立即执行的周期
         
         notification.repeatInterval = interval;//循环通知的周期
         

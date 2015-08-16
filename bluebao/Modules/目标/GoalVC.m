@@ -321,10 +321,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     goalModel.target = goalNumber;
     goalModel.create_time = [MyTool getCurrentDateFormat:nil];
     goalModel.weekday = self.weekSegment.selectIndex;
-
-    goalModel.fireDate = [self getFullDayTimeString:goalModel.date_time];
-    
-    
     
     #pragma mark -- 点击添加按钮，相同日期不可添加，不同日期要排序
     if (self.goalPickerView.tag == -1) {
@@ -334,7 +330,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
         
     #pragma mark -- 点击修改按钮，替换对应目标数据
     }else{
- 
+        
 //    TODO:....
         [self touchAlter:goalModel];
     
@@ -358,7 +354,8 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     [self refreshGoalTableView];
     //TODO.... 设置通知
     model.db_id = [BoyeDataBaseManager selectedDateModelID:model];
-    [self settdNotify:model];
+    
+    [self registerLocalNotify:model];
 
     return YES;
     
@@ -378,8 +375,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
         
         //TOD... ,设置通知
         
-        model.db_id = [BoyeDataBaseManager selectedDateModelID:model];
-        [self settdNotify:model];
+        [self registerLocalNotify:model];
         
     }else{
         //数据存在，修改日期是当前日期则可以修改，
@@ -394,8 +390,8 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
             
             //移除通知
             [self removeNotify:model];
-            //设置新通知
-            [self settdNotify:model];
+            
+            [self registerLocalNotify:model];
             
         }else{
 
@@ -479,10 +475,6 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 -(void)tapGesture:(UITapGestureRecognizer *)tap{
     //
     [self.goalPickerView close];
-    
-//    [self removeAllNotify];
-    
-//    [self getcurrentDay];
 
 }
 
@@ -503,10 +495,42 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
 #pragma mark -- ****  设置闹铃   ** --
 
--(void) settdNotify:(BoyeGoaldbModel *)mode{
+
+-(void)registerLocalNotify:(BoyeGoaldbModel *)model{
     
-    [BoyeGoalLocaNotify setLocalNotifyGoal:mode];
-    NSLog(@"设置闹铃");
+    NSDate * nowDate =  [NSDate date];
+    NSString * dataFormatt = @"yyyy-MM-dd";
+    NSString *  timestr = [MyTool getCurrentDateFormat:dataFormatt];
+    NSString * datestring = [NSString stringWithFormat:@"%@ %@",timestr,model.date_time];
+    
+    
+    NSDate  * date = [[MyTool  getDateFormatter:@"yyyy-MM-dd HH:mm"] dateFromString:datestring];
+    
+    
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
+    
+    NSInteger selectWeekday = model.weekday + 2;
+    
+    //转换成周日＝1 周一=2 周二＝3
+    if (selectWeekday == 8) {
+        selectWeekday = 1;
+    }
+    
+    NSInteger intervalDay =  selectWeekday - comps.weekday;
+    
+    NSLog(@"相差天数%ld" , (long)intervalDay);
+    NSDate * fireDate = [date dateByAddingTimeInterval:intervalDay*24*3600];
+    
+    NSComparisonResult result = [date compare:nowDate];
+    if ( result == NSOrderedAscending) {
+        fireDate =  [date dateByAddingTimeInterval:7*24*3600];
+    }
+    
+    model.fireDate = fireDate;
+    
+    [BoyeGoalLocaNotify setLocalNotifyGoal:model];
 }
 
 -(void) removeNotify:(BoyeGoaldbModel *)mode{
@@ -515,52 +539,10 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
         NSLog(@"移除指定闹铃闹铃");
 }
 
-//-(void)removeAllNotify{
-//    
-//    [BoyeGoalLocaNotify removeAllLocalNotify ];
-//
-//}
-
--(NSDate *) getFullDayTimeString:(NSString *)hourstr {
-    
- NSDate * nowDate =  [NSDate date];
-    
-    NSString * dataFormatt = @"yyyy-MM-dd";
-      NSString *  timestr = [MyTool getCurrentDateFormat:dataFormatt];
-    NSString * datestring = [NSString stringWithFormat:@"%@ %@",timestr,hourstr];
-
-    
-    NSDate  * date = [[MyTool  getDateFormatter:@"yyyy-MM-ddHH:mm"] dateFromString:datestring];
-    
-    NSLog(@" full  %@   -- %@ -%@",datestring,date,nowDate);
-
-    NSCalendar * calendar = [NSCalendar currentCalendar];
-
-    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
-    
-    NSLog(@"  -- %ld   -%ld", comps.weekday,self.weekSegment.selectIndex);
-    
-     // 不是当天
-    
-    
-    return date ;
-}
-
-
-
 -(void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:YES];
     [self.goalPickerView close];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

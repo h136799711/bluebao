@@ -18,7 +18,7 @@
     NSString * key = [self defaultNotifyKey:model.db_id];
     
     model.fireDate = [NSDate date];
-    [[ LocalNotify sharedNotify]  fireNotification:key At:model.fireDate  WithContent:[NSString stringWithFormat:@" 到运动时间了，目标 %ld ",model.target] HasInterval:NSCalendarUnitSecond];
+    [[ LocalNotify sharedNotify]  fireNotification:key At:model.fireDate  WithContent:[NSString stringWithFormat:@" 到运动时间了，目标 %ld ",model.target] HasInterval:NSCalendarUnitWeekday];
 }
 
 //取消通知
@@ -63,7 +63,7 @@
  **/
 + (NSString *) getFullNotifyKey:(NSInteger ) uid goalID:(NSInteger)goalID{
     
-    return [NSString stringWithFormat:@"%ld",uid,goalID];
+    return [NSString stringWithFormat:@"%ld_%ld",uid,goalID];
 }
 
 @end
