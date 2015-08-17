@@ -204,6 +204,9 @@
 }
 
 +(NSInteger )getBodyAge:(NSInteger )age :(NSInteger )sex :(float )weight :(float)height{
+    if (age== 0) {
+        return 20;
+    }
     return age;
 }
 

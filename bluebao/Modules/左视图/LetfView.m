@@ -278,9 +278,11 @@
     
     NSArray * goalModelArr = [BoyeDataBaseManager getAllDataUserID:[MainViewController sharedSliderController].userInfo.uid];
     
+    [BoyeDataBaseManager test:goalModelArr];
+    
     
     for (BoyeGoaldbModel * model in goalModelArr) {
-        
+        [BoyeGoalLocaNotify removeLocalNotifyKey:model.db_id];
         [self registerLocalNotify:model];
     }
 }

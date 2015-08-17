@@ -17,5 +17,6 @@
 @property (nonatomic,strong) NSString       *create_time;       //插入时间
 
 @property (nonatomic,strong) NSDate         * fireDate;  //提醒时间
+@property (nonatomic,assign) NSInteger      goalIndex;
 
 @end

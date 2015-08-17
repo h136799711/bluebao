@@ -47,14 +47,21 @@
         self.accontNumTextfield.text = userName;
         
         NSString * pwd =  [[CacheFacade sharedCache] get:userName];
-        if (pwd != nil){
-            self.remberCodeBtn.selected = NO;
-            [self rememberCodeClick:self.remberCodeBtn];
-            self.pswTextfield.text = pwd;
-        }
         
+        if (pwd != nil){
+            self.pswTextfield.text = pwd;
+            NSString * rember =   [[CacheFacade sharedCache] get:BOYE_USER_REMBER];
+           // 密码为非空，且未记住密码，不显示
+            if (rember == nil) {
+                self.remberCodeBtn.selected = YES;
+                self.pswTextfield.text = @"";
+            }else{
+                self.remberCodeBtn.selected = NO;
+            }
+            NSLog(@" remberstr  : %@",rember);
+            [self rememberCodeClick:self.remberCodeBtn];
+        }
     }
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -87,7 +94,9 @@
     [ButtonFactory decorateButton:self.registerBtn forType:BOYE_BTN_WARNING];
 
  
-    self.accontNumTextfield.clearButtonMode =  UITextFieldViewModeAlways;
+    self.accontNumTextfield.clearButtonMode =  UITextFieldViewModeWhileEditing;
+    self.pswTextfield.clearButtonMode =  UITextFieldViewModeWhileEditing;
+
     
     self.accontNumTextfield.delegate = self;
     self.pswTextfield.delegate = self;
@@ -201,11 +210,21 @@
     [BoyeDefaultManager requestLoginUser:user complete:^(UserInfo * userInfo) {
         
         if (userInfo != nil ) {
-            //  NSLog(@" \r-- %@",userInfo);
-            [MainViewController sharedSliderController].userInfo = userInfo;
-            //缓存用户 id
+                       //缓存用户 id
             
             [[CacheFacade   sharedCache] setObject:userInfo.username forKey:BOYE_USER_NAME afterSeconds:3600*24];
+           //是否记住密码
+            if (self.remberCodeBtn.selected) {
+                [[CacheFacade sharedCache] setObject:BOYE_USER_REMBER forKey:BOYE_USER_REMBER afterSeconds:3600*24*30];
+            }else{
+                [[CacheFacade sharedCache] setObject:nil forKey:BOYE_USER_REMBER afterSeconds:3600*24*30];
+
+            }
+            
+            //  NSLog(@" \r-- %@",userInfo);
+
+            [MainViewController sharedSliderController].userInfo = [MyTool defaultUserInfo:userInfo];
+
             [self jumpMainPage];
             
         }

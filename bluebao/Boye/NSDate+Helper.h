@@ -72,4 +72,11 @@
 
 //默认日期格式
 +(NSString *)defaultDateTimeFormatString;
+
+/**
+ 获得当前星期 0-6，周一-周日
+ */
+
++(NSInteger) getcurrentWeekDay;
+
 @end

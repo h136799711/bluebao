@@ -106,7 +106,11 @@
 //搜索数据
 +(BoyeGoaldbModel*) selectDataID:(NSInteger)db_id;
 
-
+/**
+ 找到距离当前时间最近的
+ 闹铃
+  **/
++(BoyeGoaldbModel *) getNearlyNotifyGoalOfUser:(NSInteger)uid;
 
 +(void) test:(NSArray *)array;
 

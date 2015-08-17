@@ -49,9 +49,15 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     [self mainViewAppearBefore];
+    [self dealNotifyInit];
+}
+-(void)dealNotifyInit{
+    
+    if (self.isVCCancel== NO) {
+        
+    }
     
 }
-
 -(void) mainViewAppearBefore{
     
     self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
@@ -67,9 +73,9 @@
     }
     
     [self creatLeftView];
-    
+    [CommonCache setGoal:[NSNumber numberWithInteger:500]];
     //移除所有非当前用户目标闹铃提醒
-    [BoyeGoalLocaNotify removeLocalNotifyKey:self.userInfo.uid ];
+    [BoyeGoalLocaNotify removeAllLocalNotifyOutUser:self.userInfo.uid ];
 }
 
 - (void)viewDidLoad {

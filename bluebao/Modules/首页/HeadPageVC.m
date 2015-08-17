@@ -14,7 +14,8 @@
 #import "BicyleReqModel.h"
 #import "BoyeConnectView.h"
 #import "CheckBluetoothData.h"
-
+#import "BoyeDataBaseManager.h"
+#import "BoyeGoaldbModel.h"
 
 @interface HeadPageVC ()<BOYEBluetoothStateChangeDelegate>{
     
@@ -26,6 +27,8 @@
     NSArray                 *_sortArray;
     
     NSInteger        _upTimeInterval; //上传时间间隔
+    NSTimer         *_boyeCacheTargetTimer;  //定时器
+    
 }
 
 @property (nonatomic,strong) BoyeBluetooth              * boyeBluetooth;            //蓝牙
@@ -35,6 +38,7 @@
 @property (nonatomic,strong) Bicyle                     * bicylelb;                 // 蓝堡Bicycle数据类
 @property (nonatomic,strong) NSDate                     * nextUpLoadDateTime;       //下一个上传时间
 @property (nonatomic,strong) BoyeConnectView            * connectView;              //连接跑步机
+
 @end
 
 @implementation HeadPageVC
@@ -70,21 +74,43 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-
-    [[CacheFacade sharedCache] setObject:@"500" forKey:BOYE_TODAY_TARGET_CALORIE];
-    self.title =@"蓝堡动感单车";
-
-    //初始化数据上传时间
-    [self _initUpTime];
+    [self _initViews];
+    //定时器
+    [self boyeTimer];
     
+}
+#pragma mark -- 初始化 --
+
+-(void)_initViews{
+    
+   
+    self.title =@"蓝堡动感单车";
     _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗",@"路程"];
     _imageName = @[@"xinlv.png",@"sd.png",@"time.png",@"sport.png",@"road.png"];
     _sortArray = @[@"体脂肪率",@"体水分率",@"体年龄",@"基础代谢",@"肌肉含量",@"内脏含量",@"骨骼含量",@"皮下脂肪"];
-    [self _initViews];
     
-    [self test];
+    itemWidth = (SCREEN_WIDTH - 50-15*3)/4.0;
+    [self _initHeadInfoTableView];
     
+    
+    //初始化数据上传时间
+    [self _initUpTime];
+ 
 }
+
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:YES];
+     //蓝牙
+    self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
+    self.boyeBluetooth.delegate = self;
+    [self doViewAppearBefore];
+    //定时器
+    [self boyeTimer];
+}
+
 
 /**
  * 初始化数据上传时间
@@ -99,47 +125,21 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:YES];
-     //蓝牙
-    self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
-    self.boyeBluetooth.delegate = self;
-   
+-(void) doViewAppearBefore{
     self.userInfo = [MainViewController sharedSliderController].userInfo;
-    [headCollectionView reloadData];
 
-   
     if ([MainViewController sharedSliderController].isVCCancel == NO) {
-        [self doViewAppearBefore];
-        [MainViewController sharedSliderController].isVCCancel  = YES;
+        NSLog(@" ---- current设备UUID %@  ",self.boyeBluetooth.connectedDevice.uuid);
+      
+        //请求数据
+        [self getBicyleData];
     }
     
-    [_headTableView reloadData];
-  
-}
-
--(void) doViewAppearBefore{
-    
-    
-    self.userInfo = [MainViewController sharedSliderController].userInfo;
-    
     [headCollectionView reloadData];
-    NSLog(@" ---- current设备UUID %@  ",self.boyeBluetooth.connectedDevice.uuid);
-    
-    
-    [self getBicyleData];
-
+    [_headTableView reloadData];
 }
 
-#pragma mark -- 初始化 --
 
--(void)_initViews{
-
-    itemWidth = (SCREEN_WIDTH - 50-15*3)/4.0;
-
-    [self _initHeadInfoTableView];
-}
 
 
 #pragma mark -- 首页表 --
@@ -445,7 +445,8 @@
     [_headTableView reloadData];
 }
 
-//数据上传
+#pragma mark  -- 单车数据数据上传 --
+
 -(void) upLoadBicyleData{
    
     //
@@ -552,21 +553,12 @@
                 //设置下次上传时间
                 [self nextLoadTime];
             }
-            
         }
-        
-        
     }else{    //数据无效
         
         //TODO: 更新时间
-       
-        
         
     }
-    
-
-    
-    
 }
 
 - (NSString * )dataToString:(NSData *)value{
@@ -593,51 +585,36 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)test{
+// 定时器
+-(void)boyeTimer{
     
-//    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(testgoal) userInfo:nil repeats:YES];
+    if (_boyeCacheTargetTimer == nil) {
+     _boyeCacheTargetTimer = [NSTimer scheduledTimerWithTimeInterval:10* 60 target:self selector:@selector(boyeCacheTarget) userInfo:nil repeats:YES];
+
+    }
 
 }
--(void)testgoal{
-  
-    static NSInteger count = 0;
-    count ++;
-    count = count %25; ;
-    BluetoothDataManager * bluetoothData = [[BluetoothDataManager alloc] init];
-    bluetoothData.bicyleModel.calorie = arc4random() %5;
-    
-    if (count >= 12) {
-        bluetoothData.bicyleModel.calorie = 0;
-    }
-    NSLog(@"%ld --- %ld",bluetoothData.bicyleModel.calorie,count);
-
-    if ([CheckBluetoothData checkDataUsable:bluetoothData]) {
-        _currentBluetothData = bluetoothData;
-    }
-
-    
+-(void)boyeCacheTarget{
+    //设置缓存目标
+    BoyeGoaldbModel * nearlyGoalModel = [BoyeDataBaseManager getNearlyNotifyGoalOfUser:self.userInfo.uid];
+    [CommonCache setGoal: [NSNumber numberWithInteger:nearlyGoalModel.target]];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
-//    NSLog(@" ************************ 视图将要小时") ;;
-    if ([MainViewController sharedSliderController].isVCCancel) {
-//            NSLog(@" 点击了注销") ;;
+        NSLog(@" 首页视图消失");
+    if (![MainViewController sharedSliderController].isVCCancel) {
+
+        NSLog(@" 首页视图消失");
         
         self.connectView.isConnect = NO;
     }
     
+    //关闭定时器
+    [_boyeCacheTargetTimer  invalidate ];
+    _boyeCacheTargetTimer = nil;
+    
 }
 
-//#pragma mark -- 将要消失||隐藏
-//-(void)viewWillDisappear:(BOOL)animated{
-//    [super viewWillDisappear:YES];
-//    
-//    LBSportShareModel * lanbao = [LBSportShareModel sharedLBSportShareModel];
-//    
-//       
-//    NSLog(@"***************************** distance %f -- calorie %f ",lanbao.distance,lanbao.calorie);
-//    
-//}
 
 @end

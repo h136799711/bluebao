@@ -100,7 +100,19 @@
     return detaildate;
 }
 
-
+// 星期
++(NSInteger) getcurrentWeekDay{
+    
+    NSDate *nowDate  = [NSDate date];
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
+    
+    if (comps.weekday == 1 ){
+        return 6;
+    }
+    return comps.weekday -2;
+}
 
 //某个时间是否超过设定时间
 -(BOOL)isOutSetDateTime:(NSDate *)newDate{
