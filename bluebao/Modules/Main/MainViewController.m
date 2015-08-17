@@ -73,7 +73,7 @@
     }
     
     [self creatLeftView];
-    
+    [CommonCache setGoal:[NSNumber numberWithInteger:500]];
     //移除所有非当前用户目标闹铃提醒
     [BoyeGoalLocaNotify removeAllLocalNotifyOutUser:self.userInfo.uid ];
 }

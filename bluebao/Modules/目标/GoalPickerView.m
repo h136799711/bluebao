@@ -52,7 +52,7 @@
     if (self.pickerView == nil) {
         //视图
         self.backgroundColor = [UIColor lightGrayColor];
-        self.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 240);
+        self.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 230);
         self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT );
        
         //顶部黑条
@@ -118,10 +118,7 @@
         self.pickerView.backgroundColor = [UIColor whiteColor];
          self.pickerView.showsSelectionIndicator = YES;
         [downView addSubview: self.pickerView];
-        
-        
     }
-    
 }
 
 //提醒
@@ -130,7 +127,7 @@
     CGFloat  left = (remindView.width -200)/2.0;
     //时间
     UILabel * timelabel = [[UILabel alloc] init];
-    timelabel.frame = CGRectMake(left, 0, 70, remindView.height);
+    timelabel.frame = CGRectMake(left-5, 0, 70, remindView.height);
     timelabel.text = @"提醒时间";
     timelabel.font = FONT(15);
     timelabel.textAlignment = NSTextAlignmentCenter;

@@ -42,13 +42,10 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
 }
 
-
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     
     self.useInfo = [MainViewController sharedSliderController].userInfo;
-    [BoyeDataBaseManager getNearlyNotifyGoalOfUser:self.useInfo.uid];
 
     //进入页面获得保存目标
     [self getDocumentsFile];

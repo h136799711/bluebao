@@ -109,19 +109,14 @@ static  SQLiteManager   * sqlManager;
 //获得所有数据
 +(NSArray *) getAllDataUserID:(NSInteger)uid{
     
-    [self safeDataBase];
-    [__db open];
-    
-    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target uid = %ld",uid];
-    
-    FMResultSet *set = [__db executeQuery:sql];
-    NSMutableArray *array = [NSMutableArray array];
-    while ([set next]) {
-        [array addObject:[self getGoalModel:set]];
+    NSMutableArray * array = [[NSMutableArray alloc] initWithCapacity:0];
+    NSArray  *arr = [self getAllData];
+    for (BoyeGoaldbModel * model in arr) {
+        if (model.uid == uid) {
+            [array addObject:model];
+        }
     }
-    [set close];
-    [__db close];
-    
+    NSLog(@" -- %ld --",uid);
     return array;
 }
 //获得所有数据
@@ -256,53 +251,72 @@ static  SQLiteManager   * sqlManager;
     [__db close];
 }
 
++( NSInteger ) getMin:(NSArray * )goalArray {
+    
+    BoyeGoaldbModel * minModel = [goalArray objectAtIndex:0];
+    NSInteger  maxIndex = 0;
+    
+    for  (NSInteger j = 0 ;j < goalArray.count; j++) {
+     
+        BoyeGoaldbModel  * nextModel = [goalArray objectAtIndex:j];
+        if (minModel.goalIndex > nextModel.goalIndex) {
+            minModel = nextModel;
+            maxIndex = j;
+        }
+    }
+    return maxIndex;
+}
 
 +(BoyeGoaldbModel *) getNearlyNotifyGoalOfUser:(NSInteger)uid{
     NSInteger weekDay =[NSDate getcurrentWeekDay];
-    NSArray * goalArray = [self getGoalDataUserID:uid week:weekDay];
-
+    NSArray * arr = [self getGoalDataUserID:uid week:weekDay];
+   //放到可变数组 goalArray中
+    NSMutableArray * goalArray = [[NSMutableArray alloc] initWithCapacity:0];
     
-    for (NSInteger j = 0;  j < goalArray.count; j++) {
-        BoyeGoaldbModel * maxGoal = goalArray[j];
-        
-        for (NSInteger i = j ; i < goalArray.count; i ++) {
-            BoyeGoaldbModel  *  goal  = goalArray[i];
-//            NSLog(@"--maxIndex %ld - goalIndex %ld-",maxGoal.goalIndex,goal.goalIndex);
-            if (goal.goalIndex > maxGoal.goalIndex ) {
-                BoyeGoaldbModel * temp = [[BoyeGoaldbModel alloc] init];
-                temp = maxGoal;
-                maxGoal = goal;
-                goal = temp;
-            }
-        }
-        
-    }
+    NSMutableArray * pax = [[NSMutableArray alloc] initWithCapacity:0];
 
+    if (arr == nil) {
+        return [[BoyeGoaldbModel alloc] init];
+    }else{
+        for (BoyeGoaldbModel * model in arr) {
+            [goalArray addObject:model];
+        }
+    }
+    //排序
+    NSInteger countd = goalArray.count;
+
+    for (NSInteger i = 0 ; i < countd; i ++) {
+        NSInteger maxIndex = [self getMin:goalArray];
+        
+        [pax addObject:[goalArray objectAtIndex:maxIndex]];
+        [goalArray removeObjectAtIndex:maxIndex];
+    }
+    [self test:pax];
+    
     BoyeGoaldbModel * resultModel = [[BoyeGoaldbModel alloc] init];
     static NSInteger count = 0;
 
-    for (BoyeGoaldbModel * model in goalArray) {
+    for (BoyeGoaldbModel * model in pax) {
     
         NSDate * nowDate = [NSDate date];
         NSString * dataFormatt = @"yyyy-MM-dd";
         NSString *  timestr = [MyTool getCurrentDateFormat:dataFormatt];
         NSString * datestring = [NSString stringWithFormat:@"%@ %@",timestr,model.date_time];
         
-        
         NSDate  * date = [[MyTool  getDateFormatter:@"yyyy-MM-dd HH:mm"] dateFromString:datestring];
+        
         NSComparisonResult result = [date compare:nowDate];
         if ( result != NSOrderedAscending) {
             resultModel = model;
-            NSLog(@"**resultModel %@*****model %@*****",resultModel.date_time,model.date_time);
-
+            count ++;
             break;
         }
-        count ++;
     }
-    if (count == goalArray.count) {
-        resultModel = [goalArray lastObject];
+    if (count >= pax.count) {
+        resultModel = [pax lastObject];
     }
-    NSLog(@"**resultModel %@*****model ****",resultModel.date_time);
+    
+    NSLog(@"**resultModel %@*****model **%ld**",resultModel.date_time,resultModel.target);
 
     return resultModel;
 }
@@ -310,12 +324,16 @@ static  SQLiteManager   * sqlManager;
 +(void) test:(NSArray *)array{
 
     for (BoyeGoaldbModel * model in array) {
+      NSLog(@"*****************");
         NSLog(@"id %ld",model.db_id);
-        NSLog(@"target %ld",model.target);
-        NSLog(@"date_time %@",model.date_time);
+//        NSLog(@"date_time %@",model.date_time);
+//        NSLog(@"goalIndex %ld",model.goalIndex);
+        
+//        NSLog(@"target %ld",model.target);
         NSLog(@"uid %ld",model.uid);
-        NSLog(@"weekday %ld",model.weekday);
-        NSLog(@"create_time %@ ",model.create_time);
+//        NSLog(@"weekday %ld",model.weekday);
+//        NSLog(@"create_time %@ ",model.create_time);
+
     }
     
 }

@@ -23,7 +23,7 @@
         return;
     }
     
-    [[ LocalNotify sharedNotify]  fireNotification:key At:model.fireDate  WithContent:[NSString stringWithFormat:@" %@到运动时间了，目标 %ld ",model.date_time,model.target] HasInterval:NSCalendarUnitMinute];
+    [[ LocalNotify sharedNotify]  fireNotification:key At:model.fireDate  WithContent:[NSString stringWithFormat:@" %@到运动时间了，目标 %ld ",model.date_time,model.target] HasInterval:NSCalendarUnitWeekday];
 }
 
 //取消通知
