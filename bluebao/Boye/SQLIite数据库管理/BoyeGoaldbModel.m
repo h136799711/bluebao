@@ -17,4 +17,10 @@
     _fireDate = fireDate;
 }
 
+-(void)setDate_time:(NSString *)date_time{
+    _date_time = date_time;
+    
+    _goalIndex = [MyTool getGoalModelIndex:date_time];
+}
+
 @end

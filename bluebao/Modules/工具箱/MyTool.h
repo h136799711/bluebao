@@ -15,6 +15,7 @@
 +(void) testViews:(UIView * )view;
 +(void) testViewsBackGroundView:(UIView*)view colorNum:(int)num;
 +(void) tesGoal:(NSArray *) arr;
++(void) testBicyle:(Bicyle *)bicyle;
 // ----------------------------
 
 #pragma mark  获得字符串的大小（size）
@@ -110,5 +111,15 @@
 #pragma mark -- 默认目标值，
 
 +(NSInteger) getDefaultGoalValue:(NSInteger)goalValue ;
+/**
+  用户数据默认处理，
+  @parma userInfo ,返回的用户信息
 
+ ***/
++(UserInfo *) defaultUserInfo:(UserInfo *)userInfo;
+
+/**
+ 获得目标模型标识
+ ***/
++(NSInteger)getGoalModelIndex:(NSString *)date_time;
 @end

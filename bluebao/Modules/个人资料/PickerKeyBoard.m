@@ -26,46 +26,55 @@
 -(void)_initViews{
     
     if (self.pickerView == nil) {
-    //视图
-    self.backgroundColor = [UIColor lightGrayColor];
-    self.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 240);
-    self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT );
-    
-    //顶部黑条
-    UIView * topView = [[UIView alloc] init];
-    topView.frame = CGRectMake(0, 0, self.width, 35);
-    topView.backgroundColor = [UIColor  whiteColor];
-    [self addSubview:topView];
-    [MyTool createLineInView:topView fram:CGRectMake(0, 0, topView.width, 1)];
-    [MyTool createLineInView:topView fram:CGRectMake(0, topView.height-1,topView.width ,1)];
+        //视图
+        self.backgroundColor = [UIColor lightGrayColor];
+        self.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 240);
+        self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT + self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT );
+        
+        //顶部黑条
+        UIView * topView = [[UIView alloc] init];
+        topView.frame = CGRectMake(0, 0, self.width, 35);
+        topView.backgroundColor = [UIColor  whiteColor];
+        [self addSubview:topView];
+        [MyTool createLineInView:topView fram:CGRectMake(0, 0, topView.width, 1)];
+        [MyTool createLineInView:topView fram:CGRectMake(0, topView.height-1,topView.width ,1)];
         
         
-    //完成按钮
-    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    button.bounds = CGRectMake(0, 0, 80, topView.height);
-    CGFloat  x  =  topView.width  - button.bounds.size.width/2.0;
-    button.center = CGPointMake(x, topView.height /2.0);
-    [button setTitle:@"完成" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
-    [topView addSubview:button];
-//    [ButtonFactory   decorateButton:button forType:BOYE_BTN_SUCCESS];
+        //完成按钮
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        button.bounds = CGRectMake(0, 0, 80, topView.height);
+        CGFloat  x  =  topView.width  - button.bounds.size.width/2.0;
+        button.center = CGPointMake(x, topView.height /2.0);
+        [button setTitle:@"完成" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithRed:(59/255.0) green:(180/255.0) blue:(242/255.0) alpha:1] forState:UIControlStateNormal];
+        [topView addSubview:button];
+        //    [ButtonFactory   decorateButton:button forType:BOYE_BTN_SUCCESS];
         
         
-    [button addTarget:self action:@selector(buttonCloseClick) forControlEvents:UIControlEventTouchUpInside];
-    
+        [button addTarget:self action:@selector(buttonCloseClick) forControlEvents:UIControlEventTouchUpInside];
         
-    //底部
-    UIView * downView = [[UIView alloc] init];
-    downView.frame = CGRectMake(0, topView.bottom, topView.width, self.height-topView.height);
-    [self addSubview:downView];
-    
-    #pragma mark -- PickView
-    self.pickerView = [[UIPickerView alloc] init];
-    self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
+        //down
+        UILabel * touchDown = [[UILabel alloc] init];
+        touchDown.frame = CGRectMake(0, 0, topView.width - button.width- 2, topView.height);
+        touchDown.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close)];
+        [touchDown addGestureRecognizer:tap];
+        [topView addSubview:touchDown];
+        
+        
+        //底部
+        UIView * downView = [[UIView alloc] init];
+        downView.frame = CGRectMake(0, topView.bottom, topView.width, self.height-topView.height);
+        [self addSubview:downView];
+        
+        #pragma mark -- PickView
+        self.pickerView = [[UIPickerView alloc] init];
+        self.pickerView.delegate = self;
+        self.pickerView.dataSource = self;
         self.pickerView.backgroundColor = [UIColor whiteColor];
-    [downView addSubview: self.pickerView];
+        [downView addSubview: self.pickerView];
     }
     
 }

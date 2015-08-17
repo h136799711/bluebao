@@ -359,12 +359,58 @@
         
         NSLog(@" \r-time %@- goalnum%ld maindex  %ld-",data.timestr,data.goalNumber,data.maxIndex);
     }
-    
+}
+
+
++(void) testBicyle:(Bicyle *)bicyle{
+    NSLog(@"------------bicyle----------------------------------");
+
+    NSLog(@" \r speed %ld \r heart_rate  %ld \r distance %ld \r total_distance %ld \r cost_time %ld \r calorie %ld",
+          bicyle.speed,
+          bicyle.heart_rate,
+          bicyle.distance,
+          bicyle.total_distance,
+          bicyle.cost_time,
+          bicyle.calorie);
 }
 +(NSArray *) weekString{
     
     NSArray * array = [[NSArray alloc] initWithObjects:@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六",@"星期日", nil];
     return array;
+}
+
+//userinfo 登陆时数据返回不正确时
++(UserInfo *) defaultUserInfo:(UserInfo *)userInfo{
+    
+    if (userInfo.age<= 8) {
+        userInfo.age = 20;
+    }
+    if (userInfo.height <= 0) {
+        userInfo.height = 170;
+    }
+    if (userInfo.weight <=0) {
+        userInfo.weight = 55;
+    }
+    if (userInfo.target_weight <= 0) {
+        userInfo.target_weight = 55;
+    }
+
+    return userInfo;
+}
+
+
+//获得目标模型标识
++(NSInteger)getGoalModelIndex:(NSString *)date_time{
+    if (date_time == nil) {
+        return 0;
+    }
+    NSMutableString * string = [[NSMutableString alloc] initWithString:date_time];
+    NSArray * timearray = [string componentsSeparatedByString:@":"];
+    NSInteger hour = [[timearray firstObject] integerValue];
+    NSInteger mine = [[timearray lastObject] integerValue];
+    NSInteger index  = hour * 60 + mine;
+//    NSLog(@"\r timestr :%@ \r hour: %ld  \r mine %ld  %ld",date_time,hour,mine,index);
+    return index;
 }
 
 @end

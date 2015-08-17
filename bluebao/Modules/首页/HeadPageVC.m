@@ -14,7 +14,8 @@
 #import "BicyleReqModel.h"
 #import "BoyeConnectView.h"
 #import "CheckBluetoothData.h"
-
+#import "BoyeDataBaseManager.h"
+#import "BoyeGoaldbModel.h"
 
 @interface HeadPageVC ()<BOYEBluetoothStateChangeDelegate>{
     
@@ -86,6 +87,28 @@
     
 }
 
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:YES];
+     //蓝牙
+    self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
+    self.boyeBluetooth.delegate = self;
+   
+    self.userInfo = [MainViewController sharedSliderController].userInfo;
+    [headCollectionView reloadData];
+
+    //设置缓存目标
+    BoyeGoaldbModel * nearlyGoalModel = [BoyeDataBaseManager getNearlyNotifyGoalOfUser:self.userInfo.uid];
+    [CommonCache setGoal: [NSNumber numberWithInteger:nearlyGoalModel.target]];
+   
+    [self doViewAppearBefore];
+    
+    [_headTableView reloadData];
+  
+}
+
+
 /**
  * 初始化数据上传时间
  *
@@ -99,37 +122,16 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:YES];
-     //蓝牙
-    self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
-    self.boyeBluetooth.delegate = self;
-   
-    self.userInfo = [MainViewController sharedSliderController].userInfo;
-    [headCollectionView reloadData];
-
-   
-    if ([MainViewController sharedSliderController].isVCCancel == NO) {
-        [self doViewAppearBefore];
-        [MainViewController sharedSliderController].isVCCancel  = YES;
-    }
-    
-    [_headTableView reloadData];
-  
-}
-
 -(void) doViewAppearBefore{
     
-    
-    self.userInfo = [MainViewController sharedSliderController].userInfo;
-    
-    [headCollectionView reloadData];
-    NSLog(@" ---- current设备UUID %@  ",self.boyeBluetooth.connectedDevice.uuid);
-    
-    
-    [self getBicyleData];
-
+    if ([MainViewController sharedSliderController].isVCCancel == NO) {
+        [headCollectionView reloadData];
+        NSLog(@" ---- current设备UUID %@  ",self.boyeBluetooth.connectedDevice.uuid);
+        
+        [self getBicyleData];
+        
+        [MainViewController sharedSliderController].isVCCancel  = YES;
+    }
 }
 
 #pragma mark -- 初始化 --
@@ -445,7 +447,8 @@
     [_headTableView reloadData];
 }
 
-//数据上传
+#pragma mark  -- 单车数据数据上传 --
+
 -(void) upLoadBicyleData{
    
     //
@@ -552,21 +555,12 @@
                 //设置下次上传时间
                 [self nextLoadTime];
             }
-            
         }
-        
-        
     }else{    //数据无效
         
         //TODO: 更新时间
-       
-        
         
     }
-    
-
-    
-    
 }
 
 - (NSString * )dataToString:(NSData *)value{

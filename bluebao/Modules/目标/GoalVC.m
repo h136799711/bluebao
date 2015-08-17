@@ -47,6 +47,9 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     
+    self.useInfo = [MainViewController sharedSliderController].userInfo;
+    [BoyeDataBaseManager getNearlyNotifyGoalOfUser:self.useInfo.uid];
+
     //进入页面获得保存目标
     [self getDocumentsFile];
     
@@ -388,12 +391,16 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     
     if (goal == nil) {
         
+        
         [BoyeDataBaseManager insertGoalWithDate:model];
-        [self refreshGoalTableView];
         
         //TOD... ,设置通知
-        
+        model.db_id = [BoyeDataBaseManager selectedDateModelID:model];
+
         [self registerLocalNotify:model];
+        
+        [self refreshGoalTableView];
+
         
     }else{
         //数据存在，修改日期是当前日期则可以修改，
@@ -403,14 +410,13 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
             model.db_id = goal.db_id;
             [BoyeDataBaseManager alertData:model];
             
-            [self refreshGoalTableView];
-            
-            
             //移除通知
             [self removeNotify:model];
             
             [self registerLocalNotify:model];
             
+            [self refreshGoalTableView];
+
         }else{
 
             [SVProgressHUD showOnlyStatus:@"修改日期不匹配" withDuration:0.5];

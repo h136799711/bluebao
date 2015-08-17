@@ -91,7 +91,6 @@ static  SQLiteManager   * sqlManager;
   
     [self safeDataBase];
     [__db open];
-
     NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND weekday = %ld",uid,weekday];
     
     FMResultSet *set = [__db executeQuery:sql];
@@ -101,7 +100,7 @@ static  SQLiteManager   * sqlManager;
             [array addObject:[self getGoalModel:set]];
             
         }
-        [set close];
+    [set close];
     [__db close];
     
     return array;
@@ -195,6 +194,7 @@ static  SQLiteManager   * sqlManager;
     
     BoyeGoaldbModel * selectModel = [self selectDataModel:model];
     if (model!= nil) {
+        NSLog(@"  select id %ld  ",selectModel.db_id);
         return selectModel.db_id;
     }
     return 0;
@@ -256,6 +256,57 @@ static  SQLiteManager   * sqlManager;
     [__db close];
 }
 
+
++(BoyeGoaldbModel *) getNearlyNotifyGoalOfUser:(NSInteger)uid{
+    NSInteger weekDay =[NSDate getcurrentWeekDay];
+    NSArray * goalArray = [self getGoalDataUserID:uid week:weekDay];
+
+    
+    for (NSInteger j = 0;  j < goalArray.count; j++) {
+        BoyeGoaldbModel * maxGoal = goalArray[j];
+        
+        for (NSInteger i = j ; i < goalArray.count; i ++) {
+            BoyeGoaldbModel  *  goal  = goalArray[i];
+//            NSLog(@"--maxIndex %ld - goalIndex %ld-",maxGoal.goalIndex,goal.goalIndex);
+            if (goal.goalIndex > maxGoal.goalIndex ) {
+                BoyeGoaldbModel * temp = [[BoyeGoaldbModel alloc] init];
+                temp = maxGoal;
+                maxGoal = goal;
+                goal = temp;
+            }
+        }
+        
+    }
+
+    BoyeGoaldbModel * resultModel = [[BoyeGoaldbModel alloc] init];
+    static NSInteger count = 0;
+
+    for (BoyeGoaldbModel * model in goalArray) {
+    
+        NSDate * nowDate = [NSDate date];
+        NSString * dataFormatt = @"yyyy-MM-dd";
+        NSString *  timestr = [MyTool getCurrentDateFormat:dataFormatt];
+        NSString * datestring = [NSString stringWithFormat:@"%@ %@",timestr,model.date_time];
+        
+        
+        NSDate  * date = [[MyTool  getDateFormatter:@"yyyy-MM-dd HH:mm"] dateFromString:datestring];
+        NSComparisonResult result = [date compare:nowDate];
+        if ( result != NSOrderedAscending) {
+            resultModel = model;
+            NSLog(@"**resultModel %@*****model %@*****",resultModel.date_time,model.date_time);
+
+            break;
+        }
+        count ++;
+    }
+    if (count == goalArray.count) {
+        resultModel = [goalArray lastObject];
+    }
+    NSLog(@"**resultModel %@*****model ****",resultModel.date_time);
+
+    return resultModel;
+}
+
 +(void) test:(NSArray *)array{
 
     for (BoyeGoaldbModel * model in array) {
@@ -268,7 +319,6 @@ static  SQLiteManager   * sqlManager;
     }
     
 }
-
 
 //打开数据库
 +(void)open{
