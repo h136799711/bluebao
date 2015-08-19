@@ -95,7 +95,7 @@
     #pragma mark -- 是不是今天
     
     self.isToday = [self.newbDate isToday];
-//    NSLog(@" ---%d----  ",self.isToday);
+//    DLog(@" ---%d----  ",self.isToday);
     dateLabel.text = [self getDateString:self.newbDate];
     
     
@@ -131,7 +131,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
-    NSLog(@"点击屏幕");
+    DLog(@"点击屏幕");
 }
 
 

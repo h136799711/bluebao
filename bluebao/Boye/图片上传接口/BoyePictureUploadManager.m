@@ -71,7 +71,7 @@ static NSInteger cache=0;
                                 
                                 if(![responseObject isKindOfClass:[NSDictionary class]]){
                                     [SVProgressHUD showErrorWithStatus:@"数据无法识别,请重试!"];
-                                    NSLog(@" !NSDictionary ");
+                                    DLog(@" !NSDictionary ");
                                     
                                     return;
                                 }

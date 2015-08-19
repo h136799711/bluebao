@@ -19,7 +19,7 @@
     
     
     NSString * token = [[CacheFacade sharedCache]get:BOYE_ACCESS_TOKEN];
-//    NSLog(@"token=%@",token);
+//    DLog(@"token=%@",token);
     if (token == nil) {
         [SVProgressHUD showWithStatus:@" token 失效!"];
         return NO;
@@ -46,7 +46,7 @@
     
     if ([self isTokenEffective]) {
         
-        NSLog(@"token有效");
+        DLog(@"token有效");
         
         complete (YES);
         
@@ -74,7 +74,7 @@
                         
                         NSDictionary *info = [json valueForKey:@"info"];
                         
-//                        NSLog(@"请求结果  info  ：%@",info);
+//                        DLog(@"请求结果  info  ：%@",info);
                         
                         
                         if ([code intValue] == 0){
@@ -85,14 +85,14 @@
                             
                         }else{
                             
-//                            NSLog(@"请求失败!%ld",(long)code);
+//                            DLog(@"请求失败!%ld",(long)code);
                             complete (NO);
                             [SVProgressHUD showErrorWithStatus:@"Token请求失败"];
 
                         }
                     }
                     :^(AFHTTPRequestOperation *operation ,NSError *error){
-//                        NSLog(@"Error: %@", error);
+//                        DLog(@"Error: %@", error);
 
                         complete (NO);
                         [SVProgressHUD showSuccessWithStatus:@"Token请求失败"];

@@ -421,7 +421,7 @@
         picModel.filePath = fileImage;
         
         [BoyePictureUploadManager requestPictureUpload:picModel :^(NSDictionary *data){
-            NSLog(@"图片上传=%@",data);
+            DLog(@"图片上传=%@",data);
             [self.leftView willAppear];
         }:nil];
         
@@ -436,7 +436,7 @@
 -(void)bluetoothStateChange:(id)sender :(enum BOYE_BLUETOOTH_STATE_EVENT)stateEvent :(id)parms{
     NSDictionary * info = (NSDictionary *)parms;
     
-    NSLog(@"委托蓝牙状态变更！%u",stateEvent);
+    DLog(@"委托蓝牙状态变更！%u",stateEvent);
     
     switch (stateEvent) {
         case STATE_CHANGE:
@@ -445,11 +445,11 @@
 //            [self bluetoothUpdateState];
             break;
         case STATE_CONNECTED_DEVICE:
-            NSLog(@"连接上一台设备!");
+            DLog(@"连接上一台设备!");
 //            [self didConnectDevice];
             break;
         case STATE_DISCONNECT_DEVICE:
-            NSLog(@"断开上一台设备!");
+            DLog(@"断开上一台设备!");
 //            [self disConnectDevice];
             break;
         case STATE_DISCOVERED_SERVICE:
@@ -473,7 +473,7 @@
 }
 
 -(void)updateValue:(NSString *)dataString{
-    NSLog(@" datastring: %@",dataString);
+    DLog(@" datastring: %@",dataString);
     
         
 }

@@ -253,7 +253,7 @@
             aGoal = [dataArray objectAtIndex:i];
             bGoal = [dataArray objectAtIndex:i-1];
             if (aGoal.maxIndex <  bGoal.maxIndex) {
-//                NSLog(@"'\r  ***********   goal.maxIndex : ");
+//                DLog(@"'\r  ***********   goal.maxIndex : ");
  
                 tempGoal = aGoal;
                 aGoal = bGoal;
@@ -325,7 +325,7 @@
     NSInteger sex = userInfo.sex;
     float weight = (float)userInfo.weight;
     float height = (float)userInfo.height/100;
-//    NSLog(@"年龄%ld,性别%ld 体重%f（kg），身高%f(米）",(long)age,(long)sex,weight,height);
+//    DLog(@"年龄%ld,性别%ld 体重%f（kg），身高%f(米）",(long)age,(long)sex,weight,height);
     switch (row) {
         case 0: //体脂肪率
             valueNum= [PeopleBodyParams getBodyFatRateBy:age :sex :weight :height];
@@ -356,8 +356,8 @@
             break;
     }
     if(row < 8){
-        NSLog(@"=================");
-        NSLog(@"%ld row=%ld" , row , (long)valueNum);
+        DLog(@"=================");
+        DLog(@"%ld row=%ld" , row , (long)valueNum);
     }
     return valueNum;
 }

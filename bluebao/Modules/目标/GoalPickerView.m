@@ -364,7 +364,7 @@
 
 -(void)setDataName:(NSString *)dataName{
     _dataName = dataName;
-    //    NSLog(@"dataName %@",dataName);
+    //    DLog(@"dataName %@",dataName);
 }
 
 
@@ -373,7 +373,7 @@
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     //postNotificationName发送一个通知，第一个参数是通知的名字，第二个参数是通知的发送者，一般写self，第三个参数是通知的传参。
     
-//    NSLog(@"  ---picker top - %@--",heightString);
+//    DLog(@"  ---picker top - %@--",heightString);
     [center postNotificationName:@"Goalpicker" object:self userInfo:@{@"goalViewHeightInfo":heightString}];
 }
 

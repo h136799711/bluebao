@@ -220,7 +220,7 @@
         _currentmumZoom = self.minimumZoom+10;
     }
     
-//    NSLog(@" - -%ld--   %ld -  row - %ld" ,self.minimumZoom,self.currentmumZoom, self.currentmumZoom-self.minimumZoom );
+//    DLog(@" - -%ld--   %ld -  row - %ld" ,self.minimumZoom,self.currentmumZoom, self.currentmumZoom-self.minimumZoom );
 }
 #pragma mark -- 重载 数据单位 属性 --
 
@@ -233,7 +233,7 @@
 
 -(void)setDataName:(NSString *)dataName{
     _dataName = dataName;
-//    NSLog(@"dataName %@",dataName);
+//    DLog(@"dataName %@",dataName);
 }
 
 

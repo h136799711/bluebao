@@ -65,7 +65,7 @@
 //      
 //    if (self.isConnect) {
 //    
-//        NSLog(@"连接");
+//        DLog(@"连接");
 //        [SVProgressHUD showOnlyStatus:connArr[1] withDuration:0.5];
 //        return;
 //    }
@@ -73,7 +73,7 @@
     
     LNowDevice * device = [BoyeBluetooth sharedBoyeBluetooth].connectedDevice;
     if (device == nil) {
-        NSLog(@"device is nil");
+        DLog(@"device is nil");
 
                 
         [[MainViewController sharedSliderController].leftView jumpToequipmentManager];

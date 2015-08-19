@@ -121,7 +121,7 @@
 }
 
 -(void)removeAll{
-    NSLog(@"removeALl");
+    DLog(@"removeALl");
 //    [_lineChart removeAll];
     [_lineChart removeFromSuperview];
     _lineChart = nil;

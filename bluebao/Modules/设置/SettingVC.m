@@ -124,9 +124,9 @@
     //不是最后一个
     _currSelectedRow = indexPath.row;
     if (_currSelectedRow == 0) {
-        NSLog(@"震动按了!");
+        DLog(@"震动按了!");
     }else{
-        NSLog(@"声音按了!");
+        DLog(@"声音按了!");
     }
     [tableView reloadData];
 

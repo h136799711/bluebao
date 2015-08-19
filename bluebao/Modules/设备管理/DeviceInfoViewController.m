@@ -96,7 +96,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    NSLog(@"视图消失!");
+    DLog(@"视图消失!");
     
 }
 
@@ -104,18 +104,18 @@
 
 -(void)errorHandler:(NSError *)error{
     //TODO: 错误处理
-    NSLog(@"\n===============================\n");
-    NSLog(@"\n发生错误 %@\n",error);
-    NSLog(@"\n===============================\n");
+    DLog(@"\n===============================\n");
+    DLog(@"\n发生错误 %@\n",error);
+    DLog(@"\n===============================\n");
 }
 
 -(void)updateValue:(NSString *)hexString{
     
-    NSLog(@"当前设备： %ld",(long)self.bluetooth.connectedDevice.state);
-    NSLog(@"当前设备： %@",self.bluetooth.connectedDevice.peripheral);
+    DLog(@"当前设备： %ld",(long)self.bluetooth.connectedDevice.state);
+    DLog(@"当前设备： %@",self.bluetooth.connectedDevice.peripheral);
     
     if([[hexString lowercaseString] isEqualToString:@"da"]){
-        NSLog(@"外围设备关闭了!");
+        DLog(@"外围设备关闭了!");
     }
     
     if (hexString.length < 20){
@@ -123,9 +123,9 @@
     }
     
     //TODO: 有新数据接收时.
-    NSLog(@"======================================");
+    DLog(@"======================================");
     
-    NSLog(@"%@,长度%lu",hexString,(unsigned long)hexString.length);
+    DLog(@"%@,长度%lu",hexString,(unsigned long)hexString.length);
     
     NSRange cmdRang = NSMakeRange(0, 6);
     NSString * cmdStr = [[hexString substringWithRange:cmdRang] lowercaseString];
@@ -135,33 +135,33 @@
         LNowBicyleData *data = [[LNowBicyleData alloc] init];
         
         cmdStr = [[hexString substringWithRange:NSMakeRange(6, 4)] lowercaseString];
-//        NSLog(@"时间  %@",cmdStr );
+//        DLog(@"时间  %@",cmdStr );
         data.spendTime = cmdStr.integerValue;
         
         cmdStr = [[hexString substringWithRange:NSMakeRange(10, 4)] lowercaseString];
-//        NSLog(@"速度 %@",cmdStr);
+//        DLog(@"速度 %@",cmdStr);
         data.speed = cmdStr.integerValue;
         
         cmdStr = [[hexString substringWithRange:NSMakeRange(14, 4)] lowercaseString];
-//        NSLog(@"距离 %@",cmdStr);
+//        DLog(@"距离 %@",cmdStr);
         data.distance = cmdStr.integerValue;
         
         cmdStr = [[hexString substringWithRange:NSMakeRange(18, 4)] lowercaseString];
-//        NSLog(@"热量 %@",cmdStr);
+//        DLog(@"热量 %@",cmdStr);
         data.quantityOfHeat = cmdStr.integerValue;
         
         cmdStr = [[hexString substringWithRange:NSMakeRange(22, 4)] lowercaseString];
-//        NSLog(@"总程 %@",cmdStr);
+//        DLog(@"总程 %@",cmdStr);
         data.totalDistance = cmdStr.integerValue;
         cmdStr = [[hexString substringWithRange:NSMakeRange(26, 2)] lowercaseString];
-//        NSLog(@"心率 %@",cmdStr);
+//        DLog(@"心率 %@",cmdStr);
         data.heartRate = cmdStr.integerValue;
         
         cmdStr = [[hexString substringWithRange:NSMakeRange(28, 2)] lowercaseString];
-//        NSLog(@"校验和 %@",cmdStr);
+//        DLog(@"校验和 %@",cmdStr);
         data.checksum = cmdStr.integerValue;
         
-        NSLog(@"data = %@",data);
+        DLog(@"data = %@",data);
         [self.descData addObject:data];
         NSDateFormatter * formatter = [NSDate defaultDateFormatter ];
         
@@ -169,7 +169,7 @@
         
         self.tvLog.text  = [self.tvLog.text stringByAppendingFormat:@"\n %@: %@",curDateString,data ];
         
-        NSLog(@"======================================");
+        DLog(@"======================================");
         
     }
     
@@ -243,9 +243,9 @@
 }
 -(void)checkHadBindCurrentDevice{
     
-    NSLog(@"蓝牙对象是否已连接=%ld",(self.device.state & CBPeripheralStateConnected));
-    NSLog(@"本例对象uuid=%@",self.device.uuid);
-    NSLog(@"蓝牙对象uuid=%@",self.bluetooth.connectedDevice);
+    DLog(@"蓝牙对象是否已连接=%ld",(self.device.state & CBPeripheralStateConnected));
+    DLog(@"本例对象uuid=%@",self.device.uuid);
+    DLog(@"蓝牙对象uuid=%@",self.bluetooth.connectedDevice);
     
     if ((self.device.state & CBPeripheralStateConnected) == CBPeripheralStateConnected){
         [self.bindBtn setTitle:@"已绑定" forState:UIControlStateDisabled];
@@ -279,19 +279,19 @@
 -(void)bluetoothStateChange:(id)sender :(enum BOYE_BLUETOOTH_STATE_EVENT)stateEvent :(id)parms{
     NSDictionary * info = (NSDictionary *)parms;
     
-    NSLog(@"委托蓝牙状态变更！%u",stateEvent);
+    DLog(@"委托蓝牙状态变更！%u",stateEvent);
     
     switch (stateEvent) {
         case STATE_CHANGE:
             [self bluetoothUpdateState];
             break;
         case STATE_CONNECTED_DEVICE:
-            NSLog(@"连接上一台设备!");
+            DLog(@"连接上一台设备!");
             [self didConnectDevice];
 //            //跳回主页
             break;
         case STATE_DISCONNECT_DEVICE:
-            NSLog(@"断开上一台设备!");
+            DLog(@"断开上一台设备!");
             [self disConnectDevice];
             break;
         case STATE_DISCOVERED_SERVICE:
@@ -336,7 +336,7 @@
         {
             needAlert = false;
             desc = @"设备已开启蓝牙且可用";
-            NSLog(@"自动开始扫描");
+            DLog(@"自动开始扫描");
             [self.bluetooth connectDevice:self.device];
         }
             break;
@@ -358,7 +358,7 @@
             break;
     }
     
-    NSLog(@"中心设备当前状态=%@",desc);
+    DLog(@"中心设备当前状态=%@",desc);
     if(needAlert){
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统消息"
@@ -370,13 +370,13 @@
 
 
 -(void)disConnectDevice{
-    NSLog(@"设备详情控制器接受到设备已连接消息！");
+    DLog(@"设备详情控制器接受到设备已连接消息！");
     [self.bindBtn setEnabled:YES];
     
 }
 
 -(void)didConnectDevice{
-    NSLog(@"设备详情控制器接受到设备已连接消息！");
+    DLog(@"设备详情控制器接受到设备已连接消息！");
     
     [self checkHadBindCurrentDevice];
     //自动扫描服务操作
@@ -389,12 +389,12 @@
     //180A = Device Information
     //180F = Battery
     //180D = Heart Rate
-    NSLog(@"发现的服务:%@",self.bluetooth.connectedDevice.service);
+    DLog(@"发现的服务:%@",self.bluetooth.connectedDevice.service);
     
     for (CBService *service in self.bluetooth.connectedDevice.service) {
         for (NSString * uuid in self.interestServices) {
             if([uuid isEqualToString:service.UUID.UUIDString]){
-                NSLog(@"感兴趣的服务,并自动扫描特征: %@",service);
+                DLog(@"感兴趣的服务,并自动扫描特征: %@",service);
                 [self.bluetooth discoverCharacteristic:uuid];
                 
             }
@@ -407,9 +407,9 @@
 //
 -(void)didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
     
-    NSLog(@"获取到Service的UUID:%@", service.UUID);
+    DLog(@"获取到Service的UUID:%@", service.UUID);
     
-    NSLog(@"发现了外围设备的服务提供的特征: %@", service.characteristics);
+    DLog(@"发现了外围设备的服务提供的特征: %@", service.characteristics);
     
     for (CBCharacteristic *characteristic in service.characteristics) {
         [self.bluetooth listenningCharacteristic:characteristic.UUID.UUIDString];

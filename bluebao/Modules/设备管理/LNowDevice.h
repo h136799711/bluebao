@@ -46,15 +46,15 @@
 
 //@property (nonatomic,readonly)NSNumber *dataLocalName;
 
-//NSLog(@"设备CBAdvertisementDataLocalNameKey= %@",[advertisementData valueForKey:CBAdvertisementDataLocalNameKey]);
-//NSLog(@"设备CBAdvertisementDataManufacturerDataKey= %@",[advertisementData valueForKey:CBAdvertisementDataManufacturerDataKey]);
-//NSLog(@"设备CBAdvertisementDataServiceDataKey= %@",[advertisementData valueForKey:CBAdvertisementDataServiceDataKey]);
+//DLog(@"设备CBAdvertisementDataLocalNameKey= %@",[advertisementData valueForKey:CBAdvertisementDataLocalNameKey]);
+//DLog(@"设备CBAdvertisementDataManufacturerDataKey= %@",[advertisementData valueForKey:CBAdvertisementDataManufacturerDataKey]);
+//DLog(@"设备CBAdvertisementDataServiceDataKey= %@",[advertisementData valueForKey:CBAdvertisementDataServiceDataKey]);
 //
-//NSLog(@"设备CBAdvertisementDataServiceUUIDsKey= %@",[advertisementData valueForKey:CBAdvertisementDataServiceUUIDsKey]);
-//NSLog(@"设备CBAdvertisementDataOverflowServiceUUIDsKey= %@",[advertisementData valueForKey:CBAdvertisementDataOverflowServiceUUIDsKey]);
-//NSLog(@"设备CBAdvertisementDataTxPowerLevelKey= %@",[advertisementData valueForKey:CBAdvertisementDataTxPowerLevelKey]);
-//NSLog(@"设备CBAdvertisementDataIsConnectable= %@",[advertisementData valueForKey:CBAdvertisementDataIsConnectable]);
-//NSLog(@"设备CBAdvertisementDataSolicitedServiceUUIDsKey= %@",[advertisementData valueForKey:CBAdvertisementDataSolicitedServiceUUIDsKey]);
+//DLog(@"设备CBAdvertisementDataServiceUUIDsKey= %@",[advertisementData valueForKey:CBAdvertisementDataServiceUUIDsKey]);
+//DLog(@"设备CBAdvertisementDataOverflowServiceUUIDsKey= %@",[advertisementData valueForKey:CBAdvertisementDataOverflowServiceUUIDsKey]);
+//DLog(@"设备CBAdvertisementDataTxPowerLevelKey= %@",[advertisementData valueForKey:CBAdvertisementDataTxPowerLevelKey]);
+//DLog(@"设备CBAdvertisementDataIsConnectable= %@",[advertisementData valueForKey:CBAdvertisementDataIsConnectable]);
+//DLog(@"设备CBAdvertisementDataSolicitedServiceUUIDsKey= %@",[advertisementData valueForKey:CBAdvertisementDataSolicitedServiceUUIDsKey]);
 
 
 @end

@@ -92,11 +92,11 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"%@",_nameArray[indexPath.row]);
+    DLog(@"%@",_nameArray[indexPath.row]);
 //    
 //    WebViewController * web = [[WebViewController alloc] init];
 //    web.urlString = _urlStringName[indexPath.row];
-//    NSLog(@" indexPath   %ld ",indexPath.row);
+//    DLog(@" indexPath   %ld ",indexPath.row);
 //    web.title =  _nameArray [indexPath.row];
 //    [self.navigationController pushViewController:web animated:YES];
     

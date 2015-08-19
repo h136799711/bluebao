@@ -66,7 +66,7 @@
     
     NSString * token = [BoyeToken getAccessToken];
     //e1622ce558609222b6aa91da4beebe91510d93f1
-    //    NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
+    //    DLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
     
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     NSDictionary *params = @{@"username":user.username,@"password":user.password};
@@ -78,23 +78,23 @@
                     
                     NSString *html = operation.responseString;
                     
-                    //  NSLog(@"结果: %@", html);
+                    //  DLog(@"结果: %@", html);
                     
                     NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
                     id dict=[NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
                     
                     NSDictionary *json = (NSDictionary *)dict;
                     
-                    NSLog(@"结果: %@", json);
+                    DLog(@"结果: %@", json);
                     
                     
                     if(json == nil){
-                        NSLog(@"json parse failed \r\n");
+                        DLog(@"json parse failed \r\n");
                         return;
                     }
                     
                     NSNumber *code = [json valueForKey:@"code"];
-                    NSLog(@"请求成功!%fl",[code floatValue]);
+                    DLog(@"请求成功!%fl",[code floatValue]);
                     
                     if ([code intValue] == 0){
                         
@@ -103,7 +103,7 @@
                         [SVProgressHUD showSuccessWithStatus:@"注册成功"];
                     }else{
                         
-                        NSLog(@"请求失败!%ld",(long)code);
+                        DLog(@"请求失败!%ld",(long)code);
                         
                         [BoyeDefaultManager getCodeWrongData:json];//
                     }
@@ -111,7 +111,7 @@
                 }
                 :^(AFHTTPRequestOperation *operation ,NSError *error){
                     
-                    NSLog(@"Error: %@", error.description);
+                    DLog(@"Error: %@", error.description);
                     complete (NO);
                     
                     [SVProgressHUD showErrorWithStatus:@"注册失败"];
@@ -142,7 +142,7 @@
 +(void)reqLogin:(User *)user complete:(void (^)(UserInfo * _userInfo))complete{
     
     NSString * token = [BoyeToken getAccessToken];
-    NSLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
+    DLog(@" \r---- userName: %@ \r ----userword:  %@ \n ---- 令牌token: %@",user.username ,user.password  ,token);
     
     BoyeHttpClient *client = [[BoyeHttpClient alloc]init];
     
@@ -162,16 +162,16 @@
                     id dict=[NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
                     NSDictionary *json = (NSDictionary *)dict;
                    
-                    NSLog(@"结果: %@", dict);
+                    DLog(@"结果: %@", dict);
                     
                     if(json == nil){
-                        NSLog(@"json parse failed \r\n");
+                        DLog(@"json parse failed \r\n");
                         return;
                     }
                     
                     NSNumber *code = [json valueForKey:@"code"];
                     
-                    NSLog(@"请求成功!%fl",[code floatValue]);
+                    DLog(@"请求成功!%fl",[code floatValue]);
                     
                     if ([code intValue] == 0){
                         
@@ -185,7 +185,7 @@
                         
                         [BoyeDefaultManager getCodeWrongData:json];
                         
-                        NSLog(@"请求失败!%ld",(long)code);
+                        DLog(@"请求失败!%ld",(long)code);
                     }
                     
                 }
@@ -253,14 +253,14 @@
                     NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
 
                     if (dic == nil) {
-                        NSLog(@"json parse failed \r\n");
+                        DLog(@"json parse failed \r\n");
                         return;
                     }
                     
-                   // NSLog(@"dic %@",dic);
+                   // DLog(@"dic %@",dic);
 
                     NSNumber * code = [dic valueForKey:@"code"];
-                    NSLog(@"请求成功！%fl",[code floatValue]);
+                    DLog(@"请求成功！%fl",[code floatValue]);
                     
                     if ([code intValue] == 0) {
                        
@@ -278,7 +278,7 @@
                     [SVProgressHUD showErrorWithStatus:@"更新失败"];
                     
                     
-                    NSLog(@" error:%@ ",error);
+                    DLog(@" error:%@ ",error);
                     
                 }];
 }

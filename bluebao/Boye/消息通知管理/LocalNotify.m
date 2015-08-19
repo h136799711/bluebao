@@ -136,7 +136,7 @@
         if (userInfo) {
             // 根据设置通知参数时指定的key来获取通知参数
             NSString *info = userInfo[self.prefix];
-            NSLog(@" -- %@",info);
+            DLog(@" -- %@",info);
             // 如果找到需要取消的通知，则取消
             if (info != nil) {
                 [[UIApplication sharedApplication] cancelLocalNotification:notification];

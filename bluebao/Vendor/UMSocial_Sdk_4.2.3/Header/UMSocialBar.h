@@ -100,7 +100,7 @@ typedef void (^ClickHandler)(void);
  ```
     UMSocialButton *customButton = [[UMSocialButton alloc] initWithButtonType:@"custom" socialData:nil controller:nil];
         customButton.clickHandler = ^(){
-        NSLog(@"click !!");
+        DLog(@"click !!");
     };
     [customButton setImage:[UIImage imageNamed:@"icon"] forState:UIControlStateNormal];
     [_socialBar.barButtons addObject:customButton];
@@ -117,7 +117,7 @@ typedef void (^ClickHandler)(void);
  ```
     UMSocialButton *socialButton1 =  [_socialBar.barButtons objectAtIndex:1];
     socialButton1.clickHandler = ^(){
-        NSLog(@"click!!");
+        DLog(@"click!!");
     };
  ```
  */

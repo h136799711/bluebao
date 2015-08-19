@@ -81,11 +81,11 @@
     NSDate * date = [formatter dateFromString:timestr];   //yyy-MM-dd 格式
 
     NSNumber * number = [NSDate date2UnixTimeStamp:date];
-  //  NSLog(@"******************************************");
-  //   NSLog(@"  number  -%@- %@ ",timestr,number);
+  //  DLog(@"******************************************");
+  //   DLog(@"  number  -%@- %@ ",timestr,number);
     
 //    [NSDate getDateFromeNumber:number];
-    //    NSLog(@"******************************************");
+    //    DLog(@"******************************************");
     
     return number;
 }
@@ -95,7 +95,7 @@
     NSTimeInterval time = [number doubleValue] + 8*3600;
     NSDate * detaildate = [NSDate dateWithTimeIntervalSince1970:time];
     
-    NSLog(@"  number  -- %@ -- %@ ",number,detaildate);
+    DLog(@"  number  -- %@ -- %@ ",number,detaildate);
 
     return detaildate;
 }
@@ -117,7 +117,7 @@
 //某个时间是否超过设定时间
 -(BOOL)isOutSetDateTime:(NSDate *)newDate{
    
-    NSLog(@" == currentData %@  === setingDate %@== ",self,newDate);
+    DLog(@" == currentData %@  === setingDate %@== ",self,newDate);
     if ([self compare:newDate] == NSOrderedAscending) {
        
         return NO;

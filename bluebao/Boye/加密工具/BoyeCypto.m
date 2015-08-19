@@ -153,7 +153,7 @@
     return plainText;
 //    NSData* data = [[NSData alloc] initWithBase64EncodedString:text options:0];
 //    
-////    NSLog(@"des解密= %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+////    DLog(@"des解密= %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 //    
 //    char keyPtr[kCCKeySizeAES256+1];
 //    bzero(keyPtr, sizeof(keyPtr));
@@ -247,7 +247,7 @@
     
     size_t bufferSize = dataLength + kCCBlockSizeAES128;
     void *buffer = malloc(bufferSize);
-    NSLog(@"%zu",bufferSize);
+    DLog(@"%zu",bufferSize);
     size_t numBytesDecrypted = 0;
     char iv[] = {'1','2','3','4','5','6','7','8','1','2','3','4','5','6','7','8'};
     CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt, kCCAlgorithmAES128,
@@ -259,7 +259,7 @@
                                               &numBytesDecrypted);
     NSString * result = nil;
     
-//    NSLog(@"bufferSize= %ld",bufferSize);
+//    DLog(@"bufferSize= %ld",bufferSize);
 // TODO: 需要拼接
 //    CCCryptorRef cryptorRef = nil;
 //    CCCryptorStatus cryptStatus = CCCryptorCreateWithMode(
@@ -275,20 +275,20 @@
     // 每次只翻译部分字节，只能字节拼接
 //    cryptStatus = CCCryptorUpdate(cryptorRef, [data bytes], dataLength, buffer, bufferSize, &numBytesDecrypted);
 //    
-//    NSLog(@"numBytesDecrypted = %zu bufferSize=%ld",numBytesDecrypted,bufferSize);
+//    DLog(@"numBytesDecrypted = %zu bufferSize=%ld",numBytesDecrypted,bufferSize);
 //    NSString * result = [[NSString alloc] initWithBytes:buffer length:numBytesDecrypted encoding:NSUTF8StringEncoding];
 //    
-//    NSLog(@"result = %@",result);
+//    DLog(@"result = %@",result);
 //    
 //    cryptStatus = CCCryptorFinal(cryptorRef, buffer, bufferSize, &numBytesDecrypted);
-//    NSLog(@"numBytesDecrypted = %zu output= %ld",numBytesDecrypted,CCCryptorGetOutputLength(cryptorRef, dataLength, YES));
+//    DLog(@"numBytesDecrypted = %zu output= %ld",numBytesDecrypted,CCCryptorGetOutputLength(cryptorRef, dataLength, YES));
     
     
 //    result = [[NSString alloc] initWithBytes:buffer length:numBytesDecrypted encoding:NSUTF8StringEncoding];
-//    NSLog(@"result = %@",result);
+//    DLog(@"result = %@",result);
     if (cryptStatus == kCCSuccess) {
         result = [[NSString alloc] initWithBytes:buffer length:numBytesDecrypted encoding:NSUTF8StringEncoding];
-//        NSLog(@"result = %@",result);
+//        DLog(@"result = %@",result);
         
 //        result =  [result stringByAppendingString:[[NSString alloc] initWithBytes:buffer length:numBytesDecrypted encoding:NSUTF8StringEncoding]];
         

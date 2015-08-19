@@ -58,7 +58,7 @@
             }else{
                 self.remberCodeBtn.selected = NO;
             }
-            NSLog(@" remberstr  : %@",rember);
+            DLog(@" remberstr  : %@",rember);
             [self rememberCodeClick:self.remberCodeBtn];
         }
     }
@@ -119,7 +119,7 @@
     
     UILabel *label=(UILabel*)recognizer.view;
     
-    NSLog(@"%@被点击了",label.text);
+    DLog(@"%@被点击了",label.text);
     [self rememberCodeClick:self.remberCodeBtn];
 }
 
@@ -138,7 +138,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    NSLog(@"textFieldShouldReturn%@",textField);
+    DLog(@"textFieldShouldReturn%@",textField);
     [textField resignFirstResponder];
     if ([textField isEqual:self.accontNumTextfield ]) {
         [self.pswTextfield becomeFirstResponder];
@@ -151,7 +151,7 @@
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    NSLog(@"string= %@",string);
+    DLog(@"string= %@",string);
     
     if ([string isEqualToString:@"\n"]) {
         [textField resignFirstResponder];
@@ -163,7 +163,7 @@
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    NSLog(@"text%@",text);
+    DLog(@"text%@",text);
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
@@ -221,7 +221,7 @@
 
             }
             
-            //  NSLog(@" \r-- %@",userInfo);
+            //  DLog(@" \r-- %@",userInfo);
 
             [MainViewController sharedSliderController].userInfo = [MyTool defaultUserInfo:userInfo];
 

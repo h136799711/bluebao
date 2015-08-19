@@ -206,7 +206,7 @@
     }
     //当前体重，
     self.pickerKeyBoard.currentmumZoom = [self getCurrentNum:self.valueArray[indexPath.row]];
-   // NSLog(@"  --- self.valueArray  - %@ --%ld-",self.valueArray,self.pickerKeyBoard.currentmumZoom);
+   // DLog(@"  --- self.valueArray  - %@ --%ld-",self.valueArray,self.pickerKeyBoard.currentmumZoom);
     
     self.pickerKeyBoard.dataName = sorArray[indexPath.row];
     [self.pickerKeyBoard.pickerView reloadAllComponents];
@@ -251,7 +251,7 @@
         [self.pickerKeyBoard close];
         _isAge = NO;
     }
-    NSLog(@"   --- age ----");
+    DLog(@"   --- age ----");
 }
 
 
@@ -319,7 +319,7 @@
 
 -(void)saveBtnClick{
     
-    NSLog(@"保存");
+    DLog(@"保存");
 
     
     NSInteger  age = [[self.ageBtn currentTitle] integerValue];
@@ -370,7 +370,7 @@
         if (succed) {
             
             [MainViewController sharedSliderController].userInfo = self.userInfo;
-            NSLog(@"更新成功!");
+            DLog(@"更新成功!");
         }
         
     }];
@@ -529,7 +529,7 @@
         
         [BoyePictureUploadManager requestPictureUpload:picModel :^(NSDictionary *data){
             
-            NSLog(@" data %@",data);
+            DLog(@" data %@",data);
             
             
             NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120 :YES]];
@@ -704,7 +704,7 @@
         [self.pickerKeyBoard close];
         _isAge = NO;
     }
-    NSLog(@"   --- age ----");
+    DLog(@"   --- age ----");
 
 }
 
@@ -713,7 +713,7 @@
     //倒数第二个字符之前的所有字符
    NSString  * string = [numString substringToIndex:numString.length -2];
     NSInteger num = [string integerValue];
-//    NSLog(@"  %@  -- %ld",numString,num);
+//    DLog(@"  %@  -- %ld",numString,num);
     return num;
 }
 
@@ -756,7 +756,7 @@
     
     if (self.pickerKeyBoard.isOpen == NO|| self.pickerKeyBoard.tag != 10) {
         self.ageImageBtn.selected = NO;
-//        NSLog(@" ---");
+//        DLog(@" ---");
     }
 //
 }

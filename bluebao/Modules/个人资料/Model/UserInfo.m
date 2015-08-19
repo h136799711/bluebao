@@ -27,12 +27,12 @@
         _continuous_day = [[diction valueForKey:@"continuous_day"] integerValue];
         NSInteger  year = [[MyTool getCurrentDateFormat:@"yyyy"] integerValue];
         
-//        NSLog(@" --_bring%ld--year %ld---",[_birthday integerValue],year);
+//        DLog(@" --_bring%ld--year %ld---",[_birthday integerValue],year);
 //        _age =  year+10 - [_birthday integerValue];
         if(_birthday.length > 4){
             _age = year +1 - [[_birthday substringWithRange:NSMakeRange(0, 4)] integerValue];
         }
-        NSLog(@"age=%ld",self.age);
+        DLog(@"age=%ld",self.age);
     }
     
     return self;

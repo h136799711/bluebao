@@ -68,7 +68,7 @@
         weightValueLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:weightValueLabel];
         
-       // NSLog(@"√");
+       // DLog(@"√");
         
         //BMI
         bMILabel = [[UILabel alloc] init];

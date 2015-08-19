@@ -54,7 +54,7 @@
 - (id)init{
     
     if(self =[super init]){
-        NSLog(@"BoyeBluetooh初始化");
+        DLog(@"BoyeBluetooh初始化");
         self.cbCentralManager = [[CBCentralManager alloc] initWithDelegate:self
                                                                      queue:nil];
         self.peripherals = [[NSMutableArray alloc]init];
@@ -100,9 +100,9 @@
 }
 
 - (void)connectDevice:(LNowDevice *)device{
-    NSLog(@"连接设备=%@",device);
+    DLog(@"连接设备=%@",device);
     
-    NSLog(@"peripherals=%@",self.peripherals);
+    DLog(@"peripherals=%@",self.peripherals);
     for (int i=0; i< [self.peripherals count]; i++) {
         
         LNowDevice * device = (LNowDevice *)self.peripherals[i];
@@ -119,9 +119,9 @@
             
             [[CacheFacade sharedCache] setObject:device.uuid forKey:@"UUID"];
             
-            NSLog(@"准备连接设备：%@",device.peripheral);
+            DLog(@"准备连接设备：%@",device.peripheral);
             if(device.peripheral == nil){
-                NSLog(@"无法连接设备！设备对象不能为nil");
+                DLog(@"无法连接设备！设备对象不能为nil");
                 break;
             }
             [self.cbCentralManager connectPeripheral:device.peripheral options:nil];
@@ -140,16 +140,16 @@
 }
 
 - (void)stopScanDevice{
-    NSLog(@"bluetooth call stopScanDevice");
+    DLog(@"bluetooth call stopScanDevice");
     if(self.cbCentralManager.state == CBCentralManagerStatePoweredOn){
         [self.cbCentralManager stopScan];
     }
 }
 
 -(void)discoverServices:(NSArray *)uuids{
-    NSLog(@"蓝牙开始搜索服务:%@",uuids);
+    DLog(@"蓝牙开始搜索服务:%@",uuids);
     [self.connectedDevice.peripheral discoverServices:uuids];
-    NSLog(@"当前连接的设备:%@",self.connectedDevice);
+    DLog(@"当前连接的设备:%@",self.connectedDevice);
 
 }
 
@@ -192,12 +192,12 @@
 //发现服务
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error{
     
-    NSLog(@"发现了外围设备的一个服务: %@", peripheral.services);
+    DLog(@"发现了外围设备的一个服务: %@", peripheral.services);
     
     for (CBService *service in peripheral .services) {
         
         NSString * uuidString = service.UUID.UUIDString;
-        NSLog(@"发现了服务: %@", uuidString);
+        DLog(@"发现了服务: %@", uuidString);
         [self.connectedDevice.service addObject:service];
         
     }
@@ -218,20 +218,20 @@
 //
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
     
-    NSLog(@"获取到Service的UUID:%@", service.UUID);
+    DLog(@"获取到Service的UUID:%@", service.UUID);
     
-    NSLog(@"发现了外围设备的服务提供的特征: %@", service.characteristics);
+    DLog(@"发现了外围设备的服务提供的特征: %@", service.characteristics);
     
     for (CBCharacteristic *characteristic in service.characteristics) {
         
 //        CBCharacteristicProperties prop =  characteristic.properties;
         //TODO: 手动连接
 //        if(prop & CBCharacteristicPropertyNotify){
-//            NSLog(@"setNotifyValue");
+//            DLog(@"setNotifyValue");
 //            [peripheral setNotifyValue:YES forCharacteristic:characteristic];
 //        }
 //        if(prop & CBCharacteristicPropertyRead){
-//            NSLog(@"read");
+//            DLog(@"read");
 //            [peripheral readValueForCharacteristic:characteristic];
 //        }
         
@@ -250,8 +250,8 @@
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
     
     if (error) {
-        NSLog(@"Error changing notification state: %@",[error localizedDescription]);
-        NSLog(@"Error%@",error);
+        DLog(@"Error changing notification state: %@",[error localizedDescription]);
+        DLog(@"Error%@",error);
     }
     
     NSMutableDictionary * info = [[NSMutableDictionary alloc]initWithObjects:@[characteristic] forKeys:@[@"data"]];
@@ -263,7 +263,7 @@
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-    NSLog(@"数据变化了通知消息");
+    DLog(@"数据变化了通知消息");
     
     
     NSMutableDictionary * info = [[NSMutableDictionary alloc]initWithObjects:@[characteristic] forKeys:@[@"data"]];
@@ -277,7 +277,7 @@
 
 #pragma  mark -- CBCentralManagerDelegate
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
-    NSLog(@"中心设备更新状态了");
+    DLog(@"中心设备更新状态了");
     self.state = central.state;
     
     [self.delegate bluetoothStateChange:self :STATE_CHANGE :nil];
@@ -285,8 +285,8 @@
 
 //连接上一台设备
 -(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
-    NSLog(@"中心设备连接上一台设备: %@",peripheral);
-    NSLog(@"当前连接的一台设备: %@",self.connectedDevice.peripheral);
+    DLog(@"中心设备连接上一台设备: %@",peripheral);
+    DLog(@"当前连接的一台设备: %@",self.connectedDevice.peripheral);
     
     self.connectedDevice.peripheral.delegate = self;
     NSMutableDictionary * info = [[NSMutableDictionary alloc]initWithObjects:@[peripheral] forKeys:@[@"data"]];
@@ -297,7 +297,7 @@
 
 //发现一台设备
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
-    NSLog(@"中心设备发现一台外围设备");
+    DLog(@"中心设备发现一台外围设备");
     
     //名称等于UART-BLE时
     if([peripheral.name isEqualToString:@"UART-BLE"]){
@@ -317,10 +317,10 @@
 //断开一台设备连接
 -(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
    
-    NSLog(@"断开设备连接:%@", peripheral.identifier);
+    DLog(@"断开设备连接:%@", peripheral.identifier);
     
     if (error) {
-        NSLog(@"断开设备%@时发生错误: %@",peripheral.identifier, error.localizedDescription);
+        DLog(@"断开设备%@时发生错误: %@",peripheral.identifier, error.localizedDescription);
     }
     
     NSDictionary * info = [[NSDictionary alloc]initWithObjects:@[peripheral,error] forKeys:@[@"data",@"error"]];
@@ -330,7 +330,7 @@
 
 //连接一台设备失败
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error  {
-    NSLog(@"连接%@设备失败！error=%@",peripheral.name,error);
+    DLog(@"连接%@设备失败！error=%@",peripheral.name,error);
     
     NSDictionary * info = [[NSDictionary alloc]initWithObjects:@[peripheral,error] forKeys:@[@"data",@"error"]];
     [self.delegate bluetoothStateChange:self :STATE_FAIL_TO_CONNECT_DEVICE :info];
@@ -340,24 +340,24 @@
 //访问到当前已连接设备
 -(void)centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals{
     
-    NSLog(@"访问设备");
-    NSLog(@"访问设备个数 %lu",(unsigned long)[peripherals count]);
+    DLog(@"访问设备");
+    DLog(@"访问设备个数 %lu",(unsigned long)[peripherals count]);
     
 }
 
 //重新连接一台已知设备
 -(void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals{
     
-    NSLog(@"重新连接已知设备");
-    NSLog(@"参数个数 %lu",(unsigned long)[peripherals count]);
+    DLog(@"重新连接已知设备");
+    DLog(@"参数个数 %lu",(unsigned long)[peripherals count]);
     
 }
 
 //APP重新从后台转到前台
 -(void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary *)dict{
     
-    NSLog(@"重新RestoreState");
-    NSLog(@"重新%@",dict);
+    DLog(@"重新RestoreState");
+    DLog(@"重新%@",dict);
     
 }
 

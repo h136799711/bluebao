@@ -17,7 +17,7 @@
     
     NSString * key = [self defaultNotifyKey:model.db_id];
     
-    NSLog(@"date=%@",model.fireDate);
+    DLog(@"date=%@",model.fireDate);
   
     if (![CommonCache AlarmSwitchIsOn]) {
         return;
@@ -37,7 +37,7 @@
 //取消所有通知
 +(void)removeAllLocalNotify{
     [[LocalNotify sharedNotify] cancelAll];
-    NSLog(@"移除所有闹铃");
+    DLog(@"移除所有闹铃");
 
 }
 
@@ -99,7 +99,7 @@
     
     NSInteger intervalDay =  selectWeekday - comps.weekday;
     
-    NSLog(@"相差天数%ld" , (long)intervalDay);
+    DLog(@"相差天数%ld" , (long)intervalDay);
     NSDate * fireDate = [date dateByAddingTimeInterval:intervalDay*24*3600];
     
     NSComparisonResult result = [date compare:nowDate];

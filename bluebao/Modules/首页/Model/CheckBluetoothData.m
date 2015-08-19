@@ -56,7 +56,7 @@
     
 //    if (blueData.bicyleModel.calorie != 0) {
 //        
-//        NSLog(@" 数据可用 ");
+//        DLog(@" 数据可用 ");
 //        
 //        [self setOutDate];
 //        
@@ -68,12 +68,12 @@
 //            
 //            self.isOutTime = YES;
 //            
-//            NSLog(@" 数据不可用，不在有效时间范围内 ");
+//            DLog(@" 数据不可用，不在有效时间范围内 ");
 //            
 //        }else{
 //            
 //            self.isOutTime = NO;
-//            NSLog(@" 数据不可用，在有效时间范围内 ");
+//            DLog(@" 数据不可用，在有效时间范围内 ");
 //        }
 //    }
 //    return NO;
@@ -101,13 +101,13 @@
     if ([self get]== nil ) {
         
         self.isOutTime = YES;
-        NSLog(@" 数据不可用，不在有效时间范围内 ");
+        DLog(@" 数据不可用，不在有效时间范围内 ");
 
         return YES;
     }else{
         
         self.isOutTime = NO;
-        NSLog(@" 数据不可用，在有效时间范围内 ");
+        DLog(@" 数据不可用，在有效时间范围内 ");
         return NO;
     }
 }

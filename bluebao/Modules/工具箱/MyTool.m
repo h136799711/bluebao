@@ -201,7 +201,7 @@
     [dateFormatter setTimeZone:timeZone];
     
     NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
-//    NSLog(@"\r currentdatestr :%@",currentDateStr);
+//    DLog(@"\r currentdatestr :%@",currentDateStr);
     return currentDateStr;
 }
 //当前时间
@@ -216,7 +216,7 @@
     
     NSDate * currDate = [formatter dateFromString:datestr];
     currDate = [currDate dateByAddingTimeInterval:8 *3600];
-    NSLog(@"\r Datae-- - %@ ",currDate);
+    DLog(@"\r Datae-- - %@ ",currDate);
     return currDate;
 }
 
@@ -243,7 +243,7 @@
 #pragma mark -- 转化为data ---
 +(NSDate *) changeStringToDate:(NSString *)datestr formatter:(NSString *)format{
     
-    NSLog(@"datestr:%@",datestr);
+    DLog(@"datestr:%@",datestr);
     if (format == nil) {
         format = [self defaultdateString];
     }
@@ -262,7 +262,7 @@
 +(NSString *) getBMIStringWeight:(CGFloat)weight height:(CGFloat)height{
     
     CGFloat bmi = [self getBMINumWeight:weight height:height];
-//    NSLog(@" bmi  %lf ",bmi);
+//    DLog(@" bmi  %lf ",bmi);
     return [MyTool getBMITarget:bmi];
 }
 
@@ -311,7 +311,7 @@
     for (int i = 0 ; i < dateArray.count; i ++) {
         GoalData * dateTow  = dateArray[i];
         if ([dateOne.timestr isEqualToString:dateTow.timestr]) {
-            NSLog(@"  maxindex %ld - %ld",dateOne.maxIndex,dateTow.maxIndex);
+            DLog(@"  maxindex %ld - %ld",dateOne.maxIndex,dateTow.maxIndex);
             index = i;
             break;
         }
@@ -354,18 +354,18 @@
 }
 
 +(void) tesGoal:(NSArray *) arr{
-    NSLog(@"------------goal----------------------------------");
+    DLog(@"------------goal----------------------------------");
     for (GoalData * data in arr) {
         
-        NSLog(@" \r-time %@- goalnum%ld maindex  %ld-",data.timestr,data.goalNumber,data.maxIndex);
+        DLog(@" \r-time %@- goalnum%ld maindex  %ld-",data.timestr,data.goalNumber,data.maxIndex);
     }
 }
 
 
 +(void) testBicyle:(Bicyle *)bicyle{
-    NSLog(@"------------bicyle----------------------------------");
+    DLog(@"------------bicyle----------------------------------");
 
-    NSLog(@" \r speed %ld \r heart_rate  %ld \r distance %ld \r total_distance %ld \r cost_time %ld \r calorie %ld",
+    DLog(@" \r speed %ld \r heart_rate  %ld \r distance %ld \r total_distance %ld \r cost_time %ld \r calorie %ld",
           bicyle.speed,
           bicyle.heart_rate,
           bicyle.distance,
@@ -409,7 +409,7 @@
     NSInteger hour = [[timearray firstObject] integerValue];
     NSInteger mine = [[timearray lastObject] integerValue];
     NSInteger index  = hour * 60 + mine;
-//    NSLog(@"\r timestr :%@ \r hour: %ld  \r mine %ld  %ld",date_time,hour,mine,index);
+//    DLog(@"\r timestr :%@ \r hour: %ld  \r mine %ld  %ld",date_time,hour,mine,index);
     return index;
 }
 

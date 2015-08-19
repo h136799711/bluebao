@@ -68,8 +68,8 @@
 //#pragma mark --- 提交 -- 
 //
 //-(void)submitBtn{
-//    NSLog(@"提交");
-//    NSLog(@"  %@",_placeTextView.text);
+//    DLog(@"提交");
+//    DLog(@"  %@",_placeTextView.text);
 //}
 //
 //#pragma mark --返回 --

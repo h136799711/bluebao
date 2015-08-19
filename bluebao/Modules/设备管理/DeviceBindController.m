@@ -61,10 +61,10 @@ static const int MAX_SCAN_SECONDS = 6;
 
 
 - (void)segmentChangedValue:(id)sender{
-    NSLog(@"%@",sender);
+    DLog(@"%@",sender);
     if([sender isKindOfClass:[UISegmentedControl class]]){
         UISegmentedControl * ctrl = (UISegmentedControl *)sender;
-        NSLog(@"选中第%ld", (long)ctrl.selectedSegmentIndex);
+        DLog(@"选中第%ld", (long)ctrl.selectedSegmentIndex);
         if(ctrl.selectedSegmentIndex == 0){
             if(! (self.bluetooth.connectedDevice != nil && (self.bluetooth.connectedDevice.state & CBPeripheralStateConnected) == CBPeripheralStateConnected) ){
                 [self scanDevice];
@@ -99,7 +99,7 @@ static const int MAX_SCAN_SECONDS = 6;
 -(void)checkStopCondition{
     //是否自动扫描，针对存在已缓存的扫描设备时，不扫描。
     
-    NSLog(@"搜索时间%f",self.searchTimeFlag);
+    DLog(@"搜索时间%f",self.searchTimeFlag);
     
     if( self.searchTimeFlag > MAX_SCAN_SECONDS){
         [self stopScanDevice];
@@ -134,7 +134,7 @@ static const int MAX_SCAN_SECONDS = 6;
 -(void)scanDevice{
     
     [self showBindView];
-    NSLog(@"开始扫描设备！");
+    DLog(@"开始扫描设备！");
     self.searchTimeFlag = 0;
     self.lblTip.text = @"正在搜索设备...";
     [self.bluetooth startScanDevice];
@@ -149,7 +149,7 @@ static const int MAX_SCAN_SECONDS = 6;
 
 -(void)stopScanDevice{
     
-    NSLog(@"停止扫描设备！");
+    DLog(@"停止扫描设备！");
     self.searchTimeFlag = 0;
     [self.indicator stopAnimate];
     if ([self.bluetooth.peripherals count] > 0) {
@@ -373,7 +373,7 @@ static const int MAX_SCAN_SECONDS = 6;
 #pragma mark 继承方法
 
 - (void)viewDidLoad {
-    NSLog(@"viewDidLoad");
+    DLog(@"viewDidLoad");
     self.navigationController.navigationBarHidden = NO;
     self.segCtrl.alpha = 0;
     [super viewDidLoad];
@@ -384,7 +384,7 @@ static const int MAX_SCAN_SECONDS = 6;
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
-    NSLog(@"viewDidAppear");
+    DLog(@"viewDidAppear");
     if(self.timer == nil){
         //开启定时器
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkStopCondition) userInfo:nil repeats:YES ];
@@ -441,12 +441,12 @@ static const int MAX_SCAN_SECONDS = 6;
     NSUInteger row = indexPath.row;
     LNowDevice * device =  (LNowDevice *)[self.bluetooth.peripherals objectAtIndex:row];
     
-    NSLog(@"tableView cellForRowAtIndexPath");
+    DLog(@"tableView cellForRowAtIndexPath");
     
     cell.name = device.name;
     cell.name = @"蓝堡动感单车";
     cell.uuid = device.uuid;
-    NSLog(@"设备状态 = %ld",(long)device.state);
+    DLog(@"设备状态 = %ld",(long)device.state);
     
     if((device.state & CBPeripheralStateConnected)){
         cell.state = @"状态:已连接";
@@ -504,13 +504,13 @@ static const int MAX_SCAN_SECONDS = 6;
 -(void)bluetoothStateChange:(id)sender :(enum BOYE_BLUETOOTH_STATE_EVENT)stateEvent :(id)parms{
     BoyeBluetooth * bluetooth = (BoyeBluetooth *)sender;
     if(bluetooth == nil){
-        NSLog(@"error!!");
+        DLog(@"error!!");
         return;
     }
     switch (stateEvent) {
         case STATE_CONNECTED_DEVICE:
         {
-            NSLog(@"连接上一台设备!");
+            DLog(@"连接上一台设备!");
             
             NSMutableDictionary * info = (NSMutableDictionary *)parms;
             
@@ -523,7 +523,7 @@ static const int MAX_SCAN_SECONDS = 6;
             break;
         case STATE_DISCOVERED_DEVICE:
         {
-            NSLog(@"parms = %@",parms);
+            DLog(@"parms = %@",parms);
             LNowDevice * device = (LNowDevice *)parms;
             
             [self bluetoothDidDiscoverDevice:bluetooth.connectedDevice RSSI:device.rssi];
@@ -563,7 +563,7 @@ static const int MAX_SCAN_SECONDS = 6;
         {
             needAlert = false;
             desc = @"设备已开启蓝牙且可用";
-            NSLog(@"自动开始扫描");
+            DLog(@"自动开始扫描");
             [self.bluetooth startScanDevice];
         }
             break;
@@ -585,7 +585,7 @@ static const int MAX_SCAN_SECONDS = 6;
             break;
     }
     
-    NSLog(@"中心设备当前状态=%@",desc);
+    DLog(@"中心设备当前状态=%@",desc);
     if(needAlert){
            
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统消息"

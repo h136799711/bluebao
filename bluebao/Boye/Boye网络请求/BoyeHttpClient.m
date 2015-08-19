@@ -40,7 +40,7 @@ static NSString * const BASE_API_URL = @"http://lanbao.itboye.com/api.php/";
 + (void)startMonitorNetwork{
         [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         
-        NSLog(@"Network status= %ld",(long)status);
+        DLog(@"Network status= %ld",(long)status);
         
         UIAlertView *uiAlertView =[[UIAlertView alloc] initWithTitle:@"应用消息"
                                                              message:@"网络状态改变了"
@@ -115,7 +115,7 @@ static NSString * const BASE_API_URL = @"http://lanbao.itboye.com/api.php/";
 //        
 //    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
 //        
-//        NSLog(@"File downloaded to: %@", filePath);
+//        DLog(@"File downloaded to: %@", filePath);
 
     
 //    }];

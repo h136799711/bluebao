@@ -153,7 +153,7 @@
         NSUInteger day = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date].length;
         
         if(dataInfo.count == 0){
-            NSLog(@"无数据!");
+            DLog(@"无数据!");
             return ;
         }
         
@@ -170,7 +170,7 @@
         //TODO:向服务器请求载入数据
      
             for (int i=1; i<=day; i++) {
-//                NSLog(@"i=%d",i);
+//                DLog(@"i=%d",i);
                 
 //                if( ((flag && nowComponent.day  > 20 ) ||!flag)  && i%2==0 )
 //                {
@@ -186,9 +186,9 @@
                         NSDictionary * dict = (NSDictionary*)dataInfo[j];
                         
                         upload_day =[ formatter numberFromString:(NSString*)[dict valueForKey:@"upload_day"] ];
-//                        NSLog(@"data=%ld",(long)[upload_day integerValue]);
+//                        DLog(@"data=%ld",(long)[upload_day integerValue]);
                         if(i == [upload_day integerValue]){
-//                            NSLog(@"upload_day=%@,calorie=%@",upload_day,max_calorie);
+//                            DLog(@"upload_day=%@,calorie=%@",upload_day,max_calorie);
                             
                             max_calorie = [formatter numberFromString:(NSString *)[dict valueForKey:@"max_calorie"]];
                             if (max_calorie != nil) {
@@ -218,7 +218,7 @@
 
 -(void)nextMonth:(id)sender{
     
-    //    NSLog(@"%@",sender);
+    //    DLog(@"%@",sender);
     
     NSDateFormatter * formatter = [NSDate defaultDateFormatter];
     formatter.dateFormat = @"yyyy年MM月";
@@ -389,7 +389,7 @@
     
     NSDate * date =  [formatter dateFromString:_lblDate.text];
     
-//    NSLog(@"date=%@",date);
+//    DLog(@"date=%@",date);
     NSDate *now = [NSDate  date];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -401,7 +401,7 @@
     
     NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
     
-//    NSLog(@"now=%@,date=%@",nowComponent,dateComponent);
+//    DLog(@"now=%@,date=%@",nowComponent,dateComponent);
     
 
     return  nowComponent.month == dateComponent.month;
@@ -420,7 +420,7 @@
     
 //    NSNumber * timestamp = [NSNumber numberWithDouble:interval];
     
-//    NSLog(@"%@",timestamp);
+//    DLog(@"%@",timestamp);
     
 }
 
@@ -501,10 +501,10 @@
     NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     
     NSDateComponents *nowComponent = [calendar components:unitFlags fromDate:[NSDate date]];
-//    NSLog(@"%@",nowComponent);
+//    DLog(@"%@",nowComponent);
     for(id key in self.keys) {
         id object = [self.data objectForKey:key];
-//        NSLog(@"object=%@",object);
+//        DLog(@"object=%@",object);
         if(object != nil){
             if(flag && nowComponent.day <= values.count){
                 continue;

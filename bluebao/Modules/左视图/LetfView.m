@@ -181,7 +181,7 @@
 -(void)setAvatar{
     
     NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userinfo.uid :120 :YES]];
-    NSLog(@"头像地址:%@",avatar_url);
+    DLog(@"头像地址:%@",avatar_url);
     [self.headBtn setImageWithURL:avatar_url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Default_header"]];
     
 }
@@ -265,7 +265,7 @@
         [[LocalNotify sharedNotify] cancelAll];
     }
     
-    NSLog(@"闹铃");
+    DLog(@"闹铃");
    // [self localNotification];
 }
 #pragma mark -- 闹铃开关 --
@@ -311,7 +311,7 @@
     
     NSInteger intervalDay =  selectWeekday - comps.weekday;
     
-    NSLog(@"相差天数%ld" , (long)intervalDay);
+    DLog(@"相差天数%ld" , (long)intervalDay);
     NSDate * fireDate = [date dateByAddingTimeInterval:intervalDay*24*3600];
     
     NSComparisonResult result = [date compare:nowDate];

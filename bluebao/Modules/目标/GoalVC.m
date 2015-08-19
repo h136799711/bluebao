@@ -68,7 +68,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     
     self.weekSegment.selectIndex = selectWeekday-1;
     [self refreshGoalTableView];
-    NSLog(@" weekSegment  ");
+    DLog(@" weekSegment  ");
 }
 
 
@@ -213,7 +213,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
 -(void) alteBtnClick:(UIButton *)alterBtn{
     
-    NSLog(@"修改");
+    DLog(@"修改");
 
     self.goalPickerView.tag = alterBtn.tag;
     [self.goalPickerView open];
@@ -224,7 +224,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 #pragma mark  --delete  --
 -(void) deleteBtnClick:(UIButton *)deleteBtn{
     
-    NSLog(@"删除");
+    DLog(@"删除");
     self.goalPickerView.tag = deleteBtn.tag;
    
     BoyeGoaldbModel * model = self.dataArray[deleteBtn.tag];
@@ -508,7 +508,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 -(NSString *)getFullDateString:(NSString *)dmstr{
     
     NSString * datestr = [NSString stringWithFormat:@"%@-%@",_goalDateLabeltext,dmstr];
-//    NSLog(@"\r ****** datestr:  %@",datestr);
+//    DLog(@"\r ****** datestr:  %@",datestr);
     return datestr;
 }
 
@@ -540,7 +540,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
     
     NSInteger intervalDay =  selectWeekday - comps.weekday;
     
-    NSLog(@"相差天数%ld" , (long)intervalDay);
+    DLog(@"相差天数%ld" , (long)intervalDay);
     NSDate * fireDate = [date dateByAddingTimeInterval:intervalDay*24*3600];
     
     NSComparisonResult result = [date compare:nowDate];
@@ -556,7 +556,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 -(void) removeNotify:(BoyeGoaldbModel *)mode{
     
     [BoyeGoalLocaNotify removeLocalNotifyKey:mode.db_id];
-        NSLog(@"移除指定闹铃闹铃");
+        DLog(@"移除指定闹铃闹铃");
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

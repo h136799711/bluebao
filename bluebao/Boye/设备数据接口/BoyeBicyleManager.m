@@ -16,14 +16,14 @@
  NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
  
  if (dic == nil) {
- NSLog(@"json parse failed \r\n");
+ DLog(@"json parse failed \r\n");
  return;
  }
  
- NSLog(@"dic %@",dic);
+ DLog(@"dic %@",dic);
  
  NSNumber * code = [dic valueForKey:@"code"];
- NSLog(@"请求成功！%fl",[code floatValue]);
+ DLog(@"请求成功！%fl",[code floatValue]);
 
 **/
 
@@ -39,7 +39,7 @@
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/day?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",(long)bicyReqModel.uid];
             NSString * time = [NSString stringWithFormat:@"%ld",(long)bicyReqModel.time];
-            NSLog(@"--\r-uid- %@- %@ -uuid -time-%@ ",uid,bicyReqModel.uuid,time);
+            DLog(@"--\r-uid- %@- %@ -uuid -time-%@ ",uid,bicyReqModel.uuid,time);
             NSDictionary * params =  @{
                                        @"uid":uid,
                                        @"uuid":bicyReqModel.uuid,
@@ -59,7 +59,7 @@
                                 return ;
                             }
                             
-                                   NSLog(@" 动感单车数据获取 responseObject :%@",responseObject);
+                                   DLog(@" 动感单车数据获取 responseObject :%@",responseObject);
                             NSDictionary * dic = (NSDictionary *)responseObject;
                             
                             if (!dic) {
@@ -68,25 +68,25 @@
                                 
                             }
 
-//                            NSLog(@"\r 动感单车数据获取 bicyle dic :%@",dic);
+//                            DLog(@"\r 动感单车数据获取 bicyle dic :%@",dic);
                             NSNumber * code = [dic valueForKey:@"code"];
-                            NSLog(@"请求成功！%fl",[code floatValue]);
+                            DLog(@"请求成功！%fl",[code floatValue]);
                             if ([code integerValue] == 0) {
                                 NSDictionary * dataDic = [dic valueForKey:@"data"];
                                 success(dataDic);
                                 
 //                                [SVProgressHUD showSuccessWithStatus:@"请求成功"];
                                 [SVProgressHUD dismiss];
-                                NSLog(@"--------");
+                                DLog(@"--------");
                             }else{
                                 
                                 NSString * errorData = [dic valueForKey:@"data"];
                                 failure (errorData);
-                                NSLog(@"%@",errorData);
+                                DLog(@"%@",errorData);
                                 [SVProgressHUD showErrorWithStatus:errorData];
                             }
                         } :^(AFHTTPRequestOperation *operation, NSError *error) {
-                            NSLog(@"error %@",error);
+                            DLog(@"error %@",error);
                            failure (@"请求失败");
                             [SVProgressHUD showErrorWithStatus:@"请求失败"];
                         }];
@@ -103,8 +103,8 @@
             
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/add?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
-            NSLog(@" %ld  -----   %@",bicyReqModel.bicyleModel.speed,[MyTool getStringToInteger:bicyReqModel.bicyleModel.speed]);
-            NSLog(@"----uid %@-uuid %@ - -upload_time-%@ ",uid,bicyReqModel.uuid,[MyTool getStringToInteger:bicyReqModel.bicyleModel.upload_time]);
+            DLog(@" %ld  -----   %@",bicyReqModel.bicyleModel.speed,[MyTool getStringToInteger:bicyReqModel.bicyleModel.speed]);
+            DLog(@"----uid %@-uuid %@ - -upload_time-%@ ",uid,bicyReqModel.uuid,[MyTool getStringToInteger:bicyReqModel.bicyleModel.upload_time]);
 
             NSDictionary * params =  @{
                                        @"uid":uid,
@@ -128,12 +128,12 @@
                             NSData * data = [operation.responseString  dataUsingEncoding:NSUTF8StringEncoding];
                             NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
                             if (!dic) {
-                                NSLog(@"json parse failed \r\n");
+                                DLog(@"json parse failed \r\n");
                                 return ;
                             }
-                            NSLog(@"bicyle uplod dic %@",dic);
+                            DLog(@"bicyle uplod dic %@",dic);
                             NSNumber * code = [dic valueForKey:@"code"];
-                            NSLog(@"请求成功！%fl",[code floatValue]);
+                            DLog(@"请求成功！%fl",[code floatValue]);
                             if ([code integerValue] == 0) {
                                 
 //                                NSString * successedData = [dic valueForKey:@"data"];
@@ -148,7 +148,7 @@
                             }
                         } :^(AFHTTPRequestOperation *operation, NSError *error) {
                             
-//                            NSLog(@"error %@",error);
+//                            DLog(@"error %@",error);
                             [SVProgressHUD showErrorWithStatus:@"请求失败"];
                             
                         }];
@@ -167,7 +167,7 @@
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/month?access_token=%@",token];
             NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
             NSString * time = [NSString stringWithFormat:@"%ld",bicyReqModel.time];
-            NSLog(@"--\r-- %@- %@ -  ",uid,bicyReqModel.uuid);
+            DLog(@"--\r-- %@- %@ -  ",uid,bicyReqModel.uuid);
             NSDictionary * params =  @{
                                        @"uid":uid,
                                        @"uuid":bicyReqModel.uuid,
@@ -195,9 +195,9 @@
                                 return ;
                                 
                             }
-                            NSLog(@"bicyle dic %@",dict);
+                            DLog(@"bicyle dic %@",dict);
                             NSNumber * code = [dict valueForKey:@"code"];
-                            NSLog(@"请求成功！%fl",[code floatValue]);
+                            DLog(@"请求成功！%fl",[code floatValue]);
                             if ([code integerValue] == 0) {
 //                                complete(YES);
                                 success(dict);
@@ -213,7 +213,7 @@
                                 }
                             }
                         } :^(AFHTTPRequestOperation *operation, NSError *error) {
-                            NSLog(@"error %@",error);
+                            DLog(@"error %@",error);
                             
                             if(failure == nil){
                                 [SVProgressHUD showErrorWithStatus:@"请求失败" withDuration:3];

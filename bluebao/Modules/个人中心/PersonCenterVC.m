@@ -32,12 +32,12 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [self avatarRequest];
-    NSLog(@"**********个人中心出现**********");
+    DLog(@"**********个人中心出现**********");
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    NSLog(@"**********个人中心消失**********");
+    DLog(@"**********个人中心消失**********");
 }
 
 
@@ -59,7 +59,7 @@
     [self _initTableView];
     
     
-    NSLog(@"test= %@",[[CacheFacade sharedCache] get:@"test"]);
+    DLog(@"test= %@",[[CacheFacade sharedCache] get:@"test"]);
 }
 
 -(void)_initTableView{
@@ -153,7 +153,7 @@
         
         if(data == nil){
             
-            NSLog(@"数据获取为空!");
+            DLog(@"数据获取为空!");
         }
         
         if([data isKindOfClass:[NSArray class]]){
@@ -166,10 +166,10 @@
     [BicyleStatistics queryTotalResult:uid :^(id data) {
         
         if(data == nil){
-            NSLog(@"数据获取为空!");
+            DLog(@"数据获取为空!");
         }
         
-        NSLog(@"data=%@",data);
+        DLog(@"data=%@",data);
         
         if([data isKindOfClass:[NSDictionary class]]){
             

@@ -36,7 +36,7 @@
     float rate = [self getBMI:weight :height];
     
     rate = (1.2*rate  + 0.23 * age -5.4 - 10.8*sex);
-//    NSLog(@"体脂肪率%ld",(long)rate);
+//    DLog(@"体脂肪率%ld",(long)rate);
     return (NSInteger)rate;
 }
 
@@ -104,7 +104,7 @@
     float normalBMR = [self getNormalBMR:age :sex :weight :height ];
     
     bmr = 100*normalBMR/bmr - 100;
-    NSLog(@"bmr=%d",(int)bmr);
+    DLog(@"bmr=%d",(int)bmr);
     if(bmr < 0){
         bmr = bmr * -1;
     }

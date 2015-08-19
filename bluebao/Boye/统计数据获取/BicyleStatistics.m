@@ -24,7 +24,7 @@
             
             [client post:postUrl :params :^(AFHTTPRequestOperation *operation, id responseObject) {
                 
-                NSLog(@"%@",responseObject);
+                DLog(@"%@",responseObject);
                 
                 NSDictionary * result = nil;
                 
@@ -72,7 +72,7 @@
             
             [client post:postUrl :params :^(AFHTTPRequestOperation *operation, id responseObject) {
                 
-                NSLog(@"%@",responseObject);
+                DLog(@"%@",responseObject);
                 
                 NSDictionary * result = nil;
                 

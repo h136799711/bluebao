@@ -31,12 +31,12 @@ static const int pulsingCount = 3;
 
 
 -(void)didMoveToWindow{
-//    NSLog(@"MoveToWindow");
+//    DLog(@"MoveToWindow");
 }
 -(void)didMoveToSuperview{
     self.isAnimating = NO;
     self.currentPulsingIndex = -1;
-//    NSLog(@"didMoveToSuperview");
+//    DLog(@"didMoveToSuperview");
 }
 -(void)reset{
     self.isAnimating = NO;
@@ -50,7 +50,7 @@ static const int pulsingCount = 3;
     [self setNeedsDisplay];
 }
 -(void)stopAnimate{
-    NSLog(@"停止动画");
+    DLog(@"停止动画");
     self.isAnimating = NO;
     self.currentPulsingIndex = -1;
     
@@ -62,7 +62,7 @@ static const int pulsingCount = 3;
 }
 
 -(void)startAnimate{
-    NSLog(@"开始动画");
+    DLog(@"开始动画");
     if(self.isAnimating == NO && self.timer == nil){
         
         self.isAnimating = YES;
@@ -71,7 +71,7 @@ static const int pulsingCount = 3;
         
         self.timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(loopAnimating) userInfo:nil repeats:YES];
         
-        NSLog(@"当前是否播放动画s %d",self.isAnimating);
+        DLog(@"当前是否播放动画s %d",self.isAnimating);
         
     }else{
         //在播放动画中 调用了开始动画则先结束动画，再调用
@@ -99,7 +99,7 @@ static const int pulsingCount = 3;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-//    NSLog(@"drawRect..%@",context);
+//    DLog(@"drawRect..%@",context);
     if(context == nil){
         return;
     }
@@ -116,7 +116,7 @@ static const int pulsingCount = 3;
     
     CGContextSetLineWidth(context, 15.0);
     CGContextSetLineCap(context, kCGLineCapRound );
-//    NSLog(@"当前激活的index %d",self.currentPulsingIndex);
+//    DLog(@"当前激活的index %d",self.currentPulsingIndex);
     
     //画弧线
     for (int i=0; i<pulsingCount; i++) {
@@ -140,20 +140,20 @@ static const int pulsingCount = 3;
  //Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 //- (void)drawRect:(CGRect)rect {
-//    NSLog(@"%d",self.isAnimating);
+//    DLog(@"%d",self.isAnimating);
 //    
 //    if (!self.isAnimating) {
 //        return;
 //    }
 //    
-////    NSLog(@"rect= %f,%f,%f,%f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+////    DLog(@"rect= %f,%f,%f,%f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
 //    
 //    [[UIColor whiteColor] setFill];
 //    
 //    UIView *superview =  self.superview;
 ////    if(superview !=nil){
 //    
-////        NSLog(@"superview.frame= %f,%f,%f,%f",superview.frame.origin.x,superview.frame.origin.y,superview.frame.size.width,superview.frame.size.height);
+////        DLog(@"superview.frame= %f,%f,%f,%f",superview.frame.origin.x,superview.frame.origin.y,superview.frame.size.width,superview.frame.size.height);
 ////    }
 //    
 ////    UIRectFill(rect);

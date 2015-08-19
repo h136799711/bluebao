@@ -116,7 +116,7 @@ static  SQLiteManager   * sqlManager;
             [array addObject:model];
         }
     }
-    NSLog(@" -- %ld --",uid);
+    DLog(@" -- %ld --",uid);
     return array;
 }
 //获得所有数据
@@ -189,7 +189,7 @@ static  SQLiteManager   * sqlManager;
     
     BoyeGoaldbModel * selectModel = [self selectDataModel:model];
     if (model!= nil) {
-        NSLog(@"  select id %ld  ",selectModel.db_id);
+        DLog(@"  select id %ld  ",selectModel.db_id);
         return selectModel.db_id;
     }
     return 0;
@@ -229,10 +229,10 @@ static  SQLiteManager   * sqlManager;
     if ([set next]) {
         
         isExist = YES;
-        NSLog(@"yes");
+        DLog(@"yes");
     }else{
 
-    NSLog(@"no");
+    DLog(@"no");
     }
     [set close];
     [__db close];
@@ -316,7 +316,7 @@ static  SQLiteManager   * sqlManager;
         resultModel = [pax lastObject];
     }
     
-    NSLog(@"**resultModel %@*****model **%ld**",resultModel.date_time,resultModel.target);
+    DLog(@"**resultModel %@*****model **%ld**",resultModel.date_time,resultModel.target);
 
     return resultModel;
 }
@@ -324,15 +324,15 @@ static  SQLiteManager   * sqlManager;
 +(void) test:(NSArray *)array{
 
     for (BoyeGoaldbModel * model in array) {
-      NSLog(@"*****************");
-        NSLog(@"id %ld",model.db_id);
-//        NSLog(@"date_time %@",model.date_time);
-//        NSLog(@"goalIndex %ld",model.goalIndex);
+      DLog(@"*****************");
+        DLog(@"id %ld",model.db_id);
+//        DLog(@"date_time %@",model.date_time);
+//        DLog(@"goalIndex %ld",model.goalIndex);
         
-//        NSLog(@"target %ld",model.target);
-        NSLog(@"uid %ld",model.uid);
-//        NSLog(@"weekday %ld",model.weekday);
-//        NSLog(@"create_time %@ ",model.create_time);
+//        DLog(@"target %ld",model.target);
+        DLog(@"uid %ld",model.uid);
+//        DLog(@"weekday %ld",model.weekday);
+//        DLog(@"create_time %@ ",model.create_time);
 
     }
     

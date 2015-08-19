@@ -56,9 +56,9 @@
     UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (localNotif)
     {
-//        NSLog(@"接受到的通知: %@",localNotif);
+//        DLog(@"接受到的通知: %@",localNotif);
 //        NSDictionary* infoDic = localNotif.userInfo;
-//        NSLog(@"userInfo description=%@",[infoDic description]);
+//        DLog(@"userInfo description=%@",[infoDic description]);
 //        NSString* codeStr = [infoDic objectForKey:CODE];
     }
 }
@@ -196,7 +196,7 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-    NSLog(@"userInfo=%@",userInfo);
+    DLog(@"userInfo=%@",userInfo);
     [UMessage didReceiveRemoteNotification:userInfo];
 }
 
@@ -209,7 +209,7 @@
             [alert show];
             
         }
-        NSLog(@"有通知");
+        DLog(@"有通知");
     }
     
 }

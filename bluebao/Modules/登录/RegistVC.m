@@ -94,7 +94,7 @@
     
     UILabel *label=(UILabel*)recognizer.view;
     
-    NSLog(@"%@被点击了",label.text);
+    DLog(@"%@被点击了",label.text);
     [self agree:self.agreeBtn];
 }
 
@@ -102,7 +102,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    NSLog(@"textFieldShouldReturn%@",textField);
+    DLog(@"textFieldShouldReturn%@",textField);
     [textField resignFirstResponder];
     if ([textField isEqual:self.textfield_LeterBox ]) {
         [self.textfield_newpsw becomeFirstResponder];

@@ -129,7 +129,7 @@
     self.userInfo = [MainViewController sharedSliderController].userInfo;
 
     if ([MainViewController sharedSliderController].isVCCancel == NO) {
-        NSLog(@" ---- current设备UUID %@  ",self.boyeBluetooth.connectedDevice.uuid);
+        DLog(@" ---- current设备UUID %@  ",self.boyeBluetooth.connectedDevice.uuid);
       
         //请求数据
         [self getBicyleData];
@@ -225,7 +225,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@" cell");
+    DLog(@" cell");
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -268,11 +268,11 @@
 -(void)dateChooseView:(DateChooseView *)dateChooseView datestr:(NSString *)datestr{
     
     
-//    NSLog(@"date  %@",datestr);
+//    DLog(@"date  %@",datestr);
   
      //1、选泽日期是今日，
     if (self.dateChooseView.isToday) {
-        NSLog(@"today");
+        DLog(@"today");
         
         //设备未连接，获取当日数据，已连接不做处理
 
@@ -286,7 +286,7 @@
         
         [self getBicyleData];
         
-        NSLog(@"NO today");
+        DLog(@"NO today");
     }
     
     //刷新
@@ -309,7 +309,7 @@
 
         } else{
             //处于未连接创状态  ，取获取目标值 即 self。bicyle。goal
-//            NSLog(@"*******isNotConnect*****OR NoToday**获取历史数据展示********************************");
+//            DLog(@"*******isNotConnect*****OR NoToday**获取历史数据展示********************************");
             // 2、选中日期非当天日期， 直接展示数据
 
             _drawProgreView.finishNum = self.bicylelb.calorie;
@@ -426,7 +426,7 @@
             //数据请求成功
             self.bicylelb = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
             
-            NSLog(@"  ---  %ld  - %ld -%ld- ",(long)self.bicylelb.calorie,(long)self.bicylelb.total_distance,self.bicylelb.cost_time);
+            DLog(@"  ---  %ld  - %ld -%ld- ",(long)self.bicylelb.calorie,(long)self.bicylelb.total_distance,self.bicylelb.cost_time);
             //任务完成度
             [self showFinishProgre];
             [_headTableView reloadData];
@@ -465,7 +465,7 @@
     [BoyeBicyleManager requestBicyleDataUpload:reqModel
                                           complete:^(BOOL bicyleSuccessed) {
                                               if (bicyleSuccessed) {
-                                                  NSLog(@"bicyleSuccessed");
+                                                  DLog(@"bicyleSuccessed");
                                               }
         }];
 }
@@ -478,7 +478,7 @@
 -(void)bluetoothStateChange:(id)sender :(enum BOYE_BLUETOOTH_STATE_EVENT)stateEvent :(id)parms{
     NSDictionary * info = (NSDictionary *)parms;
     
-    NSLog(@"首页委托蓝牙状态变更！%u",stateEvent);
+    DLog(@"首页委托蓝牙状态变更！%u",stateEvent);
     
     static  BOOL  isconnect = NO;
     switch (stateEvent) {
@@ -488,14 +488,14 @@
             isconnect = NO;
             break;
         case STATE_CONNECTED_DEVICE:
-            NSLog(@"连接上一台设备!");
+            DLog(@"连接上一台设备!");
 //                        [self didConnectDevice];
             isconnect = YES;
-            NSLog(@" ***  \r  connectDevice uuid %@  ",self.boyeBluetooth.connectedDevice.uuid);
+            DLog(@" ***  \r  connectDevice uuid %@  ",self.boyeBluetooth.connectedDevice.uuid);
             
             break;
         case STATE_DISCONNECT_DEVICE:
-            NSLog(@"断开上一台设备!");
+            DLog(@"断开上一台设备!");
             //            [self disConnectDevice];
             isconnect = NO;
             break;
@@ -528,7 +528,7 @@
 #pragma mark --获取并解析蓝牙数据 --
 -(void)updateValue:(NSString *)dataString{
 
-    NSLog(@" datastring: %@",dataString);
+    DLog(@" datastring: %@",dataString);
     //析蓝牙数据
     BluetoothDataManager * bluetoothData = [[BluetoothDataManager alloc] initWithBlueToothData:dataString];
    
@@ -602,10 +602,10 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
-        NSLog(@" 首页视图消失");
+        DLog(@" 首页视图消失");
     if (![MainViewController sharedSliderController].isVCCancel) {
 
-        NSLog(@" 首页视图消失");
+        DLog(@" 首页视图消失");
         
         self.connectView.isConnect = NO;
     }

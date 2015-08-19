@@ -246,7 +246,7 @@
  */
 -(BOOL)closeOauthWebViewController:(UINavigationController *)navigationCtroller socialControllerService:(UMSocialControllerService *)socialControllerService{
     
-    NSLog(@"关闭授权页面%@",socialControllerService);
+    DLog(@"关闭授权页面%@",socialControllerService);
     return NO;
 }
 
@@ -257,7 +257,7 @@
  
  */
 -(void)didCloseUIViewController:(UMSViewControllerType)fromViewControllerType{
-    NSLog(@"关闭Uiview");
+    DLog(@"关闭Uiview");
     
     [self showViewsWhenSharing];
 }
@@ -269,7 +269,7 @@
  */
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
-    NSLog(@"完成页面执行授权");
+    DLog(@"完成页面执行授权");
     //根据`responseCode`得到发送结果,如果分享成功
     if(response.responseCode == UMSResponseCodeSuccess)
     {
@@ -373,14 +373,14 @@
 #pragma mark -- 分享  --
 -(void)shareBtn:(UIButton *)shareBtn{
     
-    NSLog(@"分享到%@",@[@"微信",@"微博",@"qq空间"][shareBtn.tag]);
+    DLog(@"分享到%@",@[@"微信",@"微博",@"qq空间"][shareBtn.tag]);
     [share_tableView reloadData];
 }
 
 #pragma mark -- 提交 --
 -(void)submitBtnClick{
     
-    NSLog(@"分享");
+    DLog(@"分享");
     
     [self umengShareAlert];
 }
