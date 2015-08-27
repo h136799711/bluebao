@@ -94,7 +94,7 @@
  **/
 
 -(void)_initViews{
-    
+    DLog("PersonMessageVC initViews");
     //导航条
     //tableView
     [self _initTableview];
@@ -267,7 +267,7 @@
 //        [self.headImageBtn setBackgroundImage:[UIImage imageNamed:@"Default_header"] forState:UIControlStateNormal];
         
         NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120]];
-        
+        DLog("avatar_url%@",avatar_url);
         [self.headImageBtn setImageWithURL:avatar_url   forState:UIControlStateNormal];
         
         _headView = [BBManageCode  createdPersonInfoShowInView:_headView
@@ -550,8 +550,8 @@
             
             
             NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120 :YES]];
-            
-//            [self.headImageBtn setImageWithURL:avatar_url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Default_header"] options:SDWebImageRefreshCached];
+
+            [self.headImageBtn setImageWithURL:avatar_url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Default_header"] options:SDWebImageRefreshCached];
             
         } :nil];
 

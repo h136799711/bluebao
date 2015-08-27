@@ -73,7 +73,6 @@
     DLog("************LEFTVIEW**************");
     self.userinfo =  [MainViewController sharedSliderController].userInfo;
     [self setAvatar];
-    [self.left_tableView reloadData];
     
     UILabel * lblSign =  (UILabel *)[self.left_tableView.tableHeaderView viewWithTag:1005];
     
@@ -189,6 +188,7 @@
 -(void)setAvatar{
     
     NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userinfo.uid :120 :YES]];
+    avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userinfo.uid :120 :YES]];
     DLog(@"头像地址:%@",avatar_url);
     [self.headBtn setImageWithURL:avatar_url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Default_header"]];
 

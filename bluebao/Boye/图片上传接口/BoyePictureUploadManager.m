@@ -24,7 +24,7 @@ static NSInteger cache=0;
         cache = cache+1;
     }
     
-    NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%d&size=%d&cache=%d",[BoyeHttpClient getBaseApiURL],uid,size,cache];
+    NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%ld&size=%ld&cache=%ld",[BoyeHttpClient getBaseApiURL],(long)uid,(long)size,(long)cache];
     
     return urlstring;
 }

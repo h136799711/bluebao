@@ -424,7 +424,10 @@
         }else{
             data = UIImagePNGRepresentation(image);
         }
+        image = nil;
+        image = [[ UIImage alloc ]initWithData:data];
         
+       [ _leftView.headBtn setImage:image forState:UIControlStateNormal];
         
         NSString * fileImage =  [BoyeFileMagager getDocumentsImageFile:data userID:self.userInfo.uid];
         
@@ -436,6 +439,8 @@
         
         [BoyePictureUploadManager requestPictureUpload:picModel :^(NSDictionary *data){
             DLog(@"图片上传=%@",data);
+            //刷新头像缓存
+//            NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120 :YES]];
             [self.leftView willAppear];
         }:nil];
         
