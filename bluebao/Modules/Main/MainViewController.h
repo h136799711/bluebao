@@ -12,7 +12,7 @@
 
 @interface MainViewController : BaseViewController<LetfViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic,strong) UserInfo           * userInfo;
-@property (nonatomic,assign) BOOL               isOpen;
+@property (nonatomic,assign,setter=isOpen:) BOOL               isOpen;
 @property (nonatomic,strong)   LetfView          *leftView;
 
 /*

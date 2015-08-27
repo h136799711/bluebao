@@ -69,7 +69,15 @@
 }
 
 -(void)willAppear{
+    
+    DLog("************LEFTVIEW**************");
+    self.userinfo =  [MainViewController sharedSliderController].userInfo;
     [self setAvatar];
+    [self.left_tableView reloadData];
+    
+    UILabel * lblSign =  (UILabel *)[self.left_tableView.tableHeaderView viewWithTag:1005];
+    
+    lblSign.text = self.userinfo.signature;
 }
 
 #pragma mark - UITableView Delegate & Datasrouce -
@@ -183,14 +191,14 @@
     NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userinfo.uid :120 :YES]];
     DLog(@"头像地址:%@",avatar_url);
     [self.headBtn setImageWithURL:avatar_url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Default_header"]];
-    
+
 }
 
 -(UIView *)creatTableViewHeadView{
     
     UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 100)];
 //    headView.backgroundColor = [UIColor lightGrayColor];
-    
+    headView.tag = 1105;
     //头像
     self.headBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
      self.headBtn.bounds = CGRectMake(0, 0, 40, 40);
@@ -214,6 +222,7 @@
     label.textColor = [UIColor grayColor];
     [headView addSubview:label];
     label.font = [UIFont boldSystemFontOfSize:10];
+    label.tag = 1005;
     
     
     //编辑签名

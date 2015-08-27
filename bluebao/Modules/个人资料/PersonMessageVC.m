@@ -342,7 +342,10 @@
     
     UITextField * nickname = (UITextField *)[_headView viewWithTag:1001];
     self.userInfo.nickname = nickname.text;
-    
+    self.userInfo.sex = 0;
+    if(self.sexButton.selected){
+        self.userInfo.sex = 1;
+    }
     [self requestPersonInfo];
     
 }
@@ -365,15 +368,29 @@
     updataModel.uid = self.userInfo.uid;
 //    updataModel.avatar_id  = _avatar_id;
     
+   __weak  PersonMessageVC *  that = self;
+    
     [BoyeDefaultManager requestUserInfoUpdata:updataModel complete:^(BOOL succed) {
-        
         if (succed) {
             
+            [SVProgressHUD showSuccessWithStatus:@"保存成功!"];
             [MainViewController sharedSliderController].userInfo = self.userInfo;
-            DLog(@"更新成功!");
+            
+            double delayInSeconds = 1.0;
+            
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [that.navigationController popViewControllerAnimated:YES];
+            });
+            
+        }else{
+            
         }
-        
+
     }];
+    
+    
     
 }
 

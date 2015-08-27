@@ -212,7 +212,6 @@
         if (tokenSucced) {
             
             [self reqInfoUpdata:userUpdata complete:^(BOOL userInfoUpdatasucced) {
-                
                 complete(userInfoUpdatasucced);
             }];
             
@@ -266,7 +265,7 @@
                        
                         NSString * successedData = [dic valueForKey:@"data"];
                         [SVProgressHUD showSuccessWithStatus:successedData];
-                      
+                        complete(YES);
                     }else{
                         //更新失败
                         [BoyeDefaultManager getCodeWrongData:dic];

@@ -38,6 +38,20 @@
 
 @implementation MainViewController
 
+
+#pragma mark getter/setter
+
+-(void)isOpen:(BOOL)toggle{
+    
+    self->_isOpen = toggle;
+    if(toggle == YES && self.leftView != nil){
+        [self.leftView willAppear];
+    }
+}
+
+
+
+
 -(NSDate *)lastUpLoadDateTime:(NSDate *)lastUpLoadDateTime{
     if (_lastUpLoadDateTime == nil) {
         _lastUpLoadDateTime = [NSDate date];
