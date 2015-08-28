@@ -24,6 +24,7 @@
 @property (nonatomic,assign) NSInteger        calorie;
 @property (nonatomic,assign) NSInteger        upload_time;  //时间戳
 @property (nonatomic,assign) NSInteger        target_calorie; //目标卡路里
+@property (nonatomic,assign) BOOL        isMisdata; //目标卡路里
 
 -(id)initWithBicyleRespDic:(NSDictionary *)dictionary;
 

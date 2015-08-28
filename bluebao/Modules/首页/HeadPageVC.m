@@ -528,7 +528,8 @@
 #pragma mark --获取并解析蓝牙数据 --
 -(void)updateValue:(NSString *)dataString{
 
-    DLog(@" datastring: %@",dataString);
+    DLog(@" 获取到的数据: %@",dataString);
+    
     //析蓝牙数据
     BluetoothDataManager * bluetoothData = [[BluetoothDataManager alloc] initWithBlueToothData:dataString];
    

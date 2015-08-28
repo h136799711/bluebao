@@ -47,7 +47,9 @@
                return  NO;
     }
     
-  
+    if(blueData.bicyleModel.isMisdata){
+        return NO;
+    }
     
     [self setOutDate];
     

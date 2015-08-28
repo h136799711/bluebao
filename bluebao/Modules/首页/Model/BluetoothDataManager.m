@@ -60,6 +60,7 @@
     
     //TODO: 有新数据接收时.
 //    DLog(@"======================================");
+    DLog(@" DEBUG= 获取到的数据=  %@",dataString);
     
    // DLog(@"%@,长度%lu",dataString,(unsigned long)dataString.length);
     
@@ -104,7 +105,18 @@
         //        DLog(@"校验和 %@",cmdStr);
         _checksum = [self getTenHexadecimalFromSixteen:cmdStr] ;
         
+        long sum = self.bicyleModel.heart_rate + self.bicyleModel.total_distance + self.bicyleModel.distance + self.bicyleModel.calorie +self.bicyleModel.speed+self.bicyleModel.cost_time;
         
+        sum = (sum+229) % 255;
+        sum = sum-1;
+//        NSString *hexString = [[NSString alloc] initWithFormat:@"%1x",sum];
+        
+        DLog("检验是否通过=%ld,%ld",sum,(long)_checksum);
+        if(sum != _checksum){
+            self.bicyleModel.isMisdata = YES;
+        }else{
+            self.bicyleModel.isMisdata = NO;
+        }
         //        DLog(@"data = %@",data);
         //        [self.descData addObject:data];
         //        NSDateFormatter * formatter = [NSDate defaultDateFormatter ];
