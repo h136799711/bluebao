@@ -175,16 +175,17 @@
                         :params
                         :^(AFHTTPRequestOperation *operation, id responseObject) {
                             
+                            [SVProgressHUD dismiss];
                             if(responseObject == nil){
                                 
-                                [SVProgressHUD showErrorWithStatus:@"请求返回为空,请重试!"];
+                                [SVProgressHUD showErrorWithStatus:@"请求返回为空,请重试!" withDuration:3];
                                 return ;
                             }
                             
                             NSDictionary * dict = (NSDictionary *)responseObject;
                             
                             if (!dict) {
-                                [SVProgressHUD showErrorWithStatus:@"请求返回不为字典,请重试!"];
+                                [SVProgressHUD showErrorWithStatus:@"请求返回不为字典,请重试!" withDuration:3];
                                 return ;
                                 
                             }
@@ -194,7 +195,6 @@
                             if ([code integerValue] == 0) {
 //                                complete(YES);
                                 success(dict);
-                                [SVProgressHUD dismiss];
                             }else{
                                 
                                 NSString * errorData = [dict valueForKey:@"data"];

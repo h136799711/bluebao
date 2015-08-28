@@ -104,7 +104,7 @@
     _xLabels = xLabels;
     CGFloat num = 0;
     if (xLabels.count>=20) {
-        num=20.0;
+        num=xLabels.count;
     }else if (xLabels.count<=1){
         num=1.0;
     }else{
@@ -113,6 +113,11 @@
     _xLabelWidth = (self.frame.size.width - UUYLabelwidth)/num;
     
     for (int i=0; i<xLabels.count; i++) {
+        //add by hebidu
+        if (num > 16 && i%2 == 1) {
+            continue;
+        }
+        
         NSString *labelText = xLabels[i];
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(i * _xLabelWidth+UUYLabelwidth, self.frame.size.height - UULabelHeight, _xLabelWidth, UULabelHeight)];
         label.text = labelText;

@@ -149,7 +149,7 @@
         
         NSUInteger day = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date].length;
         
-        if(data.count == 0){
+        if(dataInfo.count == 0){
             NSLog(@"无数据!");
             return ;
         }
@@ -171,8 +171,9 @@
                 
                 if( ((flag && nowComponent.day  > 20 ) ||!flag)  && i%2==0 )
                 {
-                    continue;
+//                    continue;
                 }
+                
 //                if(i%2 == 1){
                     NSNumber *upload_day = [NSNumber numberWithInteger:0];
                     NSNumber *max_calorie = [NSNumber numberWithInteger:0];
