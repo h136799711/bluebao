@@ -121,21 +121,21 @@
     if(sex == 0){
         
         if(age < 39){
-            return 1.7;
+            return (1.7*100/weight);
         }else if(age >39 && age < 60){
-            return 2.1;
+            return (2.1*100/weight);
         }else{
-            return 2.4;
+            return (2.4*100/weight);
         }
         
     }else{
         
         if(age < 54){
-            return 2.4;
+            return (2.4*100/weight);
         }else if(age > 54 && age < 75){
-            return 2.8;
+            return (2.8*100/weight);
         }else{
-            return 3.1;
+            return (3.1*100/weight);
         }
     }
     

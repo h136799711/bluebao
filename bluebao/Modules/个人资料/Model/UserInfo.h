@@ -32,7 +32,7 @@
 
 
 @property (nonatomic,copy)  NSString         *username;
-@property (nonatomic,copy)  NSString         *nickname;
+@property (nonatomic,copy,getter=nickname)  NSString         *nickname;
 @property (nonatomic,assign)NSInteger        sex;
 @property (nonatomic,copy)  NSString         * birthday;
 @property (nonatomic,copy)  NSString         * email;

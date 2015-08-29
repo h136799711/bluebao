@@ -10,6 +10,14 @@
 
 @implementation UserInfo
 
+-(NSString *)nickname{
+    
+    if(self->_nickname == nil || self->_nickname.length == 0){
+        return self.username;
+    }
+    
+    return self->_nickname;
+}
 
 -(id)initWithUserInfoDictionary:(NSDictionary * )diction{
     

@@ -105,13 +105,28 @@
         //        DLog(@"校验和 %@",cmdStr);
         _checksum = [self getTenHexadecimalFromSixteen:cmdStr] ;
         
-        long sum = self.bicyleModel.heart_rate + self.bicyleModel.total_distance + self.bicyleModel.distance + self.bicyleModel.calorie +self.bicyleModel.speed+self.bicyleModel.cost_time;
         
-        sum = (sum+229) % 255;
-        sum = sum-1;
-//        NSString *hexString = [[NSString alloc] initWithFormat:@"%1x",sum];
         
+        long sum = [self getSum:dataString];
+        
+        
+//        NSString *hexString = [[NSString alloc] initWithFormat:@"%1lx",sum];
+        
+        DLog("检验值处理前=%ld,%ld",sum,(long)_checksum);
+        if(sum > 255){
+            int duration = (int)floor(sum/256);
+//            if(duration > 2){
+//                duration = 2;
+//            }
+            sum = sum+duration;
+//        DLog("检验是否通过=%ld,=>%d",sum,(int)floor(sum/256));
+        }
+        
+        sum = sum % 256;
+        
+        //197，那么最后检验字节值为98
         DLog("检验是否通过=%ld,%ld",sum,(long)_checksum);
+//        DLog("检验是否通过=%@,%@",hexString,cmdStr);
         if(sum != _checksum){
             self.bicyleModel.isMisdata = YES;
         }else{
@@ -129,6 +144,23 @@
         
     }
     
+    
+}
+
+-(NSInteger) getSum:(NSString *)hexstring{
+    
+    NSInteger sum = 0;
+    
+    for (int start = 6; start < hexstring.length-2; start+=2) {
+        
+        NSString * cmdStr = [[hexstring substringWithRange:NSMakeRange(start, 2)] lowercaseString];
+        NSInteger tmp = [self getTenHexadecimalFromSixteen:cmdStr] ;
+        NSLog(@"cmdStr=%@,10=%ld",cmdStr,(long)tmp);
+        sum = sum + tmp;
+    }
+    //+ E5
+    sum = sum + 229;
+    return sum;
     
 }
 

@@ -193,13 +193,13 @@
 
         return NO;
     }
+    //更改：hebiduhebi@126.com @ 20150829
+//    if (![MyTool validateEmail:user.username]) {
+//        [SVProgressHUD showOnlyStatus:@"请输入正确的邮箱" withDuration:duration];
+//        return NO;
+//    }
     
-    if (![MyTool validateEmail:user.username]) {
-        [SVProgressHUD showOnlyStatus:@"请输入正确的邮箱" withDuration:duration];
-        return NO;
-    }
-    
-    if (user.username.length >=18) {
+    if (user.username.length >= 32) {
         [SVProgressHUD showOnlyStatus:@"用户名长度太长" withDuration:duration];
 
         return NO;
