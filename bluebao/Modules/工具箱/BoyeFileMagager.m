@@ -40,7 +40,7 @@
     //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
     [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
     NSString * datastr = [MyTool getCurrentDateFormat:@"yyyyMMddhhmmss"];
-    NSString * imageName = [NSString stringWithFormat:@"/%@_%ld_%@",datastr,uid,@"image.png"];
+    NSString * imageName = [NSString stringWithFormat:@"/%@_%ld_%@",datastr,(long)uid,@"image.png"];
     
     [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:imageName] contents:dataImag attributes:nil];
     
@@ -96,7 +96,7 @@
 +(NSString *) defaultGoalArrFilePlistName{
     
     UserInfo * userInfo = [MainViewController sharedSliderController].userInfo;
-    NSString * plistname = [NSString stringWithFormat:@"lanbao_goal_arr_%ld_plistname",userInfo.uid];
+    NSString * plistname = [NSString stringWithFormat:@"lanbao_goal_arr_%ld_plistname",(long)userInfo.uid];
     return plistname;
 }
 
@@ -104,7 +104,7 @@
 +(NSString *) defaultGoalDataFileName{
     
     UserInfo * userInfo = [MainViewController sharedSliderController].userInfo;
-    NSString * plistname = [NSString stringWithFormat:@"lanbao_goal_%ld_plistname",userInfo.uid];
+    NSString * plistname = [NSString stringWithFormat:@"lanbao_goal_%ld_plistname",(long)userInfo.uid];
 
     return plistname;
     

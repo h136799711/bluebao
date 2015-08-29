@@ -243,7 +243,7 @@
 }
 -(void)checkHadBindCurrentDevice{
     
-    DLog(@"蓝牙对象是否已连接=%ld",(self.device.state & CBPeripheralStateConnected));
+//    DLog(@"蓝牙对象是否已连接=%d",(self.device.state & CBPeripheralStateConnected));
     DLog(@"本例对象uuid=%@",self.device.uuid);
     DLog(@"蓝牙对象uuid=%@",self.bluetooth.connectedDevice);
     

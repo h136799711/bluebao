@@ -36,7 +36,7 @@ static NSInteger cache=0;
         
         if (tokenSucced) {
             
-            NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%ld&size=%ld",[BoyeHttpClient getBaseApiURL],picModel.uid,picModel.size];
+            NSString * urlstring = [NSString stringWithFormat:@"%@Picture/avatar?uid=%ld&size=%ld",[BoyeHttpClient getBaseApiURL],(long)picModel.uid,(long)picModel.size];
             NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlstring]];
             UIImage * resultImag = [UIImage imageWithData:data];
             complete( resultImag);
@@ -56,7 +56,7 @@ static NSInteger cache=0;
           
             NSString *token = [BoyeToken getAccessToken];
             BoyeHttpClient * client = [[BoyeHttpClient alloc] init];
-            NSString * uid = [NSString stringWithFormat:@"%ld",picModel.uid];
+            NSString * uid = [NSString stringWithFormat:@"%ld",(long)picModel.uid];
             
             NSDictionary * params =  @{@"uid":uid,@"type":picModel.type};
             NSString * urlString = [NSString stringWithFormat:@"File/upload?access_token=%@",token];

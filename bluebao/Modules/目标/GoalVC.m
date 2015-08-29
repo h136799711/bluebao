@@ -173,7 +173,7 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
        BoyeGoaldbModel * goaldate = [self.dataArray objectAtIndex:indexPath.row];
         
         cell.timeLabel.text = goaldate.date_time;
-        cell.goalLael.text  = [NSString stringWithFormat:@"%ld卡",goaldate.target];
+        cell.goalLael.text  = [NSString stringWithFormat:@"%ld卡",(long)goaldate.target];
         
         cell.alterBtn.tag = indexPath.row;
         cell.deleteBtn.tag = indexPath.row ;

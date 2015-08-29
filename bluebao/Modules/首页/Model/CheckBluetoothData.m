@@ -46,9 +46,9 @@
     ) {
                return  NO;
     }
-    
+    //不检测检验和时
     if(blueData.bicyleModel.isMisdata){
-        return NO;
+//        return NO;
     }
     
     [self setOutDate];

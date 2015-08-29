@@ -88,6 +88,8 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
 
     [SVProgressHUD dismiss];
+    
+    [webView setHeight:SCREEN_HEIGHT - 66];
 }
 //
 //-(void)_initTableView{

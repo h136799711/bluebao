@@ -32,6 +32,16 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [self avatarRequest];
+    
+    self.userInfo = [MainViewController sharedSliderController].userInfo;
+    UILabel * lblNickname = (UILabel * ) [self->_headView viewWithTag:1004];
+    
+    lblNickname.text = self.userInfo.nickname;
+    
+    UILabel * lblSignature = (UILabel * ) [self->_headView viewWithTag:1005];
+    
+    lblSignature.text = self.userInfo.signature;
+    
     DLog(@"**********个人中心出现**********");
 }
 
@@ -43,7 +53,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.userInfo = [MainViewController sharedSliderController].userInfo;
     
     
     self.title = @"个人中心";
@@ -318,6 +327,8 @@
             label_name.text = self.userInfo.nickname;
         }
         
+        label_name.tag = 1004;
+
         label_name.font = FONT(15);
         label_name.lineBreakMode = NSLineBreakByClipping;
         [_headView addSubview:label_name];
@@ -327,8 +338,8 @@
         UILabel  * label_ID = [[UILabel alloc] init];
         label_ID.bounds = label_name.bounds;
         label_ID.center = CGPointMake(label_name.center.x, imageView.center.y+label_ID.height/2.0);
-//        label_ID.text = [NSString stringWithFormat:@"ID:%ld", (long)self.userInfo.uid];
-        label_ID.text = [NSString stringWithFormat:@"%@", self.userInfo.signature];
+        label_ID.text = self.userInfo.signature;
+        label_ID.tag = 1005;
         label_ID.font = FONT(13);
         label_ID.textColor = [UIColor lightGrayColor];
         label_ID.lineBreakMode = NSLineBreakByClipping;
@@ -352,8 +363,8 @@
     NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120]];
     [self.head_ImageView setImageWithURL:avatar_url placeholderImage:[UIImage imageNamed:@"Default_header"] options:SDWebImageRefreshCached];
      //    [self.head_ImageView  setImageURL:avatar_url placeholder:[UIImage imageNamed:@"Default_header"]];
-    self.heightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.height];
-    self.weightLabel.text = [NSString stringWithFormat:@"%ld",self.userInfo.weight];
+    self.heightLabel.text = [NSString stringWithFormat:@"%ld",(long)self.userInfo.height];
+    self.weightLabel.text = [NSString stringWithFormat:@"%ld",(long)self.userInfo.weight];
     self.BMiLabel.text = [NSString stringWithFormat:@"%@",[MyTool getBMIStringWeight:self.userInfo.weight height:self.userInfo.height]];
 }
 

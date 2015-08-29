@@ -20,7 +20,7 @@
 
 -(NSString *)description{
     
-    return  [[NSString alloc]initWithFormat:@"总程:%ld , 热量:%ld ,距离: %ld ,速度:%ld 时间:%ld 心率: %ld",self->_totalDistance,(long)self->_quantityOfHeat,(long)self->_distance,(long)self->_speed,(long)self->_spendTime,(long)self->_heartRate];
+    return  [[NSString alloc]initWithFormat:@"总程:%ld , 热量:%ld ,距离: %ld ,速度:%ld 时间:%ld 心率: %ld",(long)self->_totalDistance,(long)self->_quantityOfHeat,(long)self->_distance,(long)self->_speed,(long)self->_spendTime,(long)self->_heartRate];
     
     
 }

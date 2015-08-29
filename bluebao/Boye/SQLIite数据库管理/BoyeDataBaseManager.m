@@ -77,7 +77,7 @@ static  SQLiteManager   * sqlManager;
     
     [self safeDataBase];
 
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO lanbao_target (target,date_time,uid,weekday,create_time)VALUES(%ld,'%@',%ld,%ld,'%@')",model.target,model.date_time,(long)model.uid,model.weekday,model.create_time];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO lanbao_target (target,date_time,uid,weekday,create_time)VALUES(%ld,'%@',%ld,%ld,'%@')",(long)model.target,model.date_time,(long)model.uid,(long)model.weekday,model.create_time];
 
     [__db open];
     [__db executeUpdate:sql];
@@ -91,7 +91,7 @@ static  SQLiteManager   * sqlManager;
   
     [self safeDataBase];
     [__db open];
-    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND weekday = %ld",uid,weekday];
+    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND weekday = %ld",(long)uid,(long)weekday];
     
     FMResultSet *set = [__db executeQuery:sql];
         NSMutableArray *array = [NSMutableArray array];
@@ -116,7 +116,7 @@ static  SQLiteManager   * sqlManager;
             [array addObject:model];
         }
     }
-    DLog(@" -- %ld --",uid);
+    DLog(@" -- %ld --",(long)uid);
     return array;
 }
 //获得所有数据
@@ -141,7 +141,7 @@ static  SQLiteManager   * sqlManager;
     
     
     [self safeDataBase];
-    NSString * sql = [NSString stringWithFormat:@"DELETE FROM lanbao_target WHERE id = %ld",db_id];
+    NSString * sql = [NSString stringWithFormat:@"DELETE FROM lanbao_target WHERE id = %ld",(long)db_id];
     [__db open];
   
     [__db executeUpdate:sql];
@@ -152,7 +152,7 @@ static  SQLiteManager   * sqlManager;
     
     
     [self safeDataBase];
-    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE id = %ld",db_id];
+    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE id = %ld",(long)db_id];
     [__db open];
     BoyeGoaldbModel *record;
     FMResultSet * set = [__db executeQuery:sql];
@@ -171,7 +171,7 @@ static  SQLiteManager   * sqlManager;
 +(BoyeGoaldbModel*) selectDataModel:(BoyeGoaldbModel*)model{
     
     [self safeDataBase];
-    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND  weekday = %ld AND date_time = '%@'",model.uid,model.weekday,model.date_time];
+    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND  weekday = %ld AND date_time = '%@'",(long)model.uid,(long)model.weekday,model.date_time];
     [__db open];
     BoyeGoaldbModel *record;
     FMResultSet * set = [__db executeQuery:sql];
@@ -189,7 +189,7 @@ static  SQLiteManager   * sqlManager;
     
     BoyeGoaldbModel * selectModel = [self selectDataModel:model];
     if (model!= nil) {
-        DLog(@"  select id %ld  ",selectModel.db_id);
+        DLog(@"  select id %ld  ",(long)selectModel.db_id);
         return selectModel.db_id;
     }
     return 0;
@@ -212,7 +212,7 @@ static  SQLiteManager   * sqlManager;
 //判断数据是否存在
 +(BOOL )isExistUserGoal:(BoyeGoaldbModel *) model{
     
-    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND  weekday = %ld AND date_time = '%@'",model.uid,model.weekday,model.date_time];
+    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND  weekday = %ld AND date_time = '%@'",(long)model.uid,(long)model.weekday,model.date_time];
     
     
     return [self isDataExistSQL:sql ];
@@ -242,7 +242,7 @@ static  SQLiteManager   * sqlManager;
 //修改数据
 +(void) alertData:(BoyeGoaldbModel *)model{
     
-    NSString * sql = [NSString stringWithFormat:@"UPDATE lanbao_target SET date_time = '%@' , target = %ld WHERE id = %ld ",model.date_time,model.target,model.db_id];
+    NSString * sql = [NSString stringWithFormat:@"UPDATE lanbao_target SET date_time = '%@' , target = %ld WHERE id = %ld ",model.date_time,(long)model.target,(long)model.db_id];
   
     [self safeDataBase];
     [__db open];
@@ -316,7 +316,7 @@ static  SQLiteManager   * sqlManager;
         resultModel = [pax lastObject];
     }
     
-    DLog(@"**resultModel %@*****model **%ld**",resultModel.date_time,resultModel.target);
+    DLog(@"**resultModel %@*****model **%ld**",resultModel.date_time,(long)resultModel.target);
 
     return resultModel;
 }
@@ -325,12 +325,12 @@ static  SQLiteManager   * sqlManager;
 
     for (BoyeGoaldbModel * model in array) {
       DLog(@"*****************");
-        DLog(@"id %ld",model.db_id);
+        DLog(@"id %ld",(long)model.db_id);
 //        DLog(@"date_time %@",model.date_time);
 //        DLog(@"goalIndex %ld",model.goalIndex);
         
 //        DLog(@"target %ld",model.target);
-        DLog(@"uid %ld",model.uid);
+        DLog(@"uid %ld",(long)model.uid);
 //        DLog(@"weekday %ld",model.weekday);
 //        DLog(@"create_time %@ ",model.create_time);
 

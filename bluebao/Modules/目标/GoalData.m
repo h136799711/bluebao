@@ -31,7 +31,7 @@
     NSInteger hour = [[timearray firstObject] integerValue];
     NSInteger mine = [[timearray lastObject] integerValue];
     _maxIndex = hour * 60 + mine;
-    DLog(@"\r timestr :%@ \r hour: %ld  \r mine %ld  %ld",timestr,hour,mine,self.maxIndex);
+//    DLog(@"\r timestr :%@ \r hour: %ld  \r mine %ld  %ld",timestr,(long)hour,mine,self.maxIndex);
     
 }
 

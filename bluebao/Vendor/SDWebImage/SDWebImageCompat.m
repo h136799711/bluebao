@@ -8,11 +8,11 @@
 
 #import "SDWebImageCompat.h"
 
-#if !__has_feature(objc_arc)
-#error SDWebImage is ARC only. Either turn on ARC for the project or use -fobjc-arc flag
-#endif
+//#if !__has_feature(objc_arc)
+//#error SDWebImage is ARC only. Either turn on ARC for the project or use -fobjc-arc flag
+//#endif
 
-inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image)
+extern inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image)
 {
     if ([image.images count] > 0)
     {

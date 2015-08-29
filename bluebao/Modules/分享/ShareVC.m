@@ -195,7 +195,7 @@
     if (day== 0) {
         day = 1;
     }
-    NSString *sportstr = [NSString stringWithFormat: @"今天是运动的第%ld天",day ];
+    NSString *sportstr = [NSString stringWithFormat: @"今天是运动的第%ld天",(long)day ];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:sportstr];
     
     //设置颜色

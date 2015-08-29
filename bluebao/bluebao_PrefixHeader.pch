@@ -61,8 +61,8 @@
 #import "SDWebImageManager.h"
 #import "UIButton+WebCache.h"
 #import "UIImageView+WebCache.h"
+//#import "UIImageView+MJWebCache.h"
 
-#import "UIImageView+MJWebCache.h"
 #import "UIViewController+DismissKeyboard.h"
 #import "BaseTextField.h"
 #import "MBProgressHUD+Add.h"

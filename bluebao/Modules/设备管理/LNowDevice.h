@@ -22,7 +22,7 @@
 @property (nonatomic,readonly)NSString * uuid;
 
 /* 设备rssi信号 */
-@property (nonatomic)NSNumber* rssi;
+@property (nonatomic,copy)NSNumber* rssi;
 
 @property (nonatomic,readonly) CBPeripheral *peripheral;
 

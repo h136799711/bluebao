@@ -316,7 +316,7 @@
 
         #pragma mark ---- 代理 ----
         NSString * timestr = [NSString stringWithFormat:@"%@:%@",[self getDateString:_hour],[self getDateString:_minute]];
-        NSInteger  goalnum = [[NSString stringWithFormat:@"%ld%ld%ld",_hundre,_ten,_digit] integerValue];
+        NSInteger  goalnum = [[NSString stringWithFormat:@"%ld%ld%ld",(long)_hundre,(long)_ten,(long)_digit] integerValue];
 
         //先响应代理，再close
         
@@ -382,10 +382,10 @@
     
     NSString  *numstr = [[NSString alloc] init];
     if (num < 10) {
-        numstr = [NSString stringWithFormat:@"0%ld",num];
+        numstr = [NSString stringWithFormat:@"0%ld",(long)num];
     }else{
         
-        numstr = [NSString stringWithFormat:@"%ld",num];
+        numstr = [NSString stringWithFormat:@"%ld",(long)num];
     }
     
     return numstr;
@@ -394,7 +394,7 @@
 //数值转化为字符串
 -(NSString *) getNumberString:(NSInteger)num{
     
-    NSString * numstr = [NSString stringWithFormat:@"%ld",num];
+    NSString * numstr = [NSString stringWithFormat:@"%ld",(long)num];
     return numstr;
 }
 

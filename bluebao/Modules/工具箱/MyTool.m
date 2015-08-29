@@ -311,7 +311,7 @@
     for (int i = 0 ; i < dateArray.count; i ++) {
         GoalData * dateTow  = dateArray[i];
         if ([dateOne.timestr isEqualToString:dateTow.timestr]) {
-            DLog(@"  maxindex %ld - %ld",dateOne.maxIndex,dateTow.maxIndex);
+//            DLog(@"  maxindex %ld - %ld",(long)dateOne.maxIndex,(long)dateTow.maxIndex);
             index = i;
             break;
         }
@@ -323,7 +323,7 @@
 #pragma mark --将数值转化为字符串
 +(NSString * ) getStringToInteger:(NSInteger) number{
 
-    NSString * string = [NSString stringWithFormat:@"%ld",number];
+    NSString * string = [NSString stringWithFormat:@"%ld",(long)number];
     return string;
 }
     
@@ -357,7 +357,7 @@
     DLog(@"------------goal----------------------------------");
     for (GoalData * data in arr) {
         
-        DLog(@" \r-time %@- goalnum%ld maindex  %ld-",data.timestr,data.goalNumber,data.maxIndex);
+        DLog(@" \r-time %@- goalnum%ld maindex  %ld-",data.timestr,(long)data.goalNumber,(long)data.maxIndex);
     }
 }
 
@@ -366,12 +366,12 @@
     DLog(@"------------bicyle----------------------------------");
 
     DLog(@" \r speed %ld \r heart_rate  %ld \r distance %ld \r total_distance %ld \r cost_time %ld \r calorie %ld",
-          bicyle.speed,
-          bicyle.heart_rate,
-          bicyle.distance,
-          bicyle.total_distance,
-          bicyle.cost_time,
-          bicyle.calorie);
+          (long)bicyle.speed,
+          (long)bicyle.heart_rate,
+          (long)bicyle.distance,
+          (long)bicyle.total_distance,
+          (long)bicyle.cost_time,
+          (long)bicyle.calorie);
 }
 +(NSArray *) weekString{
     

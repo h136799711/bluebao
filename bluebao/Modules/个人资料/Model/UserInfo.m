@@ -32,7 +32,7 @@
         if(_birthday.length > 4){
             _age = year +1 - [[_birthday substringWithRange:NSMakeRange(0, 4)] integerValue];
         }
-        DLog(@"age=%ld",self.age);
+//        DLog(@"age=%ld",(long)self.age);
     }
     
     return self;

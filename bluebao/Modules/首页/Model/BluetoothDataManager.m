@@ -87,7 +87,7 @@
         //热量
         cmdStr = [[dataString substringWithRange:NSMakeRange(20, 4)] lowercaseString];
         self.bicyleModel.calorie = [self getTenHexadecimalFromSixteen:cmdStr] ;
-        DLog(@"=========热量 %@  %ld==========",cmdStr,self.bicyleModel.calorie );
+//        DLog(@"=========热量 %@  %ld==========",cmdStr,(long)self.bicyleModel.calorie );
         
         //总程
         cmdStr = [[dataString substringWithRange:NSMakeRange(24, 4)] lowercaseString];

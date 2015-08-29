@@ -426,7 +426,7 @@
             //数据请求成功
             self.bicylelb = [[Bicyle alloc] initWithBicyleRespDic:successdDic];
             
-            DLog(@"  ---  %ld  - %ld -%ld- ",(long)self.bicylelb.calorie,(long)self.bicylelb.total_distance,self.bicylelb.cost_time);
+            DLog(@"  ---  %ld  - %ld -%ld- ",(long)self.bicylelb.calorie,(long)self.bicylelb.total_distance,(long)self.bicylelb.cost_time);
             //任务完成度
             [self showFinishProgre];
             [_headTableView reloadData];

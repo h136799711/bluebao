@@ -102,8 +102,8 @@
             NSString * token  =   [BoyeToken getAccessToken];
             
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/add?access_token=%@",token];
-            NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
-            DLog(@" %ld  -----   %@",bicyReqModel.bicyleModel.speed,[MyTool getStringToInteger:bicyReqModel.bicyleModel.speed]);
+            NSString * uid = [NSString stringWithFormat:@"%ld",(long)bicyReqModel.uid];
+            DLog(@" %ld  -----   %@",(long)bicyReqModel.bicyleModel.speed,[MyTool getStringToInteger:bicyReqModel.bicyleModel.speed]);
             DLog(@"----uid %@-uuid %@ - -upload_time-%@ ",uid,bicyReqModel.uuid,[MyTool getStringToInteger:bicyReqModel.bicyleModel.upload_time]);
 
             NSDictionary * params =  @{
@@ -165,8 +165,8 @@
             
             NSString * token  = [BoyeToken getAccessToken];
             NSString * urlString = [NSString stringWithFormat:@"Bicyle/month?access_token=%@",token];
-            NSString * uid = [NSString stringWithFormat:@"%ld",bicyReqModel.uid];
-            NSString * time = [NSString stringWithFormat:@"%ld",bicyReqModel.time];
+            NSString * uid = [NSString stringWithFormat:@"%ld",(long)bicyReqModel.uid];
+            NSString * time = [NSString stringWithFormat:@"%ld",(long)bicyReqModel.time];
             DLog(@"--\r-- %@- %@ -  ",uid,bicyReqModel.uuid);
             NSDictionary * params =  @{
                                        @"uid":uid,

@@ -657,7 +657,7 @@
         
         NSInteger age = [MainViewController sharedSliderController].userInfo.age;
         self.ageBtn = ageBtn;
-        [self.ageBtn setTitle:[NSString stringWithFormat:@"%ld",age] forState:UIControlStateNormal];
+        [self.ageBtn setTitle:[NSString stringWithFormat:@"%ld",(long)age] forState:UIControlStateNormal];
         
         // 性别，身高 手势  。。
         //性别初始化 ， 男:1 ， 女:0; 默认女
@@ -787,12 +787,12 @@
 #pragma mark -- 数字与字符串拼接  ---
 -(NSString * ) getStrNum:(NSInteger) num unit:(NSString *)unit{
     
-    NSString * string = [NSString stringWithFormat:@"%ld%@",num,unit];
+    NSString * string = [NSString stringWithFormat:@"%ld%@",(long)num,unit];
     return string;
 }
 
 -(NSString *) getString:(NSInteger)num{
-    return [NSString stringWithFormat:@"%ld",num];
+    return [NSString stringWithFormat:@"%ld",(long)num];
 }
 
 

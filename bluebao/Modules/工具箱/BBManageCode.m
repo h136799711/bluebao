@@ -356,8 +356,8 @@
             break;
     }
     if(row < 8){
-        DLog(@"=================");
-        DLog(@"%ld row=%ld" , row , (long)valueNum);
+//        DLog(@"=================");
+//        DLog(@"%ld row=%ld" , (long)row , (long)valueNum);
     }
     return valueNum;
 }
@@ -463,7 +463,7 @@
         if (callabel == nil) {
             callabel =  [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 40.0f, 30.0f)];
         }
-        callabel.text = [NSString stringWithFormat:@"%ld卡",row];
+        callabel.text = [NSString stringWithFormat:@"%ld卡",(long)row];
         callabel.textAlignment = NSTextAlignmentLeft;
         callabel.font = FONT(font);
         
@@ -480,10 +480,10 @@
     
     NSString  *numstr = [[NSString alloc] init];
     if (num < 10) {
-        numstr = [NSString stringWithFormat:@"0%ld",num];
+        numstr = [NSString stringWithFormat:@"0%ld",(long)num];
     }else{
         
-        numstr = [NSString stringWithFormat:@"%ld",num];
+        numstr = [NSString stringWithFormat:@"%ld",(long)num];
     }
     
     return numstr;
@@ -492,7 +492,7 @@
 //数值转化为字符串
 +(NSString *) getNumberString:(NSInteger)num{
     
-    NSString * numstr = [NSString stringWithFormat:@"%ld",num];
+    NSString * numstr = [NSString stringWithFormat:@"%ld",(long)num];
     return numstr;
 }
 
