@@ -196,8 +196,8 @@
     
     for (CBService *service in peripheral .services) {
         
-        NSString * uuidString = service.UUID.UUIDString;
-        DLog(@"发现了服务: %@", uuidString);
+//        NSString * uuidString = service.UUID.UUIDString;
+//        DLog(@"发现了服务: %@", uuidString);
         [self.connectedDevice.service addObject:service];
         
     }

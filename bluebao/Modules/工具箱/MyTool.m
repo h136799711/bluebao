@@ -354,11 +354,12 @@
 }
 
 +(void) tesGoal:(NSArray *) arr{
-    DLog(@"------------goal----------------------------------");
-    for (GoalData * data in arr) {
-        
-        DLog(@" \r-time %@- goalnum%ld maindex  %ld-",data.timestr,(long)data.goalNumber,(long)data.maxIndex);
-    }
+    return ;
+//    DLog(@"------------goal----------------------------------");
+//    for (GoalData * data in arr) {
+//        
+//        DLog(@" \r-time %@- goalnum%ld maindex  %ld-",data.timestr,(long)data.goalNumber,(long)data.maxIndex);
+//    }
 }
 
 

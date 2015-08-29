@@ -322,19 +322,19 @@ static  SQLiteManager   * sqlManager;
 }
 
 +(void) test:(NSArray *)array{
-
-    for (BoyeGoaldbModel * model in array) {
-      DLog(@"*****************");
-        DLog(@"id %ld",(long)model.db_id);
+    return ;
+//    for (BoyeGoaldbModel * model in array) {
+//      DLog(@"*****************");
+//        DLog(@"id %ld",(long)model.db_id);
 //        DLog(@"date_time %@",model.date_time);
 //        DLog(@"goalIndex %ld",model.goalIndex);
         
 //        DLog(@"target %ld",model.target);
-        DLog(@"uid %ld",(long)model.uid);
+//        DLog(@"uid %ld",(long)model.uid);
 //        DLog(@"weekday %ld",model.weekday);
 //        DLog(@"create_time %@ ",model.create_time);
 
-    }
+//    }
     
 }
 

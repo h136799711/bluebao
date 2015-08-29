@@ -92,9 +92,9 @@
 
 -(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
     
-    UILabel *label=(UILabel*)recognizer.view;
-    
-    DLog(@"%@被点击了",label.text);
+//    UILabel *label=(UILabel*)recognizer.view;
+//    
+//    DLog(@"%@被点击了",label.text);
     [self agree:self.agreeBtn];
 }
 
