@@ -71,14 +71,14 @@
 
 
 
--(void)setValueNum:(CGFloat)valueNum{
+-(void)setValueNum:(NSString *)valueNum{
     
       _valueNum = valueNum;
     if (valueNum<=0) {
         _valueNum = 0;
     }
 
-    self.labelValueNum.text = [NSString stringWithFormat:@"%.1f",_valueNum];
+    self.labelValueNum.text = _valueNum;
 }
 
 - (void)awakeFromNib {

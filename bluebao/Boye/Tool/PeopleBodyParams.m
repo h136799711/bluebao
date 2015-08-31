@@ -95,21 +95,22 @@
     
 //    float S = 0.0061 * (height*100)+ 0.0128 * weight - 0.1529;
     float bmr = 0;
-    if(sex == 0){
-        bmr = 66 + (13.7 * weight)+( 5 * height *100) - ( 6.8 * age);
-    }else{
-        bmr = 6655+ (9.6 * weight)+( 1.8 * height *100) - ( 4.7 * age);
-    }
-    
+//    if(sex == 0){
+//        bmr = 66 + (13.7 * weight)+( 5 * height *100) - ( 6.8 * age);
+//    }else{
+//        bmr = 6655+ (9.6 * weight)+( 1.8 * height *100) - ( 4.7 * age);
+//    }
+    bmr = 370+(21.6*weight*(1-[self getBodyFatRateBy:age :sex :weight :height]/100.0) );
     float normalBMR = [self getNormalBMR:age :sex :weight :height ];
-    
-    bmr = 100*normalBMR/bmr - 100;
+    normalBMR = 10000;
+    DLog(@"bmr%f,normalBMR=%d",bmr,(int)normalBMR);
+    bmr = (int)(100*bmr/normalBMR);
     DLog(@"bmr=%d",(int)bmr);
     if(bmr < 0){
-        bmr = bmr * -1;
+        bmr = bmr +100;
     }
     
-    return (int)bmr;
+    return (int)bmr+6;
 }
 
 
@@ -143,19 +144,22 @@
 
 +(NSInteger)getViscusPate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
     
-    if (weight == 0 || height == 0) {
-        return 0;
-    }
+    NSInteger bodyFateRete  = [self getBodyFatRateBy:age :sex :weight :height];
     
-    float bmi = [self getBMI:weight :height];
+   return bodyFateRete/5;
     
-    if (bmi <25) {
-        return (int)(( bmi / 25) * 9  );
-    }else if(bmi < 35){
-        return (int)(( bmi / 35) * 14  );
-    }
-    
-    return (int)((bmi / 40) * 30);
+//    if (weight == 0 || height == 0) {
+//        return 0;
+//    }
+//    float bmi = [self getBMI:weight :height];
+//    
+//    if (bmi <25) {
+//        return (int)(( bmi / 25) * 9  );
+//    }else if(bmi < 35){
+//        return (int)(( bmi / 35) * 14  );
+//    }
+//    
+//    return (int)((bmi / 40) * 30);
 }
 
 +(NSInteger) getSubcutaneousFatRate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{
@@ -165,8 +169,7 @@
     
     float fatRate = [self getBodyFatRateBy:age :sex :weight :height];
     
-    
-    return fatRate*0.1532;
+    return fatRate/2.5;
 }
 
 +(NSInteger)getMusclePate:(NSInteger)age :(NSInteger)sex :(float)weight :(float)height{

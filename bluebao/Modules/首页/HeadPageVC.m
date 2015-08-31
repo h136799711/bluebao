@@ -76,7 +76,7 @@
     
     [self _initViews];
     //定时器
-    [self boyeTimer];
+//    [self boyeCacheTarget];
     
 }
 #pragma mark -- 初始化 --
@@ -87,7 +87,7 @@
     self.title =@"蓝堡动感单车";
     _labelarray = @[@"心率",@"速度",@"时间",@"运动消耗",@"路程"];
     _imageName = @[@"xinlv.png",@"sd.png",@"time.png",@"sport.png",@"road.png"];
-    _sortArray = @[@"体脂肪率",@"体水分率",@"体年龄",@"基础代谢",@"肌肉含量",@"内脏含量",@"骨骼含量",@"皮下脂肪"];
+    _sortArray = @[@"体脂肪率",@"体水分率",@"体年龄",@"基础代谢",@"肌肉含量",@"内脏脂肪率",@"骨骼含量",@"皮下脂肪"];
     
     itemWidth = (SCREEN_WIDTH - 50-15*3)/4.0;
     [self _initHeadInfoTableView];
@@ -101,14 +101,14 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    
+    DLog(@"HeadPageVC 将要出现!===");
     [super viewWillAppear:YES];
      //蓝牙
     self.boyeBluetooth  = [BoyeBluetooth sharedBoyeBluetooth];
     self.boyeBluetooth.delegate = self;
     [self doViewAppearBefore];
     //定时器
-    [self boyeTimer];
+    [self boyeCacheTarget];
 }
 
 
@@ -313,8 +313,12 @@
             // 2、选中日期非当天日期， 直接展示数据
 
             _drawProgreView.finishNum = self.bicylelb.calorie;
-            _drawProgreView.goalNum = self.bicylelb.target_calorie;
-    }
+            if(self.dateChooseView.isToday== NO){
+                _drawProgreView.goalNum = self.bicylelb.target_calorie;
+            }else{
+                _drawProgreView.goalNum =      [[CommonCache getGoal] integerValue];
+            }
+        }
     
     // * *  如果goalNum = 0 转化为 500  判断是否为 0
 //    _drawProgreView.goalNum = [MyTool  getDefaultGoalValue:_drawProgreView.goalNum];
@@ -587,16 +591,17 @@
 }
 
 // 定时器
--(void)boyeTimer{
-    
-    if (_boyeCacheTargetTimer == nil) {
-     _boyeCacheTargetTimer = [NSTimer scheduledTimerWithTimeInterval:10* 60 target:self selector:@selector(boyeCacheTarget) userInfo:nil repeats:YES];
-
-    }
-
-}
+//-(void)boyeTimer{
+//    
+//    if (_boyeCacheTargetTimer == nil) {
+//     _boyeCacheTargetTimer = [NSTimer scheduledTimerWithTimeInterval:10* 60 target:self selector:@selector(boyeCacheTarget) userInfo:nil repeats:YES];
+//
+//    }
+//
+//}
 -(void)boyeCacheTarget{
     //设置缓存目标
+    DLog(@"************获取目标!******************");
     BoyeGoaldbModel * nearlyGoalModel = [BoyeDataBaseManager getNearlyNotifyGoalOfUser:self.userInfo.uid];
     [CommonCache setGoal: [NSNumber numberWithInteger:nearlyGoalModel.target]];
 }

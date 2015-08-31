@@ -41,8 +41,9 @@
     UILabel * lblSignature = (UILabel * ) [self->_headView viewWithTag:1005];
     
     lblSignature.text = self.userInfo.signature;
-    
+    NSLog(@"VIEWWILLAPPEAR");
     DLog(@"**********个人中心出现**********");
+    [self queryRemoteData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -58,7 +59,6 @@
     self.title = @"个人中心";
     
     [self _initViews];
-    [self queryRemoteData];
 }
 //初始化
 -(void)_initViews{
@@ -167,6 +167,7 @@
         
         if([data isKindOfClass:[NSArray class]]){
             
+            DLog(@"数据1!");
             [self setBestResult:data[0] ];
         }
         

@@ -52,7 +52,7 @@
     self.title = @"分享";
     _shareName = @[@"weixin.png",@"web.png",@"qq.png"];
     _headImageName = @[@"sd",@"sd",@"sd"];
-    _labelTextArray = @[@[@"骑行了",@"耗时",@"消耗"],@[@"公里",@"分钟",@"卡"],@[@"roadshare.png",@"timeshare.png",@"sportshare.png"]];
+    _labelTextArray = @[@[@"耗时",@"消耗",@"骑行了"],@[@"",@"卡",@"公里"],@[@"timeshare.png",@"sportshare.png",@"roadshare.png"]];
     
     [self _initViews];
     
@@ -195,7 +195,7 @@
     if (day== 0) {
         day = 1;
     }
-    NSString *sportstr = [NSString stringWithFormat: @"今天是运动的第%ld天",(long)day ];
+    NSString *sportstr = [NSString stringWithFormat: @"您已经运动了%ld天",(long)day ];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:sportstr];
     
     //设置颜色
@@ -220,13 +220,20 @@
     
     switch (row) {
         case 0:
-            cell.valueNum  = lbsport.distance/100;
-            break;
+        {
+            
+            NSDateFormatter* formatter = [NSDate defaultDateFormatter];
+            formatter.dateFormat = @"HH:mm:ss";
+            NSDate * date = [NSDate dateWithTimeIntervalSince1970: (lbsport.time_min-8*3600)];
+//            NSLog(@"date=%@",date);
+            cell.valueNum =  [formatter stringFromDate:date];
+            
+        }  break;
         case 1:
-            cell.valueNum = lbsport.time_min/60;
+            cell.valueNum = [NSString stringWithFormat:@"%.1f", lbsport.calorie/10];
             break;
         case 2:
-            cell.valueNum = lbsport.calorie/10;
+            cell.valueNum  = [NSString stringWithFormat:@"%.1f",lbsport.distance/100];
             break;
             
         default:

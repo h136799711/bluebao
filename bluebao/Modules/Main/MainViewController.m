@@ -215,6 +215,7 @@
         UIViewController * vc = self.viewcontrollers[button.tag];
         
         if ([_contentView.subviews containsObject:vc.view]) {
+            [vc viewWillAppear:YES];
             [_contentView bringSubviewToFront:vc.view];
         }else{
             

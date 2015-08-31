@@ -91,7 +91,7 @@ static  SQLiteManager   * sqlManager;
   
     [self safeDataBase];
     [__db open];
-    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND weekday = %ld",(long)uid,(long)weekday];
+    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND weekday = %ld ",(long)uid,(long)weekday];
     
     FMResultSet *set = [__db executeQuery:sql];
         NSMutableArray *array = [NSMutableArray array];
@@ -105,6 +105,7 @@ static  SQLiteManager   * sqlManager;
     
     return array;
 }
+
 
 //获得所有数据
 +(NSArray *) getAllDataUserID:(NSInteger)uid{
@@ -268,8 +269,13 @@ static  SQLiteManager   * sqlManager;
 }
 
 +(BoyeGoaldbModel *) getNearlyNotifyGoalOfUser:(NSInteger)uid{
+    
+    
     NSInteger weekDay =[NSDate getcurrentWeekDay];
     NSArray * arr = [self getGoalDataUserID:uid week:weekDay];
+    
+//    NSArray *  arr = [self getNearByGoal:uid week:weekDay];
+    
    //放到可变数组 goalArray中
     NSMutableArray * goalArray = [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -291,7 +297,7 @@ static  SQLiteManager   * sqlManager;
         [pax addObject:[goalArray objectAtIndex:maxIndex]];
         [goalArray removeObjectAtIndex:maxIndex];
     }
-    [self test:pax];
+//    [self test:pax];
     
     BoyeGoaldbModel * resultModel = [[BoyeGoaldbModel alloc] init];
     static NSInteger count = 0;
@@ -306,7 +312,7 @@ static  SQLiteManager   * sqlManager;
         NSDate  * date = [[MyTool  getDateFormatter:@"yyyy-MM-dd HH:mm"] dateFromString:datestring];
         
         NSComparisonResult result = [date compare:nowDate];
-        if ( result != NSOrderedAscending) {
+        if ( result == NSOrderedAscending) {
             resultModel = model;
             count ++;
             break;
@@ -320,7 +326,25 @@ static  SQLiteManager   * sqlManager;
 
     return resultModel;
 }
-
+//读取最近的今天的时间
++(NSArray *) getNearByGoal:(NSInteger) uid week:(NSInteger) weekday{
+    
+    [self safeDataBase];
+    [__db open];
+    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM lanbao_target WHERE uid = %ld AND weekday = %ld ORDER BY date_time desc ",(long)uid,(long)weekday];
+    
+    FMResultSet *set = [__db executeQuery:sql];
+    NSMutableArray *array = [NSMutableArray array];
+    while ([set next]) {
+        
+        [array addObject:[self getGoalModel:set]];
+        
+    }
+    [set close];
+    [__db close];
+    
+    return array;
+}
 +(void) test:(NSArray *)array{
     return ;
 //    for (BoyeGoaldbModel * model in array) {

@@ -151,7 +151,7 @@
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    DLog(@"string= %@",string);
+//    DLog(@"string= %@",string);
     
     if ([string isEqualToString:@"\n"]) {
         [textField resignFirstResponder];
@@ -163,7 +163,7 @@
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    DLog(@"text%@",text);
+//    DLog(@"text%@",text);
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
