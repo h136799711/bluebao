@@ -91,7 +91,7 @@
 
 - (void)reportStatus
 {
-    DLog(@"Finished prefetching (%lu successful, %lu skipped, timeElasped %.2f)",  [self.prefetchURLs count] - self.skippedCount, (unsigned long)self.skippedCount, CFAbsoluteTimeGetCurrent() - self.startedTime);
+    DLog(@"Finished prefetching (%lu successful, %lu skipped, timeElasped %.2f)",  (unsigned long)([self.prefetchURLs count] - self.skippedCount), (unsigned long)self.skippedCount, CFAbsoluteTimeGetCurrent() - self.startedTime);
 }
 
 - (void)prefetchURLs:(NSArray *)urls

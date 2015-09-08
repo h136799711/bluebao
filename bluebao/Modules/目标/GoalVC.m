@@ -214,11 +214,14 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 -(void) alteBtnClick:(UIButton *)alterBtn{
     
     DLog(@"修改");
-
+    
     self.goalPickerView.tag = alterBtn.tag;
+//    BoyeGoaldbModel * goaldate = [self.dataArray objectAtIndex:alterBtn.tag];
+    [self.goalPickerView setDataArray:self.dataArray];
     [self.goalPickerView open];
    
-
+    
+  
     
 }
 #pragma mark  --delete  --

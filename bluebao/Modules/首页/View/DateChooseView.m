@@ -18,6 +18,20 @@
 
 @implementation DateChooseView
 
+-(instancetype)init{
+    
+    self = [super init];
+    if (self) {
+        [self _inits];
+    }else{
+        self.frame = CGRectMake(0,0, 220, 30);
+    }
+    
+    _isToday = YES;
+    return self;
+
+}
+
 -(instancetype)initWithFrame:(CGRect)frame{
     
     self = [super initWithFrame:frame];

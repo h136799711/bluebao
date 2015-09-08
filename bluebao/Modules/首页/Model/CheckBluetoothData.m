@@ -46,10 +46,10 @@
     ) {
                return  NO;
     }
-    //不检测检验和时
-    if(blueData.bicyleModel.isMisdata){
-        return NO;
-    }
+    
+//    if(blueData.bicyleModel.isMisdata){
+//        return NO;
+//    }
     
     [self setOutDate];
     
@@ -117,7 +117,7 @@
 //设置时间段 、时间段内 返回上一个数据 ，过了时间，返回
 -(void)  setOutDate{
     
-    [[CacheFacade sharedCache] setObject:[self timeDateOutstr] forKey:[self timeDateOutKey] afterSeconds:8];
+    [[CacheFacade sharedCache] setObject:[self timeDateOutstr] forKey:[self timeDateOutKey] afterSeconds:30];
     
 }
 

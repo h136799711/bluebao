@@ -335,7 +335,7 @@
     NSCalendar * calendar = [NSCalendar currentCalendar];
     NSDateComponents * components = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];
     
-    self.userInfo.birthday = [NSString stringWithFormat: @"%d-01-01",components.year - age + 1];
+    self.userInfo.birthday = [NSString stringWithFormat: @"%ld-01-01",components.year - age + 1];
     
     UITextField * signature = (UITextField *)[_headView viewWithTag:1002];
     self.userInfo.signature = signature.text;

@@ -1859,8 +1859,9 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/Wechat",
 					"$(PROJECT_DIR)/bluebao/Vendor/TencentOpenAPI",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "蓝堡";
-				PROVISIONING_PROFILE = "222c8322-80c6-45e8-8574-7400051bb8e9";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1891,7 +1892,7 @@
 					"$(PROJECT_DIR)/bluebao/Vendor/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "蓝堡";
-				PROVISIONING_PROFILE = "222c8322-80c6-45e8-8574-7400051bb8e9";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

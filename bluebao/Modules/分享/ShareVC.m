@@ -199,8 +199,10 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:sportstr];
     
     //设置颜色
-    
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#4ab4e4"] range:NSMakeRange(7,sportstr.length-8)]; // 0为起始位置 length是从起始位置开始 设置指定颜色的长度
+//    if (day >= 10) {
+//        
+//    }
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#4ab4e4"] range:NSMakeRange(6,sportstr.length-7)]; // 0为起始位置 length是从起始位置开始 设置指定颜色的长度
     
    return  attributedString;
     

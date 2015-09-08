@@ -301,7 +301,8 @@ static  SQLiteManager   * sqlManager;
     
     BoyeGoaldbModel * resultModel = [[BoyeGoaldbModel alloc] init];
     static NSInteger count = 0;
-
+    NSTimeInterval minInterval = 9999999999;
+    
     for (BoyeGoaldbModel * model in pax) {
     
         NSDate * nowDate = [NSDate date];
@@ -310,17 +311,22 @@ static  SQLiteManager   * sqlManager;
         NSString * datestring = [NSString stringWithFormat:@"%@ %@",timestr,model.date_time];
         
         NSDate  * date = [[MyTool  getDateFormatter:@"yyyy-MM-dd HH:mm"] dateFromString:datestring];
-        
-        NSComparisonResult result = [date compare:nowDate];
-        if ( result == NSOrderedAscending) {
+        NSTimeInterval interval =  [date timeIntervalSince1970] - [nowDate timeIntervalSince1970];
+        if ( fabs(interval) < minInterval) {
+            minInterval = fabs(interval);
             resultModel = model;
             count ++;
-            break;
         }
+//        NSComparisonResult result = [date compare:nowDate];
+//        if ( result == NSOrderedAscending) {
+//            resultModel = model;
+//            count ++;
+//            break;
+//        }
     }
-    if (count >= pax.count) {
-        resultModel = [pax lastObject];
-    }
+//    if (count >= pax.count) {
+//        resultModel = [pax lastObject];
+//    }
     
     DLog(@"**resultModel %@*****model **%ld**",resultModel.date_time,(long)resultModel.target);
 

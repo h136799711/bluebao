@@ -87,7 +87,7 @@
     }
     
     [self creatLeftView];
-    [CommonCache setGoal:[NSNumber numberWithInteger:500]];
+//    [CommonCache setGoal:[NSNumber numberWithInteger:500]];
     //移除所有非当前用户目标闹铃提醒
     [BoyeGoalLocaNotify removeAllLocalNotifyOutUser:self.userInfo.uid ];
 }
@@ -215,10 +215,19 @@
         UIViewController * vc = self.viewcontrollers[button.tag];
         
         if ([_contentView.subviews containsObject:vc.view]) {
-            [vc viewWillAppear:YES];
+            DLog(@"底部菜单点击后出现视图!%@",vc);
+            if ([vc isKindOfClass:[UINavigationController class]]) {
+                UINavigationController * nav = (UINavigationController *)vc;
+                DLog(@"topViewController!%@",nav.topViewController);
+                
+                [nav.topViewController viewWillAppear:YES];
+            }else{
+                [vc viewWillAppear:YES];
+            }
             [_contentView bringSubviewToFront:vc.view];
         }else{
             
+            DLog(@"底部菜单点击后添加视图!");
             [_contentView addSubview:vc.view];
         }
         

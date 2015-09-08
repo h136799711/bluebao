@@ -235,9 +235,9 @@
 }
 #pragma mark -- 重载NSArray
 
--(void)setDataArray:(NSArray *)dataArray{
+-(void)setDataArray:(NSMutableArray *)dataArray{
     
-    self.dataArray = dataArray;
+    self->_dataArray = dataArray;
     [self.pickerView reloadAllComponents];
     
 }
@@ -275,23 +275,63 @@
 
 //默认选中状态
 -(void)defaultSeectedRow{
-
+    //当前修改的行
+    BoyeGoaldbModel * goaldata = [self.dataArray objectAtIndex:self.tag];
+    
+    if (goaldata != nil){
+    int target_select_2 = (int)goaldata.target/100;
+    int target_select_1 = (goaldata.target%100 )/ 10;
+    int target_select_0 = (goaldata.target%10);
+    
+    NSLog(@"date_time= %@",goaldata.date_time);
+        
+    NSInteger  time_select_2 =    [[goaldata.date_time substringToIndex:2] integerValue];
+        
+    NSInteger  time_select_1 =    [[goaldata.date_time substringFromIndex:3] integerValue];
+        
+    [self.pickerView selectRow:target_select_2  inComponent:3 animated:YES];
+    [self pickerView:self.pickerView didSelectRow:target_select_2 inComponent:3];
+    
+    [self.pickerView selectRow:target_select_1  inComponent:4 animated:YES];
+    [self pickerView:self.pickerView didSelectRow:target_select_1 inComponent:4];
+    
+    [self.pickerView selectRow:target_select_0  inComponent:5 animated:YES];
+    [self pickerView:self.pickerView didSelectRow:target_select_0 inComponent:5];
+        
+        [self.pickerView selectRow:time_select_2  inComponent:0 animated:YES];
+        [self pickerView:self.pickerView didSelectRow:time_select_2 inComponent:0];
+        
+        [self.pickerView selectRow:1  inComponent:1 animated:YES];
+        [self pickerView:self.pickerView didSelectRow:1 inComponent:1];
+        
+        
+        [self.pickerView selectRow:time_select_1  inComponent:2 animated:YES];
+        [self pickerView:self.pickerView didSelectRow:time_select_1 inComponent:2];
+    
+        
+        
+    }else{
+    
     NSInteger selectRow = 0;
     for (int component = 0;  component   < 6; component++) {
         
         if (component == 0) {
             
              selectRow = 8;
-        } else if (component == 1){
-            
+        }
+        else if (component == 1){
              selectRow = 1;
-        }else if (component == 2){
+        }
+        else if (component == 2){
              selectRow = 30;
-        }else{
+        }
+        else{
              selectRow = 5;
         }
+        
         [self.pickerView selectRow:selectRow  inComponent:component animated:YES];
         [self pickerView:self.pickerView didSelectRow:selectRow inComponent:component];
+    }
     }
 }
 

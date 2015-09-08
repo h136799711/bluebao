@@ -72,11 +72,10 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self _initViews];
-    //定时器
-//    [self boyeCacheTarget];
+    
+    [self boyeCacheTarget];
     
 }
 #pragma mark -- 初始化 --
@@ -313,15 +312,19 @@
             // 2、选中日期非当天日期， 直接展示数据
 
             _drawProgreView.finishNum = self.bicylelb.calorie;
+            DLog(@"******今天%d********************************",self.dateChooseView.isToday);
             if(self.dateChooseView.isToday== NO){
+                DLog(@"******不是今天********************************");
                 _drawProgreView.goalNum = self.bicylelb.target_calorie;
             }else{
+                
                 _drawProgreView.goalNum =      [[CommonCache getGoal] integerValue];
+                DLog(@"******是今天%f********************************",_drawProgreView.goalNum );
             }
         }
     
     // * *  如果goalNum = 0 转化为 500  判断是否为 0
-//    _drawProgreView.goalNum = [MyTool  getDefaultGoalValue:_drawProgreView.goalNum];
+    _drawProgreView.goalNum = [MyTool  getDefaultGoalValue:_drawProgreView.goalNum];
     
     [_drawProgreView showCircleView];
 
@@ -601,9 +604,10 @@
 //}
 -(void)boyeCacheTarget{
     //设置缓存目标
-    DLog(@"************获取目标!******************");
     BoyeGoaldbModel * nearlyGoalModel = [BoyeDataBaseManager getNearlyNotifyGoalOfUser:self.userInfo.uid];
+    DLog(@"************获取目标%ld******************",(long)nearlyGoalModel.target);
     [CommonCache setGoal: [NSNumber numberWithInteger:nearlyGoalModel.target]];
+    [self showFinishProgre];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -617,8 +621,8 @@
     }
     
     //关闭定时器
-    [_boyeCacheTargetTimer  invalidate ];
-    _boyeCacheTargetTimer = nil;
+//    [_boyeCacheTargetTimer  invalidate ];
+//    _boyeCacheTargetTimer = nil;
     
 }
 

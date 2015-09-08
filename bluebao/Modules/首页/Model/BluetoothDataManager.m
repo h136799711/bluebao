@@ -115,11 +115,8 @@
         DLog("检验值处理前=%ld,%ld",sum,(long)_checksum);
         if(sum > 255){
             int duration = (int)floor(sum/256);
-//            if(duration > 2){
-//                duration = 2;
-//            }
             sum = sum+duration;
-//        DLog("检验是否通过=%ld,=>%d",sum,(int)floor(sum/256));
+        DLog("检验是否通过=%ld,=>%d",sum,(int)floor(sum/256));
         }
         
         sum = sum % 256;

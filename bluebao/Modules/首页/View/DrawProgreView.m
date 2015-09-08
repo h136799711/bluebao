@@ -49,7 +49,7 @@
     
     //已完成
     
-    NSString * finishstr = @"距离目标还有";
+    NSString * finishstr = @"已完成";
     CGSize  finisize = [MyTool getSizeString:finishstr font:13];
     _finishlabel = [[UILabel alloc] init];
     _finishlabel.bounds  = CGRectMake(0, 0, finisize.width , finisize.height+4);
@@ -146,7 +146,7 @@
     if (_goalNum <= _finishNum && _goalNum != 0) {
         _finishlabel.text = @"已完成";
     }else{
-        _finishlabel.text = @"距离目标还有";
+        _finishlabel.text = @"已完成";
     }
     
 
