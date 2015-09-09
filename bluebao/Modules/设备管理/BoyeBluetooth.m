@@ -136,7 +136,16 @@
     
     if(self.cbCentralManager.state == CBCentralManagerStatePoweredOn){
         [self.cbCentralManager scanForPeripheralsWithServices:nil options:nil];
+    }else{
+       
     }
+    
+}
+
+-(BOOL) avaliable{
+    
+     return [self alertStateDescIfNeed:self.cbCentralManager.state];
+    
 }
 
 - (void)stopScanDevice{
@@ -184,7 +193,57 @@
 
 
 #pragma mark  -- 辅助私有方法
-
+/**
+ *  弹出蓝牙提示框如果需要的话
+ *
+ *  @param state 蓝牙状态
+ */
+-(BOOL)alertStateDescIfNeed:(CBCentralManagerState)state{
+    
+    NSString  *desc;
+    BOOL needAlert = true;
+    switch (state) {
+        case CBCentralManagerStatePoweredOff:
+//            desc = @"当前设备未开启蓝牙";
+            desc = @"请开启设备的蓝牙功能!";
+            break;
+            
+        case CBCentralManagerStatePoweredOn:
+        {
+            needAlert = false;
+            desc = @"设备已开启蓝牙且可用";
+        }
+            break;
+            
+        case CBCentralManagerStateResetting:
+            desc = @"当前蓝牙连接重置了";
+            break;
+            
+        case CBCentralManagerStateUnauthorized:
+            desc = @"请允许APP访问设备蓝牙功能";
+            break;
+            
+        case CBCentralManagerStateUnknown:
+            desc = @"未知蓝牙状态";
+            break;
+            
+        default:
+            desc = @"请换一台支持蓝牙4.0的设备";
+            
+            break;
+    }
+    
+    DLog(@"中心设备当前状态=%@",desc);
+    if(needAlert){
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统消息"
+                                                        message:desc delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+        [self stopScanDevice];
+    }
+    
+    return !needAlert;
+}
 
 #pragma mark -- CBPeripheralDelegate
 //xcdoc://?url=developer.apple.com/library/prerelease/ios/documentation/CoreBluetooth/Reference/CBPeripheral_Class/index.html#//apple_ref/occ/cl/CBPeripheral

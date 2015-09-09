@@ -118,6 +118,7 @@ enum BOYE_BLUETOOTH_STATE_EVENT{
  *  添加一个新设备，如果存在则覆盖。
  */
 -(void)addDevice:(LNowDevice *)device;
+-(BOOL) avaliable;
 /**
  *  扫描设备
  */

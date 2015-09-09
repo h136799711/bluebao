@@ -133,6 +133,10 @@ static const int MAX_SCAN_SECONDS = 6;
 
 -(void)scanDevice{
     
+    if (![self.bluetooth avaliable ]) {
+        return ;
+    }
+    
     [self showBindView];
     DLog(@"开始扫描设备！");
     self.searchTimeFlag = 0;
@@ -552,6 +556,7 @@ static const int MAX_SCAN_SECONDS = 6;
  */
 -(void)bluetoothUpdateState:(CBCentralManagerState)state{
     
+    DLog(@"自动bluetoothUpdateState扫描");
     NSString  *desc;
     BOOL needAlert = true;
     switch (state) {
