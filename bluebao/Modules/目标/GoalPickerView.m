@@ -244,17 +244,19 @@
 
 #pragma mark --  open  --
 -(void)open{
-    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     self.center = CGPointMake(SCREEN_WIDTH/2.0, SCREEN_HEIGHT - self.height/2.0 - STATUS_HEIGHT -NAV_HEIGHT);
+ 
     [UIView commitAnimations];
     self.isOpen = YES;
     
     [self sendSelfFrameNotification];
     [MainViewController sharedSliderController].bottomView.hidden = YES;
+    DLog(@"open方法 START8");
     [self defaultSeectedRow];
+    DLog(@"open方法 END");
 
 }
 
@@ -276,27 +278,26 @@
 //默认选中状态
 -(void)defaultSeectedRow{
     //当前修改的行
-    BoyeGoaldbModel * goaldata = [self.dataArray objectAtIndex:self.tag];
     
-    if (goaldata != nil){
-    int target_select_2 = (int)goaldata.target/100;
-    int target_select_1 = (goaldata.target%100 )/ 10;
-    int target_select_0 = (goaldata.target%10);
-    
-    NSLog(@"date_time= %@",goaldata.date_time);
+    if (self.tag != -1){
+        BoyeGoaldbModel * goaldata = [self.dataArray objectAtIndex:self.tag];
+        int target_select_2 = (int)goaldata.target/100;
+        int target_select_1 = (goaldata.target%100 )/ 10;
+        int target_select_0 = (goaldata.target%10);
         
-    NSInteger  time_select_2 =    [[goaldata.date_time substringToIndex:2] integerValue];
         
-    NSInteger  time_select_1 =    [[goaldata.date_time substringFromIndex:3] integerValue];
+        NSInteger  time_select_2 =    [[goaldata.date_time substringToIndex:2] integerValue];
         
-    [self.pickerView selectRow:target_select_2  inComponent:3 animated:YES];
-    [self pickerView:self.pickerView didSelectRow:target_select_2 inComponent:3];
+        NSInteger  time_select_1 =    [[goaldata.date_time substringFromIndex:3] integerValue];
+        
+        [self.pickerView selectRow:target_select_2  inComponent:3 animated:YES];
+        [self pickerView:self.pickerView didSelectRow:target_select_2 inComponent:3];
     
-    [self.pickerView selectRow:target_select_1  inComponent:4 animated:YES];
-    [self pickerView:self.pickerView didSelectRow:target_select_1 inComponent:4];
+        [self.pickerView selectRow:target_select_1  inComponent:4 animated:YES];
+        [self pickerView:self.pickerView didSelectRow:target_select_1 inComponent:4];
     
-    [self.pickerView selectRow:target_select_0  inComponent:5 animated:YES];
-    [self pickerView:self.pickerView didSelectRow:target_select_0 inComponent:5];
+        [self.pickerView selectRow:target_select_0  inComponent:5 animated:YES];
+        [self pickerView:self.pickerView didSelectRow:target_select_0 inComponent:5];
         
         [self.pickerView selectRow:time_select_2  inComponent:0 animated:YES];
         [self pickerView:self.pickerView didSelectRow:time_select_2 inComponent:0];
@@ -333,6 +334,8 @@
         [self pickerView:self.pickerView didSelectRow:selectRow inComponent:component];
     }
     }
+    
+    DLog(@"defaultSeectedRow END");
 }
 
 #pragma mark --  showInView  --

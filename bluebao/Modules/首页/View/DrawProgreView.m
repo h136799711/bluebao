@@ -10,7 +10,7 @@
 
 @interface DrawProgreView (){
     
-    UILabel         * _goalValue;
+    UIButton         * _goalValue;
     
     //已完成
     UILabel         * _finishlabel;
@@ -87,18 +87,39 @@
     [self addSubview:goal];
     
     //目标值
-    _goalValue = [[UILabel alloc] init];
+    _goalValue = [[UIButton alloc] init];
+    
     _goalValue.bounds = CGRectMake(0, 0, 60, 20);
     _goalValue.tag = 3;
     _goalValue.center = CGPointMake(goal.right + _goalValue.width/2.0 , goal.center.y);
-    _goalValue.text = @"0";
-    _goalValue.textColor = [UIColor colorWithHexString:@"#f78314"];
-    _goalValue.font = FONT(22);
-    _goalValue.textAlignment = NSTextAlignmentCenter;
+    [_goalValue setTitle:@"0" forState:UIControlStateNormal];
+    [_goalValue setTitleColor:[UIColor colorWithHexString:@"#f78314"] forState:UIControlStateNormal];
+    
+    _goalValue.titleLabel.font = FONT(22);
+    _goalValue.titleLabel.textAlignment  = NSTextAlignmentCenter;
+    
+    
+    
+    
+    
+//    [_goalValue addTarget:self action:@selector(gotoGoalVC:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [_goalValue addTarget:self action:@selector(gotoGoalVC:) forControlEvents:UIControlEventTouchUpOutside];
+//    
+//    [_goalValue addTarget:self action:@selector(gotoGoalVC:) forControlEvents:UIControlEventTouchDown];
+    
+//    _goalValue.backgroundColor = [UIColor grayColor];
+    
     [self addSubview: _goalValue];
-
+    
     
 }
+
+-(void)gotoGoalVC:(id)sender{
+    DLog(@"TODO: 跳转到设定目标页面");
+    DLog(@"TODO: 跳转到设定目标页面");
+}
+
 -(void)drawRect:(CGRect)rect{
 
     [self drawBezier];
@@ -122,7 +143,7 @@
     }
     _goalNum = goalNum;
     
-    _goalValue.text  = [NSString stringWithFormat:@"%d",(int)goalNum];
+    [_goalValue setTitle:[NSString stringWithFormat:@"%d",(int)goalNum] forState:UIControlStateNormal] ;
     
     [self doing];
 }

@@ -256,11 +256,19 @@
     self.drawProgreView = [[DrawProgreView alloc] initWithFrame:CGRectMake(0, 0, width,width)];
     self.drawProgreView.center = CGPointMake(self.headView.width/2.0, _connectView.bottom + self.drawProgreView.height/2.0 );
     [self.headView addSubview:self.drawProgreView];
+    UITapGestureRecognizer * tapGesture =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoGoalVC) ];
+    [self.drawProgreView addGestureRecognizer:tapGesture];
     
     [self.drawProgreView showCircleView];
     return self.headView ;
 }
 
+-(void)gotoGoalVC{
+    DLog(@"gotoGoalVC");
+    
+    [[MainViewController sharedSliderController ] navTo:1];
+    
+}
 
 #pragma mark --DateChooseViewDelegate  切换日期，查看历史记录   --
 

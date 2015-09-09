@@ -32,7 +32,12 @@
 @property (nonatomic,strong) UIView          * bottomView;
 + (MainViewController*)sharedSliderController;
 
-
+/**
+ *  触发底部按钮点击
+ *
+ *  @param tag 按钮序号
+ */
+-(void)navTo:(NSInteger )tag;
 //close
 -(void)moveLeft;
 //open

@@ -278,9 +278,12 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
 
 #pragma mark -- add增加 --
 -(void)addBtnClick:(UIButton *)button{
-    
-    self.goalPickerView.tag = -1;
-    [self.goalPickerView open];
+    DLog(@"isOpen %d",self.goalPickerView.isOpen);
+    if(!self.goalPickerView.isOpen){
+        self.goalPickerView.tag = -1;
+        
+        [self.goalPickerView open];
+    }
 
 }
 
@@ -355,10 +358,12 @@ static  NSString * const goalArrNameString = @"boyeGoalArrayii";
        [self touchAdd:goalModel];
        
     #pragma mark -- 点击修改按钮，替换对应目标数据
-    }else{
+    }
+    else{
         
         [self touchAlter:goalModel];
-        }
+        
+    }
 
 }
 

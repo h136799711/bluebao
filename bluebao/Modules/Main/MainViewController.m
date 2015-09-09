@@ -202,17 +202,22 @@
 #pragma mark -- 点击事件 --
 -(void)buttonPress:(UIButton *)button{
     
-        
-    if (button.tag == 3) {
-        ShareVC * share = [[ShareVC alloc] init];
-//        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:share];
+    [self navTo:button.tag];
 
+}
+
+-(void)navTo:(NSInteger )tag{
+    
+    if (tag == 3) {
+        ShareVC * share = [[ShareVC alloc] init];
+        //        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:share];
+        
         [self  presentViewController:share animated:YES completion:nil];
         
     }else{
         
         
-        UIViewController * vc = self.viewcontrollers[button.tag];
+        UIViewController * vc = self.viewcontrollers[tag];
         
         if ([_contentView.subviews containsObject:vc.view]) {
             DLog(@"底部菜单点击后出现视图!%@",vc);
@@ -232,16 +237,16 @@
         }
         
         select_button.selected = NO;
-        select_button = self.buttonArray[button.tag];
+        select_button = self.buttonArray[tag];
         select_button.selected = YES;
         
     }
-
+    
     
     //字体颜色改变
     for (int i = 0; i < sortName.count; i ++) {
         UILabel * label = (UILabel *)[_bottomView viewWithTag:i+1];
-        if (button.tag == i) {
+        if (tag == i) {
             label.textColor = [UIColor colorWithHexString:@"#28cafb"];
         }else{
             label.textColor = [UIColor lightGrayColor];
@@ -249,7 +254,6 @@
     }
     
     self.navigationController.navigationBarHidden = YES;
-
 }
 
 #pragma mark --- 添加手势 侧滑---

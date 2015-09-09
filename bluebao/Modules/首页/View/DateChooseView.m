@@ -49,7 +49,9 @@
 }
 
 -(void)_inits{
-    
+    if (dateLabel != nil) {
+        return;
+    }
     
     //左边
     UIButton  * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -84,6 +86,7 @@
     self.newbDate = [NSDate date] ;
     _currentDate = self.newbDate;
     
+//    dateLabel.text = [self getDateString:self.newbDate];
 //    dateLabel.text =  [self getDateString: self.newbDate ];
     dateLabel.text = @"今天";
 }
