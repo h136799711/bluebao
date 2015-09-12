@@ -230,9 +230,9 @@
 	
 	if (returnCode == SQLITE_ERROR) {
 		const char *errorMsg = sqlite3_errmsg(db);
-		NSError *errorQuery = [self createDBErrorWithDescription:[NSString stringWithCString:errorMsg encoding:NSUTF8StringEncoding]
+		 [self createDBErrorWithDescription:[NSString stringWithCString:errorMsg encoding:NSUTF8StringEncoding]
                                                          andCode:kDBErrorQuery];
-		DLog(@"%@", errorQuery);
+//		DLog(@"%@", errorQuery);
 	}
 	
 	while (sqlite3_step(statement) == SQLITE_ROW) {
