@@ -58,7 +58,7 @@ static AFNetworkReachabilityStatus AFNetworkReachabilityStatusForFlags(SCNetwork
     BOOL canConnectionAutomatically = (((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) || ((flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0));
     BOOL canConnectWithoutUserInteraction = (canConnectionAutomatically && (flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0);
     BOOL isNetworkReachable = (isReachable && (!needsConnection || canConnectWithoutUserInteraction));
-
+    
     AFNetworkReachabilityStatus status = AFNetworkReachabilityStatusUnknown;
     if (isNetworkReachable == NO) {
         status = AFNetworkReachabilityStatusNotReachable;
@@ -71,7 +71,7 @@ static AFNetworkReachabilityStatus AFNetworkReachabilityStatusForFlags(SCNetwork
     else {
         status = AFNetworkReachabilityStatusReachableViaWiFi;
     }
-
+    
     return status;
 }
 
@@ -81,14 +81,14 @@ static void AFNetworkReachabilityCallback(SCNetworkReachabilityRef __unused targ
     if (block) {
         block(status);
     }
-
-
+    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         NSDictionary *userInfo = @{ AFNetworkingReachabilityNotificationStatusItem: @(status) };
         [notificationCenter postNotificationName:AFNetworkingReachabilityDidChangeNotification object:nil userInfo:userInfo];
     });
-
+    
 }
 
 static const void * AFNetworkReachabilityRetainCallback(const void *info) {
@@ -118,46 +118,60 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
         bzero(&address, sizeof(address));
         address.sin_len = sizeof(address);
         address.sin_family = AF_INET;
-
+        
         _sharedManager = [self managerForAddress:&address];
     });
-
+    
     return _sharedManager;
 }
 
 + (instancetype)managerForDomain:(NSString *)domain {
     SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, [domain UTF8String]);
-
+    
     AFNetworkReachabilityManager *manager = [[self alloc] initWithReachability:reachability];
     manager.networkReachabilityAssociation = AFNetworkReachabilityForName;
-
+    
     return manager;
 }
 
 + (instancetype)managerForAddress:(const void *)address {
     SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr *)address);
-
+    
     AFNetworkReachabilityManager *manager = [[self alloc] initWithReachability:reachability];
     manager.networkReachabilityAssociation = AFNetworkReachabilityForAddress;
-
+    
     return manager;
 }
-
+/**
+ *  增加init
+ *  排除警告
+ *  @return self
+ */
+-(instancetype)init{
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+    // Recover reachability flags
+    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *)&zeroAddress);
+    self = [self initWithReachability:defaultRouteReachability];
+    return self;
+}
 - (instancetype)initWithReachability:(SCNetworkReachabilityRef)reachability {
     self = [super init];
     if (!self) {
         return nil;
     }
-
+    
     self.networkReachability = reachability;
     self.networkReachabilityStatus = AFNetworkReachabilityStatusUnknown;
-
+    
     return self;
 }
 
 - (void)dealloc {
     [self stopMonitoring];
-
+    
     if (_networkReachability) {
         CFRelease(_networkReachability);
         _networkReachability = NULL;
@@ -182,26 +196,26 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
 
 - (void)startMonitoring {
     [self stopMonitoring];
-
+    
     if (!self.networkReachability) {
         return;
     }
-
+    
     __weak __typeof(self)weakSelf = self;
     AFNetworkReachabilityStatusBlock callback = ^(AFNetworkReachabilityStatus status) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
-
+        
         strongSelf.networkReachabilityStatus = status;
         if (strongSelf.networkReachabilityStatusBlock) {
             strongSelf.networkReachabilityStatusBlock(status);
         }
-
+        
     };
-
+    
     SCNetworkReachabilityContext context = {0, (__bridge void *)callback, AFNetworkReachabilityRetainCallback, AFNetworkReachabilityReleaseCallback, NULL};
     SCNetworkReachabilitySetCallback(self.networkReachability, AFNetworkReachabilityCallback, &context);
     SCNetworkReachabilityScheduleWithRunLoop(self.networkReachability, CFRunLoopGetMain(), kCFRunLoopCommonModes);
-
+    
     switch (self.networkReachabilityAssociation) {
         case AFNetworkReachabilityForName:
             break;
@@ -214,11 +228,11 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
                 AFNetworkReachabilityStatus status = AFNetworkReachabilityStatusForFlags(flags);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     callback(status);
-
+                    
                     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
                     [notificationCenter postNotificationName:AFNetworkingReachabilityDidChangeNotification object:nil userInfo:@{ AFNetworkingReachabilityNotificationStatusItem: @(status) }];
-
-
+                    
+                    
                 });
             });
         }
@@ -230,7 +244,7 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     if (!self.networkReachability) {
         return;
     }
-
+    
     SCNetworkReachabilityUnscheduleFromRunLoop(self.networkReachability, CFRunLoopGetMain(), kCFRunLoopCommonModes);
 }
 
@@ -252,7 +266,7 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     if ([key isEqualToString:@"reachable"] || [key isEqualToString:@"reachableViaWWAN"] || [key isEqualToString:@"reachableViaWiFi"]) {
         return [NSSet setWithObject:@"networkReachabilityStatus"];
     }
-
+    
     return [super keyPathsForValuesAffectingValueForKey:key];
 }
 
