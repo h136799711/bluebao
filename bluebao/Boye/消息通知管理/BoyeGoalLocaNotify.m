@@ -22,8 +22,8 @@
     if (![CommonCache AlarmSwitchIsOn]) {
         return;
     }
-    
-    [[ LocalNotify sharedNotify]  fireNotification:key At:model.fireDate  WithContent:[NSString stringWithFormat:@" %@到运动时间了，目标 %ld ",model.date_time,(long)model.target] HasInterval:NSCalendarUnitWeekday];
+    //1.1 20150929 修复 每天闹铃的bug，参数改为NSWeekCalendarUnit 每周
+    [[ LocalNotify sharedNotify]  fireNotification:key At:model.fireDate  WithContent:[NSString stringWithFormat:@" %@到运动时间了，目标 %ld ",model.date_time,(long)model.target] HasInterval:NSWeekCalendarUnit];
 }
 
 //取消通知

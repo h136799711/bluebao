@@ -45,7 +45,12 @@
     
     [self umengqqZoneConfig];
     
-    
+    //删除所有通知
+    NSArray *localNotifications  = [UIApplication sharedApplication].scheduledLocalNotifications;
+    for (UILocalNotification *notification in localNotifications) {
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+    }
+
     
     return YES;
 }

@@ -10,8 +10,7 @@
 #import "MessageCell.h"
 #import "PickerKeyBoard.h"
 #import "UserUpdataReqModel.h"  //用户信息更新请求模型
-
-
+#import "BoyeFileMagager.h"
 
 
 @interface PersonMessageVC (){
@@ -508,25 +507,35 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 
     
-//    if (picker.tabBarItem.tag == 0)
-//    {
-//        //        //如果是 来自照相机的image，那么先保存
-//                UIImage* original_image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-//                UIImageWriteToSavedPhotosAlbum(original_image, self,
-//                                               @selector(image:didFinishSavingWithError:contextInfo:),
-//                                              nil);
-//    }
+    DLog(@"选择图片!");
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    UIImage *originalImage, *editedImage, *imageToSave;
     
     //当选择的类型是图片
-    if ([type isEqualToString:@"public.image"])
+    
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
+        == kCFCompareEqualTo)
+        
+        //[type isEqualToString:@"public.image"])
     {
+        editedImage = (UIImage *) [info objectForKey:
+                                   UIImagePickerControllerEditedImage];
+        originalImage = (UIImage *) [info objectForKey:
+                                     UIImagePickerControllerOriginalImage];
+        
+        if (editedImage) {
+            imageToSave = editedImage;
+        } else {
+            imageToSave = originalImage;
+        }
+        
+        // Save the new image (original or edited) to the Camera Roll
+        UIImageWriteToSavedPhotosAlbum (imageToSave, nil, nil , nil);
         
         //先把图片转成NSData
         UIImage* image = [info objectForKey: @"UIImagePickerControllerEditedImage"];
-        [self.headImageBtn setImage:image forState:UIControlStateNormal];
-       
+        //        _headImageView.image = image;
         NSData * data;
         if (UIImagePNGRepresentation(image) == nil) {
             data = UIImageJPEGRepresentation(image, 1.0);
@@ -535,30 +544,85 @@
             data = UIImagePNGRepresentation(image);
         }
         
+        // TODO  ....
+        if (data == nil) {
+            [SVProgressHUD showErrorWithStatus:@"不支持格式，请重选!"];
+            return;
+        }
         
-        NSString * fileImage =  [BoyeFileMagager getDocumentsImageFile:data userID:self.userInfo.uid];
+        NSInteger uid = self.userInfo.uid;
+        NSString * filePath = [BoyeFileMagager  getDocumentsImageFile:data userID:uid];
+        PictureReqModel * pictureModel = [[PictureReqModel alloc] init];
+        pictureModel.uid = self.userInfo.uid;
+        pictureModel.type = @"avatar";
+        pictureModel.filePath = filePath;
         
-        //图片上传请求
-        PictureReqModel * picModel = [[PictureReqModel alloc] init];
-        picModel.uid =self.userInfo.uid;
-        picModel.type = @"avatar";
-        picModel.filePath = fileImage;
+        [BoyePictureUploadManager requestPictureUpload:pictureModel :^(NSDictionary *data){
+            //
+                        DLog(@" data %@",data);
+            
+            
+                        NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120 :YES]];
+            
+                        [self.headImageBtn setImageWithURL:avatar_url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Default_header"] options:SDWebImageRefreshCached];
+                        
+                    } :nil];
         
-        [BoyePictureUploadManager requestPictureUpload:picModel :^(NSDictionary *data){
-            
-            DLog(@" data %@",data);
-            
-            
-            NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120 :YES]];
-
-            [self.headImageBtn setImageWithURL:avatar_url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Default_header"] options:SDWebImageRefreshCached];
-            
-        } :nil];
-
-  
     }
-
+    
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+//    if (picker.tabBarItem.tag == 0)
+//    {
+//        //        //如果是 来自照相机的image，那么先保存
+//                UIImage* original_image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+//                UIImageWriteToSavedPhotosAlbum(original_image, self,
+//                                               @selector(image:didFinishSavingWithError:contextInfo:),
+//                                              nil);
+//    }
+//    
+//    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+//    
+//    //当选择的类型是图片
+//    if ([type isEqualToString:@"public.image"])
+//    {
+//        
+//        //先把图片转成NSData
+//        UIImage* image = [info objectForKey: @"UIImagePickerControllerEditedImage"];
+//        [self.headImageBtn setImage:image forState:UIControlStateNormal];
+//       
+//        NSData * data;
+//        if (UIImagePNGRepresentation(image) == nil) {
+//            data = UIImageJPEGRepresentation(image, 1.0);
+//            
+//        }else{
+//            data = UIImagePNGRepresentation(image);
+//        }
+//        
+    
+//        NSString * fileImage =  [BoyeFileMagager getDocumentsImageFile:data userID:self.userInfo.uid];
+//        
+//        //图片上传请求
+//        PictureReqModel * picModel = [[PictureReqModel alloc] init];
+//        picModel.uid =self.userInfo.uid;
+//        picModel.type = @"avatar";
+//        picModel.filePath = fileImage;
+//        
+//        [BoyePictureUploadManager requestPictureUpload:picModel :^(NSDictionary *data){
+//            
+//            DLog(@" data %@",data);
+//            
+//            
+//            NSURL * avatar_url = [[NSURL alloc]initWithString:[BoyePictureUploadManager getAvatarURL:self.userInfo.uid :120 :YES]];
+//
+//            [self.headImageBtn setImageWithURL:avatar_url forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Default_header"] options:SDWebImageRefreshCached];
+//            
+//        } :nil];
+//
+//  
+//    }
+//
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

@@ -131,6 +131,11 @@ static NSString * const BASE_API_URL = @"http://lanbao.itboye.com/api.php/";
     url = [self getFullURLString:url];
     
     UIImage  *image = [UIImage imageWithContentsOfFile:filePath];
+    if(image == nil){
+        NSError * error = [[NSError alloc]initWithDomain:@"图片无法读取!" code:10001 userInfo:nil];
+        failure(nil, error);
+        return;
+    }
     
     NSData * data = UIImageJPEGRepresentation(image, 0.5);    //@"file://path/to/image.png"    //@"file://path/to/image.png"
     

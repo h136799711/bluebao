@@ -32,7 +32,7 @@
     
     //图片保存的路径
     //这里将图片放在沙盒的documents文件夹中   Documents
-    NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"temp"];
+    NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
     
     //文件管理器
     NSFileManager *fileManager = [NSFileManager defaultManager];

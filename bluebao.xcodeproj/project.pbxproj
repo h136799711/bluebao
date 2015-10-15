@@ -89,7 +89,6 @@
 		5B9067621B7DC8EA00BA04AC /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90675F1B7DC8EA00BA04AC /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B9067651B7DCAB800BA04AC /* BoyeGoaldbModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9067641B7DCAB800BA04AC /* BoyeGoaldbModel.m */; };
 		5B9067671B7DCC6300BA04AC /* lanbao.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5B9067661B7DCC6300BA04AC /* lanbao.sqlite */; };
-		5B90676B1B7DD70800BA04AC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */; };
 		5B9B637C1B7EC2B000ED1D96 /* WeekSegmentlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9B637B1B7EC2B000ED1D96 /* WeekSegmentlView.m */; };
 		5B9B63861B7F204A00ED1D96 /* BoyeGoalLocaNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9B63851B7F204A00ED1D96 /* BoyeGoalLocaNotify.m */; };
 		5BA4EDB41B7AD97F0008A4F5 /* CheckBluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA4EDB31B7AD97F0008A4F5 /* CheckBluetoothData.m */; };
@@ -139,13 +138,10 @@
 		5BFCFB011B6224F00076F18B /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFCFB001B6224F00076F18B /* UserInfo.m */; };
 		5BFFD9631B54F3F600216795 /* PickerKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */; };
 		9F3321601B787FB100DDCEE4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F33215F1B787FB100DDCEE4 /* Security.framework */; };
-		9F3321621B787FB800DDCEE4 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3321611B787FB800DDCEE4 /* libiconv.dylib */; };
 		9F3321641B787FCC00DDCEE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3321631B787FCC00DDCEE4 /* CoreGraphics.framework */; };
 		9F3321661B787FDB00DDCEE4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3321651B787FDB00DDCEE4 /* CoreTelephony.framework */; };
-		9F3321681B787FE400DDCEE4 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3321671B787FE400DDCEE4 /* libstdc++.dylib */; };
 		9F3C99851B799AEA00D5C0A3 /* LocalNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C99841B799AEA00D5C0A3 /* LocalNotify.m */; };
 		9F3C998B1B7A37DC00D5C0A3 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C99871B7A37DC00D5C0A3 /* libSocialQQ.a */; };
-		9F3C998C1B7A37DC00D5C0A3 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C99881B7A37DC00D5C0A3 /* TencentOpenAPI.framework */; };
 		9F3C998D1B7A37DC00D5C0A3 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9F3C99891B7A37DC00D5C0A3 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		9F3C9A2E1B789DFE00A373CC /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C9A291B789DFD00A373CC /* libSocialWechat.a */; };
 		9F3C9A2F1B789DFE00A373CC /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C9A2A1B789DFE00A373CC /* libWeChatSDK.a */; };
@@ -154,7 +150,6 @@
 		9F470BC11B758AF500A49750 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BBF1B758AF500A49750 /* GTMBase64.m */; };
 		9F470BC51B75E03800A49750 /* CommonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BC41B75E03800A49750 /* CommonCache.m */; };
 		9F470BC91B75E5D300A49750 /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F470BC81B75E5D300A49750 /* SQLiteManager.m */; };
-		9F470BCB1B75ED7200A49750 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F470BCA1B75ED7200A49750 /* libsqlite3.dylib */; };
 		9F49836F1B784E3100B07AE6 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F4983551B784E3100B07AE6 /* UMSocialLocalizable.strings */; };
 		9F4983701B784E3100B07AE6 /* libUMSocial_Sdk_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4983631B784E3100B07AE6 /* libUMSocial_Sdk_4.2.3.a */; };
 		9F4983711B784E3100B07AE6 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F4983651B784E3100B07AE6 /* UMSCommentDetailController.xib */; };
@@ -176,7 +171,12 @@
 		9F545E9B1B74DAEC002BFF24 /* BoyeCypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F545E9A1B74DAEC002BFF24 /* BoyeCypto.m */; };
 		9F6E3EB11B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EAF1B71FBA900F329B9 /* libUMessage_Sdk_1.1.0.a */; };
 		9F6E3EB61B721BB200F329B9 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */; };
-		9F6E3EB81B7229C200F329B9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E3EB71B7229C200F329B9 /* libz.dylib */; };
+		9F8CCA7A1BBA6D870077BFF1 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8CCA791BBA6D870077BFF1 /* libsqlite3.0.tbd */; };
+		9F8CCA7C1BBA6D920077BFF1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8CCA7B1BBA6D920077BFF1 /* libz.tbd */; };
+		9F8CCA7E1BBA6D9E0077BFF1 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8CCA7D1BBA6D9E0077BFF1 /* libstdc++.tbd */; };
+		9F8CCA801BBA6DA80077BFF1 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8CCA7F1BBA6DA80077BFF1 /* libsqlite3.tbd */; };
+		9F8CCA821BBA6DB00077BFF1 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8CCA811BBA6DB00077BFF1 /* libiconv.tbd */; };
+		9F8CCB121BBA74370077BFF1 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C99881B7A37DC00D5C0A3 /* TencentOpenAPI.framework */; };
 		9F91E7DD1B4E5AB70013F4F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */; };
 		9F91E7DF1B4E5AB70013F4F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7DA1B4E5AB70013F4F1 /* main.m */; };
 		9F91E7F91B4E5AE80013F4F1 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F91E7E71B4E5AE80013F4F1 /* AFHTTPRequestOperation.m */; };
@@ -352,7 +352,6 @@
 		5B9067631B7DCAB800BA04AC /* BoyeGoaldbModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeGoaldbModel.h; sourceTree = "<group>"; };
 		5B9067641B7DCAB800BA04AC /* BoyeGoaldbModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoyeGoaldbModel.m; sourceTree = "<group>"; };
 		5B9067661B7DCC6300BA04AC /* lanbao.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = lanbao.sqlite; sourceTree = "<group>"; };
-		5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		5B9B637A1B7EC2B000ED1D96 /* WeekSegmentlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekSegmentlView.h; sourceTree = "<group>"; };
 		5B9B637B1B7EC2B000ED1D96 /* WeekSegmentlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekSegmentlView.m; sourceTree = "<group>"; };
 		5B9B63841B7F204A00ED1D96 /* BoyeGoalLocaNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoyeGoalLocaNotify.h; sourceTree = "<group>"; };
@@ -448,10 +447,8 @@
 		5BFFD9611B54F3F600216795 /* PickerKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerKeyBoard.h; sourceTree = "<group>"; };
 		5BFFD9621B54F3F600216795 /* PickerKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerKeyBoard.m; sourceTree = "<group>"; };
 		9F33215F1B787FB100DDCEE4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		9F3321611B787FB800DDCEE4 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		9F3321631B787FCC00DDCEE4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9F3321651B787FDB00DDCEE4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		9F3321671B787FE400DDCEE4 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		9F3C99831B799AEA00D5C0A3 /* LocalNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotify.h; sourceTree = "<group>"; };
 		9F3C99841B799AEA00D5C0A3 /* LocalNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotify.m; sourceTree = "<group>"; };
 		9F3C99871B7A37DC00D5C0A3 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
@@ -473,7 +470,6 @@
 		9F470BC41B75E03800A49750 /* CommonCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCache.m; sourceTree = "<group>"; };
 		9F470BC71B75E5D300A49750 /* SQLiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
 		9F470BC81B75E5D300A49750 /* SQLiteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteManager.m; sourceTree = "<group>"; };
-		9F470BCA1B75ED7200A49750 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		9F4983561B784E3100B07AE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		9F4983581B784E3100B07AE6 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		9F4983591B784E3100B07AE6 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -518,7 +514,11 @@
 		9F6E3EB31B721BB200F329B9 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		9F6E3EB41B721BB200F329B9 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		9F6E3EB51B721BB200F329B9 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
-		9F6E3EB71B7229C200F329B9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9F8CCA791BBA6D870077BFF1 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		9F8CCA7B1BBA6D920077BFF1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9F8CCA7D1BBA6D9E0077BFF1 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		9F8CCA7F1BBA6DA80077BFF1 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		9F8CCA811BBA6DB00077BFF1 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9F91E7D71B4E5AB70013F4F1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Common/AppDelegate.h; sourceTree = "<group>"; };
 		9F91E7D81B4E5AB70013F4F1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Common/AppDelegate.m; sourceTree = "<group>"; };
 		9F91E7D91B4E5AB70013F4F1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Common/Info.plist; sourceTree = "<group>"; };
@@ -551,17 +551,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B90676B1B7DD70800BA04AC /* libsqlite3.0.dylib in Frameworks */,
+				9F8CCB121BBA74370077BFF1 /* TencentOpenAPI.framework in Frameworks */,
+				9F8CCA821BBA6DB00077BFF1 /* libiconv.tbd in Frameworks */,
+				9F8CCA801BBA6DA80077BFF1 /* libsqlite3.tbd in Frameworks */,
+				9F8CCA7E1BBA6D9E0077BFF1 /* libstdc++.tbd in Frameworks */,
+				9F8CCA7C1BBA6D920077BFF1 /* libz.tbd in Frameworks */,
+				9F8CCA7A1BBA6D870077BFF1 /* libsqlite3.0.tbd in Frameworks */,
 				9F3C998B1B7A37DC00D5C0A3 /* libSocialQQ.a in Frameworks */,
-				9F6E3EB81B7229C200F329B9 /* libz.dylib in Frameworks */,
 				9F3C9A2F1B789DFE00A373CC /* libWeChatSDK.a in Frameworks */,
-				9F3321681B787FE400DDCEE4 /* libstdc++.dylib in Frameworks */,
 				9F3321661B787FDB00DDCEE4 /* CoreTelephony.framework in Frameworks */,
-				9F470BCB1B75ED7200A49750 /* libsqlite3.dylib in Frameworks */,
 				9F3321641B787FCC00DDCEE4 /* CoreGraphics.framework in Frameworks */,
 				5BF5A8681B65C04100996283 /* SystemConfiguration.framework in Frameworks */,
-				9F3C998C1B7A37DC00D5C0A3 /* TencentOpenAPI.framework in Frameworks */,
-				9F3321621B787FB800DDCEE4 /* libiconv.dylib in Frameworks */,
 				9F3321601B787FB100DDCEE4 /* Security.framework in Frameworks */,
 				5BF5A86A1B65C08000996283 /* MobileCoreServices.framework in Frameworks */,
 				9F4983701B784E3100B07AE6 /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
@@ -1277,12 +1277,12 @@
 		9F50E5011B4E577600AB6BD8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F8CCA811BBA6DB00077BFF1 /* libiconv.tbd */,
+				9F8CCA7F1BBA6DA80077BFF1 /* libsqlite3.tbd */,
+				9F8CCA7D1BBA6D9E0077BFF1 /* libstdc++.tbd */,
+				9F8CCA7B1BBA6D920077BFF1 /* libz.tbd */,
+				9F8CCA791BBA6D870077BFF1 /* libsqlite3.0.tbd */,
 				9F454CEC1B7F31D6009CE230 /* localnotify.mp3 */,
-				5B90676A1B7DD70800BA04AC /* libsqlite3.0.dylib */,
-				9F3321671B787FE400DDCEE4 /* libstdc++.dylib */,
-				9F3321611B787FB800DDCEE4 /* libiconv.dylib */,
-				9F470BCA1B75ED7200A49750 /* libsqlite3.dylib */,
-				9F6E3EB71B7229C200F329B9 /* libz.dylib */,
 				9F4FB6341B733F6400440BFC /* 用户须知.rtf */,
 			);
 			name = "Supporting Files";
