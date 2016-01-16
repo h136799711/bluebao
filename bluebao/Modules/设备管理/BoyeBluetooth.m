@@ -359,8 +359,8 @@
     DLog(@"中心设备发现一台外围设备");
     
     //名称等于UART-BLE时
-    if([peripheral.name isEqualToString:@"UART-BLE"]){
-        
+//    if([peripheral.name isEqualToString:@"UART-BLE"]){
+    
         LNowDevice *device = [[LNowDevice alloc]initWithPeripheral:peripheral withRssi:RSSI];
         
         [self addDevice:device];
@@ -368,7 +368,7 @@
         //调用delegate
         [self.delegate bluetoothStateChange:self :STATE_DISCOVERED_DEVICE :device];
         
-    }
+//    }
     
     
 }
